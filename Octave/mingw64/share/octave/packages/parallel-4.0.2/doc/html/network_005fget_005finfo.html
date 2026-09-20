@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- General documentation for the parallel package for Octave.
+
+Copyright (C) 2016-2023 Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>network_get_info (parallel_doc)</title>
+
+<meta name="description" content="network_get_info (parallel_doc)">
+<meta name="keywords" content="network_get_info (parallel_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Cluster-execution.html" rel="up" title="Cluster execution">
+<link href="network_005fset.html" rel="next" title="network_set">
+<link href="sclose.html" rel="prev" title="sclose">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<span id="network_005fget_005finfo"></span><div class="header">
+<p>
+Next: <a href="network_005fset.html" accesskey="n" rel="next">network_set</a>, Previous: <a href="sclose.html" accesskey="p" rel="prev">sclose</a>, Up: <a href="Cluster-execution.html" accesskey="u" rel="up">Cluster execution</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Get-network-information"></span><h3 class="section">3.6 Get network information</h3>
+<span id="index-network_005fget_005finfo-1"></span>
+
+<span id="XREFnetwork_005fget_005finfo"></span><dl>
+<dt id="index-network_005fget_005finfo">Loadable Function: <em></em> <strong>network_get_info</strong> <em>(<var>connections</var>)</em></dt>
+<dd><p>Return an informational structure-array with one entry for each machine specified by <var>connections</var>.
+</p>
+<p>This function can only be successfully called at the client
+machine. See <code>pconnect</code> for a description of the
+<var>connections</var> variable. <var>connections</var> can contain all
+connections of the network, a subset of them, or a single
+connection. For the local machine (client), if contained in
+<var>connections</var>, some fields of the returned structure may be
+empty.
+</p>
+<p>The fields of the returned structure are <code>local_machine</code>: true
+for the connection representing the local machine, <code>nproc</code>:
+number of usable processors of the machine, <code>nlocaljobs</code>:
+configured number of local processes on the machine, <code>peername</code>:
+name of the machine (empty for local machine), <code>open</code>: true if
+the connection is open, <code>network_id</code>: uuid of the network,
+<code>real_node_id</code>: internal id assigned to node, <code>0</code> for
+client, servers starting with <code>1</code>.
+</p>
+
+<p><strong>See also:</strong> <a href="pconnect.html#XREFpconnect">pconnect</a>, <a href="pserver.html#XREFpserver">pserver</a>, <a href="reval.html#XREFreval">reval</a>, <a href="psend.html#XREFpsend">psend</a>, <a href="precv.html#XREFprecv">precv</a>, <a href="sclose.html#XREFsclose">sclose</a>, <a href="Authentication.html#XREFparallel_005fgenerate_005fsrp_005fdata">parallel_generate_srp_data</a>, <a href="select_005fsockets.html#XREFselect_005fsockets">select_sockets</a>.
+</p></dd></dl>
+
+
+
+
+
+
+
+</body>
+</html>

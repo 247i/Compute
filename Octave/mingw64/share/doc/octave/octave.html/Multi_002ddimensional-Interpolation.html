@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Multi-dimensional Interpolation (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Multi-dimensional Interpolation (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Multi-dimensional Interpolation (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Interpolation.html" rel="up" title="Interpolation">
+<link href="One_002ddimensional-Interpolation.html" rel="prev" title="One-dimensional Interpolation">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.center {text-align:center}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Multi_002ddimensional-Interpolation">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="One_002ddimensional-Interpolation.html" accesskey="p" rel="prev">One-dimensional Interpolation</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Interpolation.html" accesskey="u" rel="up">Interpolation</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Multi_002ddimensional-Interpolation-1"><span>29.2 Multi-dimensional Interpolation<a class="copiable-link" href="#Multi_002ddimensional-Interpolation-1"> &para;</a></span></h3>
+
+<p>There are three multi-dimensional interpolation functions in Octave, with
+similar capabilities.  Methods using Delaunay tessellation are described
+in <a class="ref" href="Interpolation-on-Scattered-Data.html">Interpolation on Scattered Data</a>.
+</p>
+<a class="anchor" id="XREFinterp2"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-interp2"><span><code class="def-type"><var class="var">zi</var> =</code> <strong class="def-name">interp2</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>, <var class="var">xi</var>, <var class="var">yi</var>)</code><a class="copiable-link" href="#index-interp2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-interp2-1"><span><code class="def-type"><var class="var">zi</var> =</code> <strong class="def-name">interp2</strong> <code class="def-code-arguments">(<var class="var">z</var>, <var class="var">xi</var>, <var class="var">yi</var>)</code><a class="copiable-link" href="#index-interp2-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-interp2-2"><span><code class="def-type"><var class="var">zi</var> =</code> <strong class="def-name">interp2</strong> <code class="def-code-arguments">(<var class="var">z</var>, <var class="var">n</var>)</code><a class="copiable-link" href="#index-interp2-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-interp2-3"><span><code class="def-type"><var class="var">zi</var> =</code> <strong class="def-name">interp2</strong> <code class="def-code-arguments">(<var class="var">z</var>)</code><a class="copiable-link" href="#index-interp2-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-interp2-4"><span><code class="def-type"><var class="var">zi</var> =</code> <strong class="def-name">interp2</strong> <code class="def-code-arguments">(&hellip;, <var class="var">method</var>)</code><a class="copiable-link" href="#index-interp2-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-interp2-5"><span><code class="def-type"><var class="var">zi</var> =</code> <strong class="def-name">interp2</strong> <code class="def-code-arguments">(&hellip;, <var class="var">method</var>, <var class="var">extrap</var>)</code><a class="copiable-link" href="#index-interp2-5"> &para;</a></span></dt>
+<dd>
+<p>Two-dimensional interpolation.
+</p>
+<p>Interpolate numeric reference data <var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var> to determine
+<var class="var">zi</var> at the coordinates <var class="var">xi</var>, <var class="var">yi</var>.  The reference data
+<var class="var">x</var>, <var class="var">y</var> can be matrices, as returned by <code class="code">meshgrid</code>, in which
+case the sizes of <var class="var">x</var>, <var class="var">y</var>, and <var class="var">z</var> must be equal.  If <var class="var">x</var>,
+<var class="var">y</var> are vectors describing a grid then
+<code class="code">length&nbsp;(<var class="var">x</var>)&nbsp;==&nbsp;columns&nbsp;(<var class="var">z</var>)</code><!-- /@w -->&nbsp;and
+<code class="code">length&nbsp;(<var class="var">y</var>)&nbsp;==&nbsp;rows&nbsp;(<var class="var">z</var>)</code><!-- /@w -->.  In either case the input
+data must be strictly monotonic.
+</p>
+<p>If called without <var class="var">x</var>, <var class="var">y</var>, and just a single reference data matrix
+<var class="var">z</var>, the 2-D region
+<code class="code"><var class="var">x</var> = 1:columns (<var class="var">z</var>), <var class="var">y</var> = 1:rows (<var class="var">z</var>)</code> is assumed.
+This saves memory if the grid is regular and the distance between points is
+not important.
+</p>
+<p>If called with a single reference data matrix <var class="var">z</var> and a refinement
+value <var class="var">n</var>, then perform interpolation over a grid where each original
+interval has been recursively subdivided <var class="var">n</var> times.  This results in
+<code class="code">2^<var class="var">n</var>-1</code> additional points for every interval in the original
+grid.  If <var class="var">n</var> is omitted a value of 1 is used.  As an example, the
+interval [0,1] with <code class="code"><var class="var">n</var>==2</code> results in a refined interval with
+points at [0, 1/4, 1/2, 3/4, 1].
+</p>
+<p>The interpolation <var class="var">method</var> is one of:
+</p>
+<dl class="table">
+<dt><code class="code">&quot;nearest&quot;</code></dt>
+<dd><p>Return the nearest neighbor.
+</p>
+</dd>
+<dt><code class="code">&quot;linear&quot;</code> (default)</dt>
+<dd><p>Linear interpolation from nearest neighbors.
+</p>
+</dd>
+<dt><code class="code">&quot;pchip&quot;</code></dt>
+<dd><p>Piecewise cubic Hermite interpolating polynomial&mdash;shape-preserving
+interpolation with smooth first derivative.
+</p>
+</dd>
+<dt><code class="code">&quot;cubic&quot;</code></dt>
+<dd><p>Cubic interpolation using a convolution kernel function&mdash;third order
+method with smooth first derivative.
+</p>
+</dd>
+<dt><code class="code">&quot;spline&quot;</code></dt>
+<dd><p>Cubic spline interpolation&mdash;smooth first and second derivatives
+throughout the curve.
+</p></dd>
+</dl>
+
+<p><var class="var">extrap</var> is a scalar number.  It replaces values beyond the endpoints
+with <var class="var">extrap</var>.  Note that if <var class="var">extrap</var> is used, <var class="var">method</var> must
+be specified as well.  If <var class="var">extrap</var> is omitted and the <var class="var">method</var> is
+<code class="code">&quot;spline&quot;</code>, then the extrapolated values of the <code class="code">&quot;spline&quot;</code> are
+used.  Otherwise the default <var class="var">extrap</var> value for any other <var class="var">method</var>
+is <code class="code">&quot;NA&quot;</code>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="One_002ddimensional-Interpolation.html#XREFinterp1">interp1</a>, <a class="ref" href="#XREFinterp3">interp3</a>, <a class="ref" href="#XREFinterpn">interpn</a>, <a class="ref" href="Three_002dDimensional-Plots.html#XREFmeshgrid">meshgrid</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFinterp3"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-interp3"><span><code class="def-type"><var class="var">vi</var> =</code> <strong class="def-name">interp3</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>, <var class="var">v</var>, <var class="var">xi</var>, <var class="var">yi</var>, <var class="var">zi</var>)</code><a class="copiable-link" href="#index-interp3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-interp3-1"><span><code class="def-type"><var class="var">vi</var> =</code> <strong class="def-name">interp3</strong> <code class="def-code-arguments">(<var class="var">v</var>, <var class="var">xi</var>, <var class="var">yi</var>, <var class="var">zi</var>)</code><a class="copiable-link" href="#index-interp3-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-interp3-2"><span><code class="def-type"><var class="var">vi</var> =</code> <strong class="def-name">interp3</strong> <code class="def-code-arguments">(<var class="var">v</var>, <var class="var">n</var>)</code><a class="copiable-link" href="#index-interp3-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-interp3-3"><span><code class="def-type"><var class="var">vi</var> =</code> <strong class="def-name">interp3</strong> <code class="def-code-arguments">(<var class="var">v</var>)</code><a class="copiable-link" href="#index-interp3-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-interp3-4"><span><code class="def-type"><var class="var">vi</var> =</code> <strong class="def-name">interp3</strong> <code class="def-code-arguments">(&hellip;, <var class="var">method</var>)</code><a class="copiable-link" href="#index-interp3-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-interp3-5"><span><code class="def-type"><var class="var">vi</var> =</code> <strong class="def-name">interp3</strong> <code class="def-code-arguments">(&hellip;, <var class="var">method</var>, <var class="var">extrapval</var>)</code><a class="copiable-link" href="#index-interp3-5"> &para;</a></span></dt>
+<dd>
+<p>Three-dimensional interpolation.
+</p>
+<p>Interpolate numeric reference data <var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>, <var class="var">v</var> to
+determine <var class="var">vi</var> at the coordinates <var class="var">xi</var>, <var class="var">yi</var>, <var class="var">zi</var>.  The
+reference data <var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var> can be matrices, as returned by
+<code class="code">meshgrid</code>, in which case the sizes of <var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>, and
+<var class="var">v</var> must be equal.  If <var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var> are vectors describing
+a cubic grid then <code class="code">length (<var class="var">x</var>) == columns (<var class="var">v</var>)</code>,
+<code class="code">length (<var class="var">y</var>) == rows (<var class="var">v</var>)</code>, and
+<code class="code">length (<var class="var">z</var>) == size (<var class="var">v</var>, 3)</code>.  In either case the input
+data must be strictly monotonic.
+</p>
+<p>If called without <var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>, and just a single reference
+data matrix <var class="var">v</var>, the 3-D region
+<code class="code"><var class="var">x</var> = 1:columns (<var class="var">v</var>), <var class="var">y</var> = 1:rows (<var class="var">v</var>),
+<var class="var">z</var> = 1:size (<var class="var">v</var>, 3)</code> is assumed.
+This saves memory if the grid is regular and the distance between points is
+not important.
+</p>
+<p>If called with a single reference data matrix <var class="var">v</var> and a refinement
+value <var class="var">n</var>, then perform interpolation over a 3-D grid where each
+original interval has been recursively subdivided <var class="var">n</var> times.  This
+results in <code class="code">2^<var class="var">n</var>-1</code> additional points for every interval in the
+original grid.  If <var class="var">n</var> is omitted a value of 1 is used.  As an
+example, the interval [0,1] with <code class="code"><var class="var">n</var>==2</code> results in a refined
+interval with points at [0, 1/4, 1/2, 3/4, 1].
+</p>
+<p>The interpolation <var class="var">method</var> is one of:
+</p>
+<dl class="table">
+<dt><code class="code">&quot;nearest&quot;</code></dt>
+<dd><p>Return the nearest neighbor.
+</p>
+</dd>
+<dt><code class="code">&quot;linear&quot;</code> (default)</dt>
+<dd><p>Linear interpolation from nearest neighbors.
+</p>
+</dd>
+<dt><code class="code">&quot;cubic&quot;</code></dt>
+<dd><p>Piecewise cubic Hermite interpolating polynomial&mdash;shape-preserving
+interpolation with smooth first derivative (not implemented yet).
+</p>
+</dd>
+<dt><code class="code">&quot;spline&quot;</code></dt>
+<dd><p>Cubic spline interpolation&mdash;smooth first and second derivatives
+throughout the curve.
+</p></dd>
+</dl>
+
+<p><var class="var">extrapval</var> is a scalar number.  It replaces values beyond the endpoints
+with <var class="var">extrapval</var>.  Note that if <var class="var">extrapval</var> is used, <var class="var">method</var>
+must be specified as well.  If <var class="var">extrapval</var> is omitted and the
+<var class="var">method</var> is <code class="code">&quot;spline&quot;</code>, then the extrapolated values of the
+<code class="code">&quot;spline&quot;</code> are used.  Otherwise the default <var class="var">extrapval</var> value for
+any other <var class="var">method</var> is <code class="code">&quot;NA&quot;</code>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="One_002ddimensional-Interpolation.html#XREFinterp1">interp1</a>, <a class="ref" href="#XREFinterp2">interp2</a>, <a class="ref" href="#XREFinterpn">interpn</a>, <a class="ref" href="Three_002dDimensional-Plots.html#XREFmeshgrid">meshgrid</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFinterpn"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-interpn"><span><code class="def-type"><var class="var">vi</var> =</code> <strong class="def-name">interpn</strong> <code class="def-code-arguments">(<var class="var">x1</var>, <var class="var">x2</var>, &hellip;, <var class="var">v</var>, <var class="var">y1</var>, <var class="var">y2</var>, &hellip;)</code><a class="copiable-link" href="#index-interpn"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-interpn-1"><span><code class="def-type"><var class="var">vi</var> =</code> <strong class="def-name">interpn</strong> <code class="def-code-arguments">(<var class="var">v</var>, <var class="var">y1</var>, <var class="var">y2</var>, &hellip;)</code><a class="copiable-link" href="#index-interpn-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-interpn-2"><span><code class="def-type"><var class="var">vi</var> =</code> <strong class="def-name">interpn</strong> <code class="def-code-arguments">(<var class="var">v</var>, <var class="var">m</var>)</code><a class="copiable-link" href="#index-interpn-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-interpn-3"><span><code class="def-type"><var class="var">vi</var> =</code> <strong class="def-name">interpn</strong> <code class="def-code-arguments">(<var class="var">v</var>)</code><a class="copiable-link" href="#index-interpn-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-interpn-4"><span><code class="def-type"><var class="var">vi</var> =</code> <strong class="def-name">interpn</strong> <code class="def-code-arguments">(&hellip;, <var class="var">method</var>)</code><a class="copiable-link" href="#index-interpn-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-interpn-5"><span><code class="def-type"><var class="var">vi</var> =</code> <strong class="def-name">interpn</strong> <code class="def-code-arguments">(&hellip;, <var class="var">method</var>, <var class="var">extrapval</var>)</code><a class="copiable-link" href="#index-interpn-5"> &para;</a></span></dt>
+<dd>
+<p>Perform <var class="var">n</var>-dimensional interpolation, where <var class="var">n</var> is at least two.
+</p>
+<p>Each element of the <var class="var">n</var>-dimensional numeric array <var class="var">v</var> represents a
+value at a location given by the parameters <var class="var">x1</var>, <var class="var">x2</var>, &hellip;,
+<var class="var">xn</var>.  The parameters <var class="var">x1</var>, <var class="var">x2</var>, &hellip;, <var class="var">xn</var> are either
+<var class="var">n</var>-dimensional arrays of the same size as the array <var class="var">v</var> in
+the <code class="code">&quot;ndgrid&quot;</code> format or vectors.
+</p>
+<p>The parameters <var class="var">y1</var>, <var class="var">y2</var>, &hellip;, <var class="var">yn</var> represent the points at
+which the array <var class="var">vi</var> is interpolated.  They can be vectors of the same
+length and orientation in which case they are interpreted as coordinates of
+scattered points.  If they are vectors of differing orientation or length,
+they are used to form a grid in <code class="code">&quot;ndgrid&quot;</code> format.  They can also be
+<var class="var">n</var>-dimensional arrays of equal size.
+</p>
+<p>If <var class="var">x1</var>, &hellip;, <var class="var">xn</var> are omitted, they are assumed to be
+<code class="code">x1 = 1 : size (<var class="var">v</var>, 1)</code>, etc.  If <var class="var">m</var> is specified, then
+the interpolation adds a point half way between each of the interpolation
+points.  This process is performed <var class="var">m</var> times.  If only <var class="var">v</var> is
+specified, then <var class="var">m</var> is assumed to be <code class="code">1</code>.
+</p>
+<p>The interpolation <var class="var">method</var> is one of:
+</p>
+<dl class="table">
+<dt><code class="code">&quot;nearest&quot;</code></dt>
+<dd><p>Return the nearest neighbor.
+</p>
+</dd>
+<dt><code class="code">&quot;linear&quot;</code> (default)</dt>
+<dd><p>Linear interpolation from nearest neighbors.
+</p>
+</dd>
+<dt><code class="code">&quot;pchip&quot;</code></dt>
+<dd><p>Piecewise cubic Hermite interpolating polynomial&mdash;shape-preserving
+interpolation with smooth first derivative (not implemented yet).
+</p>
+</dd>
+<dt><code class="code">&quot;cubic&quot;</code></dt>
+<dd><p>Cubic interpolation (same as <code class="code">&quot;pchip&quot;</code> [not implemented yet]).
+</p>
+</dd>
+<dt><code class="code">&quot;spline&quot;</code></dt>
+<dd><p>Cubic spline interpolation&mdash;smooth first and second derivatives
+throughout the curve.
+</p></dd>
+</dl>
+
+<p>The default method is <code class="code">&quot;linear&quot;</code>.
+</p>
+<p><var class="var">extrapval</var> is a scalar number.  It replaces values beyond the endpoints
+with <var class="var">extrapval</var>.  Note that if <var class="var">extrapval</var> is used, <var class="var">method</var>
+must be specified as well.  If <var class="var">extrapval</var> is omitted and the
+<var class="var">method</var> is <code class="code">&quot;spline&quot;</code>, then the extrapolated values of the
+<code class="code">&quot;spline&quot;</code> are used.  Otherwise the default <var class="var">extrapval</var> value for
+any other <var class="var">method</var> is <code class="code">NA</code>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="One_002ddimensional-Interpolation.html#XREFinterp1">interp1</a>, <a class="ref" href="#XREFinterp2">interp2</a>, <a class="ref" href="#XREFinterp3">interp3</a>, <a class="ref" href="One_002ddimensional-Interpolation.html#XREFspline">spline</a>, <a class="ref" href="Three_002dDimensional-Plots.html#XREFndgrid">ndgrid</a>.
+</p></dd></dl>
+
+
+<p>A significant difference between <code class="code">interpn</code> and the other two
+multi-dimensional interpolation functions is the fashion in which the
+dimensions are treated.  For <code class="code">interp2</code> and <code class="code">interp3</code>, the y-axis is
+considered to be the columns of the matrix, whereas the x-axis corresponds to
+the rows of the array.  As Octave indexes arrays in column major order, the
+first dimension of any array is the columns, and so <code class="code">interpn</code> effectively
+reverses the &rsquo;x&rsquo; and &rsquo;y&rsquo; dimensions.  Consider the example,
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">x = y = z = -1:1;
+f = @(x,y,z) x.^2 - y - z.^2;
+[xx, yy, zz] = meshgrid (x, y, z);
+v = f (xx,yy,zz);
+xi = yi = zi = -1:0.1:1;
+[xxi, yyi, zzi] = meshgrid (xi, yi, zi);
+vi = interp3 (x, y, z, v, xxi, yyi, zzi, &quot;spline&quot;);
+[xxi, yyi, zzi] = ndgrid (xi, yi, zi);
+vi2 = interpn (x, y, z, v, xxi, yyi, zzi, &quot;spline&quot;);
+mesh (zi, yi, squeeze (vi2(1,:,:)));
+</pre></div></div>
+
+<p>where <code class="code">vi</code> and <code class="code">vi2</code> are identical.  The reversal of the
+dimensions is treated in the <code class="code">meshgrid</code> and <code class="code">ndgrid</code> functions
+respectively.
+The result of this code can be seen in <a class="ref" href="#fig_003ainterpn">Figure 29.4</a>.
+</p>
+<div class="float" id="fig_003ainterpn">
+<div class="center"><img class="image" src="interpn.png" alt="interpn">
+</div><div class="caption"><p><strong class="strong">Figure 29.4: </strong>Demonstration of the use of <code class="code">interpn</code></p></div></div>
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="One_002ddimensional-Interpolation.html">One-dimensional Interpolation</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Interpolation.html">Interpolation</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Famous Matrices (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Famous Matrices (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Famous Matrices (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Matrix-Manipulation.html" rel="up" title="Matrix Manipulation">
+<link href="Special-Utility-Matrices.html" rel="prev" title="Special Utility Matrices">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+ul.mark-bullet {list-style-type: disc}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Famous-Matrices">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Special-Utility-Matrices.html" accesskey="p" rel="prev">Special Utility Matrices</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Matrix-Manipulation.html" accesskey="u" rel="up">Matrix Manipulation</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Famous-Matrices-1"><span>16.4 Famous Matrices<a class="copiable-link" href="#Famous-Matrices-1"> &para;</a></span></h3>
+
+<p>The following functions return famous matrix forms.
+</p>
+<a class="anchor" id="XREFgallery"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery"><span><strong class="def-name">gallery</strong> <code class="def-code-arguments">(<var class="var">name</var>)</code><a class="copiable-link" href="#index-gallery"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-1"><span><strong class="def-name">gallery</strong> <code class="def-code-arguments">(<var class="var">name</var>, <var class="var">args</var>)</code><a class="copiable-link" href="#index-gallery-1"> &para;</a></span></dt>
+<dd><p>Create interesting matrices for testing.
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-2"><span><code class="def-type"><var class="var">c</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;cauchy&quot;, <var class="var">x</var>)</code><a class="copiable-link" href="#index-gallery-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-3"><span><code class="def-type"><var class="var">c</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;cauchy&quot;, <var class="var">x</var>, <var class="var">y</var>)</code><a class="copiable-link" href="#index-gallery-3"> &para;</a></span></dt>
+<dd><p>Create a Cauchy matrix.
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-4"><span><code class="def-type"><var class="var">c</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;chebspec&quot;, <var class="var">n</var>)</code><a class="copiable-link" href="#index-gallery-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-5"><span><code class="def-type"><var class="var">c</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;chebspec&quot;, <var class="var">n</var>, <var class="var">k</var>)</code><a class="copiable-link" href="#index-gallery-5"> &para;</a></span></dt>
+<dd><p>Create a Chebyshev spectral differentiation matrix.
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-6"><span><code class="def-type"><var class="var">c</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;chebvand&quot;, <var class="var">p</var>)</code><a class="copiable-link" href="#index-gallery-6"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-7"><span><code class="def-type"><var class="var">c</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;chebvand&quot;, <var class="var">m</var>, <var class="var">p</var>)</code><a class="copiable-link" href="#index-gallery-7"> &para;</a></span></dt>
+<dd><p>Create a Vandermonde-like matrix for the Chebyshev polynomials.
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-8"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;chow&quot;, <var class="var">n</var>)</code><a class="copiable-link" href="#index-gallery-8"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-9"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;chow&quot;, <var class="var">n</var>, <var class="var">alpha</var>)</code><a class="copiable-link" href="#index-gallery-9"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-10"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;chow&quot;, <var class="var">n</var>, <var class="var">alpha</var>, <var class="var">delta</var>)</code><a class="copiable-link" href="#index-gallery-10"> &para;</a></span></dt>
+<dd><p>Create a Chow matrix &ndash; a singular Toeplitz lower Hessenberg matrix.
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-11"><span><code class="def-type"><var class="var">c</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;circul&quot;, <var class="var">v</var>)</code><a class="copiable-link" href="#index-gallery-11"> &para;</a></span></dt>
+<dd><p>Create a circulant matrix.
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-12"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;clement&quot;, <var class="var">n</var>)</code><a class="copiable-link" href="#index-gallery-12"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-13"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;clement&quot;, <var class="var">n</var>, <var class="var">k</var>)</code><a class="copiable-link" href="#index-gallery-13"> &para;</a></span></dt>
+<dd><p>Create a tridiagonal matrix with zero diagonal entries.
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-14"><span><code class="def-type"><var class="var">c</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;compar&quot;, <var class="var">a</var>)</code><a class="copiable-link" href="#index-gallery-14"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-15"><span><code class="def-type"><var class="var">c</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;compar&quot;, <var class="var">a</var>, <var class="var">k</var>)</code><a class="copiable-link" href="#index-gallery-15"> &para;</a></span></dt>
+<dd><p>Create a comparison matrix.
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-16"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;condex&quot;, <var class="var">n</var>)</code><a class="copiable-link" href="#index-gallery-16"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-17"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;condex&quot;, <var class="var">n</var>, <var class="var">k</var>)</code><a class="copiable-link" href="#index-gallery-17"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-18"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;condex&quot;, <var class="var">n</var>, <var class="var">k</var>, <var class="var">theta</var>)</code><a class="copiable-link" href="#index-gallery-18"> &para;</a></span></dt>
+<dd><p>Create a &quot;counterexample&quot; matrix to a condition estimator.
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-19"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;cycol&quot;, [<var class="var">m</var> <var class="var">n</var>])</code><a class="copiable-link" href="#index-gallery-19"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-20"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;cycol&quot;, <var class="var">n</var>)</code><a class="copiable-link" href="#index-gallery-20"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-21"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&hellip;, <var class="var">k</var>)</code><a class="copiable-link" href="#index-gallery-21"> &para;</a></span></dt>
+<dd><p>Create a matrix whose columns repeat cyclically.
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-22"><span><code class="def-type">[<var class="var">c</var>, <var class="var">d</var>, <var class="var">e</var>] =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;dorr&quot;, <var class="var">n</var>)</code><a class="copiable-link" href="#index-gallery-22"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-23"><span><code class="def-type">[<var class="var">c</var>, <var class="var">d</var>, <var class="var">e</var>] =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;dorr&quot;, <var class="var">n</var>, <var class="var">theta</var>)</code><a class="copiable-link" href="#index-gallery-23"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-24"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;dorr&quot;, &hellip;)</code><a class="copiable-link" href="#index-gallery-24"> &para;</a></span></dt>
+<dd><p>Create a diagonally dominant, ill-conditioned, tridiagonal matrix.
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-25"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;dramadah&quot;, <var class="var">n</var>)</code><a class="copiable-link" href="#index-gallery-25"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-26"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;dramadah&quot;, <var class="var">n</var>, <var class="var">k</var>)</code><a class="copiable-link" href="#index-gallery-26"> &para;</a></span></dt>
+<dd><p>Create a (0, 1) matrix whose inverse has large integer entries.
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-27"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;fiedler&quot;, <var class="var">c</var>)</code><a class="copiable-link" href="#index-gallery-27"> &para;</a></span></dt>
+<dd><p>Create a symmetric Fiedler matrix.
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-28"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;forsythe&quot;, <var class="var">n</var>)</code><a class="copiable-link" href="#index-gallery-28"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-29"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;forsythe&quot;, <var class="var">n</var>, <var class="var">alpha</var>)</code><a class="copiable-link" href="#index-gallery-29"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-30"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;forsythe&quot;, <var class="var">n</var>, <var class="var">alpha</var>, <var class="var">lambda</var>)</code><a class="copiable-link" href="#index-gallery-30"> &para;</a></span></dt>
+<dd><p>Create a Forsythe matrix (a perturbed Jordan block).
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-31"><span><code class="def-type"><var class="var">f</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;frank&quot;, <var class="var">n</var>)</code><a class="copiable-link" href="#index-gallery-31"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-32"><span><code class="def-type"><var class="var">f</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;frank&quot;, <var class="var">n</var>, <var class="var">k</var>)</code><a class="copiable-link" href="#index-gallery-32"> &para;</a></span></dt>
+<dd><p>Create a Frank matrix (ill-conditioned eigenvalues).
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-33"><span><code class="def-type"><var class="var">c</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;gcdmat&quot;, <var class="var">n</var>)</code><a class="copiable-link" href="#index-gallery-33"> &para;</a></span></dt>
+<dd><p>Create a greatest common divisor matrix.
+</p>
+<p><var class="var">c</var> is an <var class="var">n</var>-by-<var class="var">n</var> matrix whose values correspond to the
+greatest common divisor of its coordinate values, i.e., <var class="var">c</var>(i,j)
+correspond <code class="code">gcd (i, j)</code>.
+</p></dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-34"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;gearmat&quot;, <var class="var">n</var>)</code><a class="copiable-link" href="#index-gallery-34"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-35"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;gearmat&quot;, <var class="var">n</var>, <var class="var">i</var>)</code><a class="copiable-link" href="#index-gallery-35"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-36"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;gearmat&quot;, <var class="var">n</var>, <var class="var">i</var>, <var class="var">j</var>)</code><a class="copiable-link" href="#index-gallery-36"> &para;</a></span></dt>
+<dd><p>Create a Gear matrix.
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-37"><span><code class="def-type"><var class="var">g</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;grcar&quot;, <var class="var">n</var>)</code><a class="copiable-link" href="#index-gallery-37"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-38"><span><code class="def-type"><var class="var">g</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;grcar&quot;, <var class="var">n</var>, <var class="var">k</var>)</code><a class="copiable-link" href="#index-gallery-38"> &para;</a></span></dt>
+<dd><p>Create a Toeplitz matrix with sensitive eigenvalues.
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-39"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;hanowa&quot;, <var class="var">n</var>)</code><a class="copiable-link" href="#index-gallery-39"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-40"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;hanowa&quot;, <var class="var">n</var>, <var class="var">d</var>)</code><a class="copiable-link" href="#index-gallery-40"> &para;</a></span></dt>
+<dd><p>Create a matrix whose eigenvalues lie on a vertical line in the complex
+plane.
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-41"><span><code class="def-type"><var class="var">v</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;house&quot;, <var class="var">x</var>)</code><a class="copiable-link" href="#index-gallery-41"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-42"><span><code class="def-type">[<var class="var">v</var>, <var class="var">beta</var>] =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;house&quot;, <var class="var">x</var>)</code><a class="copiable-link" href="#index-gallery-42"> &para;</a></span></dt>
+<dd><p>Create a householder matrix.
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-43"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;integerdata&quot;, <var class="var">imax</var>, [<var class="var">M</var> <var class="var">N</var> &hellip;], <var class="var">j</var>)</code><a class="copiable-link" href="#index-gallery-43"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-44"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;integerdata&quot;, <var class="var">imax</var>, <var class="var">M</var>, <var class="var">N</var>, &hellip;, <var class="var">j</var>)</code><a class="copiable-link" href="#index-gallery-44"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-45"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;integerdata&quot;, [<var class="var">imin</var>, <var class="var">imax</var>], [<var class="var">M</var> <var class="var">N</var> &hellip;], <var class="var">j</var>)</code><a class="copiable-link" href="#index-gallery-45"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-46"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;integerdata&quot;, [<var class="var">imin</var>, <var class="var">imax</var>], <var class="var">M</var>, <var class="var">N</var>, &hellip;, <var class="var">j</var>)</code><a class="copiable-link" href="#index-gallery-46"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-47"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;integerdata&quot;, &hellip;, &quot;<var class="var">class</var>&quot;)</code><a class="copiable-link" href="#index-gallery-47"> &para;</a></span></dt>
+<dd><p>Create a matrix with random integers in the range [1, <var class="var">imax</var>].
+If <var class="var">imin</var> is given then the integers are in the range
+[<var class="var">imin</var>, <var class="var">imax</var>].
+</p>
+<p>The second input is a matrix of dimensions describing the size of the
+output.  The dimensions can also be input as comma-separated arguments.
+</p>
+<p>The input <var class="var">j</var> is an integer index in the range [0, 2^32-1].  The values
+of the output matrix are always exactly the same (reproducibility) for a
+given size input and <var class="var">j</var> index.
+</p>
+<p>The final optional argument determines the class of the resulting matrix.
+Possible values for <var class="var">class</var>: <code class="code">&quot;uint8&quot;</code>, <code class="code">&quot;uint16&quot;</code>,
+<code class="code">&quot;uint32&quot;</code>, <code class="code">&quot;int8&quot;</code>, <code class="code">&quot;int16&quot;</code>, int32&quot;, <code class="code">&quot;single&quot;</code>,
+<code class="code">&quot;double&quot;</code>.  The default is <code class="code">&quot;double&quot;</code>.
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-48"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;invhess&quot;, <var class="var">x</var>)</code><a class="copiable-link" href="#index-gallery-48"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-49"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;invhess&quot;, <var class="var">x</var>, <var class="var">y</var>)</code><a class="copiable-link" href="#index-gallery-49"> &para;</a></span></dt>
+<dd><p>Create the inverse of an upper Hessenberg matrix.
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-50"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;invol&quot;, <var class="var">n</var>)</code><a class="copiable-link" href="#index-gallery-50"> &para;</a></span></dt>
+<dd><p>Create an involutory matrix.
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-51"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;ipjfact&quot;, <var class="var">n</var>)</code><a class="copiable-link" href="#index-gallery-51"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-52"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;ipjfact&quot;, <var class="var">n</var>, <var class="var">k</var>)</code><a class="copiable-link" href="#index-gallery-52"> &para;</a></span></dt>
+<dd><p>Create a Hankel matrix with factorial elements.
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-53"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;jordbloc&quot;, <var class="var">n</var>)</code><a class="copiable-link" href="#index-gallery-53"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-54"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;jordbloc&quot;, <var class="var">n</var>, <var class="var">lambda</var>)</code><a class="copiable-link" href="#index-gallery-54"> &para;</a></span></dt>
+<dd><p>Create a Jordan block.
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-55"><span><code class="def-type"><var class="var">u</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;kahan&quot;, <var class="var">n</var>)</code><a class="copiable-link" href="#index-gallery-55"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-56"><span><code class="def-type"><var class="var">u</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;kahan&quot;, <var class="var">n</var>, <var class="var">theta</var>)</code><a class="copiable-link" href="#index-gallery-56"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-57"><span><code class="def-type"><var class="var">u</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;kahan&quot;, <var class="var">n</var>, <var class="var">theta</var>, <var class="var">pert</var>)</code><a class="copiable-link" href="#index-gallery-57"> &para;</a></span></dt>
+<dd><p>Create a Kahan matrix (upper trapezoidal).
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-58"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;kms&quot;, <var class="var">n</var>)</code><a class="copiable-link" href="#index-gallery-58"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-59"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;kms&quot;, <var class="var">n</var>, <var class="var">rho</var>)</code><a class="copiable-link" href="#index-gallery-59"> &para;</a></span></dt>
+<dd><p>Create a Kac-Murdock-Szego Toeplitz matrix.
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-60"><span><code class="def-type"><var class="var">b</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;krylov&quot;, <var class="var">a</var>)</code><a class="copiable-link" href="#index-gallery-60"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-61"><span><code class="def-type"><var class="var">b</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;krylov&quot;, <var class="var">a</var>, <var class="var">x</var>)</code><a class="copiable-link" href="#index-gallery-61"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-62"><span><code class="def-type"><var class="var">b</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;krylov&quot;, <var class="var">a</var>, <var class="var">x</var>, <var class="var">j</var>)</code><a class="copiable-link" href="#index-gallery-62"> &para;</a></span></dt>
+<dd><p>Create a Krylov matrix.
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-63"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;lauchli&quot;, <var class="var">n</var>)</code><a class="copiable-link" href="#index-gallery-63"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-64"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;lauchli&quot;, <var class="var">n</var>, <var class="var">mu</var>)</code><a class="copiable-link" href="#index-gallery-64"> &para;</a></span></dt>
+<dd><p>Create a Lauchli matrix (rectangular).
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-65"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;lehmer&quot;, <var class="var">n</var>)</code><a class="copiable-link" href="#index-gallery-65"> &para;</a></span></dt>
+<dd><p>Create a Lehmer matrix (symmetric positive definite).
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-66"><span><code class="def-type"><var class="var">t</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;lesp&quot;, <var class="var">n</var>)</code><a class="copiable-link" href="#index-gallery-66"> &para;</a></span></dt>
+<dd><p>Create a tridiagonal matrix with real, sensitive eigenvalues.
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-67"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;lotkin&quot;, <var class="var">n</var>)</code><a class="copiable-link" href="#index-gallery-67"> &para;</a></span></dt>
+<dd><p>Create a Lotkin matrix.
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-68"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;minij&quot;, <var class="var">n</var>)</code><a class="copiable-link" href="#index-gallery-68"> &para;</a></span></dt>
+<dd><p>Create a symmetric positive definite matrix MIN(i,j).
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-69"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;moler&quot;, <var class="var">n</var>)</code><a class="copiable-link" href="#index-gallery-69"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-70"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;moler&quot;, <var class="var">n</var>, <var class="var">alpha</var>)</code><a class="copiable-link" href="#index-gallery-70"> &para;</a></span></dt>
+<dd><p>Create a Moler matrix (symmetric positive definite).
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-71"><span><code class="def-type">[<var class="var">a</var>, <var class="var">t</var>] =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;neumann&quot;, <var class="var">n</var>)</code><a class="copiable-link" href="#index-gallery-71"> &para;</a></span></dt>
+<dd><p>Create a singular matrix from the discrete Neumann problem
+(sparse).
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-72"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;normaldata&quot;, [<var class="var">M</var> <var class="var">N</var> &hellip;], <var class="var">j</var>)</code><a class="copiable-link" href="#index-gallery-72"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-73"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;normaldata&quot;, <var class="var">M</var>, <var class="var">N</var>, &hellip;, <var class="var">j</var>)</code><a class="copiable-link" href="#index-gallery-73"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-74"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;normaldata&quot;, &hellip;, &quot;<var class="var">class</var>&quot;)</code><a class="copiable-link" href="#index-gallery-74"> &para;</a></span></dt>
+<dd><p>Create a matrix with random samples from the standard normal distribution
+(mean = 0, std = 1).
+</p>
+<p>The first input is a matrix of dimensions describing the size of the output.
+The dimensions can also be input as comma-separated arguments.
+</p>
+<p>The input <var class="var">j</var> is an integer index in the range [0, 2^32-1].  The values
+of the output matrix are always exactly the same (reproducibility) for a
+given size input and <var class="var">j</var> index.
+</p>
+<p>The final optional argument determines the class of the resulting matrix.
+Possible values for <var class="var">class</var>: <code class="code">&quot;single&quot;</code>, <code class="code">&quot;double&quot;</code>.
+The default is <code class="code">&quot;double&quot;</code>.
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-75"><span><code class="def-type"><var class="var">q</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;orthog&quot;, <var class="var">n</var>)</code><a class="copiable-link" href="#index-gallery-75"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-76"><span><code class="def-type"><var class="var">q</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;orthog&quot;, <var class="var">n</var>, <var class="var">k</var>)</code><a class="copiable-link" href="#index-gallery-76"> &para;</a></span></dt>
+<dd><p>Create orthogonal and nearly orthogonal matrices.
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-77"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;parter&quot;, <var class="var">n</var>)</code><a class="copiable-link" href="#index-gallery-77"> &para;</a></span></dt>
+<dd><p>Create a Parter matrix (a Toeplitz matrix with singular values
+near pi).
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-78"><span><code class="def-type"><var class="var">p</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;pei&quot;, <var class="var">n</var>)</code><a class="copiable-link" href="#index-gallery-78"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-79"><span><code class="def-type"><var class="var">p</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;pei&quot;, <var class="var">n</var>, <var class="var">alpha</var>)</code><a class="copiable-link" href="#index-gallery-79"> &para;</a></span></dt>
+<dd><p>Create a Pei matrix.
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-80"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;poisson&quot;, <var class="var">n</var>)</code><a class="copiable-link" href="#index-gallery-80"> &para;</a></span></dt>
+<dd><p>Create a block tridiagonal matrix from Poisson&rsquo;s equation (sparse).
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-81"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;prolate&quot;, <var class="var">n</var>)</code><a class="copiable-link" href="#index-gallery-81"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-82"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;prolate&quot;, <var class="var">n</var>, <var class="var">w</var>)</code><a class="copiable-link" href="#index-gallery-82"> &para;</a></span></dt>
+<dd><p>Create a prolate matrix (symmetric, ill-conditioned Toeplitz matrix).
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-83"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;randhess&quot;, <var class="var">x</var>)</code><a class="copiable-link" href="#index-gallery-83"> &para;</a></span></dt>
+<dd><p>Create a random, orthogonal upper Hessenberg matrix.
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-84"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;rando&quot;, <var class="var">n</var>)</code><a class="copiable-link" href="#index-gallery-84"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-85"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;rando&quot;, <var class="var">n</var>, <var class="var">k</var>)</code><a class="copiable-link" href="#index-gallery-85"> &para;</a></span></dt>
+<dd><p>Create a random matrix with elements -1, 0 or 1.
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-86"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;randsvd&quot;, <var class="var">n</var>)</code><a class="copiable-link" href="#index-gallery-86"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-87"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;randsvd&quot;, <var class="var">n</var>, <var class="var">kappa</var>)</code><a class="copiable-link" href="#index-gallery-87"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-88"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;randsvd&quot;, <var class="var">n</var>, <var class="var">kappa</var>, <var class="var">mode</var>)</code><a class="copiable-link" href="#index-gallery-88"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-89"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;randsvd&quot;, <var class="var">n</var>, <var class="var">kappa</var>, <var class="var">mode</var>, <var class="var">kl</var>)</code><a class="copiable-link" href="#index-gallery-89"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-90"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;randsvd&quot;, <var class="var">n</var>, <var class="var">kappa</var>, <var class="var">mode</var>, <var class="var">kl</var>, <var class="var">ku</var>)</code><a class="copiable-link" href="#index-gallery-90"> &para;</a></span></dt>
+<dd><p>Create a random matrix with pre-assigned singular values.
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-91"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;redheff&quot;, <var class="var">n</var>)</code><a class="copiable-link" href="#index-gallery-91"> &para;</a></span></dt>
+<dd><p>Create a zero and ones matrix of Redheffer associated with the
+Riemann hypothesis.
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-92"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;riemann&quot;, <var class="var">n</var>)</code><a class="copiable-link" href="#index-gallery-92"> &para;</a></span></dt>
+<dd><p>Create a matrix associated with the Riemann hypothesis.
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-93"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;ris&quot;, <var class="var">n</var>)</code><a class="copiable-link" href="#index-gallery-93"> &para;</a></span></dt>
+<dd><p>Create a symmetric Hankel matrix.
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-94"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;smoke&quot;, <var class="var">n</var>)</code><a class="copiable-link" href="#index-gallery-94"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-95"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;smoke&quot;, <var class="var">n</var>, <var class="var">k</var>)</code><a class="copiable-link" href="#index-gallery-95"> &para;</a></span></dt>
+<dd><p>Create a complex matrix, with a &quot;smoke ring&quot; pseudospectrum.
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-96"><span><code class="def-type"><var class="var">t</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;toeppd&quot;, <var class="var">n</var>)</code><a class="copiable-link" href="#index-gallery-96"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-97"><span><code class="def-type"><var class="var">t</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;toeppd&quot;, <var class="var">n</var>, <var class="var">m</var>)</code><a class="copiable-link" href="#index-gallery-97"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-98"><span><code class="def-type"><var class="var">t</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;toeppd&quot;, <var class="var">n</var>, <var class="var">m</var>, <var class="var">w</var>)</code><a class="copiable-link" href="#index-gallery-98"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-99"><span><code class="def-type"><var class="var">t</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;toeppd&quot;, <var class="var">n</var>, <var class="var">m</var>, <var class="var">w</var>, <var class="var">theta</var>)</code><a class="copiable-link" href="#index-gallery-99"> &para;</a></span></dt>
+<dd><p>Create a symmetric positive definite Toeplitz matrix.
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-100"><span><code class="def-type"><var class="var">p</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;toeppen&quot;, <var class="var">n</var>)</code><a class="copiable-link" href="#index-gallery-100"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-101"><span><code class="def-type"><var class="var">p</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;toeppen&quot;, <var class="var">n</var>, <var class="var">a</var>)</code><a class="copiable-link" href="#index-gallery-101"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-102"><span><code class="def-type"><var class="var">p</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;toeppen&quot;, <var class="var">n</var>, <var class="var">a</var>, <var class="var">b</var>)</code><a class="copiable-link" href="#index-gallery-102"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-103"><span><code class="def-type"><var class="var">p</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;toeppen&quot;, <var class="var">n</var>, <var class="var">a</var>, <var class="var">b</var>, <var class="var">c</var>)</code><a class="copiable-link" href="#index-gallery-103"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-104"><span><code class="def-type"><var class="var">p</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;toeppen&quot;, <var class="var">n</var>, <var class="var">a</var>, <var class="var">b</var>, <var class="var">c</var>, <var class="var">d</var>)</code><a class="copiable-link" href="#index-gallery-104"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-105"><span><code class="def-type"><var class="var">p</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;toeppen&quot;, <var class="var">n</var>, <var class="var">a</var>, <var class="var">b</var>, <var class="var">c</var>, <var class="var">d</var>, <var class="var">e</var>)</code><a class="copiable-link" href="#index-gallery-105"> &para;</a></span></dt>
+<dd><p>Create a pentadiagonal Toeplitz matrix (sparse).
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-106"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;tridiag&quot;, <var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>)</code><a class="copiable-link" href="#index-gallery-106"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-107"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;tridiag&quot;, <var class="var">n</var>)</code><a class="copiable-link" href="#index-gallery-107"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-108"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;tridiag&quot;, <var class="var">n</var>, <var class="var">c</var>, <var class="var">d</var>, <var class="var">e</var>)</code><a class="copiable-link" href="#index-gallery-108"> &para;</a></span></dt>
+<dd><p>Create a tridiagonal matrix (sparse).
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-109"><span><code class="def-type"><var class="var">t</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;triw&quot;, <var class="var">n</var>)</code><a class="copiable-link" href="#index-gallery-109"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-110"><span><code class="def-type"><var class="var">t</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;triw&quot;, <var class="var">n</var>, <var class="var">alpha</var>)</code><a class="copiable-link" href="#index-gallery-110"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-111"><span><code class="def-type"><var class="var">t</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;triw&quot;, <var class="var">n</var>, <var class="var">alpha</var>, <var class="var">k</var>)</code><a class="copiable-link" href="#index-gallery-111"> &para;</a></span></dt>
+<dd><p>Create an upper triangular matrix discussed by
+Kahan, Golub, and Wilkinson.
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-112"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;uniformdata&quot;, [<var class="var">M</var> <var class="var">N</var> &hellip;], <var class="var">j</var>)</code><a class="copiable-link" href="#index-gallery-112"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-113"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;uniformdata&quot;, <var class="var">M</var>, <var class="var">N</var>, &hellip;, <var class="var">j</var>)</code><a class="copiable-link" href="#index-gallery-113"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-114"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;uniformdata&quot;, &hellip;, &quot;<var class="var">class</var>&quot;)</code><a class="copiable-link" href="#index-gallery-114"> &para;</a></span></dt>
+<dd><p>Create a matrix with random samples from the standard uniform distribution
+(range [0,1]).
+</p>
+<p>The first input is a matrix of dimensions describing the size of the output.
+The dimensions can also be input as comma-separated arguments.
+</p>
+<p>The input <var class="var">j</var> is an integer index in the range [0, 2^32-1].  The values
+of the output matrix are always exactly the same (reproducibility) for a
+given size input and <var class="var">j</var> index.
+</p>
+<p>The final optional argument determines the class of the resulting matrix.
+Possible values for <var class="var">class</var>: <code class="code">&quot;single&quot;</code>, <code class="code">&quot;double&quot;</code>.
+The default is <code class="code">&quot;double&quot;</code>.
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-115"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;wathen&quot;, <var class="var">nx</var>, <var class="var">ny</var>)</code><a class="copiable-link" href="#index-gallery-115"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gallery-116"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;wathen&quot;, <var class="var">nx</var>, <var class="var">ny</var>, <var class="var">k</var>)</code><a class="copiable-link" href="#index-gallery-116"> &para;</a></span></dt>
+<dd><p>Create the Wathen matrix.
+</p>
+</dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gallery-117"><span><code class="def-type">[<var class="var">a</var>, <var class="var">b</var>] =</code> <strong class="def-name">gallery</strong> <code class="def-code-arguments">(&quot;wilk&quot;, <var class="var">n</var>)</code><a class="copiable-link" href="#index-gallery-117"> &para;</a></span></dt>
+<dd><p>Create various specific matrices devised/discussed by Wilkinson.
+</p>
+</dd></dl>
+
+
+<a class="anchor" id="XREFhadamard"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-hadamard"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">hadamard</strong> <code class="def-code-arguments">(<var class="var">n</var>)</code><a class="copiable-link" href="#index-hadamard"> &para;</a></span></dt>
+<dd><p>Construct a Hadamard matrix (Hn) of size <var class="var">n</var>-by-<var class="var">n</var>.
+</p>
+<p>The size <var class="var">n</var> must be of the form <em class="math">2^k * p</em> in which p is one of
+1, 12, 20 or 28.  The returned matrix is normalized, meaning
+<code class="code">Hn(:,1)&nbsp;==&nbsp;1</code><!-- /@w -->&nbsp;and <code class="code">Hn(1,:)&nbsp;==&nbsp;1</code><!-- /@w -->.
+</p>
+<p>Some of the properties of Hadamard matrices are:
+</p>
+<ul class="itemize mark-bullet">
+<li><code class="code">kron (Hm, Hn)</code> is a Hadamard matrix of size <var class="var">m</var>-by-<var class="var">n</var>.
+
+</li><li><code class="code">Hn * Hn' = <var class="var">n</var> * eye (<var class="var">n</var>)</code>.
+
+</li><li>The rows of Hn are orthogonal.
+
+</li><li><code class="code">det (<var class="var">A</var>) &lt;= abs (det (Hn))</code> for all <var class="var">A</var> with
+<code class="code">abs&nbsp;(<var class="var">A</var>(i,&nbsp;j))&nbsp;&lt;=&nbsp;1</code><!-- /@w -->.
+
+</li><li>Multiplying any row or column by -1 and the matrix will remain a Hadamard
+matrix.
+</li></ul>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Finding-Roots.html#XREFcompan">compan</a>, <a class="ref" href="#XREFhankel">hankel</a>, <a class="ref" href="#XREFtoeplitz">toeplitz</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFhankel"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-hankel"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">hankel</strong> <code class="def-code-arguments">(<var class="var">c</var>)</code><a class="copiable-link" href="#index-hankel"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-hankel-1"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">hankel</strong> <code class="def-code-arguments">(<var class="var">c</var>, <var class="var">r</var>)</code><a class="copiable-link" href="#index-hankel-1"> &para;</a></span></dt>
+<dd><p>Return the Hankel matrix constructed from the first column <var class="var">c</var>, and
+(optionally) the last row <var class="var">r</var>.
+</p>
+<p>If the last element of <var class="var">c</var> is not the same as the first element of
+<var class="var">r</var>, the last element of <var class="var">c</var> is used.  If the second argument is
+omitted, it is assumed to be a vector of zeros with the same size as
+<var class="var">c</var>.
+</p>
+<p>A Hankel matrix formed from an m-vector <var class="var">c</var>, and an n-vector <var class="var">r</var>,
+has the elements
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">H(i,j) = c(i+j-1),  i+j-1 &lt;= m;
+H(i,j) = r(i+j-m),  otherwise
+</pre></div></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFhadamard">hadamard</a>, <a class="ref" href="#XREFtoeplitz">toeplitz</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFhilb"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-hilb"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">hilb</strong> <code class="def-code-arguments">(<var class="var">n</var>)</code><a class="copiable-link" href="#index-hilb"> &para;</a></span></dt>
+<dd><p>Return the Hilbert matrix of order <var class="var">n</var>.
+</p>
+<p>The <em class="math">i,j</em> element of a Hilbert matrix is defined as
+</p>
+<div class="example">
+<pre class="example-preformatted">H(i, j) = 1 / (i + j - 1)
+</pre></div>
+
+
+<p>Hilbert matrices are close to being singular which make them difficult to
+invert with numerical routines.  Comparing the condition number of a random
+matrix 5x5 matrix with that of a Hilbert matrix of order 5 reveals just how
+difficult the problem is.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">cond (rand (5))
+   &rArr;  14.392
+cond (hilb (5))
+   &rArr;  4.7661e+05
+</pre></div></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFinvhilb">invhilb</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFinvhilb"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-invhilb"><span><code class="def-type"><var class="var">hinv</var> =</code> <strong class="def-name">invhilb</strong> <code class="def-code-arguments">(<var class="var">n</var>)</code><a class="copiable-link" href="#index-invhilb"> &para;</a></span></dt>
+<dd><p>Return the inverse of the Hilbert matrix of order <var class="var">n</var>.
+</p>
+<p>This can be computed exactly using
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">
+
+           (i+j)         /n+i-1\  /n+j-1\   /i+j-2\ 2
+A(i,j) = -1      (i+j-1)(       )(       ) (       )
+                         \ n-j /  \ n-i /   \ i-2 /
+
+       = p(i) p(j) / (i+j-1)
+
+</pre></div></div>
+
+<p>where
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">         k  /k+n-1\   /n\
+p(k) = -1  (       ) (   )
+            \ k-1 /   \k/
+</pre></div></div>
+
+<p>The validity of this formula can easily be checked by expanding the binomial
+coefficients in both formulas as factorials.  It can be derived more
+directly via the theory of Cauchy matrices.  See J. W. Demmel,
+<cite class="cite">Applied Numerical Linear Algebra</cite>, p.&nbsp;92<!-- /@w -->.
+</p>
+<p>Compare this with the numerical calculation of <code class="code">inv (hilb (n))</code>, which
+suffers from the ill-conditioning of the Hilbert matrix, and the finite
+precision of your computer&rsquo;s floating point arithmetic.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFhilb">hilb</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFmagic"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-magic"><span><code class="def-type"><var class="var">M</var> =</code> <strong class="def-name">magic</strong> <code class="def-code-arguments">(<var class="var">n</var>)</code><a class="copiable-link" href="#index-magic"> &para;</a></span></dt>
+<dd>
+<p>Create an <var class="var">n</var>-by-<var class="var">n</var> magic square.
+</p>
+<p>A magic square is an arrangement of the integers <code class="code">1:n^2</code> such that the
+row sums, column sums, and diagonal sums are all equal to the same value.
+</p>
+<p>Note: <var class="var">n</var> must be a scalar greater than or equal to 3.  If you supply
+<var class="var">n</var> less than 3, magic returns either a nonmagic square, or else the
+degenerate magic squares 1 and [].
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFpascal"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-pascal"><span><code class="def-type"><var class="var">P</var> =</code> <strong class="def-name">pascal</strong> <code class="def-code-arguments">(<var class="var">n</var>)</code><a class="copiable-link" href="#index-pascal"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-pascal-1"><span><code class="def-type"><var class="var">P</var> =</code> <strong class="def-name">pascal</strong> <code class="def-code-arguments">(<var class="var">n</var>, <var class="var">t</var>)</code><a class="copiable-link" href="#index-pascal-1"> &para;</a></span></dt>
+<dd><p>Return the Pascal matrix of order <var class="var">n</var> if <code class="code"><var class="var">t</var> = 0</code>.
+</p>
+<p>The default value of <var class="var">t</var> is 0.
+</p>
+<p>When <code class="code"><var class="var">t</var> = 1</code>, return the pseudo-lower triangular
+Cholesky&nbsp;factor of the Pascal matrix (The sign of some columns may be
+negative).  This matrix is its own inverse, that is
+<code class="code">pascal (<var class="var">n</var>, 1) ^ 2 == eye (<var class="var">n</var>)</code>.
+</p>
+<p>If <code class="code"><var class="var">t</var> = -1</code>, return the true Cholesky&nbsp;factor with strictly
+positive values on the diagonal.
+</p>
+<p>If <code class="code"><var class="var">t</var> = 2</code>, return a transposed and permuted version of
+<code class="code">pascal (<var class="var">n</var>, 1)</code>, which is the cube root of the identity matrix.
+That is, <code class="code">pascal (<var class="var">n</var>, 2) ^ 3 == eye (<var class="var">n</var>)</code>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Matrix-Factorizations.html#XREFchol">chol</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFrosser"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-rosser"><span><code class="def-type"><var class="var">R</var> =</code> <strong class="def-name">rosser</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-rosser"> &para;</a></span></dt>
+<dd><p>Return the Rosser matrix.
+</p>
+<p>This is a difficult test case used to evaluate eigenvalue algorithms.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFwilkinson">wilkinson</a>, <a class="ref" href="Basic-Matrix-Functions.html#XREFeig">eig</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFtoeplitz"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-toeplitz"><span><code class="def-type"><var class="var">T</var> =</code> <strong class="def-name">toeplitz</strong> <code class="def-code-arguments">(<var class="var">c</var>)</code><a class="copiable-link" href="#index-toeplitz"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-toeplitz-1"><span><code class="def-type"><var class="var">T</var> =</code> <strong class="def-name">toeplitz</strong> <code class="def-code-arguments">(<var class="var">c</var>, <var class="var">r</var>)</code><a class="copiable-link" href="#index-toeplitz-1"> &para;</a></span></dt>
+<dd><p>Return the Toeplitz matrix constructed from the first column <var class="var">c</var>,
+and optionally the first row <var class="var">r</var>.
+</p>
+<p>If the second argument is omitted, the first row is taken to be the
+same as the first column.  If the first element of <var class="var">r</var> is not the same
+as the first element of <var class="var">c</var>, the first element of <var class="var">c</var> is used.
+</p>
+<p>A Toeplitz, or diagonal-constant, matrix has the same value along each
+diagonal.  Although it need not be square, it often is.  An MxN
+Toeplitz matrix has the form:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">c(1)  r(2)   r(3)  ...  r(n)
+c(2)  c(1)   r(2)  ... r(n-1)
+c(3)  c(2)   c(1)  ... r(n-2)
+ .     .      .   .      .
+ .     .      .     .    .
+ .     .      .       .  .
+c(m) c(m-1) c(m-2) ... c(m-n+1)
+</pre></div></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFhankel">hankel</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFvander"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-vander"><span><code class="def-type"><var class="var">V</var> =</code> <strong class="def-name">vander</strong> <code class="def-code-arguments">(<var class="var">c</var>)</code><a class="copiable-link" href="#index-vander"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-vander-1"><span><code class="def-type"><var class="var">V</var> =</code> <strong class="def-name">vander</strong> <code class="def-code-arguments">(<var class="var">c</var>, <var class="var">n</var>)</code><a class="copiable-link" href="#index-vander-1"> &para;</a></span></dt>
+<dd><p>Return the Vandermonde matrix whose next to last column is
+<var class="var">c</var>.
+</p>
+<p>If <var class="var">n</var> is specified, it determines the number of columns; otherwise,
+<var class="var">n</var> is taken to be equal to the length of <var class="var">c</var>.
+</p>
+<p>A Vandermonde matrix has the form:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">c(1)^(n-1) ... c(1)^2  c(1)  1
+c(2)^(n-1) ... c(2)^2  c(2)  1
+    .     .      .      .    .
+    .       .    .      .    .
+    .         .  .      .    .
+c(n)^(n-1) ... c(n)^2  c(n)  1
+</pre></div></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Polynomial-Interpolation.html#XREFpolyfit">polyfit</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFwilkinson"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-wilkinson"><span><code class="def-type"><var class="var">W</var> =</code> <strong class="def-name">wilkinson</strong> <code class="def-code-arguments">(<var class="var">n</var>)</code><a class="copiable-link" href="#index-wilkinson"> &para;</a></span></dt>
+<dd><p>Return the Wilkinson matrix of order <var class="var">n</var>.
+</p>
+<p>Wilkinson matrices are symmetric and tridiagonal with pairs of nearly, but
+not exactly, equal eigenvalues.  They are useful in testing the behavior and
+performance of eigenvalue solvers.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFrosser">rosser</a>, <a class="ref" href="Basic-Matrix-Functions.html#XREFeig">eig</a>.
+</p></dd></dl>
+
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Special-Utility-Matrices.html">Special Utility Matrices</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Matrix-Manipulation.html">Matrix Manipulation</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

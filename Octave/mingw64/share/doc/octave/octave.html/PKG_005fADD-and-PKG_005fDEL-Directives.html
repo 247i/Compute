@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>PKG_ADD and PKG_DEL Directives (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="PKG_ADD and PKG_DEL Directives (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="PKG_ADD and PKG_DEL Directives (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Creating-Packages.html" rel="up" title="Creating Packages">
+<link href="Missing-Components.html" rel="next" title="Missing Components">
+<link href="The-INDEX-File.html" rel="prev" title="The INDEX File">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="PKG_005fADD-and-PKG_005fDEL-Directives">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Missing-Components.html" accesskey="n" rel="next">Missing Components</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="The-INDEX-File.html" accesskey="p" rel="prev">The INDEX File</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Creating-Packages.html" accesskey="u" rel="up">Creating Packages</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="PKG_005fADD-and-PKG_005fDEL-Directives-1"><span>37.5.3 PKG_ADD and PKG_DEL Directives<a class="copiable-link" href="#PKG_005fADD-and-PKG_005fDEL-Directives-1"> &para;</a></span></h4>
+
+<p>If the package contains files called <code class="code">PKG_ADD</code><!-- /@w -->&nbsp;or <code class="code">PKG_DEL</code><!-- /@w -->&nbsp;the commands in these files will be executed when the package is
+added or removed from the users path.  In some situations such files
+are a bit cumbersome to maintain, so the package manager supports
+automatic creation of such files.  If a source file in the package
+contains a <code class="code">PKG_ADD</code><!-- /@w -->&nbsp;or <code class="code">PKG_DEL</code><!-- /@w -->&nbsp;directive they will be
+added to either the <code class="code">PKG_ADD</code><!-- /@w -->&nbsp;or <code class="code">PKG_DEL</code><!-- /@w -->&nbsp;files.
+</p>
+<p>In <code class="code">m</code>-files a <code class="code">PKG_ADD</code><!-- /@w -->&nbsp;directive looks like this
+</p>
+<div class="example">
+<pre class="example-preformatted">## PKG_ADD: some_octave_command
+</pre></div>
+
+<p>Such lines should be added before the <code class="code">function</code> keyword.
+In C++ files a <code class="code">PKG_ADD</code><!-- /@w -->&nbsp;directive looks like this
+</p>
+<div class="example">
+<pre class="example-preformatted">// PKG_ADD: some_octave_command
+</pre></div>
+
+<p>In both cases <code class="code">some_octave_command</code> should be replaced by the
+command that should be placed in the <code class="code">PKG_ADD</code><!-- /@w -->&nbsp;file.
+<code class="code">PKG_DEL</code><!-- /@w -->&nbsp;directives work in the same way, except the
+<code class="code">PKG_ADD</code><!-- /@w -->&nbsp;keyword is replaced with <code class="code">PKG_DEL</code><!-- /@w -->&nbsp;and the
+commands get added to the <code class="code">PKG_DEL</code><!-- /@w -->&nbsp;file.
+</p>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Missing-Components.html">Missing Components</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="The-INDEX-File.html">The INDEX File</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Creating-Packages.html">Creating Packages</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

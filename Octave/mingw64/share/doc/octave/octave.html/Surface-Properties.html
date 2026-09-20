@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Surface Properties (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Surface Properties (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Surface Properties (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Graphics-Object-Properties.html" rel="up" title="Graphics Object Properties">
+<link href="Light-Properties.html" rel="next" title="Light Properties">
+<link href="Scatter-Properties.html" rel="prev" title="Scatter Properties">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsubsection-level-extent" id="Surface-Properties">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Light-Properties.html" accesskey="n" rel="next">Light Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Scatter-Properties.html" accesskey="p" rel="prev">Scatter Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Graphics-Object-Properties.html" accesskey="u" rel="up">Graphics Object Properties</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsubsection" id="Surface-Properties-1"><span>15.3.3.10 Surface Properties<a class="copiable-link" href="#Surface-Properties-1"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-Surface-Properties"></a>
+
+
+
+<p>Properties of <code class="code">surface</code> objects (see <a class="pxref" href="Creating-Graphics-Objects.html#XREFsurface">surface</a>):
+</p>
+<h4 class="subsubheading" id="Categories_003a-9"><span>Categories:<a class="copiable-link" href="#Categories_003a-9"> &para;</a></span></h4>
+
+<p><a class="ref" href="#XREFsurfacecategoryCallbackExecution">Callback&nbsp;Execution<!-- /@w --></a> | <a class="ref" href="#XREFsurfacecategoryColorandTransparency">Color&nbsp;and&nbsp;Transparency<!-- /@w --></a> | <a class="ref" href="#XREFsurfacecategoryCoordinateData">Coordinate&nbsp;Data<!-- /@w --></a> | <a class="ref" href="#XREFsurfacecategoryCreation_002fDeletion">Creation/Deletion<!-- /@w --></a> | <a class="ref" href="#XREFsurfacecategoryDisplay">Display<!-- /@w --></a> | <a class="ref" href="#XREFsurfacecategoryFacesAppearance">Faces&nbsp;Appearance<!-- /@w --></a> | <a class="ref" href="#XREFsurfacecategoryLegendOptions">Legend&nbsp;Options<!-- /@w --></a> | <a class="ref" href="#XREFsurfacecategoryLighting">Lighting<!-- /@w --></a> | <a class="ref" href="#XREFsurfacecategoryMarkerAppearance">Marker&nbsp;Appearance<!-- /@w --></a> | <a class="ref" href="#XREFsurfacecategoryMouseInteraction">Mouse&nbsp;Interaction<!-- /@w --></a> | <a class="ref" href="#XREFsurfacecategoryObjectIdentification">Object&nbsp;Identification<!-- /@w --></a> | <a class="ref" href="#XREFsurfacecategoryOutlineAppearance">Outline&nbsp;Appearance<!-- /@w --></a> | <a class="ref" href="#XREFsurfacecategoryParent_002fChildren">Parent/Children<!-- /@w --></a> 
+</p>
+<a class="anchor" id="XREFsurfacecategoryCallbackExecution"></a><h4 class="subsubheading" id="Callback-Execution-9"><span>Callback Execution<a class="copiable-link" href="#Callback-Execution-9"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFsurfacebusyaction"></a></dd>
+<dt><a id="index-surface-busyaction"></a><span><code class="code">busyaction</code>: <code class="code">&quot;cancel&quot;</code> | {<code class="code">&quot;queue&quot;</code>}<a class="copiable-link" href="#index-surface-busyaction"> &para;</a></span></dt>
+<dd><p>Define how Octave handles the execution of this object&rsquo;s callback properties when it is unable to interrupt another object&rsquo;s executing callback.  This is only relevant when the currently executing callback object has its <code class="code">interruptible</code> property set to <code class="code">&quot;off&quot;</code>.  The <code class="code">busyaction</code> property of the interrupting callback object indicates whether the interrupting callback is queued (<code class="code">&quot;queue&quot;</code> (default)) or discarded (<code class="code">&quot;cancel&quot;</code>).
+See <a class="xref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFsurfaceinterruptible"></a></dd>
+<dt><a id="index-surface-interruptible"></a><span><code class="code">interruptible</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-surface-interruptible"> &para;</a></span></dt>
+<dd><p>Specify whether this object&rsquo;s callback functions may be interrupted by other callbacks.  By default <code class="code">interruptible</code> is <code class="code">&quot;on&quot;</code> and callbacks that make use of <code class="code">drawnow</code>, <code class="code">figure</code>, <code class="code">waitfor</code>, <code class="code">getframe</code> or <code class="code">pause</code> functions are eventually interrupted.
+See <a class="xref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFsurfacecategoryColorandTransparency"></a><h4 class="subsubheading" id="Color-and-Transparency-2"><span>Color and Transparency<a class="copiable-link" href="#Color-and-Transparency-2"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFsurfacealphadata"></a></dd>
+<dt><a id="index-surface-alphadata"></a><span><code class="code">alphadata</code>: scalar | matrix, def. <code class="code">1</code><a class="copiable-link" href="#index-surface-alphadata"> &para;</a></span></dt>
+<dd><p>Transparency is not yet implemented for surface objects.  <code class="code">alphadata</code> is unused.
+</p>
+
+<a class="anchor" id="XREFsurfacealphadatamapping"></a></dd>
+<dt><a id="index-surface-alphadatamapping"></a><span><code class="code">alphadatamapping</code>: <code class="code">&quot;direct&quot;</code> | <code class="code">&quot;none&quot;</code> | {<code class="code">&quot;scaled&quot;</code>}<a class="copiable-link" href="#index-surface-alphadatamapping"> &para;</a></span></dt>
+<dd><p>Transparency is not yet implemented for surface objects.  <code class="code">alphadatamapping</code> is unused.
+</p>
+
+<a class="anchor" id="XREFsurfacecdata"></a></dd>
+<dt><a id="index-surface-cdata"></a><span><code class="code">cdata</code>: array, def. 3-by-3 double<a class="copiable-link" href="#index-surface-cdata"> &para;</a></span></dt>
+<dd><p>Color data values for surface vertices.  Data is stored either as a 2-D matrix the same size as <a class="ref" href="#XREFsurfacezdata"><code class="code">&quot;zdata&quot;</code></a> where each element&rsquo;s value determines that vertex&rsquo;s color according to the current colormap, or as a 3-D array where the third dimension contains separate red, blue, and green components for each vertex.
+</p>
+
+<a class="anchor" id="XREFsurfacecdatamapping"></a></dd>
+<dt><a id="index-surface-cdatamapping"></a><span><code class="code">cdatamapping</code>: <code class="code">&quot;direct&quot;</code> | {<code class="code">&quot;scaled&quot;</code>}<a class="copiable-link" href="#index-surface-cdatamapping"> &para;</a></span></dt>
+<dd><p>Sets the method for mapping data from the <a class="ref" href="#XREFsurfacecdata"><code class="code">&quot;cdata&quot;</code>&nbsp;property<!-- /@w --></a> to the current colormap.  <code class="code">&quot;Direct&quot;</code> mapping selects the color using the <code class="code">&quot;cdata&quot;</code> value as an index to the current colormap.  <code class="code">&quot;Scale&quot;</code> mapping scales the <code class="code">&quot;cdata&quot;</code> values to the range specified in the <a class="ref" href="Axes-Properties.html#XREFaxesclim"><code class="code">&quot;clim&quot;</code>&nbsp;axes&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFsurfacecdatasource"></a></dd>
+<dt><a id="index-surface-cdatasource"></a><span><code class="code">cdatasource</code>: string, def. <code class="code">&quot;&quot;</code><a class="copiable-link" href="#index-surface-cdatasource"> &para;</a></span></dt>
+<dd><p>The name of a workspace variable that contains data that will be used for the <a class="ref" href="#XREFsurfacecdata"><code class="code">&quot;cdata&quot;</code>&nbsp;property<!-- /@w --></a>.  Data is transferred into <code class="code">&quot;cdata&quot;</code> using the <a class="ref" href="Data-Sources-in-Object-Groups.html#XREFrefreshdata">refreshdata&nbsp;function<!-- /@w --></a>.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFsurfacecategoryCoordinateData"></a><h4 class="subsubheading" id="Coordinate-Data-3"><span>Coordinate Data<a class="copiable-link" href="#Coordinate-Data-3"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFsurfacexdata"></a></dd>
+<dt><a id="index-surface-xdata"></a><span><code class="code">xdata</code>: matrix, def. <code class="code">[1   2   3]</code><a class="copiable-link" href="#index-surface-xdata"> &para;</a></span></dt>
+<dd><p>Data for the x-coordinate.
+</p>
+
+<a class="anchor" id="XREFsurfacexdatasource"></a></dd>
+<dt><a id="index-surface-xdatasource"></a><span><code class="code">xdatasource</code>: string, def. <code class="code">&quot;&quot;</code><a class="copiable-link" href="#index-surface-xdatasource"> &para;</a></span></dt>
+<dd><p>The name of a workspace variable that contains data that will be used for the <a class="ref" href="#XREFsurfacexdata"><code class="code">&quot;xdata&quot;</code>&nbsp;property<!-- /@w --></a>.  Data is transferred into <code class="code">&quot;xdata&quot;</code> using the <a class="ref" href="Data-Sources-in-Object-Groups.html#XREFrefreshdata">refreshdata&nbsp;function<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFsurfaceydata"></a></dd>
+<dt><a id="index-surface-ydata"></a><span><code class="code">ydata</code>: matrix, def. <code class="code">[1;    2;    3]</code><a class="copiable-link" href="#index-surface-ydata"> &para;</a></span></dt>
+<dd><p>Data for the y-coordinate.
+</p>
+
+<a class="anchor" id="XREFsurfaceydatasource"></a></dd>
+<dt><a id="index-surface-ydatasource"></a><span><code class="code">ydatasource</code>: string, def. <code class="code">&quot;&quot;</code><a class="copiable-link" href="#index-surface-ydatasource"> &para;</a></span></dt>
+<dd><p>The name of a workspace variable that contains data that will be used for the <a class="ref" href="#XREFsurfaceydata"><code class="code">&quot;ydata&quot;</code>&nbsp;property<!-- /@w --></a>.  Data is transferred into <code class="code">&quot;ydata&quot;</code> using the <a class="ref" href="Data-Sources-in-Object-Groups.html#XREFrefreshdata">refreshdata&nbsp;function<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFsurfacezdata"></a></dd>
+<dt><a id="index-surface-zdata"></a><span><code class="code">zdata</code>: matrix, def. 3-by-3 double<a class="copiable-link" href="#index-surface-zdata"> &para;</a></span></dt>
+<dd><p>Data for the z-coordinate.
+</p>
+
+<a class="anchor" id="XREFsurfacezdatasource"></a></dd>
+<dt><a id="index-surface-zdatasource"></a><span><code class="code">zdatasource</code>: string, def. <code class="code">&quot;&quot;</code><a class="copiable-link" href="#index-surface-zdatasource"> &para;</a></span></dt>
+<dd><p>The name of a workspace variable that contains data that will be used for the <a class="ref" href="#XREFsurfacezdata"><code class="code">&quot;zdata&quot;</code>&nbsp;property<!-- /@w --></a>.  Data is transferred into <code class="code">&quot;zdata&quot;</code> using the <a class="ref" href="Data-Sources-in-Object-Groups.html#XREFrefreshdata">refreshdata&nbsp;function<!-- /@w --></a>.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFsurfacecategoryCreation_002fDeletion"></a><h4 class="subsubheading" id="Creation_002fDeletion-7"><span>Creation/Deletion<a class="copiable-link" href="#Creation_002fDeletion-7"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFsurfacebeingdeleted"></a></dd>
+<dt><a id="index-surface-beingdeleted"></a><span><code class="code">beingdeleted</code>: {<code class="code">&quot;off&quot;</code>} | <code class="code">&quot;on&quot;</code><a class="copiable-link" href="#index-surface-beingdeleted"> &para;</a></span></dt>
+<dd><p>Property indicating that a function has initiated deletion of the object.  <code class="code">beingdeleted</code> is set to true until the object no longer exists.
+</p>
+
+<a class="anchor" id="XREFsurfacecreatefcn"></a></dd>
+<dt><a id="index-surface-createfcn"></a><span><code class="code">createfcn</code>: string | function handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-surface-createfcn"> &para;</a></span></dt>
+<dd><p>Callback function executed immediately after surface has been created.  Function is set by using default property on root object, e.g., <code class="code">set (groot, &quot;defaultsurfacecreatefcn&quot;, 'disp (&quot;surface created!&quot;)')</code>.
+</p>
+<p>For information on how to write graphics listener functions, see <a class="pxref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFsurfacedeletefcn"></a></dd>
+<dt><a id="index-surface-deletefcn"></a><span><code class="code">deletefcn</code>: string | function handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-surface-deletefcn"> &para;</a></span></dt>
+<dd><p>Callback function executed immediately before surface is deleted.
+</p>
+<p>For information on how to write graphics listener functions, see <a class="pxref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFsurfacecategoryDisplay"></a><h4 class="subsubheading" id="Display-7"><span>Display<a class="copiable-link" href="#Display-7"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFsurfaceclipping"></a></dd>
+<dt><a id="index-surface-clipping"></a><span><code class="code">clipping</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-surface-clipping"> &para;</a></span></dt>
+<dd><p>If <code class="code">clipping</code> is <code class="code">&quot;on&quot;</code>, the surface is clipped in its parent axes limits.
+</p>
+
+<a class="anchor" id="XREFsurfacevisible"></a></dd>
+<dt><a id="index-surface-visible"></a><span><code class="code">visible</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-surface-visible"> &para;</a></span></dt>
+<dd><p>If <code class="code">visible</code> is <code class="code">&quot;off&quot;</code>, the surface is not rendered on screen.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFsurfacecategoryFacesAppearance"></a><h4 class="subsubheading" id="Faces-Appearance"><span>Faces Appearance<a class="copiable-link" href="#Faces-Appearance"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFsurfacefacealpha"></a></dd>
+<dt><a id="index-surface-facealpha"></a><span><code class="code">facealpha</code>: scalar | <code class="code">&quot;flat&quot;</code> | <code class="code">&quot;interp&quot;</code> | <code class="code">&quot;texturemap&quot;</code>, def. <code class="code">1</code><a class="copiable-link" href="#index-surface-facealpha"> &para;</a></span></dt>
+<dd><p>Transparency level of the faces of the surface object.  Only double values are supported at present where a value of 0 means complete transparency and a value of 1 means solid faces without transparency.  Setting the property to <code class="code">&quot;flat&quot;</code>, <code class="code">&quot;interp&quot;</code> or <code class="code">&quot;texturemap&quot;</code> causes the faces to not being rendered.  Additionally, the faces are not sorted from back to front which might lead to unexpected results when rendering layered transparent faces.
+</p>
+
+<a class="anchor" id="XREFsurfacefacecolor"></a></dd>
+<dt><a id="index-surface-facecolor"></a><span><code class="code">facecolor</code>: colorspec | <code class="code">&quot;none&quot;</code> | {<code class="code">&quot;flat&quot;</code>} | <code class="code">&quot;interp&quot;</code><a class="copiable-link" href="#index-surface-facecolor"> &para;</a></span></dt>
+<dd><p>Color of the faces of the surface object, specified as either a valid color specification or one of <code class="code">&quot;none&quot;</code>, <code class="code">&quot;flat&quot;</code>, or <code class="code">&quot;interp&quot;</code>.  <code class="code">&quot;flat&quot;</code> and <code class="code">&quot;interp&quot;</code> will set either a single color for each face or a color interpolated across the face&rsquo;s vertices using the color value data stored in <a class="ref" href="#XREFsurfacecdata"><code class="code">&quot;cdata&quot;</code></a>.  See <a class="xref" href="Colors.html">colorspec</a>.
+</p>
+
+<a class="anchor" id="XREFsurfacefacelighting"></a></dd>
+<dt><a id="index-surface-facelighting"></a><span><code class="code">facelighting</code>: {<code class="code">&quot;flat&quot;</code>} | <code class="code">&quot;gouraud&quot;</code> | <code class="code">&quot;none&quot;</code> | <code class="code">&quot;phong&quot;</code><a class="copiable-link" href="#index-surface-facelighting"> &para;</a></span></dt>
+<dd><p>When set to a value other than <code class="code">&quot;none&quot;</code>, the faces of the object are drawn with light and shadow effects.  Supported values are <code class="code">&quot;none&quot;</code> (no lighting effects), <code class="code">&quot;flat&quot;</code> (faceted look), and <code class="code">&quot;gouraud&quot;</code> (linear interpolation of the lighting effects between the vertices).  <code class="code">&quot;phong&quot;</code> is deprecated and has the same effect as <code class="code">&quot;gouraud&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFsurfacefacenormals"></a></dd>
+<dt><a id="index-surface-facenormals"></a><span><code class="code">facenormals</code>: def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-surface-facenormals"> &para;</a></span></dt>
+<dd><p>Face normals are used for lighting the edges or faces if the <code class="code">edgelighting</code> or <code class="code">facelighting</code> properties are set to <code class="code">&quot;flat&quot;</code>.  Setting <code class="code">facenormals</code> also forces the <code class="code">facenormalsmode</code> property to be set to <code class="code">&quot;manual&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFsurfacefacenormalsmode"></a></dd>
+<dt><a id="index-surface-facenormalsmode"></a><span><code class="code">facenormalsmode</code>: {<code class="code">&quot;auto&quot;</code>} | <code class="code">&quot;manual&quot;</code><a class="copiable-link" href="#index-surface-facenormalsmode"> &para;</a></span></dt>
+<dd><p>If this property is set to <code class="code">&quot;auto&quot;</code>, <code class="code">facenormals</code> are automatically calculated if the <code class="code">edgelighting</code> or <code class="code">facelighting</code> property are set to <code class="code">&quot;flat&quot;</code> and at least one <code class="code">light</code> object is present and visible in the same axes.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFsurfacecategoryLegendOptions"></a><h4 class="subsubheading" id="Legend-Options-3"><span>Legend Options<a class="copiable-link" href="#Legend-Options-3"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFsurfacedisplayname"></a></dd>
+<dt><a id="index-surface-displayname"></a><span><code class="code">displayname</code>: def. <code class="code">&quot;&quot;</code><a class="copiable-link" href="#index-surface-displayname"> &para;</a></span></dt>
+<dd><p>Text for the legend entry corresponding to this surface.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFsurfacecategoryLighting"></a><h4 class="subsubheading" id="Lighting-1"><span>Lighting<a class="copiable-link" href="#Lighting-1"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFsurfaceambientstrength"></a></dd>
+<dt><a id="index-surface-ambientstrength"></a><span><code class="code">ambientstrength</code>: scalar, def. <code class="code">0.3000</code><a class="copiable-link" href="#index-surface-ambientstrength"> &para;</a></span></dt>
+<dd><p>Strength of the ambient light.  Value between 0.0 and 1.0.
+</p>
+
+<a class="anchor" id="XREFsurfacebackfacelighting"></a></dd>
+<dt><a id="index-surface-backfacelighting"></a><span><code class="code">backfacelighting</code>: <code class="code">&quot;lit&quot;</code> | {<code class="code">&quot;reverselit&quot;</code>} | <code class="code">&quot;unlit&quot;</code><a class="copiable-link" href="#index-surface-backfacelighting"> &para;</a></span></dt>
+<dd><p><code class="code">&quot;lit&quot;</code>: The normals are used as is for lighting.  <code class="code">&quot;reverselit&quot;</code>: The normals are always oriented towards the point of view.  <code class="code">&quot;unlit&quot;</code>: Faces with normals pointing away from the point of view are unlit.
+</p>
+
+<a class="anchor" id="XREFsurfacediffusestrength"></a></dd>
+<dt><a id="index-surface-diffusestrength"></a><span><code class="code">diffusestrength</code>: scalar, def. <code class="code">0.6000</code><a class="copiable-link" href="#index-surface-diffusestrength"> &para;</a></span></dt>
+<dd><p>Strength of the diffuse reflection.  Value between 0.0 (no diffuse reflection) and 1.0 (full diffuse reflection).
+</p>
+
+<a class="anchor" id="XREFsurfacespecularcolorreflectance"></a></dd>
+<dt><a id="index-surface-specularcolorreflectance"></a><span><code class="code">specularcolorreflectance</code>: scalar, def. <code class="code">1</code><a class="copiable-link" href="#index-surface-specularcolorreflectance"> &para;</a></span></dt>
+<dd><p>Reflectance for specular color.  Value between 0.0 (color of underlying face) and 1.0 (color of light source).
+</p>
+
+<a class="anchor" id="XREFsurfacespecularexponent"></a></dd>
+<dt><a id="index-surface-specularexponent"></a><span><code class="code">specularexponent</code>: scalar, def. <code class="code">10</code><a class="copiable-link" href="#index-surface-specularexponent"> &para;</a></span></dt>
+<dd><p>Exponent for the specular reflection.  The lower the value, the more the reflection is spread out.
+</p>
+
+<a class="anchor" id="XREFsurfacespecularstrength"></a></dd>
+<dt><a id="index-surface-specularstrength"></a><span><code class="code">specularstrength</code>: scalar, def. <code class="code">0.9000</code><a class="copiable-link" href="#index-surface-specularstrength"> &para;</a></span></dt>
+<dd><p>Strength of the specular reflection.  Value between 0.0 (no specular reflection) and 1.0 (full specular reflection).
+</p>
+
+<a class="anchor" id="XREFsurfacevertexnormals"></a></dd>
+<dt><a id="index-surface-vertexnormals"></a><span><code class="code">vertexnormals</code>: def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-surface-vertexnormals"> &para;</a></span></dt>
+<dd><p>Vertex normals are used for lighting the edges or faces if the <code class="code">edgelighting</code> or <code class="code">facelighting</code> properties are set to <code class="code">&quot;gouraud&quot;</code>.  Setting <code class="code">vertexnormals</code> also forces the <code class="code">vertexnormalsmode</code> property to be set to <code class="code">&quot;manual&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFsurfacevertexnormalsmode"></a></dd>
+<dt><a id="index-surface-vertexnormalsmode"></a><span><code class="code">vertexnormalsmode</code>: {<code class="code">&quot;auto&quot;</code>} | <code class="code">&quot;manual&quot;</code><a class="copiable-link" href="#index-surface-vertexnormalsmode"> &para;</a></span></dt>
+<dd><p>If this property is set to <code class="code">&quot;auto&quot;</code>, <code class="code">vertexnormals</code> are automatically calculated if the <code class="code">edgelighting</code> or <code class="code">facelighting</code> property are set to <code class="code">&quot;gouraud&quot;</code> and at least one <code class="code">light</code> object is present and visible in the same axes.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFsurfacecategoryMarkerAppearance"></a><h4 class="subsubheading" id="Marker-Appearance-3"><span>Marker Appearance<a class="copiable-link" href="#Marker-Appearance-3"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFsurfacemarker"></a></dd>
+<dt><a id="index-surface-marker"></a><span><code class="code">marker</code>: <code class="code">&quot;*&quot;</code> | <code class="code">&quot;+&quot;</code> | <code class="code">&quot;.&quot;</code> | <code class="code">&quot;&lt;&quot;</code> | <code class="code">&quot;&gt;&quot;</code> | <code class="code">&quot;^&quot;</code> | <code class="code">&quot;_&quot;</code> | <code class="code">&quot;d&quot;</code> | <code class="code">&quot;diamond&quot;</code> | <code class="code">&quot;h&quot;</code> | <code class="code">&quot;hexagram&quot;</code> | {<code class="code">&quot;none&quot;</code>} | <code class="code">&quot;o&quot;</code> | <code class="code">&quot;p&quot;</code> | <code class="code">&quot;pentagram&quot;</code> | <code class="code">&quot;s&quot;</code> | <code class="code">&quot;square&quot;</code> | <code class="code">&quot;v&quot;</code> | <code class="code">&quot;x&quot;</code> | <code class="code">&quot;|&quot;</code><a class="copiable-link" href="#index-surface-marker"> &para;</a></span></dt>
+<dd><p>See <a class="xref" href="Marker-Styles.html">Marker Styles</a>.
+</p>
+
+<a class="anchor" id="XREFsurfacemarkeredgecolor"></a></dd>
+<dt><a id="index-surface-markeredgecolor"></a><span><code class="code">markeredgecolor</code>: {<code class="code">&quot;auto&quot;</code>} | <code class="code">&quot;flat&quot;</code> | <code class="code">&quot;none&quot;</code><a class="copiable-link" href="#index-surface-markeredgecolor"> &para;</a></span></dt>
+<dd><p>See <a class="xref" href="Line-Properties.html#XREFlinemarkeredgecolor">line&nbsp;markeredgecolor&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFsurfacemarkerfacecolor"></a></dd>
+<dt><a id="index-surface-markerfacecolor"></a><span><code class="code">markerfacecolor</code>: <code class="code">&quot;auto&quot;</code> | <code class="code">&quot;flat&quot;</code> | {<code class="code">&quot;none&quot;</code>}<a class="copiable-link" href="#index-surface-markerfacecolor"> &para;</a></span></dt>
+<dd><p>See <a class="xref" href="Line-Properties.html#XREFlinemarkerfacecolor">line&nbsp;markerfacecolor&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFsurfacemarkersize"></a></dd>
+<dt><a id="index-surface-markersize"></a><span><code class="code">markersize</code>: scalar, def. <code class="code">6</code><a class="copiable-link" href="#index-surface-markersize"> &para;</a></span></dt>
+<dd><p>See <a class="xref" href="Line-Properties.html#XREFlinemarkersize">line&nbsp;markersize&nbsp;property<!-- /@w --></a>.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFsurfacecategoryMouseInteraction"></a><h4 class="subsubheading" id="Mouse-Interaction-8"><span>Mouse Interaction<a class="copiable-link" href="#Mouse-Interaction-8"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFsurfacebuttondownfcn"></a></dd>
+<dt><a id="index-surface-buttondownfcn"></a><span><code class="code">buttondownfcn</code>: string | function handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-surface-buttondownfcn"> &para;</a></span></dt>
+<dd><p>For information on how to write graphics listener functions, see <a class="pxref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFsurfacecontextmenu"></a></dd>
+<dt><a id="index-surface-contextmenu"></a><span><code class="code">contextmenu</code>: graphics handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-surface-contextmenu"> &para;</a></span></dt>
+<dd><p>Graphics handle of the uicontextmenu object that is currently associated to this surface object.
+</p>
+
+<a class="anchor" id="XREFsurfacehittest"></a></dd>
+<dt><a id="index-surface-hittest"></a><span><code class="code">hittest</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-surface-hittest"> &para;</a></span></dt>
+<dd><p>Specify whether surface processes mouse events or passes them to ancestors of the object.  When enabled, the object may respond to mouse clicks by evaluating the <code class="code">&quot;buttondownfcn&quot;</code>, showing the uicontextmenu, and eventually becoming the root <code class="code">&quot;currentobject&quot;</code>.  This property is only relevant when the object can accept mouse clicks which is determined by the <code class="code">&quot;pickableparts&quot;</code> property.  See <a class="xref" href="#XREFsurfacepickableparts">pickableparts&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFsurfacepickableparts"></a></dd>
+<dt><a id="index-surface-pickableparts"></a><span><code class="code">pickableparts</code>: <code class="code">&quot;all&quot;</code> | <code class="code">&quot;none&quot;</code> | {<code class="code">&quot;visible&quot;</code>}<a class="copiable-link" href="#index-surface-pickableparts"> &para;</a></span></dt>
+<dd><p>Specify whether surface will accept mouse clicks.  By default, <code class="code">pickableparts</code> is <code class="code">&quot;visible&quot;</code> and only visible parts of the surface or its children may react to mouse clicks.  When <code class="code">pickableparts</code> is <code class="code">&quot;all&quot;</code> both visible and invisible parts (or children) may react to mouse clicks.  When <code class="code">pickableparts</code> is <code class="code">&quot;none&quot;</code> mouse clicks on the object are ignored and transmitted to any objects underneath this one.  When an object is configured to accept mouse clicks the <code class="code">&quot;hittest&quot;</code> property will determine how they are processed.  See <a class="xref" href="#XREFsurfacehittest">hittest&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFsurfaceselected"></a></dd>
+<dt><a id="index-surface-selected"></a><span><code class="code">selected</code>: {<code class="code">&quot;off&quot;</code>} | <code class="code">&quot;on&quot;</code><a class="copiable-link" href="#index-surface-selected"> &para;</a></span></dt>
+<dd><p>Property indicates whether this surface is selected.
+</p>
+
+<a class="anchor" id="XREFsurfaceselectionhighlight"></a></dd>
+<dt><a id="index-surface-selectionhighlight"></a><span><code class="code">selectionhighlight</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-surface-selectionhighlight"> &para;</a></span></dt>
+<dd><p>If <code class="code">selectionhighlight</code> is <code class="code">&quot;on&quot;</code>, then the surface&rsquo;s selection state is visually highlighted.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFsurfacecategoryObjectIdentification"></a><h4 class="subsubheading" id="Object-Identification-9"><span>Object Identification<a class="copiable-link" href="#Object-Identification-9"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFsurfacetag"></a></dd>
+<dt><a id="index-surface-tag"></a><span><code class="code">tag</code>: string, def. <code class="code">&quot;&quot;</code><a class="copiable-link" href="#index-surface-tag"> &para;</a></span></dt>
+<dd><p>A user-defined string to label the graphics object.
+</p>
+
+<a class="anchor" id="XREFsurfacetype"></a></dd>
+<dt><a id="index-surface-type"></a><span><code class="code">type</code> (read-only): string<a class="copiable-link" href="#index-surface-type"> &para;</a></span></dt>
+<dd><p>Class name of the graphics object.  <code class="code">type</code> is always <code class="code">&quot;surface&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFsurfaceuserdata"></a></dd>
+<dt><a id="index-surface-userdata"></a><span><code class="code">userdata</code>: Any Octave data, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-surface-userdata"> &para;</a></span></dt>
+<dd><p>User-defined data to associate with the graphics object.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFsurfacecategoryOutlineAppearance"></a><h4 class="subsubheading" id="Outline-Appearance-1"><span>Outline Appearance<a class="copiable-link" href="#Outline-Appearance-1"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFsurfaceedgealpha"></a></dd>
+<dt><a id="index-surface-edgealpha"></a><span><code class="code">edgealpha</code>: scalar, def. <code class="code">1</code><a class="copiable-link" href="#index-surface-edgealpha"> &para;</a></span></dt>
+<dd><p>Transparency is not yet implemented for surface objects.  <code class="code">edgealpha</code> is unused.
+</p>
+
+<a class="anchor" id="XREFsurfaceedgecolor"></a></dd>
+<dt><a id="index-surface-edgecolor"></a><span><code class="code">edgecolor</code>: colorspec | <code class="code">&quot;none&quot;</code> | <code class="code">&quot;flat&quot;</code> | <code class="code">&quot;interp&quot;</code>, def. <code class="code">[0   0   0]</code><a class="copiable-link" href="#index-surface-edgecolor"> &para;</a></span></dt>
+<dd><p>Color of the edges of the surface object, specified as either a valid color specification or one of <code class="code">&quot;none&quot;</code>, <code class="code">&quot;flat&quot;</code>, or <code class="code">&quot;interp&quot;</code>.  <code class="code">&quot;flat&quot;</code> and <code class="code">&quot;interp&quot;</code> will set either a single color for each edge or a color interpolated between two adjacent vertices using the color value data stored in <a class="ref" href="#XREFsurfacecdata"><code class="code">&quot;cdata&quot;</code></a>.  See <a class="xref" href="Colors.html">colorspec</a>.
+</p>
+
+<a class="anchor" id="XREFsurfaceedgelighting"></a></dd>
+<dt><a id="index-surface-edgelighting"></a><span><code class="code">edgelighting</code>: <code class="code">&quot;flat&quot;</code> | <code class="code">&quot;gouraud&quot;</code> | {<code class="code">&quot;none&quot;</code>} | <code class="code">&quot;phong&quot;</code><a class="copiable-link" href="#index-surface-edgelighting"> &para;</a></span></dt>
+<dd><p>When set to a value other than <code class="code">&quot;none&quot;</code>, the edges of the object are drawn with light and shadow effects.  Supported values are <code class="code">&quot;none&quot;</code> (no lighting effects), <code class="code">&quot;flat&quot;</code> (faceted look), and <code class="code">&quot;gouraud&quot;</code> (linear interpolation of the lighting effects between the vertices).  <code class="code">&quot;phong&quot;</code> is deprecated and has the same effect as <code class="code">&quot;gouraud&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFsurfacelinestyle"></a></dd>
+<dt><a id="index-surface-linestyle"></a><span><code class="code">linestyle</code>: {<code class="code">&quot;-&quot;</code>} | <code class="code">&quot;--&quot;</code> | <code class="code">&quot;-.&quot;</code> | <code class="code">&quot;:&quot;</code> | <code class="code">&quot;none&quot;</code><a class="copiable-link" href="#index-surface-linestyle"> &para;</a></span></dt>
+<dd><p>See <a class="xref" href="Line-Styles.html">Line Styles</a>.
+</p>
+
+<a class="anchor" id="XREFsurfacelinewidth"></a></dd>
+<dt><a id="index-surface-linewidth"></a><span><code class="code">linewidth</code>: scalar, def. <code class="code">0.5000</code><a class="copiable-link" href="#index-surface-linewidth"> &para;</a></span></dt>
+<dd><p>See <a class="xref" href="Line-Properties.html#XREFlinelinewidth">line&nbsp;linewidth&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFsurfacemeshstyle"></a></dd>
+<dt><a id="index-surface-meshstyle"></a><span><code class="code">meshstyle</code>: {<code class="code">&quot;both&quot;</code>} | <code class="code">&quot;column&quot;</code> | <code class="code">&quot;row&quot;</code><a class="copiable-link" href="#index-surface-meshstyle"> &para;</a></span></dt>
+<dd><p>Specifies whether to display the edges associated with the         surface data&rsquo;s rows, columns, or both.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFsurfacecategoryParent_002fChildren"></a><h4 class="subsubheading" id="Parent_002fChildren-8"><span>Parent/Children<a class="copiable-link" href="#Parent_002fChildren-8"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFsurfacechildren"></a></dd>
+<dt><a id="index-surface-children"></a><span><code class="code">children</code> (read-only): vector of graphics handles, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-surface-children"> &para;</a></span></dt>
+<dd><p>Child objects for Surfaces is not yet implemented for surface objects.  <code class="code">children</code> is unused.
+</p>
+
+<a class="anchor" id="XREFsurfacehandlevisibility"></a></dd>
+<dt><a id="index-surface-handlevisibility"></a><span><code class="code">handlevisibility</code>: <code class="code">&quot;callback&quot;</code> | <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-surface-handlevisibility"> &para;</a></span></dt>
+<dd><p>If <code class="code">handlevisibility</code> is <code class="code">&quot;off&quot;</code>, the surface&rsquo;s handle is not visible in its parent&rsquo;s <code class="code">&quot;children&quot;</code> property.
+</p>
+
+<a class="anchor" id="XREFsurfaceparent"></a></dd>
+<dt><a id="index-surface-parent"></a><span><code class="code">parent</code>: graphics handle<a class="copiable-link" href="#index-surface-parent"> &para;</a></span></dt>
+<dd><p>Handle of the parent graphics object.
+</p>
+</dd>
+</dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Light-Properties.html">Light Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Scatter-Properties.html">Scatter Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Graphics-Object-Properties.html">Graphics Object Properties</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Graphics Objects (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Graphics Objects (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Graphics Objects (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Graphics-Data-Structures.html" rel="up" title="Graphics Data Structures">
+<link href="Graphics-Object-Properties.html" rel="next" title="Graphics Object Properties">
+<link href="Introduction-to-Graphics-Structures.html" rel="prev" title="Introduction to Graphics Structures">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Graphics-Objects">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Graphics-Object-Properties.html" accesskey="n" rel="next">Graphics Object Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Introduction-to-Graphics-Structures.html" accesskey="p" rel="prev">Introduction to Graphics Structures</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Graphics-Data-Structures.html" accesskey="u" rel="up">Graphics Data Structures</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Graphics-Objects-1"><span>15.3.2 Graphics Objects<a class="copiable-link" href="#Graphics-Objects-1"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-graphics-objects"></a>
+
+<p>The hierarchy of graphics objects was explained above.
+See <a class="xref" href="Introduction-to-Graphics-Structures.html">Introduction to Graphics Structures</a>.  Here the specific objects are
+described, and the properties contained in these objects are discussed.  Keep
+in mind that graphics objects are always referenced by <em class="dfn">handle</em>.
+</p>
+
+<dl class="table">
+<dt><a class="index-entry-id" id="index-graphics-object_002c-root"></a>
+<a id="index-root-graphics-object"></a><span>root<a class="copiable-link" href="#index-root-graphics-object"> &para;</a></span></dt>
+<dd><p>The top level of the hierarchy and the parent of all figure objects.
+Use <code class="code">groot</code> to obtain the handle of the root graphics object.
+</p>
+</dd>
+<dt><a class="index-entry-id" id="index-graphics-object_002c-figure"></a>
+<a id="index-figure-graphics-object"></a><span>figure<a class="copiable-link" href="#index-figure-graphics-object"> &para;</a></span></dt>
+<dd><p>A figure window.
+</p>
+</dd>
+<dt><a class="index-entry-id" id="index-graphics-object_002c-axes"></a>
+<a id="index-axes-graphics-object"></a><span>axes<a class="copiable-link" href="#index-axes-graphics-object"> &para;</a></span></dt>
+<dd><p>A set of axes.  This object is a child of a figure object and may be a
+parent of line, text, image, patch, surface, or light objects.
+</p>
+</dd>
+<dt><a class="index-entry-id" id="index-graphics-object_002c-line"></a>
+<a id="index-line-graphics-object"></a><span>line<a class="copiable-link" href="#index-line-graphics-object"> &para;</a></span></dt>
+<dd><p>A line in two or three dimensions.
+</p>
+</dd>
+<dt><a class="index-entry-id" id="index-graphics-object_002c-text"></a>
+<a id="index-text-graphics-object"></a><span>text<a class="copiable-link" href="#index-text-graphics-object"> &para;</a></span></dt>
+<dd><p>Text annotations.
+</p>
+</dd>
+<dt><a class="index-entry-id" id="index-graphics-object_002c-image"></a>
+<a id="index-image-graphics-object"></a><span>image<a class="copiable-link" href="#index-image-graphics-object"> &para;</a></span></dt>
+<dd><p>A bitmap image.
+</p>
+</dd>
+<dt><a class="index-entry-id" id="index-graphics-object_002c-patch"></a>
+<a id="index-patch-graphics-object"></a><span>patch<a class="copiable-link" href="#index-patch-graphics-object"> &para;</a></span></dt>
+<dd><p>A filled polygon, currently limited to two dimensions.
+</p>
+</dd>
+<dt><a class="index-entry-id" id="index-graphics-object_002c-surface"></a>
+<a id="index-surface-graphics-object"></a><span>surface<a class="copiable-link" href="#index-surface-graphics-object"> &para;</a></span></dt>
+<dd><p>A three-dimensional surface.
+</p>
+</dd>
+<dt><a class="index-entry-id" id="index-graphics-object_002c-light"></a>
+<a id="index-light-graphics-object"></a><span>light<a class="copiable-link" href="#index-light-graphics-object"> &para;</a></span></dt>
+<dd><p>A light object used for lighting effects on patches and surfaces.
+</p></dd>
+</dl>
+
+<ul class="mini-toc">
+<li><a href="Creating-Graphics-Objects.html" accesskey="1">Creating Graphics Objects</a></li>
+<li><a href="Handle-Functions.html" accesskey="2">Handle Functions</a></li>
+</ul>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Graphics-Object-Properties.html">Graphics Object Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Introduction-to-Graphics-Structures.html">Introduction to Graphics Structures</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Graphics-Data-Structures.html">Graphics Data Structures</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

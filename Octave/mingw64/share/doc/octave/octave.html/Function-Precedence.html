@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Function Precedence (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Function Precedence (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Function Precedence (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Function-Files.html" rel="up" title="Function Files">
+<link href="Function-Locking.html" rel="prev" title="Function Locking">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Function-Precedence">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Function-Locking.html" accesskey="p" rel="prev">Function Locking</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Function-Files.html" accesskey="u" rel="up">Function Files</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Function-Precedence-1"><span>11.10.7 Function Precedence<a class="copiable-link" href="#Function-Precedence-1"> &para;</a></span></h4>
+
+<p>Given the numerous different ways that Octave can define a function, it
+is possible and even likely that multiple versions of a function, might be
+defined within a particular scope.  The precedence of which function will be
+used within a particular scope is given by
+</p>
+<ol class="enumerate">
+<li> Subfunction
+A subfunction with the required function name in the given scope.
+
+</li><li> Private function
+A function defined within a private directory of the directory
+which contains the current function.
+
+</li><li> Class constructor
+A function that constructs a user class as defined in chapter
+<a class="ref" href="Object-Oriented-Programming.html">Object Oriented Programming</a>.
+
+</li><li> Class method
+An overloaded function of a class as in chapter
+<a class="ref" href="Object-Oriented-Programming.html">Object Oriented Programming</a>.
+
+</li><li> Command-line Function
+A function that has been defined on the command-line.
+
+</li><li> Autoload function
+A function that is marked as autoloaded with <a class="ref" href="Overloading-and-Autoloading.html#XREFautoload">autoload</a>.
+
+</li><li> A Function on the Path
+A function that can be found on the users load-path.  There can also be
+Oct-file, mex-file or m-file versions of this function and the precedence
+between these versions are in that order.
+
+</li><li> Built-in function
+A function that is a part of core Octave such as <code class="code">numel</code>, <code class="code">size</code>,
+etc.
+</li></ol>
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Function-Locking.html">Function Locking</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Function-Files.html">Function Files</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

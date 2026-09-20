@@ -1,0 +1,6 @@
+## Generated from visadevlist.cc
+%!xtest
+%! lst = visadevlist();
+%! assert(isstruct(lst));
+%! assert(isfield(lst, "Alias"));
+%! assert(isfield(lst, "ResourceName"));

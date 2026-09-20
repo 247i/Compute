@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>The break Statement (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="The break Statement (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="The break Statement (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Statements.html" rel="up" title="Statements">
+<link href="The-continue-Statement.html" rel="next" title="The continue Statement">
+<link href="The-for-Statement.html" rel="prev" title="The for Statement">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="The-break-Statement">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="The-continue-Statement.html" accesskey="n" rel="next">The continue Statement</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="The-for-Statement.html" accesskey="p" rel="prev">The for Statement</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Statements.html" accesskey="u" rel="up">Statements</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="The-break-Statement-1"><span>10.6 The break Statement<a class="copiable-link" href="#The-break-Statement-1"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-break-statement"></a>
+
+<p>The <code class="code">break</code> statement jumps out of the innermost <code class="code">while</code>,
+<code class="code">do-until</code>, or <code class="code">for</code> loop that encloses it.  The <code class="code">break</code>
+statement may only be used within the body of a loop.  The following
+example finds the smallest divisor of a given integer, and also
+identifies prime numbers:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">num = 103;
+div = 2;
+while (div*div &lt;= num)
+  if (rem (num, div) == 0)
+    break;
+  endif
+  div++;
+endwhile
+if (rem (num, div) == 0)
+  printf (&quot;Smallest divisor of %d is %d\n&quot;, num, div)
+else
+  printf (&quot;%d is prime\n&quot;, num);
+endif
+</pre></div></div>
+
+<p>When the remainder is zero in the first <code class="code">while</code> statement, Octave
+immediately <em class="dfn">breaks out</em> of the loop.  This means that Octave
+proceeds immediately to the statement following the loop and continues
+processing.  (This is very different from the <code class="code">exit</code> statement
+which stops the entire Octave program.)
+</p>
+<p>Here is another program equivalent to the previous one.  It illustrates
+how the <var class="var">condition</var> of a <code class="code">while</code> statement could just as well
+be replaced with a <code class="code">break</code> inside an <code class="code">if</code>:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">num = 103;
+div = 2;
+while (1)
+  if (rem (num, div) == 0)
+    printf (&quot;Smallest divisor of %d is %d\n&quot;, num, div);
+    break;
+  endif
+  div++;
+  if (div*div &gt; num)
+    printf (&quot;%d is prime\n&quot;, num);
+    break;
+  endif
+endwhile
+</pre></div></div>
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="The-continue-Statement.html">The continue Statement</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="The-for-Statement.html">The for Statement</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Statements.html">Statements</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

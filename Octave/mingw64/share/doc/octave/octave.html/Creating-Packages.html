@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Creating Packages (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Creating Packages (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Creating Packages (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Packages.html" rel="up" title="Packages">
+<link href="Administrating-Packages.html" rel="prev" title="Administrating Packages">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Creating-Packages">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Administrating-Packages.html" accesskey="p" rel="prev">Administrating Packages</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Packages.html" accesskey="u" rel="up">Packages</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Creating-Packages-1"><span>37.5 Creating Packages<a class="copiable-link" href="#Creating-Packages-1"> &para;</a></span></h3>
+
+<p>Internally a package is simply a gzipped tar file that contains a
+top level directory of any given name.  This directory will in the
+following be referred to as <code class="code">package</code> and may contain the
+following files:
+</p>
+<dl class="table">
+<dt><code class="code">package/CITATION</code></dt>
+<dd><p>This is am optional file describing instructions on how to cite
+the package for publication.  It will be displayed verbatim by the
+function <code class="code">citation</code>.
+</p>
+</dd>
+<dt><code class="code">package/COPYING</code></dt>
+<dd><p>This is a required file containing the license of the package.  No
+restrictions is made on the license in general.  If however the
+package contains dynamically linked functions the license must be
+compatible with the GNU General Public License.
+</p>
+</dd>
+<dt><code class="code">package/DESCRIPTION</code></dt>
+<dd><p>This is a required file containing information about the package.
+See <a class="xref" href="The-DESCRIPTION-File.html">The DESCRIPTION File</a>, for details on this file.
+</p>
+</dd>
+<dt><code class="code">package/ChangeLog</code></dt>
+<dd><p>This is an optional file describing all the changes made to the
+package source files.
+</p>
+</dd>
+<dt><code class="code">package/INDEX</code></dt>
+<dd><p>This is an optional file describing the functions provided by the
+package.  If this file is not given then one with be created
+automatically from the functions in the package and the
+<code class="code">Categories</code> keyword in the <samp class="file">DESCRIPTION</samp> file.
+See <a class="xref" href="The-INDEX-File.html">The INDEX File</a>, for details on this file.
+</p>
+</dd>
+<dt><code class="code">package/NEWS</code></dt>
+<dd><p>This is an optional file describing all user-visible changes worth
+mentioning.  As this file increases on size, old entries can be moved
+into <samp class="file">package/ONEWS</samp>.
+</p>
+</dd>
+<dt><code class="code">package/ONEWS</code></dt>
+<dd><p>This is an optional file describing old entries from the <samp class="file">NEWS</samp> file.
+</p>
+<a class="index-entry-id" id="index-PKG_005fADD"></a>
+<a class="anchor" id="XREFPKG_005fADD"></a></dd>
+<dt><code class="code">package/PKG_ADD</code></dt>
+<dd><p>An optional file that includes commands that are run when the package
+is added to the users path.  Note that <code class="code">PKG_ADD</code><!-- /@w -->&nbsp;directives in the
+source code of the package will also be added to this file by the
+Octave package manager.  Note that symbolic links are to be avoided in
+packages, as symbolic links do not exist on some file systems, and so
+a typical use for this file is the replacement of the symbolic link
+</p>
+<div class="example">
+<pre class="example-preformatted">ln -s foo.oct bar.oct
+</pre></div>
+
+<p>with an autoload directive like
+</p>
+<div class="example">
+<pre class="example-preformatted">autoload ('bar', which ('foo'));
+</pre></div>
+
+<p>See <a class="xref" href="PKG_005fADD-and-PKG_005fDEL-Directives.html">PKG_ADD and PKG_DEL Directives</a>, for details on
+<code class="code">PKG_ADD</code><!-- /@w -->&nbsp;directives.
+</p>
+<a class="index-entry-id" id="index-PKG_005fDEL"></a>
+<a class="anchor" id="XREFPKG_005fDEL"></a></dd>
+<dt><code class="code">package/PKG_DEL</code></dt>
+<dd><p>An optional file that includes commands that are run when the package
+is removed from the users path.  Note that <code class="code">PKG_DEL</code><!-- /@w -->&nbsp;directives in
+the source code of the package will also be added to this file by the
+Octave package manager.
+See <a class="xref" href="PKG_005fADD-and-PKG_005fDEL-Directives.html">PKG_ADD and PKG_DEL Directives</a>, for details on
+<code class="code">PKG_DEL</code><!-- /@w -->&nbsp;directives.
+</p>
+</dd>
+<dt><code class="code">package/pre_install.m</code></dt>
+<dd><p>This is an optional function that is run prior to the installation of a
+package.  This function is called with a single argument, a struct with
+fields names after the data in the <samp class="file">DESCRIPTION</samp>, and the paths where
+the package functions will be installed.
+</p>
+</dd>
+<dt><code class="code">package/post_install.m</code></dt>
+<dd><p>This is an optional function that is run after the installation of a
+package.  This function is called with a single argument, a struct with
+fields names after the data in the <samp class="file">DESCRIPTION</samp>, and the paths where
+the package functions were installed.
+</p>
+</dd>
+<dt><code class="code">package/on_uninstall.m</code></dt>
+<dd><p>This is an optional function that is run prior to the removal of a
+package.  This function is called with a single argument, a struct with
+fields names after the data in the <samp class="file">DESCRIPTION</samp>, the paths where
+the package functions are installed, and whether the package is currently
+loaded.
+</p></dd>
+</dl>
+
+<p>Besides the above mentioned files, a package can also contain one or
+more of the following directories:
+</p>
+<dl class="table">
+<dt><code class="code">package/inst</code></dt>
+<dd><p>An optional directory containing any files that are directly installed
+by the package.  Typically this will include any <code class="code">m</code>-files.
+</p>
+</dd>
+<dt><code class="code">package/src</code></dt>
+<dd><p>An optional directory containing code that must be built prior to the
+packages installation.  The Octave package manager will execute
+<samp class="file">./configure</samp> in this directory if this script exists, and will
+then call <code class="code">make</code> if a file <samp class="file">Makefile</samp> exists in this
+directory.  <code class="code">make install</code> will however not be called.  The
+environment variables <code class="env">MKOCTFILE</code>, <code class="env">OCTAVE_CONFIG</code><!-- /@w -->, and
+<code class="env">OCTAVE</code> will be set to the full paths of the programs
+<code class="code">mkoctfile</code>, <code class="code">octave-config</code>, and <code class="code">octave</code>, respectively,
+of the correct version when <code class="code">configure</code> and <code class="code">make</code> are
+called.  If a file called <code class="code">FILES</code> exists all files listed there
+will be copied to the <code class="code">inst</code> directory, so they also will be
+installed.  If the <code class="code">FILES</code> file doesn&rsquo;t exist, <samp class="file">src/*.m</samp> and
+<samp class="file">src/*.oct</samp> will be copied to the <code class="code">inst</code> directory.
+</p>
+</dd>
+<dt><code class="code">package/doc</code></dt>
+<dd><p>An optional directory containing documentation for the package.  The
+files in this directory will be directly installed in a sub-directory
+of the installed package for future reference.
+</p>
+<p>If the Octave GUI is running, the optional Qt help file
+<samp class="file">package/doc/pkg-name.qch</samp> is added to the documentation browser
+while loading the package.  The help file is removed from the documentation
+browser when the package is unloaded.
+</p>
+</dd>
+<dt><code class="code">package/bin</code></dt>
+<dd><p>An optional directory containing files that will be added to the
+Octave <code class="env">EXEC_PATH</code><!-- /@w -->&nbsp;when the package is loaded.  This might contain
+external scripts, etc., called by functions within the package.
+</p></dd>
+</dl>
+
+
+<ul class="mini-toc">
+<li><a href="The-DESCRIPTION-File.html" accesskey="1">The DESCRIPTION File</a></li>
+<li><a href="The-INDEX-File.html" accesskey="2">The INDEX File</a></li>
+<li><a href="PKG_005fADD-and-PKG_005fDEL-Directives.html" accesskey="3">PKG_ADD and PKG_DEL Directives</a></li>
+<li><a href="Missing-Components.html" accesskey="4">Missing Components</a></li>
+</ul>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Administrating-Packages.html">Administrating Packages</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Packages.html">Packages</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

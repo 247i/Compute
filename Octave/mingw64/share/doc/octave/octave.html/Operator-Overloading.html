@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Operator Overloading (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Operator Overloading (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Operator Overloading (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Overloading-Objects.html" rel="up" title="Overloading Objects">
+<link href="Precedence-of-Objects.html" rel="next" title="Precedence of Objects">
+<link href="Function-Overloading.html" rel="prev" title="Function Overloading">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Operator-Overloading">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Precedence-of-Objects.html" accesskey="n" rel="next">Precedence of Objects</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Function-Overloading.html" accesskey="p" rel="prev">Function Overloading</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Overloading-Objects.html" accesskey="u" rel="up">Overloading Objects</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Operator-Overloading-1"><span>34.4.2 Operator Overloading<a class="copiable-link" href="#Operator-Overloading-1"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-addition-1"></a>
+<a class="index-entry-id" id="index-and-operator-1"></a>
+<a class="index-entry-id" id="index-arithmetic-operators-1"></a>
+<a class="index-entry-id" id="index-boolean-expressions-1"></a>
+<a class="index-entry-id" id="index-boolean-operators-1"></a>
+<a class="index-entry-id" id="index-comparison-expressions-1"></a>
+<a class="index-entry-id" id="index-complex_002dconjugate-transpose-1"></a>
+<a class="index-entry-id" id="index-division-1"></a>
+<a class="index-entry-id" id="index-equality-operator-1"></a>
+<a class="index-entry-id" id="index-equality_002c-tests-for-1"></a>
+<a class="index-entry-id" id="index-exponentiation-1"></a>
+<a class="index-entry-id" id="index-expressions_002c-boolean-1"></a>
+<a class="index-entry-id" id="index-expressions_002c-comparison-1"></a>
+<a class="index-entry-id" id="index-expressions_002c-logical-1"></a>
+<a class="index-entry-id" id="index-greater-than-operator-1"></a>
+<a class="index-entry-id" id="index-Hermitian-operator-1"></a>
+<a class="index-entry-id" id="index-less-than-operator-1"></a>
+<a class="index-entry-id" id="index-logical-expressions-1"></a>
+<a class="index-entry-id" id="index-logical-operators-1"></a>
+<a class="index-entry-id" id="index-matrix-multiplication-1"></a>
+<a class="index-entry-id" id="index-multiplication-1"></a>
+<a class="index-entry-id" id="index-negation-1"></a>
+<a class="index-entry-id" id="index-not-operator-1"></a>
+<a class="index-entry-id" id="index-operators_002c-arithmetic-1"></a>
+<a class="index-entry-id" id="index-operators_002c-boolean-1"></a>
+<a class="index-entry-id" id="index-operators_002c-logical-1"></a>
+<a class="index-entry-id" id="index-operators_002c-relational-1"></a>
+<a class="index-entry-id" id="index-or-operator-1"></a>
+<a class="index-entry-id" id="index-quotient-1"></a>
+<a class="index-entry-id" id="index-relational-operators-1"></a>
+<a class="index-entry-id" id="index-subtraction-1"></a>
+<a class="index-entry-id" id="index-tests-for-equality-1"></a>
+<a class="index-entry-id" id="index-transpose-1"></a>
+<a class="index-entry-id" id="index-transpose_002c-complex_002dconjugate-1"></a>
+<a class="index-entry-id" id="index-unary-minus-1"></a>
+
+<p>The following table shows, for each built-in numerical operation, the
+corresponding function name to use when providing an overloaded method for a
+user class.
+</p>
+<div class="float" id="tab_003aoverload_005fops">
+<a class="index-entry-id" id="index-_002b-4"></a>
+<a class="index-entry-id" id="index-_002d-4"></a>
+<a class="index-entry-id" id="index-_002e_002a-2"></a>
+<a class="index-entry-id" id="index-_002a-2"></a>
+<a class="index-entry-id" id="index-_002e_002f-2"></a>
+<a class="index-entry-id" id="index-_002f-2"></a>
+<a class="index-entry-id" id="index-_002e_005c-2"></a>
+<a class="index-entry-id" id="index-_005c-2"></a>
+<a class="index-entry-id" id="index-_002e_005e-2"></a>
+<a class="index-entry-id" id="index-_005e-2"></a>
+<a class="index-entry-id" id="index-_003c-2"></a>
+<a class="index-entry-id" id="index-_003c_003d-2"></a>
+<a class="index-entry-id" id="index-_003e-2"></a>
+<a class="index-entry-id" id="index-_003e_003d-2"></a>
+<a class="index-entry-id" id="index-_003d_003d-2"></a>
+<a class="index-entry-id" id="index-_0021_003d-2"></a>
+<a class="index-entry-id" id="index-_007e_003d-2"></a>
+<a class="index-entry-id" id="index-_0026-2"></a>
+<a class="index-entry-id" id="index-_007c-2"></a>
+<a class="index-entry-id" id="index-_0021-2"></a>
+<a class="index-entry-id" id="index-_0027-4"></a>
+<a class="index-entry-id" id="index-_002e_0027-2"></a>
+<a class="index-entry-id" id="index-_003a-1"></a>
+<a class="index-entry-id" id="index-_003c-3"></a>
+
+<table class="multitable">
+<thead><tr><th>Operation</th><th>Method</th><th>Description</th></tr></thead>
+<tbody><tr><td><code class="code">a + b</code></td><td><code class="code">plus (a, b)</code></td><td>Binary addition</td></tr>
+<tr><td><code class="code">a - b</code></td><td><code class="code">minus (a, b)</code></td><td>Binary subtraction</td></tr>
+<tr><td><code class="code">+a</code></td><td><code class="code">uplus (a)</code></td><td>Unary addition</td></tr>
+<tr><td><code class="code">-a</code></td><td><code class="code">uminus (a)</code></td><td>Unary subtraction</td></tr>
+<tr><td><code class="code">a .* b</code></td><td><code class="code">times (a, b)</code></td><td>Element-wise multiplication</td></tr>
+<tr><td><code class="code">a * b</code></td><td><code class="code">mtimes (a, b)</code></td><td>Matrix multiplication</td></tr>
+<tr><td><code class="code">a ./ b</code></td><td><code class="code">rdivide (a, b)</code></td><td>Element-wise right division</td></tr>
+<tr><td><code class="code">a / b</code></td><td><code class="code">mrdivide (a, b)</code></td><td>Matrix right division</td></tr>
+<tr><td><code class="code">a .\ b</code></td><td><code class="code">ldivide (a, b)</code></td><td>Element-wise left division</td></tr>
+<tr><td><code class="code">a \ b</code></td><td><code class="code">mldivide (a, b)</code></td><td>Matrix left division</td></tr>
+<tr><td><code class="code">a .^ b</code></td><td><code class="code">power (a, b)</code></td><td>Element-wise power</td></tr>
+<tr><td><code class="code">a ^ b</code></td><td><code class="code">mpower (a, b)</code></td><td>Matrix power</td></tr>
+<tr><td><code class="code">a &lt; b</code></td><td><code class="code">lt (a, b)</code></td><td>Less than</td></tr>
+<tr><td><code class="code">a &lt;= b</code></td><td><code class="code">le (a, b)</code></td><td>Less than or equal to</td></tr>
+<tr><td><code class="code">a &gt; b</code></td><td><code class="code">gt (a, b)</code></td><td>Greater than</td></tr>
+<tr><td><code class="code">a &gt;= b</code></td><td><code class="code">ge (a, b)</code></td><td>Greater than or equal to</td></tr>
+<tr><td><code class="code">a == b</code></td><td><code class="code">eq (a, b)</code></td><td>Equal to</td></tr>
+<tr><td><code class="code">a != b</code></td><td><code class="code">ne (a, b)</code></td><td>Not equal to</td></tr>
+<tr><td><code class="code">a &amp; b</code></td><td><code class="code">and (a, b)</code></td><td>Logical and</td></tr>
+<tr><td><code class="code">a | b</code></td><td><code class="code">or (a, b)</code></td><td>Logical or</td></tr>
+<tr><td><code class="code">!a</code></td><td><code class="code">not (a)</code></td><td>Logical not</td></tr>
+<tr><td><code class="code">a'</code></td><td><code class="code">ctranspose (a)</code></td><td>Complex conjugate transpose</td></tr>
+<tr><td><code class="code">a.'</code></td><td><code class="code">transpose (a)</code></td><td>Transpose</td></tr>
+<tr><td><code class="code">a:b</code></td><td><code class="code">colon (a, b)</code></td><td>Two element range</td></tr>
+<tr><td><code class="code">a:b:c</code></td><td><code class="code">colon (a, b, c)</code></td><td>Three element range</td></tr>
+<tr><td><code class="code">[a, b]</code></td><td><code class="code">horzcat (a, b)</code></td><td>Horizontal concatenation</td></tr>
+<tr><td><code class="code">[a; b]</code></td><td><code class="code">vertcat (a, b)</code></td><td>Vertical concatenation</td></tr>
+<tr><td><code class="code">a(s<em class="math">_1</em>,&hellip;,s<em class="math">_n</em>)</code></td><td><code class="code">subsref (a, s)</code></td><td>Subscripted reference</td></tr>
+<tr><td><code class="code">a(s<em class="math">_1</em>,&hellip;,s<em class="math">_n</em>) = b</code></td><td><code class="code">subsasgn (a, s, b)</code></td><td>Subscripted assignment</td></tr>
+<tr><td><code class="code">b(a)</code></td><td><code class="code">subsindex (a)</code></td><td>Convert object to index</td></tr>
+<tr><td><code class="code">disp</code></td><td><code class="code">disp (a)</code></td><td>Object display</td></tr>
+</tbody>
+</table>
+<div class="caption"><p><strong class="strong">Table 34.1: </strong>Available overloaded operators and their corresponding class method</p></div></div>
+<p>An example <code class="code">mtimes</code> method for the polynomial class might look like
+</p>
+<div class="example">
+<div class="group"><pre class="verbatim">function p = mtimes (a, b)
+  p = polynomial (conv (double (a), double (b)));
+endfunction
+</pre></div></div>
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Precedence-of-Objects.html">Precedence of Objects</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Function-Overloading.html">Function Overloading</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Overloading-Objects.html">Overloading Objects</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

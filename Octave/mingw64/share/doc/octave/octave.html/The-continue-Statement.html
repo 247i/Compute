@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>The continue Statement (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="The continue Statement (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="The continue Statement (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Statements.html" rel="up" title="Statements">
+<link href="The-unwind_005fprotect-Statement.html" rel="next" title="The unwind_protect Statement">
+<link href="The-break-Statement.html" rel="prev" title="The break Statement">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="The-continue-Statement">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="The-unwind_005fprotect-Statement.html" accesskey="n" rel="next">The unwind_protect Statement</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="The-break-Statement.html" accesskey="p" rel="prev">The break Statement</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Statements.html" accesskey="u" rel="up">Statements</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="The-continue-Statement-1"><span>10.7 The continue Statement<a class="copiable-link" href="#The-continue-Statement-1"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-continue-statement"></a>
+
+<p>The <code class="code">continue</code> statement, like <code class="code">break</code>, is used only inside
+<code class="code">while</code>, <code class="code">do-until</code>, or <code class="code">for</code> loops.  It skips over the
+rest of the loop body, causing the next cycle around the loop to begin
+immediately.  Contrast this with <code class="code">break</code>, which jumps out of the
+loop altogether.
+Here is an example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted"># print elements of a vector of random
+# integers that are even.
+
+# first, create a row vector of 10 random
+# integers with values between 0 and 100:
+
+vec = round (rand (1, 10) * 100);
+
+# print what we're interested in:
+
+for x = vec
+  if (rem (x, 2) != 0)
+    continue;
+  endif
+  printf (&quot;%d\n&quot;, x);
+endfor
+</pre></div></div>
+
+<p>If one of the elements of <var class="var">vec</var> is an odd number, this example skips
+the print statement for that element, and continues back to the first
+statement in the loop.
+</p>
+<p>This is not a practical example of the <code class="code">continue</code> statement, but it
+should give you a clear understanding of how it works.  Normally, one
+would probably write the loop like this:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">for x = vec
+  if (rem (x, 2) == 0)
+    printf (&quot;%d\n&quot;, x);
+  endif
+endfor
+</pre></div></div>
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="The-unwind_005fprotect-Statement.html">The unwind_protect Statement</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="The-break-Statement.html">The break Statement</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Statements.html">Statements</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

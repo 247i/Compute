@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- Additional documentation for the optim package for Octave.
+
+Copyright © Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<title>linprog (optim_doc)</title>
+
+<meta name="description" content="linprog (optim_doc)">
+<meta name="keywords" content="linprog (optim_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Compatibility-functions.html" rel="up" title="Compatibility functions">
+<link href="quadprog.html" rel="next" title="quadprog">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section-level-extent" id="linprog">
+<div class="nav-panel">
+<p>
+Next: <a href="quadprog.html" accesskey="n" rel="next">Quadratic programming</a>, Up: <a href="Compatibility-functions.html" accesskey="u" rel="up">Traditional functions</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h3 class="section" id="Linear-programming"><span>7.1 Linear programming<a class="copiable-link" href="#Linear-programming"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-linprog-4"></a>
+
+<p>This function works by calling <code class="code">glpk</code> of core Octave.
+</p>
+<a class="anchor" id="XREFlinprog"></a><dl class="first-deftypefn">
+<dt class="deftypefn" id="index-linprog"><span class="category-def">Function File: </span><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">linprog</strong> <code class="def-code-arguments">(<var class="var">f</var>, <var class="var">A</var>, <var class="var">b</var>)</code><a class="copiable-link" href="#index-linprog"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn" id="index-linprog-1"><span class="category-def">Function File: </span><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">linprog</strong> <code class="def-code-arguments">(<var class="var">f</var>, <var class="var">A</var>, <var class="var">b</var>, <var class="var">Aeq</var>, <var class="var">beq</var>)</code><a class="copiable-link" href="#index-linprog-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn" id="index-linprog-2"><span class="category-def">Function File: </span><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">linprog</strong> <code class="def-code-arguments">(<var class="var">f</var>, <var class="var">A</var>, <var class="var">b</var>, <var class="var">Aeq</var>, <var class="var">beq</var>, <var class="var">lb</var>, <var class="var">ub</var>)</code><a class="copiable-link" href="#index-linprog-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn" id="index-linprog-3"><span class="category-def">Function File: </span><span><code class="def-type">[<var class="var">x</var>, <var class="var">fval</var>] =</code> <strong class="def-name">linprog</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-linprog-3"> &para;</a></span></dt>
+<dd><p>Solve a linear problem.
+</p>
+<p>Finds
+</p>
+<div class="example">
+<pre class="example-preformatted">min (f' * x)
+</pre></div>
+
+<p>(both f and x are column vectors) subject to
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">A   * x &lt;= b
+Aeq * x  = beq
+lb &lt;= x &lt;= ub
+</pre></div></div>
+
+<p>If not specified, <var class="var">Aeq</var> and <var class="var">beq</var> default to empty matrices.
+</p>
+<p>If not specified, the lower bound <var class="var">lb</var> defaults to minus infinite
+and the upper bound <var class="var">ub</var> defaults to infinite.
+</p>
+</dd></dl>
+
+
+<p>See also <a data-manual="octave" href="../octave_html/XREFglpk.html#XREFglpk">glpk</a>.
+</p>
+
+</div>
+
+
+
+</body>
+</html>

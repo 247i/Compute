@@ -1,0 +1,4 @@
+% We've stuck the library loading code into a separate, package-qualified function
+% in an attempt to make the code cleaner
+
+tblish.internal.unload_tablicious

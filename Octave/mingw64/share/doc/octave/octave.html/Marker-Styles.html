@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Marker Styles (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Marker Styles (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Marker Styles (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Advanced-Plotting.html" rel="up" title="Advanced Plotting">
+<link href="Callbacks.html" rel="next" title="Callbacks">
+<link href="Line-Styles.html" rel="prev" title="Line Styles">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Marker-Styles">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Callbacks.html" accesskey="n" rel="next">Callbacks</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Line-Styles.html" accesskey="p" rel="prev">Line Styles</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Advanced-Plotting.html" accesskey="u" rel="up">Advanced Plotting</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Marker-Styles-1"><span>15.4.3 Marker Styles<a class="copiable-link" href="#Marker-Styles-1"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-graphics-marker-styles"></a>
+<a class="index-entry-id" id="index-marker-styles_002c-graphics"></a>
+
+<p>Marker styles are specified by the following properties:
+</p>
+<dl class="table">
+<dt><code class="code">marker</code></dt>
+<dd><p>A character indicating a plot marker to be place at each data point, or
+<code class="code">&quot;none&quot;</code>, meaning no markers should be displayed.
+</p>
+</dd>
+<dt><code class="code">markeredgecolor</code></dt>
+<dd><p>The color of the edge around the marker, or <code class="code">&quot;auto&quot;</code>, meaning that
+the edge color is the same as the face color.  See <a class="xref" href="Colors.html">Colors</a>.
+</p>
+</dd>
+<dt><code class="code">markerfacecolor</code></dt>
+<dd><p>The color of the marker, or <code class="code">&quot;none&quot;</code> to indicate that the marker
+should not be filled.  See <a class="xref" href="Colors.html">Colors</a>.
+</p>
+</dd>
+<dt><code class="code">markersize</code></dt>
+<dd><p>A number specifying the size of the marker.  The default is 1.  A value
+of 2 is twice as large as the default, etc.
+</p></dd>
+</dl>
+
+<p>The <code class="code">colstyle</code> function will parse a <code class="code">plot</code>-style specification
+and will return the color, line, and marker values that would result.
+</p>
+<a class="anchor" id="XREFcolstyle"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-colstyle"><span><code class="def-type">[<var class="var">style</var>, <var class="var">color</var>, <var class="var">marker</var>, <var class="var">msg</var>] =</code> <strong class="def-name">colstyle</strong> <code class="def-code-arguments">(<var class="var">style</var>)</code><a class="copiable-link" href="#index-colstyle"> &para;</a></span></dt>
+<dd><p>Parse the line specification <var class="var">style</var> and return the line style, color,
+and markers given.
+</p>
+<p>In the case of an error, the string <var class="var">msg</var> will return the text of the
+error.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Callbacks.html">Callbacks</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Line-Styles.html">Line Styles</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Advanced-Plotting.html">Advanced Plotting</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

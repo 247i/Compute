@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Sections (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Sections (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Sections (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Publishing-Markup.html" rel="up" title="Publishing Markup">
+<link href="Preformatted-Code.html" rel="next" title="Preformatted Code">
+<link href="Text-Formatting.html" rel="prev" title="Text Formatting">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsubsection-level-extent" id="Sections">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Preformatted-Code.html" accesskey="n" rel="next">Preformatted Code</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Text-Formatting.html" accesskey="p" rel="prev">Text Formatting</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Publishing-Markup.html" accesskey="u" rel="up">Publishing Markup</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsubsection" id="Sections-1"><span>11.11.2.3 Sections<a class="copiable-link" href="#Sections-1"> &para;</a></span></h4>
+
+<p>A section is started by typing &lsquo;<samp class="samp">##</samp>&rsquo; or &lsquo;<samp class="samp">%%</samp>&rsquo; at the beginning of
+a new line.  A section title can be provided by writing it, separated by a
+space, in the first line after &lsquo;<samp class="samp">##</samp>&rsquo; or &lsquo;<samp class="samp">%%</samp>&rsquo;.  Without a section
+title, the section is interpreted as a continuation of the previous section.
+For <small class="sc">MATLAB</small> compatibility &lsquo;<samp class="samp">%%%</samp>&rsquo; is treated the same way as &lsquo;<samp class="samp">%%</samp>&rsquo;.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">some_code ();
+
+## Section 1
+#
+## Section 2
+
+some_code ();
+
+##
+# Still in section 2
+
+some_code ();
+
+%%% Section 3
+%
+%
+</pre></div></div>
+
+</div>
+
+
+
+</body>
+</html>

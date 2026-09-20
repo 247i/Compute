@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- Additional documentation for the optim package for Octave.
+
+Copyright © Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<title>curvefit_stat (optim_doc)</title>
+
+<meta name="description" content="curvefit_stat (optim_doc)">
+<meta name="keywords" content="curvefit_stat (optim_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Residual-optimization.html" rel="up" title="Residual optimization">
+<link href="wls.html" rel="next" title="wls">
+<link href="residmin_005fstat.html" rel="prev" title="residmin_stat">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section-level-extent" id="curvefit_005fstat">
+<div class="nav-panel">
+<p>
+Next: <a href="wls.html" accesskey="n" rel="next">Statistics for weighted least squares</a>, Previous: <a href="residmin_005fstat.html" accesskey="p" rel="prev">Statistics for residual minimization</a>, Up: <a href="Residual-optimization.html" accesskey="u" rel="up">Functions for optimization of a model function returning an array</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h3 class="section" id="Statistics-for-curve-fitting"><span>2.5 Statistics for curve fitting<a class="copiable-link" href="#Statistics-for-curve-fitting"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-curvefit_005fstat-1"></a>
+
+<p>As <code class="code">nonlin_curvefit</code> can be used instead of <code class="code">nonlin_residmin</code>
+for curve fitting (
+see
+<a class="ref" href="nonlin_005fcurvefit.html">Function nonlin_curvefit() for curve fitting</a>,
+see
+<a class="ref" href="nonlin_005fresidmin.html">Frontend nonlin_residmin for non-linear residual minimization</a>),
+<code class="code">curvefit_stat</code> can be used instead of <code class="code">residmin_stat</code>
+(
+see
+<a class="ref" href="residmin_005fstat.html">Statistics for residual minimization</a>) for statistics on the results of curve fitting.
+</p>
+<a class="anchor" id="XREFcurvefit_005fstat"></a><dl class="first-deftypefn">
+<dt class="deftypefn" id="index-curvefit_005fstat"><span class="category-def">Function File: </span><span><code class="def-type"><var class="var">info</var> =</code> <strong class="def-name">curvefit_stat</strong> <code class="def-code-arguments">(<var class="var">f</var>, <var class="var">p</var>, <var class="var">x</var>, <var class="var">y</var>, <var class="var">settings</var>)</code><a class="copiable-link" href="#index-curvefit_005fstat"> &para;</a></span></dt>
+<dd>
+<p>Frontend for computation of statistics for fitting of values,
+computed by a model function, to observed values.
+</p>
+<p>Please refer to the description of <code class="code">residmin_stat</code>. The only
+differences to <code class="code">residmin_stat</code> are the additional arguments
+<var class="var">x</var> (independent values) and <var class="var">y</var> (observations), that the
+model function <var class="var">f</var>, if provided, has a second obligatory argument
+which will be set to <var class="var">x</var> and is supposed to return guesses for
+the observations (with the same dimensions), and that the possibly
+user-supplied function for the jacobian of the model function has
+also a second obligatory argument which will be set to <var class="var">x</var>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="residmin_005fstat.html#XREFresidmin_005fstat">residmin_stat</a>.
+</p></dd></dl>
+
+
+
+</div>
+
+
+
+</body>
+</html>

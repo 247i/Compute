@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Root Properties (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Root Properties (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Root Properties (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Graphics-Object-Properties.html" rel="up" title="Graphics Object Properties">
+<link href="Figure-Properties.html" rel="next" title="Figure Properties">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsubsection-level-extent" id="Root-Properties">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Figure-Properties.html" accesskey="n" rel="next">Figure Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Graphics-Object-Properties.html" accesskey="u" rel="up">Graphics Object Properties</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsubsection" id="Root-Properties-1"><span>15.3.3.1 Root Properties<a class="copiable-link" href="#Root-Properties-1"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-Root-Properties"></a>
+
+
+
+<p>Properties of the root graphics object:
+</p>
+<h4 class="subsubheading" id="Categories_003a"><span>Categories:<a class="copiable-link" href="#Categories_003a"> &para;</a></span></h4>
+
+<p><a class="ref" href="#XREFrootcategoryCallbackExecution">Callback&nbsp;Execution<!-- /@w --></a> | <a class="ref" href="#XREFrootcategoryCommandWindowDisplay">Command&nbsp;Window&nbsp;Display<!-- /@w --></a> | <a class="ref" href="#XREFrootcategoryMouseInteraction">Mouse&nbsp;Interaction<!-- /@w --></a> | <a class="ref" href="#XREFrootcategoryObjectIdentification">Object&nbsp;Identification<!-- /@w --></a> | <a class="ref" href="#XREFrootcategoryParent_002fChildren">Parent/Children<!-- /@w --></a> | <a class="ref" href="#XREFrootcategoryPointerInformation">Pointer&nbsp;Information<!-- /@w --></a> | <a class="ref" href="#XREFrootcategoryScreenInformation">Screen&nbsp;Information<!-- /@w --></a> | <a class="ref" href="#XREFrootcategoryUnused">Unused<!-- /@w --></a> 
+</p>
+<a class="anchor" id="XREFrootcategoryCallbackExecution"></a><h4 class="subsubheading" id="Callback-Execution"><span>Callback Execution<a class="copiable-link" href="#Callback-Execution"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFrootcallbackobject"></a></dd>
+<dt><a id="index-root-callbackobject"></a><span><code class="code">callbackobject</code> (read-only): graphics handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-root-callbackobject"> &para;</a></span></dt>
+<dd><p>Graphics handle of the current object whose callback is executing.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFrootcategoryCommandWindowDisplay"></a><h4 class="subsubheading" id="Command-Window-Display"><span>Command Window Display<a class="copiable-link" href="#Command-Window-Display"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFrootcommandwindowsize"></a></dd>
+<dt><a id="index-root-commandwindowsize"></a><span><code class="code">commandwindowsize</code> (read-only): two-element vector, def. <code class="code">[0   0]</code><a class="copiable-link" href="#index-root-commandwindowsize"> &para;</a></span></dt>
+<dd><p>The number of columns and rows displayed in a newly created command window.
+</p>
+
+<a class="anchor" id="XREFrootfixedwidthfontname"></a></dd>
+<dt><a id="index-root-fixedwidthfontname"></a><span><code class="code">fixedwidthfontname</code>: string, def. <code class="code">&quot;Courier&quot;</code><a class="copiable-link" href="#index-root-fixedwidthfontname"> &para;</a></span></dt>
+<dd><p>Name of the fixed-width font that will be used for graphics objects when the <code class="code">&quot;fontname&quot;</code> property is set to <code class="code">&quot;FixedWidth&quot;</code>.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFrootcategoryMouseInteraction"></a><h4 class="subsubheading" id="Mouse-Interaction"><span>Mouse Interaction<a class="copiable-link" href="#Mouse-Interaction"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFrootcontextmenu"></a></dd>
+<dt><a id="index-root-contextmenu"></a><span><code class="code">contextmenu</code>: graphics handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-root-contextmenu"> &para;</a></span></dt>
+<dd><p>Graphics handle of the uicontextmenu object that is currently associated to this root object.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFrootcategoryObjectIdentification"></a><h4 class="subsubheading" id="Object-Identification"><span>Object Identification<a class="copiable-link" href="#Object-Identification"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFrootcurrentfigure"></a></dd>
+<dt><a id="index-root-currentfigure"></a><span><code class="code">currentfigure</code>: graphics handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-root-currentfigure"> &para;</a></span></dt>
+<dd><p>Graphics handle of the current figure.
+</p>
+
+<a class="anchor" id="XREFroottag"></a></dd>
+<dt><a id="index-root-tag"></a><span><code class="code">tag</code>: string, def. <code class="code">&quot;&quot;</code><a class="copiable-link" href="#index-root-tag"> &para;</a></span></dt>
+<dd><p>A user-defined string to label the graphics object.
+</p>
+
+<a class="anchor" id="XREFroottype"></a></dd>
+<dt><a id="index-root-type"></a><span><code class="code">type</code> (read-only): string<a class="copiable-link" href="#index-root-type"> &para;</a></span></dt>
+<dd><p>Class name of the graphics object.  <code class="code">type</code> is always <code class="code">&quot;root&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFrootuserdata"></a></dd>
+<dt><a id="index-root-userdata"></a><span><code class="code">userdata</code>: Any Octave data, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-root-userdata"> &para;</a></span></dt>
+<dd><p>User-defined data to associate with the graphics object.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFrootcategoryParent_002fChildren"></a><h4 class="subsubheading" id="Parent_002fChildren"><span>Parent/Children<a class="copiable-link" href="#Parent_002fChildren"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFrootchildren"></a></dd>
+<dt><a id="index-root-children"></a><span><code class="code">children</code> (read-only): vector of graphics handles, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-root-children"> &para;</a></span></dt>
+<dd><p>Graphics handles of the root&rsquo;s children.
+</p>
+
+<a class="anchor" id="XREFroothandlevisibility"></a></dd>
+<dt><a id="index-root-handlevisibility"></a><span><code class="code">handlevisibility</code>: <code class="code">&quot;callback&quot;</code> | <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-root-handlevisibility"> &para;</a></span></dt>
+<dd><p>The root object handle is always visible.  Changing this setting to <code class="code">&quot;callback&quot;</code> or <code class="code">&quot;off&quot;</code> has no effect.
+</p>
+
+<a class="anchor" id="XREFrootparent"></a></dd>
+<dt><a id="index-root-parent"></a><span><code class="code">parent</code>: graphics handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-root-parent"> &para;</a></span></dt>
+<dd><p>Root object has no parent graphics object.  <code class="code">parent</code> is always empty.
+</p>
+
+<a class="anchor" id="XREFrootshowhiddenhandles"></a></dd>
+<dt><a id="index-root-showhiddenhandles"></a><span><code class="code">showhiddenhandles</code>: {<code class="code">&quot;off&quot;</code>} | <code class="code">&quot;on&quot;</code><a class="copiable-link" href="#index-root-showhiddenhandles"> &para;</a></span></dt>
+<dd><p>If <code class="code">showhiddenhandles</code> is <code class="code">&quot;on&quot;</code>, all graphics objects handles are visible in their parents&rsquo; children list, regardless of the value of their <code class="code">handlevisibility</code> property.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFrootcategoryPointerInformation"></a><h4 class="subsubheading" id="Pointer-Information"><span>Pointer Information<a class="copiable-link" href="#Pointer-Information"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFrootpointerlocation"></a></dd>
+<dt><a id="index-root-pointerlocation"></a><span><code class="code">pointerlocation</code>: two-element vector, def. <code class="code">[0   0]</code><a class="copiable-link" href="#index-root-pointerlocation"> &para;</a></span></dt>
+<dd><p>Global pointer location         tracking is not yet implemented for root objects.  <code class="code">pointerlocation</code> is unused.  <code class="code">pointerlocation</code> for root objects will always be         [0 0].
+</p>
+
+<a class="anchor" id="XREFrootpointerwindow"></a></dd>
+<dt><a id="index-root-pointerwindow"></a><span><code class="code">pointerwindow</code> (read-only): graphics handle, def. <code class="code">0</code><a class="copiable-link" href="#index-root-pointerwindow"> &para;</a></span></dt>
+<dd><p>Pointer window tracking is not yet implemented for root objects.  <code class="code">pointerwindow</code> is unused.  <code class="code">pointerwindow</code> value for root objects will always be 0.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFrootcategoryScreenInformation"></a><h4 class="subsubheading" id="Screen-Information"><span>Screen Information<a class="copiable-link" href="#Screen-Information"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFrootmonitorpositions"></a></dd>
+<dt><a id="index-root-monitorpositions"></a><span><code class="code">monitorpositions</code> (read-only): four-element vector<a class="copiable-link" href="#index-root-monitorpositions"> &para;</a></span></dt>
+<dd><p>Reports the width and height of connected monitors.  Note: Octave only partially implements <code class="code">monitorpositions</code>.  Only information about the primary monitor is stored in <code class="code">monitorpositions</code> which is the same information stored in the <a class="ref" href="#XREFrootscreensize"><code class="code">&quot;screensize&quot;</code>&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFrootscreendepth"></a></dd>
+<dt><a id="index-root-screendepth"></a><span><code class="code">screendepth</code> (read-only): double<a class="copiable-link" href="#index-root-screendepth"> &para;</a></span></dt>
+<dd><p>Color depth in bits per pixel of the display.
+</p>
+
+<a class="anchor" id="XREFrootscreenpixelsperinch"></a></dd>
+<dt><a id="index-root-screenpixelsperinch"></a><span><code class="code">screenpixelsperinch</code> (read-only): double<a class="copiable-link" href="#index-root-screenpixelsperinch"> &para;</a></span></dt>
+<dd><p>The screen resolution of the primary display in units of pixels per inch.
+</p>
+
+<a class="anchor" id="XREFrootscreensize"></a></dd>
+<dt><a id="index-root-screensize"></a><span><code class="code">screensize</code> (read-only): four-element vector<a class="copiable-link" href="#index-root-screensize"> &para;</a></span></dt>
+<dd><p>Size of the primary display represented as the four-element vector [left, bottom, width, height].
+</p>
+
+<a class="anchor" id="XREFrootunits"></a></dd>
+<dt><a id="index-root-units"></a><span><code class="code">units</code>: <code class="code">&quot;centimeters&quot;</code> | <code class="code">&quot;characters&quot;</code> | <code class="code">&quot;inches&quot;</code> | <code class="code">&quot;normalized&quot;</code> | {<code class="code">&quot;pixels&quot;</code>} | <code class="code">&quot;points&quot;</code><a class="copiable-link" href="#index-root-units"> &para;</a></span></dt>
+<dd><p>The unit type used for the <a class="ref" href="#XREFrootmonitorpositions"><code class="code">&quot;monitorpositions&quot;</code></a>, <a class="ref" href="#XREFrootpointerlocation"><code class="code">&quot;pointerlocation&quot;</code></a>, and <a class="ref" href="#XREFrootscreensize"><code class="code">&quot;screensize&quot;</code></a> properties.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFrootcategoryUnused"></a><h4 class="subsubheading" id="Unused"><span>Unused<a class="copiable-link" href="#Unused"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFrootbeingdeleted"></a></dd>
+<dt><a id="index-root-beingdeleted"></a><span><code class="code">beingdeleted</code>: {<code class="code">&quot;off&quot;</code>} | <code class="code">&quot;on&quot;</code><a class="copiable-link" href="#index-root-beingdeleted"> &para;</a></span></dt>
+<dd><p><code class="code">beingdeleted</code> is unused.
+</p>
+
+<a class="anchor" id="XREFrootbusyaction"></a></dd>
+<dt><a id="index-root-busyaction"></a><span><code class="code">busyaction</code>: <code class="code">&quot;cancel&quot;</code> | {<code class="code">&quot;queue&quot;</code>}<a class="copiable-link" href="#index-root-busyaction"> &para;</a></span></dt>
+<dd><p><code class="code">busyaction</code> is unused.
+</p>
+
+<a class="anchor" id="XREFrootbuttondownfcn"></a></dd>
+<dt><a id="index-root-buttondownfcn"></a><span><code class="code">buttondownfcn</code>: string | function handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-root-buttondownfcn"> &para;</a></span></dt>
+<dd><p><code class="code">buttondownfcn</code> is unused.
+</p>
+
+<a class="anchor" id="XREFrootclipping"></a></dd>
+<dt><a id="index-root-clipping"></a><span><code class="code">clipping</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-root-clipping"> &para;</a></span></dt>
+<dd><p><code class="code">clipping</code> is unused.
+</p>
+
+<a class="anchor" id="XREFrootcreatefcn"></a></dd>
+<dt><a id="index-root-createfcn"></a><span><code class="code">createfcn</code>: string | function handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-root-createfcn"> &para;</a></span></dt>
+<dd><p><code class="code">createfcn</code> is unused.
+</p>
+
+<a class="anchor" id="XREFrootdeletefcn"></a></dd>
+<dt><a id="index-root-deletefcn"></a><span><code class="code">deletefcn</code>: string | function handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-root-deletefcn"> &para;</a></span></dt>
+<dd><p><code class="code">deletefcn</code> is unused.
+</p>
+
+<a class="anchor" id="XREFroothittest"></a></dd>
+<dt><a id="index-root-hittest"></a><span><code class="code">hittest</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-root-hittest"> &para;</a></span></dt>
+<dd><p><code class="code">hittest</code> is unused.
+</p>
+
+<a class="anchor" id="XREFrootinterruptible"></a></dd>
+<dt><a id="index-root-interruptible"></a><span><code class="code">interruptible</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-root-interruptible"> &para;</a></span></dt>
+<dd><p><code class="code">interruptible</code> is unused.
+</p>
+
+<a class="anchor" id="XREFrootpickableparts"></a></dd>
+<dt><a id="index-root-pickableparts"></a><span><code class="code">pickableparts</code>: <code class="code">&quot;all&quot;</code> | <code class="code">&quot;none&quot;</code> | {<code class="code">&quot;visible&quot;</code>}<a class="copiable-link" href="#index-root-pickableparts"> &para;</a></span></dt>
+<dd><p><code class="code">pickableparts</code> is unused.
+</p>
+
+<a class="anchor" id="XREFrootselected"></a></dd>
+<dt><a id="index-root-selected"></a><span><code class="code">selected</code>: {<code class="code">&quot;off&quot;</code>} | <code class="code">&quot;on&quot;</code><a class="copiable-link" href="#index-root-selected"> &para;</a></span></dt>
+<dd><p><code class="code">selected</code> is unused.
+</p>
+
+<a class="anchor" id="XREFrootselectionhighlight"></a></dd>
+<dt><a id="index-root-selectionhighlight"></a><span><code class="code">selectionhighlight</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-root-selectionhighlight"> &para;</a></span></dt>
+<dd><p><code class="code">selectionhighlight</code> is unused.
+</p>
+
+<a class="anchor" id="XREFrootvisible"></a></dd>
+<dt><a id="index-root-visible"></a><span><code class="code">visible</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-root-visible"> &para;</a></span></dt>
+<dd><p><code class="code">visible</code> is unused.
+</p>
+</dd>
+</dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Figure-Properties.html">Figure Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Graphics-Object-Properties.html">Graphics Object Properties</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

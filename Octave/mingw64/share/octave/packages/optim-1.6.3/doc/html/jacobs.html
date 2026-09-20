@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- Additional documentation for the optim package for Octave.
+
+Copyright © Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<title>jacobs (optim_doc)</title>
+
+<meta name="description" content="jacobs (optim_doc)">
+<meta name="keywords" content="jacobs (optim_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Gradient-functions.html" rel="up" title="Gradient functions">
+<link href="cdiff.html" rel="prev" title="cdiff">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+ul.mark-bullet {list-style-type: disc}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section-level-extent" id="jacobs">
+<div class="nav-panel">
+<p>
+Previous: <a href="cdiff.html" accesskey="p" rel="prev">A string, yielding the numerical gradient if evaluated</a>, Up: <a href="Gradient-functions.html" accesskey="u" rel="up">Functions for numerical approximation of gradients and Hessians</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h3 class="section" id="Complex-step-derivatives"><span>4.6 Complex step derivatives<a class="copiable-link" href="#Complex-step-derivatives"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-jacobs-2"></a>
+
+<a class="anchor" id="XREFjacobs"></a><dl class="first-deftypefn">
+<dt class="deftypefn" id="index-jacobs"><span class="category-def">Function File: </span><span><code class="def-type">Df =</code> <strong class="def-name">jacobs</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">f</var>)</code><a class="copiable-link" href="#index-jacobs"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn" id="index-jacobs-1"><span class="category-def">Function File: </span><span><code class="def-type">Df =</code> <strong class="def-name">jacobs</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">f</var>, <var class="var">hook</var>)</code><a class="copiable-link" href="#index-jacobs-1"> &para;</a></span></dt>
+<dd><p>Calculate the jacobian of a function using the complex step method.
+</p>
+<p>Let <var class="var">f</var> be a user-supplied function. Given a point <var class="var">x</var> at
+which we seek for the Jacobian, the function <code class="command">jacobs</code> returns
+the Jacobian matrix <code class="code">d(f(1), &hellip;, df(end))/d(x(1), &hellip;,
+x(n))</code>. The function uses the complex step method and thus can be
+applied to real analytic functions.
+</p>
+<p>The optional argument <var class="var">hook</var> is a structure with additional options. <var class="var">hook</var>
+can have the following fields:
+</p><ul class="itemize mark-bullet">
+<li><code class="code">h</code> - can be used to define the magnitude of the complex step and defaults
+to 1e-20; steps larger than 1e-3 are not allowed.
+</li><li><code class="code">fixed</code> - is a logical vector internally usable by some optimization
+functions; it indicates for which elements of <var class="var">x</var> no gradient should be
+computed, but zero should be returned.
+</li></ul>
+
+<p>For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">f = @(x) [x(1)^2 + x(2); x(2)*exp(x(1))];
+Df = jacobs ([1, 2], f)
+</pre></div></div>
+</dd></dl>
+
+
+
+</div>
+
+
+
+</body>
+</html>

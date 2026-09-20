@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Differential Algebraic Equations (Octave C++ Classes)</title>
+
+<meta name="description" content="Differential Algebraic Equations (Octave C++ Classes)">
+<meta name="keywords" content="Differential Algebraic Equations (Octave C++ Classes)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-Index.html" rel="index" title="Function Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html" rel="up" title="Top">
+<link href="Error-Handling.html" rel="next" title="Error Handling">
+<link href="Ordinary-Differential-Equations.html" rel="prev" title="Ordinary Differential Equations">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+
+
+</head>
+
+<body>
+<div class="chapter-level-extent" id="Differential-Algebraic-Equations">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Error-Handling.html" accesskey="n" rel="next">Error Handling</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Ordinary-Differential-Equations.html" accesskey="p" rel="prev">Ordinary Differential Equations</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Function-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h2 class="chapter" id="Differential-Algebraic-Equations-1"><span>12 Differential Algebraic Equations<a class="copiable-link" href="#Differential-Algebraic-Equations-1"> &para;</a></span></h2>
+<a class="index-entry-id" id="index-DAE"></a>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-DAE-1"><span class="category-def">: </span><span><strong class="def-name">DAE</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-DAE-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-DAE-2"><span class="category-def">: </span><span><strong class="def-name">DAE</strong> <code class="def-code-arguments">(int <var class="var">n</var>)</code><a class="copiable-link" href="#index-DAE-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-DAE-3"><span class="category-def">: </span><span><strong class="def-name">DAE</strong> <code class="def-code-arguments">(const ColumnVector &amp;<var class="var">x</var>, double <var class="var">time</var>, DAEFunc &amp;<var class="var">f</var>)</code><a class="copiable-link" href="#index-DAE-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-DAE-4"><span class="category-def">: </span><span><strong class="def-name">DAE</strong> <code class="def-code-arguments">(const ColumnVector &amp;<var class="var">x</var>, ColumnVector &amp;<var class="var">xdot</var>, double <var class="var">time</var>, DAEFunc &amp;<var class="var">f</var>)</code><a class="copiable-link" href="#index-DAE-4"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-deriv"><span class="category-def">: </span><span><code class="def-type">ColumnVector</code> <strong class="def-name">deriv</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-deriv"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-initialize-1"><span class="category-def">: </span><span><code class="def-type">virtual void</code> <strong class="def-name">initialize</strong> <code class="def-code-arguments">(const ColumnVector &amp;<var class="var">x</var>, double <var class="var">t</var>)</code><a class="copiable-link" href="#index-initialize-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-initialize-2"><span class="category-def">: </span><span><code class="def-type">virtual void</code> <strong class="def-name">initialize</strong> <code class="def-code-arguments">(const ColumnVector &amp;<var class="var">x</var>, ColumnVector &amp;<var class="var">xdot</var>, double <var class="var">t</var>)</code><a class="copiable-link" href="#index-initialize-2"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-integrate-8"><span class="category-def">: </span><span><code class="def-type">ColumnVector</code> <strong class="def-name">integrate</strong> <code class="def-code-arguments">(double <var class="var">t</var>)</code><a class="copiable-link" href="#index-integrate-8"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-integrate-9"><span class="category-def">: </span><span><code class="def-type">Matrix</code> <strong class="def-name">integrate</strong> <code class="def-code-arguments">(const ColumnVector &amp;<var class="var">tout</var>, Matrix &amp;<var class="var">xdot_out</var>)</code><a class="copiable-link" href="#index-integrate-9"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-integrate-10"><span class="category-def">: </span><span><code class="def-type">Matrix</code> <strong class="def-name">integrate</strong> <code class="def-code-arguments">(const ColumnVector &amp;<var class="var">tout</var>, Matrix &amp;<var class="var">xdot_out</var>, const ColumnVector &amp;<var class="var">tcrit</var>)</code><a class="copiable-link" href="#index-integrate-10"> &para;</a></span></dt>
+</dl>
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Error-Handling.html">Error Handling</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Ordinary-Differential-Equations.html">Ordinary Differential Equations</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Function-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

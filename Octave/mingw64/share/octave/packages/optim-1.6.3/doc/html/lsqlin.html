@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- Additional documentation for the optim package for Octave.
+
+Copyright © Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<title>lsqlin (optim_doc)</title>
+
+<meta name="description" content="lsqlin (optim_doc)">
+<meta name="keywords" content="lsqlin (optim_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Residual-optimization.html" rel="up" title="Residual optimization">
+<link href="leasqr.html" rel="next" title="leasqr">
+<link href="wls.html" rel="prev" title="wls">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section-level-extent" id="lsqlin">
+<div class="nav-panel">
+<p>
+Next: <a href="leasqr.html" accesskey="n" rel="next">An older function for curve fitting</a>, Previous: <a href="wls.html" accesskey="p" rel="prev">Statistics for weighted least squares</a>, Up: <a href="Residual-optimization.html" accesskey="u" rel="up">Functions for optimization of a model function returning an array</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h3 class="section" id="Linear-least-squares-with-linear-constraints_002e"><span>2.7 Linear least squares with linear constraints.<a class="copiable-link" href="#Linear-least-squares-with-linear-constraints_002e"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-lsqlin-5"></a>
+
+<p>(This function does not fit well into this chapter because it is
+actually a special case of quadratic programming).
+</p>
+<a class="anchor" id="XREFlsqlin"></a><dl class="first-deftypefn">
+<dt class="deftypefn" id="index-lsqlin"><span class="category-def">Function File: </span><span><strong class="def-name">lsqlin</strong> <code class="def-code-arguments">(<var class="var">C</var>, <var class="var">d</var>, <var class="var">A</var>, <var class="var">b</var>)</code><a class="copiable-link" href="#index-lsqlin"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn" id="index-lsqlin-1"><span class="category-def">Function File: </span><span><strong class="def-name">lsqlin</strong> <code class="def-code-arguments">(<var class="var">C</var>, <var class="var">d</var>, <var class="var">A</var>, <var class="var">b</var>, <var class="var">Aeq</var>, <var class="var">beq</var>, <var class="var">lb</var>, <var class="var">ub</var>)</code><a class="copiable-link" href="#index-lsqlin-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn" id="index-lsqlin-2"><span class="category-def">Function File: </span><span><strong class="def-name">lsqlin</strong> <code class="def-code-arguments">(<var class="var">C</var>, <var class="var">d</var>, <var class="var">A</var>, <var class="var">b</var>, <var class="var">Aeq</var>, <var class="var">beq</var>, <var class="var">lb</var>, <var class="var">ub</var>, <var class="var">x0</var>)</code><a class="copiable-link" href="#index-lsqlin-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn" id="index-lsqlin-3"><span class="category-def">Function File: </span><span><strong class="def-name">lsqlin</strong> <code class="def-code-arguments">(<var class="var">C</var>, <var class="var">d</var>, <var class="var">A</var>, <var class="var">b</var>, <var class="var">Aeq</var>, <var class="var">beq</var>, <var class="var">lb</var>, <var class="var">ub</var>, <var class="var">x0</var>, <var class="var">options</var>)</code><a class="copiable-link" href="#index-lsqlin-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn" id="index-lsqlin-4"><span class="category-def">Function File: </span><span><code class="def-type">[<var class="var">x</var>, <var class="var">resnorm</var>, <var class="var">residual</var>, <var class="var">exitflag</var>, <var class="var">output</var>, <var class="var">lambda</var>] =</code> <strong class="def-name">lsqlin</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-lsqlin-4"> &para;</a></span></dt>
+<dd><p>Solve the linear least squares program
+</p><div class="example">
+<div class="group"><pre class="example-preformatted">min 0.5 sumsq(C*x - d)
+x
+</pre></div></div>
+<p>subject to
+</p><div class="example">
+<div class="group"><pre class="example-preformatted"><var class="var">A</var>*<var class="var">x</var> &lt;= <var class="var">b</var>,
+<var class="var">Aeq</var>*<var class="var">x</var> = <var class="var">beq</var>,
+<var class="var">lb</var> &lt;= <var class="var">x</var> &lt;= <var class="var">ub</var>.
+</pre></div></div>
+
+<p>The initial guess <var class="var">x0</var> and the constraint arguments (<var class="var">A</var> and
+<var class="var">b</var>, <var class="var">Aeq</var> and <var class="var">beq</var>, <var class="var">lb</var> and <var class="var">ub</var>) can be set to
+the empty matrix (<code class="code">[]</code>) if not given. If the initial guess
+<var class="var">x0</var> is feasible the algorithm is faster.
+</p>
+<p><var class="var">options</var> can be set with <code class="code">optimset</code>, currently the only
+option is <code class="code">MaxIter</code>, the maximum number of iterations (default:
+200).
+</p>
+<p>Returned values:
+</p>
+<dl class="table">
+<dt><var class="var">x</var></dt>
+<dd><p>Position of minimum.
+</p>
+</dd>
+<dt><var class="var">resnorm</var></dt>
+<dd><p>Scalar value of objective as sumsq(C*x - d).
+</p>
+</dd>
+<dt><var class="var">residual</var></dt>
+<dd><p>Vector of solution residuals C*x - d.
+</p>
+</dd>
+<dt><var class="var">exitflag</var></dt>
+<dd><p>Status of solution:
+</p>
+<dl class="table">
+<dt><code class="code">0</code></dt>
+<dd><p>Maximum number of iterations reached.
+</p>
+</dd>
+<dt><code class="code">-2</code></dt>
+<dd><p>The problem is infeasible.
+</p>
+</dd>
+<dt><code class="code">-3</code></dt>
+<dd><p>The problem is not convex and unbounded.
+</p>
+</dd>
+<dt><code class="code">1</code></dt>
+<dd><p>Global solution found.
+</p>
+</dd>
+</dl>
+
+</dd>
+<dt><var class="var">output</var></dt>
+<dd><p>Structure with additional information, currently the only field is
+<code class="code">iterations</code>, the number of used iterations.
+</p>
+</dd>
+<dt><var class="var">lambda</var></dt>
+<dd><p>Structure containing Lagrange multipliers corresponding to the
+constraints.
+</p>
+</dd>
+</dl>
+
+<p>This function calls the more general function <code class="code">quadprog</code>
+internally.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="quadprog.html#XREFquadprog">quadprog</a>.
+</p></dd></dl>
+
+
+
+</div>
+<hr>
+<div class="nav-panel">
+<p>
+Next: <a href="leasqr.html">An older function for curve fitting</a>, Previous: <a href="wls.html">Statistics for weighted least squares</a>, Up: <a href="Residual-optimization.html">Functions for optimization of a model function returning an array</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

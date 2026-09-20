@@ -1,0 +1,213 @@
+////////////////////////////////////////////////////////////////////////
+//
+// Copyright (C) 1996-2026 The Octave Project Developers
+//
+// See the file COPYRIGHT.md in the top-level directory of this
+// distribution or <https://octave.org/copyright/>.
+//
+// This file is part of Octave.
+//
+// Octave is free software: you can redistribute it and/or modify it
+// under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Octave is distributed in the hope that it will be useful, but
+// WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Octave; see the file COPYING.  If not, see
+// <https://www.gnu.org/licenses/>.
+//
+////////////////////////////////////////////////////////////////////////
+
+#if ! defined (octave_pt_binop_h)
+#define octave_pt_binop_h 1
+
+#include "octave-config.h"
+
+#include <string>
+
+class octave_value;
+class octave_value_list;
+
+#include "ov.h"
+#include "pt-exp.h"
+#include "pt-walk.h"
+
+OCTAVE_BEGIN_NAMESPACE(octave)
+
+class symbol_scope;
+
+// Binary expressions.
+
+class OCTINTERP_API tree_binary_expression : public tree_expression
+{
+public:
+
+  tree_binary_expression (octave_value::binary_op t = octave_value::unknown_binary_op)
+    : m_lhs (nullptr), m_rhs (nullptr), m_etype (t), m_preserve_operands (false)
+  { }
+
+  tree_binary_expression (tree_expression *a, const token& op_tok, tree_expression *b, octave_value::binary_op t = octave_value::unknown_binary_op)
+    : m_lhs (a), m_op_tok (op_tok), m_rhs (b), m_etype (t), m_preserve_operands (false)
+  { }
+
+  OCTAVE_DISABLE_COPY_MOVE (tree_binary_expression)
+
+  ~tree_binary_expression ()
+  {
+    if (! m_preserve_operands)
+      {
+        delete m_lhs;
+        delete m_rhs;
+      }
+  }
+
+  void preserve_operands () { m_preserve_operands = true; }
+
+  bool is_binary_expression () const { return true; }
+
+  filepos beg_pos () const { return m_lhs->beg_pos (); }
+  filepos end_pos () const { return m_rhs->end_pos (); }
+
+  comment_list leading_comments () const { return m_lhs->leading_comments (); }
+  comment_list trailing_comments () const { return m_rhs->trailing_comments (); }
+
+  bool rvalue_ok () const { return true; }
+
+  OCTAVE_DEPRECATED (11, "use tree_binary_expression::op_str instead")
+  std::string oper () const { return op_str (); }
+
+  std::string op_str () const;
+
+  octave_value::binary_op op_type () const { return m_etype; }
+
+  tree_expression * lhs () { return m_lhs; }
+
+  token op_token () const { return m_op_tok; }
+
+  tree_expression * rhs () { return m_rhs; }
+
+  void lhs (tree_expression *expr) { m_lhs = expr; }
+  void rhs (tree_expression *expr) { m_rhs = expr; }
+
+  tree_expression * dup (symbol_scope& scope) const;
+
+  octave_value evaluate (tree_evaluator&, int nargout = 1);
+
+  octave_value_list evaluate_n (tree_evaluator& tw, int nargout = 1)
+  {
+    return ovl (evaluate (tw, nargout));
+  }
+
+  void accept (tree_walker& tw)
+  {
+    tw.visit_binary_expression (*this);
+  }
+
+  std::string profiler_name () const { return "binary " + op_str (); }
+
+  void matlab_style_short_circuit_warning (const char *op);
+
+  virtual bool is_braindead () const { return false; }
+
+protected:
+
+  // The operands and operator for the expression.
+  tree_expression *m_lhs;
+
+  token m_op_tok;
+
+  tree_expression *m_rhs;
+
+private:
+
+  // The type of the expression.
+  octave_value::binary_op m_etype;
+
+  // If TRUE, don't delete m_lhs and m_rhs in destructor;
+  bool m_preserve_operands;
+};
+
+class OCTINTERP_API tree_braindead_shortcircuit_binary_expression
+  : public tree_binary_expression
+{
+public:
+
+  tree_braindead_shortcircuit_binary_expression (tree_expression *a, const token& op_tok, tree_expression *b, octave_value::binary_op t)
+    : tree_binary_expression (a, op_tok, b, t)
+  { }
+
+  OCTAVE_DISABLE_CONSTRUCT_COPY_MOVE (tree_braindead_shortcircuit_binary_expression)
+
+  ~tree_braindead_shortcircuit_binary_expression () = default;
+
+  tree_expression * dup (symbol_scope& scope) const;
+
+  octave_value evaluate (tree_evaluator&, int nargout = 1);
+
+  using tree_binary_expression::evaluate_n;
+
+  bool is_braindead () const { return true; }
+};
+
+// Boolean expressions.
+
+class OCTINTERP_API tree_boolean_expression : public tree_binary_expression
+{
+public:
+
+  enum type
+  {
+    unknown,
+    bool_and,
+    bool_or
+  };
+
+  tree_boolean_expression (type t = unknown) : m_etype (t) { }
+
+  tree_boolean_expression (tree_expression *a, const token& op_tok, tree_expression *b, type t = unknown)
+    : tree_binary_expression (a, op_tok, b), m_etype (t)
+  { }
+
+  OCTAVE_DISABLE_COPY_MOVE (tree_boolean_expression)
+
+  ~tree_boolean_expression () = default;
+
+  bool is_boolean_expression () const { return true; }
+
+  bool rvalue_ok () const { return true; }
+
+  OCTAVE_DEPRECATED (11, "use tree_binary_expression::op_str instead")
+  std::string oper () const { return op_str (); }
+
+  std::string op_str () const;
+
+  type op_type () const { return m_etype; }
+
+  tree_expression * dup (symbol_scope& scope) const;
+
+  octave_value evaluate (tree_evaluator&, int nargout = 1);
+
+  octave_value_list evaluate_n (tree_evaluator& tw, int nargout = 1)
+  {
+    return ovl (evaluate (tw, nargout));
+  }
+
+  void accept (tree_walker& tw)
+  {
+    tw.visit_boolean_expression (*this);
+  }
+
+private:
+
+  // The type of the expression.
+  type m_etype;
+};
+
+OCTAVE_END_NAMESPACE(octave)
+
+#endif

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Aspect Ratio (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Aspect Ratio (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Aspect Ratio (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Three_002dDimensional-Plots.html" rel="up" title="Three-Dimensional Plots">
+<link href="Three_002ddimensional-Function-Plotting.html" rel="next" title="Three-dimensional Function Plotting">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsubsection-level-extent" id="Aspect-Ratio">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Three_002ddimensional-Function-Plotting.html" accesskey="n" rel="next">Three-dimensional Function Plotting</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Three_002dDimensional-Plots.html" accesskey="u" rel="up">Three-Dimensional Plots</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsubsection" id="Aspect-Ratio-1"><span>15.2.2.1 Aspect Ratio<a class="copiable-link" href="#Aspect-Ratio-1"> &para;</a></span></h4>
+
+<p>For three-dimensional plots the aspect ratio can be set for data with
+<code class="code">daspect</code> and for the plot box with <code class="code">pbaspect</code>.
+See <a class="xref" href="Axis-Configuration.html">Axis Configuration</a>, for controlling the x-, y-, and z-limits for
+plotting.
+</p>
+<a class="anchor" id="XREFdaspect"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-daspect"><span><code class="def-type"><var class="var">data_aspect_ratio</var> =</code> <strong class="def-name">daspect</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-daspect"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-daspect-1"><span><strong class="def-name">daspect</strong> <code class="def-code-arguments">(<var class="var">data_aspect_ratio</var>)</code><a class="copiable-link" href="#index-daspect-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-daspect-2"><span><strong class="def-name">daspect</strong> <code class="def-code-arguments">(<var class="var">mode</var>)</code><a class="copiable-link" href="#index-daspect-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-daspect-3"><span><code class="def-type"><var class="var">data_aspect_ratio_mode</var> =</code> <strong class="def-name">daspect</strong> <code class="def-code-arguments">(&quot;mode&quot;)</code><a class="copiable-link" href="#index-daspect-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-daspect-4"><span><strong class="def-name">daspect</strong> <code class="def-code-arguments">(<var class="var">hax</var>, &hellip;)</code><a class="copiable-link" href="#index-daspect-4"> &para;</a></span></dt>
+<dd><p>Query or set the data aspect ratio of the current axes.
+</p>
+<p>The aspect ratio is a normalized 3-element vector representing the span of
+the x, y, and z-axis limits.
+</p>
+<p><code class="code">daspect (<var class="var">mode</var>)</code>
+</p>
+<p>Set the data aspect ratio mode of the current axes.  <var class="var">mode</var> is
+either <code class="code">&quot;auto&quot;</code> or <code class="code">&quot;manual&quot;</code>.
+</p>
+<p><code class="code">daspect (<code class="code">&quot;mode&quot;</code>)</code>
+</p>
+<p>Return the data aspect ratio mode of the current axes.
+</p>
+<p><code class="code">daspect (<var class="var">hax</var>, &hellip;)</code>
+</p>
+<p>Operate on the axes in handle <var class="var">hax</var> instead of the current axes.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Axis-Configuration.html#XREFaxis">axis</a>, <a class="ref" href="#XREFpbaspect">pbaspect</a>, <a class="ref" href="Axis-Configuration.html#XREFxlim">xlim</a>, <a class="ref" href="Axis-Configuration.html#XREFylim">ylim</a>, <a class="ref" href="Axis-Configuration.html#XREFzlim">zlim</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFpbaspect"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-pbaspect"><span><code class="def-type"><var class="var">plot_box_aspect_ratio</var> =</code> <strong class="def-name">pbaspect</strong> <code class="def-code-arguments">( )</code><a class="copiable-link" href="#index-pbaspect"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-pbaspect-1"><span><strong class="def-name">pbaspect</strong> <code class="def-code-arguments">(<var class="var">plot_box_aspect_ratio</var>)</code><a class="copiable-link" href="#index-pbaspect-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-pbaspect-2"><span><strong class="def-name">pbaspect</strong> <code class="def-code-arguments">(<var class="var">mode</var>)</code><a class="copiable-link" href="#index-pbaspect-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-pbaspect-3"><span><code class="def-type"><var class="var">plot_box_aspect_ratio_mode</var> =</code> <strong class="def-name">pbaspect</strong> <code class="def-code-arguments">(&quot;mode&quot;)</code><a class="copiable-link" href="#index-pbaspect-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-pbaspect-4"><span><strong class="def-name">pbaspect</strong> <code class="def-code-arguments">(<var class="var">hax</var>, &hellip;)</code><a class="copiable-link" href="#index-pbaspect-4"> &para;</a></span></dt>
+<dd>
+<p>Query or set the plot box aspect ratio of the current axes.
+</p>
+<p>The aspect ratio is a normalized 3-element vector representing the rendered
+lengths of the x, y, and z axes.
+</p>
+<p><code class="code">pbaspect(<var class="var">mode</var>)</code>
+</p>
+<p>Set the plot box aspect ratio mode of the current axes.  <var class="var">mode</var> is
+either <code class="code">&quot;auto&quot;</code> or <code class="code">&quot;manual&quot;</code>.
+</p>
+<p><code class="code">pbaspect (&quot;mode&quot;)</code>
+</p>
+<p>Return the plot box aspect ratio mode of the current axes.
+</p>
+<p><code class="code">pbaspect (<var class="var">hax</var>, &hellip;)</code>
+</p>
+<p>Operate on the axes in handle <var class="var">hax</var> instead of the current axes.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Axis-Configuration.html#XREFaxis">axis</a>, <a class="ref" href="#XREFdaspect">daspect</a>, <a class="ref" href="Axis-Configuration.html#XREFxlim">xlim</a>, <a class="ref" href="Axis-Configuration.html#XREFylim">ylim</a>, <a class="ref" href="Axis-Configuration.html#XREFzlim">zlim</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Three_002ddimensional-Function-Plotting.html">Three-dimensional Function Plotting</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Three_002dDimensional-Plots.html">Three-Dimensional Plots</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

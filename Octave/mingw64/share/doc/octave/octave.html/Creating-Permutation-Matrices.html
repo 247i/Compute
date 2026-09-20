@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Creating Permutation Matrices (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Creating Permutation Matrices (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Creating Permutation Matrices (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Basic-Usage.html" rel="up" title="Basic Usage">
+<link href="Explicit-and-Implicit-Conversions.html" rel="next" title="Explicit and Implicit Conversions">
+<link href="Creating-Diagonal-Matrices.html" rel="prev" title="Creating Diagonal Matrices">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Creating-Permutation-Matrices">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Explicit-and-Implicit-Conversions.html" accesskey="n" rel="next">Explicit and Implicit Conversions</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Creating-Diagonal-Matrices.html" accesskey="p" rel="prev">Creating Diagonal Matrices</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Basic-Usage.html" accesskey="u" rel="up">Creating and Manipulating Diagonal/Permutation Matrices</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Creating-Permutation-Matrices-1"><span>21.1.2 Creating Permutation Matrices<a class="copiable-link" href="#Creating-Permutation-Matrices-1"> &para;</a></span></h4>
+
+<p>For creating permutation matrices, Octave does not introduce a new function,
+but rather overrides an existing syntax: permutation matrices can be
+conveniently created by indexing an identity matrix by permutation vectors.
+That is, if <var class="var">q</var> is a permutation vector of length <var class="var">n</var>, the expression
+</p>
+<div class="example">
+<pre class="example-preformatted">  P = eye (n) (:, q);
+</pre></div>
+
+<p>will create a permutation matrix - a special matrix object.
+</p>
+<div class="example">
+<pre class="example-preformatted">eye (n) (q, :)
+</pre></div>
+
+<p>will also work (and create a row permutation matrix), as well as
+</p>
+<div class="example">
+<pre class="example-preformatted">eye (n) (q1, q2).
+</pre></div>
+
+<p>For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">  eye (4) ([1,3,2,4],:)
+&rArr; 
+Permutation Matrix
+
+   1   0   0   0
+   0   0   1   0
+   0   1   0   0
+   0   0   0   1
+
+  eye (4) (:,[1,3,2,4])
+&rArr; 
+Permutation Matrix
+
+   1   0   0   0
+   0   0   1   0
+   0   1   0   0
+   0   0   0   1
+</pre></div></div>
+
+<p>Mathematically, an identity matrix is both diagonal and permutation matrix.
+In Octave, <code class="code">eye (n)</code> returns a diagonal matrix, because a matrix
+can only have one class.  You can convert this diagonal matrix to a permutation
+matrix by indexing it by an identity permutation, as shown below.
+This is a special property of the identity matrix; indexing other diagonal
+matrices generally produces a full matrix.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">  eye (3)
+&rArr; 
+Diagonal Matrix
+
+   1   0   0
+   0   1   0
+   0   0   1
+
+  eye(3)(1:3,:)
+&rArr; 
+Permutation Matrix
+
+   1   0   0
+   0   1   0
+   0   0   1
+</pre></div></div>
+
+<p>Some other built-in functions can also return permutation matrices.  Examples
+include
+<em class="dfn">inv</em> or <em class="dfn">lu</em>.
+</p>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Explicit-and-Implicit-Conversions.html">Explicit and Implicit Conversions</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Creating-Diagonal-Matrices.html">Creating Diagonal Matrices</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Basic-Usage.html">Creating and Manipulating Diagonal/Permutation Matrices</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

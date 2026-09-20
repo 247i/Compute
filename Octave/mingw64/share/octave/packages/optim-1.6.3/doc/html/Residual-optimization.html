@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- Additional documentation for the optim package for Octave.
+
+Copyright © Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<title>Residual optimization (optim_doc)</title>
+
+<meta name="description" content="Residual optimization (optim_doc)">
+<meta name="keywords" content="Residual optimization (optim_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="index.html" rel="up" title="Top">
+<link href="Zero-finders.html" rel="next" title="Zero finders">
+<link href="Scalar-optimization.html" rel="prev" title="Scalar optimization">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="chapter-level-extent" id="Residual-optimization">
+<div class="nav-panel">
+<p>
+Next: <a href="Zero-finders.html" accesskey="n" rel="next">Functions for finding the zero of a nonlinear user function</a>, Previous: <a href="Scalar-optimization.html" accesskey="p" rel="prev">Functions for optimization of a scalar objective function</a>, Up: <a href="index.html" accesskey="u" rel="up">Additional documentation for the optim package for Octave</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h2 class="chapter" id="Functions-for-optimization-of-a-model-function-returning-an-array"><span>2 Functions for optimization of a model function returning an array<a class="copiable-link" href="#Functions-for-optimization-of-a-model-function-returning-an-array"> &para;</a></span></h2>
+<a class="index-entry-id" id="index-residual-optimization"></a>
+
+<p>Model functions whose parameters are to be optimized may return a vector
+or array of values.  Either these or their differences to some constant
+values (curve fitting) can be minimized in some sense, often, but not
+necessarily, by minimizing the sum of their squares.  It is usually
+preferable to use optimizers designed for residual optimization for this
+purpose.  These can exploit information contained in the individual
+elements of the returned array, which would not be possible if the user
+calculated a norm (<abbr class="abbr">e.g.</abbr> sum of squares) of the elements and
+performed a scalar optimization.
+</p>
+
+
+<ul class="mini-toc">
+<li><a href="nonlin_005fresidmin.html" accesskey="1">Frontend nonlin_residmin for non-linear residual minimization</a></li>
+<li><a href="nonlin_005fcurvefit.html" accesskey="2">Function nonlin_curvefit() for curve fitting</a></li>
+<li><a href="lm_005fsvd_005ffeasible.html" accesskey="3">Default backend lm_svd_feasible of residual minimization</a></li>
+<li><a href="residmin_005fstat.html" accesskey="4">Statistics for residual minimization</a></li>
+<li><a href="curvefit_005fstat.html" accesskey="5">Statistics for curve fitting</a></li>
+<li><a href="wls.html" accesskey="6">Statistics for weighted least squares</a></li>
+<li><a href="lsqlin.html" accesskey="7">Linear least squares with linear constraints.</a></li>
+<li><a href="leasqr.html" accesskey="8">An older function for curve fitting</a></li>
+<li><a href="pronyfit.html" accesskey="9">Prony&rsquo;s method for non-linear exponential fitting</a></li>
+<li><a href="polyfitinf.html">Function polyfitinf for polynomial fitting.</a></li>
+<li><a href="wpolyfit.html">Polynomial fitting suitable for polyconf</a></li>
+<li><a href="polyconf.html">Confidence and prediction intervals for polynomial fitting</a></li>
+<li><a href="LinearRegression.html">Function LinearRegression</a></li>
+<li><a href="wsolve.html">Function wsolve, another linear solver</a></li>
+</ul>
+</div>
+
+
+
+</body>
+</html>

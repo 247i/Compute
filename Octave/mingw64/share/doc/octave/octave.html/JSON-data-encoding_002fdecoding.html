@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>JSON data encoding/decoding (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="JSON data encoding/decoding (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="JSON data encoding/decoding (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Converting-Strings.html" rel="up" title="Converting Strings">
+<link href="Numerical-Data-and-Strings.html" rel="prev" title="Numerical Data and Strings">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+ul.mark-bullet {list-style-type: disc}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="JSON-data-encoding_002fdecoding">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Numerical-Data-and-Strings.html" accesskey="p" rel="prev">Numerical Data and Strings</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Converting-Strings.html" accesskey="u" rel="up">Converting Strings</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="JSON-data-encoding_002fdecoding-1"><span>5.4.3 JSON data encoding/decoding<a class="copiable-link" href="#JSON-data-encoding_002fdecoding-1"> &para;</a></span></h4>
+
+<p>JavaScript Object Notation, in short JSON, is a very common human readable
+and structured data format.  GNU Octave supports encoding and decoding this
+format with the following two functions.
+</p>
+<a class="anchor" id="XREFjsonencode"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-jsonencode"><span><code class="def-type"><var class="var">JSON_txt</var> =</code> <strong class="def-name">jsonencode</strong> <code class="def-code-arguments">(<var class="var">object</var>)</code><a class="copiable-link" href="#index-jsonencode"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-jsonencode-1"><span><code class="def-type"><var class="var">JSON_txt</var> =</code> <strong class="def-name">jsonencode</strong> <code class="def-code-arguments">(&hellip;, &quot;ConvertInfAndNaN&quot;, <var class="var">TF</var>)</code><a class="copiable-link" href="#index-jsonencode-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-jsonencode-2"><span><code class="def-type"><var class="var">JSON_txt</var> =</code> <strong class="def-name">jsonencode</strong> <code class="def-code-arguments">(&hellip;, &quot;PrettyPrint&quot;, <var class="var">TF</var>)</code><a class="copiable-link" href="#index-jsonencode-2"> &para;</a></span></dt>
+<dd>
+<p>Encode Octave data types into JSON text.
+</p>
+<p>The input <var class="var">object</var> is an Octave variable to encode.
+</p>
+<p>The output <var class="var">JSON_txt</var> is the JSON text that contains the result of encoding
+<var class="var">object</var>.
+</p>
+<p>If the value of the option <code class="code">&quot;ConvertInfAndNaN&quot;</code> is true then <code class="code">NaN</code>,
+<code class="code">NA</code>, <code class="code">-Inf</code>, and <code class="code">Inf</code> values will be converted to
+<code class="code">&quot;null&quot;</code> in the output.  If it is false then they will remain as their
+original values.  The default value for this option is true.
+</p>
+<p>If the value of the option <code class="code">&quot;PrettyPrint&quot;</code> is true, the output text will
+have indentations and line feeds.  If it is false, the output will be condensed
+and written without whitespace.  The default value for this option is false.
+</p>
+<p>Programming Notes:
+</p>
+<ul class="itemize mark-bullet">
+<li>Complex numbers are not supported.
+
+</li><li>classdef objects are first converted to structs and then encoded.
+
+</li><li>To preserve escape characters (e.g., <code class="code">&quot;\n&quot;</code>), use
+single-quoted strings.
+
+</li><li>Every character after the null character (<code class="code">&quot;\0&quot;</code>) in a
+double-quoted string will be dropped during encoding.
+
+</li><li>Encoding and decoding an array is not guaranteed to preserve the dimensions
+of the array.  In particular, row vectors will be reshaped to column vectors.
+
+</li><li>Encoding and decoding is not guaranteed to preserve the Octave data type
+because JSON supports fewer data types than Octave.  For example, if you
+encode an <code class="code">int8</code> and then decode it, you will get a <code class="code">double</code>.
+</li></ul>
+
+<p>This table shows the conversions from Octave data types to JSON data types:
+</p>
+<table class="multitable">
+<thead><tr><th width="50%">Octave data type</th><th width="50%">JSON data type</th></tr></thead>
+<tbody><tr><td width="50%">logical scalar</td><td width="50%">Boolean</td></tr>
+<tr><td width="50%">logical vector</td><td width="50%">Array of Boolean, reshaped to row vector</td></tr>
+<tr><td width="50%">logical array</td><td width="50%">nested Array of Boolean</td></tr>
+<tr><td width="50%">numeric scalar</td><td width="50%">Number</td></tr>
+<tr><td width="50%">numeric vector</td><td width="50%">Array of Number, reshaped to row vector</td></tr>
+<tr><td width="50%">numeric array</td><td width="50%">nested Array of Number</td></tr>
+<tr><td width="50%"><code class="code">NaN</code>, <code class="code">NA</code>, <code class="code">Inf</code>, <code class="code">-Inf</code><br>
+when <code class="code">&quot;ConvertInfAndNaN&quot; = true</code></td><td width="50%"><code class="code">&quot;null&quot;</code></td></tr>
+<tr><td width="50%"><code class="code">NaN</code>, <code class="code">NA</code>, <code class="code">Inf</code>, <code class="code">-Inf</code><br>
+when <code class="code">&quot;ConvertInfAndNaN&quot; = false</code></td><td width="50%"><code class="code">&quot;NaN&quot;</code>, <code class="code">&quot;NaN&quot;</code>,
+<code class="code">&quot;Infinity&quot;</code>, <code class="code">&quot;-Infinity&quot;</code></td></tr>
+<tr><td width="50%">empty array</td><td width="50%"><code class="code">&quot;[]&quot;</code></td></tr>
+<tr><td width="50%">character vector</td><td width="50%">String</td></tr>
+<tr><td width="50%">character array</td><td width="50%">Array of String</td></tr>
+<tr><td width="50%">empty character array</td><td width="50%"><code class="code">&quot;&quot;</code></td></tr>
+<tr><td width="50%">cell scalar</td><td width="50%">Array</td></tr>
+<tr><td width="50%">cell vector</td><td width="50%">Array, reshaped to row vector</td></tr>
+<tr><td width="50%">cell array</td><td width="50%">Array, flattened to row vector</td></tr>
+<tr><td width="50%">struct scalar</td><td width="50%">Object</td></tr>
+<tr><td width="50%">struct vector</td><td width="50%">Array of Object, reshaped to row vector</td></tr>
+<tr><td width="50%">struct array</td><td width="50%">nested Array of Object</td></tr>
+<tr><td width="50%">classdef object</td><td width="50%">Object</td></tr>
+</tbody>
+</table>
+
+<p>Examples:
+</p>
+<div class="example smallexample">
+<div class="group"><pre class="example-preformatted">jsonencode ([1, NaN; 3, 4])
+&rArr;  [[1,null],[3,4]]
+</pre></div><pre class="example-preformatted">
+
+</pre><div class="group"><pre class="example-preformatted">jsonencode ([1, NaN; 3, 4], &quot;ConvertInfAndNaN&quot;, false)
+&rArr;  [[1,NaN],[3,4]]
+</pre></div><pre class="example-preformatted">
+
+</pre><div class="group"><pre class="example-preformatted">## Escape characters inside a single-quoted string
+jsonencode ('\0\a\b\t\n\v\f\r')
+&rArr;  &quot;\\0\\a\\b\\t\\n\\v\\f\\r&quot;
+</pre></div><pre class="example-preformatted">
+
+</pre><div class="group"><pre class="example-preformatted">## Escape characters inside a double-quoted string
+jsonencode (&quot;\a\b\t\n\v\f\r&quot;)
+&rArr;  &quot;\u0007\b\t\n\u000B\f\r&quot;
+</pre></div><pre class="example-preformatted">
+
+</pre><div class="group"><pre class="example-preformatted">jsonencode ([true; false], &quot;PrettyPrint&quot;, true)
+&rArr;  ans = [
+     true,
+     false
+   ]
+</pre></div><pre class="example-preformatted">
+
+</pre><div class="group"><pre class="example-preformatted">jsonencode (['foo', 'bar'; 'foo', 'bar'])
+&rArr;  [&quot;foobar&quot;,&quot;foobar&quot;]
+</pre></div><pre class="example-preformatted">
+
+</pre><div class="group"><pre class="example-preformatted">jsonencode (struct ('a', Inf, 'b', [], 'c', struct ()))
+&rArr;  {&quot;a&quot;:null,&quot;b&quot;:[],&quot;c&quot;:{}}
+</pre></div><pre class="example-preformatted">
+
+</pre><div class="group"><pre class="example-preformatted">jsonencode (struct ('structarray', struct ('a', {1; 3}, 'b', {2; 4})))
+&rArr;  {&quot;structarray&quot;:[{&quot;a&quot;:1,&quot;b&quot;:2},{&quot;a&quot;:3,&quot;b&quot;:4}]}
+</pre></div><pre class="example-preformatted">
+
+</pre><div class="group"><pre class="example-preformatted">jsonencode ({'foo'; 'bar'; {'foo'; 'bar'}})
+&rArr;  [&quot;foo&quot;,&quot;bar&quot;,[&quot;foo&quot;,&quot;bar&quot;]]
+</pre></div><pre class="example-preformatted">
+
+</pre><div class="group"><pre class="example-preformatted">jsonencode (containers.Map({'foo'; 'bar'; 'baz'}, [1, 2, 3]))
+&rArr;  {&quot;bar&quot;:2,&quot;baz&quot;:3,&quot;foo&quot;:1}
+</pre></div></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFjsondecode">jsondecode</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFjsondecode"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-jsondecode"><span><code class="def-type"><var class="var">object</var> =</code> <strong class="def-name">jsondecode</strong> <code class="def-code-arguments">(<var class="var">JSON_txt</var>)</code><a class="copiable-link" href="#index-jsondecode"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-jsondecode-1"><span><code class="def-type"><var class="var">object</var> =</code> <strong class="def-name">jsondecode</strong> <code class="def-code-arguments">(&hellip;, &quot;ReplacementStyle&quot;, <var class="var">rs</var>)</code><a class="copiable-link" href="#index-jsondecode-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-jsondecode-2"><span><code class="def-type"><var class="var">object</var> =</code> <strong class="def-name">jsondecode</strong> <code class="def-code-arguments">(&hellip;, &quot;Prefix&quot;, <var class="var">pfx</var>)</code><a class="copiable-link" href="#index-jsondecode-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-jsondecode-3"><span><code class="def-type"><var class="var">object</var> =</code> <strong class="def-name">jsondecode</strong> <code class="def-code-arguments">(&hellip;, &quot;makeValidName&quot;, <var class="var">TF</var>)</code><a class="copiable-link" href="#index-jsondecode-3"> &para;</a></span></dt>
+<dd>
+<p>Decode text that is formatted in JSON.
+</p>
+<p>The input <var class="var">JSON_txt</var> is a string that contains JSON text.
+</p>
+<p>The output <var class="var">object</var> is an Octave object that contains the result of
+decoding <var class="var">JSON_txt</var>.
+</p>
+<p>For more information about the options <code class="code">&quot;ReplacementStyle&quot;</code> and
+<code class="code">&quot;Prefix&quot;</code>,
+see <a class="pxref" href="Variables.html#XREFmatlab_005flang_005fmakeValidName"><code class="code">matlab.lang.makeValidName</code></a>.
+</p>
+<p>If the value of the option <code class="code">&quot;makeValidName&quot;</code> is false then names
+will not be changed by <code class="code">matlab.lang.makeValidName</code> and the
+<code class="code">&quot;ReplacementStyle&quot;</code> and <code class="code">&quot;Prefix&quot;</code> options will be ignored.
+</p>
+<p>NOTE: Decoding and encoding JSON text is not guaranteed to reproduce the
+original text as some names may be changed by <code class="code">matlab.lang.makeValidName</code>.
+</p>
+<p>This table shows the conversions from JSON data types to Octave data types:
+</p>
+<table class="multitable">
+<thead><tr><th width="50%">JSON data type</th><th width="50%">Octave data type</th></tr></thead>
+<tbody><tr><td width="50%">Boolean</td><td width="50%">scalar logical</td></tr>
+<tr><td width="50%">Number</td><td width="50%">scalar double</td></tr>
+<tr><td width="50%">String</td><td width="50%">vector of characters</td></tr>
+<tr><td width="50%">Object</td><td width="50%">scalar struct (field names of the struct may be different from the keys of the JSON object due to <code class="code">matlab_lang_makeValidName</code></td></tr>
+<tr><td width="50%">null, inside a numeric array</td><td width="50%"><code class="code">NaN</code></td></tr>
+<tr><td width="50%">null, inside a non-numeric array</td><td width="50%">empty double array <code class="code">[]</code></td></tr>
+<tr><td width="50%">Array, of different data types</td><td width="50%">cell array</td></tr>
+<tr><td width="50%">Array, of Booleans</td><td width="50%">logical array</td></tr>
+<tr><td width="50%">Array, of Numbers</td><td width="50%">double array</td></tr>
+<tr><td width="50%">Array, of Strings</td><td width="50%">cell array of character vectors (<code class="code">cellstr</code>)</td></tr>
+<tr><td width="50%">Array of Objects, same field names</td><td width="50%">struct array</td></tr>
+<tr><td width="50%">Array of Objects, different field names</td><td width="50%">cell array of scalar structs</td></tr>
+</tbody>
+</table>
+
+<p>Examples:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">jsondecode ('[1, 2, null, 3]')
+    &rArr;  ans =
+
+      1
+      2
+    NaN
+      3
+</pre></div><pre class="example-preformatted">
+
+</pre><div class="group"><pre class="example-preformatted">jsondecode ('[&quot;foo&quot;, &quot;bar&quot;, [&quot;foo&quot;, &quot;bar&quot;]]')
+    &rArr;  ans =
+       {
+         [1,1] = foo
+         [2,1] = bar
+         [3,1] =
+         {
+           [1,1] = foo
+           [2,1] = bar
+         }
+
+       }
+</pre></div><pre class="example-preformatted">
+
+</pre><div class="group"><pre class="example-preformatted">jsondecode ('{&quot;nu#m#ber&quot;: 7, &quot;s#tr#ing&quot;: &quot;hi&quot;}', ...
+            'ReplacementStyle', 'delete')
+    &rArr;  scalar structure containing the fields:
+
+         number = 7
+         string = hi
+</pre></div><pre class="example-preformatted">
+
+</pre><div class="group"><pre class="example-preformatted">jsondecode ('{&quot;nu#m#ber&quot;: 7, &quot;s#tr#ing&quot;: &quot;hi&quot;}', ...
+            'makeValidName', false)
+    &rArr;  scalar structure containing the fields:
+
+         nu#m#ber = 7
+         s#tr#ing = hi
+</pre></div><pre class="example-preformatted">
+
+</pre><div class="group"><pre class="example-preformatted">jsondecode ('{&quot;1&quot;: &quot;one&quot;, &quot;2&quot;: &quot;two&quot;}', 'Prefix', 'm_')
+    &rArr;  scalar structure containing the fields:
+
+         m_1 = one
+         m_2 = two
+</pre></div></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFjsonencode">jsonencode</a>, <a class="ref" href="Variables.html#XREFmatlab_005flang_005fmakeValidName">matlab.lang.makeValidName</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Numerical-Data-and-Strings.html">Numerical Data and Strings</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Converting-Strings.html">Converting Strings</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

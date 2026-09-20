@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Standalone Programs (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Standalone Programs (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Standalone Programs (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="External-Code-Interface.html" rel="up" title="External Code Interface">
+<link href="Java-Interface.html" rel="next" title="Java Interface">
+<link href="Mex_002dFiles.html" rel="prev" title="Mex-Files">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Standalone-Programs">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Java-Interface.html" accesskey="n" rel="next">Java Interface</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Mex_002dFiles.html" accesskey="p" rel="prev">Mex-Files</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="External-Code-Interface.html" accesskey="u" rel="up">External Code Interface</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Standalone-Programs-1"><span>A.3 Standalone Programs<a class="copiable-link" href="#Standalone-Programs-1"> &para;</a></span></h3>
+
+<p>The libraries Octave uses itself can be utilized in standalone applications.
+These applications then have access, for example, to the array and matrix
+classes, as well as to all of the Octave algorithms.  The following C++
+program, uses class Matrix from <samp class="file">liboctave.a</samp> or <samp class="file">liboctave.so</samp>.
+</p>
+<div class="example">
+<pre class="verbatim">#include &lt;iostream&gt;
+#include &lt;octave/oct.h&gt;
+
+int
+main ()
+{
+  std::cout &lt;&lt; &quot;Hello Octave world!\n&quot;;
+
+  int n = 2;
+  Matrix a_matrix = Matrix (n, n);
+
+  for (octave_idx_type i = 0; i &lt; n; i++)
+    for (octave_idx_type j = 0; j &lt; n; j++)
+      a_matrix(i,j) = (i + 1) * 10 + (j + 1);
+
+  std::cout &lt;&lt; a_matrix;
+
+  return 0;
+}
+</pre></div>
+
+<p>mkoctfile can be used to build a standalone application with a command like
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">$ mkoctfile --link-stand-alone standalone.cc -o standalone
+$ ./standalone
+Hello Octave world!
+  11 12
+  21 22
+$
+</pre></div></div>
+
+<p>Note that the application <code class="code">standalone</code> will be dynamically linked against
+the Octave libraries and any Octave support libraries.  The above allows the
+Octave math libraries to be used by an application.  It does not, however,
+allow the script files, oct-files, or built-in functions of Octave to be used
+by the application.  To do that, the Octave interpreter needs to be initialized
+first.  An example of how to do this can then be seen in the code
+</p>
+<div class="example">
+<pre class="verbatim">#include &lt;iostream&gt;
+#include &lt;octave/oct.h&gt;
+#include &lt;octave/octave.h&gt;
+#include &lt;octave/parse.h&gt;
+#include &lt;octave/interpreter.h&gt;
+
+int
+main ()
+{
+  // Create interpreter.
+
+  octave::interpreter interpreter;
+
+  try
+    {
+      // Inhibit reading history file by calling
+      //
+      //   interpreter.initialize_history (false);
+
+      // Set custom load path here if you wish by calling
+      //
+      //   interpreter.initialize_load_path (false);
+
+      // Perform final initialization of interpreter, including
+      // executing commands from startup files by calling
+      //
+      //   interpreter.initialize ();
+      //
+      //   if (! interpreter.is_initialized ())
+      //     {
+      //       std::cerr &lt;&lt; &quot;Octave interpreter initialization failed!&quot;
+      //                 &lt;&lt; std::endl;
+      //       exit (1);
+      //     }
+      //
+      // You may skip this step if you don't need to do anything
+      // between reading the startup files and telling the interpreter
+      // that you are ready to execute commands.
+
+      // Tell the interpreter that we're ready to execute commands:
+
+      int status = interpreter.execute ();
+
+      if (status != 0)
+        {
+          std::cerr &lt;&lt; &quot;creating embedded Octave interpreter failed!&quot;
+                    &lt;&lt; std::endl;
+          return status;
+        }
+
+      octave_idx_type n = 2;
+      octave_value_list in;
+
+      for (octave_idx_type i = 0; i &lt; n; i++)
+        in(i) = octave_value (5 * (i + 2));
+
+      octave_value_list out = octave::feval (&quot;gcd&quot;, in, 1);
+
+      if (out.length () &gt; 0)
+        std::cout &lt;&lt; &quot;GCD of [&quot;
+                  &lt;&lt; in(0).int_value ()
+                  &lt;&lt; &quot;, &quot;
+                  &lt;&lt; in(1).int_value ()
+                  &lt;&lt; &quot;] is &quot; &lt;&lt; out(0).int_value ()
+                  &lt;&lt; std::endl;
+      else
+        std::cout &lt;&lt; &quot;invalid\n&quot;;
+    }
+  catch (const octave::exit_exception&amp; ex)
+    {
+      std::cerr &lt;&lt; &quot;Octave interpreter exited with status = &quot;
+                &lt;&lt; ex.exit_status () &lt;&lt; std::endl;
+    }
+  catch (const octave::execution_exception&amp;)
+    {
+      std::cerr &lt;&lt; &quot;error encountered in Octave evaluator!&quot; &lt;&lt; std::endl;
+    }
+
+  return 0;
+}
+</pre></div>
+
+<p>which, as before, is compiled and run as a standalone application with
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">$ mkoctfile --link-stand-alone embedded.cc -o embedded
+$ ./embedded
+GCD of [10, 15] is 5
+$
+</pre></div></div>
+
+<p>It is worth re-iterating that, if only built-in functions are to be called from
+a C++ standalone program then it does not need to initialize the interpreter.
+The general rule is that for a built-in function named <code class="code">function_name</code> in
+the interpreter, there will be a C++ function named <code class="code">Ffunction_name</code> (note
+the prepended capital <code class="code">F</code>) accessible in the C++ API.  The declarations
+for all built-in functions are collected in the header file
+<code class="code">builtin-defun-decls.h</code>.  This feature should be used with care as the
+list of built-in functions can change.  No guarantees can be made that a
+function that is currently a built-in won&rsquo;t be implemented as a <samp class="file">.m</samp> file
+or as a dynamically linked function in the future.  An example of how to call
+built-in functions from C++ can be seen in the code
+</p>
+<div class="example">
+<pre class="verbatim">#include &lt;iostream&gt;
+#include &lt;octave/oct.h&gt;
+#include &lt;octave/builtin-defun-decls.h&gt;
+
+int
+main ()
+{
+  int n = 2;
+  Matrix a_matrix = Matrix (n, n);
+
+  for (octave_idx_type i = 0; i &lt; n; i++)
+    for (octave_idx_type j = 0; j &lt; n; j++)
+      a_matrix(i,j) = (i + 1) * 10 + (j + 1);
+
+  std::cout &lt;&lt; &quot;This is a matrix:&quot; &lt;&lt; std::endl
+            &lt;&lt; a_matrix            &lt;&lt; std::endl;
+
+  octave_value_list in;
+  in(0) = a_matrix;
+
+  octave_value_list out = octave::Fnorm (in, 1);
+  double norm_of_the_matrix = out(0).double_value ();
+
+  std::cout &lt;&lt; &quot;This is the norm of the matrix:&quot; &lt;&lt; std::endl
+            &lt;&lt; norm_of_the_matrix                &lt;&lt; std::endl;
+
+  return 0;
+}
+</pre></div>
+
+<p>which is compiled and run as a standalone application with
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">$ mkoctfile --link-stand-alone standalonebuiltin.cc -o standalonebuiltin
+$ ./standalonebuiltin
+This is a matrix:
+ 11 12
+ 21 22
+
+This is the norm of the matrix:
+34.4952
+$
+</pre></div></div>
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Java-Interface.html">Java Interface</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Mex_002dFiles.html">Mex-Files</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="External-Code-Interface.html">External Code Interface</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

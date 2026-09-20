@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- General documentation for the parallel package for Octave.
+
+Copyright (C) 2016-2023 Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Example (parallel_doc)</title>
+
+<meta name="description" content="Example (parallel_doc)">
+<meta name="keywords" content="Example (parallel_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Cluster-execution.html" rel="up" title="Cluster execution">
+<link href="Further-functions.html" rel="next" title="Further functions">
+<link href="select_005fsockets.html" rel="prev" title="select_sockets">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<span id="Example"></span><div class="header">
+<p>
+Previous: <a href="select_005fsockets.html" accesskey="p" rel="prev">select_sockets</a>, Up: <a href="Cluster-execution.html" accesskey="u" rel="up">Cluster execution</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Example-1"></span><h3 class="section">3.16 Example</h3>
+<span id="index-example"></span>
+
+<div class="example">
+<pre class="example">
+
+# From Octave prompt, generate authentication files, set user name to
+# 'test'. When prompted for a password, press &lt;enter&gt;.
+parallel_generate_srp_data ('test')
+
+# From Octave prompt, get location of the generated files.
+authpath = fullfile (a = pkg (&quot;prefix&quot;), &quot;parallel-srp-data&quot;)
+
+Copy server files to servers, authpath is assumed to be
+&quot;/home/test/octave/parallel-srp-data/&quot;, the same directory is assumed to
+exist on the servers. From the system shell, do e.g.:
+
+scp -r /home/test/octave/parallel-srp-data/server server1:/home/test/octave/parallel-srp-data/
+scp -r /home/test/octave/parallel-srp-data/server server2:/home/test/octave/parallel-srp-data/
+
+Start server at remote machines. From the system shell, do e.g.:
+
+ssh server1 'octave --eval &quot;pserver&quot;'
+ssh server2 'octave --eval &quot;pserver&quot;'
+
+# From Octave prompt, connect the cluster.
+conns = pconnect ({&quot;server1&quot;, &quot;server2&quot;})
+
+# And perform some parallel execution. Single function calls take 1
+# second each.
+results = netcellfun (conns, &nbsp;(x) {x, pause(1)}{:}, num2cell (1:30))
+
+# Close network.
+sclose (conns)
+
+</pre></div>
+
+
+
+
+
+</body>
+</html>

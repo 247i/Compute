@@ -1,0 +1,4659 @@
+This is mapping.info, produced by makeinfo version 7.1.1 from
+mapping.texi.
+
+INFO-DIR-SECTION Math
+START-INFO-DIR-ENTRY
+* Octave mapping: (mapping).          mapping package for Octave
+END-INFO-DIR-ENTRY
+
+
+File: mapping.info,  Node: Top,  Next: Overview,  Up: (dir)
+
+Octave mapping package
+**********************
+
+Copyright © The Octave Project Developers
+
+Permission is granted to make and distribute verbatim copies of this
+manual provided the copyright notice and this permission notice are
+preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the
+entire resulting derived work is distributed under the terms of a
+permission notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the above conditions for modified versions.
+* Menu:
+
+* Overview::
+* Installing and loading::
+* Function Reference::
+
+ -- The Detailed Node Listing --
+
+Function Reference
+
+* Coordinate systems::
+* DXF files::
+* GIS raster files::
+* GIS vector files::
+* GPS files::
+* Lengths angles and dimensions::
+* Paths in curves::
+* Utilities::
+
+
+File: mapping.info,  Node: Overview,  Next: Installing and loading,  Prev: Top,  Up: Top
+
+1 Overview
+**********
+
+The mapping package contains functions for simple mapping, GIS .shp .dxf
+and raster file functions
+
+
+File: mapping.info,  Node: Installing and loading,  Next: Function Reference,  Prev: Overview,  Up: Top
+
+2 Installing and loading
+************************
+
+The mapping package must be installed and then loaded to be used.
+
+It can be installed in GNU Octave directly from octave-forge,
+
+2.1 Windows install
+===================
+
+If running in Windows, the package may already be installed, to check
+run:
+
+     pkg list mapping
+
+2.2 Installing
+==============
+
+With an internet connection available, the mapping package can be
+installed from octave-forge using the following command within GNU
+Octave:
+
+     pkg install -forge mapping
+
+The latest released version of the package will be downloaded and
+installed.
+
+Otherwise, if the package file has already been downloaded it can be
+installed using the follwoing command in GNU Octave:
+
+     pkg install mapping-1.4.3.tar.gz
+
+2.3 Loading
+===========
+
+Regardless of the method of installing the package, in order to use its
+functions, the package must be loaded using the pkg load command:
+
+     pkg load mapping
+
+The package must be loaded on each GNU Octave session.
+
+
+File: mapping.info,  Node: Function Reference,  Prev: Installing and loading,  Up: Top
+
+3 Function Reference
+********************
+
+* Menu:
+
+* Coordinate systems::
+* DXF files::
+* GIS raster files::
+* GIS vector files::
+* GPS files::
+* Lengths angles and dimensions::
+* Paths in curves::
+* Utilities::
+
+
+File: mapping.info,  Node: Coordinate systems,  Next: DXF files,  Up: Function Reference
+
+3.1 Coordinate systems
+======================
+
+3.1.1 aer2ecef
+--------------
+
+ -- Function File: X, Y, Z = aer2ecef (AZ,EL, SLANTRANGE, LAT0, LON0,
+          ALT0)
+ -- Function File: X, Y, Z = aer2ecef (AZ,EL, SLANTRANGE, LAT0, LON0,
+          ALT0, SPHEROID)
+ -- Function File: X, Y, Z = aer2ecef (AZ,EL, SLANTRANGE, LAT0, LON0,
+          ALT0, SPHEROID, ANGLEUNIT)
+     Convert Azimuth, Elevation, Range (AER) coordinates to Earth
+     Centered Earth Fixed (ECEF) coordinates.
+
+     Inputs:
+          AZ, EL, SLANTRANGE: look angles and distance to target
+          point(s) (angle, angle, length).  Vectors and nD arrays are
+          accepted if they have equal dimensions.
+
+        • AZ: azimuth angle clockwise from local north.
+
+        • EL: elevation angle above local horizon.
+
+        • SLANTRANGE: distance from origin in local spherical system.
+
+        • LAT0, LON0, ALT0: latitude, longitude and height of local
+          observer location(s) (angle, angle, length).  In case of
+          multiple local locations their numbers and dimensions should
+          be equal those of the target points.  The length unit(s)
+          should match that/those of the target point(s).
+
+        • SPHEROID: referenceEllipsoid parameter struct; default is
+          wgs84.  A string value describing the spheroid or numeric EPSG
+          code is also accepted.
+
+        • ANGLEUNIT: string for angular units ('degrees' or 'radians',
+          case-insensitive, just the first charachter will do).  Default
+          is 'degrees'.
+
+     Outputs:
+        • X, Y, Z: Earth Centered Earth Fixed (ECEF) coordinates.
+
+     Example
+           [x, y, z] = aer2ecef (33, 70, 1e3, 42, -82, 200)
+           x =    6.6057e+05
+           y =   -4.7002e+06
+           z =    4.2450e+06
+
+     With radians
+           [x, y, z] = aer2ecef (pi/6, pi/3, 1e3, pi/4, -pi/2, 200, "wgs84", "radians")
+           x =  250.00
+           y =   -4.5180e+06
+           z =    4.4884e+06
+
+     Note: aer2ecef is a mere wrapper for functions geodetic2ecef,
+     aer2enu and enu2uvw.
+
+     See also: ecef2aer, aer2enu, aer2geodetic, aer2ned,
+     referenceEllipsoid.
+
+3.1.2 aer2enu
+-------------
+
+ -- Function File: E, N, U = aer2enu (AZ, EL, SLANTRANGE)
+ -- Function File: E, N, U = aer2enu (AZ, EL, SLANTRANGE, ANGLEUNIT)
+     Convert spherical Azimuth, Elevation and Range (AER) coordinates
+     into cartesian East, North, Up (ENU) coordinates.
+
+     Inputs:
+          AZ, EL, SLANTRANGE: look angles and distance to target points
+          (angle, angle, length).  Scalars, vectors and nD-arrays are
+          accepted and should have the same dimensions and length units.
+
+        • AZ: azimuth angle clockwise from local north.
+
+        • EL: elevation angle above local horizon.
+
+        • SLANTRANGE: distance from origin in local spherical system.
+
+        • (Optional) angleUnit: string for angular units (radians or
+          degrees).  Default is 'd': degrees
+
+     Outputs:
+
+        • E, N, U: East, North, Up Cartesian coordinates (length units
+          and dimensions same as SLANTRANGE).
+
+     Example:
+           [e, n, u] = aer2enu (33, 70, 1e3)
+           e =  186.28
+           n =  286.84
+           u =  939.69
+
+     In radians
+           [e, n, u] = aer2enu (pi/4, pi/3,1e3, "radians")
+           e =  353.55
+           n =  353.55
+           u =  866.03
+
+     See also: enu2aer, aer2ecef, aer2geodetic, aer2ned.
+
+3.1.3 aer2geodetic
+------------------
+
+ -- Function File: LAT1, LON1, ALT1 = aer2geodetic (AZ,EL, SLANTRANGE,
+          LAT0, LON0, ALT0)
+ -- Function File: LAT1, LON1, ALT1 = aer2geodetic (AZ,EL, SLANTRANGE,
+          LAT0, LON0, ALT0, SPHEROID)
+ -- Function File: LAT1, LON1, ALT1 = aer2geodetic (AZ,EL, SLANTRANGE,
+          LAT0, LON0, ALT0, SPHEROID, ANGLEUNIT)
+     Convert Azimuth, Elevation and Range (AER) coordinates to geodetic
+     coordinates (latitude, longitude, local height).
+
+     Inputs:
+        • AZ, EL, SLANTRANGE: look angles and distance to target
+          point(s) (angle, angle, length).  Vectors and nD arrays are
+          accepted if they have equal dimensions.  The length unit is
+          those of the used spheroid, the default of which is meters.
+
+        • LAT0, LON0, ALT0: ellipsoid geodetic coordinates of local
+          observer location (angle, angle, length).  In case of multiple
+          observer locations their numbers and dimensions should match
+          those of the target points (i.e., one observer location for
+          each target point).  The length units of the target point(s)
+          and observer location(s) should match.
+
+        • SPHEROID: referenceEllipsoid parameter struct, or name (string
+          value) or EPSG code (real numeric) of referenceEllipsoid;
+          default is 'wgs84'.
+
+        • ANGLEUNIT: string for angular units ('degrees' or 'radians',
+          case-insensitive, just first character will suffice).  Default
+          is 'degrees'.
+
+     Outputs:
+        • LAT1, LON1, ALT1: geodetic coordinates of target point(s)
+          (angle, angle, length).  The length unit matches that of the
+          ellipsoid.
+
+     Example
+           [x, y, z] = aer2geodetic (33, 70, 1e3, 42, -82, 200)
+           x =  42.000
+           y = -82.000
+           z = 1139.7
+
+     With radians
+           [x, y, z] = aer2geodetic (pi/6, pi/3, 1e3, pi/4, -pi/2, 200, ...
+                                     "wgs84", "radians")
+           x =  0.78547
+           y = -1.5707
+           z =  1066.0
+
+     Note: aer2geodetic is a mere wrapper for functions aer2ecef
+     followed by ecef2geodetic.
+
+     See also: geodetic2aer, aer2ecef, aer2enu, aer2ned,
+     referenceEllipsoid.
+
+3.1.4 aer2ned
+-------------
+
+ -- Function File: N, E, D = aer2ned (AZ, EL, SLANTRANGE)
+ -- Function File: N, E, D = aer2ned (AZ, EL, SLANTRANGE, ANGLEUNIT)
+     Convert Azimuth, Elevation and Range (AER) coordinates to North,
+     East, Down (NED) coordinates.
+
+     Inputs:
+        • AZ, EL, SLANTRANGE: look angles and distance to target point
+          (ange, angle, length).  Scalars, vectors and nD-arrays are
+          accepted and should have the same dimensions and length units.
+
+        • ANGLEUNIT: string for angular units ('degrees' or 'radians',
+          case-insensitive, just the first character will do).  Default
+          is 'degrees'.
+
+     Outputs:
+        • N, E, D: North, East, Down coordinates of points.  (same
+          length units as inputs).
+
+     Examples:
+           [n, e, d] = aer2ned (33, 70, 1e3)
+           n =  286.84
+           e =  186.28
+           d = -939.69
+
+     With radians
+           [n, e, d] = aer2ned (pi/4, pi/3,1e3, "radians")
+           n =  353.55
+           e =  353.55
+           d = -866.03
+
+     See also: ned2aer, aer2ecef, aer2enu, aer2geodetic.
+
+3.1.5 almanac
+-------------
+
+ -- : RETVAL = almanac ()
+ -- : RETVAL = almanac (BODY)
+ -- : RETVAL = almanac (BODY, PARAM)
+ -- : RETVAL = almanac (BODY, PARAM, UNIT)
+     Return basic info about one parameter of a celestial body.
+
+     The celestial bodies and parameters that almanac can return are
+     shown when invoking almanac without any parameters.
+
+     Input parameters:
+
+        • BODY - celestial body for which info is requested
+          (case-insensitive).
+
+        • PARAM (optional) - the selected parameter whose value is
+          requested.  If 'geoid' or 'ellipsoid' is specified a 1x2
+          vector comprising the semimajor axis and eccentricity of BODY
+          is returned.  If 'Earth' is selected, a specific geoid name
+          can be specified and the semimajor axis and eccentricity of
+          that geoid are returned.
+
+        • UNIT (optional) - the unit in which the requested parameter is
+          expressed.  Any unit recognized by function 'unitsratio' is
+          accepted.
+
+     almamanc is merely a wrapper around, resp.  based on,
+     referenceEllipsoid.
+
+     See also: referenceEllipsoid,referenceSphere,unitsratio.
+
+3.1.6 auth2geo
+--------------
+
+ -- : PHI = auth2geo (XI)
+ -- : PHI = auth2geo (XI, SPHEROID)
+ -- : PHI = auth2geo (XI, SPHEROID, ANGLEUNIT)
+     Returns the geodetic latitude given authalic latitude XI.
+
+     Input
+        • XI: the authalic latitude(s); scalar, vector or nD array.
+
+        • (optional) SPHEROID: referenceEllipsoid name, EPSG code, or
+          parameter struct: the default is wgs84.
+
+        • (optional) ANGLEUNIT: string for angular units ('degrees' or
+          'radians', case-insensitive, just the first charachter will
+          do).  Default is 'degrees'.
+
+     Output
+          PHI: the geodetic latitude(s), shape matching that of XI.
+        • 
+     Example
+           auth2geo(44.872)
+           ans =  45.000
+
+     See also: geo2auth, geo2con, geo2iso, geo2rect.
+
+3.1.7 con2geo
+-------------
+
+ -- : PHI = con2geo (CHI)
+ -- : PHI = con2geo (CHI, SPHEROID)
+ -- : PHI = con2geo (CHI, SPHEROID, ANGLEUNIT)
+     Returns the geodetic latitude given latitude conformal CHI
+
+     Input
+        • CHI: the conformal latitude(s).  Scalar, vector or nD arrays
+          are accepted.
+
+        • (optional) SPHEROID: referenceEllipsoid parameter struct: the
+          default is wgs84.
+
+        • (optional) ANGLEUNIT: string for angular units ('degrees' or
+          'radians', case-insensitive, just the first charachter will
+          do).  Default is 'degrees'.
+
+     Output
+        • PHI: the geodetic latitude(s), shape similar to CHI.
+
+     Example
+           con2geo(44.8077)
+           ans =  45.000
+
+     See also: geo2auth, geo2con, geo2iso, geo2rect, rect2geo.
+
+3.1.8 ecef2aer
+--------------
+
+ -- Function File: AZ, EL, SLANTRANGE = ecef2aer (X, Y, Z, LAT0, LON0,
+          ALT0)
+ -- Function File: AZ, EL, SLANTRANGE = ecef2aer (..., SPHEROID)
+ -- Function File: AZ, EL, SLANTRANGE = ecef2aer (..., SPHEROID,
+          ANGLEUNIT)
+     Convert Earth Centered Earth Fixed (ECEF) coordinates to local
+     Azimuth, Elevation and slantRange (AER) coordinates.
+
+     Inputs:
+        • X, Y, Z: ECEF coordinates of target points (length units equal
+          to length unit of used referenceEllipsoid, of which the
+          default is meters).  Vectors and nD arrays are accepted if
+          they have equal dimensions.
+
+        • LAT0, LON0, ALT0: latitude, longitude and height of local
+          observer point(s).  Length unit of local height: see above.
+          In case of multiple local locations their numbers and
+          dimensions should match those of the target points (i.e., one
+          observer location for each target point).
+
+        • (Optional) SPHEROID: referenceEllipsoid specified as EPSG
+          number, ellipsoid name, or parameter struct.  An empty string
+          ("") or empty numeric array ([]) is also accepted.  Default is
+          WGS84.
+
+        • (Optional) ANGLEUNIT: string for angular units ('radians' or
+          'degrees'), only the first letter matters.  Default is 'd':
+          degrees.
+
+     All these coordinated must be either scalars or vectors or
+     nD-arrays in which case all must have the same dimensions.
+
+     Outputs:
+        • AZ, EL, SLANTRANGE: look angles and distance to point under
+          consideration (default units: degrees, degrees, and length
+          unit of invoked referenceEllipsoid, of which default =
+          meters).
+
+     Example:
+           [az, el, slantrange] = ecef2aer (660930.192761082, -4701424.22295701, ...
+                                            4246579.60463288, 42, -82, 200, "wgs84")
+           az = 33.000
+           el = 70.000
+           slantrange = 1000.00
+
+     With radians:
+           [az, el, slantrange] = ecef2aer (660930.192761082,-4701424.22295701, ...
+                                            4246579.60463288, 0.73304, -1.4312, 200, ...
+                                            "wgs84", "rad")
+           az = 0.57596
+           el = 1.2217
+           slantrange = 1000.0
+
+     See also: aer2ecef, ecef2enu, ecef2enuv, ecef2geodetic, ecef2ned,
+     ecef2nedv, referenceEllipsoid.
+
+3.1.9 ecef2enu
+--------------
+
+ -- Function File: E, N, U = ecef2enu (X, Y, Z, LAT0, LON0, ALT0)
+ -- Function File: E, N, U = ecef2enu (X, Y, Z, LAT0, LON0, ALT0,
+          SPHEROID)
+ -- Function File: E, N, U = ecef2enu (X, Y, Z, LAT0, LON0, ALT0,
+          SPHEROID, ANGLEUNIT)
+     Convert Earth Centered Earth Fixed (ECEF) coordinates to local
+     East, North, Up (ENU) coordinates.
+
+     Inputs:
+        • X, Y, Z: ECEF coordinates of target points (length units equal
+          to length unit of used referenceEllipsoid, of which the
+          default is meters).  Can be scalars but vectors and nD arrays
+          are accepted if they have equal dimensions.
+
+        • LAT0, LON0, ALT0: latitude, longitude and height of local
+          observer point(s).  Length unit of local height: see above.
+          In case of multiple local locations their numbers and
+          dimensions should match those of the target points (i.e., one
+          observer location for each target point).
+
+        • (Optional) SPHEROID: referenceEllipsoid specified as EPSG
+          number, ellipsoid name, or parameter struct.  An empty string
+          ("") or empty numeric array ([]) is also accepted.  Default is
+          WGS84.
+
+        • (Optional) ANGLEUNIT: string for angular units ('radians' or
+          'degrees'), only the first letter matters.  Default is 'd':
+          degrees.
+
+     Outputs:
+        • E, N, U: East, North, Up local cartesian coordinates of target
+          point(s) (default length unit that of invoked
+          referenceEllipsoid, of which the default is meters).
+
+     Example:
+           [e, n, u] = ecef2enu (660930, -4701424, 4246579, 42, -82, 200, ...
+                                 "wgs84", "degrees")
+           -->
+                e =  186.12
+                n =  286.56
+                u =  939.10
+
+     See also: enu2ecef, ecef2enuv, ecef2geodetic, ecef2ned, ecef2enu,
+     referenceEllipsoid.
+
+3.1.10 ecef2enuv
+----------------
+
+ -- Function File: E, N, U = ecef2enuv (U, V, W, LAT, LON)
+ -- Function File: E, N, U = ecef2enuv (U, V, W, LAT, LON, ANGLEUNIT)
+     Convert vector projection UVW (ECEF coordinate frame) to local ENU
+     (East, North, Up) coordinates.
+
+     Inputs:
+     ## U, V, W:
+          vector components in ECEF coordinate frame (length).  All
+          these inputs must have the same dimensions (scalar, vector or
+          nD array).
+
+     LAT, LON:
+          geodetic latitude and longitude (angle, default = degrees).
+          If non-scalar the dimensions should match those of the first
+          three inputs.
+
+     ANGLEUNIT:
+          string for angular units ('degrees' or 'radians',
+          case-insensitive, just the first character will do).  Default
+          is 'degrees'.
+
+     Outputs:
+     E, N, U:
+          East, North, Up cartesian coordinates in same length units
+          (and dimensions) as first three inputs.
+
+     Examples:
+           [e, n, u] = ecef2enuv (200, 300, 1000, 45, -45)
+           e =  353.55
+           n =  757.11
+           u =  657.11
+
+     With radians
+           [e, n, u] = ecef2enuv (200, 300, 1000, pi/4, -pi/4, "r")
+           e =  353.55
+           n =  757.11
+           u =  657.11
+
+     See also: enu2ecefv, ecef2enu, ecef2geodetic, ecef2ned, ecef2enu,
+     referenceEllipsoid.
+
+3.1.11 ecef2geodetic
+--------------------
+
+ -- Function File: LAT, LON, ALT = ecef2geodetic (SPHEROID, X, Y, Z)
+ -- Function File: LAT, LON, ALT = ecef2geodetic (X, Y, Z)
+ -- Function File: LAT, LON, ALT = ecef2geodetic (..., ANGLEUNIT)
+ -- Function File: LAT, LON, ALT = ecef2geodetic (X, Y, Z, SPHEROID)
+     Convert from Earth Centered Earth Fixed (ECEF) coordinates to
+     geodetic coordinates.
+
+     Inputs:
+        • SPHEROID can be a referenceEllipsoid name or struct (see help
+          for referenceEllipsoid.m).  Unfortunately an EPSG number as
+          first argument input as a numeric value cannot be accepted
+          UNLESS ecef2geodetic is called with five (5) input arguments.
+          Rather input the number as a character string (between
+          quotes).  If omitted or if an empty string or empty array
+          ('[]') is supplied the WGS84 ellipsoid (EPSG 7030) will be
+          selected.
+
+          Inputting SPHEROID as 4th argument is accepted but not
+          recommended; in that case the LAT and LON outputs are returned
+          in radians.
+
+        • X, Y and Z (length) are Earth-Centered Earth Fixed
+          coordinates.  They can be scalars, vectors or matrices but
+          they must all have the same size and dimensions.  Their length
+          unit is that of the used reference ellipsoid, whose default is
+          meters.
+
+     Outputs:
+        • LAT, LON, ALT: geodetic coordinates (angle, angle, length).
+          The default output is in degrees unless SPHEROID is specified
+          as 4th argument (see above), or if "radians" is specified for
+          optional last argument ANGLEUNIT.  The geodetic height's (ALT)
+          length unit equals that of the used reference ellipsoid, whose
+          default is meters.  The size and dimension(s) of LAT, LON and
+          ALT are the same as X, Y and Z.
+
+          Note: height is relative to the reference ellipsoid, not the
+          geoid.  Use e.g., egm96geoid to compute the height difference
+          between the geoid and the WGS84 reference ellipsoid.
+
+     Example:
+           Aalborg GPS Centre
+           X =     3426949.39675307
+           Y =     601195.852419885
+           Z =     5327723.99358255
+           lat = 57.02929569;
+           lon = 9.950248114;
+           h = 56.95; # meters
+
+           >> [lat, lon, alt] = geodetic2ecef ("", X, Y, Z)
+           lat = 57.029
+           lon = 9.9502
+           alt = 56.95
+
+     See also: geodetic2ecef, ecef2aer, ecef2enu, ecef2enuv,ecef2ned,
+     ecef2nedv, egm96geoid, referenceEllipsoid.
+
+3.1.12 ecef2ned
+---------------
+
+ -- Function File: N, E, D = ecef2ned (X, Y, Z, LAT0, LON0, ALT0)
+ -- Function File: N, E, D = ecef2ned (X, Y, Z, LAT0, LON0, ALT0,
+          SPHEROID)
+ -- Function File: N, E, D = ecef2ned (X, Y, Z, LAT0, LON0, ALT0,
+          SPHEROID, ANGLEUNIT)
+     Convert Earth Centered Earth Fixed (ECEF) coordinates to local
+     North, East, Down (NED) coordinates.
+
+     Inputs:
+        • X, Y, Z: ECEF coordinates of target points (length units equal
+          to length unit of used referenceEllipsoid, of which the
+          default is meters).  Can be scalars but vectors and nD arrays
+          are accepted if they have equal dimensions.
+
+        • LAT0, LON0, ALT0: latitude, longitude and height of local
+          observer point(s).  Length unit of local height: see above.
+          In case of multiple local locations their numbers and
+          dimensions should match those of the target points (i.e., one
+          observer location for each target point).
+
+        • (Optional) SPHEROID: referenceEllipsoid specified as EPSG
+          number, ellipsoid name, or parameter struct.  An empty string
+          ("") or empty numeric array ([]) is also accepted.  Default is
+          WGS84.
+
+        • (Optional) ANGLEUNIT: string for angular units ('radians' or
+          'degrees'), only the first letter matters.  Default is 'd':
+          degrees.
+
+     Outputs:
+        • N, E, D: North, East, Down: local cartesian coordinates of
+          target point(s) (default length unit that of invoked
+          referenceEllipsoid, of which the default is meters).
+
+     Example:
+           [n, e, d] = ecef2ned (660930, -4701424, 4246579, 42, -82, 200, ...
+                                 "wgs84", "degrees")
+           -->
+                n =  286.56
+                e =  186.12
+                d = -939.10
+
+     See also: ned2ecef, ecef2aer, ecef2enu, ecef2enuv, ecef2geodetic,
+     ecef2nedv, referenceEllipsoid.
+
+3.1.13 ecef2nedv
+----------------
+
+ -- Function File: N, E, D = ecef2nedv (U, V, W, LAT, LON)
+ -- Function File: N, E, D = ecef2nedv (U, V, W, LAT, LON, ANGLEUNIT)
+     Convert vector projection UVW (ECEF coordinate frame) to local NED
+     (North East, Down) coordinates.
+
+     Inputs:
+     U, V, W:
+          vector components in ECEF coordinate frame (length).  All
+          these inputs must have the same dimensions (scalar, vector or
+          nD array).
+
+     LAT, LON:
+          geodetic latitude and longitude (angle, default = degrees).
+          If non-scalar the dimensions should match those of the first
+          three inputs.
+
+     ANGLEUNIT:
+          (optional) string for angular units ('degrees' or 'radians',
+          case-insensitive, just the first character will do).  Default
+          is 'degrees'.
+
+     Outputs:
+     N, E, D:
+          North, East, Down cartesian coordinates in same length units
+          (and dimensions) as first three inputs.
+
+     Examples:
+           [n, e, d] = ecef2nedv (200, 300, 1000, 45, -45)
+           n =  757.11
+           e =  353.55
+           d =  -657.11
+
+     With radians
+           [n, e, d] = ecef2nedv (200, 300, 1000, pi/4, -pi/4, "r")
+           n =  757.11
+           e =  353.55
+           d =  -657.11
+
+     See also: ned2ecefv, ecef2aer, ecef2enu, ecef2enuv, ecef2ned,
+     ecef2geodetic.
+
+3.1.14 egm96geoid
+-----------------
+
+ -- : HGT = egm96geoid (LAT, LON)
+ -- : HGT = egm96geoid (LAT, LON, METHOD)
+ -- : HGT = egm96geoid ()
+ -- : HGT = egm96geoid (SAMPLEFACTOR)
+     Return local height of EGM96 geoid relative to WGS84 geoid in
+     meters.
+
+     The input values LAT, LON are in (decimal) degrees.  Scalar values
+     as well as vectors/2D arrays are accepted are accepted, in the
+     latter case the dimensions of LON and LAT should match.  They are
+     wrapped in the latitude = [-90:90] and longitude [-180:180]
+     intervals.
+
+     The optional third input METHOD defines the interpolation method
+     and can be one of the following: "nearest" (default), "linear",
+     "pchip"/"cubic" (same ), or "spline".  When "spline" is specified
+     the latitude and longitude data should be either scalars or vectors
+     of uniform spacing in 'meshgrid' format and orientation.
+
+     Alternatively, egm96geoid can return the base grid or a sampled
+     base grid.  If called without input argument, the entire 721x1441
+     base grid is returned.  If just one input argument is specified it
+     must be a positive integer value which is then interpreted as a
+     sampling factor: the grid is returned but sampled starting at (1,1)
+     with values at (1:<samplefactor>:end).  Positions (1, 1), (721, 1),
+     (1441, 1) and (721, 721) of the base grid correspond to (Lon, Lat)
+     = (0, 90), (180, 90), (360, 90) = (0, 90), and (180, -90),
+     respectively.
+
+     HGT, the egm96geoid output value(s), are in meters relative to the
+     WGS84 standard ellipsoid.
+
+           h = egm96geoid (-20.05, 59.81)
+            ==>
+            ans = 60.614
+
+     The geoid elevation data are based on interpolation using a 15' x
+     15' grid obtained from:
+     https://www.usna.edu/Users/oceano/pguth/md_help/html/egm96.htm As a
+     consequence the accuracy is highly dependent on the input latitude:
+     near the equator, interpolation is based on a 27.76 x 27.76 km
+     square grid, while near the poles the grid cells are effectively
+     more needle-like triangles with a base of merely 121 m and a height
+     of 27.76 km.
+
+     See also: interp2, referenceEllipsoid.
+
+3.1.15 enu2aer
+--------------
+
+ -- Function File: AZ, EL, SLANTRANGEE, N, U = aer2enu (E, N, U)
+ -- Function File: AZ, EL, SLANTRANGEE, N, U = aer2enu (E, N, U,
+          ANGLEUNIT))
+     Convert cartesian ENU (East, North, Up) coordinates into spherical
+     AER) (Azimuth, Elevation, Range) coordinates.
+
+     Inputs:
+        • E, N, U: East, North, Up cartesian coordinates (in consistent
+          length units).
+
+        • ANGLEUNIT (optional): string for angular units ('degrees' or
+          'radians', case-insensitive, just the first character will
+          do).  Default is 'degrees'.
+
+     Outputs:
+        • AZ: azimuth angle clockwise from local north (angle).
+
+        • EL: elevation angle above local horizon (angle).
+
+        • SLANTRANGE: distance from origin in local spherical system
+          (length unit same as input length units).
+
+     Example:
+           [az, el, slantrange] = enu2aer (186.28, 286.84, 939.69)
+           az = 33.001
+           el = 70.000
+           slantrange = 1000.00
+
+     In radians
+           [az, el, slantrange] = enu2aer (353.55, 353.55, -866.03, "r")
+           az = 0.78540
+           el = 1.0472
+           slantrange = 1000.0
+
+     See also: aer2enu, enu2ecef, enu2ecefv, enu2geodetic, enu2uvw.
+
+3.1.16 enu2ecef
+---------------
+
+ -- Function File: X, Y, Z = enu2ecef (E, N, U, LAT, LON, ALT)
+ -- Function File: X, Y, Z = enu2ecef (E, N, U, LAT, LON, ALT, SPHEROID)
+ -- Function File: X, Y, Z = enu2ecef (E, N, U, LAT, LON, ALT, SPHEROID,
+          ANGLEUNIT)
+     Convert local cartesian East, North, Up (ENU) coordinates to Earth
+     Centered Earth Fixed (ECEF) coordinates.
+
+     Inputs:
+        • E, N, U: look angles and distance to point under consideration
+          (angle, angle, length).  Length unit of U (height) is that of
+          the used reference ellipsoid (see below).  Can be scalars but
+          vectoror nD-array values are accepted if they have equal
+          dimensions.
+
+        • LAT, LON, ALT: ellipsoid geodetic coordinates of observer
+          location (angle, angle, length).  Length unit of ALT (height)
+          is that of the used reference ellipsoid (see below).  In case
+          of multiple local locations their numbers and dimensions
+          should match those of the target points (i.e., one observer
+          location for each target point).
+
+        • SPHEROID: referenceEllipsoid parameter struct, name or EPSG
+          number; default is wgs84.  Can be an empty string or empty
+          numeric array ('[]') to indicate default value.
+
+        • ANGLEUNIT: string for angular units ('degrees' or 'radians',
+          case-insensitive, just the first character will do).  Default
+          is 'degrees'.
+
+     Outputs:
+        • X, Y, Z: Earth Centered Earth Fixed (ECEF) coordinates.
+          Length units are those of the used reference ellipsoid.
+
+     Example
+           [x, y, z] = enu2ecef (186.28, 286.84, 939.69, 42, -82, 200)
+           x = 6.6093e+05
+           y = -4.7014e+06
+           z = 4.2466e+06
+
+     With radians
+           [x, y, z] = enu2ecef (186.28, 286.84, 939.69, pi/4, -pi/2, 200, "wgs84", "radians")
+           x =  186.28
+           y =  -4.5182e+06
+           z =  4.4884e+06
+
+     See also: ecef2enu, enu2aer, enu2ecefv, enu2geodetic, enu2uvw.
+
+3.1.17 enu2ecefv
+----------------
+
+ -- Function File: U, V, W = enu2ecefv (E, N, U, LAT, LON)
+ -- Function File: U, V, W = enu2ecefv (E, N, U, LAT, LON)
+     Convert vector projection(s) of local ENU coordinates to UVW (in
+     ECEF coordinate frame).
+
+     Inputs:
+        • E, N, U: East, North, Up local cartesian coordinates (length).
+          All these inputs must have the same dimensions (scalar, vector
+          or nD array) and length units.
+
+        • LAT, LON: geodetic latitude and longitude (angle).  If
+          non-scalar the dimensions should match those of the first
+          three inputs.
+
+        • ANGLEUNIT: string for angular units ('degrees' or 'radians',
+          case-insensitive, just the first character will do).  Default
+          is 'degrees'.
+
+     Outputs:
+        • U, V, W: vectors in local ENU system (length units and
+          dimensions same as first three inputs).
+
+     Examples:
+           [u, v, w] = enu2ecefv (353.55, 757.11, 657.11, 45, -45)
+           u =  200.00
+           v =  300.00
+           w =  1000.0
+
+     With radians
+           [u, v, w] = enu2ecefv (353.55, 757.11, 657.11, pi/4, -pi/4, "r")
+           u =  200.00
+           v =  300.00
+           w =  1000.0
+
+     See also: ecef2enuv, enu2aer, enu2ecef, enu2geodetic, enu2uvw.
+
+3.1.18 enu2geodetic
+-------------------
+
+ -- Function File: LAT, LON, ALT = enu2geodetic (E, N, U, LAT0, LON0,
+          ALT0)
+ -- Function File: LAT, LON, ALT = enu2geodetic (E, N, U, LAT0, LON0,
+          ALT0, SPHEROID)
+ -- Function File: LAT, LON, ALT = enu2geodetic (E, N, U, LAT0, LON0,
+          ALT0, SPHEROID, ANGLEUNIT)
+     Convert local cartesian East, North, Up (ENU) coordinates to
+     geodetic coordinates.
+
+     Inputs:
+        • E, N, U: look angles and distance to target point(s) (angle,
+          angle, length).  Can be scalars but vectors and nD arrays
+          values are accepted if they have equal dimensions.
+
+        • LAT0, LON0, ALT0: ellipsoid geodetic coordinates of observer
+          location (angle, angle, length).  In case of multiple observer
+          locations their numbers and dimensions should match those of
+          the target points (i.e., one observer location for each target
+          point).  The length units of target point(s) and observer
+          location(s) should match.
+
+        • SPHEROID: referenceEllipsoid parameter struct; default is
+          wgs84.  A string value describing the spheroid is also
+          accepted.
+
+        • ANGLEUNIT: string for angular units ('degrees' or 'radians',
+          case-insensitive, just the first charachter will do).  Default
+          is 'degrees'.
+
+     Outputs:
+        • LAT, LON, ALT: geodetic coordinates of target points (angle,
+          angle, length).
+
+          Note: ALT (height) is relative to the reference ellipsoid, not
+          the geoid.  Use e.g., egm96geoid to compute the height
+          difference between the geoid and the WGS84 reference
+          ellipsoid.
+
+     Lengh units are those of the invoked reference ellipsoid (see
+     below).
+
+     enu2geodetic.m is a wrapper for enu2ecef.m and ecef2geodetic.m
+
+     Example
+           [lat, lon, alt] = enu2geodetic (186.28, 286.84, 939.69, 42, -82, 200)
+           lat =  42.003
+           lon = -81.998
+           alt =  1139.7
+
+     With radians
+           [lat, lon, alt] = enu2geodetic (186.28, 286.84, 939.69, pi/4, -pi/2, 200, ...
+                                           "wgs84", "radians")
+           lat =  0.78544
+           lon = -1.5708
+           alt =  1139.7
+
+     See also: geodetic2enu, enu2aer, enu2ecef, enu2ecefv, enu2uvw,
+     egm96geoid, referenceEllipsoid.
+
+3.1.19 enu2uvw
+--------------
+
+ -- Function File: U, V, W = enu2uvw (EAST, NORTH, UP, LAT0, LON0)
+ -- Function File: U, V, W = enu2uvw (EAST, NORTH, UP, LAT0, LON0,
+          ANGLEUNIT)
+     Convert East, North, Up (ENU) coordinates to UVW coordinates.
+
+     Inputs:
+
+     EAST, NORTH, UP: East, North, Up: coordinates of point(s) (meters)
+
+     LAT0, LON0: geodetic coordinates of observer/reference point(s)
+     (degrees)
+
+     ANGLEUNIT: string for angular units ('degrees' or 'radians',
+     case-insensitive, first character will suffice).  Default =
+     'degrees'.
+
+     Outputs:
+
+     U, V, W: coordinates of point(s) (meters).
+
+     See also: enu2aer, enu2ecef, enu2ecefv, enu2geodetic.
+
+3.1.20 geo2auth
+---------------
+
+ -- : XI = geo2auth (PHI)
+ -- : XI = geo2auth (PHI, SPHEROID)
+ -- : XI = geo2auth (PHI, SPHEROID, ANGLEUNIT)
+     Returns the authalic latitude given geodetic latitude PHI
+
+     Input
+        • PHI: the geodetic latitude
+
+        • (optional) SPHEROID: referenceEllipsoid name, EPSG number, or
+          parameter struct: the default is wgs84.
+
+        • (optional) ANGLEUNIT: string for angular units ('degrees' or
+          'radians', case-insensitive, just the first charachter will
+          do).  Default is 'degrees'.
+
+     Output
+        • XI: the authalic latitude
+
+     Example
+           geo2auth(45)
+           ans =  44.872
+
+     See also: geo2con, geo2iso, geo2rect.
+
+3.1.21 geo2con
+--------------
+
+ -- : CHI = geo2con (PHI)
+ -- : CHI = geo2con (PHI, SPHEROID)
+ -- : CHI = geo2con (PHI, SPHEROID, ANGLEUNIT)
+     Returns the conformal latitude given geodetic latitude PHI
+
+     Input
+        • PHI: the geodetic latitude
+
+        • (optional) SPHEROID: referenceEllipsoid name, EPSG number, or
+          parameter struct: the deualt is wgs84.
+
+        • (optional) ANGLEUNIT: string for angular units ('degrees' or
+          'radians', case-insensitive, just the first charachter will
+          do).  Default is 'degrees'.
+
+     Output
+        • CHI: the conformal latitude
+
+     Example
+           geo2con(45)
+           ans =  44.808
+
+     See also: geo2auth, geo2iso, geo2rect.
+
+3.1.22 geo2iso
+--------------
+
+ -- : PSI = geo2iso (PHI)
+ -- : PSI = geo2iso (PHI, SPHEROID)
+ -- : PSI = geo2iso (PHI, SPHEROID, ANGLEUNIT)
+     Return the isometric latitude given geodetic latitude PHI.
+
+     Input
+        • PHI: the geodetic latitude.  Can be a scalar value, a vector
+          or an ND-array.
+
+        • (optional) SPHEROID: referenceEllipsoid.  For admissible
+          values see 'referenceEllipsoid.m'.  The default ellipsoid is
+          WGS84.  is wgs84.
+
+        • (optional) ANGLEUNIT: string for angular units ('degrees' or
+          'radians', case-insensitive, just the first character will
+          do).  Default is 'degrees'.
+
+     Output
+        • PSI: the isometric latitude(s), same shape as PHI.
+
+     Example
+           geo2iso (45)
+           ans =  50.227
+
+     See also: geo2auth, geo2con, geo2rect, iso2geo.
+
+3.1.23 geo2rect
+---------------
+
+ -- : MU = geo2rect (PHI)
+ -- : MU = geo2rect (PHI, SPHEROID)
+ -- : MU = geo2rect (PHI, SPHEROID, ANGLEUNIT)
+     Returns the rectifying latitude given geodetic latitude PHI
+
+     Input
+        • PHI: the geodetic latitude
+
+        • (optional) SPHEROID: referenceEllipsoid name, EPSG code, or
+          parameter struct: default is wgs84.
+
+        • (optional) ANGLEUNIT: string for angular units ('degrees' or
+          'radians', case-insensitive, just the first character will
+          do).  Default is 'degrees'.
+
+     Output
+        • MU: the rectifying latitude
+
+     Example
+           geo2rect(45)
+           ans =  44.856
+
+     See also: geo2auth, geo2con, geo2iso.
+
+3.1.24 geocentricLatitude
+-------------------------
+
+ -- Function File: PSI = geocentricLatitude (PHI, FLATTENING)
+ -- Function File: PSI = geocentricLatitude (PHI, FLATTENING, ANGLEUNIT)
+     Return geocentric latitude (psi) given geodetic latitude (phi) and
+     flattening.
+
+     The default input and output is in degrees; use optional third
+     parameter ANGLEUNIT for radians.  PHI can be a scalar, vector,
+     matrix or any ND array.  FLATTENING must be a scalar value in the
+     interval [0..1).
+
+     Examples Scalar input:
+           psi = geocentricLatitude (45, 0.0033528)
+           => psi =
+            44.8076
+
+     Also can use radians:
+           psi = geocentricLatitude (pi/4, 0.0033528, "radians")
+           => psi =
+            0.78204
+
+     Vector Input:
+           phi = 35:5:45;
+           psi = geocentricLatitude (phi, 0.0033528)
+           => psi =
+            34.819      39.811      44.808
+
+     See also: parametricLatitude, geodeticLatitudeFromGeocentric,
+     geodeticLatitudeFromParametric.
+
+3.1.25 geodetic2aer
+-------------------
+
+ -- Function File: AZ, EL, SLANTRANGE = geodetic2aer (LAT, LON, ALT,
+          LAT0, LON0, ALT0)
+ -- Function File: AZ, EL, SLANTRANGE = geodetic2aer (LAT, LON, ALT,
+          LAT0, LON0, ALT0, SPHEROID)
+ -- Function File: AZ, EL, SLANTRANGE = geodetic2aer (LAT, LON, ALT,
+          LAT0, LON0, ALT0, SPHEROID, ANGLEUNIT)
+     Convert from geodetic coordinates (latitude, longitude, local
+     height) to Azimuth, Elevation and Range (AER) coordinates.
+
+     Inputs:
+        • LAT, LON, ALT: ellipsoid geodetic coordinates of target
+          point(s) (angle, angle, length).  In case of non-scalar inputs
+          (i.e., multiple points) the dimensions (vectors, nD arrays) of
+          each of these inputs should match.  The length unit is that of
+          the used ellipsoid (default is meters).
+
+        • LAT0, LON0, ALT0: ellipsoid geodetic coordinates of local
+          observer (angle, angle, length).  In case of multiple observer
+          locations their numbers and dimensions should match those of
+          the target points (i.e., one observer location for each test
+          point).  The length units of the point(s) and observer
+          location(s) should match.
+
+        • SPHEROID is a user-specified sheroid (see referenceEllipsoid).
+          It can be spcifid as a referenceEllipsoid struct, a name or an
+          EPSG number.  If omitted WGS84 will be selected as default
+          spheroid and the default length will then be meters.
+
+        • ANGLEUNIT: string for angular units ('degrees' or 'radians',
+          case-insensitive, just the first character will do).  Default
+          is 'degrees'.
+
+     Outputs:
+        • E, N, U: East, North, Up Cartesian coordinates (meters).
+
+     Example:
+           lat  = 42.002; lon  = -81.998; alt  = 1000;
+           lat0 = 42;     lon0 = -82;     alt0 = 200;
+           [e, n, u] = geodetic2aer (lat, lon, alt, lat0, lon0, alt0, "wgs84", "degrees")
+           -->
+              az =  36.719
+              el =  70.890
+              slantRange =  846.65
+
+     See also: aer2geodetic, geodetic2ecef, geodetic2enu, geodetic2ned,
+     referenceEllipsoid.
+
+3.1.26 geodetic2ecef
+--------------------
+
+ -- Function File: X, Y, Z = geodetic2ecef (LAT, LON, ALT)
+ -- Function File: X, Y, Z = geodetic2ecef (SPHEROID, LAT, LON, ALT)
+ -- Function File: X, Y, Z = geodetic2ecef (..., ANGLEUNIT)
+ -- Function File: X, Y, Z = geodetic2ecef (LAT, LON, ALT, SPHEROID)
+     Convert from geodetic coordinates to Earth Centered Earth Fixed
+     (ECEF) coordinates.
+
+     Inputs:
+        • SPHEROID ia user-specified sheroid (see referenceEllipsoid);
+          it can be omitted or given as an ampty string, in which case
+          WGS84 will be the default spheroid.  Unfortunately EPSG
+          numbers cannot be accepted.
+
+          Inputting SPHEROID as 4th argument is accepted but not
+          recommended; in that case the LAT and LON inputs are required
+          to be in radians.
+
+        • LAT, LON (both angle) and ALT (length) are latitude, longitude
+          and height, respectively and can each be scalars.  Vectors or
+          nD arrays are accepted but must all have the exact same size
+          and dimension(s).  ALT's length unit is that of the invoked
+          reference ellipsoid, whose default is meters.  For the default
+          angle unit see below.
+
+          Note: height is relative to the reference ellipsoid, not the
+          geoid.  Use e.g., egm96geoid to compute the height difference
+          between the geoid and the WGS84 reference ellipsoid.
+
+        • ANGLEUNIT can be "degrees" (= default) or "radians".  The
+          default is degrees, unless SPHEROID was given as as 4th input
+          argument in which case ANGLEUNIT is in radians and cannot be
+          changed.
+
+     Ouputs:
+        • The output arguments X, Y, Z (Earth-Centered Earth Fixed
+          coordinates) are in the length units of the invoked ellipsoid
+          and have the same sizes and dimensions as input arguments LAT,
+          LON and ALT.
+
+     Example:
+           Aalborg GPS Centre
+           lat=57.02929569;
+           lon=9.950248114;
+           h= 56.95; # meters
+           >> [X, Y, Z] = geodetic2ecef ("", lat, lon, h)
+           X =     3426949.39675307
+           Y =     601195.852419885
+           Z =     5327723.99358255
+
+     See also: ecef2geodetic, geodetic2aer, geodetic2enu, geodetic2ned,
+     egm96geoid, referenceEllipsoid.
+
+3.1.27 geodetic2enu
+-------------------
+
+ -- Function File: E, N, U = geodetic2enu (LAT, LON, ALT, LAT0, LON0,
+          ALT0)
+ -- Function File: E, N, U = geodetic2enu (LAT, LON, ALT, LAT0, LON0,
+          ALT0, SPHEROID)
+ -- Function File: E, N, U = geodetic2enu (LAT, LON, ALT, LAT0, LON0,
+          ALT0, SPHEROID, ANGLEUNIT)
+     Convert from geodetic coordinates to local East, North, Up (ENU)
+     coordinates.
+
+     Inputs:
+        • LAT, LON, ALT: ellipsoid geodetic coordinates of target point
+          (angle, angle, length).  Can be scalars but vectors and nD
+          arrays values are accepted if they have equal dimensions.
+
+        • LAT0, LON0, ALT0: ellipsoid geodetic coordinates of observer
+          location (angle, angle, length).  In case of multiple observer
+          locations their numbers and dimensions should match those of
+          the target points (i.e., one observer location for each target
+          point).  The length units of target point(s) and observer
+          location(s) should match.
+
+          Note: ALT (height) is relative to the reference ellipsoid, not
+          the geoid.  Use e.g., egm96geoid to compute the height
+          difference between the geoid and the WGS84 reference
+          ellipsoid.
+
+        • SPHEROID (optional): a user-specified sheroid (see
+          referenceEllipsoid); it can be omitted or given as an empty
+          string or empty numeric array('[]'), in which cases WGS84 will
+          be selected as default spheroid.
+
+          ANGLEUNIT: string for angular units ('degrees' or 'radians',
+          case-insensitive, just the first character will do).  Default
+          is 'degrees'.
+
+     Outputs:
+        • E, N, U: East, North, Up Cartesian coordinates (length).
+
+     Lengh units are those of the invoked reference ellipsoid (see
+     below).
+
+     Example:
+           lat  = 42.002; lon  = -81.998; alt  = 1000;
+           lat0 = 42;     lon0 = -82;     alt0 = 200;
+           [e, n, u] = geodetic2enu(lat, lon, alt, lat0, lon0, alt0, "wgs84", "degrees")
+           e =  165.72
+           n =  222.18
+           u =  799.99
+
+     See also: enu2geodetic, geodetic2aer, geodetic2ecef, geodetic2ned,
+     egm96geoid, referenceEllipsoid.
+
+3.1.28 geodetic2ned
+-------------------
+
+ -- Function File: N, E, D = geodetic2ned (LAT, LON, ALT, LAT0, LON0,
+          ALT0)
+ -- Function File: N, E, D = geodetic2ned (LAT, LON, ALT, LAT0, LON0,
+          ALT0, SPHEROID)
+ -- Function File: N, E, D = geodetic2ned (LAT, LON, ALT, LAT0, LON0,
+          ALT0, SPHEROID, ANGLEUNIT)
+     Convert from geodetic coordinates to local North, East, Down (NED)
+     coordinates.
+
+     Inputs:
+        • LAT, LON, ALT: ellipsoid geodetic coordinates of target
+          point(s) (angle, angle, length).  Can be scalars but vectors
+          and nD arrays values are accepted if they have equal
+          dimensions.
+
+        • LAT0, LON0, ALT0: ellipsoid geodetic coordinates of observer
+          location (angle, angle, length).  In case of multiple observer
+          locations their numbers and dimensions should match those of
+          the target points (i.e., one observer location for each target
+          point).  The length units of target point(s) and observer
+          location(s) should match.
+
+          Note: ALT (height) is relative to the reference ellipsoid, not
+          the geoid.  Use e.g., egm96geoid to compute the height
+          difference between the geoid and the WGS84 reference
+          ellipsoid.
+
+        • SPHEROID (optional): a user-specified spheroid (see
+          referenceEllipsoid); it can be omitted or given as an empty
+          string or empty numeric array('[]'), in which cases WGS84 will
+          be selected as default spheroid.
+
+        • ANGLEUNIT: string for angular units ('degrees' or 'radians',
+          case-insensitive, just the first character will do).  Default
+          is 'degrees'.
+
+     Outputs:
+        • N, E, D: North, East, Down Cartesian coordinates (length).
+
+     Lengh units are those of the invoked reference ellipsoid (see
+     below).
+
+     Example:
+           lat  = 42.002; lon  = -81.998; alt  = 1000;
+           lat0 = 42;     lon0 = -82;     alt0 = 200;
+           [n, e, d] = geodetic2ned(lat, lon, alt, lat0, lon0, alt0, "wgs84", "degrees")
+           n =  222.18
+           e =  165.72
+           u =  -799.99
+
+     See also: ned2geodetic, geodetic2aer, geodetic2ecef, geodetic2enu,
+     egm96geoid, referenceEllipsoid.
+
+3.1.29 geodeticLatitudeFromGeocentric
+-------------------------------------
+
+ -- Function File: PHI = geodeticLatitudeFromGeocentric (PSI,
+          FLATTENING)
+ -- Function File: PHI = geodeticLatitudeFromGeocentric (PSI,
+          FLATTENING, ANGLEUNIT)
+     Return geodetic latitude (phi) given geocentric latitude (psi) and
+     flattening.
+
+     The default input and output is in degrees; use optional third
+     parameter ANGLEUNIT for radians.  PSI can be a scalar, vector,
+     matrix or any ND array.  FLATTENING must be a scalar value in the
+     interval [0..1).
+
+     Examples Scalar input:
+           phi = geodeticLatitudeFromGeocentric (45, 0.0033528)
+           => phi =
+             45.192
+
+     Also can use radians:
+           phi = geodeticLatitudeFromGeocentric (pi/4, 0.0033528, "radians")
+           => phi =
+            0.78876
+
+     Vector Input:
+           psi = 35:5:45;
+           phi = geodeticLatitudeFromGeocentric (psi, 0.0033528)
+           => phi =
+            35.181       40.19      45.192
+
+     See also: geocentricLatitude, geodeticLatitudeFromGeocentric,
+     parametricLatitude.
+
+3.1.30 geodeticLatitudeFromParametric
+-------------------------------------
+
+ -- Function File: PHI = geodeticLatitudeFromParametric (BETA,
+          FLATTENING)
+ -- Function File: PHI = geodeticLatitudeFromParametric (BETA,
+          FLATTENING, ANGLEUNIT)
+     Returns geodetic latitude (phi) given parametric latitude and
+     flattening.
+
+     Parametric latitude (BETA) is also known as a reduced latitude.
+     The default input and output is in degrees; use optional third
+     parameter ANGLEUNIT for radians.  BETA can be a scalar, vector,
+     matrix or any ND array.  FLATTENING must be a scalar value in the
+     interval [0..1).
+
+     Examples: Scalar input:
+           phi = geodeticLatitudeFromParametric (45, 0.0033528)
+           => phi =
+            45.096
+
+     Also can use radians:
+           phi = geodeticLatitudeFromParametric (pi/4, 0.0033528, "radians")
+           => phi =
+            0.78708
+
+     Vector Input:
+           beta = 35:5:45;
+           phi = geodeticLatitudeFromParametric (beta, 0.0033528)
+           => phi =
+            35.09      40.095      45.096
+
+     See also: geocentricLatitude, geodeticLatitudeFromGeocentric,
+     parametricLatitude.
+
+3.1.31 iso2geo
+--------------
+
+ -- : PSI = iso2geo (PHI)
+ -- : PSI = iso2geo (PHI, SPHEROID)
+ -- : PSI = iso2geo (PHI, SPHEROID, ANGLEUNIT)
+     Returns the isometric latitude given geodetic latitude PHI
+
+     Input
+        • PHI: the geodetic latitude(s).  Can be a scalar, vector or
+          ND-array.
+
+        • (optional) SPHEROID: referenceEllipsoid.  For admissible
+          values see 'referenceEllipsoid'.  The default value is
+          'WGS84'.
+
+        • (optional) ANGLEUNIT: string for angular units ('degrees' or
+          'radians', case-insensitive, just the first charachter will
+          do).  Default is 'degrees'.
+
+     Output
+        • PSI: the isometric latitude(s), same shape as PHI.
+
+     Example
+           iso2geo (45)
+           ans =  41.170
+
+     See also: geo2auth, geo2con, geo2iso, geo2rect.
+
+3.1.32 ned2aer
+--------------
+
+ -- Function File: AZ, EL, SLANTRANGE = ned2aer (N, E, D)
+ -- Function File: AZ, EL, SLANTRANGE = ned2aer (N, E, D, ANGLEUNIT)
+     Convert NED (North, East, Down)coordinates to AER (Azimuth,
+     Elevation, slantRange) coordinates.
+
+     Inputs:
+        • N, E, D: North, East, Down coordinates of test points in
+          consistent length units.
+
+        • ANGLEUNIT: string for angular units ('degrees' or 'radians',
+          case-insensitive, just the first character will do).  Default
+          is 'degrees'.
+
+     Outputs:
+        • AZ: azimuth angle clockwise from local north (degrees).
+
+        • EL: elevation angle above local horizon (degrees).
+
+        • SLANTRANGE: distance from origin in local spherical system
+          (same as input units).
+
+     Examples:
+           [az, el, slantrange] = ned2aer (286.84, 186.28, -939.69)
+           az =  33.001
+           el =  70.000
+           slantrange = 1000.00
+
+     With radians:
+           [az, el, slantrange] = ned2aer (353.55, 353.55, -866.03, "r")
+           az =  0.78540
+           el =  1.0472
+           slantrange =  1000.0
+
+     See also: aer2ned, ned2ecef, ned2ecefv, ned2geodetic.
+
+3.1.33 ned2ecef
+---------------
+
+ -- Function File: X, Y, Z = enu2ecef (N, E, D, LAT, LON, ALT)
+ -- Function File: X, Y, Z = enu2ecef (N, E, D, LAT, LON, ALT, SPHEROID)
+ -- Function File: X, Y, Z = enu2ecef (N, E, D, LAT, LON, ALT, SPHEROID,
+          ANGLEUNIT)
+     Convert local cartesian North, East, Down (NED) coordinates to
+     Earth Centered Earth Fixed (ECEF) coordinates.
+
+     Inputs:
+        • N, E, D: look angles and distance to target point (angle,
+          angle, length).  Length unit of U (height) is that of the used
+          reference ellipsoid (see below).  Can be scalars but vector or
+          nD-array values are accepted if they have equal dimensions.
+
+        • LAT, LON, ALT: ellipsoid geodetic coordinates of observer
+          location (angle, angle, length).  Length unit of ALT (height)
+          is that of the used reference ellipsoid (see below).  In case
+          of multiple observer locations their numbers and dimensions
+          should match those of the target points (i.e., one observer
+          location for each target point).
+
+        • SPHEROID: referenceEllipsoid parameter struct, name or EPSG
+          number; default is wgs84.  Can be an empty string or empty
+          numeric array ('[]') to indicate default value.
+
+        • ANGLEUNIT: string for angular units ('degrees' or 'radians',
+          case-insensitive, just the first character will do).  Default
+          is 'degrees'.
+
+     Outputs:
+        • X, Y, Z: Earth Centered Earth Fixed (ECEF) coordinates.
+          Length units are those of the used reference ellipsoid.
+
+     Examples
+           [x, y, z] = ned2ecef (286.84, 186.28, -939.69, 42, -82, 200)
+           x = 6.6093e+05
+           y = -4.7014e+06
+           z = 4.2466e+06
+
+     With radians
+           [x, y, z] = ned2ecef (286.84, 186.28, -939.69, pi/4, -pi/2, 200, ...
+                                 "wgs84", "radians")
+           x =  186.28
+           y =  -4.5182e+06
+           z =  4.4884e+06
+
+     See also: ecef2ned, ned2aer, ned2ecefv, ned2geodetic,
+     referenceEllipsoid.
+
+3.1.34 ned2ecefv
+----------------
+
+ -- Function File: U, V, W = ned2ecefv (N, E, D, LAT, LON)
+ -- Function File: U, V, W = ned2ecefv (N, E, D, LAT, LON)
+     Convert vector projection(s) of local ENU coordinates to UVW (in
+     ECEF coordinate frame).
+
+     Inputs:
+        • N, E, D: North, East, Down local cartesian coordinates
+          (length).  All these inputs must have the same dimensions
+          (scalar, vector or nD array) and length units.
+
+        • LAT, LON: geodetic latitude and longitude (angle).  If
+          non-scalar the dimensions should match those of the first
+          three inputs.
+
+        • ANGLEUNIT: string for angular units ('degrees' or 'radians',
+          case-insensitive, just the first character will do).  Default
+          is 'degrees'.
+
+     Outputs:
+        • U, V, W: vectors in local ECEF system (length units and
+          dimensions same as first three inputs).
+
+     Examples:
+           [u, v, w] = ned2ecefv (757.11, 353.55, -657.11, 45, -45)
+           u =  200.00
+           v =  300.00
+           w =  1000.0
+
+     With radians
+           [u, v, w] = ned2ecefv (757.11, 353.55, -657.11, pi/4, -pi/4, "r")
+           u =  200.00
+           v =  300.00
+           w =  1000.0
+
+     See also: ecef2nedv, ned2aer, ned2ecef, ned2geodetic.
+
+3.1.35 ned2geodetic
+-------------------
+
+ -- Function File: LAT, LON, ALT = ned2geodetic (N, E, D, LAT0, LON0,
+          ALT0)
+ -- Function File: LAT, LON, ALT = ned2geodetic (N, E, D, LAT0, LON0,
+          ALT0, SPHEROID)
+ -- Function File: LAT, LON, ALT = ned2geodetic (N, E, D, LAT0, LON0,
+          ALT0, SPHEROID, ANGLEUNIT)
+     Convert local cartesian North, East, Down (NED) coordinates to
+     geodetic coordinates.
+
+     Inputs:
+        • N, E, D: look angles and distance to target point(s) (angle,
+          angle, length).  Can be scalars but vectors and nD arrays
+          values are accepted if they have equal dimensions.
+
+        • LAT0, LON0, ALT0: ellipsoid geodetic coordinates of observer
+          location (angle, angle, length).  In case of multiple observer
+          locations their numbers and dimensions should match those of
+          the target points (i.e., one observer location for each target
+          point).  The length units of target point(s) and observer
+          location(s) should match.
+
+        • SPHEROID: referenceEllipsoid parameter struct; default is
+          wgs84.  A string value or numerical EPSG code describing the
+          spheroid is also accepted.
+
+        • ANGLEUNIT: string for angular units ('degrees' or 'radians',
+          case-insensitive, just the first charachter will do).  Default
+          is 'degrees'.
+
+     Outputs:
+        • LAT, LON, ALT: geodetic coordinates of target points (angle,
+          angle, length).
+
+          Note: ALT (height) is relative to the reference ellipsoid, not
+          the geoid.  Use e.g., egm96geoid to compute the height
+          difference between the geoid and the WGS84 reference
+          ellipsoid.
+
+     Lengh units are those of the invoked reference ellipsoid (see
+     below).
+
+     ned2geodetic.m is a wrapper for ned2ecef.m and ecef2geodetic.m
+
+     Examples
+           [lat, lon, alt] = ned2geodetic (286.84, 186.28, -939.69, 42, -82, 200)
+           lat =  42.003
+           lon = -81.998
+           alt =  1139.7
+
+     With radians:
+           [lat, lon, alt] = ned2geodetic (286.84, 186.28, -939.69, pi/4, -pi/2, 200, ...
+                                           "wgs84", "radians")
+           lat =  0.78544
+           lon = -1.5708
+           alt =  1139.7
+
+     See also: geodetic2ned, ned2aer, ned2ecef, ned2ecefv,
+     referenceEllipsoid.
+
+3.1.36 parametricLatitude
+-------------------------
+
+ -- Function File: BETA = parametricLatitude (PHI, FLATTENING)
+ -- Function File: BETA = parametricLatitude (PHI, FLATTENING,
+          ANGLEUNIT)
+     Returns parametric latitude given geodetic latitude (phi) and
+     flattening.
+
+     The parametric latitude BETA is also known as a reduced latitude.
+     The default input and output is in degrees; use optional third
+     parameter ANGLEUNIT for radians.  PHI can be a scalar, vector,
+     matrix or any ND array.  FLATTENING must be a scalar value in the
+     interval [0..1).
+
+     Examples: Scalar input:
+           beta = parametricLatitude (45, 0.0033528)
+           => beta =
+            44.904
+
+     Also can use radians:
+           beta = parametricLatitude (pi/4, 0.0033528, "radians")
+           => beta =
+            0.78372
+
+     Vector Input:
+           phi = 35:5:45;
+           beta = parametricLatitude (phi, 0.0033528)
+           => beta =
+            34.91      39.905      44.904
+
+     See also: geocentricLatitude , geodeticLatitudeFromGeocentric ,
+     geodeticLatitudeFromParametric.
+
+3.1.37 rect2geo
+---------------
+
+ -- : PHI = rect2geo (MU)
+ -- : PHI = rect2geo (MU, SPHEROID)
+ -- : PHI = rect2geo (MU, SPHEROID, ANGLEUNIT)
+     Returns the geodetic latitude given rectifying latitude MU
+
+     Input
+        • MU: the rectifying latitude(s).  Can be a scalar value, a
+          vector or an nD array.
+
+        • (optional) SPHEROID: referenceEllipsoid parameter struct: the
+          default is wgs84.
+
+        • (optional) ANGLEUNIT: string for angular units ('degrees' or
+          'radians', case-insensitive, just the first character will
+          do).  Default is 'degrees'.
+
+     Output
+        • PHI: the geodetic latitude(s), same shape as MU.
+
+     Example
+           rect2geo(44.856)
+           ans =  45.000
+
+     See also: geo2auth, geo2con, geo2iso, geo2rect.
+
+3.1.38 referenceEllipsoid
+-------------------------
+
+ -- Function File: referenceEllipsoid (NAME, UNIT)
+     Returns the parameters of an ellipsoid.
+
+     NAME can be the name (e.g., "wgs84") or (integer) EPSG code of a
+     reference ellipoid.  Case is not important.  If the number or code
+     0 (zero) is specified, referenceEllipsoid echoes a list of
+     implemented ellipsoids to the screen.
+
+     UNIT can be the name of any unit accepted by function
+     validateLengthUnit.m.  Also here case is not important.
+
+     The output consists of a scalar struct with fields "Code" (EPSG
+     code of the ellipsoid), "Name" (name of the ellipsoid),
+     "LengthUnit", "SemimajorAxis", "SemiminorAxis",
+     "InverseFlattening", "Eccentricity", "Flattening",
+     "ThirdFlattening", "MeanRadius", "SurfaceArea", and "Volume".
+
+     If an output argument is supplied for input "0", that output is a
+     struct array of all parameters of all implemented reference
+     ellipsoids.
+
+     Examples:
+
+           >> E = referenceEllipsoid ("wgs84")
+           E =
+
+            scalar structure containing the fields:
+
+              Code =  7030
+              Name = World Geodetic System 1984
+              LengthUnit = meter
+              SemimajorAxis =  6378137
+              SemiminorAxis =    6.3568e+06
+              InverseFlattening =  298.26
+              Eccentricity =  0.081819
+              Flattening =  0.0033528
+              ThirdFlattening =  0.0016792
+              MeanRadius =    6.3710e+06
+              SurfaceArea =    5.1007e+14
+              Volume =    1.0832e+21
+
+     The code number can be used:
+
+           >> E = referenceEllipsoid (7019)
+           E =
+
+            scalar structure containing the fields:
+
+              Code =       7019
+              Name = Geodetic Reference System 1980
+              LengthUnit = meter
+              SemimajorAxis = 6.3781e+06
+              SemiminorAxis = 6.3568e+06
+              InverseFlattening =     298.26
+              Eccentricity =   0.081819
+              Flattening =  0.0033528
+              ThirdFlattening =  0.0016792
+              MeanRadius =  6.371e+06
+              SurfaceArea = 5.1007e+14
+              Volume = 1.0832e+21
+
+           >> E = referenceEllipsoid ("wgs84", "km")
+           E =
+
+            scalar structure containing the fields:
+
+              Code =  7030
+              Name = World Geodetic System 1984
+              LengthUnit = km
+              SemimajorAxis =  6378.1
+              SemiminorAxis =  6356.8
+              InverseFlattening =  298.26
+              Eccentricity =  0.081819
+              Flattening =  0.0033528
+              ThirdFlattening =  0.0016792
+              MeanRadius =  6371.0
+              SurfaceArea =    5.1007e+08
+              Volume =    1.0832e+12
+
+     See also: validateLengthUnit, wgs84Ellipsoid.
+
+3.1.39 referenceSphere
+----------------------
+
+ -- Function File: referenceSphere (NAME, UNIT)
+     Return the parameters of the named spherical object.
+
+     Valid names are "Unit Sphere", "Sun", "Sun", "Mercury", "Venus",
+     "Earth", "Moon", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune",
+     and "Pluto".  Case is not important.
+
+     UNIT can be the name of any unit accepted by function
+     validateLengthUnit.m.  Also here case is not important.
+
+     The output consists of a scalar struct with fields "Name",
+     "LengthUnit", "Radius", "SemimajorAxis", "SemiminorAxis",
+     "InverseFlattening", "Eccentricity", "Flattening",
+     "ThirdFlattening", "MeanRadius", "SurfaceArea", and "Volume".
+
+     Examples:
+
+           >> E = referenceSphere ()
+           E =
+
+             scalar structure containing the fields:
+
+               Name = Unit Sphere
+               LengthUnit =
+               Radius = 1
+               SemimajorAxis = 1
+               SemiminorAxis = 1
+               InverseFlattening = Inf
+               Eccentricity = 0
+               Flattening = 0
+               ThirdFlattening = 0
+               MeanRadius = 1
+               SurfaceArea = 12.566
+               Volume = 4.1888
+
+           >> E = referenceSphere ("Earth", "km")
+           E =
+
+             scalar structure containing the fields:
+
+               Name = Earth
+               LengthUnit = km
+               Radius = 6371
+               SemimajorAxis = 6371
+               SemiminorAxis = 6371
+               InverseFlattening = Inf
+               Eccentricity = 0
+               Flattening = 0
+               ThirdFlattening = 0
+               MeanRadius = 6371.0
+               SurfaceArea = 5.1006e+08
+               Volume = 1.0832e+12
+
+     See also: validateLengthUnit, referenceEllipsiod.
+
+3.1.40 wgs84Ellipsoid
+---------------------
+
+ -- Function File: wgs84Ellipsoid (UNIT)
+
+     Returns the parameters of the wgs84 ellipsoid.  Argument UNIT is
+     optional and if given, should be one of the units recognized by
+     function validateLengthUnit().
+
+     Example:
+           >> E = wgs84Ellipsoid
+           E =
+
+            scalar structure containing the fields:
+
+              Code =  7030
+              Name = World Geodetic System 1984
+              LengthUnit = meter
+              SemimajorAxis =  6378137
+              SemiminorAxis =    6.3568e+06
+              InverseFlattening =  298.26
+              Eccentricity =  0.081819
+              Flattening =  0.0033528
+              ThirdFlattening =  0.0016792
+              MeanRadius =    6.3710e+06
+              SurfaceArea =    5.1007e+14
+              Volume =    1.0832e+21
+
+     A unit argument is also accepted:
+           >> E = wgs84Ellipsoid ("km")
+           E =
+
+            scalar structure containing the fields:
+
+              Code =  7030
+              Name = World Geodetic System 1984
+              LengthUnit = km
+              SemimajorAxis =  6378.1
+              SemiminorAxis =  6356.8
+              InverseFlattening =  298.26
+              Eccentricity =  0.081819
+              Flattening =  0.0033528
+              ThirdFlattening =  0.0016792
+              MeanRadius =  6371.0
+              SurfaceArea =    5.1007e+08
+              Volume =    1.0832e+12
+
+     See also: referenceEllipsoid, validateLengthUnit.
+
+
+File: mapping.info,  Node: DXF files,  Next: GIS raster files,  Prev: Coordinate systems,  Up: Function Reference
+
+3.2 DXF files
+=============
+
+3.2.1 dxfdraw
+-------------
+
+ -- : [H] = dxfdraw (DXF)
+ -- : [H] = dxfdraw (DXF, CLR)
+ -- : [H] = dxfdraw (..., NAME, VALUE, ...)
+     Draw a map of a DXF file based on a DXF cell array or DXF drawing
+     struct.
+
+     Input argument DXF is the name of a DXF cell array (see dxfread.m),
+     or the name of a DXF file, or a DXF drawing struct made by
+     dxfparse.
+
+     CLR is the color used to draw the DXF contents.  All lines and arcs
+     are drawn in the same color; similar for all filled surfaces.  For
+     points, lines and polylines this can be a 3x1 RGB vector or a color
+     code.  For polygons it can be a 2x1 vector of color codes or a 2x3
+     double array of RGB entries.  The default is [0.7 0.7 0.7; 0.8 0.9
+     0.99].
+
+     In addition several graphics properties can be specified, e.g.,
+     linestyle and linewidth.  No checks are performed whether these are
+     valid for the entities present in the DXF cell array or file.
+
+     Currently the following entities are supported: POINT, LINE,
+     POLYLINE, LWPOLYLINE, CIRCLE, ARC and 3DFACE. For drawing CIRCLE
+     and ARC entities functions from the geometry packge are required.
+
+     Optional output argument H is the graphics handle of the resulting
+     map.
+
+     See also: dxfread, dxfparse.
+
+3.2.2 dxfparse
+--------------
+
+ -- : DXFO = dxfparse (DXFI)
+ -- : DXFO = dxfparse (DXFI, OUTSTYLE)
+     Parse a DXF struct (read by dxfread) into a DXF drawing struct or
+     into a mapstruct.
+
+     Input arg DXFI can be a DXF cell array produced by dxfread, or a
+     DXF file name (dxfparse will invoke dfread to read it).
+
+     Optional numeric input argument OUTSTYLE can be used to select a
+     desired output format:
+
+        • 0 (default) Return an output struct optimized for fast drawing
+          with dxfdraw.m
+
+        • 1 Return an output struct containing 2D (Matlab-compatible)
+          mapstructs like those returned by shaperead.m.  The output
+          struct contains a "dxfpl" Polyline mapstruct for LINEs and
+          open POLYLINEs and LWPOLYLINE entities; a "dxfpt" Point
+          mapstruct for POINT entities; and a "dxfpg" Polygon mapstucts
+          for closed POLYLINE and LWPOLYLINE entities.
+
+        • 2 If the DXF file is 3D, return a 3D mapstruct as returned by
+          shaperead.m with Z coordinates.
+
+     See also: dxfread, dxfdraw.
+
+3.2.3 dxfread
+-------------
+
+ -- : DXF = dxfread (FNAME)
+     Read a DXF file (text file) into a Nx3 cell array.
+
+     FNAME is the file name or full path name of a text format (not
+     binary) DXF file, with or without "dxf" extension.
+
+     Output variable DXF is a cell array with DXF codes in column 1, the
+     corresponding DXF text info (or empty string) in column 2, and
+     corresponding numeric values (or NaN) in column 3.  Use dxfparse
+     for converting the output into a DXF drawing struct or separate
+     mapstructs for each ENTITY type in the DXF file.
+
+     See also: dxfparse, dxfdraw.
+
+
+File: mapping.info,  Node: GIS raster files,  Next: GIS vector files,  Prev: DXF files,  Up: Function Reference
+
+3.3 GIS raster files
+====================
+
+3.3.1 gdalread
+--------------
+
+ -- : [RSTAT, RINFO, BANDS] = gdalread (FNAME)
+ -- : [RSTAT, RINFO, BANDS] = gdalread (FNAME, INFO)
+     Get raster data and info or (optionally) just info from a GIS
+     raster file.  For normal raster data reading it is better to use
+     rasterread.m as that takes care of postprocessing gdalread output.
+
+     FNAME is the name (or full path name) of a raster file to be read.
+
+     INFO is any non-null value.  If present, only raster info is
+     returned.  This option can be useful if only raster information is
+     required and reading the raster data can be skipped.
+
+     RSTAT is set to zero if reading was successful, -1 otherwise.
+
+     RINFO is a scalar struct containing information about the raster
+     data: datatype_index (a numerical GDAL datatype index);
+     datatype_name (GDAL type name); BitDepth; geotransformation (1x6
+     double vector); projection (a string containing projection
+     information); Width (nr.  of raster data columns); Height (nr.  of
+     raster data rows); FileType; and nbands (the number of raster bands
+     in the file).
+
+     BANDS is a struct array containing raster data for each band in the
+     file.  If only raster info was requested, bands is empty.  When
+     data is read, each band is a struct element containing: bbox
+     (bounding box: [xmin ymin; xmax ymax]), data (a matrix with the
+     actual raster data); min (minimum raster data value); max (maximum
+     raster data value); has_ndv (indicates whether the band as a
+     special value indicating pixels that shouldn't be processed);
+     ndv_val (the special value for improper pixels), and colortable.
+     If the band has a colortable, field "colortable" contains an Mx4
+     array of colortable entries (see GDAL reference), otherwise this
+     field is empty.  Note that the actual raster data array (field
+     "data" is rotated 90 degrees clockwise.
+
+     See also: rasterread,rot90.
+
+3.3.2 rasterclip
+----------------
+
+ -- : [RBO, RIO] = rasterclip (RBI, RII, CLPBOX)
+     Clip a georaster with a rectangle and return adapted bands and info
+     structs.
+
+     rasterclip is useful for extracting a part of a raster map to
+     enable e.g., faster drawing RBI and RII are output structs from
+     rasterread.m CLPBOX is a 2x2 matrix containing [Xmin, Ymin; Xmax,
+     Ymax] of the rectangle.
+
+     Output structs RBO and RIO contain adapted bbox, data, Width,
+     Height and GeoTransformation fields.  All other fields are copied
+     verbatim, except fields FileSize, FileName and FileModDate which
+     are all left empty.
+
+     See also: rasterread,rasterdraw.
+
+3.3.3 rasterdraw
+----------------
+
+ -- : H = rasterdraw (DATA)
+ -- : H = rasterdraw (DATA, RINFO)
+ -- : H = rasterdraw (..., PROPERTY, VALUE, ...)
+     Draw a GIS raster map.
+
+     DATA can be a file name of a GIS raster data file, or a raster data
+     struct made by rasterread; in the latter case input arg RINFO, a
+     raster info struct also made by rasterread, is also required.
+
+     Optionally, property/value pairs can be specified.  Only the first
+     four characters of the property need to be entered.  The following
+     property/value pairs are recognized:
+
+        • 'bands': The value should be a scalar value or vector
+          indicating which band(s) will be drawn in case of multi-band
+          raster data.  The default is all bands if the data contains
+          three bands of integer data type, or the first band in all
+          other cases.  For non-integer raster data only one raster band
+          can be specified.  The number of bands must be 1 or 3.
+
+        • 'colormap': The value should be a valid colormap to be used
+          for indexed raster data.
+
+        • 'missingvalue': A numerical value to substitute for missing
+          values in the raster data.  Default is NaN (for floating point
+          raster data).
+
+     The optional output argument H is a graphics handle to the map.
+
+     If the raster data to be plotted comprises just one band and a GDAL
+     colortable, that colortable is converted to a colormap and used for
+     drawing the map.  The actual raster data are converted to uint8 if
+     no missing data are present.
+
+     Behind the scenes imshow() is invoked for the actual drawing for
+     integer or single-band data, or pcolor() for floating point data
+     with missing values.
+
+     Note that drawing raster data can be quite slow for big data sets.
+     Drawing maps larger than ~4000x4000 pixels is therefore not
+     advised.
+
+     See also: mapshow, rasterread, rasterinfo.
+
+3.3.4 rasterinfo
+----------------
+
+ -- : RINFO = rasterinfo (FNAME)
+     Return various info about a GIS raster file: a.o., file type, bit
+     depth, raster size, projection and geotransformation.  If the
+     raster file is a geotiff file, additional info is returned.
+
+     rasterinfo needs the GDAL library.
+
+     See also: rasterread.
+
+3.3.5 rasterread
+----------------
+
+ -- Function File: [BANDS, INFO] = rasterread (FNAME)
+     Read a GIS raster file
+
+     FNAME can be about any type of GIS raster file recognized by the
+     GDAL library.  For .adf files, either the name of the subdirectory
+     containing the various component files, or the name of one of those
+     component files can be specified.
+
+     Output argument BANDS is a struct, or if multiple bands were read,
+     a struct array, with data of each band: data, min, max, bbox, and
+     (if present for the band) a GDAL colortable (see GDAL on-line
+     reference).
+
+     Output argument BINFO contains various info of the raster file:
+     overall bounding box, geotransformation, projection, size, nr.  of
+     columns and rows, datatype, nr.  of bands.
+
+     rasterread.m needs the GDAL library.
+
+     See also: gdalread, gdalwrite.
+
+
+File: mapping.info,  Node: GIS vector files,  Next: GPS files,  Prev: GIS raster files,  Up: Function Reference
+
+3.4 GIS vector files
+====================
+
+3.4.1 geoshow
+-------------
+
+ -- Function File: geoshow (SHPS)
+ -- Function File: geoshow (SHPS, CLR)
+     Plot a mapstruct created by shaperead.
+
+     SHPS is the name of a geostruct created by shaperead.
+
+     Optional argument CLR can be a predefined color ("k", "c", etc.),
+     an RGB triplet, or a 2 X 1 column vector of RGB triplets (each row
+     containing a triplet).  The uppermost row will be used for points
+     and lines, the lowermost row for solid shape features (not yet
+     implemented).
+
+     See also: mapshow, shapedraw, shapeinfo, shaperead.
+
+3.4.2 gmlread
+-------------
+
+ -- : GML = gmlread (FNAME, DOTS)
+     Read a .gml (Geographic Markup Language) file.
+
+     gmlread only reads coordinates, no attributes.
+
+     Required input argument FNAME is the name of a .gml file.  If no
+     other arguments are specified all features in the entire .gml file
+     will be read.
+
+     The following optional property/value pairs (all case-insensitive)
+     can be specified to select only some feature types and/or features
+     limited to a certain area:
+
+        • "FeatureType" (Just one "f" will do) Only read a certain
+          feature type; the value can be one of "Points", "LineStrings"
+          or "Polygons" (only the first three characters matter).
+          Multiple feature types can be selected by specifying multiple
+          FeatureType property/value pairs.
+
+        • BoundingBox (just one "b" suffices) Only read features that
+          lie entirely within a coordinate rectangle specified as a 2x2
+          matrix containing [minX minY; maxX maxY].
+
+     In addition verbose output can be obtained by specifying the
+     following property/value pair:
+
+        • Debug (a "d" will do) followed by a numeric value of 1 (or
+          true) specifies verbose output; a numeric value of 0 (or
+          false) suppresses verbose output.
+
+     The output of gmlread comprises a struct containing up to three
+     mapstructs (MultiPoint and/or Polyline and/or Polygon mapstructs),
+     depending on optional featuretype selection.
+
+     See also: shaperead.
+
+3.4.3 isShapeMultipart
+----------------------
+
+ -- : MP = isShapeMultipart (X, Y)
+     Checks if a polygon or polyline consists of multiple parts
+     separated by NaN rows.
+
+     X and Y must be vectors with the same orientation (either row
+     vectors of column vectors).
+
+     Output argument MP is zero (false) if the shape contains no NaN
+     rows, otherwise it equals the number of polygon/polyline shape
+     parts.
+
+     See also: .
+
+3.4.4 kmlread
+-------------
+
+ -- : KML = kmlread (FNAME)
+     (EXPERIMENTAL) Read a Google kml file and return its contents in a
+     struct.
+
+     NAME is the name of a .kml file.  Currently kmlread can read Point,
+     LineString, Polygon, Track and Multitrack entries.
+
+     KML is a struct with fields Type, Lat, Lon, Ele, Time and Name.  If
+     the .kml file contained LineStrings and/or Polygons also field
+     BoundingBox is present containing suitable values for the relevant
+     items.
+
+     See also: kmzread.
+
+3.4.5 kmzread
+-------------
+
+ -- : RETVAL = kmzread (FNAME, ...)
+     Read a compressed Google kmz file and return its contents in a
+     struct.
+
+     See 'help kmlread' for more information.
+
+     See also: kmlread.
+
+3.4.6 mapshow
+-------------
+
+ -- Function File: H = mapshow (DATA)
+ -- Function File: H = mapshow (DATA, CLR)
+ -- Function File: H = mapshow (DATA, CLR, ...)
+ -- Function File: H = mapshow (DATA, ...)
+ -- Function File: H = mapshow (X, Y)
+ -- Function File: H = mapshow (X, Y, CLR)
+     Draw a map based on raster or shapefile data.
+
+     DATA can be:
+
+        • The filename of a GIS raster file (any file supported by the
+          GDAL library) or of an ArcGIS shapefile.  mapshow will invoke
+          rasterread.m and rasterdraw.m.  If no file extension is
+          specified (just base name) mapshow assumes it is a shapefile.
+
+        • A raster band struct created by rasterread.m; in that case the
+          corresponding raster info struct (also made by rasterread.m)
+          is required as second input argument.
+
+        • A struct created by shaperead.m.  DATA can be a mapstruct or
+          an Octave-style shape struct.
+
+        • The base name or full file name of an ArcGis shape file.
+          mapshow will invoke shaperead.m and shapedraw.m
+
+     If the first two arguments to mapshow.m contain numeric vectors,
+     mapshow will simply draw the vectors as XY lines.  The vectors can
+     contain NaNs (in identical positions) to separate parts.
+
+     For raster maps currently no further input arguments are
+     recognized.  For shapefile data, optional argument CLR can be a
+     predefined color ("k", "c", etc.), and RGB triplet, or a 2 X 1
+     column vector of predefined colors or RGB triplets (each row
+     containing a predefined color or triplet).  The upper row will be
+     used for points and lines, the lower row for solid shape features.
+     For XY data, only the first row is used.  One-character color codes
+     can be preceded by one-character linestyle indicators (":", "-",
+     "-", "-.")  to modify the linestyle for polylines, or marker styles
+     ("o", "*", ".", "+", ",̈ ">", "<", "s", "d", "h", "v", "^") for
+     points.
+
+     Any other arguments are considered graphics properties for
+     (multi-)points, polylines and polygons and will be conveyed as-is
+     to the actual plotting routines.
+
+     Additionally, if the first argument is a shape struct, mapshow
+     accepts a property-value pair "symbolspec" (minimum abbreviation
+     "symb") with a value comprising a cell array containing
+     instructions on how to display the shape contents.  Multiple
+     sympolspec property/value pairs can be specified.
+
+     Return argument H is a handle to the plot figure.
+
+     Examples:
+
+             H = mapshow ("/full/path/to/map")
+             (draws a raster map and returns the figure handle in H)
+
+             H = mapshow ("shape.shp", ":g")
+             H = mapshow ("shape.shp", "color", "g", "linestyle", ":")
+             (draws a polygon shapefile "shape.shp" with green
+              dotted lines and return figure handle in H)
+
+             mapshow (X, Y, "k")
+             (plot vectors X and Y in black color)
+
+             mapshow (X, Y, "-.r", "linewidth", 5)
+             (plot vectors X and Y as a dashdotted thick red line)
+
+             mapshow (data, "symbolspec", symsp1, "symb", symsp2)
+             (draw contents of shapestruct (or mapstruct) data
+              according to the symbolspecs symsp1 and symsp2)
+
+     See also: geoshow, shapedraw, shapeinfo, shaperead, shapewrite,
+     makesymbolspec, rasterread, rasterdraw, rasterinfo.
+
+3.4.7 shapedraw
+---------------
+
+ -- Function File: [H] = shapedraw (SHP)
+ -- Function File: [H] = shapedraw (SHP, CLR)
+ -- Function File: [H] = shapedraw (SHP, CLR, ...)
+ -- Function File: [H] = shapedraw (SHP, ...)
+     Plot contents of a shapefile, a map-/geostruct or a struct made by
+     shaperead.m.
+
+     SHP can be a shapefile (will be read and plotted), a struct made by
+     shaperead, or a mapstruct or geostruct, possibly made by some other
+     function.  shapeplot.m will try to determine the type.  Points,
+     MultiPoints, Polylines, Polygons and MultiPatch shape features can
+     be plotted.
+
+     The optional argument CLR can be a predefined color name ('b',
+     'green', etc.)  or an RGB triplet.  The default is [0.6, 0.6, 0.6]
+     which produces a grey plot.  Polygons and MultiPatches can also be
+     plotted as solid patches; then CLR needs to have a second row
+     indicating the fill color.  Octave does not support transparent
+     fills yet.  Single-character color codes can be combined with
+     linestyle indicators ":", "-", "-", "-.", ".-" and/or marker style
+     indicators "*", ".", "+", "@", "v", "^", ">", "<", "d", "h", "o",
+     "p", "s" to modify the linestyle for polylines.
+
+     Other graphics properties for drawing can be supplied either
+     instead of, or after the color argument and will be conveyed as-is
+     to the actual drawing routines.  Depending on shapetype, the
+     following proqperties are accepted:
+
+        • All shape types: Visible, LineStyle, LineWidth, Marker,
+          MarkerEdgeColor, MarkerFaceColor, MarkerSize
+
+        • Point, MultiPoints, Line, Polyline: Color
+
+        • Polygon, MultiPatch: FaceColor, EdgeColor
+
+     Polygons with holes can be properly plotted provided the holes are
+     separate shape feature parts comprising counterclockwise polylines;
+     the first partial feature must be the clockwise outer polygon.  The
+     Octave-Forge geometry package is required to assess whether
+     multipart polygons have holes and to properly draw them.
+     shapedraw.m will search for the geometry package the first time it
+     is instructed to plot filled polygons.  To initiate a new search
+     later on (e.g., after the geometry package has been loaded), simply
+     invoke shapedraw without any arguments.
+
+     Optional output argument H is the figure handle of the plot.
+
+     See also: geoshow, mapshow, shapeinfo, shaperead.
+
+3.4.8 shapeinfo
+---------------
+
+ -- Function File: [ INFS ] = shapeinfo (FNAME)
+     Returns a struct with info on shapefile FNAME.
+
+     Input:
+     ‘FNAME’
+          (character string).  Does not need to have a .shp suffix.
+
+     Output: a struct with fields:
+
+     ‘Filename’
+          Contains the filename of the shapefile.
+
+     ‘ShapeType’
+          The type of shapefile.
+
+     ‘ShapeTypeName’
+          The name of the shape type.
+
+     ‘BoundingBox’
+          The minimum and maximum X and Y coordinates of all items in
+          the shapefile in a 2 X 2 array, upper rox min and min Y, lower
+          row max X and max Y.
+
+     ‘NumFeatures’
+          The number of features (items, records) in the shapefile.
+
+     ‘Attributes’
+          A structure with fields Name and Type (containng the names and
+          types of all attributes in the shapefile).  Type can be
+          Numeric, Character or Data.
+
+     See also: geoshow, mapshow, shapedraw, shaperead, shapewrite.
+
+3.4.9 shaperead
+---------------
+
+ -- Function File: [OUTSTRUCT ] = shaperead (SHP_FILENAME)
+ -- Function File: [OUTSTRUCT ] = shaperead (SHP_FILENAME, OUTSTYLE)
+ -- Function File: [OUTSTRUCT ] = shaperead (SHP_FILENAME, OUTSTYLE,
+          OPTS)
+ -- Function File: [OUTSTRUCT, ATTS ] = shaperead (SHP_FILENAME, ...)
+     Read an ArcGis shapefile set (shp, shx and dbf).
+
+     Depending on the value of OUTSTYLE some different output formats
+     will be returned:
+
+     ‘0 (numeric)’
+     ‘ml (case-insensitive)’
+     ‘m’
+          Return a Matlab-compatible M X 1 struct with a separate entry
+          for each shape feature in the shape file.  Each struct element
+          contains fields "Geometry" (shape type), "BoundingBox" ([minX
+          minY ; maxX maxY]), X, Y (coordinates of points in the shape
+          item as row vectors).  For multi-part items, the coordinates
+          of each part are separated by NaNs.  This output format
+          supports neither M and Z type nor MultiPatch shape features.
+          For M and Z type shape features the M and Z values will simply
+          be ignored.  The struct is augmented with attributes found in
+          the accompanying .dbf file, if found.
+
+          For ML-style output, if only one output argument is requested
+          the attributes in the .dbf file will be augmented to that
+          struct.  If two output arguments are requested, the attributes
+          will be returned separately in output struct ATTS.
+
+     ‘1 (numeric)’
+     ‘ext (case-insensitive)’
+     ‘e’
+          Same as 1 but M and Z type and MultiPatch shape features are
+          accepted.  The resulting output struct is no more
+          ML-compatible.  If the shapefile contains M and/or Z type
+          shape features the mapstruct or geostruct has extra fields M
+          and -optionally- Z. Note that MultiPatch shape features may
+          not have M-values even if Z-values are present.  For
+          MultiPatch shapes another field Parts is added, a Px2 array
+          with zero-based indices to the first vertex of each subfeature
+          in the XYZ fields in column 1 and the type of each subfeature
+          in column 2; P is the number of shape feature parts.
+
+     ‘2 (numeric)’
+     ‘oct (case-insensitive)’
+     ‘o’
+          Return a struct containing a N X 6 double array "vals"
+          containing the X, Y, and Z coordinates, M-values, record nr.
+          and type of each point in the shape file.  If no M or Z values
+          were present the relevant columns contain NaNs.  Individual
+          shape features and shape parts are separated by a row of NaN
+          values.  The field "idx" contains 1-based pointers into field
+          vals to the first vertex of each shape feature.  Field "bbox"
+          contains an 8 X M double array of XYZ coordinates of the
+          bounding boxes and min/max M-values corresponding to the M
+          items found in the .shp file; for point shapes these contain
+          NaNs.  Field "npt" contains a 1 X M array of the number of
+          points for each item.  Field "npr" contains a 1 X M cell array
+          containing a row of P part indices (zero-based) for each
+          Polyline, Polygon or MultiPatch part in the shape file; for
+          multipatch each cell contains another row with the part types;
+          for other item types (point etc.)  the cell array contains
+          empty rows.  A separate field "shpbox" contains the overall
+          bounding box X, Y and Z coordinates and min/max M-values in a
+          4 X 2 double array.  If the shape file contains no Z or M
+          values the corresponding columns are filled with NaNs.
+
+          The struct field "fields" contains a cellstr array with names
+          of the columns.  If a corresponding .dbf file was read, the
+          struct array also contains a field for each attribute found in
+          the .dbf file with the corresponding field name, each
+          containing a 1 X M array of attribute values matching the M
+          items in the .shp file.  These arrays can be double, char or
+          logical, depending on the type found in the .dbf file.
+
+     ‘3 (numeric)’
+     ‘dat (case-insensitive)’
+     ‘d’
+          Same as OCT or 0 but without a row of NaN values between each
+          shape file item in the VALS array.
+
+     If a character option is given, just one character will suffice.
+     The default for OUTSTYLE is "ml".
+
+     The output of 'shaperead' can be influenced by property-value
+     pairs.  The following properties are recognized (of which only the
+     first three characters are significant, case doesn't matter):
+
+     ‘Attributes’
+          Normally all attributes associated with the shape features
+          will be read and returned in the output struct(s).  To limit
+          this to just some attributes, enter a value consisting of a
+          cell array of attribute names to be read.  To have no
+          attributes read at all, specify {}, an empty cell array.
+          Attributes "Geometry", "BoundingBox", "X", "Y", "Lat", and
+          "Lon" are contained within the .shp file and will be returned
+          in any case.  If specified these values will be ignored.  In
+          the unlikely case that the associated .dbf file also contains
+          these attributes (truncated to 10 characters) they will be
+          prepended with an underscore (‘_’).
+
+     ‘BoundingBox’
+          Select only those shape items (features) whose bounding box
+          lies within, or intersects in at least one point with the
+          limits of the BoundingBox value (a 2 X 2 double array [Minx,
+          MinY; MaxX, MaxY]). No intersection or clipping with the
+          BoundingBox value will be done by default!
+
+     ‘Clip’
+          (only useful in conjuction with the BoundingBox property) If a
+          value of 1 or true is supplied, clip all shapes to the
+          bounding box limits.  This option may take quite a bit of
+          processing time.  If a value of "0" or false is given, do not
+          perform clipping.  The default value is 0.  Clipping is merely
+          meant to be performed in the XY plane.  Clipping 3D shapes is
+          supported but may lead to unexpected results.  For Z and M
+          type polylines and polygons including MultiPatch and
+          Longitude/Latitude/Height types, Z (Height) and M values for
+          each vertex in the clipped shape feature are simply copied
+          over from the nearest vertex in the original shape feature.
+          This implies that Z and M values of new vertices created on
+          the bounding box edges may be less optimal.
+
+          For clipping polylines and polygons the Octave-Forge geometry
+          package needs to be installed and loaded.
+
+     ‘Debug’
+          If a value of 'true' or 1 is given, shaperead echoes the
+          current record number while reading.  Can be useful for very
+          big shapefiles.  The default value is 0 (no feedback).  If a
+          Matlab-compatible output structarray is requested and the
+          Bounding Box property is specified, the extracted shape
+          feature indices are added to the field
+          "___Shape_feature_nr___".
+
+     ‘RecordNumbers’
+          Select only those records whose numbers are listed as integer
+          values in an array following RecordNumbers property.  Neither
+          the size nor the class of the array matters as long as it is a
+          numeric array.
+
+     ‘UseGeoCoords’
+          (Only applicable if a Matlab-style output struct is
+          requested).  If a value of 'true' (or 1) is supplied, return a
+          geostruct rather than a mapstruct.  If a value of 0 or false
+          is given, return a mapstruct.  The mere difference is that in
+          a geostruct the fields 'X' and 'Y' (and optionally 'Z') are
+          replaced by 'Long' and 'Lat' (and 'Hght').  The default value
+          is 'false' (return a mapstruct').
+
+     Ref: http://www.esri.com/library/whitepapers/pdfs/shapefile.pdf
+
+     See also: geoshow, mapshow, shapedraw, shapeinfo.
+
+3.4.10 shapewrite
+-----------------
+
+ -- Function File: STATUS = shapewrite (SHPSTR, FNAME)
+ -- Function File: STATUS = shapewrite (SHPSTR, FNAME, ATTS)
+     Write contents of map- or geostruct to a GIS shape file.
+
+     SHPSTR must be a valid mapstruct or geostruct, a struct array with
+     an entry for each shape feature, with fields Geometry, BoundingBox,
+     and X and Y (mapstruct) or Lat and Lon (geostruct).  For
+     geostructs, Lat and Lon field data will be written as X and Y data.
+     Field Geometry can have data values of "Point", "MultiPoint",
+     "Line" or "Polygon", all case-insensitive.  For each shape feature,
+     field BoundingBox should contain the minimum and maximum (X,Y)
+     coordinates in a 2x2 array [minX, minY; maxX, maxY]. The X and Y
+     fields should contain X (or Latitude) and Y (or Longitude)
+     coordinates for each point or vertex as row vectors; for
+     poly(lines) and polygons vertices of each subfeature (if present)
+     should be separated by NaN entries.
+
+     <Geometry>M or <Geometry>Z types (e.g., PointM, PolygonZ) can also
+     be written; shapewrite.m just checks if fields "M" and/or "Z" are
+     present in input mapstruct.
+
+     FNAME should be a valid shape file name, optionally with a '.shp'
+     suffix.
+
+     Optional third input argument ATTS is one attribute name or a
+     cellstr array containing a list of attribute names; only those
+     attributes will be written to the .dbf file.  Alternatively a
+     struct can be supplied with attibute names contained in field
+     "FieldName" (preferrably camelcased as shown, but Octave treats
+     this field's name as case-insensitive).  If argument ATTS is
+     omitted all attributes will be written to the shapefile.
+
+     shapewrite produces 3 files, i.e.  a .shp file (the actual shape
+     file), a .shx file (index file), and a .dbf file (dBase type 3)
+     with the contents of additional attribute fields other than
+     Geometry, X/Y or Lat/Lon, M, Z, and BoundingBox.  If no additional
+     attributes are present, a .dbf file is created with the shape
+     feature numbers as contents of field "ID".
+
+     Return argument STATUS is set to 1 if the complete shape file set
+     was written successfully, to 0 otherwise.
+
+     Ref: http://www.esri.com/library/whitepapers/pdfs/shapefile.pdf
+
+     See also: shapedraw, shapeinfo, shaperead.
+
+
+File: mapping.info,  Node: GPS files,  Next: Lengths angles and dimensions,  Prev: GIS vector files,  Up: Function Reference
+
+3.5 GPS files
+=============
+
+3.5.1 gpxread
+-------------
+
+ -- : OUT = gpxread (FNAME)
+ -- : OUT = gpxread (FNAME, ...)
+     Read data from a gpx file.
+
+     Input argument FNAME (a character string) can be a valid file name
+     or a valid URL (the latter experimental).
+
+     If no other input arguments are given gpxread will read all data in
+     FNAME into one output struct OUT.  The data to be read can be
+     selected and/or limited by specifying one or more of the following
+     optional property/value pairs (all case-insensitive):
+
+        • "FeatureType' This option (a mere "f" suffices) can be one of:
+          "WayPoint or simply "w": Read waypoints.
+
+          "Track" or "t": read tracks.
+
+          "Route" or "t": read routes.
+
+          "Auto" or "a" (default value): read all data.
+
+          Multiple FeatureType property/value pairs can be specified.
+
+        • "Index" The ensuing Index value should be a numeric value, or
+          numeric vector, of indices of the features to be read.  Works
+          currently only for waypoints.
+
+     Output argument OUT is a struct array with field names Name, Lat,
+     Lon, Ele, Time, and -in case of routes- Names.  "Name" refers to
+     the name of the waypoints, tracks or routes that have been read.
+     "Lat", "Lon" and "Ele" refer to the latitude, longitude and (if
+     present in the file) elevation of the various features, in case of
+     tracks field "Time" refers to the time of the trackpoint (again, if
+     present in the file).  In case of tracks and routes these are
+     vectors, each element corresponding to one track point.  For each
+     individual track multiple track segments are separated by NaNs.
+     For routes the field "Names" contains a cell array holding the
+     names of the individual route points.  "Time" fields for waypoints
+     are ignored.
+
+     Examples:
+
+             A = gpxread ("trip2.gpx", "feature", "track", "index", 2);
+             (which returns data from the second track in file "trip1.gpx")
+
+             B = gpxread ("trip2.gpx", "f", "t", "f", "r");
+             (which returns track and route data from file "trip2.gpx")
+
+
+File: mapping.info,  Node: Lengths angles and dimensions,  Next: Paths in curves,  Prev: GPS files,  Up: Function Reference
+
+3.6 Lengths angles and dimensions
+=================================
+
+3.6.1 angl2str
+--------------
+
+ -- : STRING = angl2str (ANGLES, SIGN_NOTATION, UNIT, N)
+     Convert angles to notation as angles represents latitudes or
+     longitudes.  Unless specified in unit, the angle is expected to be
+     in degrees.  The resulted string is intended to show angles in map.
+
+     The SIGN_NOTATION specifies how the positive/negative sign is
+     shown.  The possibles values are "ew" (east/west), "ns"
+     (north/south), "pm" (plus/minus) or "none".  Default value is
+     "none".
+
+     The possible UNIT values are "radians", "degrees", "degrees2dm" or
+     "degrees2dms".  "dms" stands for degrees minutes and seconds.
+
+     The parameter N indicates how many digits will have the last angle
+     part.
+
+     Octave uses ° for degrees, Matlab uses ^{\circ} latex output.
+
+     See also: str2angle.
+
+3.6.2 angltostr
+---------------
+
+ -- : STRS = angltostr (ANGLES)
+ -- : STRS = angltostr (ANGLES, HEMCODE)
+ -- : STRS = angltostr (ANGLES, HEMCODE, UNIT)
+ -- : STRS = angltostr (ANGLES, HEMCODE, UNIT, PREC)
+     Convert numerical angle values (Lat and/or Lon) into cellstr text
+     values.
+
+     Inputs:
+        • ANGLES is a scalar or any array of angular values in degrees.
+          In case UNIT is specified as radians, ANGLES is supposed to be
+          in radians as well.
+
+        • HEMCODE (optional), used for indicating the hemisphere, can be
+          one of "ew", "ns", "pm" or "none" (default), all
+          case-insensitive.  Depending on the sign of the input
+          angle(s), the output strings have a trailing "E", "W", "N" or
+          "S" character in case of HEMCODE = "ew" or "ns", a leading
+          "+"or "-" in case of HEMCODE = "pm", or just a leading "-" or
+          negative output values in case of HEMCODE = "none".
+          angltostr.m is forgiving: "we", "sn", "mp" and "no" are also
+          accepted and any empty value will be recognized as "none".
+
+        • UNIT (optional, case-insensitive) describes the output format.
+          * "degrees" (default): decimal degrees (~ -110.5320)
+          * "degrees2dm": integer degrees and real minutes (94°55.980'W)
+
+          * "degrees2dms": integer degrees and minutes and real seconds
+          (~ 4°55'58.8"S)
+          * "radians": real radian "values" (~ +3.141593)
+
+        • PREC indicates the desired number of decimal places; it's
+          equal to abs(PREC).
+
+     The output is a cell array of strings, one cell for each angle
+     value, the same shape as the input array.  To convert it to more
+     Matlab-compatible output, just apply char() to get a char string or
+     char array.
+
+     Furthermore, unlike its Matlab sibling angl2str, angltostr will map
+     output values into the [-180, 180] interval and adjust output
+     hemisphere indicators ("E", "W", "N", "S" or just "-" or "+")
+     accordingly.  For latitudes this works similarly only if "ns" was
+     specified for HEMCODE; in all other cases output must be
+     postprocessed manually to map absolute latitudes > 90 degrees into
+     (180-lat) * sign(lat); analogously for radians.
+
+     See also: angl2str, str2angle.
+
+3.6.3 areaquad
+--------------
+
+ -- : AQ = areaquad (LAT1, LON1, LAT2, LON2)
+ -- : AQ = areaquad (LAT1, LON1, LAT2, LON2, SPHEROID)
+ -- : AQ = areaquad (LAT1, LON1, LAT2, LON2, ANGLEUNIT)
+ -- : AQ = areaquad (LAT1, LON1, LAT2, LON2, SPHEROID, ANGLEUNIT)
+     Returns the area of a quadrilateral given two points.
+
+     If no ellipsoid is given the result will be a fraction of a unit
+     sphere with a radius of one meter.  If an ellipsoid struct is
+     supplied the result's unit will be the squared unit of that
+     ellipsoid; otherwise, if just an ellipsoid name is given result
+     will be in standard units squared (e.g., m^2).
+
+     Input
+        • LAT1, LON1: the first point of the quadrilateral.
+
+        • LAT2, LON2: the second point of the quadrilateral.
+
+          These coordinate inputs be scalars, vectors or 2D arrays.  If
+          any of these is non-scalar, all other LAT/LON inputs must
+          either have the same size or be scalars.
+
+        • (optional) SPHEROID: referenceEllipsoid parameter struct;
+          default is 'Unit Sphere'.  A string value or EPSG code
+          describing the spheroid is also accepted.  Alternatively, a
+          numerical vector ‘[semimajoraxis eccentricity]’ can be
+          supplied.  If specified, SPHEROID must be the 5th input
+          argument.
+
+        • (optional) ANGLEUNIT: string for angular units ('degrees' or
+          'radians', case-insensitive, just the first charachter will
+          do).  Default is 'degrees'.  If specified, ANGLEUNIT must be
+          the last input argument.
+
+     Output:
+        • AQ: the area of the quadrilateral.  If one or more of the
+          inputs were vectors or arrays, areaquad's output will have the
+          same size.
+
+     Example No ellipsoid (fraction of a sphere)
+           aq = areaquad (0, 0, 90, 360)
+           aq =  0.50000
+
+     With radians
+           aq = areaquad (0, 0, pi / 2 , 2 * pi, "radians")
+           aq =  0.50000
+
+     With ellipsoid in m^2
+           aq = areaquad (0, 0, 90, 360, "wgs84")
+           aq =    2.5503e+14
+
+     With vector
+           aq = areaquad(-90,0,90,360,[6000 0]);
+           aq =    4.5239e+08
+
+     See also: referenceEllipsoid,referenceSphere.
+
+3.6.4 axes2ecc
+--------------
+
+ -- Function File: ECC = axes2ecc (SEMIMAJOR, SEMIMINOR)
+ -- Function File: ECC = axes2ecc (AXES)
+     Calculates the eccentricity from semimajor and semiminor axes.
+
+     SEMIMAJOR and SEMIMINOR are scalars or vectors of semimajor and
+     semiminor axes, resp.  Alternatively, they can also be supplied as
+     coordinate (row) vectors or a N2 matrix with each row consisting of
+     a (semimajor, semiminor) pair.
+
+     Output arg ECC is a scalar or column vector of eccentricities.
+
+     Examples:
+
+     Scalar input:
+              format long
+              axes2ecc (6378137, 6356752.314245)
+              => 0.0818191908429654
+
+     Row vector (semimajor, semiminor):
+            axes2ecc ([6378137, 6356752.314245])
+            =>  0.0818191908429654
+
+     Multivectors:
+              axes2ecc ([     71492, 66854; ...
+                            6378137, 6356752.314245])
+              ans =
+                 0.3543163789650412
+                 0.0818191908429654
+
+     See also: ecc2flat,flat2ecc.
+
+3.6.5 deg2nm
+------------
+
+ -- Function File: NM = deg2nm (DEG)
+ -- Function File: NM = deg2nm (DEG, RADIUS)
+ -- Function File: NM = deg2nm (DEG, SPHERE)
+     Converts angle in degrees to distance in nautical miles by
+     multiplying angle with radius.
+
+     Calculates the distances NM in a sphere with RADIUS (also in
+     nautical miles) for the angles DEG.  If unspecified, radius
+     defaults to 3440 nm, the mean radius of Earth.
+
+     Alternatively, SPHERE can be one of "sun", "mercury", "venus",
+     "earth", "moon", "mars", "jupiter", "saturn", "uranus", "neptune",
+     or "pluto", in which case radius will be set to that object's mean
+     radius.
+
+     See also: deg2km, deg2sm, km2rad, km2deg, nm2deg, nm2rad, rad2km,
+     rad2nm, rad2sm, sm2deg, sm2rad.
+
+3.6.6 deg2sm
+------------
+
+ -- Function File: SM = deg2sm (DEG)
+ -- Function File: SM = deg2sm (DEG, RADIUS)
+ -- Function File: SM = deg2sm (DEG, SPHERE)
+     Converts angle n degrees to distance in statute miles by
+     multiplying angle with radius.
+
+     Calculates the distances SM in a sphere with RADIUS (also in
+     statute miles) for the angles DEG.  If unspecified, radius defaults
+     to 3958 sm, the mean radius of Earth.
+
+     Alternatively, SPHERE can be one of "sun", "mercury", "venus",
+     "earth", "moon", "mars", "jupiter", "saturn", "uranus", "neptune",
+     or "pluto", in which case radius will be set to that object's mean
+     radius.
+
+     See also: deg2km, deg2nm, km2rad, km2deg, nm2deg, nm2rad, rad2km,
+     rad2nm, rad2sm, sm2deg, sm2rad.
+
+3.6.7 degrees2dm
+----------------
+
+ -- Function File: degrees2dm (DEG)
+     Convert decimal degrees to its degrees and minutes components.
+
+     Separates the fractional part of an angle in decimal degrees and
+     converts it into minutes.  Each row of the output corresponds to
+     one angle, the first column to the degree component (an integer),
+     and the second to the minutes (which may have a fractional part,
+     and will have magnitude less than 60).
+
+           degrees2dm (10 + 22.5/60)
+          ⇒  [ 10   22.5 ]
+
+     The sign of the first non-zero component indicates the sign of the
+     angle, i.e., if the degree component is zero, the sign of the
+     minutes indicates the sign of the angle, but if the degree
+     component is non-zero, the minute component will be positive
+     independently of the sign of the angle.  For example:
+
+           angles = [  10.5
+                      -10.5
+                       -0.5
+                        0.5 ];
+           degrees2dm (angles)
+             ⇒
+                    10   30
+                   -10   30
+                     0  -30
+                     0   30
+
+     See also: degrees2dms, dm2degrees, dms2degrees.
+
+3.6.8 degrees2dms
+-----------------
+
+ -- Function File: degrees2dms (DEG)
+     Convert decimal degrees into degrees, minutes, and seconds
+     components.
+
+     degrees2dms separates the fractional part of angles and converts
+     them into minutes and seconds.  The degree values are converted
+     into decimal degrees.
+
+     Input can be a real-valued scalar or column vector.  Row vectors
+     are accepted as well but will be transposed before processing.
+
+     The output comprises a nx3 matrix of double.  Each output row
+     corresponds to one angle of the input vector: the first and second
+     columns are the degree and minute components, respectively (both
+     integers), and the third to the seconds (which may have a
+     fractional part).  The minutes and seconds always have magnitudes
+     less than 60.  The signs of output components not after a nonzero
+     output component match the sign of the input, and any other output
+     components have positive sign.
+
+           degrees2dms (10 + 30/60 + 56.25/3600)
+          ⇒  [ 10   30   56.25 ]
+
+     The sign of the first nonzero output component matches the sign of
+     the input, and the other output components are not less than zero.
+
+           angles = [  10.5
+                      -10.5
+                       -0.5
+                        0.5 ];
+           degrees2dms (angles)
+             ⇒
+                    10   30   0
+                   -10   30   0
+                     0  -30   0
+                     0   30   0
+
+     See also: degrees2dm, dm2degrees, dms2degrees.
+
+3.6.9 degtorad
+--------------
+
+ -- Function File: deg2rad (ANGLIN)
+ -- Function File: degtorad (ANGLIN)
+     Converts angles input in degrees to the equivalent in radians.
+
+     See also: rad2deg, unitsratio.
+
+3.6.10 departure
+----------------
+
+ -- : DIST = departure (LONG1, LONG2, LAT)
+ -- : DIST = departure (LONG1, LONG2, LAT, SPHEROID)
+ -- : DIST = departure (LONG1, LONG2, LAT, ANGLEUNIT)
+ -- : DIST = departure (LONG1, LONG2, LAT, SPHEROID, ANGLEUNIT)
+     Compute the distance between two longitudes at a given latitude.
+
+     Inputs:
+        • LONG1, LONG2: the start and end meridians (longitudes), resp.,
+          between which the departure distance is to be calculated
+          (angle).  If non-scalars the dimensions of LONG1 and LONG2
+          should match.
+
+        • LAT: the latitude (parallel) at which the departure distance
+          is to be calculated (angle).  Can be a scalar even if LONG1
+          and LONG2 are vectors or nD arrays, in this case all
+          departures are computed at the same latitude.  However, if
+          non-scalar its size should match those of LONG1 and LONG2
+          (i.e., for each [LONG1, LONG2] pair there should be a distinct
+          LAT value).
+
+        • SPHEROID: referenceEllipsoid parameter struct; default is
+          wgs84.  A string value describing the spheroid or a numerical
+          EPSG code is also accepted.
+
+        • ANGLEUNIT: string for angular units ('degrees' or 'radians',
+          case-insensitive, just the first charachter will do).  Default
+          is 'degrees'.  Is an ellipsoid is also specified ANGLEUNIT
+          only applies to the input values, if not it applies to input
+          and output values.
+
+     Output
+        • DIST: Computed distance (angle).  If an ellipsoid is used the
+          answer is in the units of the ellipsoid (length).
+
+     Examples
+           dist = departure (60, 80, 50)
+           dist =  12.856
+
+           Including an ellipsoid
+
+           E = wgs84Ellipsoid ("km");
+           dist = departure (60, 80, 50, E)
+           dist =  1433.9
+           # In this case dist is returned in kilometers.
+           # Call can also be e.g.,:
+           # dist = departure (60, 80, 50, referenceEllipsoid ("wgs84", "km"))
+
+     See also: distance.
+
+3.6.11 dm2degrees
+-----------------
+
+ -- Function File: dm2degrees (DM)
+     Convert degrees, minutes, and seconds components into decimal
+     degrees.
+
+     DM must be a 2 column matrix with one row per angle, each column
+     correspoding to its degrees (an integer), and minutes (a less than
+     60 value, possibly fractional) components.
+
+     The sign of the angle must be defined on its first non-zero
+     component only, i.e., if an angle is negative, the minutes
+     component must be positive unless its degrees component is zero.
+
+     See also: degrees2dm, degree2dms, dms2degrees.
+
+3.6.12 dms2degrees
+------------------
+
+ -- Function File: dms2degrees (DMS)
+     Convert degrees, and minutes components into decimal degrees.
+
+     DMS must be a 3 column matrix with one row per angle, and each
+     column correspoding to its degrees (an integer), minutes (a less
+     than 60 integer, and seconds (a less than 60 value, possibly
+     fractional) components.
+
+     The sign of the angle must be defined on its first non-zero
+     component only, i.e., if an angle is negative, the seconds
+     component must be positive unless both minutes and degrees are
+     zero, and the minutes component must be positive unless the degrees
+     component is zero.
+
+     See also: degrees2dm, degree2dms, dm2degrees.
+
+3.6.13 earthRadius
+------------------
+
+ -- Function File: earthRadius (UNIT)
+     Converts the Earth's radius into other units.
+
+     Input argument UNITS can be one of the units of validateLengthUnit.
+     The default is meters.
+
+           earthRadius ('km')
+           => ans = 6371
+
+     See also: validateLengthUnit,unitsratio.
+
+3.6.14 ecc2flat
+---------------
+
+ -- Function File: FLAT = flat2ecc (ECC)
+     Return flattening given an eccentricity
+
+     Exmples:
+
+     Scalar input:
+            e_earth = .081819221456;
+            f_earth = ecc2flat (e_earth)
+            => f_earth = 0.0033528
+
+     Vector input:
+            ec = 0 : .01 : .05;
+            f = ecc2flat (ec)
+            => f =
+                  0.0000000   0.0000500   0.0002000   0.0004501   0.0008003   0.0012508
+
+     See also: flat2ecc.
+
+3.6.15 ecc2n
+------------
+
+ -- Function File: N = ecc2n (ECC)
+     This returns the third flattening given an eccentricity.
+
+     Examples:
+
+     Scalar input:
+            e_earth = 0.081819221456;
+            n_earth = ecc2n (e_earth)
+            => n_earth = 0.0016792
+
+     Vector input:
+            e_vec = [ 0.081819221456  0.3543164 ]
+            n = ecc2n (e_vec)
+            => n =
+          	 0.0016792    0.033525
+
+     See also: n2ecc.
+
+3.6.16 flat2ecc
+---------------
+
+ -- Function File: ECC = flat2ecc (FLAT)
+     Return the eccentricity given a flattening
+
+     Examples:
+
+     Scalar input:
+              f_earth = 0.0033528;
+              flat2ecc (f_earth)
+              => 0.081819
+
+     Vector input:
+              flat = 0 : .01 : .05;
+              flat2ecc (flat)
+              ans =
+                 0.00000   0.14107   0.19900   0.24310   0.28000   0.31225
+
+     See also: ecc2flat.
+
+3.6.17 fromDegrees
+------------------
+
+ -- Function File: [A1, A2, ...] = fromDegrees (TOUNIT, DEG1, DEG2, ...)
+     Convert angles from radians.
+
+     Converts any number of input arguments, DEG1, DEG2, ... with angles
+     in degrees, into TOUNIT which may be "radians" or "degrees".
+
+           [a1, a2] = fromDegrees ("radians", 180, [180 360])
+          ⇒
+           [ 3.1416 ]
+          ⇒
+           [ 3.1416  6.2832 ]
+
+     See also: deg2rad, fromRadians, toDegrees, toRadians, unitsratio.
+
+3.6.18 fromRadians
+------------------
+
+ -- Function File: [A1, A2, ...] = fromRadians (TOUNIT, RAD1, RAD2, ...)
+     Convert angles from radians.
+
+     Converts any number of input arguments, RAD1, RAD2, ... with angles
+     in radians, into TOUNIT which may be "radians" or "degrees".
+
+           [a1, a2] = fromRadians ("degrees", pi, [pi 2*pi])
+          ⇒
+           [ 180 ]
+          ⇒
+           [ 180  360 ]
+
+     See also: fromDegrees, rad2deg, toDegrees, toRadians, unitsratio.
+
+3.6.19 gc2sc
+------------
+
+ -- Function File: [LATO, LONO, RADIUS] = gc2sc (LATI, LONI, AZ)
+ -- Function File: [LATO, LONO] = gc2sc (LATI, LONI, AZ, UNITS)
+ -- Function File: MAT = gc2sc (LATI, LONI, AZ)
+ -- Function File: MAT = gc2sc (LATI, LONI, AZ, UNITS)
+
+     Converts a great circle to small circle notation.
+
+     Input:
+        • LAT, LON, AZ: latitude, longitude, and azimuth of great
+          circle.  These must be scalar values or vectors of equal
+          length.
+
+        • ANGLEUNIT (optional): string for angular units ('degrees' or
+          'radians', case-insensitive, just the first character will
+          do).  Default is 'degrees'.  ANGLEUNIT applies to all inputs
+          and outputs.
+
+     Output
+        • If separate outpts were requested, LAT, LON are scalars (or
+          column vectors) of the small circle(s)' centerpoint(s) and
+          RADIUS is a scalar (or column vector) of the small circle(s)
+          radius (radii) which will always be 90 degrees.
+
+        • Alternatively, if just one output was requested the result
+          will be an Nx3 matrix with columns LATO, LONO and RADIUS,
+          respectively.
+
+     Example
+           [lat, lon, radius] = gc2sc( 60, 25, 60)
+           lat = -25.659
+           lon =  58.690
+           radius =  90
+
+     For the equator a 0 will be returned for the longitude.
+           [lat, lon, radius] = gc2sc (0, 45, 90)
+           lat = -90
+           lon = 0
+           radius =  90
+
+     See also: gcxgc, gcxsc, scxsc.
+
+3.6.20 gcxgc
+------------
+
+ -- : LAT, LON = gcxgc (LAT1, LON1, AZ1, LAT2, LON2, AZ2)
+ -- : LAT, LON = gcxgc (LAT1, LON1, AZ1, LAT2, LON2, AZ2, ANGLEUNIT)
+ -- : LAT, LON, IDL = gcxgc (...)
+ -- : LATLON = gcxgc (...)
+     Determines the intersection points between two great circles.
+
+     Input:
+        • LAT1, LON1, AZ1: latitude, longitude, and azimuth of great
+          circle #1.  These must be scalar values or vectors of equal
+          length.
+
+        • LAT2, LON2, AZ2: latitude, longitude, and azimuth of great
+          circle #2.  These must be scalar values or vectors of equal
+          length.
+
+        • ANGLEUNIT: string for angular units ('degrees' or 'radians',
+          case-insensitive, just the first character will do).  Default
+          is 'degrees'.  ANGLEUNIT applies to all inputs and outputs.
+
+     Output:
+     The shape of the output depends on the number of requested outputs.
+
+        • If two outputs were requested: If scalar values have been
+          input, LAT and LON are both 1x2 vectors.  If vectors have been
+          input LAT and LON are Nx2 arrays where N is the number of
+          great circle pairs.  The results for multiple great circle
+          pairs are concatenated vertically no matter the orientation of
+          input vectors.
+
+        • If just one output was requested, the LAT and LON values are
+          concatenated into an Nx4 array, where N is 1 in case of scalar
+          inputs and in case in input vector(s) N is the size of them.
+
+        • If three outputs were requested the first two output are LAT
+          and LON, third output ST lists pairs of coinciding great
+          circles, if any.  In this case warnings for coinciding circles
+          are suppressed.
+
+     Example:
+           lat1 = 51.8853;
+           lon1 = 0.2545;
+           az1  = 108.55;
+           lat2 = 49.0034;
+           lon2 =  2.5735;
+           az2  =  32.44;
+           [newlat, newlon] = gcxgc (lat1, lon1, az1, lat2, lon2, az2)
+           newlat =
+             50.908  -50.908
+           newlon =
+               4.5086  -175.4914
+
+3.6.21 gcxsc
+------------
+
+ -- : LAT, LON = gcxsc (LAT1, LON1, AZ, LAT2, LON2, R1)
+ -- : LAT, LON = gcxsc (LAT1, LON1, AZ, LAT2, LON2, R1, ANGLEUNIT)
+     Determines the intersection points between a great circle and a
+     small circle.
+
+     Input:
+        • LAT1, LON1, AZ: latitude, longitude, and azimuth of the great
+          circle.  These must be scalar values or vectors of equal
+          length.
+
+        • LAT2, LON2, R2: latitude, longitude, and range of the small
+          circle.  These must be scalar values or vectors of equal
+          length.
+
+        • ANGLEUNIT: string for angular units ('degrees' or 'radians',
+          case-insensitive, just the first character will do).  Default
+          is 'degrees'.  ANGLEUNIT applies to all inputs and outputs.
+
+     Outputs:
+
+        • LAT and LON are both Nx2 vectors of latitude(s) and
+          longitude(s) of the intersection point(s).  Circle pair(s)
+          that have no intersection points or happen to lie on the same
+          axis (identical or antipodal centers) NaN values are returned.
+
+          If only one output vlues was requested
+
+        • Optional third output ISTN, if present, turns off warnings for
+          coinciding circles or no intersections.  It is an Nx1 vector
+          indicating the intersection situation of each input pair of
+          circles, with for each circle pair the values:
+
+          0
+               The pair of circles has two distinct intersection points.
+
+          1
+               The circles have identical axis, so are either coinciding
+               or don't have any intersection points.
+
+          2
+               The pair of circles have just one common intersection
+               point (tangent).
+
+          3
+               The pair of circles are disjoint, have no intersection
+               points.
+
+     Example
+           [newlat, newlon] = gcxsc (60, 25, 20, 55, 25, 2.5)
+           newlat =
+             53.806   57.286
+           newlon =
+             21.226   23.182
+
+     See also: gc2sc, gcxgc, scxsc.
+
+3.6.22 km2deg
+-------------
+
+ -- Function File: DEG = km2deg (KM)
+ -- Function File: DEG = km2deg (KM, RADIUS)
+ -- Function File: DEG = km2deg (KM, SPHERE)
+     Convert distance to angle.
+
+     Calculates the angles DEG for the distances KM in a sphere with
+     RADIUS (also in kilometers).  If unspecified, radius defaults to
+     6371, the mean radius of Earth.
+
+     Alternatively, SPHERE can be one of "sun", "mercury", "venus",
+     "earth", "moon", "mars", "jupiter", "saturn", "uranus", "neptune",
+     or "pluto", in which case radius will be set to that object mean
+     radius.
+
+     See also: deg2km, deg2sm, km2rad, km2deg, nm2deg, nm2rad, rad2km,
+     rad2nm, rad2sm, sm2deg, sm2rad.
+
+3.6.23 km2nm
+------------
+
+ -- Function File: km2nm (KM)
+     Convert kilometers into nautical miles.
+
+     See also: km2sm, nm2km, nm2sm, sm2km, sm2nm.
+
+3.6.24 km2rad
+-------------
+
+ -- Function File: RAD = km2rad (KM)
+ -- Function File: RAD = km2rad (KM, RADIUS)
+ -- Function File: RAD = km2rad (KM, SPHERE)
+     Converts distance to angle by dividing distance by radius.
+
+     Calculates the angles RAD for the distances KM in a sphere with
+     RADIUS (also in kilometers).  If unspecified, radius defaults to
+     6371, the mean radius of Earth.
+
+     Alternatively, SPHERE can be one of "sun", "mercury", "venus",
+     "earth", "moon", "mars", "jupiter", "saturn", "uranus", "neptune",
+     or "pluto", in which case radius will be set to that object mean
+     radius.
+
+     See also: deg2km, deg2sm, km2rad, km2deg, nm2deg, nm2rad, rad2km,
+     rad2nm, rad2sm, sm2deg, sm2rad.
+
+3.6.25 km2sm
+------------
+
+ -- Function File: km2sm (KM)
+     Convert kilometers into U.S. survey miles (statute miles).
+
+     See also: km2nm, nm2km, nm2sm, sm2km, sm2nm.
+
+3.6.26 majaxis
+--------------
+
+ -- Function File: SEMIMAJORAXIS = majaxis (SEMIMINORAXIS, ECC)
+     Return the semimajor axis given the semiminoraxis (b) and
+     eccentricity (e).
+
+     Examples
+
+     Scalar input:
+            earth_b = 6356752.314245;  ## meter
+            earth_ecc = 0.081819221456;
+            a = majaxis (earth_b, earth_ecc)
+            => a =
+             6.3781e+06
+
+     Vector input:
+            planets_b = [ 6356752.314245 ; 66854000 ]; ## meter
+            planets_ecc = [ 0.081819221456 ; 0.3543164 ];
+            planets_a = majaxis ( planets_b , planets_ecc )
+            => planets_a =
+                6.3781e+06
+                7.1492e+07
+
+     See also: minaxis.
+
+3.6.27 meridianarc
+------------------
+
+ -- Function File: S = meridianarc (PHI, PHI_2)
+ -- Function File: S = meridianarc (PHI, PHI_2, SPHEROID)
+ -- Function File: S = meridianarc (..., ANGLEUNIT)
+     Returns the meridian arc length given two latitudes PHI and PHI_2.
+
+     PHI and PHI_2 can be scalars, vectors or arrays of any desired size
+     and dimension; but if any is non-scalar, the other must be scalar
+     or have the exact same dimensions.  For any PHI_2 larger than PHI
+     the output value will be negative.
+
+     If no spheroid is given the default is wgs84.
+
+     ANGLEUNIT can be 'degrees' or 'radians' (the latter is default).
+
+     Examples Full options:
+           s = meridianarc (0, 56, "int24", "degrees")
+           => s =
+           6.2087e+06
+     Short version:
+           s = meridianarc (0, pi/4)
+           => s =
+           4.9849e+06
+     If want different units:
+           s = meridianarc (0, 56, referenceEllipsoid ("int24", "km"), "degrees")
+           => s =
+           6208.7
+
+     See also: referenceEllipsoid.
+
+3.6.28 minaxis
+--------------
+
+ -- Function File: SEMIMINORAXIS = minaxis (SEMIMAJORAXIS, ECC)
+     Return the semiminor axis given the semimmajor axis (a) and
+     eccentricity (ecc).
+
+     Examples
+
+     Scalar input:
+            earth_a = 6378137; %m
+            earth_ecc = 0.081819221456;
+            earth_b = minaxis (earth_a, earth_ecc)
+            => earth_b =
+                6.3568e+06
+
+     Vector input:
+            planets_a = [ 6378137 ; 66854000 ];
+            planets_ecc = [ 0.081819221456 ; 0.3543164 ];
+            planets_b = minaxis (planets_a , planets_ecc)
+            => planets_b =
+                6.3568e+06
+                6.2517e+07
+
+     See also: majaxis.
+
+3.6.29 n2ecc
+------------
+
+ -- Function File: ECC = n2ecc (N)
+     This returns the eccentricity given the third flattening (n).
+
+     Examples:
+
+     Scalar input:
+            n_earth = 0.0016792;
+            ecc_earth = n2ecc (n_earth)
+            => ecc_earth = 0.081819
+
+     Vector input:
+            n_vec = [ 0.0016792 0.033525 ];
+            ecc = n2ecc (n_vec)
+            => ecc =
+          	 0.081819     0.35432
+
+     See also: n2ecc.
+
+3.6.30 nm2deg
+-------------
+
+ -- Function File: DEG = nm2deg (NM)
+ -- Function File: DEG = nm2deg (NM, RADIUS)
+ -- Function File: DEG = nm2deg (NM, SPHERE)
+     Converts distance to angle by dividing distance by radius.
+
+     Calculates the angles DEG for the distances NM in a sphere with
+     RADIUS (also in nautical miles).  If unspecified, radius defaults
+     to 6371 km, the mean radius of Earth and is converted to nautical
+     miles internally.
+
+     Alternatively, SPHERE can be one of "sun", "mercury", "venus",
+     "earth", "moon", "mars", "jupiter", "saturn", "uranus", "neptune",
+     or "pluto", in which case radius will be set to that object mean
+     radius.
+
+     See also: km2deg.
+
+3.6.31 nm2km
+------------
+
+ -- Function File: nm2km (NM)
+     Convert nautical miles into kilometers.
+
+     See also: km2nm, km2sm, nm2sm, sm2km, sm2nm.
+
+3.6.32 nm2rad
+-------------
+
+ -- Function File: RAD = nm2rad (NM)
+ -- Function File: RAD = nm2rad (NM, RADIUS)
+ -- Function File: RAD = nm2rad (NM, SPHERE)
+     Converts distance to angle by dividing distance by radius.
+
+     Calculates the angles RAD for the distances NM in a sphere with
+     RADIUS (also in nautical miles).  If unspecified, radius defaults
+     to 6371 km, the mean radius of Earth and is converted to nautical
+     miles internally.
+
+     Alternatively, SPHERE can be one of "sun", "mercury", "venus",
+     "earth", "moon", "mars", "jupiter", "saturn", "uranus", "neptune",
+     or "pluto", in which case radius will be set to that object mean
+     radius.
+
+     See also: km2rad.
+
+3.6.33 nm2sm
+------------
+
+ -- Function File: nm2sm (NM)
+     Convert nautical miles into U.S. survey miles (statute miles).
+
+     See also: km2nm, km2sm, nm2km, sm2km, sm2nm.
+
+3.6.34 rad2km
+-------------
+
+ -- Function File: KM = rad2km (RAD)
+ -- Function File: KM = rad2km (RAD, RADIUS)
+ -- Function File: KM = rad2km (RAD, SPHERE)
+     Converts angle to distance by multiplying angle with radius.
+
+     Calculates the distances KM in a sphere with RADIUS (also in
+     kilometers) for the angles RAD.  If unspecified, radius defaults to
+     6371, the mean radius of Earth.
+
+     Alternatively, SPHERE can be one of "sun", "mercury", "venus",
+     "earth", "moon", "mars", "jupiter", "saturn", "uranus", "neptune",
+     or "pluto", in which case radius will be set to that object mean
+     radius.
+
+     See also: deg2km, deg2sm, km2rad, km2deg, nm2deg, nm2rad, rad2km,
+     rad2nm, rad2sm, sm2deg, sm2rad.
+
+3.6.35 rad2nm
+-------------
+
+ -- Function File: NM = rad2nm (RAD)
+ -- Function File: NM = rad2nm (RAD, RADIUS)
+ -- Function File: NM = rad2nm (RAD, SPHERE)
+     Converts angle in radians to distance in nautical miles by
+     multiplying angle with radius.
+
+     Calculates the distances NM in a sphere with RADIUS (also in
+     nautical miles) for the angles RAD.  If unspecified, radius
+     defaults to 3440 nm, the mean radius of Earth.
+
+     Alternatively, SPHERE can be one of "sun", "mercury", "venus",
+     "earth", "moon", "mars", "jupiter", "saturn", "uranus", "neptune",
+     or "pluto", in which case radius will be set to that object's mean
+     radius.
+
+     See also: deg2km, deg2nm, deg2sm, km2rad, km2deg, nm2deg, nm2rad,
+     rad2km, rad2sm, sm2deg, sm2rad.
+
+3.6.36 rad2sm
+-------------
+
+ -- Function File: SM = rad2sm (RAD)
+ -- Function File: SM = rad2sm (RAD, RADIUS)
+ -- Function File: SM = rad2sm (RAD, SPHERE)
+     Converts angle in radians to distance in statute miles by
+     multiplying angle with radius.
+
+     Calculates the distances SM in a sphere with RADIUS (also in
+     statute miles) for the angles RAD.  If unspecified, radius defaults
+     to 3958 sm, the mean radius of Earth.
+
+     Alternatively, SPHERE can be one of "sun", "mercury", "venus",
+     "earth", "moon", "mars", "jupiter", "saturn", "uranus", "neptune",
+     or "pluto", in which case radius will be set to that object's mean
+     radius.
+
+     See also: deg2km, deg2nm, deg2sm, km2rad, km2deg, nm2deg, nm2rad,
+     rad2km, rad2nm, sm2deg, sm2rad.
+
+3.6.37 radtodeg
+---------------
+
+ -- Function File: rad2deg (ANGLIN)
+ -- Function File: radtodeg (ANGLIN)
+     Converts angles input in radians to the equivalent in degrees.
+
+     See also: deg2rad, unitsratio.
+
+3.6.38 rcurve
+-------------
+
+ -- Function File: R = rcurve (SPHEROID, LAT)
+ -- Function File: R = rcurve (TYPE, SPHEROID, LAT)
+ -- Function File: R = rcurve (..., ANGLEUNIT)
+     Return the length of a curve based on its type: meridian, parallel,
+     or transverse.
+
+     Optional input argument TYPE is one of "meridian", "parallel", or
+     "transverse; default (when left empty or skipped) is "parallel".
+     SPHEROID is the spheroid of choice (default: "wgs84").  LAT is the
+     latitude at which the curve length should be computed and can be a
+     numeric scalar, vector or matrix.  Output argument R will have the
+     same size and dimension(s) as LAT.
+
+     Optional input argument ANGLEUNIT can be either "radians" or
+     "degrees" (= default); just "r" or "d" will do.  All character
+     input is case-insensitive.
+
+     Examples:
+
+           r = rcurve ("parallel", "wgs84", 45)
+           => r =
+           4.5176e+06
+           Note: this is in meters
+
+           r = rcurve ("", 45)
+           => r =
+           4.5176e+06
+
+           r = rcurve ("", "", 45)
+           => r =
+           4.5176e+06
+
+           r = rcurve ("", "", pi/4, "radians")
+           => r =
+           4.5176e+06
+
+           r = rcurve ("meridian", "wgs84", 45)
+           => r =
+           6.3674e+06
+
+           r = rcurve ("transverse", "wgs84", 45)
+           => r =
+           6.3888e+06
+
+     Also can use structures as inputs:
+           r = rcurve("", referenceEllipsoid ("venus"), 45)
+           => r =
+           4.2793e+06
+
+3.6.39 scxsc
+------------
+
+ -- : LAT, LON = scxsc (LAT1, LON1, R1, LAT2, LON2, R2)
+ -- : LAT, LON = scxsc (..., ANGLEUNIT)
+ -- : LAT, LON, ISTN = scxsc (...)
+     Determines the intersection points between two small circles.
+
+     Input:
+        • LAT1, LON1, R1: latitude, longitude, and range of small circle
+          #1 in angular units.  These must be scalar values or vectors
+          of equal length.
+
+        • LAT2, LON2, R2: latitude, longitude, and range of small circle
+          #2 in the same angular units as small circle #1.  These must
+          be scalar values or vectors of equal length.
+
+        • ANGLEUNIT: string for angular units ('degrees' or 'radians',
+          case-insensitive, just the first character will do).  Default
+          is 'degrees'.  ANGLEUNIT applies to all inputs and outputs.
+
+     Outputs:
+
+        • LAT and LON are both Nx2 vectors of latitude(s) and
+          longitude(s) of the intersection point(s).  Circle pair(s)
+          that have no intersection points or happen to lie on the same
+          axis (identical or antipodal centers) NaN values are returned.
+
+        • Optional third output ISTN, if present, turns off warnings for
+          coinciding circles or no intersections.  It is an Nx1 vector
+          indicating the intersection situation of each input pair of
+          circles, with for each circle pair the values:
+
+          0
+               The pair of circles has two distinct intersection points.
+
+          1
+               The circles have identical axis, so are either coinciding
+               or don't have any intersection points.
+
+          2
+               The pair of circles have just one common intersection
+               point (tangent).
+
+          3
+               The pair of circles are disjoint, have no intersection
+               points.
+        • 
+     Example:
+
+           lat1 = 37.67;
+           lon1 = -90.2;
+           rng1 = 1.79;
+           lat2 = 36.11;
+           lon2 = -90.95;
+           rng2 = 2.42;
+           [newlat, newlon] = scxsc (lat1, lon1, rng1, lat2, lon2, rng2)
+           newlat =
+             36.964   38.260
+           newlon =
+            -88.132  -92.343
+
+     Coinciding, tangent, non-intersecting and intersecting circles:
+           [lat, lon, w] = scxsc (0, 0, 1, 0, [0, 2, 0, 2], [1, 1, 2, 1.5])
+           lat =
+                 NaN      NaN
+                   0        0
+                 NaN      NaN
+              0.7262  -0.7262
+
+           lon =
+                 NaN      NaN
+              1.0000   1.0000
+                 NaN      NaN
+              0.6875   0.6875
+
+           w =
+              3
+              2
+              1
+              0
+
+     See also: gcxgc, gcxsc, gc2sc.
+
+3.6.40 sm2deg
+-------------
+
+ -- Function File: DEG = sm2deg (SM)
+ -- Function File: DEG = sm2deg (SM, RADIUS)
+ -- Function File: DEG = sm2deg (SM, SPHERE)
+     Converts distance to angle by dividing distance by radius.
+
+     Calculates the angles DEG for the distances SM in a sphere with
+     RADIUS (also in statute miles).  If unspecified, radius defaults to
+     6371 km, the mean radius of Earth and is converted to statute miles
+     internally.
+
+     Alternatively, SPHERE can be one of "sun", "mercury", "venus",
+     "earth", "moon", "mars", "jupiter", "saturn", "uranus", "neptune",
+     or "pluto", in which case radius will be set to that object mean
+     radius.
+
+     See also: km2deg.
+
+3.6.41 sm2km
+------------
+
+ -- Function File: sm2km (SM)
+     Convert U.S. survey miles (statute miles) into kilometers.
+
+     See also: km2nm, km2sm, nm2km, nm2sm, sm2nm.
+
+3.6.42 sm2nm
+------------
+
+ -- Function File: sm2nm (SM)
+     Convert U.S. survey miles (statute miles) into nautical miles.
+
+     See also: km2nm, km2sm, nm2km, nm2sm, sm2km.
+
+3.6.43 sm2rad
+-------------
+
+ -- Function File: RAD = sm2rad (SM)
+ -- Function File: RAD = sm2rad (SM, RADIUS)
+ -- Function File: RAD = sm2rad (SM, SPHERE)
+     Converts distance to angle by dividing distance by radius.
+
+     Calculates the angles RAD for the distances SM in a sphere with
+     RADIUS (also in statute miles).  If unspecified, radius defaults to
+     6371 km, the mean radius of Earth and is converted to statute miles
+     internally.
+
+     Alternatively, SPHERE can be one of "sun", "mercury", "venus",
+     "earth", "moon", "mars", "jupiter", "saturn", "uranus", "neptune",
+     or "pluto", in which case radius will be set to that object mean
+     radius.
+
+     See also: km2rad.
+
+3.6.44 str2angle
+----------------
+
+ -- : DEG = str2angle (TXT)
+ -- : DEG = str2angle (TXT, VERBOSE)
+     Convert string type angular coordinates into numerical decimal
+     degrees.
+
+     TXT can be a txt string or cellstr array containing one or more
+     strings each representing an angular coordinate (latitude and/or
+     longitude).  str2angle is quite picky as regards input formats, see
+     below.
+
+     If optional input argument VERBOSE is set to 1 or true, str2angle
+     will warn if the input cntains strings that couldn't be converted.
+     The default value is false (no warnings).
+
+     Output argument DEG contains an 1xN array of numerical degree
+     value(s.  Unrecognizable input strings are either ignored or, if
+     looking almost recognizable, set to NaN in the output.
+
+     The angular strings should look like:
+        • an integer number comprising one to three leading digits
+          (degrees), maybe preceded by a plus or minus character;
+
+        • one of a 'degree' character or even a 'D', 'E', 'W', 'N' or
+          'S' (capitalization ignored) optionally followed by a space.
+          In case of a 'W', 'w', 'S' or 's' character (western or
+          southern hemisphere, resp.)  the corresponding output value
+          will be negated;
+
+        • a positive integer number comprising exactly two digits
+          (minutes) immediately followed by either an apostroph (') or
+          'M' or 'm' character, optionally followed by a space;
+
+        • a positive integer or real number (seconds), immediately
+          followed by either a '"' character (double quote), or an 's'
+          or 'S' character, or two consecutive single quote characters
+          (");
+
+        • optionally, a character 'E', 'N', 'S' or 'W' indicating the
+          hemisphere.
+
+     So-called packed DMS and degrees/minutes/seconds separated by
+     hyphens or minus signs are not accepted.
+
+     So, angular degree strings may look like e.g.:
+      191E21'3.1",      12e 22'33.24",    13E 23' 33.344",
+      14w24' 33.4444",  15S25'33.544",    -16W26'33.644444'',
+      17s27'33.74444",  18N28'33.844",    +19d29m33.944444s,
+      20D20M33.0444Se,  21°51'4.1",       22°52'44.25",
+      23° 53'33.34",    24°54' 33.44N",    25° 55' 33.544",
+      26°56'33.644''S,   27°57' 33.744'',  28°58'33844"w.
+
+     Note: the regular expression used to parse the input strings can be
+     fooled.  In particularly bad cases it may loose track completely
+     and give up, angle2str returns an empty scalar Inf value then to
+     distinguish from partly convertible inputs.
+
+     See also: angl2str.
+
+3.6.45 toDegrees
+----------------
+
+ -- Function File: [DEG1, DEG2, ...] = toDegrees (FROMUNIT, A1, A2, ...)
+     Convert angles into degrees.
+
+     Converts any number of input arguments, A1, A2, ... with angles in
+     FROMUNIT, into degrees.  FROMUNIT may be "radians" or "degrees".
+
+           [deg1, deg2] = toDegrees ("radians", pi, [pi 2*pi])
+          ⇒
+           [ 180 ]
+          ⇒
+           [ 180  360 ]
+
+     See also: fromDegrees, fromRadians, rad2deg, toRadians, unitsratio.
+
+3.6.46 toRadians
+----------------
+
+ -- Function File: [RAD1, RAD2, ...] = toRadians (TOUNIT, A1, A2, ...)
+     Convert angles into radians.
+
+     Converts any number of input arguments, A1, A2, ... with angles in
+     FROMUNIT, into radians.  FROMUNIT may be "radians" or "degrees".
+
+           [rad1, rad2] = toRadians ("degrees", 180, [180 360])
+          ⇒
+           [ 3.1416 ]
+          ⇒
+           [ 3.1416  6.2832 ]
+
+     See also: deg2rad, fromDegrees, fromRadians, toDegrees, unitsratio.
+
+3.6.47 unitsratio
+-----------------
+
+ -- Function File: unitsratio (TO, FROM)
+     Return ratio for conversion between units.
+
+     Returns the conversion ratio between two units, TO and FROM, so
+     that:
+
+           unitsratio ("meter", "centimeter")
+          ⇒
+           100
+
+           unitsratio ("inch", "foot")
+          ⇒
+           12
+
+     This allows for easy conversion between units, for example:
+
+           unitsratio ("mile", "km") * 156
+          ⇒
+           96.93391
+
+     For conversion between angle units, "degrees" and "radians" are
+     supported.  For conversion between length units, supports units
+     defined in ‘validateLengthUnit’.
+
+     See also: units, validateLengthUnit.
+
+3.6.48 wrapTo180
+----------------
+
+ -- Function File: XWRAP = wrapTo180 (X)
+
+     Wraps X into the [-180 to 180] interval.
+
+     X: angle(s) in degrees (single value, vector or ND-matrix).
+
+     XWRAP: output value(s) in the range [-180 ..  180] degrees.  The
+     interval [-180 ..  180] is a closed interval: values equal to
+     negative odd multiples of -180 are mapped to -180, values equal to
+     an odd multiple of 180 are mapped to 180.
+
+            wrapTo180 ([-181, -180, -50; 180, 200, 460])
+            ans =
+             179  -180   -50
+             180  -160   100
+
+     See also: unwrap, wrapToPi, wrapTo2Pi.
+
+3.6.49 wrapTo2Pi
+----------------
+
+ -- Function File: XWRAP = wrapTo2Pi (X)
+
+     Wraps x into the [0 to 2pi] interval
+
+     X: angle in radians (single value, vector or ND matrix).
+
+     XWRAP: output value(s) in the range [0 ..  2*pi] radians.  The
+     interval [0 ..  2*pi] is a closed interval: values equal to zero or
+     negative even multiples of pi are mapped to 0, values equal to an
+     even multiple of pi are mapped to 2*pi.
+
+     Example:
+           wrapTo2Pi ([-2*pi, -pi, 0, pi; 0.1, pi, 4*pi, 5*pi])
+           ans =
+             0.00000   3.14159   0.00000   3.14159
+             0.10000   3.14159   6.28319   3.14159
+
+     See also: wrapTo180, wrapTo360, wraptoPi.
+
+3.6.50 wrapTo360
+----------------
+
+ -- Function File: XWRAP = wrapTo360 (X)
+
+     Wraps X into the [0 to 360] interval.
+
+     X: angle(s) in degrees (single value, vector or ND matrix).
+
+     XWRAP: output value(s) in the range [0 ..  360] degrees.  The
+     interval [0 ..  360] is a closed interval: values equal to zero or
+     negative even multiples of 360 are mapped to 0, values equal to an
+     even multiple of 360 are mapped to 360.
+
+     Example:
+           wrapTo360 ([-720, -360, 0; 10, 360, 720])
+           ans =
+               0     0     0
+              10   360   360
+
+     See also: wrapTo180, wrapToPi, wrapTo2Pi.
+
+3.6.51 wrapToPi
+---------------
+
+ -- Function File: XWRAP = wrapToPi (X)
+
+     Wraps X into the [-pi to pi] interval
+
+     X: angle(s) in radians (single value, vector or ND-matrix).
+
+     XWRAP: output value(s) in the range [-pi ..  pi] radians.  The
+     interval [-pi ..  pi] is a closed interval: values equal to
+     negative odd multiples of -pi are mapped to -pi, values equal to an
+     odd multiple of +pi are mapped to pi.
+
+     Example:
+           wrapToPi ([-3*pi, -pi, -pi-1, 0; pi-1, pi, pi+1, 3*pi])
+           ans =
+            -3.14159  -3.14159   2.14159   0.00000
+             2.14159   3.14159  -2.14159   3.14159
+
+     See also: wrapTo180, wrapTo360, wrapto2Pi.
+
+
+File: mapping.info,  Node: Paths in curves,  Next: Utilities,  Prev: Lengths angles and dimensions,  Up: Function Reference
+
+3.7 Paths in curves
+===================
+
+3.7.1 azimuth
+-------------
+
+ -- Function File: AZ = azimuth(LAT1,LON1,LAT2,LON2)
+ -- Function File: AZ = azimuth(LAT1,LON1,LAT2,LON2,UNITS)
+ -- Function File: AZ = azimuth(PT1, PT2)
+ -- Function File: AZ = azimuth(PT1, PT2,UNITS)
+
+     Calculates the great circle azimuth from a point 1 to a point 2.
+     The latitude and longitude of these two points can either be given
+     independently or as columns of the matrices PT1 and PT2 in the form
+     [latitude longitude].
+
+     The units for the input coordinates and output angles can be
+     "degrees" (the default) or "radians".
+
+           >> azimuth([10,10], [10,40])
+           ans = 87.336
+           >> azimuth([0,10], [0,40])
+           ans = 90
+           >> azimuth(pi/4,0,pi/4,-pi/2,"radians")
+           ans = 5.3279
+
+     See also: elevation,distance.
+
+3.7.2 distance
+--------------
+
+ -- Function File: [DIST, AZ] = distance(PT1, PT2)
+ -- Function File: [DIST, AZ] = distance(PT1, PT2,UNITS)
+ -- Function File: [DIST, AZ] = distance(LAT1, LON1, LAT2, LON2)
+ -- Function File: [DIST, AZ] = distance(LAT1, LON1, LAT2, LON2, UNITS)
+
+     Calculates the great circle distance DIST between PT1 and PT2 and
+     optionally the azimuth AZ.
+
+     PT1 and PT2 are two-column matrices of the form [latitude
+     longitude].  The coordinates can also be given by the parameters
+     LAT1, LON1, LAT2 and LON2.  Units can be either "degrees" (the
+     default) or "radians", just the first character(s) will do.
+
+           >> distance ([37, -76], [37, -9])
+           ans = 52.309
+           >> distance ([37, -76], [67, -76])
+           ans = 30.000
+           >> distance (0, 0, 0, pi, "radians")
+           ans = 3.1416
+
+     See also: azimuth, elevation, geodeticarc.
+
+3.7.3 geodeticarc
+-----------------
+
+ -- Function File: DIST = geodeticarc(PT1, PT2)
+ -- Function File: DIST = geodeticarc(PT1, PT2, ELLIPSOID)
+ -- Function File: [DIST, AZ] = geodeticarc(PT1, PT2)
+ -- Function File: [DIST, AZ] = geodeticarc(PT1, PT2, ELLIPSOID)
+     Calculates the distance (in meters) between two (sets of) locations
+     on an ellipsoid.
+
+     The formula devised by Thaddeus Vincenty (1975) is used with an
+     accurate ellipsoidal model of the earth (ELLIPSOID).
+     Note: for antipodal points (within 0.5 degree) Vincenty's formulae
+     are known to be inaccurate and may even break down.
+
+     Inputs:
+
+        • PT1 and PT2 are two-column matrices of the form
+          [latitude longitude].  The units for the input coordinates
+          angles must be degrees.
+
+        • Optional argument ELLIPSOID defines the reference ellipsoid to
+          use.  The default ellipsoidal model is 'WGS84', which is the
+          globally most accurate model.
+
+     Outputs:
+
+        • DIST is the computed distance between PT1 and PT2 in meters,
+          computed along the shortest geodesic.
+
+        • AZ is a 2-column array of starting and ending azimuths of the
+          geodesics in the direction from PT1 to PT2, in degrees
+          relative to the North (clockwise).
+
+     Examples:
+           >> geodeticarc ([37, -76], [37, -9])
+           ans = 5830081.06
+           >> geodeticarc ([37, -76], [67, -76], referenceEllipsoid (7019))
+           ans = 3337842.87
+
+     See also: distance, geodeticfwd, referenceEllipsoid, vincenty.
+
+3.7.4 geodeticfwd
+-----------------
+
+ -- Function File: [LATO, LONO, AZO] = geodeticfwd(LAT, LON, RANGE, AZI)
+ -- Function File: [LATO, LONO, AZO] = geodeticfwd(LAT, LON, RANGE, AZI,
+          DIM)
+ -- Function File: [LATO, LONO, AZO] = geodeticfwd(LAT, LON, RANGE, AZI,
+          ANGLEUNIT)
+ -- Function File: [LATO, LONO, AZO] = geodeticfwd(LAT, LON, RANGE, AZI,
+          ELLIPSOID)
+ -- Function File: [LATO, LONO, AZO] = geodeticfwd(LAT, LON, RANGE, AZI,
+          DIM, ANGLEUNIT, ELLIPSOID)
+     Compute the coordinates of the end-point of a displacement along a
+     geodesic.
+
+     Inputs:
+
+        • LAT, LON: coordinates (latitude, longitude) of the starting
+          point.
+
+        • RANGE: displacement along a specified geodesic (angle or
+          length).
+
+        • AZI: direction of the displacement relative (clockwise) to the
+          North.
+
+          All these inputs can be scalars, vectors or 2D/ND arrays.  If
+          any input is a vector or 2D or ND array, all other inputs MUST
+          be either scalars, OR vectors or arrays of the exact same
+          size, OR scalars.  Scalars will be automatically expanded to
+          the size of the input vectors/arrays.
+
+          The following optional arguments can be specified in any
+          desired order:
+
+        • DIM: (char, case-insensitive, can be shortened to just the
+          first letter) unit of RANGE: either "length" or "angle"
+          (default).  The "length" unit is supposed to be "meters" but
+          in case of a length input, one can also specify any length
+          unit accepted by validateLengthUnit.
+
+        • ANGLEUNIT: angle unit for all input angles: "degrees"
+          (default) or "radians" (case-insensitive, can be shortened to
+          just the first letter).
+
+        • ELLIPSOID: reference ellipsoid.  Can be either an ellipsoid
+          name, an ellipsoid code (entered as numerical or character
+          string), of a vector of SemimajorAxis and Flattening.
+
+     Output arguments:
+
+        • LATO, LONO: computed latitude and longitude after
+          displacement.  For displacement inputs speciied as lengths,
+          geodeticfwd needs to iterate to get a satisfactory solution.
+          If the maximum number number of iterations is exceeded a
+          suitable warning is emitted and the related output(s) is/are
+          set to NaN.
+
+        • AZO: computed azimuth at (LATO, LONO).
+
+     geodeticfwd is based on vincentyDirect.m by Alfredo Foltran, in
+     turn based on Vicenty.T (1975) "Direct and inverse solutions of
+     geodesics on the ellipsoid with application of nested equations".
+
+     See also: geodeticarc, meridianfwd, reckon, referenceEllipsoid,
+     validateLengthUnit, vincentyDirect.
+
+3.7.5 meridianfwd
+-----------------
+
+ -- : LAT2 = meridianfwd (LAT, S)
+ -- : LAT2 = meridianfwd (LAT, S, SPHEROID)
+ -- : LAT2 = meridianfwd (LAT, S, SPHEROID, ANGLEUNIT)
+     Retuns the new latitude given a starting latitude and distance
+     travelled along a meridian.
+
+     Inputs
+
+        • LAT1: the starting latitude.
+
+        • S the distance travelled.  The units are based on the
+          ellipsoid.  The default is in meters but should match that of
+          the ellipsoid (if any).
+
+        • (optional) SPHEROID: referenceEllipsoid (parameter struct,
+          name or code): the default is 'wgs84'.
+
+        • (optional) ANGLEUNIT: string for angular units ('degrees' or
+          'radians', case-insensitive, just the first character will
+          do).  Default is 'radians'.
+
+          Output
+        • LAT2: the final latitude after travelling a distance of S
+
+     Example
+           lat = meridianfwd (40, 1e6)
+           lat =  48.983
+
+     See also: meridianarc, geodeticfwd.
+
+3.7.6 reckon
+------------
+
+ -- Function File: [LATO,LONO] = reckon(LAT,LON,RANGE,AZIMUTH)
+ -- Function File: [LATO,LONO] = reckon(LAT,LON,RANGE,AZIMUTH,UNITS)
+     Compute the coordinates of the end-point of a displacement on a
+     sphere.  LAT,LON are the coordinates of the starting point, RANGE
+     is the covered distance of the displacements along a great circle
+     and AZIMUTH is the direction of the displacement relative to the
+     North.  The units of all input and output parameters can be either
+     'degrees' (default) or 'radians'.
+
+     This function can also be used to define a spherical coordinate
+     system with rotated poles.
+
+     See also: geodeticfwd, vincentyDirect.
+
+3.7.7 vincenty
+--------------
+
+ -- Function File: DIST = vincenty(PT1, PT2)
+ -- Function File: DIST = vincenty(PT1, PT2, ELLIPSOID)
+ -- Function File: [DIST, AZ] = vincenty(PT1, PT2)
+ -- Function File: [DIST, AZ] = vincenty(PT1, PT2, ELLIPSOID)
+     Calculates the distance (in meters) between two (sets of) locations
+     on an ellipsoid.
+
+     The formula devised by Thaddeus Vincenty is used with an accurate
+     ellipsoidal model of the earth (ELLIPSOID).  The default
+     ellipsoidal model is 'WGS84', which is the most globally accurate
+     model.
+
+     PT1 and PT2 are two-column matrices of the form [latitude
+     longitude].  The units for the input coordinates angles must be
+     degrees.  Optional argument ELLIPSOID defines the reference
+     ellipsoid to use.
+
+     Sample values for ELLIPSOID are the following:
+
+     Model                                              ELLIPSOID
+     --------------------------------------------------------------------------
+     WGS 1984 (default)                                 referenceEllipsoid(7030)
+     GRS 1980                                           referenceEllipsoid(7019)
+     G.B. Airy 1830                                     referenceEllipsoid(7001)
+     Internacional 1924                                 referenceEllipsoid(7022)
+     Clarke 1880                                        referenceEllipsoid(7012)
+     Australian Nat.                                    referenceEllipsoid(7003)
+
+     The sample model values are the following:
+
+     Model                     Major (km)     Minor (km)     1 / f
+     ---------------------------------------------------------------------------
+     WGS 1984                  6378.137       6356.7523142   298.257223563
+     GRS 1980                  6378.137       6356.7523141   298.257222101
+     G.B. Airy 1830            6377.563396    6356.256909    299.3249646
+     Internacional 1924        6378.388       6356.911946    297.0
+     Clarke 1880               6378.249145    6356.51486955  293.465
+     Australian Nat.           6378.1600      6356.774719    298.25
+
+     Usage:
+           >> vincenty ([37, -76], [37, -9])
+           ans = 5830.081
+           >> vincenty ([37, -76], [67, -76], referenceEllipsoid (7019))
+           ans = 3337.843
+
+     See also: distance, referenceEllipsoid.
+
+3.7.8 vincentyDirect
+--------------------
+
+ -- Function File: [LATO, LONO] = vincentyDirect(LAT, LON, RANGE, AZI)
+ -- Function File: [LATO, LONO, AZO] = vincentyDirect(LAT, LON, RANGE,
+          AZI)
+ -- Function File: [LATO, LONO] = vincentyDirect(LAT, LON, RANGE, AZI,
+          DIM)
+ -- Function File: [LATO, LONO, AZO] = vincentyDirect(LAT, LON, RANGE,
+          AZI, DIM)
+ -- Function File: [LATO, LONO] = vincentyDirect(LAT, LON, RANGE, AZI,
+          DIM, ELLIPSOID)
+ -- Function File: [LATO, LONO, AZO] = vincentyDirect(LAT, LON, RANGE,
+          AZI, DIM, ELLIPSOID)
+
+     Compute the coordinates of the end-point of a displacement on a
+     geodesic.  LAT, LON are the coordinates of the starting point,
+     RANGE is the covered distance of the displacements along a
+     specified geodesic and AZI is the direction of the displacement
+     relative to the North.  The units of all input and output
+     parameters must be 'radians' and/or the length unit of RANGE should
+     match that of the used ellipsoid.
+
+     The possible values for DIM are 'angle' (default) or 'length'.
+
+     Sample values for ELLIPSOID are the following:
+
+     Model                                              ELLIPSOID
+     --------------------------------------------------------------------------
+     WGS 1984 (default)                                 referenceEllipsoid(7030)
+     GRS 1980                                           referenceEllipsoid(7019)
+     G.B. Airy 1830                                     referenceEllipsoid(7001)
+     Internacional 1924                                 referenceEllipsoid(7022)
+     Clarke 1880                                        referenceEllipsoid(7012)
+     Australian Nat.                                    referenceEllipsoid(7003)
+
+     See also: geodeticfwd, meridianfwd, reckon, referenceEllipsoid,
+     vincenty.
+
+
+File: mapping.info,  Node: Utilities,  Prev: Paths in curves,  Up: Function Reference
+
+3.8 Utilities
+=============
+
+3.8.1 closePolygonParts
+-----------------------
+
+ -- Function File: [XO, YO, ... ] = closePolygonParts (XI, YI, ...)
+ -- Function File: [XO, YO, ... ] = closePolygonParts (XI, YI, ...,
+          ANGUNIT)
+     Ensure that (each part of a multipart) polygon is a closed ring.
+
+     For each (part of a) polygon, closePolygonParts checks if the
+     vertices of that part form a closed ring, i.e., if first and last
+     vertices coincide.  If the polygon or polygon parts (the latter
+     separated separated by NaNs) do not form a closed ring, the first
+     vertex coordinates of each open part are appended after its last
+     vertex.  Input polygons need not be multipart.
+
+     XI and YI (plus optionally, ZI and/or MI) are input vectors of X
+     and Y or Longitude and Latitude (plus optionally Z or Height,
+     and/or M) vectors of vertex coordinates (and measure values) of an
+     input polygon.  If a vector of measures is given as argument, it
+     should always be the last vector.
+
+     Optional last argument ANGUNIT can be one of 'Degrees' or 'Radians'
+     (case-insensitive, only the first 3 characters need to match).  If
+     this argument is given and if the first two input vectors are
+     longitude/latitude vectors rather than X/Y vectors, it indicates
+     that the longitudes of those first and last vectors need only
+     coincide modulo 360 degrees or 2*pi radians.
+
+     The number of output vectors XO, YO, ...  matches the number of
+     input vectors.
+
+     See also: isShapeMultiPart.
+
+3.8.2 extractfield
+------------------
+
+ -- Function File: extractfield (S, FIELD)
+     Extract field values from struct array.
+
+     Concatenates all the values from the field member FIELD in the
+     structure array S.  The values are all concatenated into a row
+     vector of the same type as the values.
+
+           s(1).field = 1:3;
+           s(2).field = 4:9;
+           extractfield (s, "field")
+          ⇒
+           [ 1   2   3   4   5   6   7   8   9 ]
+
+     If any of the values is a string, or if the class is not the same
+     for all the elements, a cell array with the intact elements is
+     returned instead.
+
+           s(1).field = 1:3;
+           s(2).field = uint8 (4:6);
+           extractfield (s, "field")
+          ⇒
+           [ 1   2   3 ]
+          ⇒
+           [ 4   5   6 ]
+
+           s(1).field = "text";
+           s(2).field = 1:3;
+           extractfield (s, "field")
+          ⇒
+           text
+          ⇒
+           [ 1   2   3 ]
+
+     See also: cell2mat, cellfun, getfield.
+
+3.8.3 makesymbolspec
+--------------------
+
+ -- Function File: SYMSPEC = makesymbolspec (GEOMETRY, RULE#1...RULE#N)
+ -- Function File: SYMSPEC = makesymbolspec (GEOMETRY, {"Default",
+          PROPERTY1, VALUE1, ...})
+ -- Function File: SYMSPEC = makesymbolspec (GEOMETRY, {ATTR, ATTVAL,
+          PROPERTY1, VALUE1, ...})
+     Create a symbol specification structure for use with mapshow.
+
+     Each symbolspec refers to one geometry type.  GEOMETRY can be one
+     of "Point", "MultiPoint", "Line", "PolyLine", "Polygon", or
+     "Patch".  The following argument(s) are rules.  Each rule is a
+     separate cell array.  The first entry of a rule must be the string
+     "Default" of an attribute/value pair.  The attribute ATTR should
+     conform to the attributes of the map feature to be drawn with the
+     symbolspec; often these are the attributes of shapefiles.  The
+     value ATTVAL can be a:
+
+        • Numeric value or range of values (row vector).  Map features
+          with attribute ATTR values equal to, or in the range ATTVAL
+          (end points inclusive) will be drawn with the propety/value
+          pairs in the rest of the rule.  These include X and Y
+          coordinates.
+
+        • Logical value.  The map features with values for attribute
+          ATTR equal to ATTVAL will be drawn with the propety/value
+          pairs in the rest of the rule.
+
+        • Character string.  Those map features with ATTR text strings
+          corresponding to ATTVAL will be drawn with the propety/value
+          pairs in the rest of the rule.
+
+     In case of oct-type structs (see shaperead.m) additional attributes
+     are available:
+
+     ‘X’
+     ‘Y’
+     ‘Z’
+     ‘M’
+          X, Y, Z or M-values of vertices of polylines / polygons /
+          multipatches are used to indicate the matching shape features
+          are to be drawn.  A matching value of just one sigle vertex of
+          poit in the specified range suffices to match a shape feature.
+
+     ‘npt’
+          npt encodes for the number of vertices for each multipoint,
+          polygon, polyline or multipatch shape feature in the original
+          shapefile.
+
+     ‘npr’
+          npr encodes for the number of parts of each shape feature.
+
+     The property/value pairs for each rule should conform to the
+     geometry type.  That is, for (Multi)Point features only marker
+     properties may be specified, similarly for Lines/Polylines (line
+     properties) and Polygons/Patches (patch and fill properties).
+
+     The case of input geometries and properties does not matter;
+     makesymbolspec will turn them into the "official" casing.
+
+             symsp1 = makesymbolspec ("Line", {"TAG1", "road", ...
+                                                "color", "b"})
+             (draw polylines tagged "road" as blue lines)
+
+             symsp2 = makesymbolspec ...
+                      ("Line", {"TAG1", "road", "color", "b", ...
+                                "linestyle", "-", "linewidth", 3} ...
+                               {"TAG1", "rail", "color", ...
+                                 [0.7 0.5 0.2], ...
+                                "linestyle", "--", "linewidth", 2})
+             (like above, but with polylines tagged "rail" as dashed
+              light brown lines)
+
+             symsp3 = makesymbolspec
+                      ("Polygon", {"M", [ 0    10], "Facecolor", "c"}, ...
+                                  {"M", [10.01 20], "Facecolor", "b"}, ...
+                                  {"M", [20.01 30], "Facecolor", "m"})
+             (Note: only possible with oct-style shapestructs; create a
+              symbolspec using M-values in three classes)
+
+     See also: mapshow, geoshow.
+
+3.8.4 polycut
+-------------
+
+ -- Function File: [XO, YO] = polycut (XI, YI)
+ -- Function File: [XO, YO, ZO] = polycut (XI, YI, ZI)
+ -- Function File: [XY_O] = polycut (XY_I)
+     Reorder nested multipart polygons in such a way that branch cuts
+     aren't drawn when using the patch command.
+
+     Normally when drawing multipart nested polygons (with holes and
+     other polygons inside the holes; polygon parts separated by NaNs)
+     holes will be filled.  Connecting the polygon parts by deleting the
+     NaNs leads to edges of some polygon parts to be drawn across
+     neighboring polygon parts.  polycut reorders the polygon parts such
+     that the last vertices of polygon parts have minimum distance to
+     the first vertices of the next parts, avoiding the connecting lines
+     ("branch cuts") to show up in the drawing.
+
+     Input consists of separate X, Y, and -optionally- Z vectors, or an
+     Nx2 or Nx3 matrix of vertex coordinates (X, Y) or (X, Y, Z). If
+     individual X and Y vectors were input, the output consists of the
+     same number of vectors.  If an Nx 2 or Nx3 array was input, the
+     output will be an Nx2 or Nx3 matrix as well.
+
+     polycut is a mere wrapper around the function polygon2patch in the
+     OF geometry package.
+
+3.8.5 removeExtraNanSeparators
+------------------------------
+
+ -- Function File: [X, Y, ...] = removeExtraNanSeparators (X, Y, ...)
+     Remove groups of NaN and leave a single separator.
+
+     For any number of vectors, X, Y, Z, ..., reduce groups of
+     contiguous NaNs into a single NaN separator.  The vectors must all
+     have the same dimensions and the NaNs must be locations.  Leading
+     NaNs are removed, and trailing NaNs are reduced to one.
+
+           removeExtraNanSeparators ([NaN NaN 3 4 5 NaN NaN 8 NaN], [NaN NaN 7 6 5 NaN NaN 2 NaN])
+          ⇒
+           [3 4 5 NaN 8 NaN]
+          ⇒
+           [7 6 5 NaN 2 NaN]
+
+     See also: diff, isnan, isna.
+
+3.8.6 roundn
+------------
+
+ -- Function File: roundn (X)
+ -- Function File: roundn (X, N)
+     Round to powers of 10.
+
+     Returns the double nearest to 10^N, where N has to be an integer
+     scalar.  N defaults to zero.
+
+     See also: round ceil floor fix roundb.
+
+3.8.7 sph_chk
+-------------
+
+ -- : REF_ELL = sph_chk (SPHEROID)
+ -- : REF_ELL = sph_chk (SPHEROID, REQ_FIELDS)
+     Check validity of iput ellipsoids / spheroids.
+
+     Inputs:
+        • SPHEROID: input ellipsoid or spheroid.  Can be an ellipsoid or
+          spheroid name, or ditto code (character string or scalar
+          numeric value), or a numeric 2-element vector containing
+          SemimajorAxis and Eccentricity values, or an ellipsoid /
+          spheroid struct.  If omitted a WGS84 ellipsoid struct is
+          returned.
+
+        • REQ_FIELDS: cellstr array of required fields of input
+          ellipsoid / spheroid struct; only used/useful when an
+          ellipsoid / spheroid struct value is given.  The default
+          required fields are "SemimajorAxis", "Flattening" and
+          "LengthUnit".
+          Note: the validity of the fields input this way isn't checked!
+
+     Output:
+     Ellipsoid / spheroid struct.
+
+     See also: .
+
+3.8.8 utmzone
+-------------
+
+ -- Function File: ZONE = utmzone (LAT , LONG)
+ -- Function File: LATLON = utmzone (ZONE)
+ -- Function File: LAT, LONG = utmzone (ZONE)
+     Returns the zone given a latitude and longitude, or the latitude
+     and longitude ranges given a zone.
+
+     Examples:
+
+           utmzone (43, -79)
+           => ans =
+           17T
+
+     Can also handle the special zones of Norway
+
+           utmzone (60, 5)
+           => ans =
+           32V
+
+     For zones:
+
+           utmzone ("17T")
+           => ans =
+            40   48
+           -84  -78
+
+           [lat, lon] = utmzone ("17T")
+           =>
+           lat =
+              40   48
+           lon =
+             -84  -78
+
+3.8.9 validateLengthUnit
+------------------------
+
+ -- Function File: validateLengthUnit (UNIT)
+ -- Function File: validateLengthUnit (UNIT, IND)
+ -- Function File: validateLengthUnit (UNIT, FUNC)
+ -- Function File: validateLengthUnit (UNIT, FUNC, NAME)
+ -- Function File: validateLengthUnit (UNIT, FUNC, NAME, IND)
+     Check validity and standardize unit of length.
+
+     Confirms that the argument INPUT is a valid length unit as
+     described on the table below, and returns a string with its
+     standard name.  If UNIT is not a valid length unit, throws an error
+     with a message following the Octave guidelines.  For a more
+     informative error message, the function name FUNC, the argument
+     name NAME, and its position in the input IND can be defined.
+
+     "meter"
+          m, meter(s), metre(s)
+
+     "centimeter"
+          cm, centimeter(s), centimetre(s)
+
+     "millimeter"
+          mm, millimeter(s), millimetre(s)
+
+     "micron"
+          micron(s)
+
+     "kilometer"
+          km, kilometer(s), kilometre(s)
+
+     "nautical mile"
+          nm, naut mi, nautical mile(s)
+
+     "foot"
+          ft, international ft, foot, international foot, feet,
+          international feet
+
+     "inch"
+          in, inch, inches
+
+     "yard"
+          yd, yds, yard(s)
+
+     "mile"
+          mi, mile(s), international mile(s)
+
+     "U.S. survey foot"
+          sf, survey ft, US survey ft, U.S. survey ft, survey foot, US
+          survey foot, U.S. survey foot, survey feet, US survey feet,
+          U.S. survey feet
+
+     "U.S. survey mile (statute mile)"
+          sm, survey mile(s), statute mile(s), US survey mile(s), U.S.
+          survey mile(s)
+
+     "Clarke's foot"
+          Clarke's foot, Clarkes foot
+
+     "German legal metre"
+          German legal metre, German legal meter
+
+     "Indian foot"
+          Indian foot
+
+     See also: units, unitsratio, validateattributes, validatestring.
+
+
+
+Tag Table:
+Node: Top205
+Node: Overview1204
+Node: Installing and loading1419
+Node: Function Reference2536
+Node: Coordinate systems2840
+Node: DXF files65304
+Node: GIS raster files68419
+Node: GIS vector files74378
+Node: GPS files95268
+Node: Lengths angles and dimensions97551
+Node: Paths in curves142332
+Node: Utilities154448
+
+End Tag Table
+
+
+Local Variables:
+coding: utf-8
+End:

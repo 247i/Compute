@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Group Database Functions (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Group Database Functions (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Group Database Functions (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="System-Utilities.html" rel="up" title="System Utilities">
+<link href="System-Information.html" rel="next" title="System Information">
+<link href="Password-Database-Functions.html" rel="prev" title="Password Database Functions">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Group-Database-Functions">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="System-Information.html" accesskey="n" rel="next">System Information</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Password-Database-Functions.html" accesskey="p" rel="prev">Password Database Functions</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="System-Utilities.html" accesskey="u" rel="up">System Utilities</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Group-Database-Functions-1"><span>36.10 Group Database Functions<a class="copiable-link" href="#Group-Database-Functions-1"> &para;</a></span></h3>
+
+<p>Octave&rsquo;s group database functions return information in a structure
+with the following fields.
+</p>
+<dl class="table">
+<dt><code class="code">name</code></dt>
+<dd><p>The user name.
+</p>
+</dd>
+<dt><code class="code">passwd</code></dt>
+<dd><p>The encrypted password, if available.
+</p>
+</dd>
+<dt><code class="code">gid</code></dt>
+<dd><p>The numeric group id.
+</p>
+</dd>
+<dt><code class="code">mem</code></dt>
+<dd><p>The members of the group.
+</p></dd>
+</dl>
+
+<p>In the descriptions of the following functions, this data structure is
+referred to as a <var class="var">grp_struct</var>.
+</p>
+<a class="anchor" id="XREFgetgrent"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-getgrent"><span><code class="def-type"><var class="var">grp_struct</var> =</code> <strong class="def-name">getgrent</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-getgrent"> &para;</a></span></dt>
+<dd><p>Return an entry from the group database, opening it if necessary.
+</p>
+<p>Once the end of data has been reached, <code class="code">getgrent</code> returns 0.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFsetgrent">setgrent</a>, <a class="ref" href="#XREFendgrent">endgrent</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFgetgrgid"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-getgrgid"><span><code class="def-type"><var class="var">grp_struct</var> =</code> <strong class="def-name">getgrgid</strong> <code class="def-code-arguments">(<var class="var">gid</var>).</code><a class="copiable-link" href="#index-getgrgid"> &para;</a></span></dt>
+<dd><p>Return the first entry from the group database with the group ID
+<var class="var">gid</var>.
+</p>
+<p>If the group ID does not exist in the database, <code class="code">getgrgid</code> returns 0.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFgetgrnam">getgrnam</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFgetgrnam"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-getgrnam"><span><code class="def-type"><var class="var">grp_struct</var> =</code> <strong class="def-name">getgrnam</strong> <code class="def-code-arguments">(<var class="var">name</var>)</code><a class="copiable-link" href="#index-getgrnam"> &para;</a></span></dt>
+<dd><p>Return the first entry from the group database with the group name
+<var class="var">name</var>.
+</p>
+<p>If the group name does not exist in the database, <code class="code">getgrnam</code> returns 0.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFgetgrgid">getgrgid</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFsetgrent"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-setgrent"><span><code class="def-type">[<var class="var">status</var>, <var class="var">msg</var>] =</code> <strong class="def-name">setgrent</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-setgrent"> &para;</a></span></dt>
+<dd><p>Return the internal pointer to the beginning of the group database.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFgetgrent">getgrent</a>, <a class="ref" href="#XREFendgrent">endgrent</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFendgrent"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-endgrent"><span><code class="def-type">[<var class="var">status</var>, <var class="var">msg</var>] =</code> <strong class="def-name">endgrent</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-endgrent"> &para;</a></span></dt>
+<dd><p>Close the group database.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFgetgrent">getgrent</a>, <a class="ref" href="#XREFsetgrent">setgrent</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="System-Information.html">System Information</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Password-Database-Functions.html">Password Database Functions</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="System-Utilities.html">System Utilities</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

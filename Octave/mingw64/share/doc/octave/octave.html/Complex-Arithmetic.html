@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Complex Arithmetic (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Complex Arithmetic (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Complex Arithmetic (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Arithmetic.html" rel="up" title="Arithmetic">
+<link href="Trigonometry.html" rel="next" title="Trigonometry">
+<link href="Exponents-and-Logarithms.html" rel="prev" title="Exponents and Logarithms">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Complex-Arithmetic">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Trigonometry.html" accesskey="n" rel="next">Trigonometry</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Exponents-and-Logarithms.html" accesskey="p" rel="prev">Exponents and Logarithms</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Arithmetic.html" accesskey="u" rel="up">Arithmetic</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Complex-Arithmetic-1"><span>17.2 Complex Arithmetic<a class="copiable-link" href="#Complex-Arithmetic-1"> &para;</a></span></h3>
+
+<p>In the descriptions of the following functions,
+<var class="var">z</var> is the complex number <var class="var">x</var> + <var class="var">i</var><var class="var">y</var>, where <var class="var">i</var> is
+defined as <code class="code">sqrt (-1)</code>.
+</p>
+<a class="anchor" id="XREFabs"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-abs"><span><code class="def-type"><var class="var">z</var> =</code> <strong class="def-name">abs</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-abs"> &para;</a></span></dt>
+<dd><p>Compute the magnitude of <var class="var">x</var>.
+</p>
+<p>The magnitude is defined as
+|<var class="var">z</var>| = <code class="code">sqrt (x^2 + y^2)</code>.
+</p>
+<p>For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">abs (3 + 4i)
+     &rArr;  5
+</pre></div></div>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFarg">arg</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFarg"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-arg"><span><code class="def-type"><var class="var">theta</var> =</code> <strong class="def-name">arg</strong> <code class="def-code-arguments">(<var class="var">z</var>)</code><a class="copiable-link" href="#index-arg"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-angle"><span><code class="def-type"><var class="var">theta</var> =</code> <strong class="def-name">angle</strong> <code class="def-code-arguments">(<var class="var">z</var>)</code><a class="copiable-link" href="#index-angle"> &para;</a></span></dt>
+<dd><p>Compute the argument, i.e., angle of <var class="var">z</var>.
+</p>
+<p>This is defined as,
+<var class="var">theta</var> = <code class="code">atan2 (<var class="var">y</var>, <var class="var">x</var>)</code>,
+in radians.
+</p>
+<p>For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">arg (3 + 4i)
+     &rArr;  0.92730
+</pre></div></div>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFabs">abs</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFconj"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-conj"><span><code class="def-type"><var class="var">zc</var> =</code> <strong class="def-name">conj</strong> <code class="def-code-arguments">(<var class="var">z</var>)</code><a class="copiable-link" href="#index-conj"> &para;</a></span></dt>
+<dd><p>Return the complex conjugate of <var class="var">z</var>.
+</p>
+<p>The complex conjugate is defined as
+<code class="code">conj (<var class="var">z</var>)</code> = <var class="var">x</var> - <var class="var">i</var><var class="var">y</var>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFreal">real</a>, <a class="ref" href="#XREFimag">imag</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFcplxpair"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-cplxpair"><span><code class="def-type"><var class="var">zsort</var> =</code> <strong class="def-name">cplxpair</strong> <code class="def-code-arguments">(<var class="var">z</var>)</code><a class="copiable-link" href="#index-cplxpair"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-cplxpair-1"><span><code class="def-type"><var class="var">zsort</var> =</code> <strong class="def-name">cplxpair</strong> <code class="def-code-arguments">(<var class="var">z</var>, <var class="var">tol</var>)</code><a class="copiable-link" href="#index-cplxpair-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-cplxpair-2"><span><code class="def-type"><var class="var">zsort</var> =</code> <strong class="def-name">cplxpair</strong> <code class="def-code-arguments">(<var class="var">z</var>, <var class="var">tol</var>, <var class="var">dim</var>)</code><a class="copiable-link" href="#index-cplxpair-2"> &para;</a></span></dt>
+<dd><p>Sort the numbers <var class="var">z</var> into complex conjugate pairs ordered by increasing
+real part.
+</p>
+<p>The negative imaginary complex numbers are placed first within each pair.
+All real numbers (those with
+<code class="code">abs (imag (<var class="var">z</var>)) / abs (<var class="var">z</var>) &lt; <var class="var">tol</var></code>) are placed after
+the complex pairs.
+</p>
+<p><var class="var">tol</var> is a weighting factor in the range [0, 1) which determines the
+tolerance of the matching.  The default value is <code class="code">100 * eps</code> and the
+resulting tolerance for a given complex pair is
+<code class="code"><var class="var">tol</var> * abs (<var class="var">z</var>(i)))</code>.
+</p>
+<p>By default the complex pairs are sorted along the first non-singleton
+dimension of <var class="var">z</var>.  If <var class="var">dim</var> is specified, then the complex pairs are
+sorted along this dimension.
+</p>
+<p>Signal an error if some complex numbers could not be paired.  Signal an
+error if all complex numbers are not exact conjugates (to within <var class="var">tol</var>).
+Note that there is no defined order for pairs with identical real parts but
+differing imaginary parts.
+</p>
+<div class="example smallexample">
+<pre class="example-preformatted">cplxpair (exp (2i*pi*[0:4]'/5)) == exp (2i*pi*[3; 2; 4; 1; 0]/5)
+</pre></div>
+</dd></dl>
+
+
+<a class="anchor" id="XREFimag"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-imag"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">imag</strong> <code class="def-code-arguments">(<var class="var">z</var>)</code><a class="copiable-link" href="#index-imag"> &para;</a></span></dt>
+<dd><p>Return the imaginary part of <var class="var">z</var> as a real number.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFreal">real</a>, <a class="ref" href="#XREFconj">conj</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFreal"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-real"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">real</strong> <code class="def-code-arguments">(<var class="var">z</var>)</code><a class="copiable-link" href="#index-real"> &para;</a></span></dt>
+<dd><p>Return the real part of <var class="var">z</var>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFimag">imag</a>, <a class="ref" href="#XREFconj">conj</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Trigonometry.html">Trigonometry</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Exponents-and-Logarithms.html">Exponents and Logarithms</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Arithmetic.html">Arithmetic</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

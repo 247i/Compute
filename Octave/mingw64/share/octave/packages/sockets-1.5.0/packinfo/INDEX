@@ -1,0 +1,56 @@
+sockets >> Sockets
+Sockets functions
+  socket
+  bind
+  connect
+  disconnect
+  accept
+  select
+  send
+  sendto
+  recv
+  recvfrom
+  gethostbyname
+  listen
+  getsockopt
+  setsockopt
+  shutdown
+  getaddrinfo
+Socket constants
+#! Domain family constants
+  AF_LOCAL
+  AF_UNIX
+  AF_INET
+  AF_APPLETALK
+  AF_UNSPEC
+#! Socket Type constants
+  SOCK_STREAM
+  SOCK_DGRAM
+  SOCK_SEQPACKET
+  SOCK_RAW
+  SOCK_RDM
+#! Send/Recv Flag constants
+  MSG_PEEK
+  MSG_DONTWAIT
+  MSG_WAITALL
+#! Shutdown how constants
+  SHUT_RD
+  SHUT_RDWR
+  SHUT_WR
+#! Set/getsockopt constants
+  SOL_SOCKET
+  SO_KEEPALIVE
+  SO_REUSEADDR
+  SO_DONTROUTE
+  SO_BROADCAST
+#! Socket protocol constants
+  IPPROTO_IP
+  IPPROTO_ICMP
+  IPPROTO_TCP
+  IPPROTO_UDP
+#! Socket getaddrinfo flag constants
+  AI_PASSIVE
+  AI_NUMERICSERV
+  AI_V4MAPPED
+  AI_ADDRCONFIG
+  AI_ALL

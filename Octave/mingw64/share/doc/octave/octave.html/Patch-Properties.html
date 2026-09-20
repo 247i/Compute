@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Patch Properties (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Patch Properties (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Patch Properties (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Graphics-Object-Properties.html" rel="up" title="Graphics Object Properties">
+<link href="Scatter-Properties.html" rel="next" title="Scatter Properties">
+<link href="Image-Properties.html" rel="prev" title="Image Properties">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsubsection-level-extent" id="Patch-Properties">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Scatter-Properties.html" accesskey="n" rel="next">Scatter Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Image-Properties.html" accesskey="p" rel="prev">Image Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Graphics-Object-Properties.html" accesskey="u" rel="up">Graphics Object Properties</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsubsection" id="Patch-Properties-1"><span>15.3.3.8 Patch Properties<a class="copiable-link" href="#Patch-Properties-1"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-Patch-Properties"></a>
+
+
+
+<p>Properties of <code class="code">patch</code> objects (see <a class="pxref" href="Creating-Graphics-Objects.html#XREFpatch">patch</a>):
+</p>
+<h4 class="subsubheading" id="Categories_003a-7"><span>Categories:<a class="copiable-link" href="#Categories_003a-7"> &para;</a></span></h4>
+
+<p><a class="ref" href="#XREFpatchcategoryCallbackExecution">Callback&nbsp;Execution<!-- /@w --></a> | <a class="ref" href="#XREFpatchcategoryColorandTransparency">Color&nbsp;and&nbsp;Transparency<!-- /@w --></a> | <a class="ref" href="#XREFpatchcategoryCoordinateData">Coordinate&nbsp;Data<!-- /@w --></a> | <a class="ref" href="#XREFpatchcategoryCreation_002fDeletion">Creation/Deletion<!-- /@w --></a> | <a class="ref" href="#XREFpatchcategoryDisplay">Display<!-- /@w --></a> | <a class="ref" href="#XREFpatchcategoryLegendOptions">Legend&nbsp;Options<!-- /@w --></a> | <a class="ref" href="#XREFpatchcategoryLighting">Lighting<!-- /@w --></a> | <a class="ref" href="#XREFpatchcategoryMarkerAppearance">Marker&nbsp;Appearance<!-- /@w --></a> | <a class="ref" href="#XREFpatchcategoryMouseInteraction">Mouse&nbsp;Interaction<!-- /@w --></a> | <a class="ref" href="#XREFpatchcategoryObjectIdentification">Object&nbsp;Identification<!-- /@w --></a> | <a class="ref" href="#XREFpatchcategoryOutlineAppearance">Outline&nbsp;Appearance<!-- /@w --></a> | <a class="ref" href="#XREFpatchcategoryParent_002fChildren">Parent/Children<!-- /@w --></a> 
+</p>
+<a class="anchor" id="XREFpatchcategoryCallbackExecution"></a><h4 class="subsubheading" id="Callback-Execution-7"><span>Callback Execution<a class="copiable-link" href="#Callback-Execution-7"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFpatchbusyaction"></a></dd>
+<dt><a id="index-patch-busyaction"></a><span><code class="code">busyaction</code>: <code class="code">&quot;cancel&quot;</code> | {<code class="code">&quot;queue&quot;</code>}<a class="copiable-link" href="#index-patch-busyaction"> &para;</a></span></dt>
+<dd><p>Define how Octave handles the execution of this object&rsquo;s callback properties when it is unable to interrupt another object&rsquo;s executing callback.  This is only relevant when the currently executing callback object has its <code class="code">interruptible</code> property set to <code class="code">&quot;off&quot;</code>.  The <code class="code">busyaction</code> property of the interrupting callback object indicates whether the interrupting callback is queued (<code class="code">&quot;queue&quot;</code> (default)) or discarded (<code class="code">&quot;cancel&quot;</code>).
+See <a class="xref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFpatchinterruptible"></a></dd>
+<dt><a id="index-patch-interruptible"></a><span><code class="code">interruptible</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-patch-interruptible"> &para;</a></span></dt>
+<dd><p>Specify whether this object&rsquo;s callback functions may be interrupted by other callbacks.  By default <code class="code">interruptible</code> is <code class="code">&quot;on&quot;</code> and callbacks that make use of <code class="code">drawnow</code>, <code class="code">figure</code>, <code class="code">waitfor</code>, <code class="code">getframe</code> or <code class="code">pause</code> functions are eventually interrupted.
+See <a class="xref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFpatchcategoryColorandTransparency"></a><h4 class="subsubheading" id="Color-and-Transparency-1"><span>Color and Transparency<a class="copiable-link" href="#Color-and-Transparency-1"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFpatchalphadatamapping"></a></dd>
+<dt><a id="index-patch-alphadatamapping"></a><span><code class="code">alphadatamapping</code>: <code class="code">&quot;direct&quot;</code> | <code class="code">&quot;none&quot;</code> | {<code class="code">&quot;scaled&quot;</code>}<a class="copiable-link" href="#index-patch-alphadatamapping"> &para;</a></span></dt>
+<dd><p>Transparency is not yet implemented for patch objects.  <code class="code">alphadatamapping</code> is unused.
+</p>
+
+<a class="anchor" id="XREFpatchcdata"></a></dd>
+<dt><a id="index-patch-cdata"></a><span><code class="code">cdata</code>: scalar | matrix | array, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-patch-cdata"> &para;</a></span></dt>
+<dd><p>Data defining the patch object color relative to its x/y/z-coordinate data.  Patch color can be defined using indices into the current colormap or as RGB triplets, where the RGB colors are defined along the third dimension.  These colors can be separately defined for the entire patch object, for individual faces, or for individual vertices, and is determined by the shape of <code class="code">&quot;cdata&quot;</code> as follows:
+</p>
+<p>If <code class="code">&quot;cdata&quot;</code> is a scalar index into the current colormap or a 1-by-1-by-3 RGB triplet, it defines the color of all faces and edges.
+</p>
+<p>If the patch object has N faces, and <code class="code">&quot;cdata&quot;</code> is a 1-by-N vector of colormap indices or a 1-by-N-by-3 RGB array, it defines the color of each face.
+</p>
+<p>If the patch object has N faces and M vertices per face, and <code class="code">cdata</code> is a M-by-N matrix of colormap indices or a M-by-N-by-3 RGB array, it defines the color at each vertex. (The shape of <code class="code">&quot;cdata&quot;</code> should match that of <a class="ref" href="#XREFpatchxdata"><code class="code">&quot;xdata&quot;</code></a>, <a class="ref" href="#XREFpatchydata"><code class="code">&quot;ydata&quot;</code></a>, and <a class="ref" href="#XREFpatchzdata"><code class="code">&quot;zdata&quot;</code></a>.)
+</p>
+
+<a class="anchor" id="XREFpatchcdatamapping"></a></dd>
+<dt><a id="index-patch-cdatamapping"></a><span><code class="code">cdatamapping</code>: <code class="code">&quot;direct&quot;</code> | {<code class="code">&quot;scaled&quot;</code>}<a class="copiable-link" href="#index-patch-cdatamapping"> &para;</a></span></dt>
+<dd><p>Sets the method for mapping data from the <a class="ref" href="#XREFpatchcdata"><code class="code">&quot;cdata&quot;</code></a> or <a class="ref" href="#XREFpatchcdata"><code class="code">&quot;cdata&quot;</code></a> property to the current colormap.  <code class="code">&quot;Direct&quot;</code> mapping selects the color using the <code class="code">&quot;cdata&quot;</code> or <code class="code">&quot;facevertexcdata&quot;</code> value as an index to the current colormap.  <code class="code">&quot;Scaled&quot;</code> mapping scales the <code class="code">&quot;cdata&quot;</code> or <code class="code">&quot;facevertexcdata&quot;</code> values to the range specified in the <a class="ref" href="Axes-Properties.html#XREFaxesclim"><code class="code">&quot;clim&quot;</code>&nbsp;axes&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFpatchfacealpha"></a></dd>
+<dt><a id="index-patch-facealpha"></a><span><code class="code">facealpha</code>: scalar | <code class="code">&quot;flat&quot;</code> | <code class="code">&quot;interp&quot;</code>, def. <code class="code">1</code><a class="copiable-link" href="#index-patch-facealpha"> &para;</a></span></dt>
+<dd><p>Transparency level of the faces of the patch object.  Only double values are supported at present where a value of 0 means complete transparency and a value of 1 means solid faces without transparency.  Setting the property to <code class="code">&quot;flat&quot;</code> or <code class="code">&quot;interp&quot;</code> causes the faces to not being rendered.  Additionally, the faces are not sorted from back to front which might lead to unexpected results when rendering layered transparent faces.
+</p>
+
+<a class="anchor" id="XREFpatchfacecolor"></a></dd>
+<dt><a id="index-patch-facecolor"></a><span><code class="code">facecolor</code>: {colorspec} | <code class="code">&quot;none&quot;</code> | <code class="code">&quot;flat&quot;</code> | <code class="code">&quot;interp&quot;</code>, def. <code class="code">[0   0   0]</code><a class="copiable-link" href="#index-patch-facecolor"> &para;</a></span></dt>
+<dd><p>Color of the faces of the patch object, specified as either a valid color specification or one of <code class="code">&quot;none&quot;</code>, <code class="code">&quot;flat&quot;</code>, or <code class="code">&quot;interp&quot;</code>.  <code class="code">&quot;flat&quot;</code> and <code class="code">&quot;interp&quot;</code> will set either a single color for each face or a color interpolated across the face&rsquo;s vertices using the color value data stored in either the <a class="ref" href="#XREFpatchcdata"><code class="code">&quot;cdata&quot;</code></a> or <a class="ref" href="#XREFpatchfacevertexcdata"><code class="code">&quot;facevertexcdata&quot;</code></a> properties.  See <a class="xref" href="Colors.html">colorspec</a>.
+</p>
+
+<a class="anchor" id="XREFpatchfacelighting"></a></dd>
+<dt><a id="index-patch-facelighting"></a><span><code class="code">facelighting</code>: {<code class="code">&quot;flat&quot;</code>} | <code class="code">&quot;gouraud&quot;</code> | <code class="code">&quot;none&quot;</code> | <code class="code">&quot;phong&quot;</code><a class="copiable-link" href="#index-patch-facelighting"> &para;</a></span></dt>
+<dd><p>When set to a value other than <code class="code">&quot;none&quot;</code>, the faces of the object are drawn with light and shadow effects.  Supported values are <code class="code">&quot;none&quot;</code> (no lighting effects), <code class="code">&quot;flat&quot;</code> (faceted look), and <code class="code">&quot;gouraud&quot;</code> (linear interpolation of the lighting effects between the vertices).  <code class="code">&quot;phong&quot;</code> is deprecated and has the same effect as <code class="code">&quot;gouraud&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFpatchfacevertexalphadata"></a></dd>
+<dt><a id="index-patch-facevertexalphadata"></a><span><code class="code">facevertexalphadata</code>: def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-patch-facevertexalphadata"> &para;</a></span></dt>
+<dd><p>Face-Vertex transparency control is not yet implemented for patch objects.  <code class="code">facevertexalphadata</code> is unused.
+</p>
+
+<a class="anchor" id="XREFpatchfacevertexcdata"></a></dd>
+<dt><a id="index-patch-facevertexcdata"></a><span><code class="code">facevertexcdata</code>: scalar | matrix, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-patch-facevertexcdata"> &para;</a></span></dt>
+<dd><p>Data defining the patch object color relative to its face-vertex data.  Patch color can be defined using indices into the current colormap or as RGB triplets, where the RGB colors are defined in the rows of <code class="code">&quot;facevertexcdata&quot;</code>.  These colors can be separately defined for the entire patch object, for individual faces, or for individual vertices, and is determined by the shape of <code class="code">&quot;facevertexcdata&quot;</code> as follows:
+</p>
+<p>If <code class="code">facevertexcdata</code> is a scalar index into the current colormap or a 1-by-3 RGB triplet, it defines the color of all faces and edges.
+</p>
+<p>If the patch object has N faces, and <code class="code">facevertexcdata</code> is a N-by-1 column vector of indices or a N-by-3 RGB matrix, it defines the color of each one of the N faces.
+</p>
+<p>If the patch object has M vertices, and <code class="code">facevertexcdata</code> is a M-by-1 column vector of indices or a M-by-3 RGB matrix, it defines the color at each vertex.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFpatchcategoryCoordinateData"></a><h4 class="subsubheading" id="Coordinate-Data-1"><span>Coordinate Data<a class="copiable-link" href="#Coordinate-Data-1"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFpatchfaces"></a></dd>
+<dt><a id="index-patch-faces"></a><span><code class="code">faces</code>: vector | matrix, def. <code class="code">[1   2   3]</code><a class="copiable-link" href="#index-patch-faces"> &para;</a></span></dt>
+<dd><p>patch faces connectivity list stored as an M x N matrix, with each of the M faces defined by a row of up to N vertices, and each element contains the row index of a vertex stored in the <a class="ref" href="#XREFpatchvertices">vertices&nbsp;property<!-- /@w --></a>.  Faces with fewer than N vertices use NaN values to fill empty row elements.
+</p>
+
+<a class="anchor" id="XREFpatchvertices"></a></dd>
+<dt><a id="index-patch-vertices"></a><span><code class="code">vertices</code>: vector | matrix, def. 3-by-2 double<a class="copiable-link" href="#index-patch-vertices"> &para;</a></span></dt>
+<dd><p>patch vertex list stored as an N x 3 matrix, with each row containing the x, y, and z coordinates of the vector, and used with the <a class="ref" href="#XREFpatchfaces">faces&nbsp;property<!-- /@w --></a> to define patch structure.
+</p>
+
+<a class="anchor" id="XREFpatchxdata"></a></dd>
+<dt><a id="index-patch-xdata"></a><span><code class="code">xdata</code>: vector | matrix, def. <code class="code">[0;    1;    0]</code><a class="copiable-link" href="#index-patch-xdata"> &para;</a></span></dt>
+<dd><p>patch vertex x-coordinates.
+</p>
+
+<a class="anchor" id="XREFpatchydata"></a></dd>
+<dt><a id="index-patch-ydata"></a><span><code class="code">ydata</code>: vector | matrix, def. <code class="code">[1;    1;    0]</code><a class="copiable-link" href="#index-patch-ydata"> &para;</a></span></dt>
+<dd><p>patch vertex y-coordinates.
+</p>
+
+<a class="anchor" id="XREFpatchzdata"></a></dd>
+<dt><a id="index-patch-zdata"></a><span><code class="code">zdata</code>: vector | matrix, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-patch-zdata"> &para;</a></span></dt>
+<dd><p>patch vertex z-coordinates.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFpatchcategoryCreation_002fDeletion"></a><h4 class="subsubheading" id="Creation_002fDeletion-5"><span>Creation/Deletion<a class="copiable-link" href="#Creation_002fDeletion-5"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFpatchbeingdeleted"></a></dd>
+<dt><a id="index-patch-beingdeleted"></a><span><code class="code">beingdeleted</code>: {<code class="code">&quot;off&quot;</code>} | <code class="code">&quot;on&quot;</code><a class="copiable-link" href="#index-patch-beingdeleted"> &para;</a></span></dt>
+<dd><p>Property indicating that a function has initiated deletion of the object.  <code class="code">beingdeleted</code> is set to true until the object no longer exists.
+</p>
+
+<a class="anchor" id="XREFpatchcreatefcn"></a></dd>
+<dt><a id="index-patch-createfcn"></a><span><code class="code">createfcn</code>: string | function handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-patch-createfcn"> &para;</a></span></dt>
+<dd><p>Callback function executed immediately after patch has been created.  Function is set by using default property on root object, e.g., <code class="code">set (groot, &quot;defaultpatchcreatefcn&quot;, 'disp (&quot;patch created!&quot;)')</code>.
+</p>
+<p>For information on how to write graphics listener functions, see <a class="pxref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFpatchdeletefcn"></a></dd>
+<dt><a id="index-patch-deletefcn"></a><span><code class="code">deletefcn</code>: string | function handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-patch-deletefcn"> &para;</a></span></dt>
+<dd><p>Callback function executed immediately before patch is deleted.
+</p>
+<p>For information on how to write graphics listener functions, see <a class="pxref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFpatchcategoryDisplay"></a><h4 class="subsubheading" id="Display-5"><span>Display<a class="copiable-link" href="#Display-5"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFpatchclipping"></a></dd>
+<dt><a id="index-patch-clipping"></a><span><code class="code">clipping</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-patch-clipping"> &para;</a></span></dt>
+<dd><p>If <code class="code">clipping</code> is <code class="code">&quot;on&quot;</code>, the patch is clipped in its parent axes limits.
+</p>
+
+<a class="anchor" id="XREFpatchvisible"></a></dd>
+<dt><a id="index-patch-visible"></a><span><code class="code">visible</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-patch-visible"> &para;</a></span></dt>
+<dd><p>If <code class="code">visible</code> is <code class="code">&quot;off&quot;</code>, the patch is not rendered on screen.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFpatchcategoryLegendOptions"></a><h4 class="subsubheading" id="Legend-Options-1"><span>Legend Options<a class="copiable-link" href="#Legend-Options-1"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFpatchdisplayname"></a></dd>
+<dt><a id="index-patch-displayname"></a><span><code class="code">displayname</code>: def. <code class="code">&quot;&quot;</code><a class="copiable-link" href="#index-patch-displayname"> &para;</a></span></dt>
+<dd><p>Text of the legend entry corresponding to this patch.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFpatchcategoryLighting"></a><h4 class="subsubheading" id="Lighting"><span>Lighting<a class="copiable-link" href="#Lighting"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFpatchambientstrength"></a></dd>
+<dt><a id="index-patch-ambientstrength"></a><span><code class="code">ambientstrength</code>: scalar, def. <code class="code">0.3000</code><a class="copiable-link" href="#index-patch-ambientstrength"> &para;</a></span></dt>
+<dd><p>Strength of the ambient light.  Value between 0.0 and 1.0.
+</p>
+
+<a class="anchor" id="XREFpatchbackfacelighting"></a></dd>
+<dt><a id="index-patch-backfacelighting"></a><span><code class="code">backfacelighting</code>: <code class="code">&quot;lit&quot;</code> | {<code class="code">&quot;reverselit&quot;</code>} | <code class="code">&quot;unlit&quot;</code><a class="copiable-link" href="#index-patch-backfacelighting"> &para;</a></span></dt>
+<dd><p><code class="code">&quot;lit&quot;</code>: The normals are used as is for lighting.  <code class="code">&quot;reverselit&quot;</code>: The normals are always oriented towards the point of view.  <code class="code">&quot;unlit&quot;</code>: Faces with normals pointing away from the point of view are unlit.
+</p>
+
+<a class="anchor" id="XREFpatchdiffusestrength"></a></dd>
+<dt><a id="index-patch-diffusestrength"></a><span><code class="code">diffusestrength</code>: scalar, def. <code class="code">0.6000</code><a class="copiable-link" href="#index-patch-diffusestrength"> &para;</a></span></dt>
+<dd><p>Strength of the diffuse reflection.  Value between 0.0 (no diffuse reflection) and 1.0 (full diffuse reflection).
+</p>
+
+<a class="anchor" id="XREFpatchfacenormals"></a></dd>
+<dt><a id="index-patch-facenormals"></a><span><code class="code">facenormals</code>: def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-patch-facenormals"> &para;</a></span></dt>
+<dd><p>Face normals are used for lighting the edges or faces if the <code class="code">edgelighting</code> or <code class="code">facelighting</code> properties are set to <code class="code">&quot;flat&quot;</code>.  Setting <code class="code">facenormals</code> also forces the <code class="code">facenormalsmode</code> property to be set to <code class="code">&quot;manual&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFpatchfacenormalsmode"></a></dd>
+<dt><a id="index-patch-facenormalsmode"></a><span><code class="code">facenormalsmode</code>: {<code class="code">&quot;auto&quot;</code>} | <code class="code">&quot;manual&quot;</code><a class="copiable-link" href="#index-patch-facenormalsmode"> &para;</a></span></dt>
+<dd><p>If this property is set to <code class="code">&quot;auto&quot;</code>, <code class="code">facenormals</code> are automatically calculated if the <code class="code">edgelighting</code> or <code class="code">facelighting</code> property are set to <code class="code">&quot;flat&quot;</code> and at least one <code class="code">light</code> object is present and visible in the same axes.
+</p>
+
+<a class="anchor" id="XREFpatchspecularcolorreflectance"></a></dd>
+<dt><a id="index-patch-specularcolorreflectance"></a><span><code class="code">specularcolorreflectance</code>: scalar, def. <code class="code">1</code><a class="copiable-link" href="#index-patch-specularcolorreflectance"> &para;</a></span></dt>
+<dd><p>Reflectance for specular color.  Value between 0.0 (color of underlying face) and 1.0 (color of light source).
+</p>
+
+<a class="anchor" id="XREFpatchspecularexponent"></a></dd>
+<dt><a id="index-patch-specularexponent"></a><span><code class="code">specularexponent</code>: scalar, def. <code class="code">10</code><a class="copiable-link" href="#index-patch-specularexponent"> &para;</a></span></dt>
+<dd><p>Exponent for the specular reflection.  The lower the value, the more the reflection is spread out.
+</p>
+
+<a class="anchor" id="XREFpatchspecularstrength"></a></dd>
+<dt><a id="index-patch-specularstrength"></a><span><code class="code">specularstrength</code>: scalar, def. <code class="code">0.9000</code><a class="copiable-link" href="#index-patch-specularstrength"> &para;</a></span></dt>
+<dd><p>Strength of the specular reflection.  Value between 0.0 (no specular reflection) and 1.0 (full specular reflection).
+</p>
+
+<a class="anchor" id="XREFpatchvertexnormals"></a></dd>
+<dt><a id="index-patch-vertexnormals"></a><span><code class="code">vertexnormals</code>: def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-patch-vertexnormals"> &para;</a></span></dt>
+<dd><p>Vertex normals are used for lighting the edges or faces if the <code class="code">edgelighting</code> or <code class="code">facelighting</code> properties are set to <code class="code">&quot;gouraud&quot;</code>.  Setting <code class="code">vertexnormals</code> also forces the <code class="code">vertexnormalsmode</code> property to be set to <code class="code">&quot;manual&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFpatchvertexnormalsmode"></a></dd>
+<dt><a id="index-patch-vertexnormalsmode"></a><span><code class="code">vertexnormalsmode</code>: {<code class="code">&quot;auto&quot;</code>} | <code class="code">&quot;manual&quot;</code><a class="copiable-link" href="#index-patch-vertexnormalsmode"> &para;</a></span></dt>
+<dd><p>If this property is set to <code class="code">&quot;auto&quot;</code>, <code class="code">vertexnormals</code> are automatically calculated if the <code class="code">edgelighting</code> or <code class="code">facelighting</code> property are set to <code class="code">&quot;gouraud&quot;</code> and at least one <code class="code">light</code> object is present and visible in the same axes.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFpatchcategoryMarkerAppearance"></a><h4 class="subsubheading" id="Marker-Appearance-1"><span>Marker Appearance<a class="copiable-link" href="#Marker-Appearance-1"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFpatchmarker"></a></dd>
+<dt><a id="index-patch-marker"></a><span><code class="code">marker</code>: <code class="code">&quot;*&quot;</code> | <code class="code">&quot;+&quot;</code> | <code class="code">&quot;.&quot;</code> | <code class="code">&quot;&lt;&quot;</code> | <code class="code">&quot;&gt;&quot;</code> | <code class="code">&quot;^&quot;</code> | <code class="code">&quot;_&quot;</code> | <code class="code">&quot;d&quot;</code> | <code class="code">&quot;diamond&quot;</code> | <code class="code">&quot;h&quot;</code> | <code class="code">&quot;hexagram&quot;</code> | {<code class="code">&quot;none&quot;</code>} | <code class="code">&quot;o&quot;</code> | <code class="code">&quot;p&quot;</code> | <code class="code">&quot;pentagram&quot;</code> | <code class="code">&quot;s&quot;</code> | <code class="code">&quot;square&quot;</code> | <code class="code">&quot;v&quot;</code> | <code class="code">&quot;x&quot;</code> | <code class="code">&quot;|&quot;</code><a class="copiable-link" href="#index-patch-marker"> &para;</a></span></dt>
+<dd><p>See <a class="xref" href="Line-Properties.html#XREFlinemarker">line&nbsp;marker&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFpatchmarkeredgecolor"></a></dd>
+<dt><a id="index-patch-markeredgecolor"></a><span><code class="code">markeredgecolor</code>: {<code class="code">&quot;auto&quot;</code>} | <code class="code">&quot;flat&quot;</code> | <code class="code">&quot;none&quot;</code><a class="copiable-link" href="#index-patch-markeredgecolor"> &para;</a></span></dt>
+<dd><p>See <a class="xref" href="Line-Properties.html#XREFlinemarkeredgecolor">line&nbsp;markeredgecolor&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFpatchmarkerfacecolor"></a></dd>
+<dt><a id="index-patch-markerfacecolor"></a><span><code class="code">markerfacecolor</code>: <code class="code">&quot;auto&quot;</code> | <code class="code">&quot;flat&quot;</code> | {<code class="code">&quot;none&quot;</code>}<a class="copiable-link" href="#index-patch-markerfacecolor"> &para;</a></span></dt>
+<dd><p>See <a class="xref" href="Line-Properties.html#XREFlinemarkerfacecolor">line&nbsp;markerfacecolor&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFpatchmarkersize"></a></dd>
+<dt><a id="index-patch-markersize"></a><span><code class="code">markersize</code>: scalar, def. <code class="code">6</code><a class="copiable-link" href="#index-patch-markersize"> &para;</a></span></dt>
+<dd><p>See <a class="xref" href="Line-Properties.html#XREFlinemarkersize">line&nbsp;markersize&nbsp;property<!-- /@w --></a>.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFpatchcategoryMouseInteraction"></a><h4 class="subsubheading" id="Mouse-Interaction-6"><span>Mouse Interaction<a class="copiable-link" href="#Mouse-Interaction-6"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFpatchbuttondownfcn"></a></dd>
+<dt><a id="index-patch-buttondownfcn"></a><span><code class="code">buttondownfcn</code>: string | function handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-patch-buttondownfcn"> &para;</a></span></dt>
+<dd><p>For information on how to write graphics listener functions, see <a class="pxref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFpatchcontextmenu"></a></dd>
+<dt><a id="index-patch-contextmenu"></a><span><code class="code">contextmenu</code>: graphics handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-patch-contextmenu"> &para;</a></span></dt>
+<dd><p>Graphics handle of the uicontextmenu object that is currently associated to this patch object.
+</p>
+
+<a class="anchor" id="XREFpatchhittest"></a></dd>
+<dt><a id="index-patch-hittest"></a><span><code class="code">hittest</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-patch-hittest"> &para;</a></span></dt>
+<dd><p>Specify whether patch processes mouse events or passes them to ancestors of the object.  When enabled, the object may respond to mouse clicks by evaluating the <code class="code">&quot;buttondownfcn&quot;</code>, showing the uicontextmenu, and eventually becoming the root <code class="code">&quot;currentobject&quot;</code>.  This property is only relevant when the object can accept mouse clicks which is determined by the <code class="code">&quot;pickableparts&quot;</code> property.  See <a class="xref" href="#XREFpatchpickableparts">pickableparts&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFpatchpickableparts"></a></dd>
+<dt><a id="index-patch-pickableparts"></a><span><code class="code">pickableparts</code>: <code class="code">&quot;all&quot;</code> | <code class="code">&quot;none&quot;</code> | {<code class="code">&quot;visible&quot;</code>}<a class="copiable-link" href="#index-patch-pickableparts"> &para;</a></span></dt>
+<dd><p>Specify whether patch will accept mouse clicks.  By default, <code class="code">pickableparts</code> is <code class="code">&quot;visible&quot;</code> and only visible parts of the patch or its children may react to mouse clicks.  When <code class="code">pickableparts</code> is <code class="code">&quot;all&quot;</code> both visible and invisible parts (or children) may react to mouse clicks.  When <code class="code">pickableparts</code> is <code class="code">&quot;none&quot;</code> mouse clicks on the object are ignored and transmitted to any objects underneath this one.  When an object is configured to accept mouse clicks the <code class="code">&quot;hittest&quot;</code> property will determine how they are processed.  See <a class="xref" href="#XREFpatchhittest">hittest&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFpatchselected"></a></dd>
+<dt><a id="index-patch-selected"></a><span><code class="code">selected</code>: {<code class="code">&quot;off&quot;</code>} | <code class="code">&quot;on&quot;</code><a class="copiable-link" href="#index-patch-selected"> &para;</a></span></dt>
+<dd><p>Property indicates whether this patch is selected.
+</p>
+
+<a class="anchor" id="XREFpatchselectionhighlight"></a></dd>
+<dt><a id="index-patch-selectionhighlight"></a><span><code class="code">selectionhighlight</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-patch-selectionhighlight"> &para;</a></span></dt>
+<dd><p>If <code class="code">selectionhighlight</code> is <code class="code">&quot;on&quot;</code>, then the patch&rsquo;s selection state is visually highlighted.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFpatchcategoryObjectIdentification"></a><h4 class="subsubheading" id="Object-Identification-7"><span>Object Identification<a class="copiable-link" href="#Object-Identification-7"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFpatchtag"></a></dd>
+<dt><a id="index-patch-tag"></a><span><code class="code">tag</code>: string, def. <code class="code">&quot;&quot;</code><a class="copiable-link" href="#index-patch-tag"> &para;</a></span></dt>
+<dd><p>A user-defined string to label the graphics object.
+</p>
+
+<a class="anchor" id="XREFpatchtype"></a></dd>
+<dt><a id="index-patch-type"></a><span><code class="code">type</code> (read-only): string<a class="copiable-link" href="#index-patch-type"> &para;</a></span></dt>
+<dd><p>Class name of the graphics object.  <code class="code">type</code> is always <code class="code">&quot;patch&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFpatchuserdata"></a></dd>
+<dt><a id="index-patch-userdata"></a><span><code class="code">userdata</code>: Any Octave data, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-patch-userdata"> &para;</a></span></dt>
+<dd><p>User-defined data to associate with the graphics object.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFpatchcategoryOutlineAppearance"></a><h4 class="subsubheading" id="Outline-Appearance"><span>Outline Appearance<a class="copiable-link" href="#Outline-Appearance"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFpatchedgealpha"></a></dd>
+<dt><a id="index-patch-edgealpha"></a><span><code class="code">edgealpha</code>: scalar | matrix, def. <code class="code">1</code><a class="copiable-link" href="#index-patch-edgealpha"> &para;</a></span></dt>
+<dd><p>Transparency is not yet implemented for patch objects.  <code class="code">edgealpha</code> is unused.
+</p>
+
+<a class="anchor" id="XREFpatchedgecolor"></a></dd>
+<dt><a id="index-patch-edgecolor"></a><span><code class="code">edgecolor</code>: colorspec | <code class="code">&quot;none&quot;</code> | <code class="code">&quot;flat&quot;</code> | <code class="code">&quot;interp&quot;</code>, def. <code class="code">[0   0   0]</code><a class="copiable-link" href="#index-patch-edgecolor"> &para;</a></span></dt>
+<dd><p>Color of the edges of the patch object, specified as either a valid color specification or one of <code class="code">&quot;none&quot;</code>, <code class="code">&quot;flat&quot;</code>, or <code class="code">&quot;interp&quot;</code>.  <code class="code">&quot;flat&quot;</code> and <code class="code">&quot;interp&quot;</code> will set either a single color for each edge or a color interpolated between edge&rsquo;s vertices using the color value data stored in <a class="ref" href="#XREFpatchcdata"><code class="code">&quot;cdata&quot;</code></a>.  See <a class="xref" href="Colors.html">colorspec</a>.
+</p>
+
+<a class="anchor" id="XREFpatchedgelighting"></a></dd>
+<dt><a id="index-patch-edgelighting"></a><span><code class="code">edgelighting</code>: <code class="code">&quot;flat&quot;</code> | <code class="code">&quot;gouraud&quot;</code> | {<code class="code">&quot;none&quot;</code>} | <code class="code">&quot;phong&quot;</code><a class="copiable-link" href="#index-patch-edgelighting"> &para;</a></span></dt>
+<dd><p>When set to a value other than <code class="code">&quot;none&quot;</code>, the edges of the object are drawn with light and shadow effects.  Supported values are <code class="code">&quot;none&quot;</code> (no lighting effects), <code class="code">&quot;flat&quot;</code> (faceted look), and <code class="code">&quot;gouraud&quot;</code> (linear interpolation of the lighting effects between the vertices).  <code class="code">&quot;phong&quot;</code> is deprecated and has the same effect as <code class="code">&quot;gouraud&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFpatchlinestyle"></a></dd>
+<dt><a id="index-patch-linestyle"></a><span><code class="code">linestyle</code>: {<code class="code">&quot;-&quot;</code>} | <code class="code">&quot;--&quot;</code> | <code class="code">&quot;-.&quot;</code> | <code class="code">&quot;:&quot;</code> | <code class="code">&quot;none&quot;</code><a class="copiable-link" href="#index-patch-linestyle"> &para;</a></span></dt>
+<dd><p>See <a class="xref" href="Line-Styles.html">Line Styles</a>.
+</p>
+
+<a class="anchor" id="XREFpatchlinewidth"></a></dd>
+<dt><a id="index-patch-linewidth"></a><span><code class="code">linewidth</code>: scalar, def. <code class="code">0.5000</code><a class="copiable-link" href="#index-patch-linewidth"> &para;</a></span></dt>
+<dd><p>See <a class="xref" href="Line-Properties.html#XREFlinelinewidth">line&nbsp;linewidth&nbsp;property<!-- /@w --></a>.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFpatchcategoryParent_002fChildren"></a><h4 class="subsubheading" id="Parent_002fChildren-6"><span>Parent/Children<a class="copiable-link" href="#Parent_002fChildren-6"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFpatchchildren"></a></dd>
+<dt><a id="index-patch-children"></a><span><code class="code">children</code> (read-only): vector of graphics handles, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-patch-children"> &para;</a></span></dt>
+<dd><p>Child objects for Patch objects is not yet implemented for patch objects.  <code class="code">children</code> is unused.
+</p>
+
+<a class="anchor" id="XREFpatchhandlevisibility"></a></dd>
+<dt><a id="index-patch-handlevisibility"></a><span><code class="code">handlevisibility</code>: <code class="code">&quot;callback&quot;</code> | <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-patch-handlevisibility"> &para;</a></span></dt>
+<dd><p>If <code class="code">handlevisibility</code> is <code class="code">&quot;off&quot;</code>, the patch&rsquo;s handle is not visible in its parent&rsquo;s <code class="code">&quot;children&quot;</code> property.
+</p>
+
+<a class="anchor" id="XREFpatchparent"></a></dd>
+<dt><a id="index-patch-parent"></a><span><code class="code">parent</code>: graphics handle<a class="copiable-link" href="#index-patch-parent"> &para;</a></span></dt>
+<dd><p>Handle of the parent graphics object.
+</p>
+</dd>
+</dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Scatter-Properties.html">Scatter Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Image-Properties.html">Image Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Graphics-Object-Properties.html">Graphics Object Properties</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

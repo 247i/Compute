@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Continuation Lines (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Continuation Lines (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Continuation Lines (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Statements.html" rel="up" title="Statements">
+<link href="The-try-Statement.html" rel="prev" title="The try Statement">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Continuation-Lines">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="The-try-Statement.html" accesskey="p" rel="prev">The try Statement</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Statements.html" accesskey="u" rel="up">Statements</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Continuation-Lines-1"><span>10.10 Continuation Lines<a class="copiable-link" href="#Continuation-Lines-1"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-continuation-lines"></a>
+
+<a class="index-entry-id" id="index-_002e_002e_002e-continuation-marker"></a>
+<p>In the Octave language, most statements end with a newline character and
+you must tell Octave to ignore the newline character in order to
+continue a statement from one line to the next.  Lines that end with the
+characters <code class="code">...</code> are joined with the following line before they are
+divided into tokens by Octave&rsquo;s parser.  For example, the lines
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">x = long_variable_name ...
+    + longer_variable_name ...
+    - 42
+</pre></div></div>
+
+<p>form a single statement.
+</p>
+<p>Any text between the continuation marker and the newline character is
+ignored.  For example, the statement
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">x = long_variable_name ...    # comment one
+    + longer_variable_name ...comment two
+    - 42                      # last comment
+</pre></div></div>
+
+<p>is equivalent to the one shown above.
+</p>
+<a class="index-entry-id" id="index-_005c-continuation-marker"></a>
+<p>Inside double-quoted string constants, the character <code class="code">\</code> has to be
+used as continuation marker.  The <code class="code">\</code> must appear at the end of the
+line just before the newline character:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">s = &quot;This text starts in the first line \
+and is continued in the second line.&quot;
+</pre></div></div>
+
+<p>Input that occurs inside parentheses can be continued to the next line
+without having to use a continuation marker.  For example, it is
+possible to write statements like
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">if (fine_dining_destination == on_a_boat
+    || fine_dining_destination == on_a_train)
+  seuss (i, will, not, eat, them, sam, i, am, i,
+         will, not, eat, green, eggs, and, ham);
+endif
+</pre></div></div>
+
+<p>without having to add to the clutter with continuation markers.
+</p>
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="The-try-Statement.html">The try Statement</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Statements.html">Statements</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

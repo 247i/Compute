@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Accessing Global Variables in Oct-Files (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Accessing Global Variables in Oct-Files (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Accessing Global Variables in Oct-Files (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Oct_002dFiles.html" rel="up" title="Oct-Files">
+<link href="Calling-Octave-Functions-from-Oct_002dFiles.html" rel="next" title="Calling Octave Functions from Oct-Files">
+<link href="Sparse-Matrices-in-Oct_002dFiles.html" rel="prev" title="Sparse Matrices in Oct-Files">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Accessing-Global-Variables-in-Oct_002dFiles">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Calling-Octave-Functions-from-Oct_002dFiles.html" accesskey="n" rel="next">Calling Octave Functions from Oct-Files</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Sparse-Matrices-in-Oct_002dFiles.html" accesskey="p" rel="prev">Sparse Matrices in Oct-Files</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Oct_002dFiles.html" accesskey="u" rel="up">Oct-Files</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Accessing-Global-Variables-in-Oct_002dFiles-1"><span>A.1.7 Accessing Global Variables in Oct-Files<a class="copiable-link" href="#Accessing-Global-Variables-in-Oct_002dFiles-1"> &para;</a></span></h4>
+
+<p>Global variables allow variables in the global scope to be accessed.  Global
+variables can be accessed within oct-files by using the support functions
+<code class="code">global_varval</code><!-- /@w -->&nbsp;and <code class="code">global_assign</code><!-- /@w -->&nbsp;from the current
+interpreter&rsquo;s symbol table.  Both functions take as first argument a string
+representing the variable name to be obtained or assigned.  The second
+argument of <code class="code">global_assign</code><!-- /@w -->&nbsp;is the value to be assigned.  An
+example of the use of these two functions is
+</p>
+<div class="example">
+<pre class="verbatim">#include &lt;octave/oct.h&gt;
+#include &lt;octave/interpreter.h&gt;
+
+DEFMETHOD_DLD (globaldemo, interp, args, , &quot;Global Demo&quot;)
+{
+  if (args.length () != 1)
+    print_usage ();
+
+  octave_value retval;
+
+  std::string s = args(0).string_value ();
+
+  octave::symbol_table&amp; symtab = interp.get_symbol_table ();
+
+  octave_value tmp = symtab.global_varval (s);
+
+  if (tmp.is_defined ())
+    retval = tmp;
+  else
+    retval = &quot;Global variable not found&quot;;
+
+  symtab.global_assign (&quot;a&quot;, 42.0);
+
+  return retval;
+}
+</pre></div>
+
+<p>An example of its use is
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">global a b
+b = 10;
+globaldemo (&quot;b&quot;)
+&rArr;  10
+globaldemo (&quot;c&quot;)
+&rArr;  &quot;Global variable not found&quot;
+num2str (a)
+&rArr;  42
+</pre></div></div>
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Calling-Octave-Functions-from-Oct_002dFiles.html">Calling Octave Functions from Oct-Files</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Sparse-Matrices-in-Oct_002dFiles.html">Sparse Matrices in Oct-Files</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Oct_002dFiles.html">Oct-Files</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

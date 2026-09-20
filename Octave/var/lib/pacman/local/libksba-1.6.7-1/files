@@ -1,0 +1,12 @@
+%FILES%
+usr/
+usr/share/
+usr/bin/
+usr/share/aclocal/
+usr/share/info/
+usr/share/licenses/
+usr/share/aclocal/ksba.m4
+usr/share/info/ksba.info.gz
+usr/share/licenses/libksba/
+usr/share/licenses/libksba/COPYING
+usr/bin/msys-ksba-8.dll

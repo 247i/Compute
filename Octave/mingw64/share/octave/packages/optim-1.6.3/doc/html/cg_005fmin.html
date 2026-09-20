@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- Additional documentation for the optim package for Octave.
+
+Copyright © Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<title>cg_min (optim_doc)</title>
+
+<meta name="description" content="cg_min (optim_doc)">
+<meta name="keywords" content="cg_min (optim_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Scalar-optimization.html" rel="up" title="Scalar optimization">
+<link href="brent_005fline_005fmin.html" rel="next" title="brent_line_min">
+<link href="nrm.html" rel="prev" title="nrm">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+ul.mark-bullet {list-style-type: disc}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section-level-extent" id="cg_005fmin">
+<div class="nav-panel">
+<p>
+Next: <a href="brent_005fline_005fmin.html" accesskey="n" rel="next">Linesearch, Brent method</a>, Previous: <a href="nrm.html" accesskey="p" rel="prev">Newton-Raphson algorithm</a>, Up: <a href="Scalar-optimization.html" accesskey="u" rel="up">Functions for optimization of a scalar objective function</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h3 class="section" id="A-conjugate-gradient-method"><span>1.13 A conjugate gradient method<a class="copiable-link" href="#A-conjugate-gradient-method"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-cg_005fmin-1"></a>
+
+<a class="anchor" id="XREFcg_005fmin"></a><dl class="first-deftypefn">
+<dt class="deftypefn" id="index-cg_005fmin"><span class="category-def">Function File: </span><span><code class="def-type">[<var class="var">x0</var>,<var class="var">v</var>,<var class="var">nev</var>]</code> <strong class="def-name">cg_min</strong> <code class="def-code-arguments">( <var class="var">f</var>,<var class="var">df</var>,<var class="var">args</var>,<var class="var">ctl</var> )</code><a class="copiable-link" href="#index-cg_005fmin"> &para;</a></span></dt>
+<dd><p>NonLinear Conjugate Gradient method to minimize function <var class="var">f</var>.
+</p>
+<h4 class="subheading" id="Arguments-1"><span>Arguments<a class="copiable-link" href="#Arguments-1"> &para;</a></span></h4>
+<ul class="itemize mark-bullet">
+<li><var class="var">f</var>   : string   : Name of function. Return a real value 
+</li><li><var class="var">df</var>  : string   : Name of f&rsquo;s derivative. Returns a (R*C) x 1 vector 
+</li><li><var class="var">args</var>: cell     : Arguments passed to f.<br>
+</li><li><var class="var">ctl</var>   : 5-vec    : (Optional) Control variables, described below
+</li></ul>
+
+<h4 class="subheading" id="Returned-values"><span>Returned values<a class="copiable-link" href="#Returned-values"> &para;</a></span></h4>
+<ul class="itemize mark-bullet">
+<li><var class="var">x0</var>    : matrix   : Local minimum of f
+</li><li><var class="var">v</var>     : real     : Value of f in x0
+</li><li><var class="var">nev</var>   : 1 x 2    : Number of evaluations of f and of df
+</li></ul>
+
+<h4 class="subheading" id="Control-Variables"><span>Control Variables<a class="copiable-link" href="#Control-Variables"> &para;</a></span></h4>
+<ul class="itemize mark-bullet">
+<li><var class="var">ctl</var>(1)       : 1 or 2 : Select stopping criterion amongst :
+</li><li><var class="var">ctl</var>(1)==0    : Default value
+</li><li><var class="var">ctl</var>(1)==1    : Stopping criterion : Stop search when value doesn&rsquo;t
+improve, as tested by <em class="math">ctl(2) &gt; Deltaf/max(|f(x)|,1) </em>
+where Deltaf is the decrease in f observed in the last iteration
+(each iteration consists R*C line searches).
+</li><li><var class="var">ctl</var>(1)==2    : Stopping criterion : Stop search when updates are small,
+as tested by <em class="math">ctl(2) &gt; max { dx(i)/max(|x(i)|,1) | i in 1..N }</em>
+where  dx is the change in the x that occured in the last iteration.
+</li><li><var class="var">ctl</var>(2)       : Threshold used in stopping tests.           Default=10*eps
+</li><li><var class="var">ctl</var>(2)==0    : Default value
+</li><li><var class="var">ctl</var>(3)       : Position of the minimized argument in args  Default=1
+</li><li><var class="var">ctl</var>(3)==0    : Default value
+</li><li><var class="var">ctl</var>(4)       : Maximum number of function evaluations      Default=inf
+</li><li><var class="var">ctl</var>(4)==0    : Default value
+</li><li><var class="var">ctl</var>(5)       : Type of optimization:
+</li><li><var class="var">ctl</var>(5)==1    : &quot;Fletcher-Reves&quot; method
+</li><li><var class="var">ctl</var>(5)==2    : &quot;Polak-Ribiere&quot; (Default)
+</li><li><var class="var">ctl</var>(5)==3    : &quot;Hestenes-Stiefel&quot; method
+</li></ul>
+
+<p><var class="var">ctl</var> may have length smaller than 4. Default values will be used if ctl is
+not passed or if nan values are given.
+</p><h4 class="subheading" id="Example_003a"><span>Example:<a class="copiable-link" href="#Example_003a"> &para;</a></span></h4>
+
+<p>function r=df( l )  b=[1;0;-1]; r = -( 2*l{1} - 2*b + rand(size(l{1}))); endfunction <br>
+function r=ff( l )  b=[1;0;-1]; r = (l{1}-b)&rsquo; * (l{1}-b); endfunction <br>
+ll = { [10; 2; 3] }; <br>
+ctl(5) = 3; <br>
+[x0,v,nev]=cg_min( &quot;ff&quot;, &quot;df&quot;, ll, ctl ) <br>
+</p>
+<p>Comment:  In general, BFGS method seems to be better performin in many cases but requires more computation per iteration
+See also http://en.wikipedia.org/wiki/Nonlinear_conjugate_gradient.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="bfgsmin.html#XREFbfgsmin">bfgsmin</a>.
+</p></dd></dl>
+
+
+
+</div>
+<hr>
+<div class="nav-panel">
+<p>
+Next: <a href="brent_005fline_005fmin.html">Linesearch, Brent method</a>, Previous: <a href="nrm.html">Newton-Raphson algorithm</a>, Up: <a href="Scalar-optimization.html">Functions for optimization of a scalar objective function</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

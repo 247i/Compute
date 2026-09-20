@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Logical Values (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Logical Values (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Logical Values (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Numeric-Data-Types.html" rel="up" title="Numeric Data Types">
+<link href="Automatic-Conversion-of-Data-Types.html" rel="next" title="Automatic Conversion of Data Types">
+<link href="Bit-Manipulations.html" rel="prev" title="Bit Manipulations">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Logical-Values">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Automatic-Conversion-of-Data-Types.html" accesskey="n" rel="next">Automatic Conversion of Data Types</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Bit-Manipulations.html" accesskey="p" rel="prev">Bit Manipulations</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Numeric-Data-Types.html" accesskey="u" rel="up">Numeric Data Types</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Logical-Values-1"><span>4.6 Logical Values<a class="copiable-link" href="#Logical-Values-1"> &para;</a></span></h3>
+
+<p>Octave has built-in support for logical values, i.e., variables that
+are either <code class="code">true</code> or <code class="code">false</code>.  When comparing two variables,
+the result will be a logical value whose value depends on whether or
+not the comparison is true.
+</p>
+<p>The basic logical operations are <code class="code">&amp;</code>, <code class="code">|</code>, and <code class="code">!</code>,
+which correspond to &ldquo;Logical And&rdquo;, &ldquo;Logical Or&rdquo;, and &ldquo;Logical
+Negation&rdquo;.  These operations all follow the usual rules of logic.
+</p>
+<p>It is also possible to use logical values as part of standard numerical
+calculations.  In this case <code class="code">true</code> is converted to <code class="code">1</code>, and
+<code class="code">false</code> to 0, both represented using double precision floating
+point numbers.  So, the result of <code class="code">true*22 - false/6</code> is <code class="code">22</code>.
+</p>
+<p>Logical values can also be used to index matrices and cell arrays.
+When indexing with a logical array the result will be a vector containing
+the values corresponding to <code class="code">true</code> parts of the logical array.
+See <a class="xref" href="Index-Expressions.html#XREFLogicalIndexing">Logical Indexing</a>.
+</p>
+<p>Logical values can also be constructed by
+casting numeric objects to logical values, or by using the <code class="code">true</code>
+or <code class="code">false</code> functions.
+</p>
+<a class="anchor" id="XREFlogical"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-logical"><span><code class="def-type"><var class="var">TF</var> =</code> <strong class="def-name">logical</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-logical"> &para;</a></span></dt>
+<dd><p>Convert the numeric object <var class="var">x</var> to logical type.
+</p>
+<p>Any nonzero values will be converted to true (1) while zero values will be
+converted to false (0).  The non-numeric value NaN cannot be converted and will
+produce an error.
+</p>
+<p>Compatibility Note: Octave accepts complex values as input, whereas <small class="sc">MATLAB</small>
+issues an error.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Numeric-Data-Types.html#XREFdouble">double</a>, <a class="ref" href="Single-Precision-Data-Types.html#XREFsingle">single</a>, <a class="ref" href="Concatenating-Strings.html#XREFchar">char</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFtrue"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-true"><span><code class="def-type"><var class="var">T</var> =</code> <strong class="def-name">true</strong><a class="copiable-link" href="#index-true"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-true-1"><span><code class="def-type"><var class="var">T</var> =</code> <strong class="def-name">true</strong> <code class="def-code-arguments">(<var class="var">n</var>)</code><a class="copiable-link" href="#index-true-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-true-2"><span><code class="def-type"><var class="var">T</var> =</code> <strong class="def-name">true</strong> <code class="def-code-arguments">(<var class="var">m</var>, <var class="var">n</var>, &hellip;)</code><a class="copiable-link" href="#index-true-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-true-3"><span><code class="def-type"><var class="var">T</var> =</code> <strong class="def-name">true</strong> <code class="def-code-arguments">([<var class="var">m</var>, <var class="var">n</var>, &hellip;])</code><a class="copiable-link" href="#index-true-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-true-4"><span><code class="def-type"><var class="var">T</var> =</code> <strong class="def-name">true</strong> <code class="def-code-arguments">(&hellip;, &quot;like&quot;, <var class="var">var</var>)</code><a class="copiable-link" href="#index-true-4"> &para;</a></span></dt>
+<dd><p>Return a scalar, matrix, or N-dimensional array whose elements are all logical
+<code class="code">1</code>.
+</p>
+<p>If called with no arguments, return the scalar value logical <code class="code">1</code>.
+</p>
+<p>If invoked with a single scalar integer argument <var class="var">n</var>, return a square
+NxN matrix.
+</p>
+<p>If invoked with two or more scalar integer arguments, or a vector of integer
+values, return an array with the given dimensions.
+</p>
+<p>If a logical variable <var class="var">var</var> is specified after <code class="code">&quot;like&quot;</code>, the output
+<var class="var">T</var> will have the same sparsity as <var class="var">var</var>.
+</p>
+<p>Programming Notes: The code <code class="code">true (&hellip;)</code> is faster (30X) and more
+memory efficient than <code class="code">logical (ones (&hellip;))</code>.
+</p>
+<p>Any negative dimensions are treated as zero, and any zero dimensions will
+result in an empty matrix.  This odd behavior is for <small class="sc">MATLAB</small> compatibility.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFfalse">false</a>, <a class="ref" href="#XREFlogical">logical</a>, <a class="ref" href="Special-Utility-Matrices.html#XREFones">ones</a>, <a class="ref" href="Special-Utility-Matrices.html#XREFzeros">zeros</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFfalse"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-false"><span><code class="def-type"><var class="var">F</var> =</code> <strong class="def-name">false</strong><a class="copiable-link" href="#index-false"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-false-1"><span><code class="def-type"><var class="var">F</var> =</code> <strong class="def-name">false</strong> <code class="def-code-arguments">(<var class="var">n</var>)</code><a class="copiable-link" href="#index-false-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-false-2"><span><code class="def-type"><var class="var">F</var> =</code> <strong class="def-name">false</strong> <code class="def-code-arguments">(<var class="var">m</var>, <var class="var">n</var>, &hellip;)</code><a class="copiable-link" href="#index-false-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-false-3"><span><code class="def-type"><var class="var">F</var> =</code> <strong class="def-name">false</strong> <code class="def-code-arguments">([<var class="var">m</var>, <var class="var">n</var>, &hellip;])</code><a class="copiable-link" href="#index-false-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-false-4"><span><code class="def-type"><var class="var">F</var> =</code> <strong class="def-name">false</strong> <code class="def-code-arguments">(&hellip;, &quot;like&quot;, <var class="var">var</var>)</code><a class="copiable-link" href="#index-false-4"> &para;</a></span></dt>
+<dd><p>Return a scalar, matrix, or N-dimensional array whose elements are all logical
+<code class="code">0</code>.
+</p>
+<p>If called with no arguments, return the scalar value logical <code class="code">0</code>.
+</p>
+<p>If invoked with a single scalar integer argument <var class="var">n</var>, return a square
+NxN matrix.
+</p>
+<p>If invoked with two or more scalar integer arguments, or a vector of integer
+values, return an array with the given dimensions.
+</p>
+<p>If a logical variable <var class="var">var</var> is specified after <code class="code">&quot;like&quot;</code>, the output
+<var class="var">F</var> will have the same sparsity as <var class="var">var</var>.
+</p>
+<p>Programming Note: The code <code class="code">false (&hellip;)</code> is faster (30X) and more
+memory efficient than <code class="code">logical (zeros (&hellip;))</code>.
+</p>
+<p>Any negative dimensions are treated as zero, and any zero dimensions will
+result in an empty matrix.  This odd behavior is for <small class="sc">MATLAB</small> compatibility.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFtrue">true</a>, <a class="ref" href="#XREFlogical">logical</a>, <a class="ref" href="Special-Utility-Matrices.html#XREFones">ones</a>, <a class="ref" href="Special-Utility-Matrices.html#XREFzeros">zeros</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Automatic-Conversion-of-Data-Types.html">Automatic Conversion of Data Types</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Bit-Manipulations.html">Bit Manipulations</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Numeric-Data-Types.html">Numeric Data Types</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

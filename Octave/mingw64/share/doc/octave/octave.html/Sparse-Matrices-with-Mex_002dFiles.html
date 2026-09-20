@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Sparse Matrices with Mex-Files (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Sparse Matrices with Mex-Files (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Sparse Matrices with Mex-Files (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Mex_002dFiles.html" rel="up" title="Mex-Files">
+<link href="Calling-Other-Functions-in-Mex_002dFiles.html" rel="next" title="Calling Other Functions in Mex-Files">
+<link href="Structures-with-Mex_002dFiles.html" rel="prev" title="Structures with Mex-Files">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Sparse-Matrices-with-Mex_002dFiles">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Calling-Other-Functions-in-Mex_002dFiles.html" accesskey="n" rel="next">Calling Other Functions in Mex-Files</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Structures-with-Mex_002dFiles.html" accesskey="p" rel="prev">Structures with Mex-Files</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Mex_002dFiles.html" accesskey="u" rel="up">Mex-Files</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Sparse-Matrices-with-Mex_002dFiles-1"><span>A.2.6 Sparse Matrices with Mex-Files<a class="copiable-link" href="#Sparse-Matrices-with-Mex_002dFiles-1"> &para;</a></span></h4>
+
+<p>The Octave format for sparse matrices is identical to the mex format in that it
+is a compressed column sparse format.  Also, in both implementations sparse
+matrices are required to be two-dimensional.  The only difference of importance
+to the programmer is that the real and imaginary parts of the matrix are stored
+separately.
+</p>
+<p>The mex-file interface, in addition to using <code class="code">mxGetM</code>, <code class="code">mxGetN</code>,
+<code class="code">mxSetM</code>, <code class="code">mxSetN</code>, <code class="code">mxGetPr</code>, <code class="code">mxGetPi</code>, <code class="code">mxSetPr</code>,
+and <code class="code">mxSetPi</code>, also supplies the following functions.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">mwIndex *mxGetIr (const mxArray *ptr);
+mwIndex *mxGetJc (const mxArray *ptr);
+mwSize mxGetNzmax (const mxArray *ptr);
+
+void mxSetIr (mxArray *ptr, mwIndex *ir);
+void mxSetJc (mxArray *ptr, mwIndex *jc);
+void mxSetNzmax (mxArray *ptr, mwSize nzmax);
+</pre></div></div>
+
+<p><code class="code">mxGetNzmax</code> gets the maximum number of elements that can be stored in the
+sparse matrix.  This is not necessarily the number of nonzero elements in the
+sparse matrix.  <code class="code">mxGetJc</code> returns an array with one additional value than
+the number of columns in the sparse matrix.  The difference between consecutive
+values of the array returned by <code class="code">mxGetJc</code> define the number of nonzero
+elements in each column of the sparse matrix.  Therefore,
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">mwSize nz, n;
+mwIndex *Jc;
+mxArray *m;
+...
+n = mxGetN (m);
+Jc = mxGetJc (m);
+nz = Jc[n];
+</pre></div></div>
+
+<p>returns the actual number of nonzero elements stored in the matrix in
+<code class="code">nz</code>.  As the arrays returned by <code class="code">mxGetPr</code> and <code class="code">mxGetPi</code> only
+contain the nonzero values of the matrix, we also need a pointer to the rows of
+the nonzero elements, and this is given by <code class="code">mxGetIr</code>.  A complete example
+of the use of sparse matrices in mex-files is given by the file
+<samp class="file">mysparse.c</samp> shown below.
+</p>
+<div class="example">
+<pre class="verbatim">#include &quot;mex.h&quot;
+
+void
+mexFunction (int nlhs, mxArray *plhs[],
+             int nrhs, const mxArray *prhs[])
+{
+  mwSize m, n, nz;
+  mxArray *v;
+  mwIndex i;
+  double *pr, *pi;
+  double *pr2, *pi2;
+  mwIndex *ir, *jc;
+  mwIndex *ir2, *jc2;
+
+  if (nrhs != 1 || ! mxIsSparse (prhs[0]))
+    mexErrMsgTxt (&quot;ARG1 must be a sparse matrix&quot;);
+
+  m = mxGetM (prhs[0]);
+  n = mxGetN (prhs[0]);
+  nz = mxGetNzmax (prhs[0]);
+
+  if (mxIsComplex (prhs[0]))
+    {
+      mexPrintf (&quot;Matrix is %d-by-%d complex sparse matrix&quot;, m, n);
+      mexPrintf (&quot; with %d elements\n&quot;, nz);
+
+      pr = mxGetPr (prhs[0]);
+      pi = mxGetPi (prhs[0]);
+      ir = mxGetIr (prhs[0]);
+      jc = mxGetJc (prhs[0]);
+
+      i = n;
+      while (jc[i] == jc[i-1] &amp;&amp; i != 0) i--;
+
+      mexPrintf (&quot;last nonzero element (%d, %d) = (%g, %g)\n&quot;,
+                 ir[nz-1]+ 1, i, pr[nz-1], pi[nz-1]);
+
+      v = mxCreateSparse (m, n, nz, mxCOMPLEX);
+      pr2 = mxGetPr (v);
+      pi2 = mxGetPi (v);
+      ir2 = mxGetIr (v);
+      jc2 = mxGetJc (v);
+
+      for (i = 0; i &lt; nz; i++)
+        {
+          pr2[i] = 2 * pr[i];
+          pi2[i] = 2 * pi[i];
+          ir2[i] = ir[i];
+        }
+      for (i = 0; i &lt; n + 1; i++)
+        jc2[i] = jc[i];
+
+      if (nlhs &gt; 0)
+        plhs[0] = v;
+    }
+  else if (mxIsLogical (prhs[0]))
+    {
+      mxLogical *pbr, *pbr2;
+      mexPrintf (&quot;Matrix is %d-by-%d logical sparse matrix&quot;, m, n);
+      mexPrintf (&quot; with %d elements\n&quot;, nz);
+
+      pbr = mxGetLogicals (prhs[0]);
+      ir = mxGetIr (prhs[0]);
+      jc = mxGetJc (prhs[0]);
+
+      i = n;
+      while (jc[i] == jc[i-1] &amp;&amp; i != 0) i--;
+      mexPrintf (&quot;last nonzero element (%d, %d) = %d\n&quot;,
+                 ir[nz-1]+ 1, i, pbr[nz-1]);
+
+      v = mxCreateSparseLogicalMatrix (m, n, nz);
+      pbr2 = mxGetLogicals (v);
+      ir2 = mxGetIr (v);
+      jc2 = mxGetJc (v);
+
+      for (i = 0; i &lt; nz; i++)
+        {
+          pbr2[i] = pbr[i];
+          ir2[i] = ir[i];
+        }
+      for (i = 0; i &lt; n + 1; i++)
+        jc2[i] = jc[i];
+
+      if (nlhs &gt; 0)
+        plhs[0] = v;
+    }
+  else
+    {
+      mexPrintf (&quot;Matrix is %d-by-%d real sparse matrix&quot;, m, n);
+      mexPrintf (&quot; with %d elements\n&quot;, nz);
+
+      pr = mxGetPr (prhs[0]);
+      ir = mxGetIr (prhs[0]);
+      jc = mxGetJc (prhs[0]);
+
+      i = n;
+      while (jc[i] == jc[i-1] &amp;&amp; i != 0) i--;
+      mexPrintf (&quot;last nonzero element (%d, %d) = %g\n&quot;,
+                 ir[nz-1]+ 1, i, pr[nz-1]);
+
+      v = mxCreateSparse (m, n, nz, mxREAL);
+      pr2 = mxGetPr (v);
+      ir2 = mxGetIr (v);
+      jc2 = mxGetJc (v);
+
+      for (i = 0; i &lt; nz; i++)
+        {
+          pr2[i] = 2 * pr[i];
+          ir2[i] = ir[i];
+        }
+      for (i = 0; i &lt; n + 1; i++)
+        jc2[i] = jc[i];
+
+      if (nlhs &gt; 0)
+        plhs[0] = v;
+    }
+}
+</pre></div>
+
+<p>A sample usage of <code class="code">mysparse</code> is
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">sm = sparse ([1, 0; 0, pi]);
+mysparse (sm)
+&rArr; 
+Matrix is 2-by-2 real sparse matrix with 2 elements
+last nonzero element (2, 2) = 3.14159
+</pre></div></div>
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Calling-Other-Functions-in-Mex_002dFiles.html">Calling Other Functions in Mex-Files</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Structures-with-Mex_002dFiles.html">Structures with Mex-Files</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Mex_002dFiles.html">Mex-Files</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

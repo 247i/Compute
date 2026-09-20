@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Distributions (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Distributions (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Distributions (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Statistics.html" rel="up" title="Statistics">
+<link href="Random-Number-Generation.html" rel="next" title="Random Number Generation">
+<link href="Correlation-and-Regression-Analysis.html" rel="prev" title="Correlation and Regression Analysis">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Distributions">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Random-Number-Generation.html" accesskey="n" rel="next">Random Number Generation</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Correlation-and-Regression-Analysis.html" accesskey="p" rel="prev">Correlation and Regression Analysis</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Statistics.html" accesskey="u" rel="up">Statistics</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Distributions-1"><span>26.6 Distributions<a class="copiable-link" href="#Distributions-1"> &para;</a></span></h3>
+
+<p>Octave has functions for computing the Probability Density Function (PDF), the
+Cumulative Distribution function (CDF), and the quantile (the inverse of the
+CDF) for arbitrary user-defined distributions (discrete) and for experimental
+data (empirical).
+</p>
+<p>The following table summarizes the supported distributions (in alphabetical
+order).
+</p>
+<table class="multitable">
+<thead><tr><th width="31%">Distribution</th><th width="23%">PDF</th><th width="23%">CDF</th><th width="23%">Quantile</th></tr></thead>
+<tbody><tr><td width="31%">Univariate Discrete Distribution</td><td width="23%"><code class="code">discrete_pdf</code></td><td width="23%"><code class="code">discrete_cdf</code></td><td width="23%"><code class="code">discrete_inv</code></td></tr>
+<tr><td width="31%">Empirical Distribution</td><td width="23%"><code class="code">empirical_pdf</code></td><td width="23%"><code class="code">empirical_cdf</code></td><td width="23%"><code class="code">empirical_inv</code></td></tr>
+</tbody>
+</table>
+
+<a class="anchor" id="XREFdiscrete_005fpdf"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-discrete_005fpdf"><span><code class="def-type"><var class="var">pdf</var> =</code> <strong class="def-name">discrete_pdf</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">v</var>, <var class="var">p</var>)</code><a class="copiable-link" href="#index-discrete_005fpdf"> &para;</a></span></dt>
+<dd><p>For each element of <var class="var">x</var>, compute the probability density function (PDF)
+at <var class="var">x</var> of a univariate discrete distribution which assumes the values
+in <var class="var">v</var> with probabilities <var class="var">p</var>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFdiscrete_005fcdf"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-discrete_005fcdf"><span><code class="def-type"><var class="var">cdf</var> =</code> <strong class="def-name">discrete_cdf</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">v</var>, <var class="var">p</var>)</code><a class="copiable-link" href="#index-discrete_005fcdf"> &para;</a></span></dt>
+<dd><p>For each element of <var class="var">x</var>, compute the cumulative distribution function
+(CDF) at <var class="var">x</var> of a univariate discrete distribution which assumes the
+values in <var class="var">v</var> with probabilities <var class="var">p</var>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFdiscrete_005finv"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-discrete_005finv"><span><code class="def-type"><var class="var">q</var> =</code> <strong class="def-name">discrete_inv</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">v</var>, <var class="var">p</var>)</code><a class="copiable-link" href="#index-discrete_005finv"> &para;</a></span></dt>
+<dd><p>For each element of <var class="var">x</var>, compute the quantile (the inverse of the CDF)
+at <var class="var">x</var> of the univariate distribution which assumes the values in
+<var class="var">v</var> with probabilities <var class="var">p</var>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFempirical_005fpdf"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-empirical_005fpdf"><span><code class="def-type"><var class="var">pdf</var> =</code> <strong class="def-name">empirical_pdf</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">data</var>)</code><a class="copiable-link" href="#index-empirical_005fpdf"> &para;</a></span></dt>
+<dd><p>For each element of <var class="var">x</var>, compute the probability density function (PDF)
+at <var class="var">x</var> of the empirical distribution obtained from the
+univariate sample <var class="var">data</var>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFempirical_005fcdf"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-empirical_005fcdf"><span><code class="def-type"><var class="var">cdf</var> =</code> <strong class="def-name">empirical_cdf</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">data</var>)</code><a class="copiable-link" href="#index-empirical_005fcdf"> &para;</a></span></dt>
+<dd><p>For each element of <var class="var">x</var>, compute the cumulative distribution function
+(CDF) at <var class="var">x</var> of the empirical distribution obtained from
+the univariate sample <var class="var">data</var>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFempirical_005finv"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-empirical_005finv"><span><code class="def-type"><var class="var">q</var> =</code> <strong class="def-name">empirical_inv</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">data</var>)</code><a class="copiable-link" href="#index-empirical_005finv"> &para;</a></span></dt>
+<dd><p>For each element of <var class="var">x</var>, compute the quantile (the inverse of the CDF)
+at <var class="var">x</var> of the empirical distribution obtained from the
+univariate sample <var class="var">data</var>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Random-Number-Generation.html">Random Number Generation</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Correlation-and-Regression-Analysis.html">Correlation and Regression Analysis</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Statistics.html">Statistics</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

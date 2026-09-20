@@ -1,0 +1,1162 @@
+@c ---------------------------------------------------
+@node Vector functions
+@section Vector functions
+@cindex Vector functions
+@c Vector functions vec_projection
+@c -----------------------------------------
+@subsection vec_projection
+@cindex vec_projection
+@deftypefn  {Function File} {@var{out} =} vec_projection (@var{x}, @var{y})
+ Compute the vector projection of a 3-vector onto another.
+@var{x} : size 1 x 3 and @var{y} : size 1 x 3 @var{tol} : size 1 x 1
+
+@example
+      vec_projection ([1,0,0], [0.5,0.5,0])
+      @result{} 0.7071
+@end example
+
+ Vector projection of @var{x} onto @var{y}, both are 3-vectors,
+ returning the value of @var{x} along @var{y}.  Function uses dot product,
+ Euclidean norm, and angle between vectors to compute the proper length along
+@var{y}.
+@end deftypefn
+@c ---------------------------------------------------
+@node Matrix functions
+@section Matrix functions
+@cindex Matrix functions
+@c Matrix functions cartprod
+@c -----------------------------------------
+@subsection cartprod
+@cindex cartprod
+@deftypefn {Function File} {} cartprod (@var{varargin})
+
+ Computes the cartesian product of given column vectors ( row vectors ).
+ The vector elements are assumend to be numbers.
+
+ Alternatively the vectors can be specified by as a matrix, by its columns.
+
+ To calculate the cartesian product of vectors,
+ P = A x B x C x D ... . Requires A, B, C, D be column vectors.
+ The algorithm is iteratively calcualte the products,
+  ( ( (A x B ) x C ) x D ) x  etc.
+
+@example
+@group
+   cartprod(1:2,3:4,0:1)
+   ans =   1   3   0
+           2   3   0
+           1   4   0
+           2   4   0
+           1   3   1
+           2   3   1
+           1   4   1
+           2   4   1
+@end group
+@end example
+@end deftypefn
+@xseealso{kron}
+@c Matrix functions cod
+@c -----------------------------------------
+@subsection cod
+@cindex cod
+@deftypefn{Function File} {[@var{q}, @var{r}, @var{z}] =} cod (@var{a})
+@deftypefnx{Function File} {[@var{q}, @var{r}, @var{z}, @var{p}] =} cod (@var{a})
+@deftypefnx{Function File} {[@dots{}] =} cod (@var{a}, '0')
+ Computes the complete orthogonal decomposition (COD) of the matrix @var{a}:
+@example
+   @var{a} = @var{q}*@var{r}*@var{z}'
+@end example
+ Let @var{a} be an M-by-N matrix, and let @code{K = min(M, N)}.
+ Then @var{q} is M-by-M orthogonal, @var{z} is N-by-N orthogonal,
+ and @var{r} is M-by-N such that @code{@var{r}(:,1:K)} is upper
+ trapezoidal and @code{@var{r}(:,K+1:N)} is zero.
+ The additional @var{p} output argument specifies that pivoting should be used in
+ the first step (QR decomposition). In this case,
+@example
+   @var{a}*@var{p} = @var{q}*@var{r}*@var{z}'
+@end example
+ If a second argument of '0' is given, an economy-sized factorization is returned
+ so that @var{r} is K-by-K.
+
+@emph{NOTE}: This is currently implemented by double QR factorization plus some
+ tricky manipulations, and is not as efficient as using xRZTZF from LAPACK.
+@xseealso{qr}
+@end deftypefn
+@c Matrix functions funm
+@c -----------------------------------------
+@subsection funm
+@cindex funm
+@deftypefn {Function File} {@var{B} =} funm (@var{A}, @var{F})
+ Compute matrix equivalent of function F; F can be a function name or
+ a function handle and A must be a square matrix.
+
+ For trigonometric and hyperbolic functions, @code{thfm} is automatically
+ invoked as that is based on @code{expm} and diagonalization is avoided.
+ For other functions diagonalization is invoked, which implies that
+ -depending on the properties of input matrix @var{A}- the results
+ can be very inaccurate @emph{without any warning}. For easy diagonizable and
+ stable matrices the results of funm will be sufficiently accurate.
+
+ Note that you should not use funm for 'sqrt', 'log' or 'exp'; instead
+ use sqrtm, logm and expm as these are more robust.
+
+ Examples:
+
+@example
+   B = funm (A, sin);
+   (Compute matrix equivalent of sin() )
+@end example
+
+@example
+   function bk1 = besselk1 (x)
+      bk1 = besselk(1, x);
+   endfunction
+   B = funm (A, besselk1);
+   (Compute matrix equivalent of bessel function K1();
+    a helper function is needed here to convey extra
+    arguments for besselk() )
+@end example
+
+ Note that a much improved funm.m function has been implemented in Octave
+ 11.1.0, so funm.m will be removed from the linear-algebra package if that
+ is installed in Octave 11+.
+
+@xseealso{thfm, expm, logm, sqrtm}
+@end deftypefn
+@c Matrix functions lobpcg
+@c -----------------------------------------
+@subsection lobpcg
+@cindex lobpcg
+@deftypefn {Function File} {[@var{blockVectorX}, @var{lambda}] =} lobpcg (@var{blockVectorX}, @var{operatorA})
+@deftypefnx {Function File} {[@var{blockVectorX}, @var{lambda}, @var{failureFlag}] =} lobpcg (@var{blockVectorX}, @var{operatorA})
+@deftypefnx {Function File} {[@var{blockVectorX}, @var{lambda}, @var{failureFlag}, @var{lambdaHistory}, @var{residualNormsHistory}] =} lobpcg (@var{blockVectorX}, @var{operatorA}, @var{operatorB}, @var{operatorT}, @var{blockVectorY}, @var{residualTolerance}, @var{maxIterations}, @var{verbosityLevel})
+ Solves Hermitian partial eigenproblems using preconditioning.
+
+ The first form outputs the array of algebraic smallest eigenvalues @var{lambda} and
+ corresponding matrix of orthonormalized eigenvectors @var{blockVectorX} of the
+ Hermitian (full or sparse) operator @var{operatorA} using input matrix
+@var{blockVectorX} as an initial guess, without preconditioning, somewhat
+ similar to:
+
+@example
+ # for real symmetric operator operatorA
+ opts.issym  = 1; opts.isreal = 1; K = size (blockVectorX, 2);
+ [blockVectorX, lambda] = eigs (operatorA, K, 'SR', opts);
+
+ # for Hermitian operator operatorA
+ K = size (blockVectorX, 2);
+ [blockVectorX, lambda] = eigs (operatorA, K, 'SR');
+@end example
+
+ The second form returns a convergence flag. If @var{failureFlag} is 0 then
+ all the eigenvalues converged; otherwise not all converged.
+
+ The third form computes smallest eigenvalues @var{lambda} and corresponding eigenvectors
+@var{blockVectorX} of the generalized eigenproblem Ax=lambda Bx, where
+ Hermitian operators @var{operatorA} and @var{operatorB} are given as functions, as
+ well as a preconditioner, @var{operatorT}. The operators @var{operatorB} and
+@var{operatorT} must be in addition @emph{positive definite}. To compute the largest
+ eigenpairs of @var{operatorA}, simply apply the code to @var{operatorA} multiplied by
+ -1. The code does not involve @emph{any} matrix factorizations of @var{operatorA} and
+@var{operatorB}, thus, e.g., it preserves the sparsity and the structure of
+@var{operatorA} and @var{operatorB}.
+
+@var{residualTolerance} and @var{maxIterations} control tolerance and max number of
+ steps, and @var{verbosityLevel} = 0, 1, or 2 controls the amount of printed
+ info. @var{lambdaHistory} is a matrix with all iterative lambdas, and
+@var{residualNormsHistory} are matrices of the history of 2-norms of residuals
+
+ Required input:
+@itemize @bullet
+@item
+@var{blockVectorX} (class numeric) - initial approximation to eigenvectors,
+ full or sparse matrix n-by-blockSize. @var{blockVectorX} must be full rank.
+@item
+@var{operatorA} (class numeric, char, or function_handle) - the main operator
+ of the eigenproblem, can be a matrix, a function name, or handle
+@end itemize
+
+ Optional function input:
+@itemize @bullet
+@item
+@var{operatorB} (class numeric, char, or function_handle) - the second operator,
+ if solving a generalized eigenproblem, can be a matrix, a function name, or
+ handle; by default if empty, @code{operatorB = I}.
+@item
+@var{operatorT} (class char or function_handle) - the preconditioner, by
+ default @code{operatorT(blockVectorX) = blockVectorX}.
+@end itemize
+
+ Optional constraints input:
+@itemize @bullet
+@item
+@var{blockVectorY} (class numeric) - a full or sparse n-by-sizeY matrix of
+ constraints, where sizeY < n. @var{blockVectorY} must be full rank. The
+ iterations will be performed in the (operatorB-) orthogonal complement of the
+ column-space of @var{blockVectorY}.
+@end itemize
+
+ Optional scalar input parameters:
+@itemize @bullet
+@item
+@var{residualTolerance} (class numeric) - tolerance, by default, @code{residualTolerance = n * sqrt (eps)}
+@item
+@var{maxIterations} - max number of iterations, by default, @code{maxIterations = min (n, 20)}
+@item
+@var{verbosityLevel} - either 0 (no info), 1, or 2 (with pictures); by
+ default, @code{verbosityLevel = 0}.
+@end itemize
+
+ Required output:
+@itemize @bullet
+@item
+@var{blockVectorX} and @var{lambda} (class numeric) both are computed
+ blockSize eigenpairs, where @code{blockSize = size (blockVectorX, 2)}
+ for the initial guess @var{blockVectorX} if it is full rank.
+@end itemize
+
+ Optional output:
+@itemize @bullet
+@item
+@var{failureFlag} (class integer) as described above.
+@item
+@var{lambdaHistory} (class numeric) as described above.
+@item
+@var{residualNormsHistory} (class numeric) as described above.
+@end itemize
+
+ Functions @code{operatorA(blockVectorX)}, @code{operatorB(blockVectorX)} and
+@code{operatorT(blockVectorX)} must support @var{blockVectorX} being a matrix, not
+ just a column vector.
+
+ Every iteration involves one application of @var{operatorA} and @var{operatorB}, and
+ one of @var{operatorT}.
+
+ Main memory requirements: 6 (9 if @code{isempty(operatorB)=0}) matrices of the
+ same size as @var{blockVectorX}, 2 matrices of the same size as @var{blockVectorY}
+ (if present), and two square matrices of the size 3*blockSize.
+
+ In all examples below, we use the Laplacian operator in a 20x20 square
+ with the mesh size 1 which can be generated in MATLAB by running:
+@example
+ A = delsq (numgrid ('S', 21));
+ n = size (A, 1);
+@end example
+
+ or in MATLAB and Octave by:
+@example
+ [~,~,A] = laplacian ([19, 19]);
+ n = size (A, 1);
+@end example
+
+ Note that @code{laplacian} is a function of the specfun octave-forge package.
+
+ The following Example:
+@example
+ [blockVectorX, lambda, failureFlag] = lobpcg (randn (n, 8), A, 1e-5, 50, 2);
+@end example
+
+ attempts to compute 8 first eigenpairs without preconditioning, but not all
+ eigenpairs converge after 50 steps, so failureFlag=1.
+
+ The next Example:
+@example
+ blockVectorY = [];
+ lambda_all = [];
+ for j = 1:4
+   [blockVectorX, lambda] = lobpcg (randn (n, 2), A, blockVectorY, 1e-5, 200, 2);
+   blockVectorY           = [blockVectorY, blockVectorX];
+   lambda_all             = [lambda_all' lambda']';
+   pause;
+ end
+@end example
+
+ attemps to compute the same 8 eigenpairs by calling the code 4 times with
+ blockSize=2 using orthogonalization to the previously founded eigenvectors.
+
+ The following Example:
+@example
+ R       = ichol (A, struct('michol', 'on'));
+ precfun = @@(x)R\(R'\x);
+ [blockVectorX, lambda, failureFlag] = lobpcg (randn (n, 8), A, [], @@(x)precfun(x), 1e-5, 60, 2);
+@end example
+
+ computes the same eigenpairs in less then 25 steps, so that failureFlag=0
+ using the preconditioner function @code{precfun}, defined inline. If @code{precfun}
+ is defined as an octave function in a file, the function handle
+@code{@@(x)precfun(x)} can be equivalently replaced by the function name @code{precfun}. Running:
+
+@example
+ [blockVectorX, lambda, failureFlag] = lobpcg (randn (n, 8), A, speye (n), @@(x)precfun(x), 1e-5, 50, 2);
+@end example
+
+ produces similar answers, but is somewhat slower and needs more memory as
+ technically a generalized eigenproblem with B=I is solved here.
+
+ The following example for a mostly diagonally dominant sparse matrix A
+ demonstrates different types of preconditioning, compared to the standard
+ use of the main diagonal of A:
+
+@example
+ clear all; close all;
+ n       = 1000;
+ M       = spdiags ([1:n]', 0, n, n);
+ precfun = @@(x)M\x;
+ A       = M + sprandsym (n, .1);
+ Xini    = randn (n, 5);
+ maxiter = 15;
+ tol     = 1e-5;
+ [~,~,~,~,rnp] = lobpcg (Xini, A, tol, maxiter, 1);
+ [~,~,~,~,r]   = lobpcg (Xini, A, [], @@(x)precfun(x), tol, maxiter, 1);
+ subplot (2,2,1), semilogy (r'); hold on;
+ semilogy (rnp', ':>');
+ title ('No preconditioning (top)'); axis tight;
+ M(1,2)  = 2;
+ precfun = @@(x)M\x; % M is no longer symmetric
+ [~,~,~,~,rns] = lobpcg (Xini, A, [], @@(x)precfun(x), tol, maxiter, 1);
+ subplot (2,2,2), semilogy (r'); hold on;
+ semilogy (rns', '--s');
+ title ('Nonsymmetric preconditioning (square)'); axis tight;
+ M(1,2)  = 0;
+ precfun = @@(x)M\(x+10*sin(x)); % nonlinear preconditioning
+ [~,~,~,~,rnl] = lobpcg (Xini, A, [], @@(x)precfun(x), tol, maxiter, 1);
+ subplot (2,2,3),  semilogy (r'); hold on;
+ semilogy (rnl', '-.*');
+ title ('Nonlinear preconditioning (star)'); axis tight;
+ M       = abs (M - 3.5 * speye (n, n));
+ precfun = @@(x)M\x;
+ [~,~,~,~,rs] = lobpcg (Xini, A, [], @@(x)precfun(x), tol, maxiter, 1);
+ subplot (2,2,4),  semilogy (r'); hold on;
+ semilogy (rs', '-d');
+ title ('Selective preconditioning (diamond)'); axis tight;
+@end example
+
+@heading References
+ This main function @code{lobpcg} is a version of the preconditioned conjugate
+ gradient method (Algorithm 5.1) described in A. V. Knyazev, Toward the Optimal
+ Preconditioned Eigensolver:
+ Locally Optimal Block Preconditioned Conjugate Gradient Method,
+ SIAM Journal on Scientific Computing 23 (2001), no. 2, pp. 517-541.
+@uref{http://dx.doi.org/10.1137/S1064827500366124}
+
+@heading Known bugs/features
+@itemize @bullet
+@item
+ an excessively small requested tolerance may result in often restarts and
+ instability. The code is not written to produce an eps-level accuracy! Use
+ common sense.
+@item
+ the code may be very sensitive to the number of eigenpairs computed,
+ if there is a cluster of eigenvalues not completely included, cf.
+@example
+ operatorA = diag ([1 1.99 2:99]);
+ [blockVectorX, lambda] = lobpcg (randn (100, 1),operatorA, 1e-10, 80, 2);
+ [blockVectorX, lambda] = lobpcg (randn (100, 2),operatorA, 1e-10, 80, 2);
+ [blockVectorX, lambda] = lobpcg (randn (100, 3),operatorA, 1e-10, 80, 2);
+@end example
+@end itemize
+
+@heading Distribution
+ The main distribution site: @uref{http://math.ucdenver.edu/~aknyazev/}
+
+ A C-version of this code is a part of the @uref{http://code.google.com/p/blopex/}
+ package and is directly available, e.g., in PETSc and HYPRE.
+@end deftypefn
+@c Matrix functions ndcovlt
+@c -----------------------------------------
+@subsection ndcovlt
+@cindex ndcovlt
+@deftypefn{Function File} {@var{y} =} ndcovlt (@var{x}, @var{t1}, @var{t2}, @dots{})
+ Computes an n-dimensional covariant linear transform of an n-d tensor, given a
+ transformation matrix for each dimension. The number of columns of each transformation
+ matrix must match the corresponding extent of @var{x}, and the number of rows determines
+ the corresponding extent of @var{y}. For example:
+
+@example
+   size (@var{x}, 2) == columns (@var{t2})
+   size (@var{y}, 2) == rows (@var{t2})
+@end example
+
+ The element @code{@var{y}(i1, i2, @dots{})} is defined as a sum of
+
+@example
+   @var{x}(j1, j2, @dots{}) * @var{t1}(i1, j1) * @var{t2}(i2, j2) * @dots{}
+@end example
+
+ over all j1, j2, @dots{}. For two dimensions, this reduces to
+@example
+   @var{y} = @var{t1} * @var{x} * @var{t2}.'
+@end example
+
+ [] passed as a transformation matrix is converted to identity matrix for
+ the corresponding dimension.
+
+@end deftypefn
+@c Matrix functions rotparams
+@c -----------------------------------------
+@subsection rotparams
+@cindex rotparams
+@deftypefn{Function File} {[@var{vstacked}, @var{astacked}] =} rotparams (@var{rstacked})
+  The function w = rotparams (r)            - Inverse to rotv().
+  Using, @var{w}    = rotparams(@var{r})  is such that
+  rotv(w)*r' == eye(3).
+
+  If used as, [v,a]=rotparams(r) ,  idem, with v (1 x 3) s.t. w == a*v.
+
+     0 <= norm(w)==a <= pi
+
+     :-O !!  Does not check if 'r' is a rotation matrix.
+
+  Ignores matrices with zero rows or with NaNs. (returns 0 for them)
+
+@xseealso{rotv}
+@end deftypefn
+@c Matrix functions rotv
+@c -----------------------------------------
+@subsection rotv
+@cindex rotv
+@deftypefn{Function File} {@var{r} = } rotv ( v, ang )
+ The functionrotv calculates a Matrix of rotation about @var{v} w/ angle |v|
+ r = rotv(v [,ang])
+
+ Returns the rotation matrix w/ axis v, and angle, in radians, norm(v) or
+ ang (if present).
+
+ rotv(v) == w'*w + cos(a) * (eye(3)-w'*w) - sin(a) * crossmat(w)
+
+ where a = norm (v) and w = v/a.
+
+ v and ang may be vertically stacked : If 'v' is 2x3, then
+ rotv( v ) == [rotv(v(1,:)); rotv(v(2,:))]
+
+@xseealso{rotparams, rota, rot}
+
+@end deftypefn
+@c Matrix functions smwsolve
+@c -----------------------------------------
+@subsection smwsolve
+@cindex smwsolve
+@deftypefn{Function File} {@var{x} =} smwsolve (@var{a}, @var{u}, @var{v}, @var{b})
+@deftypefnx{Function File} {} smwsolve (@var{solver}, @var{u}, @var{v}, @var{b})
+ Solves the square system @code{(A + U*V')*X == B}, where @var{u} and @var{v} are
+ matrices with several columns, using the Sherman-Morrison-Woodbury formula,
+ so that a system with @var{a} as left-hand side is actually solved. This is
+ especially advantageous if @var{a} is diagonal, sparse, triangular or
+ positive definite.
+@var{a} can be sparse or full, the other matrices are expected to be full.
+ Instead of a matrix @var{a}, a user may alternatively provide a function
+@var{solver} that performs the left division operation.
+@end deftypefn
+@c Matrix functions thfm
+@c -----------------------------------------
+@subsection thfm
+@cindex thfm
+@deftypefn{Function File} {@var{y} =} thfm (@var{x}, @var{mode})
+ Trigonometric/hyperbolic functions of square matrix @var{x}.
+
+@var{mode} must be the name of a function. Valid functions are 'sin', 'cos',
+ 'tan', 'sec', 'csc', 'cot' and all their inverses and/or hyperbolic variants,
+ and 'sqrt', 'log' and 'exp'.
+
+ The code @code{thfm (x, 'cos')} calculates matrix cosinus @emph{even if} input
+ matrix @var{x} is @emph{not} diagonalizable.
+
+@emph{Important note}:
+ This algorithm does @emph{not} use an eigensystem similarity transformation. It
+ maps the @var{mode} functions to functions of @code{expm}, @code{logm} and
+@code{sqrtm}, which are known to be robust with respect to non-diagonalizable
+ ('defective') @var{x}.
+
+@xseealso{funm}
+@end deftypefn
+@c ---------------------------------------------------
+@node Matrix factorization
+@section Matrix factorization
+@cindex Matrix factorization
+@c Matrix factorization nmf_bpas
+@c -----------------------------------------
+@subsection nmf_bpas
+@cindex nmf_bpas
+@deftypefn {Function File} {[@var{W}, @var{H}, @var{iter}, @var{HIS}] = } nmf_bpas (@var{A}, @var{k})
+ Nonnegative Matrix Factorization by Alternating Nonnegativity Constrained Least Squares
+ using Block Principal Pivoting/Active Set method.
+
+ This function solves one the following problems: given @var{A} and @var{k}, find @var{W} and @var{H} such that
+
+@group
+     (1) minimize 1/2 * || @var{A}-@var{W}@var{H} ||_F^2
+
+     (2) minimize 1/2 * ( || @var{A}-@var{W}@var{H} ||_F^2 + alpha * || @var{W} ||_F^2 + beta * || @var{H} ||_F^2 )
+
+     (3) minimize 1/2 * ( || @var{A}-@var{W}@var{H} ||_F^2 + alpha * || @var{W} ||_F^2 + beta * (sum_(i=1)^n || @var{H}(:,i) ||_1^2 ) )
+@end group
+
+     where @var{W}>=0 and @var{H}>=0 elementwise.
+ The input arguments are @var{A} : Input data matrix (m x n) and @var{k} : Target low-rank.
+
+
+@strong{Optional Inputs}
+@table @samp
+@item Type
+ Default is 'regularized', which is recommended for quick application testing unless 'sparse' or 'plain' is explicitly needed. If sparsity is needed for 'W' factor, then apply this function for the transpose of 'A' with formulation (3). Then, exchange 'W' and 'H' and obtain the transpose of them. Imposing sparsity for both factors is not recommended and thus not included in this software.
+@table @asis
+@item 'plain'
+ to use formulation (1)
+@item 'regularized'
+ to use formulation (2)
+@item 'sparse'
+ to use formulation (3)
+@end table
+
+@item NNLSSolver
+ Default is 'bp', which is in general faster.
+@table @asis
+@item 'bp'
+ to use the algorithm in [1]
+@item 'as'
+ to use the algorithm in [2]
+@end table
+
+@item Alpha
+ Parameter alpha in the formulation (2) or (3). Default is the average of all elements in A. No good justfication for this default value, and you might want to try other values.
+@item  Beta
+ Parameter beta in the formulation (2) or (3).
+ Default is the average of all elements in A. No good justfication for this default value, and you might want to try other values.
+@item MaxIter
+ Maximum number of iterations. Default is 100.
+@item MinIter
+ Minimum number of iterations. Default is 20.
+@item MaxTime
+ Maximum amount of time in seconds. Default is 100,000.
+@item Winit
+ (m x k) initial value for W.
+@item Hinit
+ (k x n) initial value for H.
+@item Tol
+ Stopping tolerance. Default is 1e-3. If you want to obtain a more accurate solution, decrease TOL and increase MAX_ITER at the same time.
+@item Verbose
+ If present the function will show information during the calculations.
+@end table
+
+@strong{Outputs}
+@table @samp
+@item W
+ Obtained basis matrix (m x k)
+@item H
+ Obtained coefficients matrix (k x n)
+@item iter
+ Number of iterations
+@item HIS
+ If present the history of computation is returned.
+@end table
+
+ Usage Examples:
+@example
+  nmf_bpas (A,10)
+  nmf_bpas (A,20,'verbose')
+  nmf_bpas (A,30,'verbose','nnlssolver','as')
+  nmf_bpas (A,5,'verbose','type','sparse')
+  nmf_bpas (A,60,'verbose','type','plain','Winit',rand(size(A,1),60))
+  nmf_bpas (A,70,'verbose','type','sparse','nnlssolver','bp','alpha',1.1,'beta',1.3)
+@end example
+
+ References:
+  [1] For using this software, please cite:@*
+      Jingu Kim and Haesun Park, Toward Faster Nonnegative Matrix Factorization: A New Algorithm and Comparisons,@*
+      In Proceedings of the 2008 Eighth IEEE International Conference on Data Mining (ICDM'08), 353-362, 2008@*
+  [2] If you use 'nnls_solver'='as' (see below), please cite:@*
+      Hyunsoo Kim and Haesun Park, Nonnegative Matrix Factorization Based @*
+      on Alternating Nonnegativity Constrained Least Squares and Active Set Method, @*
+      SIAM Journal on Matrix Analysis and Applications, 2008, 30, 713-730
+
+ Check original code at @url{http://www.cc.gatech.edu/~jingu}
+
+@xseealso{nmf_pg}
+@end deftypefn
+@c Matrix factorization nmf_pg
+@c -----------------------------------------
+@subsection nmf_pg
+@cindex nmf_pg
+@deftypefn {Function File} {[@var{W}, @var{H}] =} nmf_pg (@var{V}, @var{Winit}, @
+@var{Hinit}, @var{tol}, @var{timelimit}, @var{maxiter})
+
+ Non-negative matrix factorization by alternative non-negative least squares
+ using projected gradients.
+
+ The matrix @var{V} is factorized into two possitive matrices @var{W} and
+@var{H} such that @code{V = W*H + U}. Where @var{U} is a matrix of residuals
+ that can be negative or positive. When the matrix @var{V} is positive the order
+ of the elements in @var{U} is bounded by the optional named argument @var{tol}
+ (default value @code{1e-9}).
+
+ The factorization is not unique and depends on the inital guess for the matrices
+@var{W} and @var{H}. You can pass this initalizations using the optional
+ named arguments @var{Winit} and @var{Hinit}.
+
+ timelimit, maxiter: limit of time and iterations
+
+ Examples:
+
+@example
+   A     = rand(10,5);
+   [W H] = nmf_pg(A,tol=1e-3);
+   U     = W*H -A;
+   disp(max(abs(U)));
+@end example
+
+@end deftypefn
+@c ---------------------------------------------------
+@node Block sparse matrices
+@section Block sparse matrices
+@cindex Block sparse matrices
+@c Block sparse matrices @blksparse/blksize
+@c -----------------------------------------
+@subsection @@blksparse/blksize
+@cindex blksize
+@deftypefn {Function File} blksize (@var{x})
+ Returns the block size of the matrix.
+@end deftypefn
+@c Block sparse matrices @blksparse/blksparse
+@c -----------------------------------------
+@subsection @@blksparse/blksparse
+@cindex blksparse
+@deftypefn{Function File} {@var{s} =} blksparse (@var{i}, @var{j}, @var{sv})
+@deftypefnx{Function File} {@var{s} =} blksparse (@var{i}, @var{j}, @var{sv}, @var{m}, @var{n})
+@deftypefnx{Function File} {@var{s} =} blksparse (@dots{}, @var{mode})
+
+ Construct a block sparse matrix. The meaning of arguments is analogous to the
+ built-in @code{sparse} function, except that @var{i}, @var{j} are indices of
+ blocks rather than elements, and @var{sv} is a 3-dimensional array, the first two
+ dimensions determining the block size. Optionally, @var{m} and @var{n} can be
+ specified as the true block dimensions; if not, the maximum values of @var{i}, @var{j}
+ are taken instead. The resulting sparse matrix has the size
+
+@example
+   [@var{m}*@var{p}, @var{n}*@var{q}]
+@end example
+
+ where
+
+@example
+   @var{p} = size (@var{sv}, 1)
+   @var{q} = size (@var{sv}, 2)
+@end example
+
+ The blocks are located so that
+
+@example
+@var{s}(@var{i}(k):@var{i}(k)+@var{p}-1, @var{j}(k):@var{j}(K)+@var{q}-1) = @var{sv}(:,:,k)
+@end example
+
+ Multiple blocks corresponding to the same pair of indices are summed, unless
+@var{mode} is "unique", in which case the last of them is used.
+@end deftypefn
+@c Block sparse matrices @blksparse/ctranspose
+@c -----------------------------------------
+@subsection @@blksparse/ctranspose
+@cindex ctranspose
+@deftypefn {Function File} ctranspose (@var{x})
+ Returns the conjugate transpose of a block sparse matrix @var{x}.
+@end deftypefn
+@c Block sparse matrices @blksparse/display
+@c -----------------------------------------
+@subsection @@blksparse/display
+@cindex display
+@deftypefn {Function File} display (@var{x})
+ Displays the block sparse matrix.
+@end deftypefn
+@c Block sparse matrices @blksparse/full
+@c -----------------------------------------
+@subsection @@blksparse/full
+@cindex full
+@deftypefn {Function File} full (@var{x})
+ Converts a block sparse matrix to full.
+@end deftypefn
+@c Block sparse matrices @blksparse/ismatrix
+@c -----------------------------------------
+@subsection @@blksparse/ismatrix
+@cindex ismatrix
+@deftypefn {Function File} ismatrix (@var{s})
+ Returns true (a blksparse object is a matrix).
+@end deftypefn
+@c Block sparse matrices @blksparse/isreal
+@c -----------------------------------------
+@subsection @@blksparse/isreal
+@cindex isreal
+@deftypefn {Function File} isreal (@var{s})
+ Returns true if the array is non-complex.
+@end deftypefn
+@c Block sparse matrices @blksparse/issparse
+@c -----------------------------------------
+@subsection @@blksparse/issparse
+@cindex issparse
+@deftypefn {Function File} issparse (@var{s})
+ Returns true since a blksparse is sparse by definition.
+@end deftypefn
+@c Block sparse matrices @blksparse/minus
+@c -----------------------------------------
+@subsection @@blksparse/minus
+@cindex minus
+@deftypefn {Function File} minus (@var{s1}, @var{s2})
+ Subtract two blksparse objects.
+@end deftypefn
+@c Block sparse matrices @blksparse/mldivide
+@c -----------------------------------------
+@subsection @@blksparse/mldivide
+@cindex mldivide
+@deftypefn {Function File} mldivide (@var{x}, @var{y})
+ Performs a left division with a block sparse matrix.
+ If @var{x} is a block sparse matrix, it must be either diagonal
+ or triangular, and @var{y} must be full.
+ If @var{x} is built-in sparse or full, @var{y} is converted
+ accordingly, then the built-in division is used.
+@end deftypefn
+@c Block sparse matrices @blksparse/mrdivide
+@c -----------------------------------------
+@subsection @@blksparse/mrdivide
+@cindex mrdivide
+@deftypefn {Function File} mrdivide (@var{x}, @var{y})
+ Performs a left division with a block sparse matrix.
+ If @var{y} is a block sparse matrix, it must be either diagonal
+ or triangular, and @var{x} must be full.
+ If @var{y} is built-in sparse or full, @var{x} is converted
+ accordingly, then the built-in division is used.
+@end deftypefn
+@c Block sparse matrices @blksparse/mtimes
+@c -----------------------------------------
+@subsection @@blksparse/mtimes
+@cindex mtimes
+@deftypefn {Function File} mtimes (@var{x}, @var{y})
+ Multiplies a block sparse matrix with a full matrix, or two block sparse
+ matrices. Multiplication of block sparse * sparse is not implemented.
+ If one of arguments is a scalar, it's a scalar multiply.
+@end deftypefn
+@c Block sparse matrices @blksparse/plus
+@c -----------------------------------------
+@subsection @@blksparse/plus
+@cindex plus
+@deftypefn {Function File} plus (@var{s1}, @var{s2})
+ Add two blksparse objects.
+@end deftypefn
+@c Block sparse matrices @blksparse/size
+@c -----------------------------------------
+@subsection @@blksparse/size
+@cindex size
+@deftypefn {Function File} size (@var{x})
+ Returns the size of the matrix.
+@end deftypefn
+@c Block sparse matrices @blksparse/sparse
+@c -----------------------------------------
+@subsection @@blksparse/sparse
+@cindex sparse
+@deftypefn {Function File} sparse (@var{x})
+ Converts a block sparse matrix to (built-in) sparse.
+@end deftypefn
+@c Block sparse matrices @blksparse/subsref
+@c -----------------------------------------
+@subsection @@blksparse/subsref
+@cindex subsref
+@deftypefn {Function File} subsref (@var{s}, @var{subs})
+ Index elements from a blksparse object.
+@end deftypefn
+@c Block sparse matrices @blksparse/transpose
+@c -----------------------------------------
+@subsection @@blksparse/transpose
+@cindex transpose
+@deftypefn {Function File} transpose (@var{x})
+ Returns the transpose of a block sparse matrix @var{x}.
+@end deftypefn
+@c Block sparse matrices @blksparse/uminus
+@c -----------------------------------------
+@subsection @@blksparse/uminus
+@cindex uminus
+@deftypefn {Function File} uminus (@var{x})
+ Returns the negative of a block sparse matrix @var{x}.
+@end deftypefn
+@c Block sparse matrices @blksparse/uplus
+@c -----------------------------------------
+@subsection @@blksparse/uplus
+@cindex uplus
+@deftypefn {Function File} uplus (@var{x})
+ Returns the unary plus of a block sparse matrix @var{x}.
+ Effectively the matrix itself, except signs of zeros.
+@end deftypefn
+@c ---------------------------------------------------
+@node Kronecker Products
+@section Kronecker Products
+@cindex Kronecker Products
+@c Kronecker Products @kronprod/columns
+@c -----------------------------------------
+@subsection @@kronprod/columns
+@cindex columns
+@deftypefn {Function File} columns (@var{KP})
+ Return the number of columns in the Kronecker product @var{KP}.
+@xseealso{@@kronprod/rows, @@kronprod/size, @@kronprod/numel}
+@end deftypefn
+@c Kronecker Products @kronprod/ctranspose
+@c -----------------------------------------
+@subsection @@kronprod/ctranspose
+@cindex ctranspose
+@deftypefn {Function File} ctranspose (@var{KP})
+ The complex conjugate transpose of a Kronecker product. This is equivalent
+ to
+
+@example
+@var{KP}'
+@end example
+@xseealso{ctranspose, @@kronprod/transpose}
+@end deftypefn
+@c Kronecker Products @kronprod/det
+@c -----------------------------------------
+@subsection @@kronprod/det
+@cindex det
+@deftypefn {Function File} det (@var{KP})
+ Compute the determinant of a Kronecker product.
+
+ If @var{KP} is the Kronecker product of the @var{n}-by-@var{n} matrix @var{A}
+ and the @var{q}-by-@var{q} matrix @var{B}, then the determinant is computed
+ as
+
+@example
+ det (@var{A})^q * det (@var{B})^n
+@end example
+
+ If @var{KP} is not a Kronecker product of square matrices the determinant is
+ computed by forming the full matrix and then computing the determinant.
+@xseealso{det, @@kronprod/trace, @@kronprod/rank, @@kronprod/full}
+@end deftypefn
+@c Kronecker Products @kronprod/disp
+@c -----------------------------------------
+@subsection @@kronprod/disp
+@cindex disp
+@deftypefn {Function File} disp (@var{KP})
+ Show the content of the Kronecker product @var{KP}. To avoid evaluating the
+ Kronecker product, this function displays the two matrices defining the product.
+ To display the actual values of @var{KP}, use @code{disp (full (@var{KP}))}.
+
+ This function is equivalent to @code{@@kronprod/display}.
+@xseealso{@@kronprod/display, @@kronprod/full}
+@end deftypefn
+@c Kronecker Products @kronprod/display
+@c -----------------------------------------
+@subsection @@kronprod/display
+@cindex display
+@deftypefn {Function File} display (@var{KP})
+ Show the content of the Kronecker product @var{KP}. To avoid evaluating the
+ Kronecker product, this function displays the two matrices defining the product.
+ To display the actual values of @var{KP}, use @code{display (full (@var{KP}))}.
+@xseealso{@@kronprod/displ, @@kronprod/full}
+@end deftypefn
+@c Kronecker Products @kronprod/full
+@c -----------------------------------------
+@subsection @@kronprod/full
+@cindex full
+@deftypefn {Function File} full (@var{KP})
+ Return the full matrix representation of the Kronecker product @var{KP}.
+
+ If @var{KP} is the Kronecker product of an @var{n}-by-@var{m} matrix and a
+@var{q}-by-@var{r} matrix, then the result is a @var{n}@var{q}-by-@var{m}@var{r}
+ matrix. Thus, the result can require vast amount of memory, so this function
+ should be avoided whenever possible.
+@xseealso{full, @@kronprod/sparse}
+@end deftypefn
+@c Kronecker Products @kronprod/inv
+@c -----------------------------------------
+@subsection @@kronprod/inv
+@cindex inv
+@deftypefn {Function File} inv (@var{KP})
+ Return the inverse of the Kronecker product @var{KP}.
+
+ If @var{KP} is the Kronecker product of two square matrices @var{A} and @var{B},
+ the inverse will be computed as the Kronecker product of the inverse of
+@var{A} and @var{B}.
+
+ If @var{KP} is square but not a Kronecker product of square matrices, the
+ inverse will be computed using the SVD
+@xseealso{@@kronprod/sparse}
+@end deftypefn
+@c Kronecker Products @kronprod/iscomplex
+@c -----------------------------------------
+@subsection @@kronprod/iscomplex
+@cindex iscomplex
+@deftypefn {Function File} iscomplex (@var{KP})
+ Return @t{true} if the Kronecker product @var{KP} contains any complex values.
+@xseealso{iscomplex, @@kronprod/isreal}
+@end deftypefn
+@c Kronecker Products @kronprod/ismatrix
+@c -----------------------------------------
+@subsection @@kronprod/ismatrix
+@cindex ismatrix
+@deftypefn {Function File} ismatrix (@var{KP})
+ Return @t{true} to indicate that the Kronecker product @var{KP} always is a
+ matrix.
+@end deftypefn
+@c Kronecker Products @kronprod/isreal
+@c -----------------------------------------
+@subsection @@kronprod/isreal
+@cindex isreal
+@deftypefn {Function File} isreal (@var{KP})
+ Return @t{true} if the Kronecker product @var{KP} is real, i.e. has no
+ imaginary components.
+@xseealso{isreal, @@kronprod/iscomplex}
+@end deftypefn
+@c Kronecker Products @kronprod/issparse
+@c -----------------------------------------
+@subsection @@kronprod/issparse
+@cindex issparse
+@deftypefn {Function File} issparse (@var{KP})
+ Return @t{true} if one of the matrices in the Kronecker product @var{KP}
+ is sparse.
+@xseealso{@@kronprod/sparse}
+@end deftypefn
+@c Kronecker Products @kronprod/issquare
+@c -----------------------------------------
+@subsection @@kronprod/issquare
+@cindex issquare
+@deftypefn {Function File} issquare (@var{KP})
+ Return @t{true} if the Kronecker product @var{KP} is a square matrix.
+@xseealso{@@kronprod/size}
+@end deftypefn
+@c Kronecker Products @kronprod/kronprod
+@c -----------------------------------------
+@subsection @@kronprod/kronprod
+@cindex kronprod
+@deftypefn {Function File} kronprod (@var{A}, @var{B})
+@deftypefnx{Function File} kronprod (@var{A}, @var{B}, @var{P})
+ Construct a Kronecker product object.
+ XXX: Write proper documentation
+
+ With two input arguments, the following matrix is represented: kron (A, B);
+
+ With three input arguments, the following matrix is represented: P * kron (A, B) * P'
+ (P must be a permutation matrix)
+
+@end deftypefn
+@c Kronecker Products @kronprod/minus
+@c -----------------------------------------
+@subsection @@kronprod/minus
+@cindex minus
+@deftypefn {Function File} minus (@var{a}, @var{a})
+ Return the difference between a Kronecker product and another matrix. This is performed
+ by forming the full matrix of both inputs and is as such a potential expensive
+ operation.
+@xseealso{minus, @@kronprod/plus}
+@end deftypefn
+@c Kronecker Products @kronprod/mldivide
+@c -----------------------------------------
+@subsection @@kronprod/mldivide
+@cindex mldivide
+@deftypefn {Function File} mldivide (@var{M1}, @var{M2})
+ Perform matrix left division.
+@end deftypefn
+@c Kronecker Products @kronprod/mpower
+@c -----------------------------------------
+@subsection @@kronprod/mpower
+@cindex mpower
+@deftypefn {Function File} mpower (@var{KP}, @var{k})
+ Perform matrix power operation.
+@end deftypefn
+@c Kronecker Products @kronprod/mtimes
+@c -----------------------------------------
+@subsection @@kronprod/mtimes
+@cindex mtimes
+@deftypefn {Function File} mtimes (@var{KP1}, @var{KP2})
+ Perform matrix multiplication operation.
+@end deftypefn
+@c Kronecker Products @kronprod/numel
+@c -----------------------------------------
+@subsection @@kronprod/numel
+@cindex numel
+@deftypefn {Function File} numel (@var{KP})
+ Return the number of elements in the Kronecker product @var{KP}.
+@xseealso{numel, @@kronprod/rows, @@kronprod/columns, @@kronprod/size}
+@end deftypefn
+@c Kronecker Products @kronprod/plus
+@c -----------------------------------------
+@subsection @@kronprod/plus
+@cindex plus
+@deftypefn {Function File} plus (@var{a}, @var{a})
+ Return the sum of a Kronecker product and another matrix. This is performed
+ by forming the full matrix of both inputs and is as such a potential expensive
+ operation.
+@xseealso{plus, @@kronprod/minus}
+@end deftypefn
+@c Kronecker Products @kronprod/rank
+@c -----------------------------------------
+@subsection @@kronprod/rank
+@cindex rank
+@deftypefn {Function File} rank (@var{KP})
+ Return the rank of the Kronecker product @var{KP}. This is computed as the
+ product of the ranks of the matrices forming the product.
+@xseealso{rank, @@kronprod/det, @@kronprod/trace}
+@end deftypefn
+@c Kronecker Products @kronprod/rdivide
+@c -----------------------------------------
+@subsection @@kronprod/rdivide
+@cindex rdivide
+@deftypefn {Function File} rdivide (@var{a}, @var{b})
+ Perform element-by-element right division.
+@end deftypefn
+@c Kronecker Products @kronprod/rows
+@c -----------------------------------------
+@subsection @@kronprod/rows
+@cindex rows
+@deftypefn {Function File} rows (@var{KP})
+ Return the number of rows in the Kronecker product @var{KP}.
+@xseealso{rows, @@kronprod/size, @@kronprod/columns, @@kronprod/numel}
+@end deftypefn
+@c Kronecker Products @kronprod/size
+@c -----------------------------------------
+@subsection @@kronprod/size
+@cindex size
+@deftypefn {Function File} size (@var{KP})
+@deftypefnx{Function File} size (@var{KP}, @var{dim})
+ Return the size of the Kronecker product @var{KP} as a vector.
+@xseealso{size, @@kronprod/rows, @@kronprod/columns, @@kronprod/numel}
+@end deftypefn
+@c Kronecker Products @kronprod/size_equal
+@c -----------------------------------------
+@subsection @@kronprod/size_equal
+@cindex size_equal
+@deftypefn {Function File} size_equal (@dots{})
+ True if all input have same dimensions.
+@end deftypefn
+@c Kronecker Products @kronprod/sparse
+@c -----------------------------------------
+@subsection @@kronprod/sparse
+@cindex sparse
+@deftypefn {Function File} sparse (@var{KP})
+ Return the Kronecker product @var{KP} represented as a sparse matrix.
+@xseealso{sparse, @@kronprod/issparse, @@kronprod/full}
+@end deftypefn
+@c Kronecker Products @kronprod/times
+@c -----------------------------------------
+@subsection @@kronprod/times
+@cindex times
+@deftypefn {Function File} times (@var{KP}, @var{KP2})
+ Perform elemtn-by-element multiplication.
+@end deftypefn
+@c Kronecker Products @kronprod/trace
+@c -----------------------------------------
+@subsection @@kronprod/trace
+@cindex trace
+@deftypefn {Function File} trace (@var{KP})
+ Returns the trace of the Kronecker product @var{KP}.
+
+ If @var{KP} is a Kronecker product of two square matrices, the trace is
+ computed as the product of the trace of these two matrices. Otherwise the
+ trace is computed by forming the full matrix.
+@xseealso{@@kronprod/det, @@kronprod/rank, @@kronprod/full}
+@end deftypefn
+@c Kronecker Products @kronprod/transpose
+@c -----------------------------------------
+@subsection @@kronprod/transpose
+@cindex transpose
+@deftypefn {Function File} transpose (@var{KP})
+ Returns the transpose of the Kronecker product @var{KP}. This is equivalent
+ to
+
+@example
+@var{KP}.'
+@end example
+@xseealso{transpose, @@kronprod/ctranspose}
+@end deftypefn
+@c Kronecker Products @kronprod/uminus
+@c -----------------------------------------
+@subsection @@kronprod/uminus
+@cindex uminus
+@deftypefn {Function File} uminus (@var{KP})
+ Returns the unary minus operator working on the Kronecker product @var{KP}.
+ This corresponds to @code{-@var{KP}} and simply returns the Kronecker
+ product with the sign of the smallest matrix in the product reversed.
+@xseealso{@@kronprod/uminus}
+@end deftypefn
+@c Kronecker Products @kronprod/uplus
+@c -----------------------------------------
+@subsection @@kronprod/uplus
+@cindex uplus
+@deftypefn {Function File} uplus (@var{KP})
+ Returns the unary plus operator working on the Kronecker product @var{KP}.
+ This corresponds to @code{+@var{KP}} and simply returns the Kronecker
+ product unchanged.
+@xseealso{@@kronprod/uminus}
+@end deftypefn
+@c ---------------------------------------------------
+@node Circulant matrices
+@section Circulant matrices
+@cindex Circulant matrices
+@c Circulant matrices circulant_eig
+@c -----------------------------------------
+@subsection circulant_eig
+@cindex circulant_eig
+@deftypefn{Function File} {@var{lambda} =} circulant_eig (@var{v})
+@deftypefnx{Function File} {[@var{vs}, @var{lambda}] =} circulant_eig (@var{v})
+
+ Fast, compact calculation of eigenvalues and eigenvectors of a circulant matrix@*
+ Given an @var{n}*1 vector @var{v}, return the eigenvalues @var{lambda} and optionally eigenvectors @var{vs} of the @var{n}*@var{n} circulant matrix @var{C} that has @var{v} as its first column
+
+ Theoretically same as @code{eig(make_circulant_matrix(v))}, but many fewer computations; does not form @var{C} explicitly
+
+ Reference: Robert M. Gray, Toeplitz and Circulant Matrices: A Review, Now Publishers, http://ee.stanford.edu/~gray/toeplitz.pdf, Chapter 3
+
+@xseealso{gallery, circulant_matrix_vector_product, circulant_inv}
+@end deftypefn
+@c Circulant matrices circulant_inv
+@c -----------------------------------------
+@subsection circulant_inv
+@cindex circulant_inv
+@deftypefn{Function File} {@var{c} =} circulant_inv (@var{v})
+
+ Fast, compact calculation of inverse of a circulant matrix@*
+ Given an @var{n}*1 vector @var{v}, return the inverse @var{c} of the @var{n}*@var{n} circulant matrix @var{C} that has @var{v} as its first column
+ The returned @var{c} is the first column of the inverse, which is also circulant -- to get the full matrix, use `circulant_make_matrix(c)'
+
+ Theoretically same as @code{inv(make_circulant_matrix(v))(:, 1)}, but requires many fewer computations and does not form matrices explicitly
+
+ Roundoff may induce a small imaginary component in @var{c} even if @var{v} is real -- use @code{real(c)} to remedy this
+
+ Reference: Robert M. Gray, Toeplitz and Circulant Matrices: A Review, Now Publishers, http://ee.stanford.edu/~gray/toeplitz.pdf, Chapter 3
+
+@xseealso{gallery, circulant_matrix_vector_product, circulant_eig}
+@end deftypefn
+@c Circulant matrices circulant_make_matrix
+@c -----------------------------------------
+@subsection circulant_make_matrix
+@cindex circulant_make_matrix
+@deftypefn{Function File} {@var{C} =} circulant_make_matrix (@var{v})
+ Produce a full circulant matrix given the first column.
+
+@emph{Note:} this function has been deprecated and will be removed in the
+ future.  Instead, use @code{gallery} with the the @code{circul} option.
+ To obtain the exactly same matrix, transpose the result, i.e., replace
+@code{circulant_make_matrix (@var{v})} with
+@code{gallery ("circul", @var{v})'}.
+
+ Given an @var{n}*1 vector @var{v}, returns the @var{n}*@var{n} circulant
+ matrix @var{C} where @var{v} is the left column and all other columns are
+ downshifted versions of @var{v}.
+
+ Note: If the first row @var{r} of a circulant matrix is given, the first
+ column @var{v} can be obtained as @code{v = r([1 end:-1:2])}.
+
+ Reference: Gene H. Golub and Charles F. Van Loan, Matrix Computations, 3rd Ed., Section 4.7.7
+
+@xseealso{gallery, circulant_matrix_vector_product, circulant_eig, circulant_inv}
+@end deftypefn
+@c Circulant matrices circulant_matrix_vector_product
+@c -----------------------------------------
+@subsection circulant_matrix_vector_product
+@cindex circulant_matrix_vector_product
+@deftypefn{Function File} {@var{y} =} circulant_matrix_vector_product (@var{v}, @var{x})
+
+ Fast, compact calculation of the product of a circulant matrix with a vector@*
+ Given @var{n}*1 vectors @var{v} and @var{x}, return the matrix-vector product @var{y} = @var{C}@var{x}, where @var{C} is the @var{n}*@var{n} circulant matrix that has @var{v} as its first column
+
+ Theoretically the same as @code{make_circulant_matrix(x) * v}, but does not form @var{C} explicitly; uses the discrete Fourier transform
+
+ Because of roundoff, the returned @var{y} may have a small imaginary component even if @var{v} and @var{x} are real (use @code{real(y)} to remedy this)
+
+ Reference: Gene H. Golub and Charles F. Van Loan, Matrix Computations, 3rd Ed., Section 4.7.7
+
+@xseealso{gallery, circulant_eig, circulant_inv}
+@end deftypefn

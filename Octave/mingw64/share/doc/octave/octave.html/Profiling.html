@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Profiling (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Profiling (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Profiling (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Debugging.html" rel="up" title="Debugging">
+<link href="Profiler-Example.html" rel="next" title="Profiler Example">
+<link href="Call-Stack.html" rel="prev" title="Call Stack">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+kbd.kbd {font-style: oblique}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Profiling">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Profiler-Example.html" accesskey="n" rel="next">Profiler Example</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Call-Stack.html" accesskey="p" rel="prev">Call Stack</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Debugging.html" accesskey="u" rel="up">Debugging</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Profiling-1"><span>13.6 Profiling<a class="copiable-link" href="#Profiling-1"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-profiler"></a>
+<a class="index-entry-id" id="index-code-profiling"></a>
+
+<p>Octave supports profiling of code execution on a per-function level.  If
+profiling is enabled, each call to a function (supporting built-ins,
+operators, functions in oct- and mex-files, user-defined functions in
+Octave code and anonymous functions) is recorded while running Octave
+code.  After that, this data can aid in analyzing the code behavior, and
+is in particular helpful for finding &ldquo;hot spots&rdquo; in the code which use
+up a lot of computation time and are the best targets to spend
+optimization efforts on.
+</p>
+<p>The main command for profiling is <code class="code">profile</code>, which can be used to
+start or stop the profiler and also to query collected data afterwards.
+The data is returned in an Octave data structure which can then be
+examined or further processed by other routines or tools.
+</p>
+<a class="anchor" id="XREFprofile"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-profile"><span><strong class="def-name">profile</strong> <code class="def-code-arguments">on</code><a class="copiable-link" href="#index-profile"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-profile-1"><span><strong class="def-name">profile</strong> <code class="def-code-arguments">off</code><a class="copiable-link" href="#index-profile-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-profile-2"><span><strong class="def-name">profile</strong> <code class="def-code-arguments">resume</code><a class="copiable-link" href="#index-profile-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-profile-3"><span><strong class="def-name">profile</strong> <code class="def-code-arguments">clear</code><a class="copiable-link" href="#index-profile-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-profile-4"><span><code class="def-type"><var class="var">S</var> =</code> <strong class="def-name">profile</strong> <code class="def-code-arguments">(&quot;status&quot;)</code><a class="copiable-link" href="#index-profile-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-profile-5"><span><code class="def-type"><var class="var">T</var> =</code> <strong class="def-name">profile</strong> <code class="def-code-arguments">(&quot;info&quot;)</code><a class="copiable-link" href="#index-profile-5"> &para;</a></span></dt>
+<dd><p>Control the built-in profiler.
+</p>
+<dl class="table">
+<dt><code class="code">profile on</code></dt>
+<dd><p>Start the profiler.  Any previously collected data is cleared.
+</p>
+</dd>
+<dt><code class="code">profile off</code></dt>
+<dd><p>Stop profiling.  The collected data can later be retrieved and examined
+with <code class="code">T = profile (&quot;info&quot;)</code>.
+</p>
+</dd>
+<dt><code class="code">profile clear</code></dt>
+<dd><p>Clear all collected profiler data and stop profiling.
+</p>
+</dd>
+<dt><code class="code">profile resume</code></dt>
+<dd><p>Restart profiling without clearing the old data.  All newly collected
+statistics are added to the existing ones.
+</p>
+</dd>
+<dt><code class="code"><var class="var">S</var> = profile (&quot;status&quot;)</code></dt>
+<dd><p>Return a structure with information about the current status of the
+profiler.  At the moment, the only field is <code class="code">ProfilerStatus</code> which is
+either <code class="code">&quot;on&quot;</code> or <code class="code">&quot;off&quot;</code>.
+</p>
+</dd>
+<dt><code class="code"><var class="var">T</var> = profile (&quot;info&quot;)</code></dt>
+<dd><p>Return the collected profiling statistics in the structure <var class="var">T</var>.  The
+flat profile is returned in the field <code class="code">FunctionTable</code> which is an
+array of structures, each entry corresponding to a function which was called
+and for which profiling statistics are present.  In addition, the field
+<code class="code">Hierarchical</code> contains the hierarchical call tree.  Each node has an
+index into the <code class="code">FunctionTable</code> identifying the function it corresponds
+to as well as data fields for number of calls and time spent at this level
+in the call tree.
+</p></dd>
+</dl>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFprofshow">profshow</a>, <a class="ref" href="#XREFprofexplore">profexplore</a>.
+</p></dd></dl>
+
+
+<p>An easy way to get an overview over the collected data is
+<code class="code">profshow</code>.  This function takes the profiler data returned by
+<code class="code">profile</code> as input and prints a flat profile, for instance:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted"> Function Attr     Time (s)        Calls
+----------------------------------------
+   &gt;myfib    R        2.195        13529
+binary &lt;=             0.061        13529
+ binary -             0.050        13528
+ binary +             0.026         6764
+</pre></div></div>
+
+<p>This shows that most of the run time was spent executing the function
+&lsquo;<samp class="samp">myfib</samp>&rsquo;, and some minor proportion evaluating the listed binary
+operators.  Furthermore, it is shown how often the function was called
+and the profiler also records that it is recursive.
+</p>
+<a class="anchor" id="XREFprofshow"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-profshow"><span><strong class="def-name">profshow</strong> <code class="def-code-arguments">(<var class="var">data</var>)</code><a class="copiable-link" href="#index-profshow"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-profshow-1"><span><strong class="def-name">profshow</strong> <code class="def-code-arguments">(<var class="var">data</var>, <var class="var">n</var>)</code><a class="copiable-link" href="#index-profshow-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-profshow-2"><span><strong class="def-name">profshow</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-profshow-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-profshow-3"><span><strong class="def-name">profshow</strong> <code class="def-code-arguments">(<var class="var">n</var>)</code><a class="copiable-link" href="#index-profshow-3"> &para;</a></span></dt>
+<dd><p>Display flat per-function profiler results.
+</p>
+<p>Print out profiler data (execution time, number of calls) for the most
+critical <var class="var">n</var> functions.  The results are sorted in descending order by
+the total time spent in each function.  If <var class="var">n</var> is unspecified it
+defaults to 20.
+</p>
+<p>The input <var class="var">data</var> is the structure returned by <code class="code">profile (&quot;info&quot;)</code>.
+If unspecified, <code class="code">profshow</code> will use the current profile dataset.
+</p>
+<p>The attribute column displays &lsquo;<samp class="samp">R</samp>&rsquo; for recursive functions, and is blank
+for all other function types.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFprofexplore">profexplore</a>, <a class="ref" href="#XREFprofile">profile</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFprofexport"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-profexport"><span><strong class="def-name">profexport</strong> <code class="def-code-arguments">(<var class="var">dir</var>)</code><a class="copiable-link" href="#index-profexport"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-profexport-1"><span><strong class="def-name">profexport</strong> <code class="def-code-arguments">(<var class="var">dir</var>, <var class="var">data</var>)</code><a class="copiable-link" href="#index-profexport-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-profexport-2"><span><strong class="def-name">profexport</strong> <code class="def-code-arguments">(<var class="var">dir</var>, <var class="var">name</var>)</code><a class="copiable-link" href="#index-profexport-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-profexport-3"><span><strong class="def-name">profexport</strong> <code class="def-code-arguments">(<var class="var">dir</var>, <var class="var">name</var>, <var class="var">data</var>)</code><a class="copiable-link" href="#index-profexport-3"> &para;</a></span></dt>
+<dd>
+<p>Export profiler data as HTML.
+</p>
+<p>Export the profiling data in <var class="var">data</var> into a series of HTML files in
+the folder <var class="var">dir</var>.  The initial file will be
+<samp class="file"><var class="var">data</var>/index.html</samp>.
+</p>
+<p>If <var class="var">name</var> is specified, it must be a string that contains a &ldquo;name&rdquo;
+for the profile being exported.  This name is included in the HTML.
+</p>
+<p>The input <var class="var">data</var> is the structure returned by <code class="code">profile (&quot;info&quot;)</code>.
+If unspecified, <code class="code">profexport</code> will use the current profile dataset.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFprofshow">profshow</a>, <a class="ref" href="#XREFprofexplore">profexplore</a>, <a class="ref" href="#XREFprofile">profile</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFprofexplore"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-profexplore"><span><strong class="def-name">profexplore</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-profexplore"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-profexplore-1"><span><strong class="def-name">profexplore</strong> <code class="def-code-arguments">(<var class="var">data</var>)</code><a class="copiable-link" href="#index-profexplore-1"> &para;</a></span></dt>
+<dd><p>Interactively explore hierarchical profiler output.
+</p>
+<p>Assuming <var class="var">data</var> is the structure with profile data returned by
+<code class="code">profile (<code class="code">&quot;info&quot;</code>)</code>, this command opens an interactive prompt
+that can be used to explore the call-tree.  Type <kbd class="kbd">help</kbd> to get a list
+of possible commands.  If <var class="var">data</var> is omitted, <code class="code">profile (&quot;info&quot;)</code>
+is called and used in its place.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFprofile">profile</a>, <a class="ref" href="#XREFprofshow">profshow</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Profiler-Example.html">Profiler Example</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Call-Stack.html">Call Stack</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Debugging.html">Debugging</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

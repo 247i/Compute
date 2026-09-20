@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- General documentation for the parallel package for Octave.
+
+Copyright (C) 2016-2023 Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Limitations (parallel_doc)</title>
+
+<meta name="description" content="Limitations (parallel_doc)">
+<meta name="keywords" content="Limitations (parallel_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="index.html" rel="up" title="Top">
+<link href="Documentation.html" rel="next" title="Documentation">
+<link href="select.html" rel="prev" title="select">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<span id="Limitations"></span><div class="header">
+<p>
+Next: <a href="Documentation.html" accesskey="n" rel="next">Documentation</a>, Previous: <a href="Further-functions.html" accesskey="p" rel="prev">Further functions</a>, Up: <a href="index.html" accesskey="u" rel="up">Top</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Limitations-of-high_002d-and-medium_002dlevel-functions"></span><h2 class="chapter">5 Limitations of high- and medium-level functions</h2>
+<span id="index-limitations"></span>
+
+<p>Note that <a href="netcellfun.html">netcellfun</a>, <a href="netarrayfun.html">netarrayfun</a>, and <a href="rfeval.html">rfeval</a>, but
+even <a href="parcellfun.html">parcellfun</a> and <a href="pararrayfun.html">pararrayfun</a>, execute code in separate
+Octave processes. This causes some limitations.
+</p>
+<p>For the function handles passed as arguments to <a href="parcellfun.html">parcellfun</a>,
+<a href="pararrayfun.html">pararrayfun</a>, <a href="netcellfun.html">netcellfun</a>, <a href="netarrayfun.html">netarrayfun</a>, and
+<a href="rfeval.html">rfeval</a>, the following limitations may apply:
+</p>
+<ul>
+<li> In Octave versions before 5.1, anonymous functions may only be
+passed if they don&rsquo;t use <code>varargin</code> and don&rsquo;t contain nested
+anonymous functions.
+</li><li> If a handle to a named function, written in a function file,
+is passed, this function must exist on the server machine. This is
+usually no problem for <a href="parcellfun.html">parcellfun</a> and <a href="pararrayfun.html">pararrayfun</a>.
+</li><li> Named functions defined in the command line interface or by
+scripts are not exported to the working sessions used by
+<a href="parcellfun.html">parcellfun</a> or <a href="pararrayfun.html">pararrayfun</a>, and not automatically to the
+server for remote parallel execution.
+</li><li> For handles to subfunctions or to private functions limitations
+depending on the used Octave version may apply.
+</li></ul>
+
+<p>Anonymous functions should be usable as usual, since the function
+specification sent to the server will include the anonymous functions
+context.
+</p>
+<p>If <a href="parcellfun.html">parcellfun</a> or <a href="pararrayfun.html">pararrayfun</a> (and of course the
+cluster-related functions, too) are called from within a function with
+subfunctions, the subfunctions won&rsquo;t be visible in parallel execution.
+</p>
+<p>There is no way to set global variables for the function called by
+<code>parcellun</code> or <code>pararrayfun</code>. For cluster execution, setting
+global variables is possible, e.g. with <a href="install_005fvars.html">install_vars</a>; however,
+<code>netcellfun</code> and <code>netarrayfun</code> won&rsquo;t &rsquo;see&rsquo; global variables if
+they use <code>parcellfun</code> internally (which is the default at remote
+machines with more than one available processor core).
+</p>
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="Documentation.html" accesskey="n" rel="next">Documentation</a>, Previous: <a href="Further-functions.html" accesskey="p" rel="prev">Further functions</a>, Up: <a href="index.html" accesskey="u" rel="up">Top</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

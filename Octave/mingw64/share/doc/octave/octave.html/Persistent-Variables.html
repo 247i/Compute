@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Persistent Variables (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Persistent Variables (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Persistent Variables (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Variables.html" rel="up" title="Variables">
+<link href="Status-of-Variables.html" rel="next" title="Status of Variables">
+<link href="Global-Variables.html" rel="prev" title="Global Variables">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Persistent-Variables">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Status-of-Variables.html" accesskey="n" rel="next">Status of Variables</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Global-Variables.html" accesskey="p" rel="prev">Global Variables</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Variables.html" accesskey="u" rel="up">Variables</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Persistent-Variables-1"><span>7.2 Persistent Variables<a class="copiable-link" href="#Persistent-Variables-1"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-persistent-variables"></a>
+<a class="index-entry-id" id="index-persistent-statement"></a>
+<a class="index-entry-id" id="index-variables_002c-persistent"></a>
+
+<p>See keyword: <a class="ref" href="Keywords.html#XREFpersistent">persistent</a>
+</p>
+<p>A variable that has been declared <em class="dfn">persistent</em> within a function
+will retain its contents in memory between subsequent calls to the
+same function.  The difference between persistent variables and global
+variables is that persistent variables are local in scope to a
+particular function and are not visible elsewhere.
+</p>
+<p>The following example uses a persistent variable to create a function
+that prints the number of times it has been called.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">function count_calls ()
+  persistent calls = 0;
+  printf (&quot;'count_calls' has been called %d times\n&quot;,
+          ++calls);
+endfunction
+
+for i = 1:3
+  count_calls ();
+endfor
+
+&#8867; 'count_calls' has been called 1 times
+&#8867; 'count_calls' has been called 2 times
+&#8867; 'count_calls' has been called 3 times
+</pre></div></div>
+
+<p>As the example shows, a variable may be declared persistent using a
+<code class="code">persistent</code> declaration statement.  The following statements are
+all persistent declarations.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">persistent a
+persistent a b
+persistent c = 2
+persistent d = 3 e f = 5
+</pre></div></div>
+
+<p>The behavior of persistent variables is equivalent to the behavior of
+static variables in C.
+</p>
+<p>One restriction for persistent variables is, that neither input nor
+output arguments of a function can be persistent:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">function y = foo ()
+  persistent y = 0;  # Not allowed!
+endfunction
+
+foo ()
+&#8867; error: can't make function parameter y persistent
+</pre></div></div>
+
+<p>Like global variables, a persistent variable may only be initialized once.
+For example, after executing the following code
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">persistent pvar = 1
+persistent pvar = 2
+</pre></div></div>
+
+<p>the value of the persistent variable <code class="code">pvar</code> is 1, not 2.
+</p>
+<p>If a persistent variable is declared but not initialized to a specific
+value, it will contain an empty matrix.  So, it is also possible to
+initialize a persistent variable by checking whether it is empty, as the
+following example illustrates.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">function count_calls ()
+  persistent calls;
+  if (isempty (calls))
+    calls = 0;
+  endif
+  printf (&quot;'count_calls' has been called %d times\n&quot;,
+          ++calls);
+endfunction
+</pre></div></div>
+
+<p>This implementation behaves in exactly the same way as the previous
+implementation of <code class="code">count_calls</code>.
+</p>
+<p>The value of a persistent variable is kept in memory until it is
+explicitly cleared.  Assuming that the implementation of <code class="code">count_calls</code>
+is saved on disk, we get the following behavior.
+</p>
+<div class="example">
+<pre class="example-preformatted">for i = 1:2
+  count_calls ();
+endfor
+&#8867; 'count_calls' has been called 1 times
+&#8867; 'count_calls' has been called 2 times
+
+clear
+for i = 1:2
+  count_calls ();
+endfor
+&#8867; 'count_calls' has been called 3 times
+&#8867; 'count_calls' has been called 4 times
+
+clear all
+for i = 1:2
+  count_calls ();
+endfor
+&#8867; 'count_calls' has been called 1 times
+&#8867; 'count_calls' has been called 2 times
+
+clear count_calls
+for i = 1:2
+  count_calls ();
+endfor
+&#8867; 'count_calls' has been called 1 times
+&#8867; 'count_calls' has been called 2 times
+</pre></div>
+
+<p>That is, the persistent variable is only removed from memory when the
+function containing the variable is removed.  Note that if the function
+definition is typed directly into the Octave prompt, the persistent
+variable will be cleared by a simple <code class="code">clear</code> command as the entire
+function definition will be removed from memory.  If you do not want
+a persistent variable to be removed from memory even if the function is
+cleared, you should use the <code class="code">mlock</code> function
+(see <a class="pxref" href="Function-Locking.html">Function Locking</a>).
+</p>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Status-of-Variables.html">Status of Variables</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Global-Variables.html">Global Variables</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Variables.html">Variables</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

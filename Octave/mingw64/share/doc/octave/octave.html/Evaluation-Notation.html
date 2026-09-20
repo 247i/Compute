@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Evaluation Notation (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Evaluation Notation (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Evaluation Notation (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Conventions.html" rel="up" title="Conventions">
+<link href="Printing-Notation.html" rel="next" title="Printing Notation">
+<link href="Fonts.html" rel="prev" title="Fonts">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Evaluation-Notation">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Printing-Notation.html" accesskey="n" rel="next">Printing Notation</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Fonts.html" accesskey="p" rel="prev">Fonts</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Conventions.html" accesskey="u" rel="up">Conventions</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Evaluation-Notation-1"><span>1.3.2 Evaluation Notation<a class="copiable-link" href="#Evaluation-Notation-1"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-evaluation-notation"></a>
+<a class="index-entry-id" id="index-documentation-notation"></a>
+
+<p>In the examples in this manual, results from expressions that you
+evaluate are indicated with &lsquo;<samp class="samp">&rArr; </samp>&rsquo;.  For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">sqrt (2)
+     &rArr;  1.4142
+</pre></div></div>
+
+<p>You can read this as &ldquo;<code class="code">sqrt (2)</code> evaluates to 1.4142&rdquo;.
+</p>
+<p>In some cases, matrix values that are returned by expressions are
+displayed like this
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">[1, 2; 3, 4] == [1, 3; 2, 4]
+     &rArr;  [ 1, 0; 0, 1 ]
+</pre></div></div>
+
+<p>and in other cases, they are displayed like this
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">eye (3)
+     &rArr;   1  0  0
+         0  1  0
+         0  0  1
+</pre></div></div>
+
+<p>in order to clearly show the structure of the result.
+</p>
+<p>Sometimes to help describe one expression, another expression is shown
+that produces identical results.  The exact equivalence of expressions
+is indicated with &lsquo;<samp class="samp">&equiv;</samp>&rsquo;.  For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">rot90 ([1, 2; 3, 4], -1)
+&equiv;
+rot90 ([1, 2; 3, 4], 3)
+&equiv;
+rot90 ([1, 2; 3, 4], 7)
+</pre></div></div>
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Printing-Notation.html">Printing Notation</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Fonts.html">Fonts</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Conventions.html">Conventions</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

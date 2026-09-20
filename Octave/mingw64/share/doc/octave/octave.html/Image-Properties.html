@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Image Properties (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Image Properties (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Image Properties (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Graphics-Object-Properties.html" rel="up" title="Graphics Object Properties">
+<link href="Patch-Properties.html" rel="next" title="Patch Properties">
+<link href="Text-Properties.html" rel="prev" title="Text Properties">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsubsection-level-extent" id="Image-Properties">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Patch-Properties.html" accesskey="n" rel="next">Patch Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Text-Properties.html" accesskey="p" rel="prev">Text Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Graphics-Object-Properties.html" accesskey="u" rel="up">Graphics Object Properties</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsubsection" id="Image-Properties-1"><span>15.3.3.7 Image Properties<a class="copiable-link" href="#Image-Properties-1"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-Image-Properties"></a>
+
+
+
+<p>Properties of <code class="code">image</code> objects (see <a class="pxref" href="Displaying-Images.html#XREFimage">image</a>):
+</p>
+<h4 class="subsubheading" id="Categories_003a-6"><span>Categories:<a class="copiable-link" href="#Categories_003a-6"> &para;</a></span></h4>
+
+<p><a class="ref" href="#XREFimagecategoryCallbackExecution">Callback&nbsp;Execution<!-- /@w --></a> | <a class="ref" href="#XREFimagecategoryCreation_002fDeletion">Creation/Deletion<!-- /@w --></a> | <a class="ref" href="#XREFimagecategoryDisplay">Display<!-- /@w --></a> | <a class="ref" href="#XREFimagecategoryImageData">Image&nbsp;Data<!-- /@w --></a> | <a class="ref" href="#XREFimagecategoryMouseInteraction">Mouse&nbsp;Interaction<!-- /@w --></a> | <a class="ref" href="#XREFimagecategoryObjectIdentification">Object&nbsp;Identification<!-- /@w --></a> | <a class="ref" href="#XREFimagecategoryParent_002fChildren">Parent/Children<!-- /@w --></a> 
+</p>
+<a class="anchor" id="XREFimagecategoryCallbackExecution"></a><h4 class="subsubheading" id="Callback-Execution-6"><span>Callback Execution<a class="copiable-link" href="#Callback-Execution-6"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFimagebusyaction"></a></dd>
+<dt><a id="index-image-busyaction"></a><span><code class="code">busyaction</code>: <code class="code">&quot;cancel&quot;</code> | {<code class="code">&quot;queue&quot;</code>}<a class="copiable-link" href="#index-image-busyaction"> &para;</a></span></dt>
+<dd><p>Define how Octave handles the execution of this object&rsquo;s callback properties when it is unable to interrupt another object&rsquo;s executing callback.  This is only relevant when the currently executing callback object has its <code class="code">interruptible</code> property set to <code class="code">&quot;off&quot;</code>.  The <code class="code">busyaction</code> property of the interrupting callback object indicates whether the interrupting callback is queued (<code class="code">&quot;queue&quot;</code> (default)) or discarded (<code class="code">&quot;cancel&quot;</code>).
+See <a class="xref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFimageinterruptible"></a></dd>
+<dt><a id="index-image-interruptible"></a><span><code class="code">interruptible</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-image-interruptible"> &para;</a></span></dt>
+<dd><p>Specify whether this object&rsquo;s callback functions may be interrupted by other callbacks.  By default <code class="code">interruptible</code> is <code class="code">&quot;on&quot;</code> and callbacks that make use of <code class="code">drawnow</code>, <code class="code">figure</code>, <code class="code">waitfor</code>, <code class="code">getframe</code> or <code class="code">pause</code> functions are eventually interrupted.
+See <a class="xref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFimagecategoryCreation_002fDeletion"></a><h4 class="subsubheading" id="Creation_002fDeletion-4"><span>Creation/Deletion<a class="copiable-link" href="#Creation_002fDeletion-4"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFimagebeingdeleted"></a></dd>
+<dt><a id="index-image-beingdeleted"></a><span><code class="code">beingdeleted</code>: {<code class="code">&quot;off&quot;</code>} | <code class="code">&quot;on&quot;</code><a class="copiable-link" href="#index-image-beingdeleted"> &para;</a></span></dt>
+<dd><p>Property indicating that a function has initiated deletion of the object.  <code class="code">beingdeleted</code> is set to true until the object no longer exists.
+</p>
+
+<a class="anchor" id="XREFimagecreatefcn"></a></dd>
+<dt><a id="index-image-createfcn"></a><span><code class="code">createfcn</code>: string | function handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-image-createfcn"> &para;</a></span></dt>
+<dd><p>Callback function executed immediately after image has been created.  Function is set by using default property on root object, e.g., <code class="code">set (groot, &quot;defaultimagecreatefcn&quot;, 'disp (&quot;image created!&quot;)')</code>.
+</p>
+<p>For information on how to write graphics listener functions, see <a class="pxref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFimagedeletefcn"></a></dd>
+<dt><a id="index-image-deletefcn"></a><span><code class="code">deletefcn</code>: string | function handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-image-deletefcn"> &para;</a></span></dt>
+<dd><p>Callback function executed immediately before image is deleted.
+</p>
+<p>For information on how to write graphics listener functions, see <a class="pxref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFimagecategoryDisplay"></a><h4 class="subsubheading" id="Display-4"><span>Display<a class="copiable-link" href="#Display-4"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFimageclipping"></a></dd>
+<dt><a id="index-image-clipping"></a><span><code class="code">clipping</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-image-clipping"> &para;</a></span></dt>
+<dd><p>If <code class="code">clipping</code> is <code class="code">&quot;on&quot;</code>, the image is clipped in its parent axes limits.
+</p>
+
+<a class="anchor" id="XREFimagevisible"></a></dd>
+<dt><a id="index-image-visible"></a><span><code class="code">visible</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-image-visible"> &para;</a></span></dt>
+<dd><p>If <code class="code">visible</code> is <code class="code">&quot;off&quot;</code>, the image is not rendered on screen.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFimagecategoryImageData"></a><h4 class="subsubheading" id="Image-Data"><span>Image Data<a class="copiable-link" href="#Image-Data"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFimagealphadata"></a></dd>
+<dt><a id="index-image-alphadata"></a><span><code class="code">alphadata</code>: scalar | matrix, def. <code class="code">1</code><a class="copiable-link" href="#index-image-alphadata"> &para;</a></span></dt>
+<dd><p>Transparency is not yet implemented for image objects.  <code class="code">alphadata</code> is unused.
+</p>
+
+<a class="anchor" id="XREFimagealphadatamapping"></a></dd>
+<dt><a id="index-image-alphadatamapping"></a><span><code class="code">alphadatamapping</code>: <code class="code">&quot;direct&quot;</code> | {<code class="code">&quot;none&quot;</code>} | <code class="code">&quot;scaled&quot;</code><a class="copiable-link" href="#index-image-alphadatamapping"> &para;</a></span></dt>
+<dd><p>Transparency is not yet implemented for image objects.  <code class="code">alphadatamapping</code> is unused.
+</p>
+
+<a class="anchor" id="XREFimagecdata"></a></dd>
+<dt><a id="index-image-cdata"></a><span><code class="code">cdata</code>: array, def. 64-by-64 double<a class="copiable-link" href="#index-image-cdata"> &para;</a></span></dt>
+<dd><p>Color data for the image object.  Data is either stored as a 2-D matrix where each element&rsquo;s value determines that pixel&rsquo;s color according to the current colormap, or as a 3-D array where the third dimension contains separate red, blue, and green components for each pixel.  For RGB arrays, the values that map to minimum and maximum color value depend on the class of <code class="code">&quot;cdata&quot;</code>.  Floating point and logical values range from 0 to 1 while integer value range from <code class="code">intmin</code> to <code class="code">intmax</code> for that integer class.
+</p>
+
+<a class="anchor" id="XREFimagecdatamapping"></a></dd>
+<dt><a id="index-image-cdatamapping"></a><span><code class="code">cdatamapping</code>: {<code class="code">&quot;direct&quot;</code>} | <code class="code">&quot;scaled&quot;</code><a class="copiable-link" href="#index-image-cdatamapping"> &para;</a></span></dt>
+<dd><p>Sets the method for mapping data from the <a class="ref" href="#XREFimagecdata"><code class="code">&quot;cdata&quot;</code>&nbsp;property<!-- /@w --></a> to the current colormap.  <code class="code">&quot;Direct&quot;</code> mapping selects the color using the <code class="code">&quot;cdata&quot;</code> value as an index to the current colormap.  <code class="code">&quot;Scaled&quot;</code> mapping scales the <code class="code">&quot;cdata&quot;</code> values to the range specified in the <a class="ref" href="Axes-Properties.html#XREFaxesclim"><code class="code">&quot;clim&quot;</code>&nbsp;axes&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFimagexdata"></a></dd>
+<dt><a id="index-image-xdata"></a><span><code class="code">xdata</code>: two-element vector, def. <code class="code">[1   64]</code><a class="copiable-link" href="#index-image-xdata"> &para;</a></span></dt>
+<dd><p>Two-element vector <code class="code">[xfirst xlast]</code> specifying the x coordinates of the centers of the first and last columns of the image.
+</p>
+<p>Setting <code class="code">xdata</code> to the empty matrix ([]) will restore the default value of <code class="code">[1 columns(image)]</code>.
+</p>
+
+<a class="anchor" id="XREFimageydata"></a></dd>
+<dt><a id="index-image-ydata"></a><span><code class="code">ydata</code>: two-element vector, def. <code class="code">[1   64]</code><a class="copiable-link" href="#index-image-ydata"> &para;</a></span></dt>
+<dd><p>Two-element vector <code class="code">[yfirst ylast]</code> specifying the y coordinates of the centers of the first and last rows of the image.
+</p>
+<p>Setting <code class="code">ydata</code> to the empty matrix ([]) will restore the default value of <code class="code">[1 rows(image)]</code>.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFimagecategoryMouseInteraction"></a><h4 class="subsubheading" id="Mouse-Interaction-5"><span>Mouse Interaction<a class="copiable-link" href="#Mouse-Interaction-5"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFimagebuttondownfcn"></a></dd>
+<dt><a id="index-image-buttondownfcn"></a><span><code class="code">buttondownfcn</code>: string | function handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-image-buttondownfcn"> &para;</a></span></dt>
+<dd><p>For information on how to write graphics listener functions, see <a class="pxref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFimagecontextmenu"></a></dd>
+<dt><a id="index-image-contextmenu"></a><span><code class="code">contextmenu</code>: graphics handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-image-contextmenu"> &para;</a></span></dt>
+<dd><p>Graphics handle of the uicontextmenu object that is currently associated to this image object.
+</p>
+
+<a class="anchor" id="XREFimagehittest"></a></dd>
+<dt><a id="index-image-hittest"></a><span><code class="code">hittest</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-image-hittest"> &para;</a></span></dt>
+<dd><p>Specify whether image processes mouse events or passes them to ancestors of the object.  When enabled, the object may respond to mouse clicks by evaluating the <code class="code">&quot;buttondownfcn&quot;</code>, showing the uicontextmenu, and eventually becoming the root <code class="code">&quot;currentobject&quot;</code>.  This property is only relevant when the object can accept mouse clicks which is determined by the <code class="code">&quot;pickableparts&quot;</code> property.  See <a class="xref" href="#XREFimagepickableparts">pickableparts&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFimagepickableparts"></a></dd>
+<dt><a id="index-image-pickableparts"></a><span><code class="code">pickableparts</code>: <code class="code">&quot;all&quot;</code> | <code class="code">&quot;none&quot;</code> | {<code class="code">&quot;visible&quot;</code>}<a class="copiable-link" href="#index-image-pickableparts"> &para;</a></span></dt>
+<dd><p>Specify whether image will accept mouse clicks.  By default, <code class="code">pickableparts</code> is <code class="code">&quot;visible&quot;</code> and only visible parts of the image or its children may react to mouse clicks.  When <code class="code">pickableparts</code> is <code class="code">&quot;all&quot;</code> both visible and invisible parts (or children) may react to mouse clicks.  When <code class="code">pickableparts</code> is <code class="code">&quot;none&quot;</code> mouse clicks on the object are ignored and transmitted to any objects underneath this one.  When an object is configured to accept mouse clicks the <code class="code">&quot;hittest&quot;</code> property will determine how they are processed.  See <a class="xref" href="#XREFimagehittest">hittest&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFimageselected"></a></dd>
+<dt><a id="index-image-selected"></a><span><code class="code">selected</code>: {<code class="code">&quot;off&quot;</code>} | <code class="code">&quot;on&quot;</code><a class="copiable-link" href="#index-image-selected"> &para;</a></span></dt>
+<dd><p>Property indicates whether this image is selected.
+</p>
+
+<a class="anchor" id="XREFimageselectionhighlight"></a></dd>
+<dt><a id="index-image-selectionhighlight"></a><span><code class="code">selectionhighlight</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-image-selectionhighlight"> &para;</a></span></dt>
+<dd><p>If <code class="code">selectionhighlight</code> is <code class="code">&quot;on&quot;</code>, then the image&rsquo;s selection state is visually highlighted.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFimagecategoryObjectIdentification"></a><h4 class="subsubheading" id="Object-Identification-6"><span>Object Identification<a class="copiable-link" href="#Object-Identification-6"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFimagetag"></a></dd>
+<dt><a id="index-image-tag"></a><span><code class="code">tag</code>: string, def. <code class="code">&quot;&quot;</code><a class="copiable-link" href="#index-image-tag"> &para;</a></span></dt>
+<dd><p>A user-defined string to label the graphics object.
+</p>
+
+<a class="anchor" id="XREFimagetype"></a></dd>
+<dt><a id="index-image-type"></a><span><code class="code">type</code> (read-only): string<a class="copiable-link" href="#index-image-type"> &para;</a></span></dt>
+<dd><p>Class name of the graphics object.  <code class="code">type</code> is always <code class="code">&quot;image&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFimageuserdata"></a></dd>
+<dt><a id="index-image-userdata"></a><span><code class="code">userdata</code>: Any Octave data, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-image-userdata"> &para;</a></span></dt>
+<dd><p>User-defined data to associate with the graphics object.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFimagecategoryParent_002fChildren"></a><h4 class="subsubheading" id="Parent_002fChildren-5"><span>Parent/Children<a class="copiable-link" href="#Parent_002fChildren-5"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFimagechildren"></a></dd>
+<dt><a id="index-image-children"></a><span><code class="code">children</code> (read-only): vector of graphics handles, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-image-children"> &para;</a></span></dt>
+<dd><p>Child objects of Images is not yet implemented for image objects.  <code class="code">children</code> is unused.
+</p>
+
+<a class="anchor" id="XREFimagehandlevisibility"></a></dd>
+<dt><a id="index-image-handlevisibility"></a><span><code class="code">handlevisibility</code>: <code class="code">&quot;callback&quot;</code> | <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-image-handlevisibility"> &para;</a></span></dt>
+<dd><p>If <code class="code">handlevisibility</code> is <code class="code">&quot;off&quot;</code>, the image&rsquo;s handle is not visible in its parent&rsquo;s <code class="code">&quot;children&quot;</code> property.
+</p>
+
+<a class="anchor" id="XREFimageparent"></a></dd>
+<dt><a id="index-image-parent"></a><span><code class="code">parent</code>: graphics handle<a class="copiable-link" href="#index-image-parent"> &para;</a></span></dt>
+<dd><p>Handle of the parent graphics object.
+</p>
+</dd>
+</dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Patch-Properties.html">Patch Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Text-Properties.html">Text Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Graphics-Object-Properties.html">Graphics Object Properties</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

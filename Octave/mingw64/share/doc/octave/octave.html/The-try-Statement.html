@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>The try Statement (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="The try Statement (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="The try Statement (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Statements.html" rel="up" title="Statements">
+<link href="Continuation-Lines.html" rel="next" title="Continuation Lines">
+<link href="The-unwind_005fprotect-Statement.html" rel="prev" title="The unwind_protect Statement">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="The-try-Statement">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Continuation-Lines.html" accesskey="n" rel="next">Continuation Lines</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="The-unwind_005fprotect-Statement.html" accesskey="p" rel="prev">The unwind_protect Statement</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Statements.html" accesskey="u" rel="up">Statements</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="The-try-Statement-1"><span>10.9 The try Statement<a class="copiable-link" href="#The-try-Statement-1"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-try-statement"></a>
+<a class="index-entry-id" id="index-catch"></a>
+<a class="index-entry-id" id="index-end_005ftry_005fcatch"></a>
+
+<p>The original form of a <code class="code">try</code> block looks like this:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">try
+  <var class="var">body</var>
+catch
+  <var class="var">cleanup</var>
+end_try_catch
+</pre></div></div>
+
+<p>where <var class="var">body</var> and <var class="var">cleanup</var> are both optional and may contain any
+Octave expressions or commands.  The statements in <var class="var">cleanup</var> are
+only executed if an error occurs in <var class="var">body</var>.
+</p>
+<p>No warnings or error messages are printed while <var class="var">body</var> is executing.
+If an error does occur during the execution of <var class="var">body</var>, <var class="var">cleanup</var>
+can use the functions <code class="code">lasterr</code> or <code class="code">lasterror</code> to access the
+text of the message that would have been printed, as well as its
+identifier.  The alternative form,
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">try
+  <var class="var">body</var>
+catch <var class="var">err</var>
+  <var class="var">cleanup</var>
+end_try_catch
+</pre></div></div>
+
+<p>will automatically store the output of <code class="code">lasterror</code> in the structure
+<var class="var">err</var>.  See <a class="xref" href="Errors-and-Warnings.html">Errors and Warnings</a>, for more information about the
+<code class="code">lasterr</code> and <code class="code">lasterror</code> functions.
+</p>
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Continuation-Lines.html">Continuation Lines</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="The-unwind_005fprotect-Statement.html">The unwind_protect Statement</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Statements.html">Statements</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

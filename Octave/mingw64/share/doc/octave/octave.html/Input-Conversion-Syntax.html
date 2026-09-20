@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Input Conversion Syntax (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Input Conversion Syntax (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Input Conversion Syntax (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="C_002dStyle-I_002fO-Functions.html" rel="up" title="C-Style I/O Functions">
+<link href="Table-of-Input-Conversions.html" rel="next" title="Table of Input Conversions">
+<link href="Formatted-Input.html" rel="prev" title="Formatted Input">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+ul.mark-bullet {list-style-type: disc}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Input-Conversion-Syntax">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Table-of-Input-Conversions.html" accesskey="n" rel="next">Table of Input Conversions</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Formatted-Input.html" accesskey="p" rel="prev">Formatted Input</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="C_002dStyle-I_002fO-Functions.html" accesskey="u" rel="up">C-Style I/O Functions</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Input-Conversion-Syntax-1"><span>14.2.12 Input Conversion Syntax<a class="copiable-link" href="#Input-Conversion-Syntax-1"> &para;</a></span></h4>
+
+<p>A <code class="code">scanf</code> template string is a string that contains ordinary
+multibyte characters interspersed with conversion specifications that
+start with &lsquo;<samp class="samp">%</samp>&rsquo;.
+</p>
+<p>Any whitespace character in the template causes any number of whitespace
+characters in the input stream to be read and discarded.  The whitespace
+characters that are matched need not be exactly the same whitespace
+characters that appear in the template string.  For example, write
+&lsquo;<samp class="samp"> , </samp>&rsquo; in the template to recognize a comma with optional whitespace
+before and after.
+</p>
+<p>Other characters in the template string that are not part of conversion
+specifications must match characters in the input stream exactly; if
+this is not the case, a matching failure occurs.
+</p>
+<p>The conversion specifications in a <code class="code">scanf</code> template string
+have the general form:
+</p>
+<div class="example">
+<pre class="example-preformatted">% <var class="var">flags</var> <var class="var">width</var> <var class="var">type</var> <var class="var">conversion</var>
+</pre></div>
+
+<p>In more detail, an input conversion specification consists of an initial
+&lsquo;<samp class="samp">%</samp>&rsquo; character followed in sequence by:
+</p>
+<ul class="itemize mark-bullet">
+<li>An optional <em class="dfn">flag character</em> &lsquo;<samp class="samp">*</samp>&rsquo;, which says to ignore the text
+read for this specification.  When <code class="code">scanf</code> finds a conversion
+specification that uses this flag, it reads input as directed by the
+rest of the conversion specification, but it discards this input, does
+not return any value, and does not increment the count of
+successful assignments.
+<a class="index-entry-id" id="index-flag-character-_0028scanf_0029"></a>
+
+</li><li>An optional decimal integer that specifies the <em class="dfn">maximum field
+width</em>.  Reading of characters from the input stream stops either when
+this maximum is reached or when a non-matching character is found,
+whichever happens first.  Most conversions discard initial whitespace
+characters, and these discarded characters don&rsquo;t count towards the
+maximum field width.  Conversions that do not discard initial whitespace
+are explicitly documented.
+<a class="index-entry-id" id="index-maximum-field-width-_0028scanf_0029"></a>
+
+</li><li>An optional type modifier character.  This character is ignored by
+Octave&rsquo;s <code class="code">scanf</code> function, but is recognized to provide
+compatibility with the C language <code class="code">scanf</code>.
+
+</li><li>A character that specifies the conversion to be applied.
+</li></ul>
+
+<p>The exact options that are permitted and how they are interpreted vary
+between the different conversion specifiers.  See the descriptions of the
+individual conversions in <a class="ref" href="Table-of-Input-Conversions.html">Table of Input Conversions</a> for
+information about the particular options that they allow.
+</p>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Table-of-Input-Conversions.html">Table of Input Conversions</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Formatted-Input.html">Formatted Input</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="C_002dStyle-I_002fO-Functions.html">C-Style I/O Functions</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

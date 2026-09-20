@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Value Classes vs. Handle Classes (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Value Classes vs. Handle Classes (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Value Classes vs. Handle Classes (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="classdef-Classes.html" rel="up" title="classdef Classes">
+<link href="Inheritance.html" rel="prev" title="Inheritance">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Value-Classes-vs_002e-Handle-Classes">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Inheritance.html" accesskey="p" rel="prev">Inheritance</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="classdef-Classes.html" accesskey="u" rel="up"><code class="code">classdef</code> Classes</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Value-Classes-vs_002e-Handle-Classes-1"><span>34.6.5 Value Classes vs. Handle Classes<a class="copiable-link" href="#Value-Classes-vs_002e-Handle-Classes-1"> &para;</a></span></h4>
+
+<p>There are two intrinsically different types of <code class="code">classdef</code> classes, whose
+major difference is the behavior regarding variable assignment.  The first type
+are <b class="b">value classes</b>:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">classdef value_class
+  properties
+    prop1
+  endproperties
+
+  methods
+    function obj = set_prop1 (obj, val)
+      obj.prop1 = val;
+    endfunction
+  endmethods
+endclassdef
+</pre></div></div>
+
+<p>Assigning an object of that class to another variable essentially creates a new
+object:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">&gt;&gt; a = value_class ();
+&gt;&gt; a.prop1 = 1;
+&gt;&gt; b = a;
+&gt;&gt; b.prop1 = 2;
+&gt;&gt; b.prop1
+&rArr;  ans =  2
+&gt;&gt; a.prop1
+&rArr;  ans =  1
+</pre></div></div>
+
+<p>But that also means that you might have to assign the output of a method that
+changes properties back to the object manually:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">&gt;&gt; a = value_class ();
+&gt;&gt; a.prop1 = 1;
+&gt;&gt; a.set_prop1 (3);
+&rArr;  ans =
+
+&lt;object value_class&gt;
+
+&gt;&gt; ans.prop1
+&rArr;  ans =  3
+&gt;&gt; a.prop1
+&rArr;  ans =  1
+</pre></div></div>
+
+<p>The second type are <b class="b">handle classes</b>.  Those classes have to be derived from
+the abstract <code class="code">handle</code> class:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">classdef handle_class &lt; handle
+  properties
+    prop1
+  endproperties
+
+  methods
+    function set_prop1 (obj, val)
+      obj.prop1 = val;
+    endfunction
+  endmethods
+endclassdef
+</pre></div></div>
+
+<p>In the following example, the variables <code class="code">a</code> and <code class="code">b</code> refer to the
+very same object of class <code class="code">handle_class</code>:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">&gt;&gt; a = handle_class ();
+&gt;&gt; a.prop1 = 1;
+&gt;&gt; b = a;
+&gt;&gt; b.prop1 = 2;
+&gt;&gt; b.prop1
+&rArr;  ans =  2
+&gt;&gt; a.prop1
+&rArr;  ans =  2
+</pre></div></div>
+
+<p>Object properties that are modified by a method of an handle class are changed
+persistently:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">&gt;&gt; a.set_prop1 (3);
+&gt;&gt; a.prop1
+&rArr;  ans =  3
+</pre></div></div>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Inheritance.html">Inheritance</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="classdef-Classes.html"><code class="code">classdef</code> Classes</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

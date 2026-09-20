@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- General documentation for the parallel package for Octave.
+
+Copyright (C) 2016-2023 Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>netarrayfun (parallel_doc)</title>
+
+<meta name="description" content="netarrayfun (parallel_doc)">
+<meta name="keywords" content="netarrayfun (parallel_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Cluster-execution.html" rel="up" title="Cluster execution">
+<link href="install_005fvars.html" rel="next" title="install_vars">
+<link href="netcellfun.html" rel="prev" title="netcellfun">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<span id="netarrayfun"></span><div class="header">
+<p>
+Next: <a href="install_005fvars.html" accesskey="n" rel="next">install_vars</a>, Previous: <a href="netcellfun.html" accesskey="p" rel="prev">netcellfun</a>, Up: <a href="Cluster-execution.html" accesskey="u" rel="up">Cluster execution</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Function-netarrayfun"></span><h3 class="section">3.9 Function netarrayfun</h3>
+<span id="index-netarrayfun-1"></span>
+
+<span id="XREFnetarrayfun"></span><dl>
+<dt id="index-netarrayfun">Function File: <em></em> <strong>netarrayfun</strong> <em>(<var>connections</var>, <var>fun</var>, &hellip;)</em></dt>
+<dd><p>Evaluates function <var>fun</var> in a parallel cluster and collects results.
+</p>
+<p>This function handles arguments and options equivalently to
+<code>pararrayfun</code> and returnes equivalent output. Differently, the
+first argument specifies server machines for parallel remote
+execution, see <code>pconnect</code> for a description of the
+<var>connections</var> variable. A further difference is that the option
+&quot;ChunksPerProc&quot; is ignored and instead the chunk size can be
+specified directly with an option &quot;ChunkSize&quot; (option &quot;Vectorized&quot;
+can be used together with option &quot;ChunkSize&quot; in function
+<code>netarrayfun</code>).
+</p>
+<p>The further details of operation are the same as for
+<code>netcellfun</code>, please see there.
+</p>
+
+<p><strong>See also:</strong> <a href="netcellfun.html#XREFnetcellfun">netcellfun</a>, <a href="pconnect.html#XREFpconnect">pconnect</a>, <a href="pserver.html#XREFpserver">pserver</a>, <a href="sclose.html#XREFsclose">sclose</a>, <a href="rfeval.html#XREFrfeval">rfeval</a>, <a href="install_005fvars.html#XREFinstall_005fvars">install_vars</a>.
+</p></dd></dl>
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Other Output Conversions (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Other Output Conversions (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Other Output Conversions (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="C_002dStyle-I_002fO-Functions.html" rel="up" title="C-Style I/O Functions">
+<link href="Formatted-Input.html" rel="next" title="Formatted Input">
+<link href="Floating_002dPoint-Conversions.html" rel="prev" title="Floating-Point Conversions">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Other-Output-Conversions">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Formatted-Input.html" accesskey="n" rel="next">Formatted Input</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Floating_002dPoint-Conversions.html" accesskey="p" rel="prev">Floating-Point Conversions</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="C_002dStyle-I_002fO-Functions.html" accesskey="u" rel="up">C-Style I/O Functions</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Other-Output-Conversions-1"><span>14.2.10 Other Output Conversions<a class="copiable-link" href="#Other-Output-Conversions-1"> &para;</a></span></h4>
+
+<p>This section describes miscellaneous conversions for <code class="code">printf</code>.
+</p>
+<p>The &lsquo;<samp class="samp">%c</samp>&rsquo; conversion prints a single character.  The &lsquo;<samp class="samp">-</samp>&rsquo;
+flag can be used to specify left-justification in the field, but no
+other flags are defined, and no precision or type modifier can be given.
+For example:
+</p>
+<div class="example">
+<pre class="example-preformatted">printf (&quot;%c%c%c%c%c&quot;, &quot;h&quot;, &quot;e&quot;, &quot;l&quot;, &quot;l&quot;, &quot;o&quot;);
+</pre></div>
+
+<p>prints &lsquo;<samp class="samp">hello</samp>&rsquo;.
+</p>
+<p>The &lsquo;<samp class="samp">%s</samp>&rsquo; conversion prints a string.  The corresponding argument
+must be a string.  A precision can be specified to indicate the maximum
+number of characters to write; otherwise characters in the string up to
+but not including the terminating null character are written to the
+output stream.  The &lsquo;<samp class="samp">-</samp>&rsquo; flag can be used to specify
+left-justification in the field, but no other flags or type modifiers
+are defined for this conversion.  For example:
+</p>
+<div class="example">
+<pre class="example-preformatted">printf (&quot;%3s%-6s&quot;, &quot;no&quot;, &quot;where&quot;);
+</pre></div>
+
+<p>prints &lsquo;<samp class="samp"> nowhere </samp>&rsquo; (note the leading and trailing spaces).
+</p>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Formatted-Input.html">Formatted Input</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Floating_002dPoint-Conversions.html">Floating-Point Conversions</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="C_002dStyle-I_002fO-Functions.html">C-Style I/O Functions</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

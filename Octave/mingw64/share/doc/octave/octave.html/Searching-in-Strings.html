@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Searching in Strings (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Searching in Strings (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Searching in Strings (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="String-Operations.html" rel="up" title="String Operations">
+<link href="Searching-and-Replacing-in-Strings.html" rel="next" title="Searching and Replacing in Strings">
+<link href="Splitting-and-Joining-Strings.html" rel="prev" title="Splitting and Joining Strings">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Searching-in-Strings">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Searching-and-Replacing-in-Strings.html" accesskey="n" rel="next">Searching and Replacing in Strings</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Splitting-and-Joining-Strings.html" accesskey="p" rel="prev">Splitting and Joining Strings</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="String-Operations.html" accesskey="u" rel="up">String Operations</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Searching-in-Strings-1"><span>5.3.4 Searching in Strings<a class="copiable-link" href="#Searching-in-Strings-1"> &para;</a></span></h4>
+
+<p>Since a string is a character array, comparisons between strings work
+element by element as the following example shows:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">GNU = &quot;GNU's Not UNIX&quot;;
+spaces = (GNU == &quot; &quot;)
+     &rArr;  spaces =
+       0   0   0   0   0   1   0   0   0   1   0   0   0   0
+</pre></div></div>
+
+<p>To determine if two strings are identical it is necessary to use the
+<code class="code">strcmp</code> function.  It compares complete strings and is case
+sensitive.  <code class="code">strncmp</code> compares only the first <code class="code">N</code> characters (with
+<code class="code">N</code> given as a parameter).  <code class="code">strcmpi</code> and <code class="code">strncmpi</code> are the
+corresponding functions for case-insensitive comparison.
+</p>
+<a class="anchor" id="XREFstrcmp"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-strcmp"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">strcmp</strong> <code class="def-code-arguments">(<var class="var">str1</var>, <var class="var">str2</var>)</code><a class="copiable-link" href="#index-strcmp"> &para;</a></span></dt>
+<dd><p>Return 1 if the character strings <var class="var">str1</var> and <var class="var">str2</var> are the same,
+and 0 otherwise.
+</p>
+<p>If either <var class="var">str1</var> or <var class="var">str2</var> is a cell array of strings, then an array
+of the same size is returned, containing the values described above for
+every member of the cell array.  The other argument may also be a cell
+array of strings (of the same size or with only one element), char matrix
+or character string.
+</p>
+<p><strong class="strong">Caution:</strong> For compatibility with <small class="sc">MATLAB</small>, Octave&rsquo;s strcmp
+function returns 1 if the character strings are equal, and 0 otherwise.
+This is just the opposite of the corresponding C library function.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFstrcmpi">strcmpi</a>, <a class="ref" href="#XREFstrncmp">strncmp</a>, <a class="ref" href="#XREFstrncmpi">strncmpi</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFstrncmp"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-strncmp"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">strncmp</strong> <code class="def-code-arguments">(<var class="var">str1</var>, <var class="var">str2</var>, <var class="var">n</var>)</code><a class="copiable-link" href="#index-strncmp"> &para;</a></span></dt>
+<dd><p>Return 1 if the first <var class="var">n</var> characters of strings <var class="var">str1</var> and <var class="var">str2</var>
+are the same, and 0 otherwise.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">strncmp (&quot;abce&quot;, &quot;abcd&quot;, 3)
+      &rArr;  1
+</pre></div></div>
+
+<p>If either <var class="var">str1</var> or <var class="var">str2</var> is a cell array of strings, then an array
+of the same size is returned, containing the values described above for
+every member of the cell array.  The other argument may also be a cell
+array of strings (of the same size or with only one element), char matrix
+or character string.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">strncmp (&quot;abce&quot;, {&quot;abcd&quot;, &quot;bca&quot;, &quot;abc&quot;}, 3)
+     &rArr;  [1, 0, 1]
+</pre></div></div>
+
+<p><strong class="strong">Caution:</strong> For compatibility with <small class="sc">MATLAB</small>, Octave&rsquo;s strncmp
+function returns true if the character strings are equal, and false
+otherwise.  This is just the opposite of the corresponding C library
+function.  In addition Octave&rsquo;s strncmp function returns true if N = 0.
+</p>
+<p><small class="sc">MATLAB</small> incompatibility : Octave&rsquo;s strncmp function produces an error if
+N &lt; 0, while <small class="sc">MATLAB</small> treats N &lt; 0 the same as N = 0, always returning
+true.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFstrncmpi">strncmpi</a>, <a class="ref" href="#XREFstrcmp">strcmp</a>, <a class="ref" href="#XREFstrcmpi">strcmpi</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFstrcmpi"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-strcmpi"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">strcmpi</strong> <code class="def-code-arguments">(<var class="var">str1</var>, <var class="var">str2</var>)</code><a class="copiable-link" href="#index-strcmpi"> &para;</a></span></dt>
+<dd><p>Return 1 if the character strings <var class="var">str1</var> and <var class="var">str2</var> are the same,
+disregarding case of alphabetic characters, and 0 otherwise.
+</p>
+<p>If either <var class="var">str1</var> or <var class="var">str2</var> is a cell array of strings, then an array
+of the same size is returned, containing the values described above for
+every member of the cell array.  The other argument may also be a cell
+array of strings (of the same size or with only one element), char matrix
+or character string.
+</p>
+<p><strong class="strong">Caution:</strong> For compatibility with <small class="sc">MATLAB</small>, Octave&rsquo;s strcmpi
+function returns 1 if the character strings are equal, and 0 otherwise.
+This is just the opposite of the corresponding C library function.
+</p>
+<p><strong class="strong">Caution:</strong> National alphabets are not supported.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFstrcmp">strcmp</a>, <a class="ref" href="#XREFstrncmp">strncmp</a>, <a class="ref" href="#XREFstrncmpi">strncmpi</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFstrncmpi"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-strncmpi"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">strncmpi</strong> <code class="def-code-arguments">(<var class="var">str1</var>, <var class="var">str2</var>, <var class="var">n</var>)</code><a class="copiable-link" href="#index-strncmpi"> &para;</a></span></dt>
+<dd><p>Return 1 if the first <var class="var">n</var> character of <var class="var">s1</var> and <var class="var">s2</var> are the
+same, disregarding case of alphabetic characters, and 0 otherwise.
+</p>
+<p>If either <var class="var">str1</var> or <var class="var">str2</var> is a cell array of strings, then an array
+of the same size is returned, containing the values described above for
+every member of the cell array.  The other argument may also be a cell
+array of strings (of the same size or with only one element), char matrix
+or character string.
+</p>
+<p><strong class="strong">Caution:</strong> For compatibility with <small class="sc">MATLAB</small>, Octave&rsquo;s strncmpi
+function returns true if the character strings are equal, and false
+otherwise.  This is just the opposite of the corresponding C library
+function.  In addition Octave&rsquo;s strncmpi function returns true if N = 0.
+</p>
+<p><small class="sc">MATLAB</small> incompatibility : Octave&rsquo;s strncmpi function produces an error if
+N &lt; 0, while <small class="sc">MATLAB</small> treats N &lt; 0 the same as N = 0, always returning
+true.
+</p>
+<p><strong class="strong">Caution:</strong> National alphabets are not supported.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFstrncmp">strncmp</a>, <a class="ref" href="#XREFstrcmp">strcmp</a>, <a class="ref" href="#XREFstrcmpi">strcmpi</a>.
+</p></dd></dl>
+
+
+<p>Despite those comparison functions, there are more specialized function to
+find the index position of a search pattern within a string.
+</p>
+<a class="anchor" id="XREFstartsWith"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-startsWith"><span><code class="def-type"><var class="var">retval</var> =</code> <strong class="def-name">startsWith</strong> <code class="def-code-arguments">(<var class="var">str</var>, <var class="var">pattern</var>)</code><a class="copiable-link" href="#index-startsWith"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-startsWith-1"><span><code class="def-type"><var class="var">retval</var> =</code> <strong class="def-name">startsWith</strong> <code class="def-code-arguments">(<var class="var">str</var>, <var class="var">pattern</var>, &quot;IgnoreCase&quot;, <var class="var">ignore_case</var>)</code><a class="copiable-link" href="#index-startsWith-1"> &para;</a></span></dt>
+<dd><p>Check whether string(s) start with pattern(s).
+</p>
+<p>Return an array of logical values that indicates which string(s) in the
+input <var class="var">str</var> (a single string or cell array of strings) begin with
+the input <var class="var">pattern</var> (a single string or cell array of strings).
+</p>
+<p>If the value of the parameter <code class="code">&quot;IgnoreCase&quot;</code> is true, then the
+function will ignore the letter case of <var class="var">str</var> and <var class="var">pattern</var>.  By
+default, the comparison is case sensitive.
+</p>
+<p>Examples:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">## one string and one pattern while considering case
+startsWith (&quot;hello&quot;, &quot;he&quot;)
+      &rArr;   1
+</pre></div><pre class="example-preformatted">
+
+</pre><div class="group"><pre class="example-preformatted">## one string and one pattern while ignoring case
+startsWith (&quot;hello&quot;, &quot;HE&quot;, &quot;IgnoreCase&quot;, true)
+      &rArr;   1
+</pre></div><pre class="example-preformatted">
+
+</pre><div class="group"><pre class="example-preformatted">## multiple strings and multiple patterns while considering case
+startsWith ({&quot;lab work.pptx&quot;, &quot;data.txt&quot;, &quot;foundations.ppt&quot;},
+            {&quot;lab&quot;, &quot;data&quot;})
+      &rArr;   1  1  0
+</pre></div><pre class="example-preformatted">
+
+</pre><div class="group"><pre class="example-preformatted">## multiple strings and one pattern while considering case
+startsWith ({&quot;DATASHEET.ods&quot;, &quot;data.txt&quot;, &quot;foundations.ppt&quot;},
+            &quot;data&quot;, &quot;IgnoreCase&quot;, false)
+      &rArr;   0  1  0
+</pre></div><pre class="example-preformatted">
+
+</pre><div class="group"><pre class="example-preformatted">## multiple strings and one pattern while ignoring case
+startsWith ({&quot;DATASHEET.ods&quot;, &quot;data.txt&quot;, &quot;foundations.ppt&quot;},
+            &quot;data&quot;, &quot;IgnoreCase&quot;, true)
+      &rArr;   1  1  0
+</pre></div></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFendsWith">endsWith</a>, <a class="ref" href="Searching-and-Replacing-in-Strings.html#XREFregexp">regexp</a>, <a class="ref" href="#XREFstrncmp">strncmp</a>, <a class="ref" href="#XREFstrncmpi">strncmpi</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFendsWith"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-endsWith"><span><code class="def-type"><var class="var">retval</var> =</code> <strong class="def-name">endsWith</strong> <code class="def-code-arguments">(<var class="var">str</var>, <var class="var">pattern</var>)</code><a class="copiable-link" href="#index-endsWith"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-endsWith-1"><span><code class="def-type"><var class="var">retval</var> =</code> <strong class="def-name">endsWith</strong> <code class="def-code-arguments">(<var class="var">str</var>, <var class="var">pattern</var>, &quot;IgnoreCase&quot;, <var class="var">ignore_case</var>)</code><a class="copiable-link" href="#index-endsWith-1"> &para;</a></span></dt>
+<dd><p>Check whether string(s) end with pattern(s).
+</p>
+<p>Return an array of logical values that indicates which string(s) in the
+input <var class="var">str</var> (a single string or cell array of strings) end with
+the input <var class="var">pattern</var> (a single string or cell array of strings).
+</p>
+<p>If the value of the parameter <code class="code">&quot;IgnoreCase&quot;</code> is true, then the
+function will ignore the letter case of <var class="var">str</var> and <var class="var">pattern</var>.  By
+default, the comparison is case sensitive.
+</p>
+<p>Examples:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">## one string and one pattern while considering case
+endsWith (&quot;hello&quot;, &quot;lo&quot;)
+      &rArr;   1
+</pre></div><pre class="example-preformatted">
+
+</pre><div class="group"><pre class="example-preformatted">## one string and one pattern while ignoring case
+endsWith (&quot;hello&quot;, &quot;LO&quot;, &quot;IgnoreCase&quot;, true)
+      &rArr;   1
+</pre></div><pre class="example-preformatted">
+
+</pre><div class="group"><pre class="example-preformatted">## multiple strings and multiple patterns while considering case
+endsWith ({&quot;tests.txt&quot;, &quot;mydoc.odt&quot;, &quot;myFunc.m&quot;, &quot;results.pptx&quot;},
+          {&quot;.docx&quot;, &quot;.odt&quot;, &quot;.txt&quot;})
+      &rArr;   1  1  0  0
+</pre></div><pre class="example-preformatted">
+
+</pre><div class="group"><pre class="example-preformatted">## multiple strings and one pattern while considering case
+endsWith ({&quot;TESTS.TXT&quot;, &quot;mydoc.odt&quot;, &quot;result.txt&quot;, &quot;myFunc.m&quot;},
+          &quot;.txt&quot;, &quot;IgnoreCase&quot;, false)
+      &rArr;   0  0  1  0
+</pre></div><pre class="example-preformatted">
+
+</pre><div class="group"><pre class="example-preformatted">## multiple strings and one pattern while ignoring case
+endsWith ({&quot;TESTS.TXT&quot;, &quot;mydoc.odt&quot;, &quot;result.txt&quot;, &quot;myFunc.m&quot;},
+          &quot;.txt&quot;, &quot;IgnoreCase&quot;, true)
+      &rArr;   1  0  1  0
+</pre></div></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFstartsWith">startsWith</a>, <a class="ref" href="Searching-and-Replacing-in-Strings.html#XREFregexp">regexp</a>, <a class="ref" href="#XREFstrncmp">strncmp</a>, <a class="ref" href="#XREFstrncmpi">strncmpi</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFfindstr"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-findstr"><span><code class="def-type"><var class="var">v</var> =</code> <strong class="def-name">findstr</strong> <code class="def-code-arguments">(<var class="var">s</var>, <var class="var">t</var>)</code><a class="copiable-link" href="#index-findstr"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-findstr-1"><span><code class="def-type"><var class="var">v</var> =</code> <strong class="def-name">findstr</strong> <code class="def-code-arguments">(<var class="var">s</var>, <var class="var">t</var>, <var class="var">overlap</var>)</code><a class="copiable-link" href="#index-findstr-1"> &para;</a></span></dt>
+<dd>
+<p>This function is obsolete.  Use <code class="code">strfind</code> instead.
+</p>
+<p>Return the vector of all positions in the longer of the two strings <var class="var">s</var>
+and <var class="var">t</var> where an occurrence of the shorter of the two starts.
+</p>
+<p>If the optional argument <var class="var">overlap</var> is true (default), the returned
+vector can include overlapping positions.  For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">findstr (&quot;ababab&quot;, &quot;a&quot;)
+     &rArr;  [1, 3, 5];
+findstr (&quot;abababa&quot;, &quot;aba&quot;, 0)
+     &rArr;  [1, 5]
+</pre></div></div>
+
+<p><strong class="strong">Caution:</strong> <code class="code">findstr</code> is obsolete.  Use <code class="code">strfind</code> in all new
+code.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFstrfind">strfind</a>, <a class="ref" href="#XREFstrmatch">strmatch</a>, <a class="ref" href="#XREFstrcmp">strcmp</a>, <a class="ref" href="#XREFstrncmp">strncmp</a>, <a class="ref" href="#XREFstrcmpi">strcmpi</a>, <a class="ref" href="#XREFstrncmpi">strncmpi</a>, <a class="ref" href="Finding-Elements-and-Checking-Conditions.html#XREFfind">find</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFstrchr"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-strchr"><span><code class="def-type"><var class="var">idx</var> =</code> <strong class="def-name">strchr</strong> <code class="def-code-arguments">(<var class="var">str</var>, <var class="var">chars</var>)</code><a class="copiable-link" href="#index-strchr"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-strchr-1"><span><code class="def-type"><var class="var">idx</var> =</code> <strong class="def-name">strchr</strong> <code class="def-code-arguments">(<var class="var">str</var>, <var class="var">chars</var>, <var class="var">n</var>)</code><a class="copiable-link" href="#index-strchr-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-strchr-2"><span><code class="def-type"><var class="var">idx</var> =</code> <strong class="def-name">strchr</strong> <code class="def-code-arguments">(<var class="var">str</var>, <var class="var">chars</var>, <var class="var">n</var>, <var class="var">direction</var>)</code><a class="copiable-link" href="#index-strchr-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-strchr-3"><span><code class="def-type">[<var class="var">i</var>, <var class="var">j</var>] =</code> <strong class="def-name">strchr</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-strchr-3"> &para;</a></span></dt>
+<dd><p>Search through the string <var class="var">str</var> for occurrences of characters from the
+set <var class="var">chars</var>.
+</p>
+<p>The return value(s), as well as the <var class="var">n</var> and <var class="var">direction</var> arguments
+behave identically as in <code class="code">find</code>.
+</p>
+<p>This will be faster than using <code class="code">regexp</code> in most cases.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Finding-Elements-and-Checking-Conditions.html#XREFfind">find</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFindex"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-index"><span><code class="def-type"><var class="var">n</var> =</code> <strong class="def-name">index</strong> <code class="def-code-arguments">(<var class="var">s</var>, <var class="var">t</var>)</code><a class="copiable-link" href="#index-index"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-index-1"><span><code class="def-type"><var class="var">n</var> =</code> <strong class="def-name">index</strong> <code class="def-code-arguments">(<var class="var">s</var>, <var class="var">t</var>, <var class="var">direction</var>)</code><a class="copiable-link" href="#index-index-1"> &para;</a></span></dt>
+<dd><p>Return the position of the first occurrence of the string <var class="var">t</var> in the
+string <var class="var">s</var>, or 0 if no occurrence is found.
+</p>
+<p><var class="var">s</var> may also be a string array or cell array of strings.
+</p>
+<p>For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">index (&quot;Teststring&quot;, &quot;t&quot;)
+    &rArr;  4
+</pre></div></div>
+
+<p>If <var class="var">direction</var> is <code class="code">&quot;first&quot;</code>, return the first element found.
+If <var class="var">direction</var> is <code class="code">&quot;last&quot;</code>, return the last element found.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Finding-Elements-and-Checking-Conditions.html#XREFfind">find</a>, <a class="ref" href="#XREFrindex">rindex</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFrindex"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-rindex"><span><code class="def-type"><var class="var">n</var> =</code> <strong class="def-name">rindex</strong> <code class="def-code-arguments">(<var class="var">s</var>, <var class="var">t</var>)</code><a class="copiable-link" href="#index-rindex"> &para;</a></span></dt>
+<dd><p>Return the position of the last occurrence of the character string
+<var class="var">t</var> in the character string <var class="var">s</var>, or 0 if no occurrence is
+found.
+</p>
+<p><var class="var">s</var> may also be a string array or cell array of strings.
+</p>
+<p>For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">rindex (&quot;Teststring&quot;, &quot;t&quot;)
+     &rArr;  6
+</pre></div></div>
+
+<p>The <code class="code">rindex</code> function is equivalent to <code class="code">index</code> with
+<var class="var">direction</var> set to <code class="code">&quot;last&quot;</code>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Finding-Elements-and-Checking-Conditions.html#XREFfind">find</a>, <a class="ref" href="#XREFindex">index</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFunicode_005fidx"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-unicode_005fidx"><span><code class="def-type"><var class="var">idx</var> =</code> <strong class="def-name">unicode_idx</strong> <code class="def-code-arguments">(<var class="var">str</var>)</code><a class="copiable-link" href="#index-unicode_005fidx"> &para;</a></span></dt>
+<dd><p>Return an array with the indices for each UTF-8 encoded character in <var class="var">str</var>.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">unicode_idx (&quot;aäbc&quot;)
+     &rArr;  [1, 2, 2, 3, 4]
+</pre></div></div>
+
+</dd></dl>
+
+
+<a class="anchor" id="XREFstrfind"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-strfind"><span><code class="def-type"><var class="var">idx</var> =</code> <strong class="def-name">strfind</strong> <code class="def-code-arguments">(<var class="var">str</var>, <var class="var">pattern</var>)</code><a class="copiable-link" href="#index-strfind"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-strfind-1"><span><code class="def-type"><var class="var">idx</var> =</code> <strong class="def-name">strfind</strong> <code class="def-code-arguments">(<var class="var">cellstr</var>, <var class="var">pattern</var>)</code><a class="copiable-link" href="#index-strfind-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-strfind-2"><span><code class="def-type"><var class="var">idx</var> =</code> <strong class="def-name">strfind</strong> <code class="def-code-arguments">(&hellip;, &quot;overlaps&quot;, <var class="var">val</var>)</code><a class="copiable-link" href="#index-strfind-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-strfind-3"><span><code class="def-type"><var class="var">idx</var> =</code> <strong class="def-name">strfind</strong> <code class="def-code-arguments">(&hellip;, &quot;forcecelloutput&quot;, <var class="var">val</var>)</code><a class="copiable-link" href="#index-strfind-3"> &para;</a></span></dt>
+<dd><p>Search for <var class="var">pattern</var> in the string <var class="var">str</var> and return the starting
+index of every such occurrence in the vector <var class="var">idx</var>.
+</p>
+<p>If there is no such occurrence, or if <var class="var">pattern</var> is longer than
+<var class="var">str</var>, or if <var class="var">pattern</var> itself is empty, then <var class="var">idx</var> is the empty
+array <code class="code">[]</code>.
+</p>
+<p>The optional argument <code class="code">&quot;overlaps&quot;</code> determines whether the pattern
+can match at every position in <var class="var">str</var> (true), or only for unique
+occurrences of the complete pattern (false).  The default is true.
+</p>
+<p>If a cell array of strings <var class="var">cellstr</var> is specified then <var class="var">idx</var> is a
+cell array of vectors, as specified above.
+</p>
+<p>The optional argument <code class="code">&quot;forcecelloutput&quot;</code> forces <var class="var">idx</var> to be
+returned as a cell array of vectors.  The default is false.
+</p>
+<p>Examples:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">strfind (&quot;abababa&quot;, &quot;aba&quot;)
+     &rArr;  [1, 3, 5]
+</pre></div><pre class="example-preformatted">
+
+</pre><div class="group"><pre class="example-preformatted">strfind (&quot;abababa&quot;, &quot;aba&quot;, &quot;overlaps&quot;, false)
+     &rArr;  [1, 5]
+</pre></div><pre class="example-preformatted">
+
+</pre><div class="group"><pre class="example-preformatted">strfind ({&quot;abababa&quot;, &quot;bebebe&quot;, &quot;ab&quot;}, &quot;aba&quot;)
+     &rArr; 
+        {
+          [1,1] =
+
+             1   3   5
+
+          [1,2] = [](1x0)
+          [1,3] = [](1x0)
+        }
+</pre></div><pre class="example-preformatted">
+
+</pre><div class="group"><pre class="example-preformatted">strfind (&quot;abababa&quot;, &quot;aba&quot;, &quot;forcecelloutput&quot;, true)
+     &rArr; 
+        {
+          [1,1] =
+
+             1   3   5
+        }
+</pre></div></div>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Searching-and-Replacing-in-Strings.html#XREFregexp">regexp</a>, <a class="ref" href="Searching-and-Replacing-in-Strings.html#XREFregexpi">regexpi</a>, <a class="ref" href="Finding-Elements-and-Checking-Conditions.html#XREFfind">find</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFstrmatch"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-strmatch"><span><code class="def-type"><var class="var">idx</var> =</code> <strong class="def-name">strmatch</strong> <code class="def-code-arguments">(<var class="var">s</var>, <var class="var">A</var>)</code><a class="copiable-link" href="#index-strmatch"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-strmatch-1"><span><code class="def-type"><var class="var">idx</var> =</code> <strong class="def-name">strmatch</strong> <code class="def-code-arguments">(<var class="var">s</var>, <var class="var">A</var>, &quot;exact&quot;)</code><a class="copiable-link" href="#index-strmatch-1"> &para;</a></span></dt>
+<dd>
+<p>This function is obsolete.  <strong class="strong">Use an alternative</strong> such as
+<code class="code">strncmp</code> or <code class="code">strcmp</code> instead.
+</p>
+<p>Return indices of entries of <var class="var">A</var> which begin with the string <var class="var">s</var>.
+</p>
+<p>The second argument <var class="var">A</var> must be a string, character matrix, or a cell
+array of strings.
+</p>
+<p>If the third argument <code class="code">&quot;exact&quot;</code> is not given, then <var class="var">s</var> only
+needs to match <var class="var">A</var> up to the length of <var class="var">s</var>.  Trailing spaces and
+nulls in <var class="var">s</var> and <var class="var">A</var> are ignored when matching.
+</p>
+<p>For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">strmatch (&quot;apple&quot;, &quot;apple juice&quot;)
+     &rArr;  1
+
+strmatch (&quot;apple&quot;, [&quot;apple  &quot;; &quot;apple juice&quot;; &quot;an apple&quot;])
+     &rArr;  [1; 2]
+
+strmatch (&quot;apple&quot;, [&quot;apple  &quot;; &quot;apple juice&quot;; &quot;an apple&quot;], &quot;exact&quot;)
+     &rArr;  [1]
+</pre></div></div>
+
+<p><strong class="strong">Caution:</strong> <code class="code">strmatch</code> is obsolete (and can produce incorrect
+results in <small class="sc">MATLAB</small> when used with cell arrays of strings.  Use
+<code class="code">strncmp</code> (normal case) or <code class="code">strcmp</code> (<code class="code">&quot;exact&quot;</code> case) in all
+new code.  Other replacement possibilities, depending on application,
+include <code class="code">regexp</code> or <code class="code">validatestring</code>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFstrncmp">strncmp</a>, <a class="ref" href="#XREFstrcmp">strcmp</a>, <a class="ref" href="Searching-and-Replacing-in-Strings.html#XREFregexp">regexp</a>, <a class="ref" href="#XREFstrfind">strfind</a>, <a class="ref" href="Validating-the-type-of-Arguments.html#XREFvalidatestring">validatestring</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Searching-and-Replacing-in-Strings.html">Searching and Replacing in Strings</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Splitting-and-Joining-Strings.html">Splitting and Joining Strings</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="String-Operations.html">String Operations</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

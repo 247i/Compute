@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- Additional documentation for the optim package for Octave.
+
+Copyright © Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<title>nelder_mead_min (optim_doc)</title>
+
+<meta name="description" content="nelder_mead_min (optim_doc)">
+<meta name="keywords" content="nelder_mead_min (optim_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Scalar-optimization.html" rel="up" title="Scalar optimization">
+<link href="powell.html" rel="next" title="powell">
+<link href="adsmax.html" rel="prev" title="adsmax">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section-level-extent" id="nelder_005fmead_005fmin">
+<div class="nav-panel">
+<p>
+Next: <a href="powell.html" accesskey="n" rel="next">Direction-set (Powell&rsquo;s) method</a>, Previous: <a href="adsmax.html" accesskey="p" rel="prev">An alternating directions algorithm</a>, Up: <a href="Scalar-optimization.html" accesskey="u" rel="up">Functions for optimization of a scalar objective function</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h3 class="section" id="Another-Nelder_002dMead-algorithm"><span>1.9 Another Nelder-Mead algorithm<a class="copiable-link" href="#Another-Nelder_002dMead-algorithm"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-nelder_005fmead_005fmin"></a>
+
+<p>This function does gradient-less minimization using the Nelder-Mead
+algorithm. No constraints are honoured.
+</p>
+<h4 class="subheading" id="Helptext_003a-2"><span>Helptext:<a class="copiable-link" href="#Helptext_003a-2"> &para;</a></span></h4>
+
+<a class="anchor" id="XREFnelder_005fmead_005fmin"></a><pre class="verbatim">[x0,v,nev] = nelder_mead_min (f,args,ctl) - Nelder-Mead minimization
+
+Minimize 'f' using the Nelder-Mead algorithm. This function is inspired
+from the that found in the book &quot;Numerical Recipes&quot;.
+
+ARGUMENTS
+---------
+f     : string : Name of function. Must return a real value
+args  : list   : Arguments passed to f.
+     or matrix : f's only argument
+ctl   : vector : (Optional) Control variables, described below
+     or struct
+
+RETURNED VALUES
+---------------
+x0  : matrix   : Local minimum of f
+v   : real     : Value of f in x0
+nev : number   : Number of function evaluations
+
+CONTROL VARIABLE : (optional) may be named arguments (i.e. &quot;name&quot;,value
+------------------ pairs), a struct, or a vector of length &lt;= 6, where
+                   NaN's are ignored. Default values are written &lt;value&gt;.
+ OPT.   VECTOR
+ NAME    POS
+ftol,f  N/A    : Stopping criterion : stop search when values at simplex
+                 vertices are all alike, as tested by 
+
+                  f &gt; (max_i (f_i) - min_i (f_i)) /max(max(|f_i|),1)
+
+                 where f_i are the values of f at the vertices.  &lt;10*eps&gt;
+
+rtol,r  N/A    : Stop search when biggest radius of simplex, using
+                 infinity-norm, is small, as tested by :
+
+             ctl(2) &gt; Radius                                     &lt;10*eps&gt;
+
+vtol,v  N/A    : Stop search when volume of simplex is small, tested by
+           
+             ctl(2) &gt; Vol
+
+crit,c ctl(1)  : Set one stopping criterion, 'ftol' (c=1), 'rtol' (c=2)
+                 or 'vtol' (c=3) to the value of the 'tol' option.    &lt;1&gt;
+
+tol, t ctl(2)  : Threshold in termination test chosen by 'crit'  &lt;10*eps&gt;
+
+narg  ctl(3)  : Position of the minimized argument in args            &lt;1&gt;
+maxev ctl(4)  : Maximum number of function evaluations. This number &lt;inf&gt;
+                may be slightly exceeded.
+isz   ctl(5)  : Size of initial simplex, which is :                   &lt;1&gt;
+
+               { x + e_i | i in 0..N } 
+
+               Where x == args{narg} is the initial value 
+                e_0    == zeros (size (x)), 
+                e_i(j) == 0 if j != i and e_i(i) == ctl(5)
+                e_i    has same size as x
+
+               Set ctl(5) to the distance you expect between the starting
+               point and the minimum.
+
+rst   ctl(6)   : When a minimum is found the algorithm restarts next to
+                 it until the minimum does not improve anymore. ctl(6) is
+                 the maximum number of restarts. Set ctl(6) to zero if
+                 you know the function is well-behaved or if you don't
+                 mind not getting a true minimum.                     &lt;0&gt;
+
+verbose, v     Be more or less verbose (quiet=0)                      &lt;0&gt;
+
+</pre>
+
+</div>
+<hr>
+<div class="nav-panel">
+<p>
+Next: <a href="powell.html">Direction-set (Powell&rsquo;s) method</a>, Previous: <a href="adsmax.html">An alternating directions algorithm</a>, Up: <a href="Scalar-optimization.html">Functions for optimization of a scalar objective function</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

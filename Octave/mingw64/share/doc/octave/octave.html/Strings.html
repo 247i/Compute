@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Strings (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Strings (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Strings (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html" rel="up" title="Top">
+<link href="Data-Containers.html" rel="next" title="Data Containers">
+<link href="Numeric-Data-Types.html" rel="prev" title="Numeric Data Types">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="chapter-level-extent" id="Strings">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Data-Containers.html" accesskey="n" rel="next">Data Containers</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Numeric-Data-Types.html" accesskey="p" rel="prev">Numeric Data Types</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h2 class="chapter" id="Strings-1"><span>5 Strings<a class="copiable-link" href="#Strings-1"> &para;</a></span></h2>
+<a class="index-entry-id" id="index-strings-1"></a>
+<a class="index-entry-id" id="index-character-strings-1"></a>
+<a class="index-entry-id" id="index-_0022-1"></a>
+<a class="index-entry-id" id="index-_0027-1"></a>
+
+<p>A <em class="dfn">string constant</em> consists of a sequence of characters enclosed in
+either double-quote or single-quote marks.  For example, both of the
+following expressions
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">&quot;parrot&quot;
+'parrot'
+</pre></div></div>
+
+<p>represent the string whose contents are &lsquo;<samp class="samp">parrot</samp>&rsquo;.  Strings in
+Octave can be of any length.
+</p>
+<p>Since the single-quote mark is also used for the transpose operator
+(see <a class="pxref" href="Arithmetic-Ops.html">Arithmetic Operators</a>) but double-quote marks have no other purpose in
+Octave, it is best to use double-quote marks to denote strings.
+</p>
+<p>Strings can be concatenated using the notation for defining matrices.  For
+example, the expression
+</p>
+<div class="example">
+<pre class="example-preformatted">[ &quot;foo&quot; , &quot;bar&quot; , &quot;baz&quot; ]
+</pre></div>
+
+<p>produces the string whose contents are &lsquo;<samp class="samp">foobarbaz</samp>&rsquo;.
+See <a class="xref" href="Numeric-Data-Types.html">Numeric Data Types</a>, for more information about creating matrices.
+</p>
+<p>While strings can in principle store arbitrary content, most functions expect
+them to be UTF-8 encoded Unicode strings.
+</p>
+<p>Furthermore, it is possible to create a string without actually writing a text.
+The function <code class="code">blanks</code> creates a string of a given length consisting only
+of blank characters (ASCII code 32).
+</p>
+<a class="anchor" id="XREFblanks"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-blanks"><span><code class="def-type"><var class="var">str</var> =</code> <strong class="def-name">blanks</strong> <code class="def-code-arguments">(<var class="var">n</var>)</code><a class="copiable-link" href="#index-blanks"> &para;</a></span></dt>
+<dd><p>Return a string of <var class="var">n</var> blanks.
+</p>
+<p>For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">blanks (10);
+whos ans
+     &rArr; 
+      Attr Name        Size                     Bytes  Class
+      ==== ====        ====                     =====  =====
+           ans         1x10                        10  char
+</pre></div></div>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Special-Utility-Matrices.html#XREFrepmat">repmat</a>.
+</p></dd></dl>
+
+
+
+<ul class="mini-toc">
+<li><a href="Escape-Sequences-in-String-Constants.html" accesskey="1">Escape Sequences in String Constants</a></li>
+<li><a href="Character-Arrays.html" accesskey="2">Character Arrays</a></li>
+<li><a href="String-Operations.html" accesskey="3">String Operations</a></li>
+<li><a href="Converting-Strings.html" accesskey="4">Converting Strings</a></li>
+<li><a href="Character-Class-Functions.html" accesskey="5">Character Class Functions</a></li>
+</ul>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Data-Containers.html">Data Containers</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Numeric-Data-Types.html">Numeric Data Types</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

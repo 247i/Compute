@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Finding Roots (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Finding Roots (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Finding Roots (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Polynomial-Manipulations.html" rel="up" title="Polynomial Manipulations">
+<link href="Products-of-Polynomials.html" rel="next" title="Products of Polynomials">
+<link href="Evaluating-Polynomials.html" rel="prev" title="Evaluating Polynomials">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Finding-Roots">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Products-of-Polynomials.html" accesskey="n" rel="next">Products of Polynomials</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Evaluating-Polynomials.html" accesskey="p" rel="prev">Evaluating Polynomials</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Polynomial-Manipulations.html" accesskey="u" rel="up">Polynomial Manipulations</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Finding-Roots-1"><span>28.2 Finding Roots<a class="copiable-link" href="#Finding-Roots-1"> &para;</a></span></h3>
+
+<p>Octave can find the roots of a given polynomial.  This is done by computing
+the companion matrix of the polynomial (see the <code class="code">compan</code> function
+for a definition), and then finding its eigenvalues.
+</p>
+<a class="anchor" id="XREFroots"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-roots"><span><code class="def-type"><var class="var">r</var> =</code> <strong class="def-name">roots</strong> <code class="def-code-arguments">(<var class="var">c</var>)</code><a class="copiable-link" href="#index-roots"> &para;</a></span></dt>
+<dd>
+<p>Compute the roots of the polynomial <var class="var">c</var>.
+</p>
+<p>For a vector <var class="var">c</var> with <em class="math">N</em> components, return the roots of the
+polynomial
+</p>
+<div class="example">
+<pre class="example-preformatted">c(1) * x^(N-1) + ... + c(N-1) * x + c(N)
+</pre></div>
+
+
+<p>As an example, the following code finds the roots of the quadratic
+polynomial
+</p>
+<div class="example">
+<pre class="example-preformatted">p(x) = x^2 - 5.
+</pre></div>
+
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">c = [1, 0, -5];
+roots (c)
+&rArr;   2.2361
+&rArr;  -2.2361
+</pre></div></div>
+
+<p>Note that the true result is
+<em class="math">+/- sqrt(5)</em>
+which is roughly
+<em class="math">+/- 2.2361</em>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Miscellaneous-Functions.html#XREFpoly">poly</a>, <a class="ref" href="#XREFcompan">compan</a>, <a class="ref" href="Solvers.html#XREFfzero">fzero</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFpolyeig"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-polyeig"><span><code class="def-type"><var class="var">z</var> =</code> <strong class="def-name">polyeig</strong> <code class="def-code-arguments">(<var class="var">C0</var>, <var class="var">C1</var>, &hellip;, <var class="var">Cl</var>)</code><a class="copiable-link" href="#index-polyeig"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-polyeig-1"><span><code class="def-type">[<var class="var">v</var>, <var class="var">z</var>] =</code> <strong class="def-name">polyeig</strong> <code class="def-code-arguments">(<var class="var">C0</var>, <var class="var">C1</var>, &hellip;, <var class="var">Cl</var>)</code><a class="copiable-link" href="#index-polyeig-1"> &para;</a></span></dt>
+<dd>
+<p>Solve the polynomial eigenvalue problem of degree <var class="var">l</var>.
+</p>
+<p>Given an <var class="var">n</var>x<var class="var">n</var> matrix polynomial
+</p>
+<p><code class="code"><var class="var">C</var>(<var class="var">s</var>) = <var class="var">C0</var> + <var class="var">C1</var> <var class="var">s</var> + &hellip; + <var class="var">Cl</var>
+<var class="var">s</var>^<var class="var">l</var></code>
+</p>
+<p><code class="code">polyeig</code> solves the eigenvalue problem
+</p>
+<p><code class="code">(<var class="var">C0</var> + <var class="var">C1</var> <var class="var">z</var> + &hellip; + <var class="var">Cl</var> <var class="var">z</var>^<var class="var">l</var>)
+<var class="var">v</var> = 0</code>.
+</p>
+<p>Note that the eigenvalues <var class="var">z</var> are the zeros of the matrix polynomial.
+<var class="var">z</var> is a row vector with <code class="code"><var class="var">n</var>*<var class="var">l</var></code> elements.  <var class="var">v</var> is a
+matrix (<var class="var">n</var> x <var class="var">n</var>*<var class="var">l</var>) with columns that correspond to the
+eigenvectors.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Basic-Matrix-Functions.html#XREFeig">eig</a>, <a class="ref" href="Sparse-Linear-Algebra.html#XREFeigs">eigs</a>, <a class="ref" href="#XREFcompan">compan</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFcompan"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-compan"><span><code class="def-type"><var class="var">A</var> =</code> <strong class="def-name">compan</strong> <code class="def-code-arguments">(<var class="var">c</var>)</code><a class="copiable-link" href="#index-compan"> &para;</a></span></dt>
+<dd><p>Compute the companion matrix corresponding to polynomial coefficient vector
+<var class="var">c</var>.
+</p>
+<p>The companion matrix is
+</p>
+<div class="example smallexample">
+<div class="group"><pre class="example-preformatted">     _                                                        _
+    |  -c(2)/c(1)   -c(3)/c(1)  ...  -c(N)/c(1)  -c(N+1)/c(1)  |
+    |       1            0      ...       0             0      |
+    |       0            1      ...       0             0      |
+A = |       .            .      .         .             .      |
+    |       .            .       .        .             .      |
+    |       .            .        .       .             .      |
+    |_      0            0      ...       1             0     _|
+</pre></div></div>
+
+<p>The eigenvalues of the companion matrix are equal to the roots of the
+polynomial.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFroots">roots</a>, <a class="ref" href="Miscellaneous-Functions.html#XREFpoly">poly</a>, <a class="ref" href="Basic-Matrix-Functions.html#XREFeig">eig</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFmpoles"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-mpoles"><span><code class="def-type">[<var class="var">multp</var>, <var class="var">idxp</var>] =</code> <strong class="def-name">mpoles</strong> <code class="def-code-arguments">(<var class="var">p</var>)</code><a class="copiable-link" href="#index-mpoles"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-mpoles-1"><span><code class="def-type">[<var class="var">multp</var>, <var class="var">idxp</var>] =</code> <strong class="def-name">mpoles</strong> <code class="def-code-arguments">(<var class="var">p</var>, <var class="var">tol</var>)</code><a class="copiable-link" href="#index-mpoles-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-mpoles-2"><span><code class="def-type">[<var class="var">multp</var>, <var class="var">idxp</var>] =</code> <strong class="def-name">mpoles</strong> <code class="def-code-arguments">(<var class="var">p</var>, <var class="var">tol</var>, <var class="var">reorder</var>)</code><a class="copiable-link" href="#index-mpoles-2"> &para;</a></span></dt>
+<dd><p>Identify unique poles in <var class="var">p</var> and their associated multiplicity.
+</p>
+<p>By default, the output is ordered from the pole with the largest magnitude
+to the smallest magnitude.
+</p>
+<p>Two poles are considered to be multiples if the difference between them
+is less than the relative tolerance <var class="var">tol</var>.
+</p>
+<div class="example">
+<pre class="example-preformatted">abs (<var class="var">p1</var> - <var class="var">p0</var>) / abs (<var class="var">p0</var>) &lt; <var class="var">tol</var>
+</pre></div>
+
+<p>If the pole is 0 then no scaling is done and <var class="var">tol</var> is interpreted as an
+absolute tolerance.  The default value for <var class="var">tol</var> is 0.001.
+</p>
+<p>If the optional parameter <var class="var">reorder</var> is false/zero, poles are not
+sorted.
+</p>
+<p>The output <var class="var">multp</var> is a vector specifying the multiplicity of the poles.
+<code class="code"><var class="var">multp</var>(n)</code> refers to the multiplicity of the Nth pole
+<code class="code"><var class="var">p</var>(<var class="var">idxp</var>(n))</code>.
+</p>
+<p>For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">p = [2 3 1 1 2];
+[m, n] = mpoles (p)
+   &rArr;  m = [1; 1; 2; 1; 2]
+   &rArr;  n = [2; 5; 1; 4; 3]
+   &rArr;  p(n) = [3, 2, 2, 1, 1]
+</pre></div></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Products-of-Polynomials.html#XREFresidue">residue</a>, <a class="ref" href="Miscellaneous-Functions.html#XREFpoly">poly</a>, <a class="ref" href="#XREFroots">roots</a>, <a class="ref" href="Products-of-Polynomials.html#XREFconv">conv</a>, <a class="ref" href="Products-of-Polynomials.html#XREFdeconv">deconv</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Products-of-Polynomials.html">Products of Polynomials</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Evaluating-Polynomials.html">Evaluating Polynomials</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Polynomial-Manipulations.html">Polynomial Manipulations</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

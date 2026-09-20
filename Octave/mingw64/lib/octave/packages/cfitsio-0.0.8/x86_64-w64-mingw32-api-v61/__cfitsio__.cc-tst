@@ -1,0 +1,646 @@
+## DO NOT EDIT! Generated from __cfitsio__.cc
+%!shared testfile
+%! testfile = file_in_loadpath("demos/tst0012.fits");
+%!test
+%! assert(isempty(__cfitsio_getOpenFiles__()));
+%! fd = __cfitsio_openFile__(testfile);
+%! of = __cfitsio_getOpenFiles__();
+%! assert(!isempty(of));
+%! assert(fd, of);
+%! __cfitsio_closeFile__(fd);
+%! of = __cfitsio_getOpenFiles__();
+%! assert(isempty(of));
+%!error __cfitsio_getOpenFiles__(1);
+%!test
+%! filename = tempname();
+%! fd = __cfitsio_createFile__(filename);
+%! data = int16(zeros(10,10));
+%! __cfitsio_createImg__(fd,class(data), size(data));
+%! __cfitsio_writeImg__(fd,data);
+%! __cfitsio_closeFile__(fd);
+%! fail("__cfitsio_createFile__(filename)");
+%! fd = __cfitsio_createFile__(["!" filename]);
+%! __cfitsio_createImg__(fd,class(data), size(data));
+%! __cfitsio_writeImg__(fd,data);
+%! __cfitsio_closeFile__(fd);
+%! delete(filename);
+%!test
+%! fd = __cfitsio_openFile__(testfile);
+%! assert(!isempty(fd));
+%! __cfitsio_closeFile__(fd);
+%!test
+%! fd = __cfitsio_openFile__(testfile, "readonly");
+%! assert(!isempty(fd));
+%! __cfitsio_closeFile__(fd);
+%!error <expected filename as a string> __cfitsio_openFile__(1);
+%!error <expected filename as a string> __cfitsio_openFile__([]);
+%!error <expected mode as a string> __cfitsio_openFile__(testfile, 1);
+%!error <unknown file mode> __cfitsio_openFile__(testfile, "badmode");
+%!test
+%! fd = __cfitsio_openFile__(testfile, "readonly");
+%! assert(!isempty(fd));
+%! assert(__cfitsio_fileMode__(fd), "READONLY")
+%! __cfitsio_closeFile__(fd);
+%!error __cfitsio_fileMode__(1);
+%!error __cfitsio_fileMode__([]);
+%!test
+%! fd = __cfitsio_openFile__(testfile);
+%! assert(!isempty(fd));
+%! assert(__cfitsio_fileName__(fd), testfile)
+%! __cfitsio_closeFile__(fd);
+%!error __cfitsio_fileName__(1);
+%!error __cfitsio_fileName__([]);
+%!test
+%! fd = __cfitsio_openFile__(testfile);
+%! __cfitsio_closeFile__(fd);
+%!error __cfitsio_closeFile__();
+%!error __cfitsio_closeFile__(1);
+%!error __cfitsio_closeFile__([]);
+%!test
+%! tmp = tempname();
+%! copyfile(testfile,tmp);
+%! assert(exist(tmp, "file"), 2);
+%!
+%! fd = __cfitsio_openFile__(tmp);
+%! __cfitsio_deleteFile__(fd);
+%! assert(exist(tmp, "file"), 0);
+%!error __cfitsio_deleteFile__();
+%!error __cfitsio_deleteFile__(1);
+%!error __cfitsio_deleteFile__("");
+%!error __cfitsio_deleteFile__([]);
+%!test
+%! fd = __cfitsio_openFile__(testfile);
+%! assert(!isempty(fd));
+%! assert(__cfitsio_getHDUnum__(fd), 1);
+%! __cfitsio_movAbsHDU__(fd, 1);
+%! assert(__cfitsio_getHDUnum__(fd), 1);
+%! __cfitsio_movAbsHDU__(fd, 2);
+%! assert(__cfitsio_getHDUnum__(fd), 2);
+%! __cfitsio_closeFile__(fd);
+%!error __cfitsio_getHDUnum__(1);
+%!error __cfitsio_getHDUnum__([]);
+%!test
+%! fd = __cfitsio_openFile__(testfile);
+%! assert(!isempty(fd));
+%! assert(__cfitsio_getHDUtype__(fd), "IMAGE_HDU");
+%! type = __cfitsio_movAbsHDU__(fd, 2);
+%! assert(__cfitsio_getHDUtype__(fd), type);
+%! __cfitsio_closeFile__(fd);
+%!error __cfitsio_getHDUtype__(1);
+%!error __cfitsio_getHDUtype__([]);
+%!test
+%! fd = __cfitsio_openFile__(testfile);
+%! assert(!isempty(fd));
+%! assert(__cfitsio_getNumHDUs__(fd), 5);
+%! __cfitsio_closeFile__(fd);
+%!error __cfitsio_getNumHDUs__(1);
+%!error __cfitsio_getNumHDUs__([]);
+%!test
+%! fd = __cfitsio_openFile__(testfile);
+%! assert(!isempty(fd));
+%! type = __cfitsio_movAbsHDU__(fd, 1);
+%! assert(__cfitsio_getHDUtype__(fd), type);
+%! assert(__cfitsio_getHDUnum__(fd), 1);
+%! type = __cfitsio_movAbsHDU__(fd, 2);
+%! assert(__cfitsio_getHDUtype__(fd), type);
+%! assert(__cfitsio_getHDUnum__(fd), 2);
+%! type = __cfitsio_movAbsHDU__(fd, 3);
+%! assert(__cfitsio_getHDUtype__(fd), type);
+%! assert(__cfitsio_getHDUnum__(fd), 3);
+%! __cfitsio_closeFile__(fd);
+%!error __cfitsio_movAbsHDU__(1);
+%!error __cfitsio_movAbsHDU__([]);
+%!test
+%! fd = __cfitsio_openFile__(testfile);
+%! assert(!isempty(fd));
+%! type = __cfitsio_movAbsHDU__(fd, 1);
+%! assert(__cfitsio_getHDUnum__(fd), 1);
+%! type = __cfitsio_movRelHDU__(fd, 1);
+%! assert(__cfitsio_getHDUtype__(fd), type);
+%! assert(__cfitsio_getHDUnum__(fd), 2);
+%! type = __cfitsio_movRelHDU__(fd, -1);
+%! assert(__cfitsio_getHDUtype__(fd), type);
+%! assert(__cfitsio_getHDUnum__(fd), 1);
+%! fail ("__cfitsio_movRelHDU__(fd, [])");
+%! __cfitsio_closeFile__(fd);
+%!error __cfitsio_movRelHDU__(1);
+%!error __cfitsio_movRelHDU__([]);
+%!test
+%! fd = __cfitsio_openFile__(testfile);
+%! assert(!isempty(fd));
+%! __cfitsio_movNamHDU__(fd, 'IMAGE_HDU', 'quality', 1);
+%! assert(__cfitsio_getHDUnum__(fd), 4);
+%! assert(__cfitsio_getHDUtype__(fd), 'IMAGE_HDU');
+%! __cfitsio_movNamHDU__(fd, 'BINARY_TBL', 'BinTest', 0);
+%! assert(__cfitsio_getHDUnum__(fd), 2);
+%! assert(__cfitsio_getHDUtype__(fd), 'BINARY_TBL');
+%! __cfitsio_movNamHDU__(fd, 'ANY_HDU', 'Unknown', 1);
+%! assert(__cfitsio_getHDUnum__(fd), 3);
+%! fail ("__cfitsio_movNamHDU__(fd, 'INVALID_HDU', '', 0);");
+%! __cfitsio_closeFile__(fd);
+%!error __cfitsio_movNamHDU__(1);
+%!error __cfitsio_movNamHDU__([]);
+%!test
+%! filename1 = tempname();
+%! filename2 = tempname();
+%! fd1 = __cfitsio_createFile__(filename1);
+%! __cfitsio_createImg__(fd1,'int16',[256 512]);
+%! __cfitsio_closeFile__(fd1);
+%!
+%! fd1 = __cfitsio_openFile__(filename1);
+%!
+%! fd2 = __cfitsio_createFile__(filename2);
+%! __cfitsio_copyHDU__(fd1,fd2);
+%! __cfitsio_closeFile__(fd1);
+%! __cfitsio_closeFile__(fd2);
+%!
+%! delete (filename1);
+%! delete (filename2);
+%!test
+%! fd = __cfitsio_openFile__(testfile);
+%! assert(!isempty(fd));
+%! [numkeys, freekeys] = __cfitsio_getHdrSpace__(fd);
+%! assert(numkeys, 23);
+%! assert(freekeys, 12);
+%! __cfitsio_closeFile__(fd);
+%!error __cfitsio_getHdrSpace__(1);
+%!error __cfitsio_getHdrSpace__([]);
+%!test
+%! fd = __cfitsio_openFile__(testfile);
+%! assert(!isempty(fd));
+%! rec = __cfitsio_readRecord__(fd, 1);
+%! assert(length(rec), 51);
+%! rec = __cfitsio_readRecord__(fd, 2);
+%! assert(length(rec), 54);
+%! fail ("__cfitsio_readRecord__(fd);");
+%! __cfitsio_closeFile__(fd);
+%!error __cfitsio_readRecord__(1);
+%!error __cfitsio_readRecord__([]);
+%!error __cfitsio_readRecord__("");
+%!test
+%! filename = tempname();
+%! fd = __cfitsio_createFile__(filename);
+%! assert(!isempty(fd));
+%! __cfitsio_createImg__(fd,'int16',[10 20]);
+%! __cfitsio_writeDate__(fd);
+%! __cfitsio_closeFile__(fd);
+%!
+%! fd = __cfitsio_openFile__(filename, 'readwrite');
+%! # date record
+%! card = __cfitsio_readRecord__(fd,9);
+%! __cfitsio_deleteRecord__(fd,9);
+%! __cfitsio_closeFile__(fd);
+%! delete (filename);
+%!test
+%! fd = __cfitsio_openFile__(testfile);
+%! assert(!isempty(fd));
+%! rec = __cfitsio_readCard__(fd, 'NAXIS');
+%! assert(length(rec), 54);
+%! fail ("__cfitsio_readCard__(fd);");
+%! fail ("__cfitsio_readCard__(fd, 1);");
+%! __cfitsio_closeFile__(fd);
+%!error __cfitsio_readCard__(1);
+%!error __cfitsio_readCard__(1, "NAXIS");
+%!error __cfitsio_readCard__([]);
+%!error __cfitsio_readCard__("");
+%!test
+%! fd = __cfitsio_openFile__(testfile);
+%! assert(!isempty(fd));
+%! [val, com] = __cfitsio_readKey__(fd, 'NAXIS');
+%! assert(val, "2");
+%! assert(!isempty(com));
+%! fail ("__cfitsio_readKey__(fd);");
+%! fail ("__cfitsio_readKey__(fd, 1);");
+%! __cfitsio_closeFile__(fd);
+%!error __cfitsio_readKey__(1);
+%!error __cfitsio_readKey__(1, "NAXIS");
+%!error __cfitsio_readKey__([]);
+%!error __cfitsio_readKey__("");
+%!test
+%! fd = __cfitsio_openFile__(testfile);
+%! assert(!isempty(fd));
+%! [val, com] = __cfitsio_readKeyDbl__(fd, 'NAXIS');
+%! assert(val, 2);
+%! assert(!isempty(com));
+%! assert(class(val), 'double');
+%! fail ("__cfitsio_readKeyDbl__(fd);");
+%! fail ("__cfitsio_readKeyDbl__(fd, 1);");
+%! __cfitsio_closeFile__(fd);
+%!error __cfitsio_readKeyDbl__(1);
+%!error __cfitsio_readKeyDbl__(1, "NAXIS");
+%!error __cfitsio_readKeyDbl__([]);
+%!error __cfitsio_readKeyDbl__("");
+%!test
+%! fd = __cfitsio_openFile__(testfile);
+%! assert(!isempty(fd));
+%! [val, com] = __cfitsio_readKeyLongLong__(fd, 'NAXIS');
+%! assert(class(val), 'int64');
+%! assert(val, int64(2));
+%! assert(!isempty(com));
+%! fail ("__cfitsio_readKeyLongLong__(fd);");
+%! fail ("__cfitsio_readKeyLongLong__(fd, 1);");
+%! __cfitsio_closeFile__(fd);
+%!error __cfitsio_readKeyLongLong__(1);
+%!error __cfitsio_readKeyLongLong__(1, "NAXIS");
+%!error __cfitsio_readKeyLongLong__([]);
+%!error __cfitsio_readKeyLongLong__("");
+%!test
+%! fd = __cfitsio_openFile__(testfile);
+%! assert(!isempty(fd));
+%! [val, com] = __cfitsio_readKeyLongStr__(fd, 'NAXIS');
+%! assert(class(val), 'char');
+%! assert(val, '2');
+%! assert(!isempty(com));
+%! fail ("__cfitsio_readKeyLongStr__(fd);");
+%! fail ("__cfitsio_readKeyLongStr__(fd, 1);");
+%! fail ("__cfitsio_readKeyLongStr__(fd, 'NOTKEY');");
+%! __cfitsio_closeFile__(fd);
+%!error __cfitsio_readKeyLongStr__(1);
+%!error __cfitsio_readKeyLongStr__(1, "NAXIS");
+%!error __cfitsio_readKeyLongStr__([]);
+%!error __cfitsio_readKeyLongStr__("");
+%!test
+%! filename = tempname();
+%! fd = __cfitsio_createFile__(filename);
+%! assert(!isempty(fd));
+%! __cfitsio_createImg__(fd,'int16',[10 20]);
+%! __cfitsio_writeDate__(fd);
+%! __cfitsio_closeFile__(fd);
+%! delete (filename);
+%!test
+%! filename = tempname();
+%! fd = __cfitsio_createFile__(filename);
+%! assert(!isempty(fd));
+%! __cfitsio_createImg__(fd,'int16',[10 20]);
+%! __cfitsio_writeComment__(fd, 'A comment');
+%! __cfitsio_closeFile__(fd);
+%! delete (filename);
+%!error __cfitsio_writeComment__(1);
+%!error __cfitsio_writeComment__(1, "comment");
+%!error __cfitsio_writeComment__([]);
+%!error __cfitsio_writeComment__("");
+%!test
+%! filename = tempname();
+%! fd = __cfitsio_createFile__(filename);
+%! assert(!isempty(fd));
+%! __cfitsio_createImg__(fd,'int16',[10 20]);
+%! __cfitsio_writeHistory__(fd, 'history');
+%! __cfitsio_closeFile__(fd);
+%! delete (filename);
+%!error __cfitsio_writeHistory__(1);
+%!error __cfitsio_writeHistory__(1, "history");
+%!error __cfitsio_writeHistory__([]);
+%!error __cfitsio_writeHistory__("");
+%!test
+%! filename = tempname();
+%! fd = __cfitsio_createFile__(filename);
+%! assert(!isempty(fd));
+%! __cfitsio_createImg__(fd,'int16',[10 20]);
+%! __cfitsio_writeKey__(fd, 'VELOCITY', 10.0, "Speed");
+%! __cfitsio_writeKeyUnit__(fd, 'VELOCITY', "m/s");
+%! __cfitsio_closeFile__(fd);
+%! delete (filename);
+%!error __cfitsio_writeKeyUnit__(1);
+%!error __cfitsio_writeKeyUnit__(1, "VELOCITY");
+%!error __cfitsio_writeKeyUnit__(1, "VELOCITY", "m/s");
+%!test
+%! filename = tempname();
+%! fd = __cfitsio_createFile__(filename);
+%! assert(!isempty(fd));
+%! __cfitsio_createImg__(fd,'int16',[10 20]);
+%! __cfitsio_writeKey__(fd, 'VELOCITY', 10.0, "Speed");
+%! __cfitsio_writeKey__(fd, 'VELOCITY', 10.1, "Speed1");
+%! __cfitsio_writeKey__(fd, 'VELOCITY', 11.0);
+%! __cfitsio_writeKey__(fd, 'AUTHOR', "me");
+%! __cfitsio_closeFile__(fd);
+%! delete (filename);
+%!test
+%! filename = tempname();
+%! fd = __cfitsio_createFile__(filename);
+%! assert(!isempty(fd));
+%! __cfitsio_createImg__(fd,'int16',[10 20]);
+%! __cfitsio_writeDate__(fd);
+%! __cfitsio_closeFile__(fd);
+%!
+%! fd = __cfitsio_openFile__(filename, 'readwrite');
+%! # date record
+%! d = __cfitsio_readKey__(fd,"DATE");
+%! __cfitsio_deleteKey__(fd,"DATE");
+%! __cfitsio_closeFile__(fd);
+%! delete (filename);
+%!test
+%! assert(__cfitsio_getVersion__(), __cfitsio_getConstantValue__("CFITSIO_VERSION"), 1e-05);
+%! assert(__cfitsio_getConstantValue__("IMAGE_HDU"), 0);
+%! assert(__cfitsio_getConstantValue__("ASCII_TBL"), 1);
+%! assert(__cfitsio_getConstantValue__("BINARY_TBL"), 2);
+%! assert(__cfitsio_getConstantValue__("ANY_HDU"), -1);
+%!error <Couldnt find constant> __cfitsio_getConstantValue__("UnkownVarName");
+%!error <expected constant name> __cfitsio_getConstantValue__();
+%!error <constant name should be a string> __cfitsio_getConstantValue__(1);
+%!test
+%! names = __cfitsio_getConstantNames__();
+%! assert(length(names) > 20);
+%!test
+%! assert(__cfitsio_getVersion__(), __cfitsio_getConstantValue__("CFITSIO_VERSION"), 1e-5);
+%!test
+%! fd = __cfitsio_openFile__(testfile);
+%! assert(!isempty(fd));
+%! assert(__cfitsio_getHDUoff__(fd), 0);
+%! __cfitsio_movAbsHDU__(fd,1);
+%! assert(__cfitsio_getHDUoff__(fd), 0);
+%! __cfitsio_movAbsHDU__(fd,2);
+%! assert(__cfitsio_getHDUoff__(fd), 48960);
+%! __cfitsio_movAbsHDU__(fd,4);
+%! assert(__cfitsio_getHDUoff__(fd), 72000);
+%! __cfitsio_closeFile__(fd);
+%!error __cfitsio_getHDUoff__(1);
+%!error __cfitsio_getHDUoff__([]);
+%!error __cfitsio_getHDUoff__("");
+%!test
+%! fd = __cfitsio_openFile__(testfile);
+%! assert(!isempty(fd));
+%! type = __cfitsio_movAbsHDU__(fd, 4);
+%! assert(type, 'IMAGE_HDU');
+%! assert (__cfitsio_getImgSize__(fd), [31 73 5]);
+%! assert(__cfitsio_movAbsHDU__(fd, 3), "IMAGE_HDU");
+%! assert (__cfitsio_getImgSize__(fd), [41 17 1 1 1 1 1 1 1 1 1 1 2]);
+%! __cfitsio_closeFile__(fd);
+%!error __cfitsio_getImgSize__();
+%!error __cfitsio_getImgSize__(1);
+%!error __cfitsio_getImgSize__("");
+%!error __cfitsio_getImgSize__([]);
+%!test
+%! fd = __cfitsio_openFile__(testfile);
+%! assert(!isempty(fd));
+%! assert(__cfitsio_movAbsHDU__(fd, 4), "IMAGE_HDU");
+%! assert (__cfitsio_getImgType__(fd), "SHORT_IMG");
+%! assert(__cfitsio_movAbsHDU__(fd, 3), "IMAGE_HDU");
+%! assert (__cfitsio_getImgType__(fd), "BYTE_IMG");
+%! __cfitsio_closeFile__(fd);
+%!error __cfitsio_getImgType__();
+%!error __cfitsio_getImgType__(1);
+%!error __cfitsio_getImgType__("");
+%!error __cfitsio_getImgType__([]);
+%!test
+%! fd = __cfitsio_openFile__(testfile);
+%! assert(!isempty(fd));
+%! assert(__cfitsio_movAbsHDU__(fd, 4), "IMAGE_HDU");
+%! data = __cfitsio_readImg__(fd);
+%! assert (size(data), [31 73 5]);
+%! __cfitsio_closeFile__(fd);
+%!test
+%! filename = tempname();
+%! fd = __cfitsio_createFile__(filename);
+%! assert(!isempty(fd));
+%! __cfitsio_createImg__(fd,'int16',[10 20]);
+%! __cfitsio_createImg__(fd,'int16',[10 20 3]);
+%! __cfitsio_closeFile__(fd);
+%! delete (filename);
+%!error __cfitsio_createImg__(1);
+%!error __cfitsio_createImg__(1, 'int16', []);
+%!error __cfitsio_createImg__([]);
+%!error __cfitsio_createImg__("");
+%!test
+%! filename = tempname();
+%! fd = __cfitsio_createFile__(filename);
+%! assert(!isempty(fd));
+%! __cfitsio_createImg__(fd,'int16',[10 20]);
+%! __cfitsio_insertImg__(fd,'int16',[10 20 3]);
+%! __cfitsio_movAbsHDU__(fd,1);
+%! __cfitsio_insertImg__(fd,'int16',[20 30]);
+%! __cfitsio_closeFile__(fd);
+%! delete (filename);
+%!test
+%! filename = tempname();
+%! fd = __cfitsio_createFile__(filename);
+%! data = int16(zeros(10,10));
+%! assert(!isempty(fd));
+%! __cfitsio_createImg__(fd,class(data), size(data));
+%! __cfitsio_writeImg__(fd,data);
+%! __cfitsio_closeFile__(fd);
+%! delete (filename);
+%!test
+%! filename = tempname();
+%! fd = __cfitsio_createFile__(filename);
+%! data = uint16([1:3; 4:6; 7:9]);
+%! __cfitsio_createImg__(fd,class(data), size(data));
+%! __cfitsio_setBscale__(fd, 1.0, 0.0);
+%! __cfitsio_writeImg__(fd,data);
+%! __cfitsio_closeFile__(fd);
+%! delete (filename);
+%!test
+%! filename = tempname();
+%! fd = __cfitsio_createFile__(filename);
+%! ttype = {'Col1','Col2','Col3','Col4'};
+%! tform = {'A9','A4','A3','A8'};
+%! tunit = {'m','s','kg','km'};
+%! __cfitsio_createTbl__(fd,'binary',0,ttype,tform,tunit,'table-name');
+%! __cfitsio_setTscale__(fd, 1, 1.0, 0.0);
+%! __cfitsio_closeFile__(fd);
+%! delete (filename);
+%!test
+%! fd = __cfitsio_openFile__(testfile, "readonly");
+%! assert(!isempty(fd));
+%! __cfitsio_movAbsHDU__(fd,2);
+%! [ttype,tbcol,tunit,tform,scale,zero,nulstr,tdisp] = __cfitsio_getAColParms__(fd, 1);
+%! assert (ttype, "IDENT");
+%! assert (tbcol, 1);
+%! assert (tform, "9A");
+%! assert (scale, 1);
+%! assert (zero, 0);
+%! __cfitsio_closeFile__(fd);
+%!test
+%! fd = __cfitsio_openFile__(testfile);
+%! __cfitsio_movAbsHDU__(fd,2);
+%! [colnum, colname] = __cfitsio_getColName__(fd,"C*");
+%! __cfitsio_closeFile__(fd);
+%!test
+%! fd = __cfitsio_openFile__(testfile);
+%! __cfitsio_movAbsHDU__(fd,2);
+%! [dtype,repeat,width] = __cfitsio_getColType__(fd,5);
+%! __cfitsio_closeFile__(fd);
+%!test
+%! fd = __cfitsio_openFile__(testfile);
+%! __cfitsio_movAbsHDU__(fd,2);
+%! [dtype,repeat,width] = __cfitsio_getEqColType__(fd,5);
+%! __cfitsio_closeFile__(fd);
+%!test
+%! filename = tempname();
+%! fd = __cfitsio_createFile__(filename);
+%! ttype = {'Col1','Col2','Col3','Col4'};
+%! tform = {'A9','A4','A3','A8'};
+%! tunit = {'m','s','kg','km'};
+%! __cfitsio_createTbl__(fd,'binary',0,ttype,tform,tunit,'table-name');
+%! __cfitsio_closeFile__(fd);
+%! delete (filename);
+%!test
+%! filename = tempname();
+%! fd = __cfitsio_createFile__(filename);
+%! ttype = {'Col1','Col2','Col3','Col4'};
+%! tform = {'A9','A4','A3','A8'};
+%! tunit = {'m','s','kg','km'};
+%! __cfitsio_insertBTbl__(fd,0,ttype,tform,tunit,'table-name', 0);
+%! __cfitsio_closeFile__(fd);
+%! delete (filename);
+%!test
+%! filename = tempname();
+%! fd = __cfitsio_createFile__(filename);
+%! __cfitsio_createImg__(fd,'double',[20 30]);
+%! __cfitsio_createImg__(fd,'double',[20 30]);
+%! __cfitsio_movRelHDU__(fd,-1);
+%! ttype = {'Col1','Col2','Col3','Col4'};
+%! tbcol = [1 10 14 17 ];
+%! tform = {'A9','A4','A3','A8'};
+%! tunit = {'m','s','kg','km'};
+%! __cfitsio_insertATbl__(fd, 0,0,ttype,tbcol,tform,tunit,'table-name');
+%! __cfitsio_closeFile__(fd);
+%! delete (filename);
+%!test
+%! filename = tempname();
+%! fd = __cfitsio_createFile__(filename);
+%! ttype = {'Col1','Col2','Col3','Col4'};
+%! tform = {'A9','A4','A3','A8'};
+%! tunit = {'m','s','kg','km'};
+%! __cfitsio_createTbl__(fd,'binary',0,ttype,tform,tunit,'table-name');
+%! __cfitsio_insertCol__(fd, 1,"ICol","9A");
+%! __cfitsio_closeFile__(fd);
+%! delete (filename);
+%!test
+%! filename = tempname();
+%! fd = __cfitsio_createFile__(filename);
+%! ttype = {'Col1','Col2','Col3','Col4'};
+%! tform = {'9A','4X','3B','1D'};
+%! tunit = {'m','s','kg','km'};
+%! __cfitsio_createTbl__(fd,'binary',0,ttype,tform,tunit,'table-name');
+%! __cfitsio_deleteCol__(fd, 1);
+%! __cfitsio_closeFile__(fd);
+%! delete (filename);
+%!test
+%! filename = tempname();
+%! fd = __cfitsio_createFile__(filename);
+%! ttype = {'Col1','Col2','Col3','Col4'};
+%! tform = {'A9','A4','A3','A8'};
+%! tunit = {'m','s','kg','km'};
+%! __cfitsio_createImg__(fd,'int16',[10 20]);
+%! __cfitsio_createTbl__(fd,'binary',0,ttype,tform,tunit,'table-name');
+%! __cfitsio_closeFile__(fd);
+%! fd = __cfitsio_openFile__(filename, "READWRITE");
+%! __cfitsio_movRelHDU__(fd,1);
+%! __cfitsio_insertRows__(fd, 0, 5);
+%! __cfitsio_closeFile__(fd);
+%! delete (filename);
+%!test
+%! filename = tempname();
+%! fd = __cfitsio_createFile__(filename);
+%! ttype = {'Col1','Col2','Col3','Col4'};
+%! tform = {'A9','A4','A3','A8'};
+%! tunit = {'m','s','kg','km'};
+%! __cfitsio_createImg__(fd,'int16',[10 20]);
+%! __cfitsio_createTbl__(fd,'binary',10,ttype,tform,tunit,'table-name');
+%! __cfitsio_closeFile__(fd);
+%! fd = __cfitsio_openFile__(filename, 'READWRITE');
+%! __cfitsio_movAbsHDU__(fd,2);
+%! __cfitsio_deleteRows__(fd, 1, 5);
+%! __cfitsio_closeFile__(fd);
+%! delete (filename);
+%!test
+%! filename = tempname();
+%! fd = __cfitsio_createFile__(filename);
+%! assert(!isempty(fd));
+%! __cfitsio_createImg__(fd,'int16',[10 20]);
+%! __cfitsio_writeKey__(fd, 'VELOCITY', 10.0, "Speed");
+%! __cfitsio_writeKeyUnit__(fd, 'VELOCITY', "m/s");
+%! __cfitsio_closeFile__(fd);
+%! delete (filename);
+%!error __cfitsio_writeKeyUnit__(1);
+%!error __cfitsio_writeKeyUnit__(1, "VELOCITY");
+%!error __cfitsio_writeKeyUnit__(1, "VELOCITY", "m/s");
+%!test
+%! fd = __cfitsio_openFile__(testfile);
+%! assert(!isempty(fd));
+%! assert(__cfitsio_movAbsHDU__(fd, 2), "BINARY_TBL");
+%! [d,n] = __cfitsio_readCol__(fd, 1);
+%! assert(size(d), [11 9])
+%! assert(size(n), [11 9])
+%! [d,n] = __cfitsio_readCol__(fd, 1, 11);
+%! assert(size(d), [1 9])
+%! assert(size(n), [1 9])
+%! [d,n] = __cfitsio_readCol__(fd, 1, 8, 2);
+%! assert(size(d), [2 9])
+%! assert(size(n), [2 9])
+%!
+%! [d,n] = __cfitsio_readCol__(fd, 2);
+%! assert(size(d), [11 13])
+%! assert(size(n), [11 13])
+%!
+%! assert(__cfitsio_movAbsHDU__(fd, 5), "ASCII_TBL");
+%! [d,n] = __cfitsio_readCol__(fd, 1);
+%! assert(size(d), [53 9])
+%! assert(size(n), [1 53])
+%! [d,n] = __cfitsio_readCol__(fd, 2);
+%! assert(size(d), [53 1])
+%! assert(size(n), [53 1])
+%! __cfitsio_closeFile__(fd);
+%!test
+%! filename = tempname();
+%! fd = __cfitsio_createFile__(filename);
+%! assert(!isempty(fd));
+%! __cfitsio_setCompressionType__(fd, "NOCOMPRESS");
+%! __cfitsio_createImg__(fd,'int16',[10 20]);
+%! __cfitsio_closeFile__(fd);
+%! delete (filename);
+%!test
+%! filename = tempname();
+%! fd = __cfitsio_createFile__(filename);
+%! assert(!isempty(fd));
+%! #__cfitsio_setCompressionType__(fd, "RICE");
+%! __cfitsio_setTileDim__(fd, [64 128]);
+%! __cfitsio_createImg__(fd,'int16',[256 512]);
+%! __cfitsio_closeFile__(fd);
+%! delete (filename);
+%!test
+%! filename = tempname();
+%! fd = __cfitsio_createFile__(filename);
+%! assert(!isempty(fd));
+%! __cfitsio_setCompressionType__(fd, "RICE");
+%! __cfitsio_createImg__(fd,'int16',[256 512]);
+%! assert(__cfitsio_isCompressedImg__(fd), true);
+%! __cfitsio_closeFile__(fd);
+%!
+%! fd = __cfitsio_createFile__(['!' filename]);
+%! __cfitsio_createImg__(fd,'int16',[256 512]);
+%! assert(__cfitsio_isCompressedImg__(fd), false);
+%! __cfitsio_closeFile__(fd);
+%!
+%! delete (filename);
+%!test
+%! filename1 = tempname();
+%! filename2 = tempname();
+%! fd1 = __cfitsio_createFile__(filename1);
+%! __cfitsio_createImg__(fd1,'int16',[256 512]);
+%! __cfitsio_closeFile__(fd1);
+%!
+%! fd1 = __cfitsio_openFile__(filename1);
+%!
+%! fd2 = __cfitsio_createFile__(filename2);
+%! __cfitsio_setCompressionType__(fd2, "RICE");
+%! __cfitsio_imgCompress__(fd1,fd2);
+%! __cfitsio_closeFile__(fd1);
+%! __cfitsio_closeFile__(fd2);
+%!
+%! delete (filename1);
+%! delete (filename2);
+%!test
+%! filename = tempname();
+%! fd = __cfitsio_createFile__(filename);
+%! __cfitsio_setHCompScale__(fd, 1.0);
+%! __cfitsio_createImg__(fd,'int16',[10 20]);
+%! __cfitsio_closeFile__(fd);
+%! delete (filename);
+%!test
+%! filename = tempname();
+%! fd = __cfitsio_createFile__(filename);
+%! __cfitsio_setHCompSmooth__(fd, 1);
+%! __cfitsio_createImg__(fd,'int16',[10 20]);
+%! __cfitsio_closeFile__(fd);
+%! delete (filename);

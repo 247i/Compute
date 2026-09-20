@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Convex Hull (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Convex Hull (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Convex Hull (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Geometry.html" rel="up" title="Geometry">
+<link href="Interpolation-on-Scattered-Data.html" rel="next" title="Interpolation on Scattered Data">
+<link href="Voronoi-Diagrams.html" rel="prev" title="Voronoi Diagrams">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.center {text-align:center}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+ul.mark-bullet {list-style-type: disc}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Convex-Hull">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Interpolation-on-Scattered-Data.html" accesskey="n" rel="next">Interpolation on Scattered Data</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Voronoi-Diagrams.html" accesskey="p" rel="prev">Voronoi Diagrams</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Geometry.html" accesskey="u" rel="up">Geometry</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Convex-Hull-1"><span>30.3 Convex Hull<a class="copiable-link" href="#Convex-Hull-1"> &para;</a></span></h3>
+
+<p>The convex hull of a set of points is the minimum convex envelope
+containing all of the points.  Octave has the functions <code class="code">convhull</code>
+and <code class="code">convhulln</code> to calculate the convex hull of 2-dimensional and
+N-dimensional sets of points.
+</p>
+<a class="anchor" id="XREFconvhull"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-convhull"><span><code class="def-type"><var class="var">H</var> =</code> <strong class="def-name">convhull</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>)</code><a class="copiable-link" href="#index-convhull"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-convhull-1"><span><code class="def-type"><var class="var">H</var> =</code> <strong class="def-name">convhull</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>)</code><a class="copiable-link" href="#index-convhull-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-convhull-2"><span><code class="def-type"><var class="var">H</var> =</code> <strong class="def-name">convhull</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-convhull-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-convhull-3"><span><code class="def-type"><var class="var">H</var> =</code> <strong class="def-name">convhull</strong> <code class="def-code-arguments">(&hellip;, <var class="var">options</var>)</code><a class="copiable-link" href="#index-convhull-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-convhull-4"><span><code class="def-type">[<var class="var">H</var>, <var class="var">V</var>] =</code> <strong class="def-name">convhull</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-convhull-4"> &para;</a></span></dt>
+<dd><p>Compute the convex hull of a 2-D or 3-D set of points.
+</p>
+<p>The hull <var class="var">H</var> is a linear index vector into the original set of points
+that specifies which points form the enclosing hull.  For 2-D inputs only,
+the output is ordered in a counterclockwise manner around the hull.
+</p>
+<p>The input <var class="var">x</var> may also be a matrix with two or three columns where the
+first column contains x-data, the second y-data, and the optional third
+column contains z-data.
+</p>
+<p>An optional final argument, which must be a string or cell array of strings,
+contains options passed to the underlying qhull command.
+See the documentation for the Qhull library for details
+<a class="url" href="http://www.qhull.org/html/qh-quick.htm#options">http://www.qhull.org/html/qh-quick.htm#options</a>.
+The default option is <code class="code">{&quot;Qt&quot;}</code>.
+</p>
+<p>If <var class="var">options</var> is not present or <code class="code">[]</code> then the default arguments are
+used.  Otherwise, <var class="var">options</var> replaces the default argument list.
+To append user options to the defaults it is necessary to repeat the
+default arguments in <var class="var">options</var>.  Use a null string to pass no arguments.
+</p>
+<p>If the second output <var class="var">V</var> is requested the volume of the enclosing
+convex hull is calculated.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFconvhulln">convhulln</a>, <a class="ref" href="Delaunay-Triangulation.html#XREFdelaunay">delaunay</a>, <a class="ref" href="Voronoi-Diagrams.html#XREFvoronoi">voronoi</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFconvhulln"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-convhulln"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">convhulln</strong> <code class="def-code-arguments">(<var class="var">pts</var>)</code><a class="copiable-link" href="#index-convhulln"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-convhulln-1"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">convhulln</strong> <code class="def-code-arguments">(<var class="var">pts</var>, <var class="var">options</var>)</code><a class="copiable-link" href="#index-convhulln-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-convhulln-2"><span><code class="def-type">[<var class="var">h</var>, <var class="var">v</var>] =</code> <strong class="def-name">convhulln</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-convhulln-2"> &para;</a></span></dt>
+<dd><p>Compute the convex hull of the set of points <var class="var">pts</var>.
+</p>
+<p><var class="var">pts</var> is a matrix of size [n, dim] containing n points in a space of
+dimension dim.
+</p>
+<p>The hull <var class="var">h</var> is an index vector into the set of points and specifies
+which points form the enclosing hull.
+</p>
+<p>An optional second argument, which must be a string or cell array of
+strings, contains options passed to the underlying qhull command.  See the
+documentation for the Qhull library for details
+<a class="url" href="http://www.qhull.org/html/qh-quick.htm#options">http://www.qhull.org/html/qh-quick.htm#options</a>.
+The default options depend on the dimension of the input:
+</p>
+<ul class="itemize mark-bullet">
+<li>2-D, 3-D, 4-D: <var class="var">options</var> = <code class="code">{&quot;Qt&quot;}</code>
+
+</li><li>5-D and higher: <var class="var">options</var> = <code class="code">{&quot;Qt&quot;, &quot;Qx&quot;}</code>
+</li></ul>
+
+<p>If <var class="var">options</var> is not present or <code class="code">[]</code> then the default arguments are
+used.  Otherwise, <var class="var">options</var> replaces the default argument list.
+To append user options to the defaults it is necessary to repeat the
+default arguments in <var class="var">options</var>.  Use a null string to pass no arguments.
+</p>
+<p>If the second output <var class="var">v</var> is requested the volume of the enclosing
+convex hull is calculated.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFconvhull">convhull</a>, <a class="ref" href="Delaunay-Triangulation.html#XREFdelaunayn">delaunayn</a>, <a class="ref" href="Voronoi-Diagrams.html#XREFvoronoin">voronoin</a>.
+</p></dd></dl>
+
+
+<p>An example of the use of <code class="code">convhull</code> is
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">x = -3:0.05:3;
+y = abs (sin (x));
+k = convhull (x, y);
+plot (x(k), y(k), &quot;r-&quot;, x, y, &quot;b+&quot;);
+axis ([-3.05, 3.05, -0.05, 1.05]);
+</pre></div></div>
+
+<p>The output of the above can be seen in <a class="ref" href="#fig_003aconvhull">Figure 30.5</a>.
+</p>
+<div class="float" id="fig_003aconvhull">
+<div class="center"><img class="image" src="convhull.png" alt="convhull">
+</div><div class="caption"><p><strong class="strong">Figure 30.5: </strong>The convex hull of a simple set of points</p></div></div>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Interpolation-on-Scattered-Data.html">Interpolation on Scattered Data</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Voronoi-Diagrams.html">Voronoi Diagrams</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Geometry.html">Geometry</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Handle Functions (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Handle Functions (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Handle Functions (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Graphics-Objects.html" rel="up" title="Graphics Objects">
+<link href="Creating-Graphics-Objects.html" rel="prev" title="Creating Graphics Objects">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+ul.mark-bullet {list-style-type: disc}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsubsection-level-extent" id="Handle-Functions">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Creating-Graphics-Objects.html" accesskey="p" rel="prev">Creating Graphics Objects</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Graphics-Objects.html" accesskey="u" rel="up">Graphics Objects</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsubsection" id="Handle-Functions-1"><span>15.3.2.2 Handle Functions<a class="copiable-link" href="#Handle-Functions-1"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-handle-functions"></a>
+
+<p>To determine whether a variable is a graphics object index, or an index
+to an axes or figure, use the functions <code class="code">ishghandle</code>, <code class="code">isgraphics</code>,
+<code class="code">isaxes</code>, and <code class="code">isfigure</code>.
+</p>
+<a class="anchor" id="XREFishghandle"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-ishghandle"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">ishghandle</strong> <code class="def-code-arguments">(<var class="var">h</var>)</code><a class="copiable-link" href="#index-ishghandle"> &para;</a></span></dt>
+<dd><p>Return true if <var class="var">h</var> is a graphics handle and false otherwise.
+</p>
+<p><var class="var">h</var> may also be a matrix of handles in which case a logical array is
+returned that is true where the elements of <var class="var">h</var> are graphics handles and
+false where they are not.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFisgraphics">isgraphics</a>, <a class="ref" href="#XREFisaxes">isaxes</a>, <a class="ref" href="#XREFisfigure">isfigure</a>, <a class="ref" href="#XREFishandle">ishandle</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFisgraphics"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-isgraphics"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">isgraphics</strong> <code class="def-code-arguments">(<var class="var">h</var>)</code><a class="copiable-link" href="#index-isgraphics"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-isgraphics-1"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">isgraphics</strong> <code class="def-code-arguments">(<var class="var">h</var>, <var class="var">type</var>)</code><a class="copiable-link" href="#index-isgraphics-1"> &para;</a></span></dt>
+<dd><p>Return true if <var class="var">h</var> is a graphics handle (of type <var class="var">type</var>) and false
+otherwise.
+</p>
+<p>When no <var class="var">type</var> is specified the function is equivalent to
+<code class="code">ishghandle</code>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFishghandle">ishghandle</a>, <a class="ref" href="#XREFishandle">ishandle</a>, <a class="ref" href="#XREFisaxes">isaxes</a>, <a class="ref" href="#XREFisfigure">isfigure</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFishandle"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-ishandle"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">ishandle</strong> <code class="def-code-arguments">(<var class="var">h</var>)</code><a class="copiable-link" href="#index-ishandle"> &para;</a></span></dt>
+<dd><p>Return true if <var class="var">h</var> is a handle to a graphics or Java object and false
+otherwise.
+</p>
+<p><var class="var">h</var> may also be a matrix of handles in which case a logical array is
+returned that is true where the elements of <var class="var">h</var> are handles to graphics
+or Java objects and false where they are not.
+</p>
+<p>Programming Note: It is often more useful to test for a specific object
+type.  To determine if a handle belongs to a graphics object use
+<code class="code">ishghandle</code> or <code class="code">isgraphics</code>.  To determine if a handle belongs
+to a Java object use <code class="code">isjava</code>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFishghandle">ishghandle</a>, <a class="ref" href="#XREFisgraphics">isgraphics</a>, <a class="ref" href="Java-Interface-Functions.html#XREFisjava">isjava</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFisaxes"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-isaxes"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">isaxes</strong> <code class="def-code-arguments">(<var class="var">h</var>)</code><a class="copiable-link" href="#index-isaxes"> &para;</a></span></dt>
+<dd><p>Return true if <var class="var">h</var> is an axes graphics handle and false otherwise.
+</p>
+<p>If <var class="var">h</var> is a matrix then return a logical array which is true where the
+elements of <var class="var">h</var> are axes graphics handles and false where they are not.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFisfigure">isfigure</a>, <a class="ref" href="#XREFishghandle">ishghandle</a>, <a class="ref" href="#XREFisgraphics">isgraphics</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFisfigure"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-isfigure"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">isfigure</strong> <code class="def-code-arguments">(<var class="var">h</var>)</code><a class="copiable-link" href="#index-isfigure"> &para;</a></span></dt>
+<dd><p>Return true if <var class="var">h</var> is a figure graphics handle and false otherwise.
+</p>
+<p>If <var class="var">h</var> is a matrix then return a logical array which is true where the
+elements of <var class="var">h</var> are figure graphics handles and false where they are
+not.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFisaxes">isaxes</a>, <a class="ref" href="#XREFishghandle">ishghandle</a>, <a class="ref" href="#XREFisgraphics">isgraphics</a>.
+</p></dd></dl>
+
+
+<p>The function <code class="code">gcf</code> returns an index to the current figure object,
+or creates one if none exists.  Similarly, <code class="code">gca</code> returns the
+current axes object, or creates one (and its parent figure object) if
+none exists.
+</p>
+<a class="anchor" id="XREFgroot"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-groot"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">groot</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-groot"> &para;</a></span></dt>
+<dd><p>Return a handle to the root graphics object.
+</p>
+<p>The root graphics object is the ultimate parent of all graphics objects.
+</p>
+<p>In addition, the root object contains information about the graphics
+system as a whole such as the <code class="code">ScreenSize</code>.  Use
+<code class="code">get&nbsp;(groot)</code><!-- /@w -->&nbsp;to find out what information is available.
+</p>
+<p>Defaults for the graphic system as a whole are specified by setting
+properties of the root graphics object that begin with <code class="code">&quot;Default&quot;</code>.
+For example, to set the default font for all text objects to FreeSans use
+</p>
+<div class="example">
+<pre class="example-preformatted">set (groot, &quot;DefaultTextFontName&quot;, &quot;FreeSans&quot;)
+</pre></div>
+
+<p>Default properties can be deleted by using <code class="code">set</code> with the special
+property value of <code class="code">&quot;remove&quot;</code>.  To undo the default font assignment
+above use
+</p>
+<div class="example">
+<pre class="example-preformatted">set (groot, &quot;DefaultTextFontName&quot;, &quot;remove&quot;)
+</pre></div>
+
+<p>Programming Note: The root graphics object is identified by the special
+handle value of 0.  At some point this unique value may change, but code can
+be made resistant to future changes by using <code class="code">groot</code> which is
+guaranteed to always return the root graphics object.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFgcf">gcf</a>, <a class="ref" href="#XREFgca">gca</a>, <a class="ref" href="#XREFget">get</a>, <a class="ref" href="#XREFset">set</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFgcf"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gcf"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">gcf</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-gcf"> &para;</a></span></dt>
+<dd><p>Return a handle to the current figure.
+</p>
+<p>The current figure is the default target for graphics output.  If multiple
+figures exist, <code class="code">gcf</code> returns the last created figure or the last figure
+that was clicked on with the mouse.
+</p>
+<p>If a current figure does not exist, create one and return its handle.  The
+handle may then be used to examine or set properties of the figure.  For
+example,
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">fplot (@sin, [-10, 10]);
+fig = gcf ();
+set (fig, &quot;numbertitle&quot;, &quot;off&quot;, &quot;name&quot;, &quot;sin plot&quot;)
+</pre></div></div>
+
+<p>plots a sine wave, finds the handle of the current figure, and then
+renames the figure window to describe the contents.
+</p>
+<p>Note: To find the current figure without creating a new one if it does not
+exist, query the <code class="code">&quot;CurrentFigure&quot;</code> property of the root graphics
+object.
+</p>
+<div class="example">
+<pre class="example-preformatted">get (groot, &quot;currentfigure&quot;);
+</pre></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFgca">gca</a>, <a class="ref" href="#XREFgco">gco</a>, <a class="ref" href="Callbacks.html#XREFgcbf">gcbf</a>, <a class="ref" href="Callbacks.html#XREFgcbo">gcbo</a>, <a class="ref" href="#XREFget">get</a>, <a class="ref" href="#XREFset">set</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFgca"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gca"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">gca</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-gca"> &para;</a></span></dt>
+<dd><p>Return a handle to the current axes object.
+</p>
+<p>The current axes is the default target for graphics output.  In the case
+of a figure with multiple axes, <code class="code">gca</code> returns the last created axes
+or the last axes that was clicked on with the mouse.
+</p>
+<p>If no current axes object exists, create one and return its handle.  The
+handle may then be used to examine or set properties of the axes.  For
+example,
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">ax = gca ();
+set (ax, &quot;position&quot;, [0.5, 0.5, 0.5, 0.5]);
+</pre></div></div>
+
+<p>creates an empty axes object and then changes its location and size in the
+figure window.
+</p>
+<p>Note: To find the current axes without creating a new axes object if it
+does not exist, query the <code class="code">&quot;CurrentAxes&quot;</code> property of a figure.
+</p>
+<div class="example">
+<pre class="example-preformatted">get (gcf, &quot;currentaxes&quot;);
+</pre></div>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFgcf">gcf</a>, <a class="ref" href="#XREFgco">gco</a>, <a class="ref" href="Callbacks.html#XREFgcbf">gcbf</a>, <a class="ref" href="Callbacks.html#XREFgcbo">gcbo</a>, <a class="ref" href="#XREFget">get</a>, <a class="ref" href="#XREFset">set</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFgco"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gco"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">gco</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-gco"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gco-1"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">gco</strong> <code class="def-code-arguments">(<var class="var">hfig</var>)</code><a class="copiable-link" href="#index-gco-1"> &para;</a></span></dt>
+<dd><p>Return a handle to the current object of the current figure, or a handle
+to the current object of the figure with handle <var class="var">hfig</var>.
+</p>
+<p>The current object of a figure is the object that was last clicked on.  It
+is stored in the <code class="code">&quot;CurrentObject&quot;</code> property of the target figure.
+</p>
+<p>If the last mouse click did not occur on any child object of the figure,
+then the current object is the figure itself.
+</p>
+<p>If no mouse click occurred in the target figure, this function returns an
+empty matrix.
+</p>
+<p>Programming Note: The value returned by this function is not necessarily the
+same as the one returned by <code class="code">gcbo</code> during callback execution.  An
+executing callback can be interrupted by another callback and the current
+object may be changed.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Callbacks.html#XREFgcbo">gcbo</a>, <a class="ref" href="#XREFgca">gca</a>, <a class="ref" href="#XREFgcf">gcf</a>, <a class="ref" href="Callbacks.html#XREFgcbf">gcbf</a>, <a class="ref" href="#XREFget">get</a>, <a class="ref" href="#XREFset">set</a>.
+</p></dd></dl>
+
+
+<p>The <code class="code">get</code> and <code class="code">set</code> functions may be used to examine and set
+properties for graphics objects.  For example,
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">get (groot)
+    &rArr;  ans =
+       {
+         type = root
+         currentfigure = [](0x0)
+         children = [](0x0)
+         visible = on
+         ...
+       }
+</pre></div></div>
+
+<p>returns a structure containing all the properties of the root graphics object.
+As with all functions in Octave, the structure is returned by value, so
+modifying it will not modify the internal root object.  To do that, you must
+use the <code class="code">set</code> function.  Also, note that in this case, the
+<code class="code">currentfigure</code> property is empty, which indicates that there is no
+current figure window.
+</p>
+<p>The <code class="code">get</code> function may also be used to find the value of a single
+property.  For example,
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">get (gca (), &quot;xlim&quot;)
+    &rArr;  [ 0 1 ]
+</pre></div></div>
+
+<p>returns the range of the x-axis for the current axes object in the
+current figure.
+</p>
+<p>To set graphics object properties, use the set function.  For example,
+</p>
+<div class="example">
+<pre class="example-preformatted">set (gca (), &quot;xlim&quot;, [-10, 10]);
+</pre></div>
+
+<p>sets the range of the x-axis for the current axes object in the current
+figure to &lsquo;<samp class="samp">[-10, 10]</samp>&rsquo;.
+</p>
+<p>Default property values can also be queried if the <code class="code">set</code> function is
+called without a value argument.  When only one argument is given (a graphic
+handle) then a structure with defaults for all properties of the given object
+type is returned.  For example,
+</p>
+<div class="example">
+<pre class="example-preformatted">set (gca ())
+</pre></div>
+
+<p>returns a structure containing the default property values for axes objects.
+If <code class="code">set</code> is called with two arguments (a graphic handle and a property
+name) then only the defaults for the requested property are returned.
+</p>
+<a class="anchor" id="XREFget"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-get"><span><code class="def-type"><var class="var">val</var> =</code> <strong class="def-name">get</strong> <code class="def-code-arguments">(<var class="var">h</var>)</code><a class="copiable-link" href="#index-get"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-get-1"><span><code class="def-type"><var class="var">val</var> =</code> <strong class="def-name">get</strong> <code class="def-code-arguments">(<var class="var">h</var>, <var class="var">p</var>)</code><a class="copiable-link" href="#index-get-1"> &para;</a></span></dt>
+<dd><p>Return the value of the named property <var class="var">p</var> from the graphics handle
+<var class="var">h</var>.
+</p>
+<p>If <var class="var">p</var> is omitted, return the complete property list for <var class="var">h</var>.
+</p>
+<p>If <var class="var">h</var> is a vector, return a cell array including the property values or
+lists respectively.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFset">set</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFset"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-set"><span><strong class="def-name">set</strong> <code class="def-code-arguments">(<var class="var">h</var>, <var class="var">property</var>, <var class="var">value</var>, &hellip;)</code><a class="copiable-link" href="#index-set"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-set-1"><span><strong class="def-name">set</strong> <code class="def-code-arguments">(<var class="var">h</var>, {<var class="var">properties</var>}, {<var class="var">values</var>})</code><a class="copiable-link" href="#index-set-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-set-2"><span><strong class="def-name">set</strong> <code class="def-code-arguments">(<var class="var">h</var>, <var class="var">pv</var>)</code><a class="copiable-link" href="#index-set-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-set-3"><span><code class="def-type"><var class="var">value_list</var> =</code> <strong class="def-name">set</strong> <code class="def-code-arguments">(<var class="var">h</var>, <var class="var">property</var>)</code><a class="copiable-link" href="#index-set-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-set-4"><span><code class="def-type"><var class="var">all_value_list</var> =</code> <strong class="def-name">set</strong> <code class="def-code-arguments">(<var class="var">h</var>)</code><a class="copiable-link" href="#index-set-4"> &para;</a></span></dt>
+<dd><p>Set named property values for the graphics handle (or vector of graphics
+handles) <var class="var">h</var>.
+</p>
+<p>There are three ways to give the property names and values:
+</p>
+<ul class="itemize mark-bullet">
+<li>as a comma-separated list of <var class="var">property</var>, <var class="var">value</var> pairs
+
+<p>Each <var class="var">property</var> is a string containing the property name, each <var class="var">value</var>
+is a value of the appropriate type for the property.  When there are multiple
+handles in <var class="var">h</var>, each one is assigned the same <var class="var">value</var>.  For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">h = plot ([0, 1]);
+set (h, 'color', 'green');
+</pre></div></div>
+
+</li><li>as a cell array of strings <var class="var">properties</var> containing property names
+and a cell array <var class="var">values</var> containing property values.
+
+<p>In this case, the number of columns of <var class="var">values</var> must match the number of
+elements in <var class="var">properties</var>.  The first column of <var class="var">values</var> contains
+values for the first entry in <var class="var">properties</var>, etc.  The number of rows of
+<var class="var">values</var> must be 1 or match the number of elements of <var class="var">h</var>.  In the
+first case, each handle in <var class="var">h</var> will be assigned the same values.  In the
+second case, the first handle in <var class="var">h</var> will be assigned the values from
+the first row of <var class="var">values</var> and so on.  For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">h = plot ([0, 1; 1, 0]);
+set (h, {'color'}, {'green'; 'red'});
+</pre></div></div>
+
+</li><li>as a structure <var class="var">pv</var>
+
+<p>This is the same as the first case where the field names of <var class="var">pv</var> represent
+the property names, and the field values give the property values.  As with
+the first case, it is only possible to set one value for a property which will
+be applied to all handles in <var class="var">h</var>.  For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">h = plot ([0, 1]);
+props.color = 'green';
+set (h, props);
+</pre></div></div>
+
+</li></ul>
+
+<p>The three syntaxes for setting properties may appear in any combination.
+</p>
+<p><code class="code">set</code> is also used to query the list of values a named property will
+take.  <code class="code"><var class="var">clist</var> = set (<var class="var">h</var>, &quot;property&quot;)</code> will return the list
+of possible values for <code class="code">&quot;property&quot;</code> in the cell list <var class="var">clist</var>.
+If no output variable is used then the list is formatted and printed to the
+screen.
+</p>
+<p>If no property is specified (<code class="code"><var class="var">slist</var> = set (<var class="var">h</var>)</code>) then a
+structure <var class="var">slist</var> is returned where the fieldnames are the properties of
+the object <var class="var">h</var> and the fields are the list of possible values for each
+property.  If no output variable is used then the list is formatted and
+printed to the screen.
+</p>
+<p>When querying properties only a single graphics handle <var class="var">h</var> for a single
+graphics object is permitted.
+</p>
+<p>Example Query
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">hf = figure ();
+set (hf, &quot;paperorientation&quot;)
+&rArr;   [ landscape | {portrait} ]
+</pre></div></div>
+
+<p>shows the paperorientation property can take two values with the default
+being <code class="code">&quot;portrait&quot;</code>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFget">get</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFancestor"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-ancestor"><span><code class="def-type"><var class="var">parent</var> =</code> <strong class="def-name">ancestor</strong> <code class="def-code-arguments">(<var class="var">h</var>, <var class="var">type</var>)</code><a class="copiable-link" href="#index-ancestor"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ancestor-1"><span><code class="def-type"><var class="var">parent</var> =</code> <strong class="def-name">ancestor</strong> <code class="def-code-arguments">(<var class="var">h</var>, <var class="var">type</var>, &quot;toplevel&quot;)</code><a class="copiable-link" href="#index-ancestor-1"> &para;</a></span></dt>
+<dd><p>Return the first ancestor of handle object <var class="var">h</var> whose type matches
+<var class="var">type</var>, where <var class="var">type</var> is a character string.
+</p>
+<p>If <var class="var">type</var> is a cell array of strings, return the first parent whose
+type matches any of the given type strings.
+</p>
+<p>If the handle object <var class="var">h</var> itself is of type <var class="var">type</var>, return <var class="var">h</var>.
+</p>
+<p>If <code class="code">&quot;toplevel&quot;</code> is given as a third argument, return the highest
+parent in the object hierarchy that matches the condition, instead
+of the first (nearest) one.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Searching-Properties.html#XREFfindobj">findobj</a>, <a class="ref" href="Searching-Properties.html#XREFfindall">findall</a>, <a class="ref" href="#XREFallchild">allchild</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFallchild"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-allchild"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">allchild</strong> <code class="def-code-arguments">(<var class="var">handles</var>)</code><a class="copiable-link" href="#index-allchild"> &para;</a></span></dt>
+<dd><p>Find all children, including hidden children, of a graphics object.
+</p>
+<p>This function is similar to <code class="code">get (h, &quot;children&quot;)</code>, but also returns
+hidden objects (HandleVisibility = <code class="code">&quot;off&quot;</code>).
+</p>
+<p>If <var class="var">handles</var> is a scalar, <var class="var">h</var> will be a vector.  Otherwise,
+<var class="var">h</var> will be a cell matrix of the same size as <var class="var">handles</var> and each
+cell will contain a vector of handles.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Searching-Properties.html#XREFfindall">findall</a>, <a class="ref" href="Searching-Properties.html#XREFfindobj">findobj</a>, <a class="ref" href="#XREFget">get</a>, <a class="ref" href="#XREFset">set</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFfindfigs"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-findfigs"><span><strong class="def-name">findfigs</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-findfigs"> &para;</a></span></dt>
+<dd><p>Find all visible figures that are currently off the screen and move them
+onto the screen.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFallchild">allchild</a>, <a class="ref" href="Multiple-Plot-Windows.html#XREFfigure">figure</a>, <a class="ref" href="#XREFget">get</a>, <a class="ref" href="#XREFset">set</a>.
+</p></dd></dl>
+
+
+<a class="index-entry-id" id="index-saving-graphics-objects"></a>
+<a class="index-entry-id" id="index-graphics-objects_002c-saving"></a>
+
+<p>Figures can be printed or saved in many graphics formats with <code class="code">print</code> and
+<code class="code">saveas</code>.  Occasionally, however, it may be useful to save the original
+Octave handle graphic directly so that further modifications can be made such
+as modifying a title or legend.
+</p>
+<p>This can be accomplished with the following functions by
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">fig_struct = hdl2struct (gcf);
+save myplot.fig -struct fig_struct;
+...
+fig_struct = load (&quot;myplot.fig&quot;);
+struct2hdl (fig_struct);
+</pre></div></div>
+
+<a class="anchor" id="XREFhdl2struct"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-hdl2struct"><span><code class="def-type"><var class="var">s</var> =</code> <strong class="def-name">hdl2struct</strong> <code class="def-code-arguments">(<var class="var">h</var>)</code><a class="copiable-link" href="#index-hdl2struct"> &para;</a></span></dt>
+<dd><p>Return a structure, <var class="var">s</var>, whose fields describe the properties
+of the object, and its children, associated with the handle, <var class="var">h</var>.
+</p>
+<p>The fields of the structure <var class="var">s</var> are <code class="code">&quot;type&quot;</code>, <code class="code">&quot;handle&quot;</code>,
+<code class="code">&quot;properties&quot;</code>, <code class="code">&quot;children&quot;</code>, and <code class="code">&quot;special&quot;</code>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFstruct2hdl">struct2hdl</a>, <a class="ref" href="Printing-and-Saving-Plots.html#XREFhgsave">hgsave</a>, <a class="ref" href="Searching-Properties.html#XREFfindobj">findobj</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFstruct2hdl"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-struct2hdl"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">struct2hdl</strong> <code class="def-code-arguments">(<var class="var">s</var>)</code><a class="copiable-link" href="#index-struct2hdl"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-struct2hdl-1"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">struct2hdl</strong> <code class="def-code-arguments">(<var class="var">s</var>, <var class="var">p</var>)</code><a class="copiable-link" href="#index-struct2hdl-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-struct2hdl-2"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">struct2hdl</strong> <code class="def-code-arguments">(<var class="var">s</var>, <var class="var">p</var>, <var class="var">hilev</var>)</code><a class="copiable-link" href="#index-struct2hdl-2"> &para;</a></span></dt>
+<dd><p>Construct a graphics handle object <var class="var">h</var> from the structure <var class="var">s</var>.
+</p>
+<p>The structure must contain the fields <code class="code">&quot;handle&quot;</code>, <code class="code">&quot;type&quot;</code>,
+<code class="code">&quot;children&quot;</code>, <code class="code">&quot;properties&quot;</code>, and <code class="code">&quot;special&quot;</code>.
+</p>
+<p>If the handle of an existing figure or axes is specified, <var class="var">p</var>, the new
+object will be created as a child of that object.  If no parent handle is
+provided then a new figure and the necessary children will be constructed
+using the default values from the root object.
+</p>
+<p>A third boolean argument <var class="var">hilev</var> can be passed to specify whether the
+function should preserve listeners/callbacks, e.g., for legends or
+hggroups.  The default is false.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFhdl2struct">hdl2struct</a>, <a class="ref" href="Printing-and-Saving-Plots.html#XREFhgload">hgload</a>, <a class="ref" href="Searching-Properties.html#XREFfindobj">findobj</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFcopyobj"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-copyobj"><span><code class="def-type"><var class="var">hnew</var> =</code> <strong class="def-name">copyobj</strong> <code class="def-code-arguments">(<var class="var">horig</var>)</code><a class="copiable-link" href="#index-copyobj"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-copyobj-1"><span><code class="def-type"><var class="var">hnew</var> =</code> <strong class="def-name">copyobj</strong> <code class="def-code-arguments">(<var class="var">horig</var>, <var class="var">hparent</var>)</code><a class="copiable-link" href="#index-copyobj-1"> &para;</a></span></dt>
+<dd><p>Construct a copy of the graphic objects associated with the handles
+<var class="var">horig</var> and return new handles <var class="var">hnew</var> to the new objects.
+</p>
+<p>If a parent handle <var class="var">hparent</var> (root, figure, axes, or hggroup) is
+specified, the copied object will be created as a child of <var class="var">hparent</var>.
+</p>
+<p>If <var class="var">horig</var> is a vector of handles, and <var class="var">hparent</var> is a scalar,
+then each handle in the vector <var class="var">hnew</var> has its <code class="code">&quot;Parent&quot;</code> property
+set to <var class="var">hparent</var>.  Conversely, if <var class="var">horig</var> is a scalar and
+<var class="var">hparent</var> a vector, then each parent object will receive a copy of
+<var class="var">horig</var>.  If <var class="var">horig</var> and <var class="var">hparent</var> are both vectors with the
+same number of elements then <code class="code"><var class="var">hnew</var>(i)</code> will have parent
+<code class="code"><var class="var">hparent</var>(i)</code>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFstruct2hdl">struct2hdl</a>, <a class="ref" href="#XREFhdl2struct">hdl2struct</a>, <a class="ref" href="Searching-Properties.html#XREFfindobj">findobj</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Creating-Graphics-Objects.html">Creating Graphics Objects</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Graphics-Objects.html">Graphics Objects</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

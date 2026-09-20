@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Notes for the C Programmer (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Notes for the C Programmer (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Notes for the C Programmer (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="The-switch-Statement.html" rel="up" title="The switch Statement">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+ul.mark-bullet {list-style-type: disc}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Notes-for-the-C-Programmer">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="The-switch-Statement.html" accesskey="u" rel="up">The switch Statement</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Notes-for-the-C-Programmer-1"><span>10.2.1 Notes for the C Programmer<a class="copiable-link" href="#Notes-for-the-C-Programmer-1"> &para;</a></span></h4>
+
+<p>The <code class="code">switch</code> statement is also available in the widely used C
+programming language.  There are, however, some differences
+between the statement in Octave and C
+</p>
+<ul class="itemize mark-bullet">
+<li>Cases are exclusive, so they don&rsquo;t &lsquo;fall through&rsquo; as do the cases
+in the <code class="code">switch</code> statement of the C language.
+
+</li><li>The <var class="var">command_list</var> elements are not optional.  Making the list
+optional would have meant requiring a separator between the label and
+the command list.  Otherwise, things like
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">switch (foo)
+  case (1) -2
+  ...
+</pre></div></div>
+
+<p>would produce surprising results, as would
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">switch (foo)
+  case (1)
+  case (2)
+    doit ();
+  ...
+</pre></div></div>
+
+<p>particularly for C programmers.  If <code class="code">doit()</code> should be executed if
+<var class="var">foo</var> is either <code class="code">1</code> or <code class="code">2</code>, the above code should be
+written with a cell array like this
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">switch (foo)
+  case { 1, 2 }
+    doit ();
+  ...
+</pre></div></div>
+
+</li></ul>
+
+</div>
+
+
+
+</body>
+</html>

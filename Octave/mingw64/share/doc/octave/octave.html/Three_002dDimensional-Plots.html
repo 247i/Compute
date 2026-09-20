@@ -1,0 +1,2071 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Three-Dimensional Plots (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Three-Dimensional Plots (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Three-Dimensional Plots (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="High_002dLevel-Plotting.html" rel="up" title="High-Level Plotting">
+<link href="Plot-Annotations.html" rel="next" title="Plot Annotations">
+<link href="Two_002dDimensional-Plots.html" rel="prev" title="Two-Dimensional Plots">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.center {text-align:center}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Three_002dDimensional-Plots">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Plot-Annotations.html" accesskey="n" rel="next">Plot Annotations</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Two_002dDimensional-Plots.html" accesskey="p" rel="prev">Two-Dimensional Plots</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="High_002dLevel-Plotting.html" accesskey="u" rel="up">High-Level Plotting</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Three_002dDimensional-Plots-1"><span>15.2.2 Three-Dimensional Plots<a class="copiable-link" href="#Three_002dDimensional-Plots-1"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-plotting_002c-three_002ddimensional"></a>
+
+<p>The function <code class="code">mesh</code> produces mesh surface plots.  For example,
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">tx = ty = linspace (-8, 8, 41)';
+[xx, yy] = meshgrid (tx, ty);
+r = sqrt (xx .^ 2 + yy .^ 2) + eps;
+tz = sin (r) ./ r;
+mesh (tx, ty, tz);
+xlabel (&quot;tx&quot;);
+ylabel (&quot;ty&quot;);
+zlabel (&quot;tz&quot;);
+title (&quot;3-D Sombrero plot&quot;);
+</pre></div></div>
+
+<p>produces the familiar &ldquo;sombrero&rdquo; plot shown in <a class="ref" href="#fig_003amesh">Figure 15.5</a>.  Note
+the use of the function <code class="code">meshgrid</code> to create matrices of X and Y
+coordinates to use for plotting the Z data.  The <code class="code">ndgrid</code> function
+is similar to <code class="code">meshgrid</code>, but works for N-dimensional matrices.
+</p>
+<div class="float" id="fig_003amesh">
+<div class="center"><img class="image" src="mesh.png" alt="mesh">
+</div><div class="caption"><p><strong class="strong">Figure 15.5: </strong>Mesh plot.</p></div></div>
+<p>The <code class="code">meshc</code> function is similar to <code class="code">mesh</code>, but also produces a
+plot of contours for the surface.
+</p>
+<p>The <code class="code">plot3</code> function displays arbitrary three-dimensional data,
+without requiring it to form a surface.  For example,
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">t = 0:0.1:10*pi;
+r = linspace (0, 1, numel (t));
+z = linspace (0, 1, numel (t));
+plot3 (r.*sin (t), r.*cos (t), z);
+xlabel (&quot;r.*sin (t)&quot;);
+ylabel (&quot;r.*cos (t)&quot;);
+zlabel (&quot;z&quot;);
+title (&quot;plot3 display of 3-D helix&quot;);
+</pre></div></div>
+
+<p>displays the spiral in three dimensions shown in <a class="ref" href="#fig_003aplot3">Figure 15.6</a>.
+</p>
+<div class="float" id="fig_003aplot3">
+<div class="center"><img class="image" src="plot3.png" alt="plot3">
+</div><div class="caption"><p><strong class="strong">Figure 15.6: </strong>Three-dimensional spiral.</p></div></div>
+<p>Finally, the <code class="code">view</code> function changes the viewpoint for
+three-dimensional plots.
+</p>
+<a class="anchor" id="XREFmesh"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-mesh"><span><strong class="def-name">mesh</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>)</code><a class="copiable-link" href="#index-mesh"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-mesh-1"><span><strong class="def-name">mesh</strong> <code class="def-code-arguments">(<var class="var">z</var>)</code><a class="copiable-link" href="#index-mesh-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-mesh-2"><span><strong class="def-name">mesh</strong> <code class="def-code-arguments">(&hellip;, <var class="var">c</var>)</code><a class="copiable-link" href="#index-mesh-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-mesh-3"><span><strong class="def-name">mesh</strong> <code class="def-code-arguments">(&hellip;, <var class="var">prop</var>, <var class="var">val</var>, &hellip;)</code><a class="copiable-link" href="#index-mesh-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-mesh-4"><span><strong class="def-name">mesh</strong> <code class="def-code-arguments">(<var class="var">hax</var>, &hellip;)</code><a class="copiable-link" href="#index-mesh-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-mesh-5"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">mesh</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-mesh-5"> &para;</a></span></dt>
+<dd><p>Plot a 3-D wireframe mesh.
+</p>
+<p>The wireframe mesh is plotted using rectangles.  The vertices of the
+rectangles [<var class="var">x</var>, <var class="var">y</var>] are typically the output of <code class="code">meshgrid</code>.
+over a 2-D rectangular region in the x-y plane.  <var class="var">z</var> determines the
+height above the plane of each vertex.  If only a single <var class="var">z</var> matrix is
+given, then it is plotted over the meshgrid
+<code class="code"><var class="var">x</var> = 1:columns (<var class="var">z</var>), <var class="var">y</var> = 1:rows (<var class="var">z</var>)</code>.
+Thus, columns of <var class="var">z</var> correspond to different <var class="var">x</var> values and rows
+of <var class="var">z</var> correspond to different <var class="var">y</var> values.
+</p>
+<p>The color of the mesh is computed by linearly scaling the <var class="var">z</var> values
+to fit the range of the current colormap.  Use <code class="code">clim</code> and/or
+change the colormap to control the appearance.
+</p>
+<p>Optionally, the color of the mesh can be specified independently of <var class="var">z</var>
+by supplying a color matrix, <var class="var">c</var>.
+</p>
+<p>Any property/value pairs are passed directly to the underlying surface
+object.  The full list of properties is documented at
+<a class="ref" href="Surface-Properties.html">Surface Properties</a>.
+</p>
+<p>If the first argument <var class="var">hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code class="code">gca</code>.
+</p>
+<p>The optional return value <var class="var">h</var> is a graphics handle to the created
+surface object.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Three_002ddimensional-Function-Plotting.html#XREFezmesh">ezmesh</a>, <a class="ref" href="#XREFmeshc">meshc</a>, <a class="ref" href="#XREFmeshz">meshz</a>, <a class="ref" href="Plotting-the-Triangulation.html#XREFtrimesh">trimesh</a>, <a class="ref" href="Two_002dDimensional-Plots.html#XREFcontour">contour</a>, <a class="ref" href="#XREFsurf">surf</a>, <a class="ref" href="Creating-Graphics-Objects.html#XREFsurface">surface</a>, <a class="ref" href="#XREFmeshgrid">meshgrid</a>, <a class="ref" href="#XREFhidden">hidden</a>, <a class="ref" href="#XREFshading">shading</a>, <a class="ref" href="Representing-Images.html#XREFcolormap">colormap</a>, <a class="ref" href="Axis-Configuration.html#XREFclim">clim</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFmeshc"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-meshc"><span><strong class="def-name">meshc</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>)</code><a class="copiable-link" href="#index-meshc"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-meshc-1"><span><strong class="def-name">meshc</strong> <code class="def-code-arguments">(<var class="var">z</var>)</code><a class="copiable-link" href="#index-meshc-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-meshc-2"><span><strong class="def-name">meshc</strong> <code class="def-code-arguments">(&hellip;, <var class="var">c</var>)</code><a class="copiable-link" href="#index-meshc-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-meshc-3"><span><strong class="def-name">meshc</strong> <code class="def-code-arguments">(&hellip;, <var class="var">prop</var>, <var class="var">val</var>, &hellip;)</code><a class="copiable-link" href="#index-meshc-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-meshc-4"><span><strong class="def-name">meshc</strong> <code class="def-code-arguments">(<var class="var">hax</var>, &hellip;)</code><a class="copiable-link" href="#index-meshc-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-meshc-5"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">meshc</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-meshc-5"> &para;</a></span></dt>
+<dd><p>Plot a 3-D wireframe mesh with underlying contour lines.
+</p>
+<p>The wireframe mesh is plotted using rectangles.  The vertices of the
+rectangles [<var class="var">x</var>, <var class="var">y</var>] are typically the output of <code class="code">meshgrid</code>.
+over a 2-D rectangular region in the x-y plane.  <var class="var">z</var> determines the
+height above the plane of each vertex.  If only a single <var class="var">z</var> matrix is
+given, then it is plotted over the meshgrid
+<code class="code"><var class="var">x</var> = 1:columns (<var class="var">z</var>), <var class="var">y</var> = 1:rows (<var class="var">z</var>)</code>.
+Thus, columns of <var class="var">z</var> correspond to different <var class="var">x</var> values and rows
+of <var class="var">z</var> correspond to different <var class="var">y</var> values.
+</p>
+<p>The color of the mesh is computed by linearly scaling the <var class="var">z</var> values
+to fit the range of the current colormap.  Use <code class="code">clim</code> and/or
+change the colormap to control the appearance.
+</p>
+<p>Optionally the color of the mesh can be specified independently of <var class="var">z</var>
+by supplying a color matrix, <var class="var">c</var>.
+</p>
+<p>Any property/value pairs are passed directly to the underlying surface
+object.  The full list of properties is documented at
+<a class="ref" href="Surface-Properties.html">Surface Properties</a>.
+</p>
+<p>If the first argument <var class="var">hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code class="code">gca</code>.
+</p>
+<p>The optional return value <var class="var">h</var> is a 2-element vector with a graphics
+handle to the created surface object and to the created contour plot.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Three_002ddimensional-Function-Plotting.html#XREFezmeshc">ezmeshc</a>, <a class="ref" href="#XREFmesh">mesh</a>, <a class="ref" href="#XREFmeshz">meshz</a>, <a class="ref" href="Two_002dDimensional-Plots.html#XREFcontour">contour</a>, <a class="ref" href="#XREFsurfc">surfc</a>, <a class="ref" href="Creating-Graphics-Objects.html#XREFsurface">surface</a>, <a class="ref" href="#XREFmeshgrid">meshgrid</a>, <a class="ref" href="#XREFhidden">hidden</a>, <a class="ref" href="#XREFshading">shading</a>, <a class="ref" href="Representing-Images.html#XREFcolormap">colormap</a>, <a class="ref" href="Axis-Configuration.html#XREFclim">clim</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFmeshz"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-meshz"><span><strong class="def-name">meshz</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>)</code><a class="copiable-link" href="#index-meshz"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-meshz-1"><span><strong class="def-name">meshz</strong> <code class="def-code-arguments">(<var class="var">z</var>)</code><a class="copiable-link" href="#index-meshz-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-meshz-2"><span><strong class="def-name">meshz</strong> <code class="def-code-arguments">(&hellip;, <var class="var">c</var>)</code><a class="copiable-link" href="#index-meshz-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-meshz-3"><span><strong class="def-name">meshz</strong> <code class="def-code-arguments">(&hellip;, <var class="var">prop</var>, <var class="var">val</var>, &hellip;)</code><a class="copiable-link" href="#index-meshz-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-meshz-4"><span><strong class="def-name">meshz</strong> <code class="def-code-arguments">(<var class="var">hax</var>, &hellip;)</code><a class="copiable-link" href="#index-meshz-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-meshz-5"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">meshz</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-meshz-5"> &para;</a></span></dt>
+<dd><p>Plot a 3-D wireframe mesh with a surrounding curtain.
+</p>
+<p>The wireframe mesh is plotted using rectangles.  The vertices of the
+rectangles [<var class="var">x</var>, <var class="var">y</var>] are typically the output of <code class="code">meshgrid</code>.
+over a 2-D rectangular region in the x-y plane.  <var class="var">z</var> determines the
+height above the plane of each vertex.  If only a single <var class="var">z</var> matrix is
+given, then it is plotted over the meshgrid
+<code class="code"><var class="var">x</var> = 1:columns (<var class="var">z</var>), <var class="var">y</var> = 1:rows (<var class="var">z</var>)</code>.
+Thus, columns of <var class="var">z</var> correspond to different <var class="var">x</var> values and rows
+of <var class="var">z</var> correspond to different <var class="var">y</var> values.
+</p>
+<p>The color of the mesh is computed by linearly scaling the <var class="var">z</var> values
+to fit the range of the current colormap.  Use <code class="code">clim</code> and/or
+change the colormap to control the appearance.
+</p>
+<p>Optionally the color of the mesh can be specified independently of <var class="var">z</var>
+by supplying a color matrix, <var class="var">c</var>.
+</p>
+<p>Any property/value pairs are passed directly to the underlying surface
+object.  The full list of properties is documented at
+<a class="ref" href="Surface-Properties.html">Surface Properties</a>.
+</p>
+<p>If the first argument <var class="var">hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code class="code">gca</code>.
+</p>
+<p>The optional return value <var class="var">h</var> is a graphics handle to the created
+surface object.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFmesh">mesh</a>, <a class="ref" href="#XREFmeshc">meshc</a>, <a class="ref" href="Two_002dDimensional-Plots.html#XREFcontour">contour</a>, <a class="ref" href="#XREFsurf">surf</a>, <a class="ref" href="Creating-Graphics-Objects.html#XREFsurface">surface</a>, <a class="ref" href="#XREFwaterfall">waterfall</a>, <a class="ref" href="#XREFmeshgrid">meshgrid</a>, <a class="ref" href="#XREFhidden">hidden</a>, <a class="ref" href="#XREFshading">shading</a>, <a class="ref" href="Representing-Images.html#XREFcolormap">colormap</a>, <a class="ref" href="Axis-Configuration.html#XREFclim">clim</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFhidden"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-hidden"><span><strong class="def-name">hidden</strong><a class="copiable-link" href="#index-hidden"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-hidden-1"><span><strong class="def-name">hidden</strong> <code class="def-code-arguments">on</code><a class="copiable-link" href="#index-hidden-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-hidden-2"><span><strong class="def-name">hidden</strong> <code class="def-code-arguments">off</code><a class="copiable-link" href="#index-hidden-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-hidden-3"><span><code class="def-type"><var class="var">mode</var> =</code> <strong class="def-name">hidden</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-hidden-3"> &para;</a></span></dt>
+<dd><p>Control mesh hidden line removal.
+</p>
+<p>When called with no argument the hidden line removal state is toggled.
+</p>
+<p>When called with one of the modes <code class="code">&quot;on&quot;</code> or <code class="code">&quot;off&quot;</code> the state
+is set accordingly.
+</p>
+<p>The optional output argument <var class="var">mode</var> is the current state.
+</p>
+<p>Hidden Line Removal determines what graphic objects behind a mesh plot
+are visible.  The default is for the mesh to be opaque and lines behind
+the mesh are not visible.  If hidden line removal is turned off then
+objects behind the mesh can be seen through the faces (openings) of the
+mesh, although the mesh grid lines are still opaque.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFmesh">mesh</a>, <a class="ref" href="#XREFmeshc">meshc</a>, <a class="ref" href="#XREFmeshz">meshz</a>, <a class="ref" href="Three_002ddimensional-Function-Plotting.html#XREFezmesh">ezmesh</a>, <a class="ref" href="Three_002ddimensional-Function-Plotting.html#XREFezmeshc">ezmeshc</a>, <a class="ref" href="Plotting-the-Triangulation.html#XREFtrimesh">trimesh</a>, <a class="ref" href="#XREFwaterfall">waterfall</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFsurf"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-surf"><span><strong class="def-name">surf</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>)</code><a class="copiable-link" href="#index-surf"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-surf-1"><span><strong class="def-name">surf</strong> <code class="def-code-arguments">(<var class="var">z</var>)</code><a class="copiable-link" href="#index-surf-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-surf-2"><span><strong class="def-name">surf</strong> <code class="def-code-arguments">(&hellip;, <var class="var">c</var>)</code><a class="copiable-link" href="#index-surf-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-surf-3"><span><strong class="def-name">surf</strong> <code class="def-code-arguments">(&hellip;, <var class="var">prop</var>, <var class="var">val</var>, &hellip;)</code><a class="copiable-link" href="#index-surf-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-surf-4"><span><strong class="def-name">surf</strong> <code class="def-code-arguments">(<var class="var">hax</var>, &hellip;)</code><a class="copiable-link" href="#index-surf-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-surf-5"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">surf</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-surf-5"> &para;</a></span></dt>
+<dd><p>Plot a 3-D surface mesh.
+</p>
+<p>The surface mesh is plotted using shaded rectangles.  The vertices of the
+rectangles [<var class="var">x</var>, <var class="var">y</var>] are typically the output of <code class="code">meshgrid</code>.
+over a 2-D rectangular region in the x-y plane.  <var class="var">z</var> determines the
+height above the plane of each vertex.  If only a single <var class="var">z</var> matrix is
+given, then it is plotted over the meshgrid
+<code class="code"><var class="var">x</var> = 1:columns (<var class="var">z</var>), <var class="var">y</var> = 1:rows (<var class="var">z</var>)</code>.
+Thus, columns of <var class="var">z</var> correspond to different <var class="var">x</var> values and rows
+of <var class="var">z</var> correspond to different <var class="var">y</var> values.
+</p>
+<p>The color of the surface is computed by linearly scaling the <var class="var">z</var> values
+to fit the range of the current colormap.  Use <code class="code">clim</code> and/or
+change the colormap to control the appearance.
+</p>
+<p>Optionally, the color of the surface can be specified independently of
+<var class="var">z</var> by supplying a color matrix, <var class="var">c</var>.
+</p>
+<p>Any property/value pairs are passed directly to the underlying surface
+object.  The full list of properties is documented at
+<a class="ref" href="Surface-Properties.html">Surface Properties</a>.
+</p>
+<p>If the first argument <var class="var">hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code class="code">gca</code>.
+</p>
+<p>The optional return value <var class="var">h</var> is a graphics handle to the created
+surface object.
+</p>
+<p>Note: The exact appearance of the surface can be controlled with the
+<code class="code">shading</code> command or by using <code class="code">set</code> to control surface object
+properties.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Three_002ddimensional-Function-Plotting.html#XREFezsurf">ezsurf</a>, <a class="ref" href="#XREFsurfc">surfc</a>, <a class="ref" href="#XREFsurfl">surfl</a>, <a class="ref" href="#XREFsurfnorm">surfnorm</a>, <a class="ref" href="Plotting-the-Triangulation.html#XREFtrisurf">trisurf</a>, <a class="ref" href="Two_002dDimensional-Plots.html#XREFcontour">contour</a>, <a class="ref" href="#XREFmesh">mesh</a>, <a class="ref" href="Creating-Graphics-Objects.html#XREFsurface">surface</a>, <a class="ref" href="#XREFmeshgrid">meshgrid</a>, <a class="ref" href="#XREFhidden">hidden</a>, <a class="ref" href="#XREFshading">shading</a>, <a class="ref" href="Representing-Images.html#XREFcolormap">colormap</a>, <a class="ref" href="Axis-Configuration.html#XREFclim">clim</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFsurfc"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-surfc"><span><strong class="def-name">surfc</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>)</code><a class="copiable-link" href="#index-surfc"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-surfc-1"><span><strong class="def-name">surfc</strong> <code class="def-code-arguments">(<var class="var">z</var>)</code><a class="copiable-link" href="#index-surfc-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-surfc-2"><span><strong class="def-name">surfc</strong> <code class="def-code-arguments">(&hellip;, <var class="var">c</var>)</code><a class="copiable-link" href="#index-surfc-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-surfc-3"><span><strong class="def-name">surfc</strong> <code class="def-code-arguments">(&hellip;, <var class="var">prop</var>, <var class="var">val</var>, &hellip;)</code><a class="copiable-link" href="#index-surfc-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-surfc-4"><span><strong class="def-name">surfc</strong> <code class="def-code-arguments">(<var class="var">hax</var>, &hellip;)</code><a class="copiable-link" href="#index-surfc-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-surfc-5"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">surfc</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-surfc-5"> &para;</a></span></dt>
+<dd><p>Plot a 3-D surface mesh with underlying contour lines.
+</p>
+<p>The surface mesh is plotted using shaded rectangles.  The vertices of the
+rectangles [<var class="var">x</var>, <var class="var">y</var>] are typically the output of <code class="code">meshgrid</code>.
+over a 2-D rectangular region in the x-y plane.  <var class="var">z</var> determines the
+height above the plane of each vertex.  If only a single <var class="var">z</var> matrix is
+given, then it is plotted over the meshgrid
+<code class="code"><var class="var">x</var> = 1:columns (<var class="var">z</var>), <var class="var">y</var> = 1:rows (<var class="var">z</var>)</code>.
+Thus, columns of <var class="var">z</var> correspond to different <var class="var">x</var> values and rows
+of <var class="var">z</var> correspond to different <var class="var">y</var> values.
+</p>
+<p>The color of the surface is computed by linearly scaling the <var class="var">z</var> values
+to fit the range of the current colormap.  Use <code class="code">clim</code> and/or
+change the colormap to control the appearance.
+</p>
+<p>Optionally, the color of the surface can be specified independently of
+<var class="var">z</var> by supplying a color matrix, <var class="var">c</var>.
+</p>
+<p>Any property/value pairs are passed directly to the underlying surface
+object.  The full list of properties is documented at
+<a class="ref" href="Surface-Properties.html">Surface Properties</a>.
+</p>
+<p>If the first argument <var class="var">hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code class="code">gca</code>.
+</p>
+<p>The optional return value <var class="var">h</var> is a graphics handle to the created
+surface object.
+</p>
+<p>Note: The exact appearance of the surface can be controlled with the
+<code class="code">shading</code> command or by using <code class="code">set</code> to control surface object
+properties.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Three_002ddimensional-Function-Plotting.html#XREFezsurfc">ezsurfc</a>, <a class="ref" href="#XREFsurf">surf</a>, <a class="ref" href="#XREFsurfl">surfl</a>, <a class="ref" href="#XREFsurfnorm">surfnorm</a>, <a class="ref" href="Plotting-the-Triangulation.html#XREFtrisurf">trisurf</a>, <a class="ref" href="Two_002dDimensional-Plots.html#XREFcontour">contour</a>, <a class="ref" href="#XREFmesh">mesh</a>, <a class="ref" href="Creating-Graphics-Objects.html#XREFsurface">surface</a>, <a class="ref" href="#XREFmeshgrid">meshgrid</a>, <a class="ref" href="#XREFhidden">hidden</a>, <a class="ref" href="#XREFshading">shading</a>, <a class="ref" href="Representing-Images.html#XREFcolormap">colormap</a>, <a class="ref" href="Axis-Configuration.html#XREFclim">clim</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFsurfl"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-surfl"><span><strong class="def-name">surfl</strong> <code class="def-code-arguments">(<var class="var">z</var>)</code><a class="copiable-link" href="#index-surfl"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-surfl-1"><span><strong class="def-name">surfl</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>)</code><a class="copiable-link" href="#index-surfl-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-surfl-2"><span><strong class="def-name">surfl</strong> <code class="def-code-arguments">(&hellip;, <var class="var">lsrc</var>)</code><a class="copiable-link" href="#index-surfl-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-surfl-3"><span><strong class="def-name">surfl</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>, <var class="var">lsrc</var>, <var class="var">P</var>)</code><a class="copiable-link" href="#index-surfl-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-surfl-4"><span><strong class="def-name">surfl</strong> <code class="def-code-arguments">(&hellip;, &quot;cdata&quot;)</code><a class="copiable-link" href="#index-surfl-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-surfl-5"><span><strong class="def-name">surfl</strong> <code class="def-code-arguments">(&hellip;, &quot;light&quot;)</code><a class="copiable-link" href="#index-surfl-5"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-surfl-6"><span><strong class="def-name">surfl</strong> <code class="def-code-arguments">(<var class="var">hax</var>, &hellip;)</code><a class="copiable-link" href="#index-surfl-6"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-surfl-7"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">surfl</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-surfl-7"> &para;</a></span></dt>
+<dd><p>Plot a 3-D surface using shading based on various lighting models.
+</p>
+<p>The surface mesh is plotted using shaded rectangles.  The vertices of the
+rectangles [<var class="var">x</var>, <var class="var">y</var>] are typically the output of <code class="code">meshgrid</code>.
+over a 2-D rectangular region in the x-y plane.  <var class="var">z</var> determines the
+height above the plane of each vertex.  If only a single <var class="var">z</var> matrix is
+given, then it is plotted over the meshgrid
+<code class="code"><var class="var">x</var> = 1:columns (<var class="var">z</var>), <var class="var">y</var> = 1:rows (<var class="var">z</var>)</code>.
+Thus, columns of <var class="var">z</var> correspond to different <var class="var">x</var> values and rows
+of <var class="var">z</var> correspond to different <var class="var">y</var> values.
+</p>
+<p>The default lighting mode <code class="code">&quot;cdata&quot;</code>, changes the cdata property of the
+surface object to give the impression of a lighted surface.
+</p>
+<p>The alternate mode <code class="code">&quot;light&quot;</code> creates a light object to illuminate the
+surface.
+</p>
+<p>The light source location may be specified using <var class="var">lsrc</var> which can be
+a 2-element vector [azimuth, elevation] in degrees, or a 3-element vector
+[lx, ly, lz].  The default value is rotated 45 degrees counterclockwise to
+the current view.
+</p>
+<p>The material properties of the surface can specified using a 4-element
+vector <var class="var">P</var> = [<var class="var">AM</var> <var class="var">D</var> <var class="var">SP</var> <var class="var">exp</var>] which defaults to
+<var class="var">p</var> = [0.55 0.6 0.4 10].
+</p>
+<dl class="table">
+<dt><code class="code">&quot;AM&quot;</code> strength of ambient light</dt>
+<dt><code class="code">&quot;D&quot;</code> strength of diffuse reflection</dt>
+<dt><code class="code">&quot;SP&quot;</code> strength of specular reflection</dt>
+<dt><code class="code">&quot;EXP&quot;</code> specular exponent</dt>
+</dl>
+
+<p>If the first argument <var class="var">hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code class="code">gca</code>.
+</p>
+<p>The optional return value <var class="var">h</var> is a graphics handle to the created
+surface object.
+</p>
+<p>Example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">colormap (bone (64));
+surfl (peaks);
+shading interp;
+</pre></div></div>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFdiffuse">diffuse</a>, <a class="ref" href="#XREFspecular">specular</a>, <a class="ref" href="#XREFsurf">surf</a>, <a class="ref" href="#XREFshading">shading</a>, <a class="ref" href="Representing-Images.html#XREFcolormap">colormap</a>, <a class="ref" href="Axis-Configuration.html#XREFclim">clim</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFsurfnorm"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-surfnorm"><span><strong class="def-name">surfnorm</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>)</code><a class="copiable-link" href="#index-surfnorm"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-surfnorm-1"><span><strong class="def-name">surfnorm</strong> <code class="def-code-arguments">(<var class="var">z</var>)</code><a class="copiable-link" href="#index-surfnorm-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-surfnorm-2"><span><strong class="def-name">surfnorm</strong> <code class="def-code-arguments">(&hellip;, <var class="var">prop</var>, <var class="var">val</var>, &hellip;)</code><a class="copiable-link" href="#index-surfnorm-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-surfnorm-3"><span><strong class="def-name">surfnorm</strong> <code class="def-code-arguments">(<var class="var">hax</var>, &hellip;)</code><a class="copiable-link" href="#index-surfnorm-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-surfnorm-4"><span><code class="def-type">[<var class="var">Nx</var>, <var class="var">Ny</var>, <var class="var">Nz</var>] =</code> <strong class="def-name">surfnorm</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-surfnorm-4"> &para;</a></span></dt>
+<dd><p>Find the vectors normal to a meshgridded surface.
+</p>
+<p>If <var class="var">x</var> and <var class="var">y</var> are vectors, then a typical vertex is
+(<var class="var">x</var>(j), <var class="var">y</var>(i), <var class="var">z</var>(i,j)).  Thus, columns of <var class="var">z</var> correspond
+to different <var class="var">x</var> values and rows of <var class="var">z</var> correspond to different
+<var class="var">y</var> values.  If only a single input <var class="var">z</var> is given then <var class="var">x</var> is
+taken to be <code class="code">1:columns (<var class="var">z</var>)</code> and <var class="var">y</var> is
+<code class="code">1:rows (<var class="var">z</var>)</code>.
+</p>
+<p>If no return arguments are requested, a surface plot with the normal
+vectors to the surface is plotted.
+</p>
+<p>Any property/value input pairs are assigned to the surface object.  The full
+list of properties is documented at <a class="ref" href="Surface-Properties.html">Surface Properties</a>.
+</p>
+<p>If the first argument <var class="var">hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code class="code">gca</code>.
+</p>
+<p>If output arguments are requested then the components of the normal
+vectors are returned in <var class="var">Nx</var>, <var class="var">Ny</var>, and <var class="var">Nz</var> and no plot is
+made.  The normal vectors are unnormalized (magnitude != 1).  To normalize,
+use
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">len = sqrt (nx.^2 + ny.^2 + nz.^2);
+nx ./= len;  ny ./= len;  nz ./= len;
+</pre></div></div>
+
+<p>An example of the use of <code class="code">surfnorm</code> is
+</p>
+<div class="example">
+<pre class="example-preformatted">surfnorm (peaks (25));
+</pre></div>
+
+<p>Algorithm: The normal vectors are calculated by taking the cross product
+of the diagonals of each of the quadrilateral faces in the meshgrid to find
+the normal vectors at the center of each face.  Next, for each meshgrid
+point the four nearest normal vectors are averaged to obtain the final
+normal to the surface at the meshgrid point.
+</p>
+<p>For surface objects, the <code class="code">&quot;VertexNormals&quot;</code> property contains
+equivalent information, except possibly near the boundary of the surface
+where different interpolation schemes may yield slightly different values.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFisonormals">isonormals</a>, <a class="ref" href="Two_002dDimensional-Plots.html#XREFquiver3">quiver3</a>, <a class="ref" href="#XREFsurf">surf</a>, <a class="ref" href="#XREFmeshgrid">meshgrid</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFisosurface"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-isosurface"><span><code class="def-type"><var class="var">fv</var> =</code> <strong class="def-name">isosurface</strong> <code class="def-code-arguments">(<var class="var">v</var>, <var class="var">isoval</var>)</code><a class="copiable-link" href="#index-isosurface"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-isosurface-1"><span><code class="def-type"><var class="var">fv</var> =</code> <strong class="def-name">isosurface</strong> <code class="def-code-arguments">(<var class="var">v</var>)</code><a class="copiable-link" href="#index-isosurface-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-isosurface-2"><span><code class="def-type"><var class="var">fv</var> =</code> <strong class="def-name">isosurface</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>, <var class="var">v</var>, <var class="var">isoval</var>)</code><a class="copiable-link" href="#index-isosurface-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-isosurface-3"><span><code class="def-type"><var class="var">fv</var> =</code> <strong class="def-name">isosurface</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>, <var class="var">v</var>)</code><a class="copiable-link" href="#index-isosurface-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-isosurface-4"><span><code class="def-type"><var class="var">fvc</var> =</code> <strong class="def-name">isosurface</strong> <code class="def-code-arguments">(&hellip;, <var class="var">col</var>)</code><a class="copiable-link" href="#index-isosurface-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-isosurface-5"><span><code class="def-type"><var class="var">fv</var> =</code> <strong class="def-name">isosurface</strong> <code class="def-code-arguments">(&hellip;, &quot;noshare&quot;)</code><a class="copiable-link" href="#index-isosurface-5"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-isosurface-6"><span><code class="def-type"><var class="var">fv</var> =</code> <strong class="def-name">isosurface</strong> <code class="def-code-arguments">(&hellip;, &quot;verbose&quot;)</code><a class="copiable-link" href="#index-isosurface-6"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-isosurface-7"><span><code class="def-type">[<var class="var">f</var>, <var class="var">v</var>] =</code> <strong class="def-name">isosurface</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-isosurface-7"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-isosurface-8"><span><code class="def-type">[<var class="var">f</var>, <var class="var">v</var>, <var class="var">c</var>] =</code> <strong class="def-name">isosurface</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-isosurface-8"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-isosurface-9"><span><strong class="def-name">isosurface</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-isosurface-9"> &para;</a></span></dt>
+<dd>
+<p>Calculate isosurface of 3-D volume data.
+</p>
+<p>An isosurface connects points with the same value and is analogous to a
+contour plot, but in three dimensions.
+</p>
+<p>The input argument <var class="var">v</var> is a three-dimensional array that contains data
+sampled over a volume.
+</p>
+<p>The input <var class="var">isoval</var> is a scalar that specifies the value for the
+isosurface.  If <var class="var">isoval</var> is omitted or empty, a &quot;good&quot; value
+for an isosurface is determined from <var class="var">v</var>.
+</p>
+<p>When called with a single output argument <code class="code">isosurface</code> returns a
+structure array <var class="var">fv</var> that contains the fields <var class="var">faces</var> and
+<var class="var">vertices</var> computed at the points
+<code class="code">[<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>] = meshgrid (1:l, 1:m, 1:n)</code> where
+<code class="code">[l, m, n] = size (<var class="var">v</var>)</code>.  The output <var class="var">fv</var> can be
+used directly as input to the <code class="code">patch</code> function.
+</p>
+<p>If called with additional input arguments <var class="var">x</var>, <var class="var">y</var>, and <var class="var">z</var>
+that are three-dimensional arrays with the same size as <var class="var">v</var> or
+vectors with lengths corresponding to the dimensions of <var class="var">v</var>, then the
+volume data is taken at the specified points.  If <var class="var">x</var>, <var class="var">y</var>, or
+<var class="var">z</var> are empty, the grid corresponds to the indices (<code class="code">1:n</code>) in
+the respective direction (see <a class="pxref" href="#XREFmeshgrid"><code class="code">meshgrid</code></a>).
+</p>
+<p>The optional input argument <var class="var">col</var>, which is a three-dimensional array
+of the same size as <var class="var">v</var>, specifies coloring of the isosurface.  The
+color data is interpolated, as necessary, to match <var class="var">isoval</var>.  The
+output structure array, in this case, has the additional field
+<var class="var">facevertexcdata</var>.
+</p>
+<p>If given the string input argument <code class="code">&quot;noshare&quot;</code>, vertices may be
+returned multiple times for different faces.  The default behavior is to
+eliminate vertices shared by adjacent faces.
+</p>
+<p>The string input argument <code class="code">&quot;verbose&quot;</code> is supported for <small class="sc">MATLAB</small>
+compatibility, but has no effect.
+</p>
+<p>Any string arguments must be passed after the other arguments.
+</p>
+<p>If called with two or three output arguments, return the information about
+the faces <var class="var">f</var>, vertices <var class="var">v</var>, and color data <var class="var">c</var> as separate
+arrays instead of a single structure array.
+</p>
+<p>If called with no output argument, the isosurface geometry is directly
+plotted with the <code class="code">patch</code> command and a light object is added to
+the axes if not yet present.
+</p>
+<p>For example,
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">[x, y, z] = meshgrid (1:5, 1:5, 1:5);
+v = rand (5, 5, 5);
+isosurface (x, y, z, v, .5);
+</pre></div></div>
+
+<p>will directly draw a random isosurface geometry in a graphics window.
+</p>
+<p>An example of an isosurface geometry with different additional coloring:
+</p>
+<div class="example smallexample">
+<pre class="example-preformatted">N = 15;    # Increase number of vertices in each direction
+iso = .4;  # Change isovalue to .1 to display a sphere
+lin = linspace (0, 2, N);
+[x, y, z] = meshgrid (lin, lin, lin);
+v = abs ((x-.5).^2 + (y-.5).^2 + (z-.5).^2);
+figure ();
+
+subplot (2,2,1); view (-38, 20);
+[f, vert] = isosurface (x, y, z, v, iso);
+p = patch (&quot;Faces&quot;, f, &quot;Vertices&quot;, vert, &quot;EdgeColor&quot;, &quot;none&quot;);
+pbaspect ([1 1 1]);
+isonormals (x, y, z, v, p)
+set (p, &quot;FaceColor&quot;, &quot;green&quot;, &quot;FaceLighting&quot;, &quot;gouraud&quot;);
+light (&quot;Position&quot;, [1 1 5]);
+
+subplot (2,2,2); view (-38, 20);
+p = patch (&quot;Faces&quot;, f, &quot;Vertices&quot;, vert, &quot;EdgeColor&quot;, &quot;blue&quot;);
+pbaspect ([1 1 1]);
+isonormals (x, y, z, v, p)
+set (p, &quot;FaceColor&quot;, &quot;none&quot;, &quot;EdgeLighting&quot;, &quot;gouraud&quot;);
+light (&quot;Position&quot;, [1 1 5]);
+
+subplot (2,2,3); view (-38, 20);
+[f, vert, c] = isosurface (x, y, z, v, iso, y);
+p = patch (&quot;Faces&quot;, f, &quot;Vertices&quot;, vert, &quot;FaceVertexCData&quot;, c, ...
+           &quot;FaceColor&quot;, &quot;interp&quot;, &quot;EdgeColor&quot;, &quot;none&quot;);
+pbaspect ([1 1 1]);
+isonormals (x, y, z, v, p)
+set (p, &quot;FaceLighting&quot;, &quot;gouraud&quot;);
+light (&quot;Position&quot;, [1 1 5]);
+
+subplot (2,2,4); view (-38, 20);
+p = patch (&quot;Faces&quot;, f, &quot;Vertices&quot;, vert, &quot;FaceVertexCData&quot;, c, ...
+           &quot;FaceColor&quot;, &quot;interp&quot;, &quot;EdgeColor&quot;, &quot;blue&quot;);
+pbaspect ([1 1 1]);
+isonormals (x, y, z, v, p)
+set (p, &quot;FaceLighting&quot;, &quot;gouraud&quot;);
+light (&quot;Position&quot;, [1 1 5]);
+</pre></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFisonormals">isonormals</a>, <a class="ref" href="#XREFisocolors">isocolors</a>, <a class="ref" href="#XREFisocaps">isocaps</a>, <a class="ref" href="#XREFsmooth3">smooth3</a>, <a class="ref" href="#XREFreducevolume">reducevolume</a>, <a class="ref" href="#XREFreducepatch">reducepatch</a>, <a class="ref" href="Creating-Graphics-Objects.html#XREFpatch">patch</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFisonormals"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-isonormals"><span><code class="def-type"><var class="var">vn</var> =</code> <strong class="def-name">isonormals</strong> <code class="def-code-arguments">(<var class="var">val</var>, <var class="var">vert</var>)</code><a class="copiable-link" href="#index-isonormals"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-isonormals-1"><span><code class="def-type"><var class="var">vn</var> =</code> <strong class="def-name">isonormals</strong> <code class="def-code-arguments">(<var class="var">val</var>, <var class="var">hp</var>)</code><a class="copiable-link" href="#index-isonormals-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-isonormals-2"><span><code class="def-type"><var class="var">vn</var> =</code> <strong class="def-name">isonormals</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>, <var class="var">val</var>, <var class="var">vert</var>)</code><a class="copiable-link" href="#index-isonormals-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-isonormals-3"><span><code class="def-type"><var class="var">vn</var> =</code> <strong class="def-name">isonormals</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>, <var class="var">val</var>, <var class="var">hp</var>)</code><a class="copiable-link" href="#index-isonormals-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-isonormals-4"><span><code class="def-type"><var class="var">vn</var> =</code> <strong class="def-name">isonormals</strong> <code class="def-code-arguments">(&hellip;, &quot;negate&quot;)</code><a class="copiable-link" href="#index-isonormals-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-isonormals-5"><span><strong class="def-name">isonormals</strong> <code class="def-code-arguments">(<var class="var">val</var>, <var class="var">hp</var>)</code><a class="copiable-link" href="#index-isonormals-5"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-isonormals-6"><span><strong class="def-name">isonormals</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>, <var class="var">val</var>, <var class="var">hp</var>)</code><a class="copiable-link" href="#index-isonormals-6"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-isonormals-7"><span><strong class="def-name">isonormals</strong> <code class="def-code-arguments">(&hellip;, &quot;negate&quot;)</code><a class="copiable-link" href="#index-isonormals-7"> &para;</a></span></dt>
+<dd>
+<p>Calculate normals to an isosurface.
+</p>
+<p>The vertex normals <var class="var">vn</var> are calculated from the gradient of the
+3-dimensional array <var class="var">val</var> (size: lxmxn) containing the data for an
+isosurface geometry.  The normals point towards smaller values in <var class="var">val</var>.
+</p>
+<p>If called with one output argument <var class="var">vn</var>, and the second input argument
+<var class="var">vert</var> holds the vertices of an isosurface, then the normals <var class="var">vn</var>
+are calculated at the vertices <var class="var">vert</var> on a grid given by
+<code class="code">[x, y, z] = meshgrid (1:l, 1:m, 1:n)</code>.  The output argument
+<var class="var">vn</var> has the same size as <var class="var">vert</var> and can be used to set the
+<code class="code">&quot;VertexNormals&quot;</code> property of the corresponding patch.
+</p>
+<p>If called with additional input arguments <var class="var">x</var>, <var class="var">y</var>, and <var class="var">z</var>,
+which are 3-dimensional arrays with the same size as <var class="var">val</var>,
+then the volume data is taken at these points.  Instead of the vertex data
+<var class="var">vert</var>, a patch handle <var class="var">hp</var> can be passed to the function.
+</p>
+<p>If the last input argument is the string <code class="code">&quot;negate&quot;</code>, compute the
+reverse vector normals of an isosurface geometry (i.e., pointed towards
+larger values in <var class="var">val</var>).
+</p>
+<p>If no output argument is given, the property <code class="code">&quot;VertexNormals&quot;</code> of
+the patch associated with the patch handle <var class="var">hp</var> is changed directly.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFisosurface">isosurface</a>, <a class="ref" href="#XREFisocolors">isocolors</a>, <a class="ref" href="#XREFsmooth3">smooth3</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFisocaps"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-isocaps"><span><code class="def-type"><var class="var">fvc</var> =</code> <strong class="def-name">isocaps</strong> <code class="def-code-arguments">(<var class="var">v</var>, <var class="var">isoval</var>)</code><a class="copiable-link" href="#index-isocaps"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-isocaps-1"><span><code class="def-type"><var class="var">fvc</var> =</code> <strong class="def-name">isocaps</strong> <code class="def-code-arguments">(<var class="var">v</var>)</code><a class="copiable-link" href="#index-isocaps-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-isocaps-2"><span><code class="def-type"><var class="var">fvc</var> =</code> <strong class="def-name">isocaps</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>, <var class="var">v</var>, <var class="var">isoval</var>)</code><a class="copiable-link" href="#index-isocaps-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-isocaps-3"><span><code class="def-type"><var class="var">fvc</var> =</code> <strong class="def-name">isocaps</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>, <var class="var">v</var>)</code><a class="copiable-link" href="#index-isocaps-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-isocaps-4"><span><code class="def-type"><var class="var">fvc</var> =</code> <strong class="def-name">isocaps</strong> <code class="def-code-arguments">(&hellip;, <var class="var">which_caps</var>)</code><a class="copiable-link" href="#index-isocaps-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-isocaps-5"><span><code class="def-type"><var class="var">fvc</var> =</code> <strong class="def-name">isocaps</strong> <code class="def-code-arguments">(&hellip;, <var class="var">which_plane</var>)</code><a class="copiable-link" href="#index-isocaps-5"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-isocaps-6"><span><code class="def-type"><var class="var">fvc</var> =</code> <strong class="def-name">isocaps</strong> <code class="def-code-arguments">(&hellip;, <code class="code">&quot;verbose&quot;</code>)</code><a class="copiable-link" href="#index-isocaps-6"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-isocaps-7"><span><code class="def-type">[<var class="var">faces</var>, <var class="var">vertices</var>, <var class="var">fvcdata</var>] =</code> <strong class="def-name">isocaps</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-isocaps-7"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-isocaps-8"><span><strong class="def-name">isocaps</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-isocaps-8"> &para;</a></span></dt>
+<dd>
+<p>Create end-caps for isosurfaces of 3-D data.
+</p>
+<p>This function places caps at the open ends of isosurfaces.
+</p>
+<p>The input argument <var class="var">v</var> is a three-dimensional array that contains data
+sampled over a volume.
+</p>
+<p>The input <var class="var">isoval</var> is a scalar that specifies the value for the
+isosurface.  If <var class="var">isoval</var> is omitted or empty, a &quot;good&quot; value
+for an isosurface is determined from <var class="var">v</var>.
+</p>
+<p>When called with a single output argument, <code class="code">isocaps</code> returns a
+structure array <var class="var">fvc</var> with the fields: <code class="code">faces</code>, <code class="code">vertices</code>,
+and <code class="code">facevertexcdata</code>.  The results are computed at the points
+<code class="code">[<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>] = meshgrid (1:l, 1:m, 1:n)</code> where
+<code class="code">[l, m, n] = size (<var class="var">v</var>)</code>.  The output <var class="var">fvc</var> can be used
+directly as input to the <code class="code">patch</code> function.
+</p>
+<p>If called with additional input arguments <var class="var">x</var>, <var class="var">y</var>, and <var class="var">z</var>
+that are three-dimensional arrays with the same size as <var class="var">v</var> or
+vectors with lengths corresponding to the dimensions of <var class="var">v</var>, then the
+volume data is taken at the specified points.  If <var class="var">x</var>, <var class="var">y</var>, or
+<var class="var">z</var> are empty, the grid corresponds to the indices (<code class="code">1:n</code>) in
+the respective direction (see <a class="pxref" href="#XREFmeshgrid"><code class="code">meshgrid</code></a>).
+</p>
+<p>The optional parameter <var class="var">which_caps</var> can have one of the following
+string values which defines how the data will be enclosed:
+</p>
+<dl class="table">
+<dt><code class="code">&quot;above&quot;</code>, <code class="code">&quot;a&quot;</code> (default)</dt>
+<dd><p>for end-caps that enclose the data above <var class="var">isoval</var>.
+</p>
+</dd>
+<dt><code class="code">&quot;below&quot;</code>, <code class="code">&quot;b&quot;</code></dt>
+<dd><p>for end-caps that enclose the data below <var class="var">isoval</var>.
+</p></dd>
+</dl>
+
+<p>The optional parameter <var class="var">which_plane</var> can have one of the following
+string values to define which end-cap should be drawn:
+</p>
+<dl class="table">
+<dt><code class="code">&quot;all&quot;</code> (default)</dt>
+<dd><p>for all of the end-caps.
+</p>
+</dd>
+<dt><code class="code">&quot;xmin&quot;</code></dt>
+<dd><p>for end-caps at the lower x-plane of the data.
+</p>
+</dd>
+<dt><code class="code">&quot;xmax&quot;</code></dt>
+<dd><p>for end-caps at the upper x-plane of the data.
+</p>
+</dd>
+<dt><code class="code">&quot;ymin&quot;</code></dt>
+<dd><p>for end-caps at the lower y-plane of the data.
+</p>
+</dd>
+<dt><code class="code">&quot;ymax&quot;</code></dt>
+<dd><p>for end-caps at the upper y-plane of the data.
+</p>
+</dd>
+<dt><code class="code">&quot;zmin&quot;</code></dt>
+<dd><p>for end-caps at the lower z-plane of the data.
+</p>
+</dd>
+<dt><code class="code">&quot;zmax&quot;</code></dt>
+<dd><p>for end-caps at the upper z-plane of the data.
+</p></dd>
+</dl>
+
+<p>The string input argument <code class="code">&quot;verbose&quot;</code> is supported for <small class="sc">MATLAB</small>
+compatibility, but has no effect.
+</p>
+<p>If called with two or three output arguments, the data for faces
+<var class="var">faces</var>, vertices <var class="var">vertices</var>, and the color data
+<var class="var">facevertexcdata</var> are returned in separate arrays instead of a single
+structure.
+</p>
+<p>If called with no output argument, the end-caps are drawn directly in the
+current figure with the <code class="code">patch</code> command.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFisosurface">isosurface</a>, <a class="ref" href="#XREFisonormals">isonormals</a>, <a class="ref" href="Creating-Graphics-Objects.html#XREFpatch">patch</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFisocolors"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-isocolors"><span><code class="def-type"><var class="var">cdat</var> =</code> <strong class="def-name">isocolors</strong> <code class="def-code-arguments">(<var class="var">c</var>, <var class="var">v</var>)</code><a class="copiable-link" href="#index-isocolors"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-isocolors-1"><span><code class="def-type"><var class="var">cdat</var> =</code> <strong class="def-name">isocolors</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>, <var class="var">c</var>, <var class="var">v</var>)</code><a class="copiable-link" href="#index-isocolors-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-isocolors-2"><span><code class="def-type"><var class="var">cdat</var> =</code> <strong class="def-name">isocolors</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>, <var class="var">r</var>, <var class="var">g</var>, <var class="var">b</var>, <var class="var">v</var>)</code><a class="copiable-link" href="#index-isocolors-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-isocolors-3"><span><code class="def-type"><var class="var">cdat</var> =</code> <strong class="def-name">isocolors</strong> <code class="def-code-arguments">(<var class="var">r</var>, <var class="var">g</var>, <var class="var">b</var>, <var class="var">v</var>)</code><a class="copiable-link" href="#index-isocolors-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-isocolors-4"><span><code class="def-type"><var class="var">cdat</var> =</code> <strong class="def-name">isocolors</strong> <code class="def-code-arguments">(&hellip;, <var class="var">hp</var>)</code><a class="copiable-link" href="#index-isocolors-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-isocolors-5"><span><strong class="def-name">isocolors</strong> <code class="def-code-arguments">(&hellip;, <var class="var">hp</var>)</code><a class="copiable-link" href="#index-isocolors-5"> &para;</a></span></dt>
+<dd>
+<p>Compute isosurface colors.
+</p>
+<p>If called with one output argument, and the first input argument <var class="var">c</var>
+is a three-dimensional array that contains indexed color values, and the
+second input argument <var class="var">v</var> are the vertices of an isosurface geometry,
+then return a matrix <var class="var">cdat</var> with color data information for the geometry
+at computed points <code class="code">[x, y, z] = meshgrid (1:l, 1:m, 1:n)</code>.  The output
+argument <var class="var">cdat</var> can be used to manually set the
+<code class="code">&quot;FaceVertexCData&quot;</code> property of an isosurface patch object.
+</p>
+<p>If called with additional input arguments <var class="var">x</var>, <var class="var">y</var> and <var class="var">z</var> which
+are three-dimensional arrays of the same size as <var class="var">c</var> then the
+color data is taken at those specified points.
+</p>
+<p>Instead of indexed color data <var class="var">c</var>, <code class="code">isocolors</code> can also be called
+with RGB values <var class="var">r</var>, <var class="var">g</var>, <var class="var">b</var>.  If input arguments <var class="var">x</var>,
+<var class="var">y</var>, <var class="var">z</var> are not given then <code class="code">meshgrid</code> computed values are
+used.
+</p>
+<p>Optionally, a patch handle <var class="var">hp</var> can be given as the last input argument
+to all function call variations and the vertex data will be extracted
+from the isosurface patch object.  Finally, if no output argument is given
+then the colors of the patch given by the patch handle <var class="var">hp</var> are changed.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFisosurface">isosurface</a>, <a class="ref" href="#XREFisonormals">isonormals</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFsmooth3"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-smooth3"><span><code class="def-type"><var class="var">smoothed_data</var> =</code> <strong class="def-name">smooth3</strong> <code class="def-code-arguments">(<var class="var">data</var>)</code><a class="copiable-link" href="#index-smooth3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-smooth3-1"><span><code class="def-type"><var class="var">smoothed_data</var> =</code> <strong class="def-name">smooth3</strong> <code class="def-code-arguments">(<var class="var">data</var>, <var class="var">method</var>)</code><a class="copiable-link" href="#index-smooth3-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-smooth3-2"><span><code class="def-type"><var class="var">smoothed_data</var> =</code> <strong class="def-name">smooth3</strong> <code class="def-code-arguments">(<var class="var">data</var>, <var class="var">method</var>, <var class="var">sz</var>)</code><a class="copiable-link" href="#index-smooth3-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-smooth3-3"><span><code class="def-type"><var class="var">smoothed_data</var> =</code> <strong class="def-name">smooth3</strong> <code class="def-code-arguments">(<var class="var">data</var>, <var class="var">method</var>, <var class="var">sz</var>, <var class="var">std_dev</var>)</code><a class="copiable-link" href="#index-smooth3-3"> &para;</a></span></dt>
+<dd><p>Smooth values of 3-dimensional matrix <var class="var">data</var>.
+</p>
+<p>This function may be used, for example, to reduce the impact of noise in
+<var class="var">data</var> before calculating isosurfaces.
+</p>
+<p><var class="var">data</var> must be a non-singleton 3-dimensional matrix.  The output
+<var class="var">smoothed_data</var> is a matrix of the same size as <var class="var">data</var>.
+</p>
+<p>The option input <var class="var">method</var> determines which convolution kernel is used
+for the smoothing process.  Possible choices:
+</p>
+<dl class="table">
+<dt><code class="code">&quot;box&quot;</code>, <code class="code">&quot;b&quot;</code> (default)</dt>
+<dd><p>a convolution kernel with sharp edges.
+</p>
+</dd>
+<dt><code class="code">&quot;gaussian&quot;</code>, <code class="code">&quot;g&quot;</code></dt>
+<dd><p>a convolution kernel that is represented by a non-correlated trivariate
+normal distribution function.
+</p></dd>
+</dl>
+
+<p><var class="var">sz</var> is either a 3-element vector specifying the size of the
+convolution kernel in the x-, y- and z-directions, or a scalar.  In the
+scalar case the same size is used for all three dimensions
+(<code class="code">[<var class="var">sz</var>, <var class="var">sz</var>, <var class="var">sz</var>]</code>).  The default value is 3.
+</p>
+<p>If <var class="var">method</var> is <code class="code">&quot;gaussian&quot;</code> then the optional input <var class="var">std_dev</var>
+defines the standard deviation of the trivariate normal distribution
+function.  <var class="var">std_dev</var> is either a 3-element vector specifying the
+standard deviation of the Gaussian convolution kernel in x-, y- and
+z-directions, or a scalar.  In the scalar case the same value is used for
+all three dimensions.  The default value is 0.65.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFisosurface">isosurface</a>, <a class="ref" href="#XREFisonormals">isonormals</a>, <a class="ref" href="Creating-Graphics-Objects.html#XREFpatch">patch</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFreducevolume"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-reducevolume"><span><code class="def-type">[<var class="var">nx</var>, <var class="var">ny</var>, <var class="var">nz</var>, <var class="var">nv</var>] =</code> <strong class="def-name">reducevolume</strong> <code class="def-code-arguments">(<var class="var">v</var>, <var class="var">r</var>)</code><a class="copiable-link" href="#index-reducevolume"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-reducevolume-1"><span><code class="def-type">[<var class="var">nx</var>, <var class="var">ny</var>, <var class="var">nz</var>, <var class="var">nv</var>] =</code> <strong class="def-name">reducevolume</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>, <var class="var">v</var>, <var class="var">r</var>)</code><a class="copiable-link" href="#index-reducevolume-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-reducevolume-2"><span><code class="def-type"><var class="var">nv</var> =</code> <strong class="def-name">reducevolume</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-reducevolume-2"> &para;</a></span></dt>
+<dd>
+<p>Reduce the volume of the dataset in <var class="var">v</var> according to the values in
+<var class="var">r</var>.
+</p>
+<p><var class="var">v</var> is a matrix that is non-singleton in the first 3 dimensions.
+</p>
+<p><var class="var">r</var> can either be a vector of 3 elements representing the reduction
+factors in the x-, y-, and z-directions or a scalar, in which case the same
+reduction factor is used in all three dimensions.
+</p>
+<p><code class="code">reducevolume</code> reduces the number of elements of <var class="var">v</var> by taking
+only every <var class="var">r</var>-th element in the respective dimension.
+</p>
+<p>Optionally, <var class="var">x</var>, <var class="var">y</var>, and <var class="var">z</var> can be supplied to represent the
+set of coordinates of <var class="var">v</var>.  They can either be matrices of the same size
+as <var class="var">v</var> or vectors with sizes according to the dimensions of <var class="var">v</var>, in
+which case they are expanded to matrices
+(see <a class="pxref" href="#XREFmeshgrid"><code class="code">meshgrid</code></a>).
+</p>
+<p>If <code class="code">reducevolume</code> is called with two arguments then <var class="var">x</var>, <var class="var">y</var>,
+and <var class="var">z</var> are assumed to match the respective indices of <var class="var">v</var>.
+</p>
+<p>The reduced matrix is returned in <var class="var">nv</var>.
+</p>
+<p>Optionally, the reduced set of coordinates are returned in <var class="var">nx</var>,
+<var class="var">ny</var>, and <var class="var">nz</var>, respectively.
+</p>
+<p>Examples:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted"><var class="var">v</var> = reshape (1:6*8*4, [6 8 4]);
+<var class="var">nv</var> = reducevolume (<var class="var">v</var>, [4 3 2]);
+</pre></div></div>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted"><var class="var">v</var> = reshape (1:6*8*4, [6 8 4]);
+<var class="var">x</var> = 1:3:24;  <var class="var">y</var> = -14:5:11;  <var class="var">z</var> = linspace (16, 18, 4);
+[<var class="var">nx</var>, <var class="var">ny</var>, <var class="var">nz</var>, <var class="var">nv</var>] = reducevolume (<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>, <var class="var">v</var>, [4 3 2]);
+</pre></div></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFisosurface">isosurface</a>, <a class="ref" href="#XREFisonormals">isonormals</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFreducepatch"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-reducepatch"><span><code class="def-type"><var class="var">reduced_fv</var> =</code> <strong class="def-name">reducepatch</strong> <code class="def-code-arguments">(<var class="var">fv</var>)</code><a class="copiable-link" href="#index-reducepatch"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-reducepatch-1"><span><code class="def-type"><var class="var">reduced_fv</var> =</code> <strong class="def-name">reducepatch</strong> <code class="def-code-arguments">(<var class="var">faces</var>, <var class="var">vertices</var>)</code><a class="copiable-link" href="#index-reducepatch-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-reducepatch-2"><span><code class="def-type"><var class="var">reduced_fv</var> =</code> <strong class="def-name">reducepatch</strong> <code class="def-code-arguments">(<var class="var">patch_handle</var>)</code><a class="copiable-link" href="#index-reducepatch-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-reducepatch-3"><span><strong class="def-name">reducepatch</strong> <code class="def-code-arguments">(<var class="var">patch_handle</var>)</code><a class="copiable-link" href="#index-reducepatch-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-reducepatch-4"><span><code class="def-type"><var class="var">reduced_fv</var> =</code> <strong class="def-name">reducepatch</strong> <code class="def-code-arguments">(&hellip;, <var class="var">reduction_factor</var>)</code><a class="copiable-link" href="#index-reducepatch-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-reducepatch-5"><span><code class="def-type"><var class="var">reduced_fv</var> =</code> <strong class="def-name">reducepatch</strong> <code class="def-code-arguments">(&hellip;, &quot;fast&quot;)</code><a class="copiable-link" href="#index-reducepatch-5"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-reducepatch-6"><span><code class="def-type"><var class="var">reduced_fv</var> =</code> <strong class="def-name">reducepatch</strong> <code class="def-code-arguments">(&hellip;, &quot;verbose&quot;)</code><a class="copiable-link" href="#index-reducepatch-6"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-reducepatch-7"><span><code class="def-type">[<var class="var">reduced_faces</var>, <var class="var">reduces_vertices</var>] =</code> <strong class="def-name">reducepatch</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-reducepatch-7"> &para;</a></span></dt>
+<dd>
+<p>Reduce the number of faces and vertices in a patch object while retaining
+the overall shape of the patch.
+</p>
+<p>The input patch can be represented by a structure <var class="var">fv</var> with the
+fields <code class="code">faces</code> and <code class="code">vertices</code>, by two matrices <var class="var">faces</var> and
+<var class="var">vertices</var> (see, e.g., the result of <code class="code">isosurface</code>), or by a
+handle to a patch object <var class="var">patch_handle</var>
+(see <a class="pxref" href="Creating-Graphics-Objects.html#XREFpatch"><code class="code">patch</code></a>).
+</p>
+<p>The number of faces and vertices in the patch is reduced by iteratively
+collapsing the shortest edge of the patch to its midpoint (as discussed,
+e.g., here:
+<a class="url" href="https://libigl.github.io/libigl/tutorial/tutorial.html#meshdecimation">https://libigl.github.io/libigl/tutorial/tutorial.html#meshdecimation</a>).
+</p>
+<p>Currently, only patches consisting of triangles are supported.  The
+resulting patch also consists only of triangles.
+</p>
+<p>If <code class="code">reducepatch</code> is called with a handle to a valid patch
+<var class="var">patch_handle</var>, and without any output arguments, then the given
+patch is updated immediately.
+</p>
+<p>If the <var class="var">reduction_factor</var> is omitted, the resulting structure
+<var class="var">reduced_fv</var> includes approximately 50% of the faces of the original
+patch.  If <var class="var">reduction_factor</var> is a fraction between 0 (excluded) and 1
+(excluded), a patch with approximately the corresponding fraction of faces
+is determined.
+If <var class="var">reduction_factor</var> is an integer greater than or equal to 1, the
+resulting patch has approximately <var class="var">reduction_factor</var> faces.  Depending
+on the geometry of the patch, the resulting number of faces can differ from
+the given value of <var class="var">reduction_factor</var>.  This is especially true when
+many shared vertices are detected.
+</p>
+<p>For the reduction, it is necessary that vertices of touching faces are
+shared.  Shared vertices are detected automatically.  This detection can be
+skipped by passing the optional string argument <code class="code">&quot;fast&quot;</code>.
+</p>
+<p>With the optional string arguments <code class="code">&quot;verbose&quot;</code>, additional status
+messages are printed to the command window.
+</p>
+<p>Any string input arguments must be passed after all other arguments.
+</p>
+<p>If called with one output argument, the reduced faces and vertices are
+returned in a structure <var class="var">reduced_fv</var> with the fields <code class="code">faces</code> and
+<code class="code">vertices</code> (see the one output option of <code class="code">isosurface</code>).
+</p>
+<p>If called with two output arguments, the reduced faces and vertices are
+returned in two separate matrices <var class="var">reduced_faces</var> and
+<var class="var">reduced_vertices</var>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFisosurface">isosurface</a>, <a class="ref" href="#XREFisonormals">isonormals</a>, <a class="ref" href="#XREFreducevolume">reducevolume</a>, <a class="ref" href="Creating-Graphics-Objects.html#XREFpatch">patch</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFshrinkfaces"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-shrinkfaces"><span><strong class="def-name">shrinkfaces</strong> <code class="def-code-arguments">(<var class="var">p</var>, <var class="var">sf</var>)</code><a class="copiable-link" href="#index-shrinkfaces"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-shrinkfaces-1"><span><code class="def-type"><var class="var">nfv</var> =</code> <strong class="def-name">shrinkfaces</strong> <code class="def-code-arguments">(<var class="var">p</var>, <var class="var">sf</var>)</code><a class="copiable-link" href="#index-shrinkfaces-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-shrinkfaces-2"><span><code class="def-type"><var class="var">nfv</var> =</code> <strong class="def-name">shrinkfaces</strong> <code class="def-code-arguments">(<var class="var">fv</var>, <var class="var">sf</var>)</code><a class="copiable-link" href="#index-shrinkfaces-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-shrinkfaces-3"><span><code class="def-type"><var class="var">nfv</var> =</code> <strong class="def-name">shrinkfaces</strong> <code class="def-code-arguments">(<var class="var">f</var>, <var class="var">v</var>, <var class="var">sf</var>)</code><a class="copiable-link" href="#index-shrinkfaces-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-shrinkfaces-4"><span><code class="def-type">[<var class="var">nf</var>, <var class="var">nv</var>] =</code> <strong class="def-name">shrinkfaces</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-shrinkfaces-4"> &para;</a></span></dt>
+<dd>
+<p>Reduce the size of faces in a patch by the shrink factor <var class="var">sf</var>.
+</p>
+<p>The patch object can be specified by a graphics handle (<var class="var">p</var>), a patch
+structure (<var class="var">fv</var>) with the fields <code class="code">&quot;faces&quot;</code> and <code class="code">&quot;vertices&quot;</code>,
+or as two separate matrices (<var class="var">f</var>, <var class="var">v</var>) of faces and vertices.
+</p>
+<p>The shrink factor <var class="var">sf</var> is a positive number specifying the percentage
+of the original area the new face will occupy.  If no factor is given the
+default is 0.3 (a reduction to 30% of the original size).  A factor greater
+than 1.0 will result in the expansion of faces.
+</p>
+<p>Given a patch handle as the first input argument and no output parameters,
+perform the shrinking of the patch faces in place and redraw the patch.
+</p>
+<p>If called with one output argument, return a structure with fields
+<code class="code">&quot;faces&quot;</code>, <code class="code">&quot;vertices&quot;</code>, and <code class="code">&quot;facevertexcdata&quot;</code>
+containing the data after shrinking.  This structure can be used directly
+as an input argument to the <code class="code">patch</code> function.
+</p>
+<p><strong class="strong">Caution:</strong>: Performing the shrink operation on faces which are not
+convex can lead to undesirable results.
+</p>
+<p>Example: a triangulated 3/4 circle and the corresponding shrunken version.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">[phi r] = meshgrid (linspace (0, 1.5*pi, 16), linspace (1, 2, 4));
+tri = delaunay (phi(:), r(:));
+v = [r(:).*sin(phi(:)) r(:).*cos(phi(:))];
+clf ()
+p = patch (&quot;Faces&quot;, tri, &quot;Vertices&quot;, v, &quot;FaceColor&quot;, &quot;none&quot;);
+fv = shrinkfaces (p);
+patch (fv)
+axis equal
+grid on
+</pre></div></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Creating-Graphics-Objects.html#XREFpatch">patch</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFdiffuse"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-diffuse"><span><code class="def-type"><var class="var">d</var> =</code> <strong class="def-name">diffuse</strong> <code class="def-code-arguments">(<var class="var">sx</var>, <var class="var">sy</var>, <var class="var">sz</var>, <var class="var">lv</var>)</code><a class="copiable-link" href="#index-diffuse"> &para;</a></span></dt>
+<dd><p>Calculate the diffuse reflection strength of a surface defined by the normal
+vector elements <var class="var">sx</var>, <var class="var">sy</var>, <var class="var">sz</var>.
+</p>
+<p>The light source location vector <var class="var">lv</var> can be given as a 2-element vector
+[azimuth, elevation] in degrees or as a 3-element vector [x, y, z].
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFspecular">specular</a>, <a class="ref" href="#XREFsurfl">surfl</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFspecular"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-specular"><span><code class="def-type"><var class="var">refl</var> =</code> <strong class="def-name">specular</strong> <code class="def-code-arguments">(<var class="var">sx</var>, <var class="var">sy</var>, <var class="var">sz</var>, <var class="var">lv</var>, <var class="var">vv</var>)</code><a class="copiable-link" href="#index-specular"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-specular-1"><span><code class="def-type"><var class="var">refl</var> =</code> <strong class="def-name">specular</strong> <code class="def-code-arguments">(<var class="var">sx</var>, <var class="var">sy</var>, <var class="var">sz</var>, <var class="var">lv</var>, <var class="var">vv</var>, <var class="var">se</var>)</code><a class="copiable-link" href="#index-specular-1"> &para;</a></span></dt>
+<dd><p>Calculate the specular reflection strength of a surface defined by the
+normal vector elements <var class="var">sx</var>, <var class="var">sy</var>, <var class="var">sz</var> using Phong&rsquo;s
+approximation.
+</p>
+<p>The light source location and viewer location vectors are specified using
+parameters <var class="var">lv</var> and <var class="var">vv</var> respectively.  The location vectors can
+given as 2-element vectors [azimuth, elevation] in degrees or as 3-element
+vectors [x, y, z].
+</p>
+<p>An optional sixth argument specifies the specular exponent (spread)
+<var class="var">se</var>.  If not given, <var class="var">se</var> defaults to 10.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFdiffuse">diffuse</a>, <a class="ref" href="#XREFsurfl">surfl</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFlighting"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-lighting"><span><strong class="def-name">lighting</strong> <code class="def-code-arguments">(<var class="var">type</var>)</code><a class="copiable-link" href="#index-lighting"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-lighting-1"><span><strong class="def-name">lighting</strong> <code class="def-code-arguments">(<var class="var">hax</var>, <var class="var">type</var>)</code><a class="copiable-link" href="#index-lighting-1"> &para;</a></span></dt>
+<dd><p>Set the lighting of patch or surface graphic objects.
+</p>
+<p>Valid arguments for <var class="var">type</var> are
+</p>
+<dl class="table">
+<dt><code class="code">&quot;flat&quot;</code></dt>
+<dd><p>Draw objects with faceted lighting effects.
+</p>
+</dd>
+<dt><code class="code">&quot;gouraud&quot;</code></dt>
+<dd><p>Draw objects with linear interpolation of the lighting effects between the
+vertices.
+</p>
+</dd>
+<dt><code class="code">&quot;none&quot;</code></dt>
+<dd><p>Draw objects without light and shadow effects.
+</p></dd>
+</dl>
+
+<p>If the first argument <var class="var">hax</var> is an axes handle, then change the lighting
+effects of objects in this axes, rather than the current axes returned by
+<code class="code">gca</code>.
+</p>
+<p>The lighting effects are only visible if at least one light object is
+present and visible in the same axes.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Creating-Graphics-Objects.html#XREFlight">light</a>, <a class="ref" href="Two_002dDimensional-Plots.html#XREFfill">fill</a>, <a class="ref" href="#XREFmesh">mesh</a>, <a class="ref" href="Creating-Graphics-Objects.html#XREFpatch">patch</a>, <a class="ref" href="Two_002dDimensional-Plots.html#XREFpcolor">pcolor</a>, <a class="ref" href="#XREFsurf">surf</a>, <a class="ref" href="Creating-Graphics-Objects.html#XREFsurface">surface</a>, <a class="ref" href="#XREFshading">shading</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFmaterial"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-material"><span><strong class="def-name">material</strong> <code class="def-code-arguments">shiny</code><a class="copiable-link" href="#index-material"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-material-1"><span><strong class="def-name">material</strong> <code class="def-code-arguments">dull</code><a class="copiable-link" href="#index-material-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-material-2"><span><strong class="def-name">material</strong> <code class="def-code-arguments">metal</code><a class="copiable-link" href="#index-material-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-material-3"><span><strong class="def-name">material</strong> <code class="def-code-arguments">default</code><a class="copiable-link" href="#index-material-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-material-4"><span><strong class="def-name">material</strong> <code class="def-code-arguments">([<var class="var">as</var>, <var class="var">ds</var>, <var class="var">ss</var>])</code><a class="copiable-link" href="#index-material-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-material-5"><span><strong class="def-name">material</strong> <code class="def-code-arguments">([<var class="var">as</var>, <var class="var">ds</var>, <var class="var">ss</var>, <var class="var">se</var>])</code><a class="copiable-link" href="#index-material-5"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-material-6"><span><strong class="def-name">material</strong> <code class="def-code-arguments">([<var class="var">as</var>, <var class="var">ds</var>, <var class="var">ss</var>, <var class="var">se</var>, <var class="var">scr</var>])</code><a class="copiable-link" href="#index-material-6"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-material-7"><span><strong class="def-name">material</strong> <code class="def-code-arguments">(<var class="var">hlist</var>, &hellip;)</code><a class="copiable-link" href="#index-material-7"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-material-8"><span><code class="def-type"><var class="var">mtypes</var> =</code> <strong class="def-name">material</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-material-8"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-material-9"><span><code class="def-type"><var class="var">refl_props</var> =</code> <strong class="def-name">material</strong> <code class="def-code-arguments">(<var class="var">mtype_string</var>)</code><a class="copiable-link" href="#index-material-9"> &para;</a></span></dt>
+<dd><p>Set reflectance properties for the lighting of surfaces and patches.
+</p>
+<p>This function changes the ambient, diffuse, and specular strengths, as well
+as the specular exponent and specular color reflectance, of all
+<code class="code">patch</code> and <code class="code">surface</code> objects in the current axes.  This can be
+used to simulate, to some extent, the reflectance properties of certain
+materials when used with <code class="code">light</code>.
+</p>
+<p>When called with a string, the aforementioned properties are set
+according to the values in the following table:
+</p>
+<table class="multitable">
+<thead><tr><th width="16%"><var class="var">mtype</var></th><th width="16%">ambient- strength</th><th width="16%">diffuse-
+strength</th><th width="16%">specular- strength</th><th width="16%">specular- exponent</th><th width="16%">specular-
+color- reflectance</th></tr></thead>
+<tbody><tr><td width="16%"><code class="code">&quot;shiny&quot;</code></td><td width="16%">0.3</td><td width="16%">0.6</td><td width="16%">0.9</td><td width="16%">20</td><td width="16%">1.0</td></tr>
+<tr><td width="16%"><code class="code">&quot;dull&quot;</code></td><td width="16%">0.3</td><td width="16%">0.8</td><td width="16%">0.0</td><td width="16%">10</td><td width="16%">1.0</td></tr>
+<tr><td width="16%"><code class="code">&quot;metal&quot;</code></td><td width="16%">0.3</td><td width="16%">0.3</td><td width="16%">1.0</td><td width="16%">25</td><td width="16%">0.5</td></tr>
+<tr><td width="16%"><code class="code">&quot;default&quot;</code></td><td width="16%"><code class="code">&quot;default&quot;</code></td><td width="16%"><code class="code">&quot;default&quot;</code></td><td width="16%"><code class="code">&quot;default&quot;</code></td><td width="16%"><code class="code">&quot;default&quot;</code></td><td width="16%"><code class="code">&quot;default&quot;</code></td></tr>
+</tbody>
+</table>
+
+<p>When called with a vector of three elements, the ambient, diffuse, and
+specular strengths of all <code class="code">patch</code> and <code class="code">surface</code> objects in the
+current axes are updated.  An optional fourth vector element updates the
+specular exponent, and an optional fifth vector element updates the
+specular color reflectance.
+</p>
+<p>A list of graphic handles can also be passed as the first argument.  In
+this case, the properties of these handles and all child <code class="code">patch</code> and
+<code class="code">surface</code> objects will be updated.
+</p>
+<p>Additionally, <code class="code">material</code> can be called with a single output argument.
+If called without input arguments, a column cell vector <var class="var">mtypes</var> with
+the strings for all available materials is returned.  If the one input
+argument <var class="var">mtype_string</var> is the name of a material, a 1x5 cell vector
+<var class="var">refl_props</var> with the reflectance properties of that material is
+returned.  In both cases, no graphic properties are changed.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Creating-Graphics-Objects.html#XREFlight">light</a>, <a class="ref" href="Two_002dDimensional-Plots.html#XREFfill">fill</a>, <a class="ref" href="#XREFmesh">mesh</a>, <a class="ref" href="Creating-Graphics-Objects.html#XREFpatch">patch</a>, <a class="ref" href="Two_002dDimensional-Plots.html#XREFpcolor">pcolor</a>, <a class="ref" href="#XREFsurf">surf</a>, <a class="ref" href="Creating-Graphics-Objects.html#XREFsurface">surface</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFcamlight"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-camlight"><span><strong class="def-name">camlight</strong><a class="copiable-link" href="#index-camlight"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-camlight-1"><span><strong class="def-name">camlight</strong> <code class="def-code-arguments">right</code><a class="copiable-link" href="#index-camlight-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-camlight-2"><span><strong class="def-name">camlight</strong> <code class="def-code-arguments">left</code><a class="copiable-link" href="#index-camlight-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-camlight-3"><span><strong class="def-name">camlight</strong> <code class="def-code-arguments">headlight</code><a class="copiable-link" href="#index-camlight-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-camlight-4"><span><strong class="def-name">camlight</strong> <code class="def-code-arguments">(<var class="var">az</var>, <var class="var">el</var>)</code><a class="copiable-link" href="#index-camlight-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-camlight-5"><span><strong class="def-name">camlight</strong> <code class="def-code-arguments">(&hellip;, <var class="var">style</var>)</code><a class="copiable-link" href="#index-camlight-5"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-camlight-6"><span><strong class="def-name">camlight</strong> <code class="def-code-arguments">(<var class="var">hl</var>, &hellip;)</code><a class="copiable-link" href="#index-camlight-6"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-camlight-7"><span><strong class="def-name">camlight</strong> <code class="def-code-arguments">(<var class="var">hax</var>, &hellip;)</code><a class="copiable-link" href="#index-camlight-7"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-camlight-8"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">camlight</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-camlight-8"> &para;</a></span></dt>
+<dd><p>Add a light object to a figure using a simple interface.
+</p>
+<p>When called with no arguments, a light object is added to the current plot
+and is placed slightly above and to the right of the camera&rsquo;s current
+position: this is equivalent to <code class="code">camlight right</code>.  The commands
+<code class="code">camlight left</code> and <code class="code">camlight headlight</code> behave similarly with
+the placement being either left of the camera position or centered on the
+camera position.
+</p>
+<p>For more control, the light position can be specified by an azimuthal
+rotation <var class="var">az</var> and an elevation angle <var class="var">el</var>, both in degrees,
+relative to the current properties of the camera.
+</p>
+<p>The optional string <var class="var">style</var> specifies whether the light is a local point
+source (<code class="code">&quot;local&quot;</code>, the default) or placed at infinite distance
+(<code class="code">&quot;infinite&quot;</code>).
+</p>
+<p>If the first argument <var class="var">hl</var> is a handle to a light object, then act on
+this light object rather than creating a new object.
+</p>
+<p>If the first argument <var class="var">hax</var> is an axes handle, then create a new light
+object in this axes, rather than the current axes returned by <code class="code">gca</code>.
+</p>
+<p>The optional return value <var class="var">h</var> is a graphics handle to the light object.
+This can be used to move or further change properties of the light object.
+</p>
+<p>Examples:
+</p>
+<p>Add a light object to a plot
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">sphere (36);
+camlight
+</pre></div></div>
+
+<p>Position the light source exactly
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">camlight (45, 30);
+</pre></div></div>
+
+<p>Here the light is first pitched upwards (see <a class="pxref" href="#XREFcamup"><code class="code">camup</code></a>)
+from the camera position (see <a class="pxref" href="#XREFcampos"><code class="code">campos</code></a>) by 30
+degrees.  It is then yawed by 45 degrees to the right.  Both rotations
+are centered around the camera target
+(see <a class="pxref" href="#XREFcamtarget"><code class="code">camtarget</code></a>).
+</p>
+<p>Return a handle to further manipulate the light object
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">clf
+sphere (36);
+hl = camlight (&quot;left&quot;);
+set (hl, &quot;color&quot;, &quot;r&quot;);
+</pre></div></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Creating-Graphics-Objects.html#XREFlight">light</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFlightangle"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-lightangle"><span><strong class="def-name">lightangle</strong> <code class="def-code-arguments">(<var class="var">az</var>, <var class="var">el</var>)</code><a class="copiable-link" href="#index-lightangle"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-lightangle-1"><span><strong class="def-name">lightangle</strong> <code class="def-code-arguments">(<var class="var">hax</var>, <var class="var">az</var>, <var class="var">el</var>)</code><a class="copiable-link" href="#index-lightangle-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-lightangle-2"><span><strong class="def-name">lightangle</strong> <code class="def-code-arguments">(<var class="var">hl</var>, <var class="var">az</var>, <var class="var">el</var>)</code><a class="copiable-link" href="#index-lightangle-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-lightangle-3"><span><code class="def-type"><var class="var">hl</var> =</code> <strong class="def-name">lightangle</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-lightangle-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-lightangle-4"><span><code class="def-type">[<var class="var">az</var>, <var class="var">el</var>] =</code> <strong class="def-name">lightangle</strong> <code class="def-code-arguments">(<var class="var">hl</var>)</code><a class="copiable-link" href="#index-lightangle-4"> &para;</a></span></dt>
+<dd><p>Add a light object to the current axes using spherical coordinates.
+</p>
+<p>The light position is specified by an azimuthal rotation <var class="var">az</var> and an
+elevation angle <var class="var">el</var>, both in degrees.
+</p>
+<p>If the first argument <var class="var">hax</var> is an axes handle, then create a new light
+object in this axes, rather than the current axes returned by <code class="code">gca</code>.
+</p>
+<p>If the first argument <var class="var">hl</var> is a handle to a light object, then act on
+this light object rather than creating a new object.
+</p>
+<p>The optional return value <var class="var">hl</var> is a graphics handle to the light object.
+</p>
+<p>Example:
+</p>
+<p>Add a light object to a plot
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">clf;
+sphere (36);
+lightangle (45, 30);
+</pre></div></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Creating-Graphics-Objects.html#XREFlight">light</a>, <a class="ref" href="#XREFview">view</a>, <a class="ref" href="#XREFcamlight">camlight</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFmeshgrid"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-meshgrid"><span><code class="def-type">[<var class="var">xx</var>, <var class="var">yy</var>] =</code> <strong class="def-name">meshgrid</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>)</code><a class="copiable-link" href="#index-meshgrid"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-meshgrid-1"><span><code class="def-type">[<var class="var">xx</var>, <var class="var">yy</var>, <var class="var">zz</var>] =</code> <strong class="def-name">meshgrid</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>)</code><a class="copiable-link" href="#index-meshgrid-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-meshgrid-2"><span><code class="def-type">[<var class="var">xx</var>, <var class="var">yy</var>] =</code> <strong class="def-name">meshgrid</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-meshgrid-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-meshgrid-3"><span><code class="def-type">[<var class="var">xx</var>, <var class="var">yy</var>, <var class="var">zz</var>] =</code> <strong class="def-name">meshgrid</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-meshgrid-3"> &para;</a></span></dt>
+<dd><p>Given vectors of <var class="var">x</var> and <var class="var">y</var> coordinates, return matrices <var class="var">xx</var>
+and <var class="var">yy</var> corresponding to a full 2-D grid.
+</p>
+<p>The rows of <var class="var">xx</var> are copies of <var class="var">x</var>, and the columns of <var class="var">yy</var> are
+copies of <var class="var">y</var>.  If <var class="var">y</var> is omitted, then it is assumed to be the same
+as <var class="var">x</var>.
+</p>
+<p>If the optional <var class="var">z</var> input is given, or <var class="var">zz</var> is requested, then the
+output will be a full 3-D grid.  If <var class="var">z</var> is omitted and <var class="var">zz</var> is
+requested, it is assumed to be the same as <var class="var">y</var>.
+</p>
+<p><code class="code">meshgrid</code> is most frequently used to produce input for a 2-D or 3-D
+function that will be plotted.  The following example creates a surface
+plot of the &ldquo;sombrero&rdquo; function.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">f = @(x,y) sin (sqrt (x.^2 + y.^2)) ./ sqrt (x.^2 + y.^2);
+range = linspace (-8, 8, 41);
+[<var class="var">X</var>, <var class="var">Y</var>] = meshgrid (range, range);
+Z = f (X, Y);
+surf (X, Y, Z);
+</pre></div></div>
+
+<p>Programming Note: <code class="code">meshgrid</code> is restricted to 2-D or 3-D grid
+generation.  The <code class="code">ndgrid</code> function will generate 1-D through N-D
+grids.  However, the functions are not completely equivalent.  If <var class="var">x</var>
+is a vector of length M and <var class="var">y</var> is a vector of length N, then
+<code class="code">meshgrid</code> will produce an output grid which is NxM.  <code class="code">ndgrid</code>
+will produce an output which is MxN (transpose) for the same
+input.  Some core functions expect <code class="code">meshgrid</code> input and others expect
+<code class="code">ndgrid</code> input.  Check the documentation for the function in question
+to determine the proper input format.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFndgrid">ndgrid</a>, <a class="ref" href="#XREFmesh">mesh</a>, <a class="ref" href="Two_002dDimensional-Plots.html#XREFcontour">contour</a>, <a class="ref" href="#XREFsurf">surf</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFndgrid"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-ndgrid"><span><code class="def-type">[<var class="var">y1</var>, <var class="var">y2</var>, &hellip;, <var class="var">y</var>n] =</code> <strong class="def-name">ndgrid</strong> <code class="def-code-arguments">(<var class="var">x1</var>, <var class="var">x2</var>, &hellip;, <var class="var">x</var>n)</code><a class="copiable-link" href="#index-ndgrid"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ndgrid-1"><span><code class="def-type">[<var class="var">y1</var>, <var class="var">y2</var>, &hellip;, <var class="var">y</var>n] =</code> <strong class="def-name">ndgrid</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-ndgrid-1"> &para;</a></span></dt>
+<dd><p>Given n vectors <var class="var">x1</var>, &hellip;, <var class="var">x</var>n, <code class="code">ndgrid</code> returns n
+arrays of dimension n.
+</p>
+<p>The elements of the i-th output argument contains the elements of the
+vector <var class="var">x</var>i repeated over all dimensions different from the i-th
+dimension.  Calling ndgrid with only one input argument <var class="var">x</var> is
+equivalent to calling ndgrid with all n input arguments equal to <var class="var">x</var>:
+</p>
+<p>[<var class="var">y1</var>, <var class="var">y2</var>, &hellip;, <var class="var">y</var>n] = ndgrid (<var class="var">x</var>, &hellip;, <var class="var">x</var>)
+</p>
+<p>Programming Note: <code class="code">ndgrid</code> is very similar to the function
+<code class="code">meshgrid</code> except that the first two dimensions are transposed in
+comparison to <code class="code">meshgrid</code>.  Some core functions expect <code class="code">meshgrid</code>
+input and others expect <code class="code">ndgrid</code> input.  Check the documentation for
+the function in question to determine the proper input format.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFmeshgrid">meshgrid</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFplot3"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-plot3"><span><strong class="def-name">plot3</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>)</code><a class="copiable-link" href="#index-plot3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-plot3-1"><span><strong class="def-name">plot3</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>, <var class="var">prop</var>, <var class="var">value</var>, &hellip;)</code><a class="copiable-link" href="#index-plot3-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-plot3-2"><span><strong class="def-name">plot3</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>, <var class="var">fmt</var>)</code><a class="copiable-link" href="#index-plot3-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-plot3-3"><span><strong class="def-name">plot3</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">cplx</var>)</code><a class="copiable-link" href="#index-plot3-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-plot3-4"><span><strong class="def-name">plot3</strong> <code class="def-code-arguments">(<var class="var">cplx</var>)</code><a class="copiable-link" href="#index-plot3-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-plot3-5"><span><strong class="def-name">plot3</strong> <code class="def-code-arguments">(<var class="var">hax</var>, &hellip;)</code><a class="copiable-link" href="#index-plot3-5"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-plot3-6"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">plot3</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-plot3-6"> &para;</a></span></dt>
+<dd><p>Produce 3-D plots.
+</p>
+<p>Many different combinations of arguments are possible.  The simplest
+form is
+</p>
+<div class="example">
+<pre class="example-preformatted">plot3 (<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>)
+</pre></div>
+
+<p>in which the arguments are taken to be the vertices of the points to
+be plotted in three dimensions.  If all arguments are vectors of the
+same length, then a single continuous line is drawn.  If all arguments
+are matrices, then each column of is treated as a separate line.  No attempt
+is made to transpose the arguments to make the number of rows match.
+</p>
+<p>If only two arguments are given, as
+</p>
+<div class="example">
+<pre class="example-preformatted">plot3 (<var class="var">x</var>, <var class="var">cplx</var>)
+</pre></div>
+
+<p>the real and imaginary parts of the second argument are used
+as the <var class="var">y</var> and <var class="var">z</var> coordinates, respectively.
+</p>
+<p>If only one argument is given, as
+</p>
+<div class="example">
+<pre class="example-preformatted">plot3 (<var class="var">cplx</var>)
+</pre></div>
+
+<p>the real and imaginary parts of the argument are used as the <var class="var">y</var>
+and <var class="var">z</var> values, and they are plotted versus their index.
+</p>
+<p>Arguments may also be given in groups of three as
+</p>
+<div class="example">
+<pre class="example-preformatted">plot3 (<var class="var">x1</var>, <var class="var">y1</var>, <var class="var">z1</var>, <var class="var">x2</var>, <var class="var">y2</var>, <var class="var">z2</var>, ...)
+</pre></div>
+
+<p>in which each set of three arguments is treated as a separate line or
+set of lines in three dimensions.
+</p>
+<p>To plot multiple one- or two-argument groups, separate each group
+with an empty format string, as
+</p>
+<div class="example">
+<pre class="example-preformatted">plot3 (<var class="var">x1</var>, <var class="var">c1</var>, &quot;&quot;, <var class="var">c2</var>, &quot;&quot;, ...)
+</pre></div>
+
+<p>Multiple property-value pairs may be specified which will affect the line
+objects drawn by <code class="code">plot3</code>.  If the <var class="var">fmt</var> argument is supplied it will
+format the line objects in the same manner as <code class="code">plot</code>.  The full list of
+properties is documented at <a class="ref" href="Line-Properties.html">Line Properties</a>.
+</p>
+<p>If the first argument <var class="var">hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code class="code">gca</code>.
+</p>
+<p>The optional return value <var class="var">h</var> is a graphics handle to the created plot.
+</p>
+<p>Example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">z = [0:0.05:5];
+plot3 (cos (2*pi*z), sin (2*pi*z), z, &quot;;helix;&quot;);
+plot3 (z, exp (2i*pi*z), &quot;;complex sinusoid;&quot;);
+</pre></div></div>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Three_002ddimensional-Function-Plotting.html#XREFezplot3">ezplot3</a>, <a class="ref" href="Two_002dDimensional-Plots.html#XREFplot">plot</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFview"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-view"><span><strong class="def-name">view</strong> <code class="def-code-arguments">(<var class="var">azimuth</var>, <var class="var">elevation</var>)</code><a class="copiable-link" href="#index-view"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-view-1"><span><strong class="def-name">view</strong> <code class="def-code-arguments">([<var class="var">azimuth</var> <var class="var">elevation</var>])</code><a class="copiable-link" href="#index-view-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-view-2"><span><strong class="def-name">view</strong> <code class="def-code-arguments">([<var class="var">x</var> <var class="var">y</var> <var class="var">z</var>])</code><a class="copiable-link" href="#index-view-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-view-3"><span><strong class="def-name">view</strong> <code class="def-code-arguments">(2)</code><a class="copiable-link" href="#index-view-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-view-4"><span><strong class="def-name">view</strong> <code class="def-code-arguments">(3)</code><a class="copiable-link" href="#index-view-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-view-5"><span><strong class="def-name">view</strong> <code class="def-code-arguments">(<var class="var">hax</var>, &hellip;)</code><a class="copiable-link" href="#index-view-5"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-view-6"><span><code class="def-type">[<var class="var">azimuth</var>, <var class="var">elevation</var>] =</code> <strong class="def-name">view</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-view-6"> &para;</a></span></dt>
+<dd><p>Query or set the viewpoint for the current axes.
+</p>
+<p>The parameters <var class="var">azimuth</var> and <var class="var">elevation</var> can be given as two
+arguments or as 2-element vector.  The viewpoint can also be specified with
+Cartesian coordinates <var class="var">x</var>, <var class="var">y</var>, and <var class="var">z</var>.
+</p>
+<p>The call <code class="code">view (2)</code> sets the viewpoint to
+<var class="var">azimuth</var>&nbsp;=&nbsp;0<!-- /@w -->&nbsp;and <var class="var">elevation</var>&nbsp;=&nbsp;90<!-- /@w -->, which is the default
+for 2-D graphs.
+</p>
+<p>The call <code class="code">view (3)</code> sets the viewpoint to
+<var class="var">azimuth</var>&nbsp;=&nbsp;-37.5<!-- /@w -->&nbsp;and <var class="var">elevation</var>&nbsp;=&nbsp;30<!-- /@w -->, which is the
+default for 3-D graphs.
+</p>
+<p>If the first argument <var class="var">hax</var> is an axes handle, then operate on
+this axes rather than the current axes returned by <code class="code">gca</code>.
+</p>
+<p>If no inputs are given, return the current <var class="var">azimuth</var> and
+<var class="var">elevation</var>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFcamlookat"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-camlookat"><span><strong class="def-name">camlookat</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-camlookat"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-camlookat-1"><span><strong class="def-name">camlookat</strong> <code class="def-code-arguments">(<var class="var">h</var>)</code><a class="copiable-link" href="#index-camlookat-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-camlookat-2"><span><strong class="def-name">camlookat</strong> <code class="def-code-arguments">(<var class="var">handle_list</var>)</code><a class="copiable-link" href="#index-camlookat-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-camlookat-3"><span><strong class="def-name">camlookat</strong> <code class="def-code-arguments">(<var class="var">hax</var>)</code><a class="copiable-link" href="#index-camlookat-3"> &para;</a></span></dt>
+<dd><p>Move the camera and adjust its properties to look at objects.
+</p>
+<p>When the input is a handle <var class="var">h</var>, the camera is set to point toward the
+center of the bounding box of <var class="var">h</var>.  The camera&rsquo;s position is adjusted so
+the bounding box approximately fills the field of view.
+</p>
+<p>This command fixes the camera&rsquo;s viewing direction
+(<code class="code">camtarget() - campos()</code>), camera up vector
+(see <a class="pxref" href="#XREFcamup"><code class="code">camup</code></a>) and viewing angle
+(see <a class="pxref" href="#XREFcamva"><code class="code">camva</code></a>).  The camera target
+(see <a class="pxref" href="#XREFcamtarget"><code class="code">camtarget</code></a>) and camera position
+(see <a class="pxref" href="#XREFcampos"><code class="code">campos</code></a>) are changed.
+</p>
+<p>If the argument is a list <var class="var">handle_list</var>, then a single bounding box for
+all the objects is computed and the camera is then adjusted as above.
+</p>
+<p>If the argument is an axis object <var class="var">hax</var>, then the children of the axis
+are used as <var class="var">handle_list</var>.  When called with no inputs, it uses the
+current axis (see <a class="pxref" href="Handle-Functions.html#XREFgca"><code class="code">gca</code></a>).
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFcamorbit">camorbit</a>, <a class="ref" href="#XREFcamzoom">camzoom</a>, <a class="ref" href="#XREFcamroll">camroll</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFcampos"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-campos"><span><code class="def-type"><var class="var">p</var> =</code> <strong class="def-name">campos</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-campos"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-campos-1"><span><strong class="def-name">campos</strong> <code class="def-code-arguments">([<var class="var">x</var> <var class="var">y</var> <var class="var">z</var>])</code><a class="copiable-link" href="#index-campos-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-campos-2"><span><code class="def-type"><var class="var">mode</var> =</code> <strong class="def-name">campos</strong> <code class="def-code-arguments">(&quot;mode&quot;)</code><a class="copiable-link" href="#index-campos-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-campos-3"><span><strong class="def-name">campos</strong> <code class="def-code-arguments">(<var class="var">mode</var>)</code><a class="copiable-link" href="#index-campos-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-campos-4"><span><strong class="def-name">campos</strong> <code class="def-code-arguments">(<var class="var">hax</var>, &hellip;)</code><a class="copiable-link" href="#index-campos-4"> &para;</a></span></dt>
+<dd><p>Get or set the camera position.
+</p>
+<p>The default camera position is determined automatically based on the scene.
+For example, to get the camera position:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">hf = figure();
+peaks()
+p = campos ()
+  &rArr;  p =
+      -27.394  -35.701   64.079
+</pre></div></div>
+
+<p>We can then move the camera further up the z-axis:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">campos (p + [0 0 10])
+campos ()
+  &rArr;  ans =
+      -27.394  -35.701   74.079
+</pre></div></div>
+
+<p>Having made that change, the camera position <var class="var">mode</var> is now manual:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">campos (&quot;mode&quot;)
+  &rArr;  manual
+</pre></div></div>
+
+<p>We can set it back to automatic:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">campos (&quot;auto&quot;)
+campos ()
+  &rArr;  ans =
+      -27.394  -35.701   64.079
+close (hf)
+</pre></div></div>
+
+<p>By default, these commands affect the current axis; alternatively, an axis
+can be specified by the optional argument <var class="var">hax</var>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFcamup">camup</a>, <a class="ref" href="#XREFcamtarget">camtarget</a>, <a class="ref" href="#XREFcamva">camva</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFcamorbit"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-camorbit"><span><strong class="def-name">camorbit</strong> <code class="def-code-arguments">(<var class="var">theta</var>, <var class="var">phi</var>)</code><a class="copiable-link" href="#index-camorbit"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-camorbit-1"><span><strong class="def-name">camorbit</strong> <code class="def-code-arguments">(<var class="var">theta</var>, <var class="var">phi</var>, <var class="var">coorsys</var>)</code><a class="copiable-link" href="#index-camorbit-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-camorbit-2"><span><strong class="def-name">camorbit</strong> <code class="def-code-arguments">(<var class="var">theta</var>, <var class="var">phi</var>, <var class="var">coorsys</var>, <var class="var">dir</var>)</code><a class="copiable-link" href="#index-camorbit-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-camorbit-3"><span><strong class="def-name">camorbit</strong> <code class="def-code-arguments">(<var class="var">theta</var>, <var class="var">phi</var>, &quot;data&quot;)</code><a class="copiable-link" href="#index-camorbit-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-camorbit-4"><span><strong class="def-name">camorbit</strong> <code class="def-code-arguments">(<var class="var">theta</var>, <var class="var">phi</var>, &quot;data&quot;, &quot;z&quot;)</code><a class="copiable-link" href="#index-camorbit-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-camorbit-5"><span><strong class="def-name">camorbit</strong> <code class="def-code-arguments">(<var class="var">theta</var>, <var class="var">phi</var>, &quot;data&quot;, &quot;x&quot;)</code><a class="copiable-link" href="#index-camorbit-5"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-camorbit-6"><span><strong class="def-name">camorbit</strong> <code class="def-code-arguments">(<var class="var">theta</var>, <var class="var">phi</var>, &quot;data&quot;, &quot;y&quot;)</code><a class="copiable-link" href="#index-camorbit-6"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-camorbit-7"><span><strong class="def-name">camorbit</strong> <code class="def-code-arguments">(<var class="var">theta</var>, <var class="var">phi</var>, &quot;data&quot;, [<var class="var">x</var> <var class="var">y</var> <var class="var">z</var>])</code><a class="copiable-link" href="#index-camorbit-7"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-camorbit-8"><span><strong class="def-name">camorbit</strong> <code class="def-code-arguments">(<var class="var">theta</var>, <var class="var">phi</var>, &quot;camera&quot;)</code><a class="copiable-link" href="#index-camorbit-8"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-camorbit-9"><span><strong class="def-name">camorbit</strong> <code class="def-code-arguments">(<var class="var">hax</var>, &hellip;)</code><a class="copiable-link" href="#index-camorbit-9"> &para;</a></span></dt>
+<dd><p>Rotate the camera up/down and left/right around its target.
+</p>
+<p>Move the camera <var class="var">phi</var> degrees up and <var class="var">theta</var> degrees to the right,
+as if it were in an orbit around its target.
+Example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">sphere ()
+camorbit (30, 20)
+</pre></div></div>
+
+<p>These rotations are centered around the camera target
+(see <a class="pxref" href="#XREFcamtarget"><code class="code">camtarget</code></a>).
+First the camera position is pitched up or down by rotating it <var class="var">phi</var>
+degrees around an axis orthogonal to both the viewing direction
+(specifically <code class="code">camtarget() - campos()</code>) and the camera &ldquo;up vector&rdquo;
+(see <a class="pxref" href="#XREFcamup"><code class="code">camup</code></a>).
+Example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">camorbit (0, 20)
+</pre></div></div>
+
+<p>The second rotation depends on the coordinate system <var class="var">coorsys</var> and
+direction <var class="var">dir</var> inputs.
+The default for <var class="var">coorsys</var> is <code class="code">&quot;data&quot;</code>.  In this case, the camera
+is yawed left or right by rotating it <var class="var">theta</var> degrees around an axis
+specified by <var class="var">dir</var>.
+The default for <var class="var">dir</var> is <code class="code">&quot;z&quot;</code>, corresponding to the vector
+<code class="code">[0, 0, 1]</code>.
+Example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">camorbit (30, 0)
+</pre></div></div>
+
+<p>When <var class="var">coorsys</var> is set to <code class="code">&quot;camera&quot;</code>, the camera is moved left or
+right by rotating it around an axis parallel to the camera up vector
+(see <a class="pxref" href="#XREFcamup"><code class="code">camup</code></a>).
+The input <var class="var">dir</var> should not be specified in this case.
+Example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">camorbit (30, 0, &quot;camera&quot;)
+</pre></div></div>
+
+<p>(Note: the rotation by <var class="var">phi</var> is unaffected by <code class="code">&quot;camera&quot;</code>.)
+</p>
+<p>The <code class="code">camorbit</code> command modifies two camera properties:
+<a class="ref" href="#XREFcampos"><code class="code">campos</code></a> and <a class="ref" href="#XREFcamup"><code class="code">camup</code></a>.
+</p>
+<p>By default, this command affects the current axis; alternatively, an axis
+can be specified by the optional argument <var class="var">hax</var>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFcamzoom">camzoom</a>, <a class="ref" href="#XREFcamroll">camroll</a>, <a class="ref" href="#XREFcamlookat">camlookat</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFcamroll"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-camroll"><span><strong class="def-name">camroll</strong> <code class="def-code-arguments">(<var class="var">theta</var>)</code><a class="copiable-link" href="#index-camroll"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-camroll-1"><span><strong class="def-name">camroll</strong> <code class="def-code-arguments">(<var class="var">hax</var>, <var class="var">theta</var>)</code><a class="copiable-link" href="#index-camroll-1"> &para;</a></span></dt>
+<dd><p>Roll the camera.
+</p>
+<p>Roll the camera clockwise by <var class="var">theta</var> degrees.
+For example, the following command will roll the camera by
+30 degrees clockwise (to the right); this will cause the scene
+to appear to roll by 30 degrees to the left:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">peaks ()
+camroll (30)
+</pre></div></div>
+
+<p>Roll the camera back:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">camroll (-30)
+</pre></div></div>
+
+<p>The following command restores the default camera roll:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">camup (&quot;auto&quot;)
+</pre></div></div>
+
+<p>By default, these commands affect the current axis; alternatively, an axis
+can be specified by the optional argument <var class="var">hax</var>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFcamzoom">camzoom</a>, <a class="ref" href="#XREFcamorbit">camorbit</a>, <a class="ref" href="#XREFcamlookat">camlookat</a>, <a class="ref" href="#XREFcamup">camup</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFcamtarget"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-camtarget"><span><code class="def-type"><var class="var">t</var> =</code> <strong class="def-name">camtarget</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-camtarget"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-camtarget-1"><span><strong class="def-name">camtarget</strong> <code class="def-code-arguments">([<var class="var">x</var> <var class="var">y</var> <var class="var">z</var>])</code><a class="copiable-link" href="#index-camtarget-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-camtarget-2"><span><code class="def-type"><var class="var">mode</var> =</code> <strong class="def-name">camtarget</strong> <code class="def-code-arguments">(&quot;mode&quot;)</code><a class="copiable-link" href="#index-camtarget-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-camtarget-3"><span><strong class="def-name">camtarget</strong> <code class="def-code-arguments">(<var class="var">mode</var>)</code><a class="copiable-link" href="#index-camtarget-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-camtarget-4"><span><strong class="def-name">camtarget</strong> <code class="def-code-arguments">(<var class="var">hax</var>, &hellip;)</code><a class="copiable-link" href="#index-camtarget-4"> &para;</a></span></dt>
+<dd><p>Get or set where the camera is pointed.
+</p>
+<p>The camera target is a point in space where the camera is pointing.
+Usually, it is determined automatically based on the scene:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">hf = figure();
+sphere (36)
+v = camtarget ()
+  &rArr;  v =
+      0   0   0
+</pre></div></div>
+
+<p>We can turn the camera to point at a new target:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">camtarget ([1 1 1])
+camtarget ()
+  &rArr;    1   1   1
+</pre></div></div>
+
+<p>Having done so, the camera target <var class="var">mode</var> is manual:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">camtarget (&quot;mode&quot;)
+  &rArr;  manual
+</pre></div></div>
+
+<p>This means, for example, adding new objects to the scene will not retarget
+the camera:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">hold on;
+peaks ()
+camtarget ()
+  &rArr;    1   1   1
+</pre></div></div>
+
+<p>We can reset it to be automatic:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">camtarget (&quot;auto&quot;)
+camtarget ()
+  &rArr;    0   0   0.76426
+close (hf)
+</pre></div></div>
+
+<p>By default, these commands affect the current axis; alternatively, an axis
+can be specified by the optional argument <var class="var">hax</var>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFcampos">campos</a>, <a class="ref" href="#XREFcamup">camup</a>, <a class="ref" href="#XREFcamva">camva</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFcamup"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-camup"><span><code class="def-type"><var class="var">up</var> =</code> <strong class="def-name">camup</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-camup"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-camup-1"><span><strong class="def-name">camup</strong> <code class="def-code-arguments">([<var class="var">x</var> <var class="var">y</var> <var class="var">z</var>])</code><a class="copiable-link" href="#index-camup-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-camup-2"><span><code class="def-type"><var class="var">mode</var> =</code> <strong class="def-name">camup</strong> <code class="def-code-arguments">(&quot;mode&quot;)</code><a class="copiable-link" href="#index-camup-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-camup-3"><span><strong class="def-name">camup</strong> <code class="def-code-arguments">(<var class="var">mode</var>)</code><a class="copiable-link" href="#index-camup-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-camup-4"><span><strong class="def-name">camup</strong> <code class="def-code-arguments">(<var class="var">hax</var>, &hellip;)</code><a class="copiable-link" href="#index-camup-4"> &para;</a></span></dt>
+<dd><p>Get or set the camera up vector.
+</p>
+<p>By default, the camera is oriented so that &ldquo;up&rdquo; corresponds to the
+positive z-axis:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">hf = figure ();
+sphere (36)
+v = camup ()
+  &rArr;  v =
+      0   0   1
+</pre></div></div>
+
+<p>Specifying a new &ldquo;up vector&rdquo; rolls the camera and sets the mode to manual:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">camup ([1 1 0])
+camup ()
+  &rArr;    1   1   0
+camup (&quot;mode&quot;)
+  &rArr;  manual
+</pre></div></div>
+
+<p>Modifying the up vector does not modify the camera target
+(see <a class="pxref" href="#XREFcamtarget"><code class="code">camtarget</code></a>).  Thus, the camera up vector might
+not be orthogonal to the direction of the camera&rsquo;s view:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">camup ([1 2 3])
+dot (camup (), camtarget () - campos ())
+  &rArr;  6...
+</pre></div></div>
+
+<p>A consequence is that &ldquo;pulling back&rdquo; on the up vector does not pitch the
+camera view (as that would require changing the target).  Setting the up
+vector is thus typically used only to roll the camera.  A more intuitive
+command for this purpose is <a class="ref" href="#XREFcamroll"><code class="code">camroll</code></a>.
+</p>
+<p>Finally, we can reset the up vector to automatic mode:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">camup (&quot;auto&quot;)
+camup ()
+  &rArr;    0   0   1
+close (hf)
+</pre></div></div>
+
+<p>By default, these commands affect the current axis; alternatively, an axis
+can be specified by the optional argument <var class="var">hax</var>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFcampos">campos</a>, <a class="ref" href="#XREFcamtarget">camtarget</a>, <a class="ref" href="#XREFcamva">camva</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFcamva"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-camva"><span><code class="def-type"><var class="var">a</var> =</code> <strong class="def-name">camva</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-camva"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-camva-1"><span><strong class="def-name">camva</strong> <code class="def-code-arguments">(<var class="var">a</var>)</code><a class="copiable-link" href="#index-camva-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-camva-2"><span><code class="def-type"><var class="var">mode</var> =</code> <strong class="def-name">camva</strong> <code class="def-code-arguments">(&quot;mode&quot;)</code><a class="copiable-link" href="#index-camva-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-camva-3"><span><strong class="def-name">camva</strong> <code class="def-code-arguments">(<var class="var">mode</var>)</code><a class="copiable-link" href="#index-camva-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-camva-4"><span><strong class="def-name">camva</strong> <code class="def-code-arguments">(<var class="var">hax</var>, &hellip;)</code><a class="copiable-link" href="#index-camva-4"> &para;</a></span></dt>
+<dd><p>Get or set the camera viewing angle.
+</p>
+<p>The camera has a viewing angle which determines how much can be seen.  By
+default this is:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">hf = figure();
+sphere (36)
+a = camva ()
+  &rArr;  a =  10.340
+</pre></div></div>
+
+<p>To get a wider-angle view, we could double the viewing angle.  This will
+also set the mode to manual:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">camva (2*a)
+camva (&quot;mode&quot;)
+  &rArr;  manual
+</pre></div></div>
+
+<p>We can set it back to automatic:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">camva (&quot;auto&quot;)
+camva (&quot;mode&quot;)
+  &rArr;  auto
+camva ()
+  &rArr;  ans =  10.340
+close (hf)
+</pre></div></div>
+
+<p>By default, these commands affect the current axis; alternatively, an axis
+can be specified by the optional argument <var class="var">hax</var>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFcampos">campos</a>, <a class="ref" href="#XREFcamtarget">camtarget</a>, <a class="ref" href="#XREFcamup">camup</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFcamzoom"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-camzoom"><span><strong class="def-name">camzoom</strong> <code class="def-code-arguments">(<var class="var">zf</var>)</code><a class="copiable-link" href="#index-camzoom"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-camzoom-1"><span><strong class="def-name">camzoom</strong> <code class="def-code-arguments">(<var class="var">hax</var>, <var class="var">zf</var>)</code><a class="copiable-link" href="#index-camzoom-1"> &para;</a></span></dt>
+<dd><p>Zoom the camera in or out.
+</p>
+<p>A value of <var class="var">zf</var> larger than 1 &ldquo;zooms in&rdquo; such that the scene appears
+magnified:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">hf = figure ();
+sphere (36)
+camzoom (1.2)
+</pre></div></div>
+
+<p>A value smaller than 1 &ldquo;zooms out&rdquo; so the camera can see more of the
+scene:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">camzoom (0.5)
+</pre></div></div>
+
+<p>Technically speaking, zooming affects the &ldquo;viewing angle&rdquo;.  The following
+command resets to the default zoom:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">camva (&quot;auto&quot;)
+close (hf)
+</pre></div></div>
+
+<p>By default, these commands affect the current axis; alternatively, an axis
+can be specified by the optional argument <var class="var">hax</var>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFcamroll">camroll</a>, <a class="ref" href="#XREFcamorbit">camorbit</a>, <a class="ref" href="#XREFcamlookat">camlookat</a>, <a class="ref" href="#XREFcamva">camva</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFslice"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-slice"><span><strong class="def-name">slice</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>, <var class="var">v</var>, <var class="var">sx</var>, <var class="var">sy</var>, <var class="var">sz</var>)</code><a class="copiable-link" href="#index-slice"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-slice-1"><span><strong class="def-name">slice</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>, <var class="var">v</var>, <var class="var">xi</var>, <var class="var">yi</var>, <var class="var">zi</var>)</code><a class="copiable-link" href="#index-slice-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-slice-2"><span><strong class="def-name">slice</strong> <code class="def-code-arguments">(<var class="var">v</var>, <var class="var">sx</var>, <var class="var">sy</var>, <var class="var">sz</var>)</code><a class="copiable-link" href="#index-slice-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-slice-3"><span><strong class="def-name">slice</strong> <code class="def-code-arguments">(<var class="var">v</var>, <var class="var">xi</var>, <var class="var">yi</var>, <var class="var">zi</var>)</code><a class="copiable-link" href="#index-slice-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-slice-4"><span><strong class="def-name">slice</strong> <code class="def-code-arguments">(&hellip;, <var class="var">method</var>)</code><a class="copiable-link" href="#index-slice-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-slice-5"><span><strong class="def-name">slice</strong> <code class="def-code-arguments">(<var class="var">hax</var>, &hellip;)</code><a class="copiable-link" href="#index-slice-5"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-slice-6"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">slice</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-slice-6"> &para;</a></span></dt>
+<dd><p>Plot slices of 3-D data/scalar fields.
+</p>
+<p>Each element of the 3-dimensional array <var class="var">v</var> represents a scalar value at
+a location given by the parameters <var class="var">x</var>, <var class="var">y</var>, and <var class="var">z</var>.  The
+parameters <var class="var">x</var>, <var class="var">y</var>, and <var class="var">z</var> are either 3-dimensional arrays of
+the same size as the array <var class="var">v</var> in the <code class="code">&quot;meshgrid&quot;</code> format or
+vectors.  The parameters <var class="var">xi</var>, etc. respect a similar format to
+<var class="var">x</var>, etc., and they represent the points at which the array <var class="var">vi</var>
+is interpolated using interp3.  The vectors <var class="var">sx</var>, <var class="var">sy</var>, and
+<var class="var">sz</var> contain points of orthogonal slices of the respective axes.
+</p>
+<p>If <var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var> are omitted, they are assumed to be
+<code class="code">x = 1:size (<var class="var">v</var>, 2)</code>, <code class="code">y = 1:size (<var class="var">v</var>, 1)</code> and
+<code class="code">z = 1:size (<var class="var">v</var>, 3)</code>.
+</p>
+<p><var class="var">method</var> is one of:
+</p>
+<dl class="table">
+<dt><code class="code">&quot;nearest&quot;</code></dt>
+<dd><p>Return the nearest neighbor.
+</p>
+</dd>
+<dt><code class="code">&quot;linear&quot;</code></dt>
+<dd><p>Linear interpolation from nearest neighbors.
+</p>
+</dd>
+<dt><code class="code">&quot;cubic&quot;</code></dt>
+<dd><p>Cubic interpolation from four nearest neighbors (not implemented yet).
+</p>
+</dd>
+<dt><code class="code">&quot;spline&quot;</code></dt>
+<dd><p>Cubic spline interpolation&mdash;smooth first and second derivatives
+throughout the curve.
+</p></dd>
+</dl>
+
+<p>The default method is <code class="code">&quot;linear&quot;</code>.
+</p>
+<p>If the first argument <var class="var">hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code class="code">gca</code>.
+</p>
+<p>The optional return value <var class="var">h</var> is a graphics handle to the created
+surface object.
+</p>
+<p>Examples:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">[x, y, z] = meshgrid (linspace (-8, 8, 32));
+v = sin (sqrt (x.^2 + y.^2 + z.^2)) ./ (sqrt (x.^2 + y.^2 + z.^2));
+slice (x, y, z, v, [], 0, []);
+
+[xi, yi] = meshgrid (linspace (-7, 7));
+zi = xi + yi;
+slice (x, y, z, v, xi, yi, zi);
+</pre></div></div>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Multi_002ddimensional-Interpolation.html#XREFinterp3">interp3</a>, <a class="ref" href="Creating-Graphics-Objects.html#XREFsurface">surface</a>, <a class="ref" href="Two_002dDimensional-Plots.html#XREFpcolor">pcolor</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFribbon"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-ribbon"><span><strong class="def-name">ribbon</strong> <code class="def-code-arguments">(<var class="var">y</var>)</code><a class="copiable-link" href="#index-ribbon"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ribbon-1"><span><strong class="def-name">ribbon</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>)</code><a class="copiable-link" href="#index-ribbon-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ribbon-2"><span><strong class="def-name">ribbon</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>, <var class="var">width</var>)</code><a class="copiable-link" href="#index-ribbon-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ribbon-3"><span><strong class="def-name">ribbon</strong> <code class="def-code-arguments">(<var class="var">hax</var>, &hellip;)</code><a class="copiable-link" href="#index-ribbon-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ribbon-4"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">ribbon</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-ribbon-4"> &para;</a></span></dt>
+<dd><p>Draw a ribbon plot for the columns of <var class="var">y</var> vs. <var class="var">x</var>.
+</p>
+<p>If <var class="var">x</var> is omitted, a vector containing the row numbers is assumed
+(<code class="code">1:rows (Y)</code>).  Alternatively, <var class="var">x</var> can also be a vector with
+same number of elements as rows of <var class="var">y</var> in which case the same
+<var class="var">x</var> is used for each column of <var class="var">y</var>.
+</p>
+<p>The optional parameter <var class="var">width</var> specifies the width of a single ribbon
+(default is 0.75).
+</p>
+<p>If the first argument <var class="var">hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code class="code">gca</code>.
+</p>
+<p>The optional return value <var class="var">h</var> is a vector of graphics handles to
+the surface objects representing each ribbon.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Creating-Graphics-Objects.html#XREFsurface">surface</a>, <a class="ref" href="#XREFwaterfall">waterfall</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFshading"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-shading"><span><strong class="def-name">shading</strong> <code class="def-code-arguments">(<var class="var">type</var>)</code><a class="copiable-link" href="#index-shading"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-shading-1"><span><strong class="def-name">shading</strong> <code class="def-code-arguments">(<var class="var">hax</var>, <var class="var">type</var>)</code><a class="copiable-link" href="#index-shading-1"> &para;</a></span></dt>
+<dd><p>Set the shading of patch or surface graphic objects.
+</p>
+<p>Valid arguments for <var class="var">type</var> are
+</p>
+<dl class="table">
+<dt><code class="code">&quot;flat&quot;</code></dt>
+<dd><p>Single colored patches with invisible edges.
+</p>
+</dd>
+<dt><code class="code">&quot;faceted&quot;</code></dt>
+<dd><p>Single colored patches with black edges.
+</p>
+</dd>
+<dt><code class="code">&quot;interp&quot;</code></dt>
+<dd><p>Colors between patch vertices are interpolated and the patch edges are
+invisible.
+</p></dd>
+</dl>
+
+<p>If the first argument <var class="var">hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code class="code">gca</code>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Two_002dDimensional-Plots.html#XREFfill">fill</a>, <a class="ref" href="#XREFmesh">mesh</a>, <a class="ref" href="Creating-Graphics-Objects.html#XREFpatch">patch</a>, <a class="ref" href="Two_002dDimensional-Plots.html#XREFpcolor">pcolor</a>, <a class="ref" href="#XREFsurf">surf</a>, <a class="ref" href="Creating-Graphics-Objects.html#XREFsurface">surface</a>, <a class="ref" href="#XREFhidden">hidden</a>, <a class="ref" href="#XREFlighting">lighting</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFscatter3"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-scatter3"><span><strong class="def-name">scatter3</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>)</code><a class="copiable-link" href="#index-scatter3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-scatter3-1"><span><strong class="def-name">scatter3</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>, <var class="var">s</var>)</code><a class="copiable-link" href="#index-scatter3-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-scatter3-2"><span><strong class="def-name">scatter3</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>, <var class="var">s</var>, <var class="var">c</var>)</code><a class="copiable-link" href="#index-scatter3-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-scatter3-3"><span><strong class="def-name">scatter3</strong> <code class="def-code-arguments">(&hellip;, <var class="var">style</var>)</code><a class="copiable-link" href="#index-scatter3-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-scatter3-4"><span><strong class="def-name">scatter3</strong> <code class="def-code-arguments">(&hellip;, &quot;filled&quot;)</code><a class="copiable-link" href="#index-scatter3-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-scatter3-5"><span><strong class="def-name">scatter3</strong> <code class="def-code-arguments">(&hellip;, <var class="var">prop</var>, <var class="var">val</var>)</code><a class="copiable-link" href="#index-scatter3-5"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-scatter3-6"><span><strong class="def-name">scatter3</strong> <code class="def-code-arguments">(<var class="var">hax</var>, &hellip;)</code><a class="copiable-link" href="#index-scatter3-6"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-scatter3-7"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">scatter3</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-scatter3-7"> &para;</a></span></dt>
+<dd><p>Draw a 3-D scatter plot.
+</p>
+<p>A marker is plotted at each point defined by the coordinates in the vectors
+<var class="var">x</var>, <var class="var">y</var>, and <var class="var">z</var>.
+</p>
+<p>The size of the markers is determined by <var class="var">s</var>, which can be a scalar
+or a vector of the same length as <var class="var">x</var>, <var class="var">y</var>, and <var class="var">z</var>.  If <var class="var">s</var>
+is not given, or is an empty matrix, then a default value of 8 points is
+used.
+</p>
+<p>The color of the markers is determined by <var class="var">c</var>, which can be a string
+defining a fixed color; a 3-element vector giving the red, green, and blue
+components of the color; a vector of the same length as <var class="var">x</var> that gives
+a scaled index into the current colormap; or an Nx3 matrix
+defining the RGB color of each marker individually.
+</p>
+<p>The marker to use can be changed with the <var class="var">style</var> argument, that is a
+string defining a marker in the same manner as the <code class="code">plot</code> command.
+If no marker is specified it defaults to <code class="code">&quot;o&quot;</code> or circles.
+If the argument <code class="code">&quot;filled&quot;</code> is given then the markers are filled.
+</p>
+<p>If the first argument <var class="var">hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code class="code">gca</code>.
+</p>
+<p>The optional return value <var class="var">h</var> is a graphics handle to the scatter
+object representing the points.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">[x, y, z] = peaks (20);
+scatter3 (x(:), y(:), z(:), [], z(:));
+</pre></div></div>
+
+<p>Programming Note: The full list of properties is documented at
+<a class="ref" href="Scatter-Properties.html">Scatter Properties</a>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Two_002dDimensional-Plots.html#XREFscatter">scatter</a>, <a class="ref" href="Creating-Graphics-Objects.html#XREFpatch">patch</a>, <a class="ref" href="Two_002dDimensional-Plots.html#XREFplot">plot</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFwaterfall"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-waterfall"><span><strong class="def-name">waterfall</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>)</code><a class="copiable-link" href="#index-waterfall"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-waterfall-1"><span><strong class="def-name">waterfall</strong> <code class="def-code-arguments">(<var class="var">z</var>)</code><a class="copiable-link" href="#index-waterfall-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-waterfall-2"><span><strong class="def-name">waterfall</strong> <code class="def-code-arguments">(&hellip;, <var class="var">c</var>)</code><a class="copiable-link" href="#index-waterfall-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-waterfall-3"><span><strong class="def-name">waterfall</strong> <code class="def-code-arguments">(&hellip;, <var class="var">prop</var>, <var class="var">val</var>, &hellip;)</code><a class="copiable-link" href="#index-waterfall-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-waterfall-4"><span><strong class="def-name">waterfall</strong> <code class="def-code-arguments">(<var class="var">hax</var>, &hellip;)</code><a class="copiable-link" href="#index-waterfall-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-waterfall-5"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">waterfall</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-waterfall-5"> &para;</a></span></dt>
+<dd><p>Plot a 3-D waterfall plot.
+</p>
+<p>A waterfall plot is similar to a <code class="code">meshz</code> plot except only
+mesh lines for the rows of <var class="var">z</var> (x-values) are shown.
+</p>
+<p>The wireframe mesh is plotted using rectangles.  The vertices of the
+rectangles [<var class="var">x</var>, <var class="var">y</var>] are typically the output of <code class="code">meshgrid</code>.
+over a 2-D rectangular region in the x-y plane.  <var class="var">z</var> determines the
+height above the plane of each vertex.  If only a single <var class="var">z</var> matrix is
+given, then it is plotted over the meshgrid
+<code class="code"><var class="var">x</var> = 1:columns (<var class="var">z</var>), <var class="var">y</var> = 1:rows (<var class="var">z</var>)</code>.
+Thus, columns of <var class="var">z</var> correspond to different <var class="var">x</var> values and rows
+of <var class="var">z</var> correspond to different <var class="var">y</var> values.
+</p>
+<p>The color of the mesh is computed by linearly scaling the <var class="var">z</var> values
+to fit the range of the current colormap.  Use <code class="code">clim</code> and/or
+change the colormap to control the appearance.
+</p>
+<p>Optionally the color of the mesh can be specified independently of <var class="var">z</var>
+by supplying a color matrix, <var class="var">c</var>.
+</p>
+<p>Any property/value pairs are passed directly to the underlying surface
+object.  The full list of properties is documented at
+<a class="ref" href="Surface-Properties.html">Surface Properties</a>.
+</p>
+<p>If the first argument <var class="var">hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code class="code">gca</code>.
+</p>
+<p>The optional return value <var class="var">h</var> is a graphics handle to the created
+surface object.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFmeshz">meshz</a>, <a class="ref" href="#XREFmesh">mesh</a>, <a class="ref" href="#XREFmeshc">meshc</a>, <a class="ref" href="Two_002dDimensional-Plots.html#XREFcontour">contour</a>, <a class="ref" href="#XREFsurf">surf</a>, <a class="ref" href="Creating-Graphics-Objects.html#XREFsurface">surface</a>, <a class="ref" href="#XREFribbon">ribbon</a>, <a class="ref" href="#XREFmeshgrid">meshgrid</a>, <a class="ref" href="#XREFhidden">hidden</a>, <a class="ref" href="#XREFshading">shading</a>, <a class="ref" href="Representing-Images.html#XREFcolormap">colormap</a>, <a class="ref" href="Axis-Configuration.html#XREFclim">clim</a>.
+</p></dd></dl>
+
+
+
+<ul class="mini-toc">
+<li><a href="Aspect-Ratio.html" accesskey="1">Aspect Ratio</a></li>
+<li><a href="Three_002ddimensional-Function-Plotting.html" accesskey="2">Three-dimensional Function Plotting</a></li>
+<li><a href="Three_002ddimensional-Geometric-Shapes.html" accesskey="3">Three-dimensional Geometric Shapes</a></li>
+</ul>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Plot-Annotations.html">Plot Annotations</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Two_002dDimensional-Plots.html">Two-Dimensional Plots</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="High_002dLevel-Plotting.html">High-Level Plotting</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

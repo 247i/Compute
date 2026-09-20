@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Automatic Conversion of Data Types (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Automatic Conversion of Data Types (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Automatic Conversion of Data Types (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Numeric-Data-Types.html" rel="up" title="Numeric Data Types">
+<link href="Predicates-for-Numeric-Objects.html" rel="next" title="Predicates for Numeric Objects">
+<link href="Logical-Values.html" rel="prev" title="Logical Values">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Automatic-Conversion-of-Data-Types">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Predicates-for-Numeric-Objects.html" accesskey="n" rel="next">Predicates for Numeric Objects</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Logical-Values.html" accesskey="p" rel="prev">Logical Values</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Numeric-Data-Types.html" accesskey="u" rel="up">Numeric Data Types</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Automatic-Conversion-of-Data-Types-1"><span>4.7 Automatic Conversion of Data Types<a class="copiable-link" href="#Automatic-Conversion-of-Data-Types-1"> &para;</a></span></h3>
+
+<p>Many operators and functions can work with mixed data types.  For example,
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">uint8 (1) + 1
+    &rArr;  2
+</pre></div><pre class="example-preformatted">
+
+</pre><div class="group"><pre class="example-preformatted">single (1) + 1
+    &rArr;  2
+</pre></div><pre class="example-preformatted">
+
+</pre><div class="group"><pre class="example-preformatted">min (single (1), 0)
+   &rArr;  0
+</pre></div></div>
+
+<p>where the results are respectively of types uint8, single, and single
+respectively.  This is done for <small class="sc">MATLAB</small> compatibility.  Valid mixed
+operations are defined as follows:
+</p>
+<table class="multitable">
+<thead><tr><th width="20%"></th><th width="30%">Mixed Operation</th><th width="30%">Result</th><th width="20%"></th></tr></thead>
+<tbody><tr><td width="20%"></td><td width="30%">double OP single</td><td width="30%">single</td><td width="20%"></td></tr>
+<tr><td width="20%"></td><td width="30%">double OP integer</td><td width="30%">integer</td><td width="20%"></td></tr>
+<tr><td width="20%"></td><td width="30%">double OP char</td><td width="30%">double</td><td width="20%"></td></tr>
+<tr><td width="20%"></td><td width="30%">double OP logical</td><td width="30%">double</td><td width="20%"></td></tr>
+<tr><td width="20%"></td><td width="30%">single OP integer</td><td width="30%">integer</td><td width="20%"></td></tr>
+<tr><td width="20%"></td><td width="30%">single OP char</td><td width="30%">single</td><td width="20%"></td></tr>
+<tr><td width="20%"></td><td width="30%">single OP logical</td><td width="30%">single</td><td width="20%"></td></tr>
+</tbody>
+</table>
+
+<p>When functions expect a double but are passed other types, automatic
+conversion is function-dependent:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">a = det (int8 ([1 2; 3 4]))
+    &rArr;  a = -2
+class (a)
+    &rArr;  double
+</pre></div><pre class="example-preformatted">
+
+</pre><div class="group"><pre class="example-preformatted">a = eig (int8 ([1 2; 3 4]))
+    &rArr;  error: eig: wrong type argument 'int8 matrix'
+</pre></div></div>
+
+<p>When two operands are both integers but of different widths, then some cases
+convert them to the wider bitwidth, and other cases throw an error:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">a = min (int8 (100), int16 (200))
+    &rArr;  100
+class (a)
+    &rArr;  int16
+</pre></div><pre class="example-preformatted">
+
+</pre><div class="group"><pre class="example-preformatted">int8 (100) + int16 (200)
+   &rArr;  error: binary operator '+' not implemented
+   for 'int8 scalar' by 'int16 scalar' operations
+</pre></div></div>
+
+<p>For two integer operands, they typically need to both be signed or both be
+unsigned.  Mixing signed and unsigned usually causes an error, even if they
+are of the same bitwidth.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">min (int16 (100), uint16 (200))
+   &rArr;  error: min: cannot compute min (int16 scalar, uint16 scalar)
+</pre></div></div>
+
+<p>In the case of mixed type indexed assignments, the type is not
+changed.  For example,
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">x = ones (2, 2);
+x(1, 1) = single (2)
+   &rArr;  x = 2   1
+          1   1
+</pre></div></div>
+
+<p>where <code class="code">x</code> remains of the double precision type.
+</p>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Predicates-for-Numeric-Objects.html">Predicates for Numeric Objects</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Logical-Values.html">Logical Values</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Numeric-Data-Types.html">Numeric Data Types</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

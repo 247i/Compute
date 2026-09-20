@@ -1,0 +1,1687 @@
+## Copyright (C) 2026 Andreas Bertsatos <abertsatos@biol.uoa.gr>
+## Copyright (C) 2026 Avanish Salunke <avanishsalunke16@gmail.com>
+##
+## This file is part of the statistics package for GNU Octave.
+##
+## This program is free software; you can redistribute it and/or modify it under
+## the terms of the GNU General Public License as published by the Free Software
+## Foundation; either version 3 of the License, or (at your option) any later
+## version.
+##
+## This program is distributed in the hope that it will be useful, but WITHOUT
+## ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+## FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+## details.
+##
+## You should have received a copy of the GNU General Public License along with
+## this program; if not, see <http://www.gnu.org/licenses/>.
+
+## -*- texinfo -*-
+## @deftypefn  {statistics} {@var{terms} =} parseWilkinsonFormula (@var{formula})
+## @deftypefnx {statistics} {@var{result} =} parseWilkinsonFormula (@var{formula}, @var{mode})
+## @deftypefnx {statistics} {[@var{X}, @var{y}, @var{names}] =} parseWilkinsonFormula (@var{formula}, "model_matrix", @var{data})
+##
+## Parse and expand statistical model formulae using the Wilkinson notation.
+##
+## This function implements the recursive-descent parser and expansion logic
+## described by Wilkinson & Rogers (1973) for factorial models.  It allows the
+## symbolic specification of analysis of variance and regression models,
+## converting strings into computational schemas or design matrices.  It also
+## supports multi-variable response specification on the Left-Hand Side (LHS)
+## using lists or ranges.
+##
+## @code{parseWilkinsonFormula} accepts as its first input argument a Wilkinson
+## notation string specified by @var{formula} either as a character vector or a
+## string scalar with the following list of valid symbols:
+##
+## @strong{Right-Hand Side (Model) Operators}
+## The RHS specifies the independent variables (predictors) and the structural
+## relationships between them, such as interactions and nesting. The parser
+## expands these expressions into fundamental model terms following the standard
+## statistical rules of marginality. Additionally, explicit nesting notation
+## (e.g., @code{B(A)}) is supported to denote that factor B is nested within A.
+##
+## @multitable @columnfractions 0.15 0.35 0.50
+## @headitem Operator @tab Description @tab Expansion Example
+## @item @code{+} @tab Addition (Union) @tab @code{A + B} expands to A, B
+## @item @code{*} @tab Crossing @tab @code{A * B} expands to A, B, A:B
+## @item @code{-} @tab Deletion @tab @code{A*B - A:B} expands to A, B
+## @item @code{/} @tab Nesting @tab @code{A / B} expands to A, A:B
+## @item @code{:} @tab Interaction @tab @code{A : B} expands to A:B
+## @item @code{^} @tab Power (Limit) @tab @code{(A+B)^2} expands to A, B, A:B
+## @item @code{1} @tab Intercept @tab @code{y ~ A - 1} removes intercept
+## @end multitable
+##
+##
+## @strong{Left-Hand Side (Response) Operators}
+## The LHS, separated by the @code{~} operator, defines the dependent variables.
+## It natively supports multi-response syntaxes.
+##
+## @multitable @columnfractions 0.15 0.35 0.50
+## @headitem Operator @tab Description @tab Usage Example
+## @item @code{~} @tab Formula separator @tab @code{y ~ x}
+## @item @code{,} @tab List separator @tab @code{y1, y2 ~ x}
+## @item @code{-} @tab Range operator @tab @code{T1 - T3 ~ x}
+## @end multitable
+##
+## @strong{Processing Modes}
+## @code{parseWilkinsonFormula (@var{formula}, @var{mode})} evaluates the
+## formula string based on the selected @var{mode}:
+##
+## @itemize
+## @item @code{'expand'} (default) - Returns a structure containing
+## @code{response} and @code{model} fields. Each field contains cell arrays
+## of the expanded, fundamental terms.
+##
+## @item @code{'equation'} - Generates a string representing the mathematical
+## equation of the fitted model. Coefficients are represented generically as
+## @code{c1, c2, ...}. If multiple responses are specified, it returns a
+## string array of equations.
+##
+## @multitable @columnfractions 0.40 0.60
+## @headitem Formula String @tab Equation Output
+## @item @code{y ~ x} @tab @code{"y = c1 + c2*x"}
+## @item @code{y ~ A * B} @tab @code{"y = c1 + c2*A + c3*B + c4*A*B"}
+## @item @code{y ~ School / Class} @tab @code{"y = c1 + c2*School + c3*Class*School"}
+## @item @code{y ~ x^2} @tab @code{"y = c1 + c2*x + c3*x^2"}
+## @item @code{y1 - y2 ~ Trt} @tab @code{["y1 = c1 + c2*Trt", "y2 = ..."]}
+## @end multitable
+##
+## @item @code{'matrix'} - Returns a schema structure containing a binary
+## matrix defining term membership, useful for internal algorithmic processing.
+##
+## @item @code{'model_matrix'} - Constructs the numeric Design Matrix (@var{X})
+## and Response Matrix (@var{y}) directly from a provided data table.
+##
+## @item @code{'parse'} - Returns the raw Abstract Syntax Tree (AST) structure.
+##
+## @item @code{'tokenize'} - Returns the array of tokens generated by the lexer.
+## @end itemize
+##
+## @strong{Data Handling ('model_matrix' mode)}
+## When using the @code{'model_matrix'} mode, a @var{data} argument must be
+## provided as an Octave @code{table}.
+## @itemize
+## @item @strong{Categorical Variables:} Cell arrays of strings in the table
+## are automatically detected as categorical factors and undergo corner-point
+## (reference) dummy coding.
+## @item @strong{Numeric Variables:} Standard numeric vectors are treated as
+## continuous predictors or responses.
+## @item @strong{Missing Data:} Rows containing @code{NaN} values in any of the
+## active variables are automatically omitted from the final matrices.
+## @end itemize
+##
+## @strong{Outputs}
+## @table @var
+## @item terms / result
+## The processed model structure, string array, or cell array depending on the
+## selected @var{mode}.
+## @item X
+## The generated numeric design matrix (Observations x Parameters). Includes
+## a column of ones for the intercept unless @code{- 1} is in the formula.
+## @item y
+## The numeric response matrix (Observations x K responses).
+## @item names
+## A cell array of character vectors containing the column names corresponding
+## to the generated design matrix @var{X}.
+## @end table
+##
+## @strong{References}
+##
+## Wilkinson, G. N. and Rogers, C. E. (1973). Symbolic Description of Factorial
+## Models for Analysis of Variance. Applied Statistics, 22, 392-399.
+##
+## @end deftypefn
+
+function varargout = parseWilkinsonFormula (varargin)
+
+  if (nargin < 1)
+    error ("parseWilkinsonFormula: Input formula string is required.");
+  elseif (nargin > 3)
+    error ("parseWilkinsonFormula: Too many input arguments.");
+  endif
+
+  formula_str = varargin{1};
+  if (nargin > 1)
+    mode = varargin{2};
+  else
+    mode = 'expand';
+  endif
+
+  mode = lower (mode);
+
+  if (strcmp (mode, 'tokenize'))
+    varargout{1} = run_lexer (formula_str);
+    return;
+  endif
+
+  if (! strcmp (mode, 'model_matrix') && ! strcmp (mode, 'equation'))
+    tokens = run_lexer (formula_str);
+    [tree, curr] = run_parser (tokens);
+
+    ## Check for Nested Tildes.
+    if (isstruct (tree) && strcmp (tree.type, 'OPERATOR') &&
+                           strcmp (tree.value, '~'))
+      if ((! isempty (tree.left) && isstruct (tree.left) &&
+           strcmp (tree.left.type, 'OPERATOR') &&
+           strcmp (tree.left.value, '~')) ||
+          (! isempty (tree.right) && isstruct (tree.right) &&
+           strcmp (tree.right.type, 'OPERATOR') &&
+           strcmp (tree.right.value, '~')))
+        error ("parseWilkinsonFormula: Unexpected token");
+      endif
+    endif
+
+    ## Check for trailing.
+    if (curr <= length (tokens) && ! strcmp (tokens(curr).type, 'EOF'))
+      error ("parseWilkinsonFormula: Unexpected token");
+    endif
+  else
+    tree = [];
+  endif
+
+  ## Mode specific Processing
+  switch (mode)
+    case 'parse'
+      varargout{1} = tree;
+
+    case 'expand'
+      varargout{1} = run_expander (tree, mode);
+
+    case 'equation'
+      has_data = nargin > 2 && isa (varargin{3}, 'table');
+      data_table = [];
+      if (has_data), data_table = varargin{3}; endif
+
+      [lhs_str, rhs_terms] = split_and_expand_rhs (formula_str, mode);
+
+      ## resolve LHS.
+      if (has_data)
+        lhs_vars = resolve_lhs_vars (lhs_str, data_table);
+      else
+        lhs_vars = resolve_lhs_symbolic (lhs_str);
+      endif
+      
+      ## build the required output.
+      varargout{1} = run_equation_builder (lhs_vars, rhs_terms);
+
+    case 'matrix'
+      expanded = run_expander (tree, mode);
+      varargout{1} = run_schema_builder (expanded);
+
+    case 'model_matrix'
+      if (nargin < 3)
+        error (strcat ("parseWilkinsonFormula: 'model_matrix'", ...
+                       " mode requires a Data Table."));
+      endif
+      data_table = varargin{3};
+      if (! isa (data_table, 'table'))
+        error ("parseWilkinsonFormula: Input data must be a 'table' class.");
+      endif
+
+      [lhs_str, rhs_terms] = split_and_expand_rhs (formula_str, mode);
+
+      ## build schema.
+      schema = run_schema_builder (rhs_terms);
+
+      ## resolve LHS.
+      if (! isempty (lhs_str))
+        schema.ResponseVars = resolve_lhs_vars (lhs_str, data_table);
+      else
+        schema.ResponseVars = {};
+      endif
+
+      ## build the required matrix.
+      [X, y, names] = run_model_matrix_builder (schema, data_table);
+      varargout{1} = X;
+      if (nargout > 1), varargout{2} = y; endif
+      if (nargout > 2), varargout{3} = names; endif
+
+    otherwise
+      error ("parseWilkinsonFormula: Unknown mode: %s", mode);
+  endswitch
+endfunction
+
+## lexer
+function tokens = run_lexer (formula_str)
+
+  if (isempty (formula_str))
+    tokens = struct ('type', {}, 'value', {}, 'pos', {});
+    return;
+  endif
+
+  str = char (formula_str);
+  n = length (str);
+  tokens(n) = struct ('type', '', 'value', '', 'pos', 0);
+  tok_idx = 0;
+  i = 1;
+
+  while (i <= n)
+    c = str(i);
+    start_pos = i;
+
+    if (isspace (c))
+      i = i + 1;
+      continue;
+    endif
+
+    if (c == ',')
+      tok_idx = tok_idx + 1;
+      tokens(tok_idx) = create_token ('COMMA', ',', start_pos);
+      i++;
+      continue;
+    endif
+
+    ## Identifiers (Factors)
+    if (isletter (c))
+      val = c;
+      i = i + 1;
+      while (i <= n)
+        next_c = str(i);
+        if (isletter (next_c) || (next_c >= '0' && next_c <= '9') ...
+            || next_c == '_')
+          val = [val, next_c];
+          i = i + 1;
+        else
+          break;
+        endif
+      endwhile
+      tok_idx = tok_idx + 1;
+      tokens(tok_idx) = create_token ('IDENTIFIER', val, start_pos);
+      continue;
+    endif
+
+    ## Numbers
+    if (c >= '0' && c <= '9')
+      val = c;
+      i = i + 1;
+      while (i <= n)
+        next_c = str(i);
+        if (next_c >= '0' && next_c <= '9')
+          val = [val, next_c];
+          i = i + 1;
+        elseif (next_c == '.')
+          ## Simple float support
+          if (i < n && str(i+1) >= '0' && str(i+1) <= '9')
+            val = [val, next_c];
+            i = i + 1;
+          else
+            break;
+          endif
+        else
+          break;
+        endif
+      endwhile
+      tok_idx = tok_idx + 1;
+      tokens(tok_idx) = create_token ('NUMBER', val, start_pos);
+      continue;
+    endif
+
+    ## Operators
+    type = '';
+    val = c;
+    skip = 0;
+
+    switch (c)
+      case '-'
+        if (i < n)
+          if (i < n && str(i+1) == '/')
+            type = 'OP_MINUS_MARGIN'; val = '-/'; skip = 1;
+          elseif (i < n && str(i+1) == '*')
+            type = 'OP_MINUS_CLEAN'; val = '-*'; skip = 1;
+          else
+            type = 'OP_MINUS';
+          endif
+        else
+          type = 'OP_MINUS';
+        endif
+      case '*'
+        type = 'OP_CROSS';
+      case '^'
+        type = 'OP_POWER';
+      case '/'
+        type = 'OP_NEST';
+      case '+'
+        type = 'OP_PLUS';
+      case {'.', ':'}
+        type = 'OP_DOT';
+      case '~'
+        type = 'SEPARATOR';
+      case '('
+        type = 'LPAREN';
+      case ')'
+        type = 'RPAREN';
+      otherwise
+        error (strcat ("parseWilkinsonFormula: Unexpected", ...
+                       " character '%s' at position %d", c, i));
+    endswitch
+
+    tok_idx = tok_idx + 1;
+    tokens(tok_idx) = create_token (type, val, start_pos);
+    i = i + 1 + skip;
+  endwhile
+
+  tokens = tokens (1:tok_idx);
+  tokens(end+1) = create_token ('EOF', 'EOF', i);
+
+endfunction
+
+function t = create_token (type, val, pos)
+  t.type = type;
+  t.value = val;
+  t.pos = pos;
+endfunction
+
+function [tree, curr] = run_parser (tokens, curr, prec_limit)
+
+  if (nargin < 2), curr = 1; endif
+  if (nargin < 3), prec_limit = 0; endif
+
+  n = length (tokens);
+  if (curr > n)
+    error ("parseWilkinsonFormula: Unexpected End Of Formula.");
+  endif
+
+  t = tokens(curr);
+  curr = curr + 1;
+
+  ## Basic Units
+  if (strcmp (t.type, 'IDENTIFIER'))
+    ## Check for Function Call: IDENTIFIER followed by LPAREN
+    if (curr <= n && strcmp (tokens(curr).type, 'LPAREN'))
+      func_name = t.value;
+      curr = curr + 1;
+
+      args = {};
+
+      ## Parse arguments
+      if (curr <= n && ! strcmp (tokens(curr).type, 'RPAREN'))
+        while (true)
+          [arg_node, curr] = run_parser (tokens, curr, 0);
+          args{end+1} = arg_node;
+
+          if (curr <= n && strcmp (tokens(curr).type, 'COMMA'))
+            curr = curr + 1;
+          else
+            break;
+          endif
+        endwhile
+      endif
+
+      if (curr <= n && strcmp (tokens(curr).type, 'RPAREN'))
+        curr = curr + 1;
+      else
+        error (strcat ("parseWilkinsonFormula: Missing ')'", ...
+                       " for function call '%s'."), func_name);
+      endif
+
+      tree.type = 'FUNCTION';
+      tree.name = func_name;
+      tree.args = args;
+      tree.left = [];
+      tree.right = [];
+
+    else
+      ## Standard Variable
+      tree.type = t.type;
+      tree.value = t.value;
+      tree.left = [];
+      tree.right = [];
+    endif
+
+  elseif (strcmp (t.type, 'NUMBER'))
+    tree.type = t.type;
+    tree.value = t.value;
+    tree.left = [];
+    tree.right = [];
+
+  elseif (strcmp (t.type, 'SEPARATOR'))
+    ## Handle unary '~'
+    tree.type = 'OPERATOR';
+    tree.value = t.value;
+    tree.left = [];
+    ## Recursively parse the RHS with precedence 5.
+    [tree.right, curr] = run_parser (tokens, curr, 5);
+
+  elseif (strcmp (t.type, 'LPAREN'))
+    [tree, curr] = run_parser (tokens, curr, 0);
+    if (curr <= n && strcmp (tokens(curr).type, 'RPAREN'))
+      curr = curr + 1;
+    else
+      error ("parseWilkinsonFormula: Mismatched Parentheses. Missing ')'.");
+    endif
+
+  elseif (strcmp (t.type, 'EOF'))
+    error ("parseWilkinsonFormula: Unexpected End Of Formula.");
+  else
+    error ("parseWilkinsonFormula: Syntax Error. Unexpected token: '%s'", t.value);
+  endif
+
+  ## Operator Handling
+  while (curr <= n)
+    op_type = tokens(curr).type;
+    op_prec = 0;
+
+    ## precedences
+    if (strcmp (op_type, 'OP_POWER'))
+      op_prec = 60;
+    elseif (strcmp (op_type, 'OP_DOT'))
+      op_prec = 50;
+    elseif (strcmp (op_type, 'OP_NEST'))
+      op_prec = 40;
+    elseif (strcmp (op_type, 'OP_CROSS'))
+      op_prec = 30;
+    elseif (strcmp (op_type, 'OP_PLUS'))
+      op_prec = 20;
+    elseif (strncmp (op_type, 'OP_MINUS', 8))
+      op_prec = 10;
+    elseif (strcmp (op_type, 'SEPARATOR'))
+      op_prec = 5;
+    else
+      break;
+    endif
+
+    if (op_prec <= prec_limit)
+      break;
+    endif
+
+    op_val = tokens(curr).value;
+    curr = curr + 1;
+
+    [right, curr] = run_parser (tokens, curr, op_prec);
+
+    new_node.type = 'OPERATOR';
+    new_node.value = op_val;
+    new_node.left = tree;
+    new_node.right = right;
+    tree = new_node;
+  endwhile
+
+endfunction
+
+## expander
+function result = run_expander (node, mode)
+  if (nargin < 2), mode = 'expand'; endif
+
+  if (isempty (node))
+    result = {};
+    return;
+  endif
+
+  ## Terminals
+  if (strcmp (node.type, 'IDENTIFIER'))
+    result = {{node.value}};
+    return;
+
+  elseif (strcmp (node.type, 'FUNCTION'))
+    if (strcmp (mode, 'equation'))
+      ## preserve nesting syntax.
+      args_str_parts = {};
+      for k = 1:length (node.args)
+        arg_res = run_expander (node.args{k}, mode);
+        
+        if (! isempty (arg_res) && ! isempty (arg_res{1}))
+           args_str_parts{end+1} = arg_res{1}{1}; 
+        else
+           args_str_parts{end+1} = '';
+        endif
+      endfor
+      
+      full_term = sprintf ("%s(%s)", node.name, strjoin (args_str_parts, ','));
+      result = {{full_term}};
+    else
+      ## mathematical expansion in matrix mode.
+      result = {{node.name}};
+      for k = 1:length (node.args)
+        arg_expanded = run_expander (node.args{k}, mode);
+        result = list_product (result, arg_expanded);
+      endfor
+    endif
+    return;
+
+  elseif (strcmp (node.type, 'NUMBER'))
+    if (strcmp (node.value, '1'))
+      result = {{}};
+    else
+      result = {{node.value}};
+    endif
+    return;
+  endif
+
+  if (strcmp (node.type, 'OPERATOR'))
+    if (strcmp (node.value, '~'))
+      result.response = run_expander (node.left, mode);
+
+      add_intercept = true;
+      if (! isempty (node.right) && strcmp (node.right.type, 'OPERATOR') ...
+          && (strcmp (node.right.value, '-') ...
+          || strcmp (node.right.value, '-/') ...
+          || strcmp (node.right.value, '-*')))
+
+        if (! isempty (node.right.right) ...
+            && strcmp (node.right.right.type, 'NUMBER') ...
+            && strcmp (node.right.right.value, '1'))
+          add_intercept = false;
+        endif
+      endif
+
+      model_raw = run_expander (node.right, mode);
+
+      if (add_intercept)
+        result.model = list_union ({{}}, model_raw);
+      else
+        result.model = model_raw;
+      endif
+      return;
+    endif
+
+    lhs = run_expander (node.left, mode);
+    rhs = run_expander (node.right, mode);
+
+    switch (node.value)
+      case '+'
+        result = list_union (lhs, rhs);
+
+      case {'.', ':'}
+        result = list_product (lhs, rhs);
+
+      case '*'
+        interaction = list_product (lhs, rhs);
+        step1 = list_union (lhs, rhs);
+        result = list_union (step1, interaction);
+
+      case '^'
+        if (strcmp (node.left.type, 'IDENTIFIER') && strcmp (node.right.type, 'NUMBER'))
+           base_name = node.left.value;
+           power_val = round (str2double (node.right.value));
+           result = {};
+           for k = 1:power_val
+             if (k == 1)
+               result{end+1} = {base_name};
+             else
+               result{end+1} = {sprintf("%s^%d", base_name, k)};
+             endif
+           endfor
+           return;
+        endif
+
+        base_terms = run_expander (node.left, mode);
+        if (! strcmp (node.right.type, 'NUMBER'))
+          error ("parseWilkinsonFormula: Exponent must be a number.");
+        endif
+
+        power_val = str2double (node.right.value);
+        result = base_terms;
+
+        ## Repeatedly apply Crossing.
+        for k = 2:power_val
+           interaction = list_product (result, base_terms);
+           step1 = list_union (result, base_terms);
+           result = list_union (step1, interaction);
+        endfor
+
+      case '/'
+        max_L = get_maximal_terms (lhs);
+        interaction = list_product (max_L, rhs);
+        result = list_union (lhs, interaction);
+
+      case '-'  ## Simple Deletion
+        result = list_difference (lhs, rhs, 'exact');
+
+      case '-*' ## Delete term + Higher Order Interactions
+        result = list_difference (lhs, rhs, 'clean');
+
+      case '-/' ## Delete terms where T is marginal
+        result = list_difference (lhs, rhs, 'margin');
+
+      otherwise
+        error ("parseWilkinsonFormula: Unknown operator '%s'", node.value);
+    endswitch
+    return;
+  endif
+
+  error ("parseWilkinsonFormula: Corrupt Tree.");
+endfunction
+
+## set operations.
+function C = list_union (A, B)
+  raw_list = [A, B];
+  C = simplify_term_list (raw_list);
+endfunction
+
+function C = list_product (A, B)
+  C = {};
+  idx = 1;
+  for i = 1:length (A)
+    for j = 1:length (B)
+      ## Dot product merges factor sets:
+      new_term = union (A{i}, B{j});
+      C{idx} = new_term;
+      idx = idx + 1;
+    endfor
+  endfor
+  C = simplify_term_list (C);
+endfunction
+
+function C = list_difference (S, T, mode)
+  if (isempty (S)), C = {}; return; endif
+  if (isempty (T)), C = S; return; endif
+
+  C = {};
+  strS = terms_to_strings (S);
+  strT = terms_to_strings (T);
+
+  keep_mask = true (size (S));
+
+  for i = 1:length (S)
+    term_s = S{i};
+    s_str = strS{i};
+
+    for j = 1:length (T)
+      term_t = T{j};
+      t_str = strT{j};
+
+      match = false;
+
+      switch (mode)
+        case 'exact'
+          if (strcmp (s_str, t_str))
+            match = true;
+          endif
+
+        case 'clean' ## Delete T and any S where T is a subset of S
+          if (strcmp (s_str, t_str) || is_subset (term_t, term_s))
+            match = true;
+          endif
+
+        case 'margin' ## Delete S where T is subset of S (but not T itself)
+          if (! strcmp (s_str, t_str) && is_subset (term_t, term_s))
+            match = true;
+          endif
+      endswitch
+
+      if (match)
+        keep_mask(i) = false;
+        break;
+      endif
+    endfor
+  endfor
+
+  C = S(keep_mask);
+endfunction
+
+function fac = get_fac (term_list)
+  all_factors = {};
+  for i = 1:length (term_list)
+    all_factors = union (all_factors, term_list{i});
+  endfor
+  fac = {all_factors};
+endfunction
+
+function is_sub = is_subset (small_set, large_set)
+  is_sub = all (ismember (small_set, large_set));
+endfunction
+
+function clean_list = simplify_term_list (raw_list)
+  if (isempty (raw_list))
+    clean_list = {}; return;
+  endif
+  str_sigs = terms_to_strings (raw_list);
+  [~, unique_idx] = unique (str_sigs);
+  clean_list = raw_list(sort (unique_idx));
+endfunction
+
+function strs = terms_to_strings (term_list)
+  strs = cell (size (term_list));
+  for i = 1:length (term_list)
+    if (isempty (term_list{i}))
+      strs{i} = '1';
+    else
+      sorted_factors = sort (term_list{i});
+      strs{i} = strjoin (sorted_factors, ':');
+    endif
+  endfor
+endfunction
+
+## schema builder
+function schema = run_schema_builder (expanded)
+
+  ## Handle struct vs cell
+  if (isstruct (expanded))
+    if (isfield (expanded, 'model'))
+      rhs_terms = expanded.model;
+    else
+      rhs_terms = expanded.rhs;
+    endif
+    if (isfield (expanded, 'response'))
+      lhs_term = expanded.response;
+    else
+      lhs_term = expanded.lhs;
+    endif
+  else
+    rhs_terms = expanded;
+    lhs_term = {};
+  endif
+
+  function out = flatten_recursive (in_val)
+    out = {};
+    if (ischar (in_val) || isstring (in_val))
+      out = {char(in_val)};
+    elseif (iscell (in_val))
+      for k = 1:numel (in_val)
+        out = [out, flatten_recursive(in_val{k})];
+      endfor
+    endif
+  endfunction
+
+  ## extract variables
+  all_vars = {};
+  if (! isempty (lhs_term))
+    all_vars = [all_vars, flatten_recursive(lhs_term)];
+  endif
+
+  cleaned_rhs = cell (length (rhs_terms), 1);
+  for i = 1:length (rhs_terms)
+    term_vars = flatten_recursive (rhs_terms{i});
+    final_term_vars = {};
+    for j = 1:length (term_vars)
+      parts = strsplit (term_vars{j}, ':');
+      final_term_vars = [final_term_vars, parts];
+    endfor
+    cleaned_rhs{i} = final_term_vars;
+    all_vars = [all_vars, final_term_vars];
+  endfor
+
+  all_vars = unique (all_vars);
+  ## Remove intercept marker from var list
+  all_vars(strcmp (all_vars, '1')) = [];
+
+  schema.VariableNames = all_vars;
+
+  ## Identify Response
+  schema.ResponseIdx = [];
+  if (! isempty (lhs_term))
+    flat_lhs = flatten_recursive (lhs_term);
+    if (! isempty (flat_lhs))
+      [found, idx] = ismember (flat_lhs{1}, all_vars);
+      if (found), schema.ResponseIdx = idx; endif
+    endif
+  endif
+
+  ## Build terms matrix
+  n_vars = length (all_vars);
+  n_terms = length (cleaned_rhs);
+  terms_mat = zeros (n_terms, n_vars);
+
+  for i = 1:n_terms
+    vars_in_this_term = cleaned_rhs{i};
+
+    ## Check for intercept term.
+    if (isempty (vars_in_this_term) ||
+        (length (vars_in_this_term) == 1 && strcmp (vars_in_this_term{1}, '1')))
+      continue;
+    endif
+
+    [found, idx] = ismember (vars_in_this_term, all_vars);
+    if (any (! found))
+      error ("parseWilkinsonFormula: Unknown variable in term definition.");
+    endif
+    terms_mat(i, idx) = 1;
+  endfor
+
+  ## sorting : order by order.
+  term_orders = sum (terms_mat, 2);
+  M = [term_orders, terms_mat];
+
+  [~, unique_idx] = unique (M, 'rows');
+  terms_mat = terms_mat (unique_idx, :);
+
+  [~, sort_idx] = sortrows ([sum(terms_mat, 2), terms_mat]);
+  schema.Terms = terms_mat (sort_idx, :);
+
+endfunction
+
+## model matrix builder.
+function [X, y, col_names] = run_model_matrix_builder (schema, data)
+
+  req_vars = schema.VariableNames;
+  table_vars = data.Properties.VariableNames;
+
+  ## Data validation & masking
+  if (isempty (req_vars))
+    n_total = height (data);
+    valid_mask = true (n_total, 1);
+  else
+    if (! ismember (req_vars{1}, table_vars))
+      error ("parseWilkinsonFormula: Unknown variable '%s' in Data Table.", ...
+             req_vars{1});
+    endif
+
+    n_total = length (data.(req_vars{1}));
+    valid_mask = true (n_total, 1);
+    for i = 1:length (req_vars)
+      col = data.(req_vars{i});
+      if (isnumeric (col))
+        valid_mask = valid_mask & ! isnan (col);
+      endif
+    endfor
+  endif
+
+  if (! isempty (schema.ResponseIdx))
+    y_name = req_vars{schema.ResponseIdx};
+    if (! ismember (y_name, table_vars))
+      error ("parseWilkinsonFormula: Unknown variable '%s' in Data Table.", ...
+             y_name);
+    endif
+
+    y_col = data.(y_name);
+    if (isnumeric (y_col))
+      valid_mask = valid_mask & ! isnan (y_col);
+    endif
+  endif
+
+  if (isfield (schema, 'ResponseVars') && ! isempty (schema.ResponseVars))
+    for k = 1:length (schema.ResponseVars)
+      y_name = schema.ResponseVars{k};
+      if (ismember (y_name, table_vars))
+        col = data.(y_name);
+        if (isnumeric (col))
+          valid_mask = valid_mask & ! isnan (col);
+        endif
+      endif
+    endfor
+  endif
+
+  n_rows = sum (valid_mask);
+
+  ## Process predictors
+  var_info = struct ();
+  for i = 1:length (req_vars)
+    vname = req_vars{i};
+    raw = data.(vname);
+
+    if (iscell (raw)), raw = raw(valid_mask);
+    else, raw = raw(valid_mask, :); endif
+
+    if (isnumeric (raw))
+      var_info.(vname).type = 'numeric';
+      var_info.(vname).data = raw;
+    elseif (isa (raw, 'categorical'))
+      var_info.(vname).type = 'categorical';
+      var_info.(vname).levels = categories (raw);
+      [~, var_info.(vname).indices] = ismember (raw, var_info.(vname).levels);
+    else
+      if (! iscellstr (raw) && ! isstring (raw))
+        raw = cellstr (raw);
+      endif
+      [u, ~, idx] = unique (raw);
+      var_info.(vname).type = 'categorical';
+      var_info.(vname).levels = u;
+      var_info.(vname).indices = idx;
+    endif
+  endfor
+
+  ## Build Design Matrix X
+  X = [];
+  col_names = {};
+
+  ## Check for intercept term.
+  intercept_row_idx = find (sum (schema.Terms, 2) == 0);
+  has_intercept = ! isempty (intercept_row_idx);
+
+  n_terms = size (schema.Terms, 1);
+
+  for i = 1:n_terms
+    term_row = schema.Terms(i, :);
+    vars_idx = find (term_row);
+
+    ## Intercept Term
+    if (isempty (vars_idx))
+      X = [X, ones(n_rows, 1)];
+      col_names = [col_names; '(Intercept)'];
+      continue;
+    endif
+
+    current_block = ones (n_rows, 1);
+    current_names = {''};
+
+    for v = vars_idx
+      vname = req_vars{v};
+      info = var_info.(vname);
+
+      if (strcmp (info.type, 'numeric'))
+        current_block = current_block .* info.data;
+        for k = 1:length (current_names)
+          if (isempty (current_names{k}))
+            current_names{k} = vname;
+          else
+            current_names{k} = [current_names{k}, ':', vname];
+          endif
+        endfor
+      else
+        ## Categorical
+        n_lev = length (info.levels);
+
+        ## Drop first level if intercept exists to avoid rank deficiency
+        if (has_intercept)
+          start_lev = 2;
+          n_cols = n_lev - 1;
+        else
+          start_lev = 1;
+          n_cols = n_lev;
+        endif
+
+        dummies = zeros (n_rows, n_cols);
+        dum_names = {};
+
+        for L = start_lev:n_lev
+          col_idx = L - start_lev + 1;
+          dummies(:, col_idx) = (info.indices == L);
+          dum_names = [dum_names; ...
+                       sprintf("%s_%s", vname, char (info.levels{L}))];
+        endfor
+
+        ## Cartesian product of current block and new dummies
+        next_block = [];
+        next_names = {};
+
+        for c1 = 1:size (current_block, 2)
+          for c2 = 1:size (dummies, 2)
+            next_block = [next_block, current_block(:, c1) .* dummies(:, c2)];
+
+            n1 = current_names{c1};
+            n2 = dum_names{c2};
+
+            if (isempty (n1))
+              next_names = [next_names; n2];
+            else
+              next_names = [next_names; [n1, ':', n2]];
+            endif
+          endfor
+        endfor
+        current_block = next_block;
+        current_names = next_names;
+      endif
+    endfor
+
+    X = [X, current_block];
+    col_names = [col_names; current_names];
+  endfor
+
+  ## Extract Response
+  y = [];
+  if (isfield (schema, 'ResponseVars') && ! isempty (schema.ResponseVars))
+    y_vars = schema.ResponseVars;
+    y = zeros (n_rows, length (y_vars));
+
+    for k = 1:length (y_vars)
+      y_name = y_vars{k};
+      raw_y = data.(y_name);
+
+      if (iscell (raw_y))
+          col_data = raw_y(valid_mask);
+          try
+            col_data = cell2mat (col_data);
+          catch
+            error (strcat ("parseWilkinsonFormula: Response", ...
+                           " variable '%s' must be numeric."), y_name);
+          end_try_catch
+      else
+          col_data = raw_y(valid_mask, :);
+      endif
+
+      if (! isnumeric (col_data))
+        error (strcat ("parseWilkinsonFormula: Response", ...
+                       " variable '%s' must be numeric"), y_name);
+      endif
+
+      if (size (col_data, 1) != n_rows)
+        error (strcat ("parseWilkinsonFormula: Mismatch in number", ...
+                       " of rows for response variable '%s'"), y_name);
+      endif
+
+      y(:, k) = col_data;
+    endfor
+
+  ## fallback to previous.
+  elseif (! isempty (schema.ResponseIdx))
+    y_name = req_vars{schema.ResponseIdx};
+    raw_y = data.(y_name);
+    if (iscell (raw_y)), y = raw_y(valid_mask);
+    else, y = raw_y(valid_mask, :);
+    endif
+  endif
+
+endfunction
+
+function max_terms = get_maximal_terms (term_list)
+  n = length (term_list);
+  if (n == 0), max_terms = {}; return; endif
+
+  is_max = true (1, n);
+  for i = 1:n
+    for j = 1:n
+      if (i == j), continue; endif
+      ## If term 'i' is a subset of 'j', it is NOT maximal
+      if (is_subset (term_list{i}, term_list{j}))
+        is_max(i) = false;
+        break;
+      endif
+    endfor
+  endfor
+  max_terms = term_list(is_max);
+endfunction
+
+function vars = resolve_lhs_vars (lhs_str, data)
+  all_names = data.Properties.VariableNames;
+  vars = {};
+  if (isempty (lhs_str)), return; endif
+
+  parts = strsplit (lhs_str, ',');
+
+  for i = 1:length (parts)
+    p = strtrim (parts{i});
+    if (isempty (p)), continue; endif
+
+    ## check for the range.
+    range_parts = strsplit (p, '-');
+
+    if (length (range_parts) == 2)
+      start_var = strtrim (range_parts{1});
+      end_var   = strtrim (range_parts{2});
+
+      [found_s, idx_s] = ismember (start_var, all_names);
+      [found_e, idx_e] = ismember (end_var, all_names);
+
+      if (! found_s)
+        error ("parseWilkinsonFormula: Unknown variable '%s' in range", ...
+               start_var);
+      endif
+      if (! found_e)
+        error ("parseWilkinsonFormula: Unknown variable '%s' in range", ...
+               end_var);
+      endif
+
+      ## Slice names.
+      if (idx_s <= idx_e)
+        range_vars = all_names(idx_s:idx_e);
+      else
+        range_vars = all_names(idx_e:idx_s);
+      endif
+      vars = [vars, range_vars];
+
+    elseif (length (range_parts) == 1)
+      ## Single Variable
+      if (! any (strcmp (all_names, p)))
+        error (strcat ("parseWilkinsonFormula: Response", ...
+                       " variable '%s' not found in Data."), p);
+      endif
+      vars = [vars, {p}];
+    else
+      error ("parseWilkinsonFormula: Invalid syntax in response term '%s'", p);
+    endif
+  endfor
+
+  vars = unique (vars, 'stable');
+endfunction
+
+function [lhs_str, rhs_terms] = split_and_expand_rhs (formula_str, mode)
+  if (nargin < 2), mode = 'expand'; endif
+
+  tilde_idx = strfind (formula_str, '~');
+  if (! isempty (tilde_idx))
+    lhs_str = strtrim (formula_str(1:tilde_idx(1)-1));
+    rhs_str = strtrim (formula_str(tilde_idx(1)+1:end));
+  else
+    lhs_str = '';
+    rhs_str = formula_str;
+  endif
+
+  ## process RHS
+  rhs_tokens = run_lexer (rhs_str);
+  [rhs_tree, ~] = run_parser (rhs_tokens);
+  
+  wrapper.type = 'OPERATOR';
+  wrapper.value = '~';
+  wrapper.left = [];
+  wrapper.right = rhs_tree;
+  
+  expanded = run_expander (wrapper, mode);
+  
+  ## extract the terms.
+  if (isstruct (expanded) && isfield (expanded, 'model'))
+    rhs_terms = expanded.model;
+  else
+    rhs_terms = expanded;
+  endif
+endfunction
+
+function vars = resolve_lhs_symbolic (lhs_str)
+  vars = {};
+  if (isempty (lhs_str)), return; endif
+
+  parts = strsplit (lhs_str, ',');
+  for i = 1:length (parts)
+    p = strtrim (parts{i});
+    if (isempty (p)), continue; endif
+    
+    range_parts = strsplit (p, '-');
+    
+    if (length (range_parts) == 2)
+      s_str = strtrim (range_parts{1});
+      e_str = strtrim (range_parts{2});
+      
+      [s_tok] = regexp (s_str, '^([a-zA-Z_]\w*)(\d+)$', 'tokens');
+      [e_tok] = regexp (e_str, '^([a-zA-Z_]\w*)(\d+)$', 'tokens');
+      
+      if (! isempty (s_tok) && ! isempty (e_tok))
+        prefix = s_tok{1}{1};
+        s_num  = str2double (s_tok{1}{2});
+        e_prefix = e_tok{1}{1};
+        e_num    = str2double (e_tok{1}{2});
+        
+        if (strcmp (prefix, e_prefix) && s_num <= e_num)
+          for n = s_num:e_num
+            vars{end+1} = sprintf ("%s%d", prefix, n);
+          endfor
+          continue;
+        endif
+      endif
+      error ("parseWilkinsonFormula: Invalid symbolic range '%s'.", p);
+
+    elseif (length (range_parts) == 1)
+      vars{end+1} = p;
+    else
+      error ("parseWilkinsonFormula: Invalid syntax '%s'.", p);
+    endif
+  endfor
+  vars = unique (vars, 'stable');
+endfunction
+
+function eq_list = run_equation_builder (lhs_vars, rhs_terms)
+  term_strs = {};
+  for i = 1:length (rhs_terms)
+    t = rhs_terms{i};
+    if (isempty (t))
+      term_strs{end+1} = ''; 
+    else
+      if (length (t) == 1 && any (strfind (t{1}, "(")))
+         term_strs{end+1} = t{1};
+      else
+         term_strs{end+1} = strjoin (sort (t), '*');
+      endif
+    endif
+  endfor
+
+  lines = {};
+  c_idx = 1;
+
+  for k = 1:length (lhs_vars)
+    rhs_parts = {};
+    for t = 1:length (term_strs)
+      t_str = term_strs{t};
+      coeff = sprintf ("c%d", c_idx++);
+      if (isempty (t_str))
+        rhs_parts{end+1} = coeff;
+      elseif (strcmp (t_str, "1"))
+        rhs_parts{end+1} = coeff;
+      else
+        rhs_parts{end+1} = sprintf ("%s*%s", coeff, t_str);
+      endif
+    endfor
+    
+    full_rhs = strjoin (rhs_parts, ' + ');
+    if (isempty (full_rhs)), full_rhs = '0'; endif
+    lines{end+1} = sprintf ("%s = %s", lhs_vars{k}, full_rhs);
+  endfor
+
+  eq_list = string (lines'); 
+endfunction
+
+%!demo
+%!
+%! ## Simple Linear Regression :
+%! ## This example models a continuous response (Height) as a linear function
+%! ## of a single continuous predictor (Age). The 'equation' mode returns the
+%! ## symbolic representation, while 'model_matrix' generates the design matrix.
+%! Age = [10; 12; 14; 16; 18];
+%! Height = [140; 148; 155; 162; 170];
+%! t = table (Height, Age);
+%!
+%! formula = 'Height ~ Age';
+%! disp (['Formula: ', formula]);
+%! equation = parseWilkinsonFormula (formula, 'equation')
+%! [X, y, names] = parseWilkinsonFormula (formula, 'model_matrix', t)
+
+%!demo
+%!
+%! ## Multiple Regression :
+%! ## Here we model House Price based on two independent predictors: Area and
+%! ## number of Rooms. The '+' operator adds terms to the model without assuming
+%! ## any interaction between them.
+%! Price = [300; 350; 400; 450];
+%! Area  = [1500; 1800; 2200; 2500];
+%! Rooms = [3; 3; 4; 5];
+%! t = table (Price, Area, Rooms);
+%!
+%! formula = 'Price ~ Area + Rooms';
+%! disp (['Formula: ', formula]);
+%! equation = parseWilkinsonFormula (formula, 'equation')
+%! [X, y, names] = parseWilkinsonFormula (formula, 'model_matrix', t)
+
+%!demo
+%!
+%! ## Interaction Effects : 
+%! ## We analyze Relief Score based on Drug Type and Dosage Level.
+%! ## The '*' operator expands to the main effects PLUS the interaction term.
+%! ## Categorical variables are automatically created.
+%! Relief = [5; 7; 6; 8];
+%! Drug   = {'Placebo'; 'Placebo'; 'Active'; 'Active'};
+%! Dose   = {'Low'; 'High'; 'Low'; 'High'};
+%! t = table (Relief, Drug, Dose);
+%!
+%! formula = 'Relief ~ Drug * Dose';
+%! disp (['Formula: ', formula]);
+%! equation = parseWilkinsonFormula (formula, 'equation')
+%! [X, y, names] = parseWilkinsonFormula (formula, 'model_matrix', t)
+
+%!demo
+%!
+%! ## Polynomial Regression : 
+%! ## Uses the power operator (^) to model non-linear relationships.
+%! Distance = [20; 45; 80; 125];
+%! Speed    = [30; 50; 70; 90];
+%! Speed_2  = Speed .^ 2; 
+%! t = table (Distance, Speed, Speed_2, 'VariableNames', {'Distance', 'Speed', 'Speed^2'});
+%!
+%! formula = 'Distance ~ Speed^2';
+%! disp (['Formula: ', formula]);
+%! equation = parseWilkinsonFormula (formula, 'equation')
+%! [X, y, names] = parseWilkinsonFormula (formula, 'model_matrix', t)
+
+%!demo
+%!
+%! ## Hierarchical Design.
+%! ## Common in psychometrics. Here, 'Class' is nested within 'School'.
+%! ## The '/' operator implies School + School:Class.
+%! Score  = [88; 92; 75; 80];
+%! School = {'North'; 'North'; 'South'; 'South'};
+%! Class  = {'Rm101'; 'Rm102'; 'Rm201'; 'Rm202'};
+%! t = table (Score, School, Class);
+%!
+%! formula = 'Score ~ School / Class';
+%! disp (['Formula: ', formula]);
+%! equation = parseWilkinsonFormula (formula, 'equation')
+%! terms = parseWilkinsonFormula (formula, 'expand')
+
+%!demo
+%!
+%! ## Explicit Nesting : 
+%! ## The parser also supports the explicit 'B(A)' syntax, which means
+%! ## 'B is nested within A'. This is equivalent to the interaction 'A:B'
+%! ## but often used to denote random effects or specific hierarchy.
+%! formula = 'y ~ Class(School)';
+%! disp (['Formula: ', formula]);
+%! equation = parseWilkinsonFormula (formula, 'equation')
+%! terms = parseWilkinsonFormula (formula, 'expand')
+
+%!demo
+%!
+%! ## Excluding Terms : 
+%! ## Demonstrates building a complex model and then simplifying it.
+%! ## We define a full 3-way interaction (A*B*C) but explicitly remove the
+%! ## three-way term (A:B:C) using the minus operator.
+%! formula = 'y ~ (A + B + C)^3 - A:B:C';
+%! disp (['Formula: ', formula]);
+%! equation = parseWilkinsonFormula (formula, 'equation')
+%! terms = parseWilkinsonFormula (formula, 'expand')
+
+%!demo
+%!
+%! ## Repeated Measures : 
+%! ## This allows predicting multiple outcomes simultaneously.
+%! ## The range operator '-' selects all variables between 'T1' and 'T3'
+%! ## as the response matrix Y.
+%! T1 = [10; 11];
+%! T2 = [12; 13];
+%! T3 = [14; 15];
+%! Treatment = {'Control'; 'Treated'};
+%! t = table (T1, T2, T3, Treatment);
+%!
+%! formula = 'T1 - T3 ~ Treatment';
+%! disp (['Formula: ', formula]);
+%! equations = parseWilkinsonFormula (formula, 'equation')
+%! [X, Y, names] = parseWilkinsonFormula (formula, 'model_matrix', t)
+
+%!test
+%! ## Test : Identifiers with numbers and underscores
+%! tokens = parseWilkinsonFormula ('Yield ~ Var_1 + A2_B', 'tokenize');
+%! vals = {tokens.value};
+%! assert (vals, {'Yield', '~', 'Var_1', '+', 'A2_B', 'EOF'});
+%!test
+%! ## Test : Floating point numbers
+%! tokens = parseWilkinsonFormula ('y ~ 0.5 * A', 'tokenize');
+%! vals = {tokens.value};
+%! assert (vals, {'y', '~', '0.5', '*', 'A', 'EOF'});
+%!test
+%! ## Test : Whitespace insensitivity
+%! t1 = parseWilkinsonFormula ('A*B', 'tokenize');
+%! t2 = parseWilkinsonFormula ('A   * B', 'tokenize');
+%! assert ({t1.value}, {t2.value});
+%!test
+%! ## Test : Precedence
+%! t = parseWilkinsonFormula ('A + B * C . D', 'expand');
+%! terms = cellfun (@(x) strjoin(sort(x), ':'), t, 'UniformOutput', false);
+%! assert (sort (terms), sort ({'A', 'B', 'C:D', 'B:C:D'}));
+%!test
+%! ## Test : Parentheses Override
+%! t = parseWilkinsonFormula ('(A + B) . C', 'expand');
+%! terms = cellfun (@(x) strjoin(sort(x), ':'), t, 'UniformOutput', false);
+%! assert (sort (terms), sort ({'A:C', 'B:C'}));
+%!test
+%! ## Test : Crossing Operator (*)
+%! t = parseWilkinsonFormula ('A * B', 'expand');
+%! assert (length (t), 3);
+%! t3 = parseWilkinsonFormula ('A * B * C', 'expand');
+%! assert (length (t3), 7);
+%!test
+%! ## Test : Nesting Operator (/)
+%! t = parseWilkinsonFormula ('Field / Plot', 'expand');
+%! terms = cellfun (@(x) strjoin(sort(x), ':'), t, 'UniformOutput', false);
+%! assert (sort (terms), sort ({'Field', 'Field:Plot'}));
+%!test
+%! ## Test : Multi-level Nesting
+%! t = parseWilkinsonFormula ('Block / Plot / Subplot', 'expand');
+%! terms = cellfun (@(x) strjoin(sort(x), ':'), t, 'UniformOutput', false);
+%! assert (sort (terms), sort ({'Block', 'Block:Plot', 'Block:Plot:Subplot'}));
+%!test
+%! ## Test : Interaction Operator (.)
+%! t = parseWilkinsonFormula ('A . B', 'expand');
+%! assert (length (t), 1);
+%! assert (t{1}, {'A', 'B'});
+%!test
+%! ## Test : Power operator on cube.
+%! t = parseWilkinsonFormula ('(A + B + C)^3', 'expand');
+%! terms = cellfun (@(x) strjoin(sort(x), ':'), t, 'UniformOutput', false);
+%! expected = sort ({'A', 'B', 'C', 'A:B', 'A:C', 'B:C', 'A:B:C'});
+%! assert (sort (terms), expected);
+%!test
+%! ## Test : Power Operator.
+%! t = parseWilkinsonFormula ('(A + B + C)^2', 'expand');
+%! terms = cellfun (@(x) strjoin(sort(x), ':'), t, 'UniformOutput', false);
+%! assert (! ismember ('A:B:C', terms));
+%! assert (ismember ('A:B', terms));
+%!test
+%! ## Test : Redundancy Check
+%! t1 = parseWilkinsonFormula ('A + A', 'expand');
+%! assert (length (t1), 1);
+%! t2 = parseWilkinsonFormula ('A * A', 'expand');
+%! assert (length (t2), 1);
+%!test
+%! ## Test : Deletion - Exact (-)
+%! t = parseWilkinsonFormula ('A * B - A', 'expand');
+%! terms = cellfun (@(x) strjoin(sort(x), ':'), t, 'UniformOutput', false);
+%! assert (sort (terms), sort ({'B', 'A:B'}));
+%!test
+%! ## Test : Deletion - Clean (-*)
+%! t = parseWilkinsonFormula ('A * B -* A', 'expand');
+%! terms = cellfun (@(x) strjoin(sort(x), ':'), t, 'UniformOutput', false);
+%! assert (sort (terms), {'B'});
+%!test
+%! ## Test : Deletion - Marginal (-/)
+%! t = parseWilkinsonFormula ('A * B -/ A', 'expand');
+%! terms = cellfun (@(x) strjoin(sort(x), ':'), t, 'UniformOutput', false);
+%! assert (sort (terms), sort ({'A', 'B'}));
+%!test
+%! ## Test : Deletion - Complex Sequence
+%! t = parseWilkinsonFormula ('A*B*C - A:B:C', 'expand');
+%! assert (length (t), 6);
+%! terms = cellfun (@(x) strjoin(sort(x), ':'), t, 'UniformOutput', false);
+%! assert (! ismember ('A:B:C', terms));
+%! assert (ismember ('A:B', terms));
+%!test
+%! ## Test : LHS and RHS Identification
+%! s = parseWilkinsonFormula ('logY ~ A + B', 'matrix');
+%! assert (s.VariableNames{s.ResponseIdx}, 'logY');
+%! assert (any (strcmp ('A', s.VariableNames)));
+%!test
+%! ## Test : No Response Variable
+%! s = parseWilkinsonFormula ('~ A + B', 'matrix');
+%! assert (isempty (s.ResponseIdx));
+%!test
+%! ## Test : Intercept Handling
+%! s1 = parseWilkinsonFormula ('~ A', 'matrix');
+%! assert (any (all (s1.Terms == 0, 2)));
+%! s2 = parseWilkinsonFormula ('~ A - 1', 'matrix');
+%! assert (! any (all (s2.Terms == 0, 2)));
+%!test
+%! ## Test : Numeric Interaction
+%! y = [1;2;3;4;5];
+%! X1 = [1;2;1;2;1];
+%! X2 = [10;10;20;20;10];
+%! d = table (y, X1, X2);
+%! [M, ~, ~] = parseWilkinsonFormula ('y ~ X1:X2', 'model_matrix', d);
+%! assert (size (M), [5, 2]);
+%! assert (M(:, 2), d.X1 .* d.X2);
+%!test
+%! ## Test : Categorical Expansion
+%! y = [1;1;1];
+%! G = {'A'; 'B'; 'C'};
+%! d = table (y, G);
+%! [M, ~, names] = parseWilkinsonFormula ('~ G', 'model_matrix', d);
+%! assert (size (M, 2), 3);
+%! assert (names, {'(Intercept)'; 'G_B'; 'G_C'});
+%!test
+%! ## Test : Categorical * Categorical Rank
+%! y = [1;2;3;4];
+%! F1 = {'a';'b';'a';'b'};
+%! F2 = {'x';'x';'y';'y'};
+%! d = table (y, F1, F2);
+%! [M, ~, ~] = parseWilkinsonFormula ('~ F1 * F2', 'model_matrix', d);
+%! assert (size (M, 2), 4);
+%! assert (rank (M), 4);
+%!test
+%! ## Test : Numeric * Categorical Naming
+%! y = [1;2];
+%! N = [10; 20];
+%! C = {'lo'; 'hi'};
+%! d = table (y, N, C);
+%! [M, ~, names] = parseWilkinsonFormula ('~ N * C', 'model_matrix', d);
+%! assert (any (strcmp (names, 'C_lo:N')));
+%!test
+%! ## Test : Intercept Only Model
+%! y = [1; 2; 3];
+%! d = table (y);
+%! [X, ~, names] = parseWilkinsonFormula ('y ~ 1', 'model_matrix', d);
+%! assert (size (X, 2), 1);
+%! assert (names, {'(Intercept)'});
+%! assert (all (X == 1));
+%!test
+%! ## Test : NaNs and Missing Data
+%! y = [1; 2; 3; 4];
+%! A = [1; 1; NaN; 1];
+%! B = [10; 20; 30; NaN];
+%! d = table (y, A, B);
+%! [X, y_out, ~] = parseWilkinsonFormula ('y ~ A', 'model_matrix', d);
+%! assert (length (y_out), 3);
+%! assert (y_out(3), 4);
+%! assert (size (X, 1), 3);
+%!test
+%! ## Test : Nesting with Groups
+%! t = parseWilkinsonFormula ('A / (B + C)', 'expand');
+%! terms = cellfun (@(x) strjoin(sort(x), ':'), t, 'UniformOutput', false);
+%! expected = sort ({'A', 'A:B', 'A:C'});
+%! assert (sort (terms), expected);
+%! ## Test : Variable Name Collision
+%! Var = [1; 1];
+%! Var_1 = [2; 2];
+%! d = table (Var, Var_1);
+%! [~, ~, names] = parseWilkinsonFormula ('~ Var + Var_1', 'model_matrix', d);
+%! assert (any (strcmp (names, 'Var')));
+%! assert (any (strcmp (names, 'Var_1')));
+%!test
+%! ## Test : One-argument call
+%! result = parseWilkinsonFormula ('A * B');
+%! expected = sort ({'A', 'B', 'A:B'});
+%! actual = cellfun (@(x) strjoin(sort(x), ':'), result, 'UniformOutput', false);
+%! assert (sort (actual), expected);
+%!test
+%! ## Test : Compatibility with Table Data
+%! Age = [25; 30; 35; 40; 45];
+%! Weight = [70; 75; 80; 85; 90];
+%! BP = [120; 122; 128; 130; 135];
+%! T = table (Age, Weight, BP);
+%! formula = 'BP ~ Age * Weight';
+%! [X, y, names] = parseWilkinsonFormula (formula, 'model_matrix', T);
+%! assert (size (X), [5, 4]);
+%! assert (y, BP);
+%! assert (any (strcmp ('Age', names)));
+%! assert (any (strcmp ('Weight', names)));
+%! assert (names{1}, '(Intercept)');
+%!test
+%! ## Test : Multi-variable List
+%! y1 = [1; 2; 3]; y2 = [4; 5; 6]; x = [1; 0; 1];
+%! d = table (y1, y2, x);
+%! [X, y, ~] = parseWilkinsonFormula ('y1, y2 ~ x', 'model_matrix', d);
+%! assert (size (y), [3, 2]);
+%! assert (y(:,1), d.y1);
+%! assert (y(:,2), d.y2);
+%!test
+%!test
+%! ## Test : multivariable range.
+%! A = [10;20]; B = [30;40]; C = [50;60]; x = [1;2];
+%! d = table (A, B, C, x);
+%! [X, y, ~] = parseWilkinsonFormula ('A - C ~ x', 'model_matrix', d);
+%! assert (size (y), [2, 3]);
+%! assert (y(:,1), d.A);
+%! assert (y(:,2), d.B);
+%! assert (y(:,3), d.C);
+%!test
+%! ## Test : multivariable list + range.
+%! y1 = [1]; y2 = [2]; y3 = [3]; y4 = [4]; y5 = [5];
+%! x1 = [10]; x2 = [2];
+%! d = table (y1, y2, y3, y4, y5, x1, x2);
+%! [X, y, names] = parseWilkinsonFormula ('y1, y3 - y5 ~ x1:x2', 'model_matrix', d);
+%! expected_y = [d.y1, d.y3, d.y4, d.y5];
+%! assert (isequal (y, expected_y));
+%! assert (size (X, 2), 2);
+%! assert (any (strcmp (names, 'x1:x2')));
+%!test
+%! ## Test : reverse range.
+%! A = [1]; B = [2]; C = [3]; x = [10];
+%! d = table (A, B, C, x);
+%! [X, y, names] = parseWilkinsonFormula ('C - A ~ x - 1', 'model_matrix', d);
+%! assert (size (y), [1, 3]);
+%! assert (y(:,1), d.A);
+%! assert (y(:,3), d.C);
+%! assert (size (X, 2), 1);
+%! assert (! any (strcmp (names, '(Intercept)')));
+%!test
+%! ## Test : nans in multi-y.
+%! yA = {1; 2; 3; 4};
+%! yB = [10; 20; NaN; 40];
+%! x  = [1; 1; 1; 1];
+%! d = table (yA, yB, x);
+%! [X, y, ~] = parseWilkinsonFormula ('yA, yB ~ x', 'model_matrix', d);
+%! assert (size (y), [3, 2]);
+%! assert (y(3, 1), 4);
+%! assert (y(3, 2), 40);
+%! assert (size (X, 1), 3);
+%!test
+%! ## Test : basic.
+%! eq = parseWilkinsonFormula ('y ~ x1 + x2 - 9', 'equation');
+%! expected = string('y = c1 + c2*x1 + c3*x2');
+%! assert (isequal (eq, expected));
+%!test
+%! ## Test : explicit intercept.
+%! eq = parseWilkinsonFormula ('y ~ x1 + x2', 'equation');
+%! expected = string('y = c1 + c2*x1 + c3*x2');
+%! assert (isequal (eq, expected));
+%!test
+%! ## Test : interaction.
+%! eq = parseWilkinsonFormula ('y ~ x1:x2:x3:x4', 'equation');
+%! expected = string('y = c1 + c2*x1*x2*x3*x4');
+%! assert (isequal (eq, expected));
+%!test
+%! ## Test : crossing/factorial.
+%! eq = parseWilkinsonFormula ('y ~ A * B', 'equation');
+%! expected = string('y = c1 + c2*A + c3*B + c4*A*B');
+%! assert (isequal (eq, expected));
+%!test
+%! ## Test : polynomials.
+%! eq = parseWilkinsonFormula ('y ~ x^4 - x^2', 'equation');
+%! expected = string('y = c1 + c2*x^3 + c3*x^4');
+%! assert (isequal (eq, expected));
+%!test
+%! ## Test : repeated measures
+%! eq = parseWilkinsonFormula ('y1-y3 ~ x', 'equation');
+%! expected = string(['y1 = c1 + c2*x'; ...
+%!                    'y2 = c3 + c4*x'; ...
+%!                    'y3 = c5 + c6*x']);
+%! assert (isequal (eq, expected));
+%!test
+%! ## Test : nesting syntax.
+%! eq = parseWilkinsonFormula ('y ~ x2(x1)', 'equation');
+%! expected = string('y = c1 + c2*x2(x1)');
+%! assert (isequal (eq, expected));
+%!test
+%! ## Test : nesting with interaction.
+%! eq = parseWilkinsonFormula ('y ~ x3:x2(x1)', 'equation');
+%! expected = string('y = c1 + c2*x2(x1)*x3');
+%! assert (isequal (eq, expected));
+%!test
+%! ## Test : multiple nesting.
+%! eq = parseWilkinsonFormula ('y ~ Var(A, B)', 'equation');
+%! expected = string('y = c1 + c2*Var(A,B)');
+%! assert (isequal (eq, expected));
+%!test
+%! ## Test : nested factors
+%! eq = parseWilkinsonFormula ('y ~ x2(x1) + x3(x4)', 'equation');
+%! expected = string('y = c1 + c2*x2(x1) + c3*x3(x4)');
+%! assert (isequal (eq, expected));
+%!test
+%! ## Test : polynomial and nesting.
+%! eq = parseWilkinsonFormula ('y ~ x^2 + Effect(Group)', 'equation');
+%! expected = string('y = c1 + c2*x + c3*x^2 + c4*Effect(Group)');
+%! assert (isequal (eq, expected));
+%!test
+%! ## Test : symbolic resolution of LHS list
+%! eq = parseWilkinsonFormula ('A, B ~ x', 'equation');
+%! expected = string(['A = c1 + c2*x'; 'B = c3 + c4*x']);
+%! assert (isequal (eq, expected));
+%!test
+%! ## Test : intercept only.
+%! eq = parseWilkinsonFormula ('y ~ 1', 'equation');
+%! expected = string('y = c1');
+%! assert (isequal (eq, expected));
+%!test
+%! ## Test : empty model.
+%! eq = parseWilkinsonFormula ('y ~ A - A', 'equation');
+%! expected = string('y = c1');
+%! assert (isequal (eq, expected));
+%!error <Input formula string is required> parseWilkinsonFormula ()
+%!error <Unknown mode> parseWilkinsonFormula ('y ~ x', 'invalid_mode')
+%!error <Unexpected End Of Formula> parseWilkinsonFormula ('', 'parse')
+%!error <Unexpected End Of Formula> parseWilkinsonFormula ('A +', 'parse')
+%!error <Unexpected End Of Formula> parseWilkinsonFormula ('A *', 'parse')
+%!error <Unexpected End Of Formula> parseWilkinsonFormula ('A .', 'parse')
+%!error <Unexpected End Of Formula> parseWilkinsonFormula ('A /', 'parse')
+%!error <Exponent must be a number> parseWilkinsonFormula ('(A+B)^C', 'expand')
+%!error <Mismatched Parentheses> parseWilkinsonFormula ('(A + B', 'parse')
+%!error <parseWilkinsonFormula: Unexpected token> parseWilkinsonFormula ('A + B)', 'parse')
+%!error <Unexpected token> parseWilkinsonFormula ('( )', 'parse')
+%!error <Unexpected token> parseWilkinsonFormula ('A + * B', 'parse')
+%!error <Unexpected token> parseWilkinsonFormula ('y ~ x ~ z', 'parse')
+%!error <'model_matrix' mode requires a Data Table> parseWilkinsonFormula ('~ A', 'model_matrix')
+%!error <Unknown variable> d=table([1], 'VariableNames', {'x'}); parseWilkinsonFormula ('~ Z', 'model_matrix', d)
+%!error <Response variable 'Z' not found in Data> d=table([1], [1], 'VariableNames', {'x', 'y'}); parseWilkinsonFormula ('Z ~ x', 'model_matrix', d)
+%!error <Unknown variable 'A' in range> d=table([1], [1], 'VariableNames', {'x', 'y'}); parseWilkinsonFormula ('A - y ~ x', 'model_matrix', d)
+%!error <Unknown variable 'B' in range> d=table([1], [1], 'VariableNames', {'x', 'y'}); parseWilkinsonFormula ('y - B ~ x', 'model_matrix', d)
+%!error <Invalid syntax in response term> d=table([1], 'VariableNames', {'y'}); parseWilkinsonFormula ('y - y - y ~ x', 'model_matrix', d)
+%!error <Response variable 'S' must be numeric> S={'a';'b'}; x=[1;2]; d=table(S, x); parseWilkinsonFormula ('S ~ x', 'model_matrix', d)
+%!error <parseWilkinsonFormula: Input data must be a 'table' class.> parseWilkinsonFormula ('y ~ x', 'model_matrix', [1,2,3])
+%!error <Invalid symbolic range> parseWilkinsonFormula ('y1-yA ~ x', 'equation')
+%!error <Invalid symbolic range> parseWilkinsonFormula ('yA-y1 ~ x', 'equation')
+%!error <Invalid symbolic range> parseWilkinsonFormula ('A-B ~ x', 'equation')
+%!error <parseWilkinsonFormula: Invalid symbolic range 'y1-'.> parseWilkinsonFormula ('y1- ~ x', 'equation')
+%!error <Input formula string is required> parseWilkinsonFormula ()

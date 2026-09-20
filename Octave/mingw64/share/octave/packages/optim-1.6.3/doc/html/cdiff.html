@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- Additional documentation for the optim package for Octave.
+
+Copyright © Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<title>cdiff (optim_doc)</title>
+
+<meta name="description" content="cdiff (optim_doc)">
+<meta name="keywords" content="cdiff (optim_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Gradient-functions.html" rel="up" title="Gradient functions">
+<link href="jacobs.html" rel="next" title="jacobs">
+<link href="numhessian.html" rel="prev" title="numhessian">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section-level-extent" id="cdiff">
+<div class="nav-panel">
+<p>
+Next: <a href="jacobs.html" accesskey="n" rel="next">Complex step derivatives</a>, Previous: <a href="numhessian.html" accesskey="p" rel="prev">Numerical Hessian function</a>, Up: <a href="Gradient-functions.html" accesskey="u" rel="up">Functions for numerical approximation of gradients and Hessians</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h3 class="section" id="A-string_002c-yielding-the-numerical-gradient-if-evaluated"><span>4.5 A string, yielding the numerical gradient if evaluated<a class="copiable-link" href="#A-string_002c-yielding-the-numerical-gradient-if-evaluated"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-cdiff"></a>
+
+<h4 class="subheading" id="Helptext_003a-14"><span>Helptext:<a class="copiable-link" href="#Helptext_003a-14"> &para;</a></span></h4>
+
+<a class="anchor" id="XREFcdiff"></a><pre class="verbatim">c = cdiff (func,wrt,N,dfunc,stack,dx) - Code for num. differentiation
+  = &quot;function df = dfunc (var1,..,dvar,..,varN) .. endfunction
+
+Returns a string of octave code that defines a function 'dfunc' that
+returns the derivative of 'func' with respect to it's 'wrt'th
+argument.
+
+The derivatives are obtained by symmetric finite difference.
+
+dfunc()'s return value is in the same format as that of  ndiff()
+
+func  : string : name of the function to differentiate
+
+wrt   : int    : position, in argument list, of the differentiation
+                 variable.                                Default:1
+
+N     : int    : total number of arguments taken by 'func'. 
+                 If N=inf, dfunc will take variable argument list.
+                                                        Default:wrt
+
+dfunc : string : Name of the octave function that returns the
+                  derivatives.                   Default:['d',func]
+
+stack : string : Indicates whether 'func' accepts vertically
+                 (stack=&quot;rstack&quot;) or horizontally (stack=&quot;cstack&quot;)
+                 arguments. Any other string indicates that 'func'
+                 does not allow stacking.                Default:''
+
+dx    : real   : Step used in the symmetric difference scheme.
+                                                 Default:10*sqrt(eps)
+
+See also : ndiff, eval, todisk
+
+</pre>
+
+</div>
+
+
+
+</body>
+</html>

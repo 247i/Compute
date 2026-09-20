@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Loading and Saving Images (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Loading and Saving Images (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Loading and Saving Images (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Image-Processing.html" rel="up" title="Image Processing">
+<link href="Displaying-Images.html" rel="next" title="Displaying Images">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+pre.format-preformatted {font-family: inherit}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Loading-and-Saving-Images">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Displaying-Images.html" accesskey="n" rel="next">Displaying Images</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Image-Processing.html" accesskey="u" rel="up">Image Processing</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Loading-and-Saving-Images-1"><span>32.1 Loading and Saving Images<a class="copiable-link" href="#Loading-and-Saving-Images-1"> &para;</a></span></h3>
+
+<p>The first step in most image processing tasks is to load an image
+into Octave which is done with the <code class="code">imread</code> function.
+The <code class="code">imwrite</code> function is the corresponding function
+for writing images to the disk.
+</p>
+<p>In summary, most image processing code will follow the structure of this code
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">I = imread (&quot;my_input_image.img&quot;);
+J = process_my_image (I);
+imwrite (J, &quot;my_output_image.img&quot;);
+</pre></div></div>
+
+<a class="anchor" id="XREFimread"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-imread"><span><code class="def-type">[<var class="var">img</var>, <var class="var">map</var>, <var class="var">alpha</var>] =</code> <strong class="def-name">imread</strong> <code class="def-code-arguments">(<var class="var">filename</var>)</code><a class="copiable-link" href="#index-imread"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-imread-1"><span><code class="def-type">[&hellip;] =</code> <strong class="def-name">imread</strong> <code class="def-code-arguments">(<var class="var">url</var>)</code><a class="copiable-link" href="#index-imread-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-imread-2"><span><code class="def-type">[&hellip;] =</code> <strong class="def-name">imread</strong> <code class="def-code-arguments">(&hellip;, <var class="var">ext</var>)</code><a class="copiable-link" href="#index-imread-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-imread-3"><span><code class="def-type">[&hellip;] =</code> <strong class="def-name">imread</strong> <code class="def-code-arguments">(&hellip;, <var class="var">idx</var>)</code><a class="copiable-link" href="#index-imread-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-imread-4"><span><code class="def-type">[&hellip;] =</code> <strong class="def-name">imread</strong> <code class="def-code-arguments">(&hellip;, <var class="var">param1</var>, <var class="var">value1</var>, &hellip;)</code><a class="copiable-link" href="#index-imread-4"> &para;</a></span></dt>
+<dd><p>Read images from various file formats.
+</p>
+<p>Read an image as a matrix from the file <var class="var">filename</var> or from the online
+resource <var class="var">url</var>.  If neither is given, but <var class="var">ext</var> was specified, look
+for a file with the extension <var class="var">ext</var>.
+</p>
+<p>The size and class of the output depends on the format of the image.  A
+color image is returned as an MxNx3 matrix.  Grayscale and
+black-and-white images are of size MxN.  Multipage images will
+have an additional 4th dimension.
+</p>
+<p>The bit depth of the image determines the class of the output:
+<code class="code">&quot;uint8&quot;</code>, <code class="code">&quot;uint16&quot;</code>, or <code class="code">&quot;single&quot;</code> for grayscale and
+color, and <code class="code">&quot;logical&quot;</code> for black-and-white.  Note that indexed images
+always return the indexes for a colormap, independent of whether <var class="var">map</var>
+is a requested output.  To obtain the actual RGB image, use <code class="code">ind2rgb</code>.
+When more than one indexed image is being read, <var class="var">map</var> is obtained from
+the first.  In some rare cases this may be incorrect and <code class="code">imfinfo</code> can
+be used to obtain the colormap of each image.
+</p>
+<p>See the Octave manual for more information in representing images.
+(see <a class="pxref" href="Representing-Images.html">Representing Images</a>)
+</p>
+<p>Some file formats, such as TIFF and GIF, are able to store multiple images
+in a single file.  <var class="var">idx</var> can be a scalar or vector specifying the
+index of the images to read.  By default, Octave will read only the first
+page.
+</p>
+<p>Depending on the file format, it is possible to configure the reading of
+images with <var class="var">parameter</var>, <var class="var">value</var> pairs.  The following options are
+supported:
+</p>
+<dl class="table">
+<dt><code class="code">&quot;Frames&quot;</code> or <code class="code">&quot;Index&quot;</code></dt>
+<dd><p>This is an alternative method to specify <var class="var">idx</var>.  When specifying it
+in this way, its value can also be the string <code class="code">&quot;all&quot;</code>.
+</p>
+</dd>
+<dt><code class="code">&quot;Info&quot;</code></dt>
+<dd><p>This option exists for <small class="sc">MATLAB</small> compatibility, but has no effect.  For
+maximum performance when reading multiple images from a single file, use
+the <code class="code">&quot;Index&quot;</code> option.
+</p>
+</dd>
+<dt><code class="code">&quot;PixelRegion&quot;</code></dt>
+<dd><p>Controls the image region that is read.  The value must be a cell array with
+two arrays of 3 elements <code class="code">{[<var class="var">rows</var>], [<var class="var">cols</var>]}</code>.  The
+elements in the array are the start, increment, and end pixel to be read.
+If the increment value is omitted it defaults to 1.  For example, the
+following are all equivalent:
+</p>
+<div class="format">
+<div class="group"><pre class="format-preformatted"><code class="code">imread (filename, &quot;PixelRegion&quot;, {[200 600], [300 700]})</code>
+<code class="code">imread (filename, &quot;PixelRegion&quot;, {[200 1 600], [300 1 700]})</code>
+<code class="code">imread (filename)(200:600, 300:700)</code>
+</pre></div></div>
+
+</dd>
+</dl>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFimwrite">imwrite</a>, <a class="ref" href="#XREFimfinfo">imfinfo</a>, <a class="ref" href="#XREFimformats">imformats</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFimwrite"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-imwrite"><span><strong class="def-name">imwrite</strong> <code class="def-code-arguments">(<var class="var">img</var>, <var class="var">filename</var>)</code><a class="copiable-link" href="#index-imwrite"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-imwrite-1"><span><strong class="def-name">imwrite</strong> <code class="def-code-arguments">(<var class="var">img</var>, <var class="var">filename</var>, <var class="var">ext</var>)</code><a class="copiable-link" href="#index-imwrite-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-imwrite-2"><span><strong class="def-name">imwrite</strong> <code class="def-code-arguments">(<var class="var">img</var>, <var class="var">map</var>, <var class="var">filename</var>)</code><a class="copiable-link" href="#index-imwrite-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-imwrite-3"><span><strong class="def-name">imwrite</strong> <code class="def-code-arguments">(&hellip;, <var class="var">param1</var>, <var class="var">val1</var>, &hellip;)</code><a class="copiable-link" href="#index-imwrite-3"> &para;</a></span></dt>
+<dd><p>Write images in various file formats.
+</p>
+<p>The image <var class="var">img</var> can be a binary, grayscale, RGB, or multi-dimensional
+image.  The size and class of <var class="var">img</var> should be the same as what should
+be expected when reading it with <code class="code">imread</code>: the 3rd and 4th dimensions
+reserved for color space, and multiple pages respectively.  If it&rsquo;s an
+indexed image, the colormap <var class="var">map</var> must also be specified.
+</p>
+<p>If <var class="var">ext</var> is not supplied, the file extension of <var class="var">filename</var> is used
+to determine the format.  The actual supported formats are dependent on
+options made during the build of Octave.  Use <code class="code">imformats</code> to check
+the support of the different image formats.
+</p>
+<p>Depending on the file format, it is possible to configure the writing of
+images with <var class="var">param</var>, <var class="var">val</var> pairs.  The following options are
+supported:
+</p>
+<dl class="table">
+<dt>&lsquo;<samp class="samp">Alpha</samp>&rsquo;</dt>
+<dd><p>Alpha (transparency) channel for the image.  This must be a matrix with
+same class, and number of rows and columns of <var class="var">img</var>.  In case of a
+multipage image, the size of the 4th dimension must also match and the third
+dimension must be a singleton.  By default, image will be completely opaque.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">Compression</samp>&rsquo;</dt>
+<dd><p>Compression to use one the image.  Can be one of the following: &quot;none&quot;
+(default), &quot;bzip&quot;, &quot;fax3&quot;, &quot;fax4&quot;, &quot;jpeg&quot;, &quot;lzw&quot;, &quot;rle&quot;, or &quot;deflate&quot;.
+Note that not all compression types are available for all image formats
+in which it defaults to your Magick library.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">DelayTime</samp>&rsquo;</dt>
+<dd><p>For formats that accept animations (such as GIF), controls for how long a
+frame is displayed until it moves to the next one.  The value must be scalar
+(which will applied to all frames in <var class="var">img</var>), or a vector of length
+equal to the number of frames in <var class="var">im</var>.  The value is in seconds, must
+be between 0 and 655.35, and defaults to 0.5.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">DisposalMethod</samp>&rsquo;</dt>
+<dd><p>For formats that accept animations (such as GIF), controls what happens to
+a frame before drawing the next one.  Its value can be one of the
+following strings: &quot;doNotSpecify&quot; (default); &quot;leaveInPlace&quot;; &quot;restoreBG&quot;;
+and &quot;restorePrevious&quot;, or a cell array of those string with length equal
+to the number of frames in <var class="var">img</var>.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">LoopCount</samp>&rsquo;</dt>
+<dd><p>For formats that accept animations (such as GIF), controls how many times
+the sequence is repeated.  A value of Inf means an infinite loop (default),
+a value of 0 or 1 that the sequence is played only once (loops zero times),
+while a value of 2 or above loops that number of times (looping twice means
+it plays the complete sequence 3 times).  This option is ignored when there
+is only a single image at the end of writing the file.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">Quality</samp>&rsquo;</dt>
+<dd><p>Set the quality of the compression.  The value should be an integer
+between 0 and 100, with larger values indicating higher visual quality and
+lower compression.  Defaults to 75.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">WriteMode</samp>&rsquo;</dt>
+<dd><p>Some file formats, such as TIFF and GIF, are able to store multiple images
+in a single file.  This option specifies if <var class="var">img</var> should be appended
+to the file (if it exists) or if a new file should be created for it
+(possibly overwriting an existing file).  The value should be the string
+<code class="code">&quot;Overwrite&quot;</code> (default), or <code class="code">&quot;Append&quot;</code>.
+</p>
+<p>Despite this option, the most efficient method of writing a multipage
+image is to pass a 4 dimensional <var class="var">img</var> to <code class="code">imwrite</code>, the same
+matrix that could be expected when using <code class="code">imread</code> with the option
+<code class="code">&quot;Index&quot;</code> set to <code class="code">&quot;all&quot;</code>.
+</p>
+</dd>
+</dl>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFimread">imread</a>, <a class="ref" href="#XREFimfinfo">imfinfo</a>, <a class="ref" href="#XREFimformats">imformats</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFIMAGE_005fPATH"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-IMAGE_005fPATH"><span><code class="def-type"><var class="var">val</var> =</code> <strong class="def-name">IMAGE_PATH</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-IMAGE_005fPATH"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-IMAGE_005fPATH-1"><span><code class="def-type"><var class="var">old_val</var> =</code> <strong class="def-name">IMAGE_PATH</strong> <code class="def-code-arguments">(<var class="var">new_val</var>)</code><a class="copiable-link" href="#index-IMAGE_005fPATH-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-IMAGE_005fPATH-2"><span><code class="def-type"><var class="var">old_val</var> =</code> <strong class="def-name">IMAGE_PATH</strong> <code class="def-code-arguments">(<var class="var">new_val</var>, &quot;local&quot;)</code><a class="copiable-link" href="#index-IMAGE_005fPATH-2"> &para;</a></span></dt>
+<dd><p>Query or set the internal variable that specifies a colon separated
+list of directories in which to search for image files.
+</p>
+<p>When called from inside a function with the <code class="code">&quot;local&quot;</code> option, the
+variable is changed locally for the function and any subroutines it calls.
+The original variable value is restored when exiting the function.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Controlling-Subprocesses.html#XREFEXEC_005fPATH">EXEC_PATH</a>, <a class="ref" href="System-Information.html#XREFOCTAVE_005fHOME">OCTAVE_HOME</a>, <a class="ref" href="System-Information.html#XREFOCTAVE_005fEXEC_005fHOME">OCTAVE_EXEC_HOME</a>.
+</p></dd></dl>
+
+
+<p>It is possible to get information about an image file on disk, without actually
+reading it into Octave.  This is done using the <code class="code">imfinfo</code> function which
+provides read access to many of the parameters stored in the header of the
+image file.
+</p>
+<a class="anchor" id="XREFimfinfo"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-imfinfo"><span><code class="def-type"><var class="var">info</var> =</code> <strong class="def-name">imfinfo</strong> <code class="def-code-arguments">(<var class="var">filename</var>)</code><a class="copiable-link" href="#index-imfinfo"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-imfinfo-1"><span><code class="def-type"><var class="var">info</var> =</code> <strong class="def-name">imfinfo</strong> <code class="def-code-arguments">(<var class="var">url</var>)</code><a class="copiable-link" href="#index-imfinfo-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-imfinfo-2"><span><code class="def-type"><var class="var">info</var> =</code> <strong class="def-name">imfinfo</strong> <code class="def-code-arguments">(&hellip;, <var class="var">ext</var>)</code><a class="copiable-link" href="#index-imfinfo-2"> &para;</a></span></dt>
+<dd><p>Read image information from a file.
+</p>
+<p><code class="code">imfinfo</code> returns a structure containing information about the image
+stored in the file <var class="var">filename</var>.  If there is no file <var class="var">filename</var>,
+and <var class="var">ext</var> was specified, it will look for a file named <var class="var">filename</var>
+and extension <var class="var">ext</var>, i.e., a file named <var class="var">filename</var>.<var class="var">ext</var>.
+</p>
+<p>The output structure <var class="var">info</var> contains the following fields:
+</p>
+<dl class="table">
+<dt>&lsquo;<samp class="samp">Filename</samp>&rsquo;</dt>
+<dd><p>The full name of the image file.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">FileModDate</samp>&rsquo;</dt>
+<dd><p>Date of last modification to the file.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">FileSize</samp>&rsquo;</dt>
+<dd><p>Number of bytes of the image on disk
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">Format</samp>&rsquo;</dt>
+<dd><p>Image format (e.g., <code class="code">&quot;jpeg&quot;</code>).
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">Height</samp>&rsquo;</dt>
+<dd><p>Image height in pixels.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">Width</samp>&rsquo;</dt>
+<dd><p>Image Width in pixels.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">BitDepth</samp>&rsquo;</dt>
+<dd><p>Number of bits per channel per pixel.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">ColorType</samp>&rsquo;</dt>
+<dd><p>Image type.  Value is <code class="code">&quot;grayscale&quot;</code>, <code class="code">&quot;indexed&quot;</code>,
+<code class="code">&quot;truecolor&quot;</code>, <code class="code">&quot;CMYK&quot;</code>, or <code class="code">&quot;undefined&quot;</code>.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">XResolution</samp>&rsquo;</dt>
+<dd><p>X resolution of the image.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">YResolution</samp>&rsquo;</dt>
+<dd><p>Y resolution of the image.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">ResolutionUnit</samp>&rsquo;</dt>
+<dd><p>Units of image resolution.  Value is <code class="code">&quot;Inch&quot;</code>,
+<code class="code">&quot;Centimeter&quot;</code>, or <code class="code">&quot;undefined&quot;</code>.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">DelayTime</samp>&rsquo;</dt>
+<dd><p>Time in 1/100ths of a second (0 to 65535) which must expire before
+displaying the next image in an animated sequence.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">LoopCount</samp>&rsquo;</dt>
+<dd><p>Number of iterations to loop an animation.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">ByteOrder</samp>&rsquo;</dt>
+<dd><p>Endian option for formats that support it.  Value is
+<code class="code">&quot;little-endian&quot;</code>, <code class="code">&quot;big-endian&quot;</code>, or <code class="code">&quot;undefined&quot;</code>.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">Gamma</samp>&rsquo;</dt>
+<dd><p>Gamma level of the image.  The same color image displayed on two different
+workstations may look different due to differences in the display monitor.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">Quality</samp>&rsquo;</dt>
+<dd><p>JPEG/MIFF/PNG compression level.  Value is an integer in the range [0 100].
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">DisposalMethod</samp>&rsquo;</dt>
+<dd><p>Only valid for GIF images, control how successive frames are rendered (how
+the preceding frame is disposed of) when creating a GIF animation.  Values
+can be <code class="code">&quot;doNotSpecify&quot;</code>, <code class="code">&quot;leaveInPlace&quot;</code>, <code class="code">&quot;restoreBG&quot;</code>,
+or <code class="code">&quot;restorePrevious&quot;</code>.  For non-GIF files, value is an empty string.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">Chromaticities</samp>&rsquo;</dt>
+<dd><p>Value is a 1x8 Matrix with the x,y chromaticity values for white, red,
+green, and blue points, in that order.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">Comment</samp>&rsquo;</dt>
+<dd><p>Image comment.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">Compression</samp>&rsquo;</dt>
+<dd><p>Compression type.  Value can be <code class="code">&quot;none&quot;</code>, <code class="code">&quot;bzip&quot;</code>,
+<code class="code">&quot;fax3&quot;</code>, <code class="code">&quot;fax4&quot;</code>, <code class="code">&quot;jpeg&quot;</code>, <code class="code">&quot;lzw&quot;</code>,
+<code class="code">&quot;rle&quot;</code>, <code class="code">&quot;deflate&quot;</code>, <code class="code">&quot;lzma&quot;</code>, <code class="code">&quot;jpeg2000&quot;</code>,
+<code class="code">&quot;jbig2&quot;</code>, <code class="code">&quot;jbig2&quot;</code>, or <code class="code">&quot;undefined&quot;</code>.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">Colormap</samp>&rsquo;</dt>
+<dd><p>Colormap for each image.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">Orientation</samp>&rsquo;</dt>
+<dd><p>The orientation of the image with respect to the rows and columns.  Value
+is an integer between 1 and 8 as defined in the TIFF 6 specifications, and
+for <small class="sc">MATLAB</small> compatibility.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">Software</samp>&rsquo;</dt>
+<dd><p>Name and version of the software or firmware of the camera or image input
+device used to generate the image.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">Make</samp>&rsquo;</dt>
+<dd><p>The manufacturer of the recording equipment.  This is the manufacture of the
+DSC, scanner, video digitizer or other equipment that generated
+the image.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">Model</samp>&rsquo;</dt>
+<dd><p>The model name or model number of the recording equipment as mentioned on
+the field <code class="code">&quot;Make&quot;</code>.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">DateTime</samp>&rsquo;</dt>
+<dd><p>The date and time of image creation as defined by the Exif standard, i.e.,
+it is the date and time the file was changed.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">ImageDescription</samp>&rsquo;</dt>
+<dd><p>The title of the image as defined by the Exif standard.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">Artist</samp>&rsquo;</dt>
+<dd><p>Name of the camera owner, photographer or image creator.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">Copyright</samp>&rsquo;</dt>
+<dd><p>Copyright notice of the person or organization claiming rights to the image.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">DigitalCamera</samp>&rsquo;</dt>
+<dd><p>A struct with information retrieved from the Exif tag.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">GPSInfo</samp>&rsquo;</dt>
+<dd><p>A struct with geotagging information retrieved from the Exif tag.
+</p></dd>
+</dl>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFimread">imread</a>, <a class="ref" href="#XREFimwrite">imwrite</a>, <a class="ref" href="Displaying-Images.html#XREFimshow">imshow</a>, <a class="ref" href="#XREFimformats">imformats</a>.
+</p></dd></dl>
+
+
+<p>By default, Octave&rsquo;s image IO functions (<code class="code">imread</code>, <code class="code">imwrite</code>,
+and <code class="code">imfinfo</code>) use the <code class="code">GraphicsMagick</code> library for their
+operations.  This means a vast number of image formats is supported
+but considering the large amount of image formats in science and
+its commonly closed nature, it is impossible to have a library
+capable of reading them all.  Because of this, the function
+<code class="code">imformats</code> keeps a configurable list of available formats,
+their extensions, and what functions should the image IO functions
+use.  This allows one to expand Octave&rsquo;s image IO capabilities by
+creating functions aimed at acting on specific file formats.
+</p>
+<p>While it would be possible to call the extra functions directly,
+properly configuring Octave with <code class="code">imformats</code> allows one to keep a
+consistent code that is abstracted from file formats.
+</p>
+<p>It is important to note that a file format is not actually defined by its
+file extension and that <code class="code">GraphicsMagick</code> is capable to read and write
+more file formats than the ones listed by <code class="code">imformats</code>.  What this
+means is that even with an incorrect or missing extension the image may
+still be read correctly, and that even unlisted formats are not necessarily
+unsupported.
+</p>
+<a class="anchor" id="XREFimformats"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-imformats"><span><strong class="def-name">imformats</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-imformats"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-imformats-1"><span><code class="def-type"><var class="var">formats</var> =</code> <strong class="def-name">imformats</strong> <code class="def-code-arguments">(<var class="var">ext</var>)</code><a class="copiable-link" href="#index-imformats-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-imformats-2"><span><code class="def-type"><var class="var">formats</var> =</code> <strong class="def-name">imformats</strong> <code class="def-code-arguments">(<var class="var">format</var>)</code><a class="copiable-link" href="#index-imformats-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-imformats-3"><span><code class="def-type"><var class="var">formats</var> =</code> <strong class="def-name">imformats</strong> <code class="def-code-arguments">(&quot;add&quot;, <var class="var">format</var>)</code><a class="copiable-link" href="#index-imformats-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-imformats-4"><span><code class="def-type"><var class="var">formats</var> =</code> <strong class="def-name">imformats</strong> <code class="def-code-arguments">(&quot;remove&quot;, <var class="var">ext</var>)</code><a class="copiable-link" href="#index-imformats-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-imformats-5"><span><code class="def-type"><var class="var">formats</var> =</code> <strong class="def-name">imformats</strong> <code class="def-code-arguments">(&quot;update&quot;, <var class="var">ext</var>, <var class="var">format</var>)</code><a class="copiable-link" href="#index-imformats-5"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-imformats-6"><span><code class="def-type"><var class="var">formats</var> =</code> <strong class="def-name">imformats</strong> <code class="def-code-arguments">(&quot;factory&quot;)</code><a class="copiable-link" href="#index-imformats-6"> &para;</a></span></dt>
+<dd><p>Manage supported image formats.
+</p>
+<p><var class="var">formats</var> is a structure with information about each supported file
+format, or from a specific format <var class="var">ext</var>, the value displayed on the
+field <var class="var">ext</var>.  It contains the following fields:
+</p>
+<dl class="table">
+<dt>ext</dt>
+<dd><p>The name of the file format.  This may match the file extension but Octave
+will automatically detect the file format.
+</p>
+</dd>
+<dt>description</dt>
+<dd><p>A long description of the file format.
+</p>
+</dd>
+<dt>isa</dt>
+<dd><p>A function handle to confirm if a file is of the specified format.
+</p>
+</dd>
+<dt>write</dt>
+<dd><p>A function handle to write if a file is of the specified format.
+</p>
+</dd>
+<dt>read</dt>
+<dd><p>A function handle to open files the specified format.
+</p>
+</dd>
+<dt>info</dt>
+<dd><p>A function handle to obtain image information of the specified format.
+</p>
+</dd>
+<dt>alpha</dt>
+<dd><p>Logical value if format supports alpha channel (transparency or matte).
+</p>
+</dd>
+<dt>multipage</dt>
+<dd><p>Logical value if format supports multipage (multiple images per file).
+</p></dd>
+</dl>
+
+<p>It is possible to change the way Octave manages file formats with the
+options <code class="code">&quot;add&quot;</code>, <code class="code">&quot;remove&quot;</code>, and <code class="code">&quot;update&quot;</code>, and supplying
+a structure <var class="var">format</var> with the required fields.  The option
+<code class="code">&quot;factory&quot;</code> resets the configuration to the default.
+</p>
+<p>This can be used by Octave packages to extend the image reading capabilities
+Octave, through use of the PKG_ADD and PKG_DEL commands.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFimfinfo">imfinfo</a>, <a class="ref" href="#XREFimread">imread</a>, <a class="ref" href="#XREFimwrite">imwrite</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Displaying-Images.html">Displaying Images</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Image-Processing.html">Image Processing</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

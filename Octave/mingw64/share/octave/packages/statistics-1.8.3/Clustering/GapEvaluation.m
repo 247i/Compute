@@ -1,0 +1,510 @@
+## Copyright (C) 2021 Stefano Guidoni <ilguido@users.sf.net>
+## Copyright (C) 2024 Andreas Bertsatos <abertsatos@biol.uoa.gr>
+##
+## This file is part of the statistics package for GNU Octave.
+##
+## This program is free software; you can redistribute it and/or modify it under
+## the terms of the GNU General Public License as published by the Free Software
+## Foundation; either version 3 of the License, or (at your option) any later
+## version.
+##
+## This program is distributed in the hope that it will be useful, but WITHOUT
+## ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+## FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+## details.
+##
+## You should have received a copy of the GNU General Public License along with
+## this program; if not, see <http://www.gnu.org/licenses/>.
+
+classdef GapEvaluation < ClusterCriterion
+  ## -*- texinfo -*-
+  ## @deftp {statistics} GapEvaluation
+  ##
+  ## Gap evaluation for clustering solutions
+  ##
+  ## The @code{GapEvaluation} class implements the gap statistic criterion for
+  ## evaluating clustering solutions.  A @code{GapEvaluation} object is a
+  ## specialization of @code{ClusterCriterion} and contains fields and methods
+  ## to compute the gap statistic, its Monte-Carlo reference expectations, and
+  ## to select the optimal number of clusters according to a chosen search
+  ## method.
+  ##
+  ## Create a @code{GapEvaluation} object by using the @code{evalclusters}
+  ## function or by calling the class constructor directly.
+  ##
+  ## @seealso{evalclusters, ClusterCriterion, CalinskiHarabaszEvaluation,
+  ## DaviesBouldinEvaluation, SilhouetteEvaluation}
+  ## @end deftp
+
+  properties (GetAccess = public, SetAccess = protected)
+    ## -*- texinfo -*-
+    ## @deftp {GapEvaluation} {property} B
+    ##
+    ## Number of reference datasets
+    ##
+    ## A positive integer specifying how many reference datasets are generated
+    ## to compute the expected log within-cluster dispersion via Monte-Carlo
+    ## simulation.  This property is read-only.
+    ##
+    ## @end deftp
+    B = 0;
+
+    ## -*- texinfo -*-
+    ## @deftp {GapEvaluation} {property} Distance
+    ##
+    ## Distance metric
+    ##
+    ## A character vector or function handle specifying the distance measure
+    ## passed to clustering routines (as accepted by @code{pdist}).  When a
+    ## numeric vector is supplied it is interpreted as a precomputed distance
+    ## vector.  This property is read-only.
+    ##
+    ## @end deftp
+    Distance = "";
+
+    ## -*- texinfo -*-
+    ## @deftp {GapEvaluation} {property} ReferenceDistribution
+    ##
+    ## Reference distribution for Monte-Carlo
+    ##
+    ## A character vector naming the reference distribution used to generate
+    ## reference datasets.  Supported values include @qcode{'pca'} and
+    ## @qcode{'uniform'}.  This property is read-only.
+    ##
+    ## @end deftp
+    ReferenceDistribution = "";
+
+    ## -*- texinfo -*-
+    ## @deftp {GapEvaluation} {property} SearchMethod
+    ##
+    ## Search method to select optimal K
+    ##
+    ## A character vector specifying the method used to select the optimal
+    ## number of clusters from the gap statistic.  Supported values include
+    ## @qcode{'globalMaxSE'} and @qcode{'firstMaxSE'}.  This property is
+    ## read-only.
+    ##
+    ## @end deftp
+    SearchMethod = "";
+
+    ## -*- texinfo -*-
+    ## @deftp {GapEvaluation} {property} ExpectedLogW
+    ##
+    ## Expected log within-cluster dispersion
+    ##
+    ## A numeric vector containing the Monte-Carlo estimate of the expected
+    ## values for the natural logarithm of the within-cluster dispersion,
+    ## computed across the generated reference datasets.  This property is
+    ## read-only.
+    ##
+    ## @end deftp
+    ExpectedLogW = [];
+
+    ## -*- texinfo -*-
+    ## @deftp {GapEvaluation} {property} LogW
+    ##
+    ## Observed log within-cluster dispersion
+    ##
+    ## A numeric vector containing the observed values of the natural
+    ## logarithm of the within-cluster dispersion computed on the actual data.
+    ## This property is read-only.
+    ##
+    ## @end deftp
+    LogW = [];
+
+    ## -*- texinfo -*-
+    ## @deftp {GapEvaluation} {property} SE
+    ##
+    ## Standard error of expected logW
+    ##
+    ## A numeric vector containing the standard error of the expected values
+    ## for the natural logarithm of the within-cluster dispersion.  This
+    ## property is read-only.
+    ##
+    ## @end deftp
+    SE = [];
+
+    ## -*- texinfo -*-
+    ## @deftp {GapEvaluation} {property} StdLogW
+    ##
+    ## Standard deviation of expected logW
+    ##
+    ## A numeric vector containing the standard deviation of the Monte-Carlo
+    ## estimates of the log within-cluster dispersion.  This property is
+    ## read-only.
+    ##
+    ## @end deftp
+    StdLogW = [];
+  endproperties
+
+  properties (Access = protected)
+    ## -*- texinfo -*-
+    ## @deftp {GapEvaluation} {property} DistanceVector
+    ##
+    ## Precomputed distance vector
+    ##
+    ## If a numeric vector is supplied as the distance metric it is stored
+    ## here and used instead of computing distances via @code{pdist}.  This
+    ## property is read-only.
+    ##
+    ## @end deftp
+    DistanceVector = [];
+
+    ## -*- texinfo -*-
+    ## @deftp {GapEvaluation} {property} mExpectedLogW
+    ##
+    ## Monte-Carlo results matrix
+    ##
+    ## Internal matrix storing the log within-cluster dispersion values
+    ## computed for each Monte-Carlo run (rows) and each inspected K (columns).
+    ## This property is read-only.
+    ##
+    ## @end deftp
+    mExpectedLogW = [];
+  endproperties
+
+  methods (Access = public)
+
+    ## constructor
+    ## -*- texinfo -*-
+    ## @deftypefn  {statistics} {@var{obj} =} GapEvaluation (@var{x}, @var{clust}, @var{KList})
+    ## @deftypefnx {statistics} {@var{obj} =} GapEvaluation (@var{x}, @var{clust}, @var{KList}, @var{B})
+    ## @deftypefnx {statistics} {@var{obj} =} GapEvaluation (@dots{}, @var{name}, @var{value})
+    ##
+    ## Construct a GapEvaluation object to evaluate clustering solutions using
+    ## the gap statistic.
+    ##
+    ## @code{@var{obj} = GapEvaluation (@var{x}, @var{clust}, @var{KList})}
+    ## returns a @code{GapEvaluation} object configured to evaluate the
+    ## clustering function specified by @var{clust} on the data matrix
+    ## @var{x} for the list of cluster counts in @var{KList}.
+    ##
+    ## Optional inputs:
+    ##
+    ## @itemize
+    ## @item @qcode{B} - Number of reference datasets to generate (default 100).
+    ## @item @qcode{'Distance'} - Distance metric name or function handle as
+    ## accepted by @code{pdist} (default @qcode{'sqeuclidean'}).
+    ## @item @qcode{'ReferenceDistribution'} - Reference distribution to use
+    ## (default @qcode{'pca'}; @qcode{'uniform'} is supported).
+    ## @item @qcode{'SearchMethod'} - Method to select the optimal K; one of
+    ## @qcode{'globalMaxSE'} or @qcode{'firstMaxSE'} (default
+    ## @qcode{'globalMaxSE'}).
+    ## @end itemize
+    ##
+    ## @seealso{evalclusters, ClusterCriterion}
+    ## @end deftypefn
+    function this = GapEvaluation (x, clust, KList, b = 100, ...
+                    distanceMetric = "sqeuclidean", ...
+                    referenceDistribution = "pca", searchMethod = "globalmaxse")
+      this@ClusterCriterion(x, clust, KList);
+
+      ## parsing the distance criterion
+      if (ischar (distanceMetric))
+        if (any (strcmpi (distanceMetric, {"sqeuclidean", "euclidean", ...
+                 "cityblock", "cosine", "correlation", "hamming", "jaccard"})))
+          this.Distance = lower (distanceMetric);
+
+          ## kmeans can use only a subset
+          if (strcmpi (clust, "kmeans") && any (strcmpi (this.Distance, ...
+              {"euclidean", "jaccard"})))
+            error (strcat ("GapEvaluation: invalid distance criterion", ...
+                           " '%s' for 'kmeans'"), distanceMetric);
+          endif
+        else
+          error ("GapEvaluation: unknown distance criterion '%s'", ...
+                 distanceMetric);
+        endif
+      elseif (isa (distanceMetric, "function_handle"))
+        this.Distance = distanceMetric;
+
+        ## kmeans cannot use a function handle
+        if (strcmpi (clust, "kmeans"))
+          error ("GapEvaluation: invalid distance criterion for 'kmeans'.");
+        endif
+      elseif (isvector (distanceMetric) && isnumeric (distanceMetric))
+        this.Distance = "";
+        this.DistanceVector = distanceMetric; # the validity check is delegated
+
+        ## kmeans cannot use a distance vector
+        if (strcmpi (clust, "kmeans"))
+          error ("GapEvaluation: invalid distance criterion for 'kmeans'.");
+        endif
+      else
+        error ("GapEvaluation: invalid distance metric.");
+      endif
+
+      ## B: number of Monte-Carlo iterations
+      if (! isnumeric (b) || ! isscalar (b) || b != floor (b) || b < 1)
+        error ("GapEvaluation: b must a be positive integer number");
+      endif
+      this.B = b;
+
+      ## reference distribution
+      if (! ischar (referenceDistribution) || ! any (strcmpi ...
+          (referenceDistribution, {"pca", "uniform"})))
+        error (strcat ("GapEvaluation: the reference distribution", ...
+                       " must be either 'PCA' or 'uniform'."));
+      elseif (strcmpi (referenceDistribution, "pca"))
+        warning (strcat ("GapEvaluation: 'PCA' distribution not", ...
+                         " implemented, defaulting to 'uniform'."));
+      endif
+      this.ReferenceDistribution = lower (referenceDistribution);
+
+      if (! ischar (searchMethod) || ! any (strcmpi (searchMethod, ...
+          {"globalmaxse", "firstmaxse"})))
+        error (strcat ("evalclusters: the search method must be", ...
+                       " either 'globalMaxSE' or 'firstMaxSE'."));
+      endif
+      this.SearchMethod = lower (searchMethod);
+
+      ## a matrix to store the results from the Monte-Carlo runs
+      this.mExpectedLogW = zeros (this.B, length (this.InspectedK));
+
+      this.CriterionName = "gap";
+      this.evaluate(this.InspectedK); # evaluate the list of cluster numbers
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @deftypefn {GapEvaluation} {@var{obj} =} addK (@var{obj}, @var{K})
+    ##
+    ## Add new K values to inspect
+    ##
+    ## Add a new cluster array to inspect in the @code{GapEvaluation} object.
+    ## This updates internal storage for Monte-Carlo results and evaluates the
+    ## newly requested cluster counts.
+    ##
+    ## @end deftypefn
+    function this = addK (this, K)
+      addK@ClusterCriterion(this, K);
+
+      ## if we have new data, we need a new evaluation
+      if (this.OptimalK == 0)
+        mExpectedLogW_tmp = zeros (this.B, length (this.InspectedK));
+        pS = 0; # position shift
+        for iter = 1 : length (this.InspectedK)
+          ## reorganize all the arrays according to the new list
+          ## of cluster numbers
+          if (any (this.InspectedK(iter) == K))
+            pS += 1;
+          else
+            mExpectedLogW_tmp(:, iter) = this.mExpectedLogW(:, iter - pS);
+          endif
+        endfor
+        this.mExpectedLogW = mExpectedLogW_tmp;
+
+        this.evaluate(K); # evaluate just the new cluster numbers
+      endif
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @deftypefn  {ClusterCriterion} {} plot (@var{obj})
+    ## @deftypefnx {ClusterCriterion} {@var{h} =} plot (@var{obj})
+    ##
+    ## Plot Gap evaluation results
+    ##
+    ## Plot the gap statistic (criterion values) versus the inspected numbers
+    ## of clusters and display error bars representing the Monte-Carlo
+    ## standard deviations.  Optionally returns the axes handle.
+    ##
+    ## @end deftypefn
+    function h = plot (this)
+      yLabel = sprintf ("%s value", this.CriterionName);
+      h = gca ();
+      hold on;
+      errorbar (this.InspectedK, this.CriterionValues, this.StdLogW);
+      plot (this.InspectedK, this.CriterionValues, "bo");
+      plot (this.OptimalK, this.CriterionValues(this.OptimalIndex), "b*");
+      xlabel ("number of clusters");
+      ylabel (yLabel);
+      hold off;
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @deftypefn {GapEvaluation} {@var{obj} =} compact (@var{obj})
+    ##
+    ## Return a compact GapEvaluation object
+    ##
+    ## Return a compact representation of the @code{GapEvaluation} object.
+    ## Currently not implemented; calling this method will issue a warning.
+    ##
+    ## @end deftypefn
+    function this = compact (this)
+      warning ("GapEvaluation.compact: this method is not yet implemented.");
+    endfunction
+
+  endmethods
+
+  methods (Access = protected)
+    ## evaluate
+    ## do the evaluation
+    function this = evaluate (this, K)
+      ## use complete observations only
+      ActualX = this.X(find (this.Missing == false), :);
+      colMins = min (ActualX);
+      colRange = max (ActualX) - colMins;
+
+      ## Monte-Carlo runs
+      for mcrun = 1 : (this.B + 1)
+        ## the last run use tha actual data,
+        ## the others are Monte-Carlo runs with reconstructed data
+        if (mcrun <= this.B)
+          ## uniform distribution
+          UsableX = colMins + rand (this.NumObservations, columns (ActualX)) ...
+                    .* colRange;
+        else
+          UsableX = ActualX;
+        endif
+
+        if (! isempty (this.ClusteringFunction))
+          ## build the clusters
+          for iter = 1 : length (this.InspectedK)
+            ## do it only for the specified K values
+            if (any (this.InspectedK(iter) == K))
+              if (isa (this.ClusteringFunction, "function_handle"))
+                ## custom function
+                ClusteringSolution = ...
+                  this.ClusteringFunction(UsableX, this.InspectedK(iter));
+                if (ismatrix (ClusteringSolution) && ...
+                    rows (ClusteringSolution) == this.NumObservations && ...
+                    columns (ClusteringSolution) == this.P)
+                  ## the custom function returned a matrix:
+                  ## we take the index of the maximum value for every row
+                  [~, this.ClusteringSolutions(:, iter)] = ...
+                    max (ClusteringSolution, [], 2);
+                elseif (iscolumn (ClusteringSolution) &&
+                        length (ClusteringSolution) == this.NumObservations)
+                  this.ClusteringSolutions(:, iter) = ClusteringSolution;
+                elseif (isrow (ClusteringSolution) &&
+                        length (ClusteringSolution) == this.NumObservations)
+                  this.ClusteringSolutions(:, iter) = ClusteringSolution';
+                else
+                  error (strcat ("GapEvaluation: invalid return value", ...
+                                 " from custom clustering function"));
+                endif
+              else
+                switch (this.ClusteringFunction)
+                  case "kmeans"
+                    this.ClusteringSolutions(:, iter) = kmeans (UsableX, ...
+                      this.InspectedK(iter), "Distance", this.Distance, ...
+                      "EmptyAction", "singleton", "Replicates", 5);
+
+                  case "linkage"
+                    if (! isempty (this.Distance))
+                      ## use clusterdata
+                      Distance_tmp = this.Distance;
+                      LinkageMethod = "average"; # for non euclidean methods
+                      if (strcmpi (this.Distance, "sqeuclidean"))
+                        ## pdist uses different names for its algorithms
+                        Distance_tmp = "squaredeuclidean";
+                        LinkageMethod = "ward";
+                      elseif (strcmpi (this.Distance, "euclidean"))
+                        LinkageMethod = "ward";
+                      endif
+                      this.ClusteringSolutions(:, iter) = clusterdata ...
+                        (UsableX, "MaxClust", this.InspectedK(iter), ...
+                        "Distance", Distance_tmp, "Linkage", LinkageMethod);
+                    else
+                      ## use linkage
+                      Z = linkage (this.DistanceVector, "average");
+                      this.ClusteringSolutions(:, iter) = ...
+                           cluster (Z, "MaxClust", this.InspectedK(iter));
+                    endif
+
+                  case "gmdistribution"
+                    gmm = fitgmdist (UsableX, this.InspectedK(iter), ...
+                          "SharedCov", true, "Replicates", 5);
+                    this.ClusteringSolutions(:, iter) = cluster (gmm, UsableX);
+
+                  otherwise
+                    ## this should not happen
+                    error ("GapEvaluation: unexpected error, report this bug.");
+                endswitch
+              endif
+            endif
+          endfor
+        endif
+
+        ## get the gap values for every clustering
+        distance_pdist = this.Distance;
+        if (strcmpi (distance_pdist, "sqeuclidean"))
+          distance_pdist = "squaredeuclidean";
+        endif
+
+        ## compute LogW
+        for iter = 1 : length (this.InspectedK)
+          ## do it only for the specified K values
+          if (any (this.InspectedK(iter) == K))
+            wk = 0;
+            for r = 1 : this.InspectedK(iter)
+              vIndicesR = find (this.ClusteringSolutions(:, iter) == r);
+              nr = length (vIndicesR);
+              Dr = pdist (UsableX(vIndicesR, :), distance_pdist);
+              wk += sum (Dr) / (2 * nr);
+            endfor
+            if (mcrun <= this.B)
+              this.mExpectedLogW(mcrun, iter) = log (wk);
+            else
+              this.LogW(iter) = log (wk);
+            endif
+          endif
+        endfor
+      endfor
+
+      this.ExpectedLogW = mean (this.mExpectedLogW);
+      this.SE = sqrt ((1 + 1 / this.B) * sumsq (this.mExpectedLogW - ...
+                                               this.ExpectedLogW) / this.B);
+      this.StdLogW = std (this.mExpectedLogW);
+      this.CriterionValues = this.ExpectedLogW - this.LogW;
+
+      this.OptimalIndex = this.gapSearch ();
+      this.OptimalK = this.InspectedK(this.OptimalIndex(1));
+      this.OptimalY = this.ClusteringSolutions(:, this.OptimalIndex(1));
+    endfunction
+
+    ## gapSearch
+    ## find the best solution according to the gap method
+    function ind = gapSearch (this)
+      if (strcmpi (this.SearchMethod, "globalmaxse"))
+        [gapmax, indgp] = max (this.CriterionValues);
+        for iter = 1 : length (this.InspectedK)
+          ind = iter;
+          if (this.CriterionValues(iter) > (gapmax - this.SE(indgp)))
+            return
+          endif
+        endfor
+      elseif (strcmpi (this.SearchMethod, "firstmaxse"))
+        for iter = 1 : (length (this.InspectedK) - 1)
+          ind = iter;
+          if (this.CriterionValues(iter) > (this.CriterionValues(iter + 1) - ...
+                                            this.SE(iter + 1)))
+            return
+          endif
+        endfor
+      else
+        ## this should not happen
+        error ("GapEvaluation: unexpected error, please report this bug.");
+      endif
+    endfunction
+  endmethods
+endclassdef
+
+%!test
+%! load fisheriris
+%! eva = evalclusters (meas([1:50],:), "kmeans", "gap", "KList", [1:3], ...
+%!                     "referencedistribution", "uniform");
+%! assert (class (eva), "GapEvaluation");
+
+%!function C = count_calls_gap (X, k)
+%!  global count_calls_gap_n;
+%!  count_calls_gap_n += 1;
+%!  C = mod ((0 : rows (X) - 1)', k) + 1;
+%!endfunction
+%!test
+%! ## custom function must be called exactly once per inspected K per run
+%! global count_calls_gap_n;
+%! count_calls_gap_n = 0;
+%! evalclusters (rand (20, 2), @count_calls_gap, "gap", ...
+%!               "KList", [2, 3], "B", 2);
+%! assert (count_calls_gap_n, 6);
+%! clear -global count_calls_gap_n;

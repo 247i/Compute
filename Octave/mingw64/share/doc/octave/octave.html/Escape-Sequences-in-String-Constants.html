@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Escape Sequences in String Constants (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Escape Sequences in String Constants (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Escape Sequences in String Constants (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Strings.html" rel="up" title="Strings">
+<link href="Character-Arrays.html" rel="next" title="Character Arrays">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Escape-Sequences-in-String-Constants">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Character-Arrays.html" accesskey="n" rel="next">Character Arrays</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Strings.html" accesskey="u" rel="up">Strings</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Escape-Sequences-in-String-Constants-1"><span>5.1 Escape Sequences in String Constants<a class="copiable-link" href="#Escape-Sequences-in-String-Constants-1"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-escape-sequence-notation"></a>
+<p>In double-quoted strings, the backslash character is used to introduce
+<em class="dfn">escape sequences</em> that represent other characters.  For example,
+&lsquo;<samp class="samp">\n</samp>&rsquo; embeds a newline character in a double-quoted string and
+&lsquo;<samp class="samp">\&quot;</samp>&rsquo; embeds a double quote character.  In single-quoted strings, backslash
+is not a special character.  Here is an example showing the difference:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">double (&quot;\n&quot;)
+    &rArr;  10
+double ('\n')
+    &rArr;  [ 92 110 ]
+</pre></div></div>
+
+<p>Here is a table of all the escape sequences used in Octave (within
+double quoted strings).  They are the same as those used in the C
+programming language.
+</p>
+<dl class="table">
+<dt><code class="code">\\</code></dt>
+<dd><p>Represents a literal backslash, &lsquo;<samp class="samp">\</samp>&rsquo;.
+</p>
+</dd>
+<dt><code class="code">\&quot;</code></dt>
+<dd><p>Represents a literal double-quote character, &lsquo;<samp class="samp">&quot;</samp>&rsquo;.
+</p>
+</dd>
+<dt><code class="code">\'</code></dt>
+<dd><p>Represents a literal single-quote character, &lsquo;<samp class="samp">'</samp>&rsquo;.
+</p>
+</dd>
+<dt><code class="code">\0</code></dt>
+<dd><p>Represents the null character, control-@, ASCII code 0.
+</p>
+</dd>
+<dt><code class="code">\a</code></dt>
+<dd><p>Represents the &ldquo;alert&rdquo; character, control-g, ASCII code 7.
+</p>
+</dd>
+<dt><code class="code">\b</code></dt>
+<dd><p>Represents a backspace, control-h, ASCII code 8.
+</p>
+</dd>
+<dt><code class="code">\f</code></dt>
+<dd><p>Represents a formfeed, control-l, ASCII code 12.
+</p>
+</dd>
+<dt><code class="code">\n</code></dt>
+<dd><p>Represents a newline, control-j, ASCII code 10.
+</p>
+</dd>
+<dt><code class="code">\r</code></dt>
+<dd><p>Represents a carriage return, control-m, ASCII code 13.
+</p>
+</dd>
+<dt><code class="code">\t</code></dt>
+<dd><p>Represents a horizontal tab, control-i, ASCII code 9.
+</p>
+</dd>
+<dt><code class="code">\v</code></dt>
+<dd><p>Represents a vertical tab, control-k, ASCII code 11.
+</p>
+</dd>
+<dt><code class="code">\<var class="var">nnn</var></code></dt>
+<dd><p>Represents the octal value <var class="var">nnn</var>, where <var class="var">nnn</var> are one to three
+digits between 0 and 7.  For example, the code for the ASCII ESC
+(escape) character is &lsquo;<samp class="samp">\033</samp>&rsquo;.
+</p>
+</dd>
+<dt><code class="code">\x<var class="var">hh</var>&hellip;</code></dt>
+<dd><p>Represents the hexadecimal value <var class="var">hh</var>, where <var class="var">hh</var> are hexadecimal
+digits (&lsquo;<samp class="samp">0</samp>&rsquo; through &lsquo;<samp class="samp">9</samp>&rsquo; and either &lsquo;<samp class="samp">A</samp>&rsquo; through &lsquo;<samp class="samp">F</samp>&rsquo; or
+&lsquo;<samp class="samp">a</samp>&rsquo; through &lsquo;<samp class="samp">f</samp>&rsquo;).  Like the same construct in <small class="sc">ANSI</small> C,
+the escape sequence continues until the first non-hexadecimal digit is seen.
+However, using more than two hexadecimal digits produces undefined results.
+</p></dd>
+</dl>
+
+<p>In a single-quoted string there is only one escape sequence: you may insert a
+single quote character using two single quote characters in succession.  For
+example,
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">'I can''t escape'
+    &rArr;  I can't escape
+</pre></div></div>
+
+<p>In scripts the two different string types can be distinguished if necessary
+by using <code class="code">is_dq_string</code> and <code class="code">is_sq_string</code>.
+</p>
+<a class="anchor" id="XREFis_005fdq_005fstring"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-is_005fdq_005fstring"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">is_dq_string</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-is_005fdq_005fstring"> &para;</a></span></dt>
+<dd><p>Return true if <var class="var">x</var> is a double-quoted character string.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFis_005fsq_005fstring">is_sq_string</a>, <a class="ref" href="Character-Arrays.html#XREFischar">ischar</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFis_005fsq_005fstring"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-is_005fsq_005fstring"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">is_sq_string</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-is_005fsq_005fstring"> &para;</a></span></dt>
+<dd><p>Return true if <var class="var">x</var> is a single-quoted character string.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFis_005fdq_005fstring">is_dq_string</a>, <a class="ref" href="Character-Arrays.html#XREFischar">ischar</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Character-Arrays.html">Character Arrays</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Strings.html">Strings</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

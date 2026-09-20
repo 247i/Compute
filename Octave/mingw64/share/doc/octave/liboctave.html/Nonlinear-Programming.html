@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Nonlinear Programming (Octave C++ Classes)</title>
+
+<meta name="description" content="Nonlinear Programming (Octave C++ Classes)">
+<meta name="keywords" content="Nonlinear Programming (Octave C++ Classes)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-Index.html" rel="index" title="Function Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Optimization.html" rel="up" title="Optimization">
+<link href="Quadratic-Programming.html" rel="prev" title="Quadratic Programming">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Nonlinear-Programming">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Quadratic-Programming.html" accesskey="p" rel="prev">Quadratic Programming</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Optimization.html" accesskey="u" rel="up">Optimization</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Function-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Nonlinear-Programming-1"><span>9.6 Nonlinear Programming<a class="copiable-link" href="#Nonlinear-Programming-1"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-NLP"></a>
+<a class="index-entry-id" id="index-nonlinear-programming"></a>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-NLP-1"><span class="category-def">: </span><span><strong class="def-name">NLP</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-NLP-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-NLP-2"><span class="category-def">: </span><span><strong class="def-name">NLP</strong> <code class="def-code-arguments">(const ColumnVector &amp;<var class="var">x</var>, const Objective &amp;<var class="var">phi</var>)</code><a class="copiable-link" href="#index-NLP-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-NLP-3"><span class="category-def">: </span><span><strong class="def-name">NLP</strong> <code class="def-code-arguments">(const ColumnVector &amp;<var class="var">x</var>, const Objective &amp;<var class="var">phi</var>, const Bounds &amp;<var class="var">b</var>)</code><a class="copiable-link" href="#index-NLP-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-NLP-4"><span class="category-def">: </span><span><strong class="def-name">NLP</strong> <code class="def-code-arguments">(const ColumnVector &amp;<var class="var">x</var>, const Objective &amp;<var class="var">phi</var>, const Bounds &amp;<var class="var">b</var>, const LinConst &amp;<var class="var">lc</var>)</code><a class="copiable-link" href="#index-NLP-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-NLP-5"><span class="category-def">: </span><span><strong class="def-name">NLP</strong> <code class="def-code-arguments">(const ColumnVector &amp;<var class="var">x</var>, const Objective &amp;<var class="var">phi</var>, const Bounds &amp;<var class="var">b</var>, const LinConst &amp;<var class="var">lc</var>, const NLConst &amp;<var class="var">nlc</var>)</code><a class="copiable-link" href="#index-NLP-5"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-NLP-6"><span class="category-def">: </span><span><strong class="def-name">NLP</strong> <code class="def-code-arguments">(const ColumnVector &amp;<var class="var">x</var>, const Objective &amp;<var class="var">phi</var>, const LinConst &amp;<var class="var">lc</var>)</code><a class="copiable-link" href="#index-NLP-6"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-NLP-7"><span class="category-def">: </span><span><strong class="def-name">NLP</strong> <code class="def-code-arguments">(const ColumnVector &amp;<var class="var">x</var>, const Objective &amp;<var class="var">phi</var>, const LinConst &amp;<var class="var">lc</var>, const NLConst &amp;<var class="var">nlc</var>)</code><a class="copiable-link" href="#index-NLP-7"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-NLP-8"><span class="category-def">: </span><span><strong class="def-name">NLP</strong> <code class="def-code-arguments">(const ColumnVector &amp;<var class="var">x</var>, const Objective &amp;<var class="var">phi</var>, const NLConst &amp;<var class="var">nlc</var>)</code><a class="copiable-link" href="#index-NLP-8"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-NLP-9"><span class="category-def">: </span><span><strong class="def-name">NLP</strong> <code class="def-code-arguments">(const ColumnVector &amp;<var class="var">x</var>, const Objective &amp;<var class="var">phi</var>, const Bounds &amp;<var class="var">b</var>, const NLConst &amp;<var class="var">nlc</var>)</code><a class="copiable-link" href="#index-NLP-9"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003d-33"><span class="category-def">: </span><span><code class="def-type">NLP&amp;</code> <strong class="def-name">operator =</strong> <code class="def-code-arguments">(const NLP &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003d-33"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-size-2"><span class="category-def">: </span><span><code class="def-type">int</code> <strong class="def-name">size</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-size-2"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-minimize-9"><span class="category-def">: </span><span><code class="def-type">ColumnVector</code> <strong class="def-name">minimize</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-minimize-9"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-minimize-10"><span class="category-def">: </span><span><code class="def-type">ColumnVector</code> <strong class="def-name">minimize</strong> <code class="def-code-arguments">(double &amp;<var class="var">objf</var>)</code><a class="copiable-link" href="#index-minimize-10"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-minimize-11"><span class="category-def">: </span><span><code class="def-type">ColumnVector</code> <strong class="def-name">minimize</strong> <code class="def-code-arguments">(double &amp;<var class="var">objf</var>, int &amp;<var class="var">inform</var>)</code><a class="copiable-link" href="#index-minimize-11"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-minimize-12"><span class="category-def">: </span><span><code class="def-type">ColumnVector</code> <strong class="def-name">minimize</strong> <code class="def-code-arguments">(double &amp;<var class="var">objf</var>, int &amp;<var class="var">inform</var>, ColumnVector &amp;<var class="var">lambda</var>)</code><a class="copiable-link" href="#index-minimize-12"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-minimize-13"><span class="category-def">: </span><span><code class="def-type">ColumnVector</code> <strong class="def-name">minimize</strong> <code class="def-code-arguments">(const ColumnVector &amp;<var class="var">x</var>)</code><a class="copiable-link" href="#index-minimize-13"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-minimize-14"><span class="category-def">: </span><span><code class="def-type">ColumnVector</code> <strong class="def-name">minimize</strong> <code class="def-code-arguments">(const ColumnVector &amp;<var class="var">x</var>, double &amp;<var class="var">objf</var>)</code><a class="copiable-link" href="#index-minimize-14"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-minimize-15"><span class="category-def">: </span><span><code class="def-type">ColumnVector</code> <strong class="def-name">minimize</strong> <code class="def-code-arguments">(const ColumnVector &amp;<var class="var">x</var>, double &amp;<var class="var">objf</var>, int &amp;<var class="var">inform</var>)</code><a class="copiable-link" href="#index-minimize-15"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-minimize-16"><span class="category-def">: </span><span><code class="def-type">ColumnVector</code> <strong class="def-name">minimize</strong> <code class="def-code-arguments">(const ColumnVector &amp;<var class="var">x</var>, double &amp;<var class="var">objf</var>, int &amp;<var class="var">inform</var>, ColumnVector &amp;<var class="var">lambda</var>)</code><a class="copiable-link" href="#index-minimize-16"> &para;</a></span></dt>
+</dl>
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Quadratic-Programming.html">Quadratic Programming</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Optimization.html">Optimization</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Function-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- Additional documentation for the optim package for Octave.
+
+Copyright © Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<title>vfzero (optim_doc)</title>
+
+<meta name="description" content="vfzero (optim_doc)">
+<meta name="keywords" content="vfzero (optim_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Zero-finders.html" rel="up" title="Zero finders">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+ul.mark-bullet {list-style-type: disc}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section-level-extent" id="vfzero">
+<div class="nav-panel">
+<p>
+Up: <a href="Zero-finders.html" accesskey="u" rel="up">Functions for finding the zero of a nonlinear user function</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h3 class="section" id="A-vectorized-version-of-fzero"><span>3.1 A vectorized version of fzero<a class="copiable-link" href="#A-vectorized-version-of-fzero"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-vfzero-3"></a>
+
+<a class="anchor" id="XREFvfzero"></a><dl class="first-deftypefn">
+<dt class="deftypefn" id="index-vfzero"><span class="category-def">Function File: </span><span><strong class="def-name">vfzero</strong> <code class="def-code-arguments">(<var class="var">fun</var>, <var class="var">x0</var>)</code><a class="copiable-link" href="#index-vfzero"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn" id="index-vfzero-1"><span class="category-def">Function File: </span><span><strong class="def-name">vfzero</strong> <code class="def-code-arguments">(<var class="var">fun</var>, <var class="var">x0</var>, <var class="var">options</var>)</code><a class="copiable-link" href="#index-vfzero-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn" id="index-vfzero-2"><span class="category-def">Function File: </span><span><code class="def-type">[<var class="var">x</var>, <var class="var">fval</var>, <var class="var">info</var>, <var class="var">output</var>] =</code> <strong class="def-name">vfzero</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-vfzero-2"> &para;</a></span></dt>
+<dd><p>A variant of <code class="code">fzero</code>. Finds a zero of a vector-valued
+multivariate function where each output element only depends on the
+input element with the same index (so the Jacobian is diagonal).
+</p>
+<p><var class="var">fun</var> should be a handle or name of a function returning a column
+vector.  <var class="var">x0</var> should be a two-column matrix, each row specifying
+two points which bracket a zero of the respective output element of
+<var class="var">fun</var>.
+</p>
+<p>If <var class="var">x0</var> is a single-column matrix then several nearby and distant
+values are probed in an attempt to obtain a valid bracketing.  If
+this is not successful, the function fails. <var class="var">options</var> is a
+structure specifying additional options. Currently, <code class="code">vfzero</code>
+recognizes these options: <code class="code">&quot;FunValCheck&quot;</code>, <code class="code">&quot;OutputFcn&quot;</code>,
+<code class="code">&quot;TolX&quot;</code>, <code class="code">&quot;MaxIter&quot;</code>, <code class="code">&quot;MaxFunEvals&quot;</code>. For a
+description of these options, see optimset.
+</p>
+<p>On exit, the function returns <var class="var">x</var>, the approximate zero and
+<var class="var">fval</var>, the function value thereof. <var class="var">info</var> is a column vector
+of exit flags  that can have these values:
+</p>
+<ul class="itemize mark-bullet">
+<li>1 The algorithm converged to a solution.
+
+</li><li>0 Maximum number of iterations or function evaluations has been
+reached.
+
+</li><li>-1 The algorithm has been terminated from user output function.
+
+</li><li>-5 The algorithm may have converged to a singular point.
+</li></ul>
+
+<p><var class="var">output</var> is a structure containing runtime information about the
+<code class="code">fzero</code> algorithm.  Fields in the structure are:
+</p>
+<ul class="itemize mark-bullet">
+<li>iterations Number of iterations through loop.
+
+</li><li>nfev Number of function evaluations.
+
+</li><li>bracketx A two-column matrix with the final bracketing of the
+zero along the x-axis.
+
+</li><li>brackety A two-column matrix with the final bracketing of the
+zero along the y-axis.
+</li></ul>
+</dd></dl>
+
+
+
+</div>
+<hr>
+<div class="nav-panel">
+<p>
+Up: <a href="Zero-finders.html">Functions for finding the zero of a nonlinear user function</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

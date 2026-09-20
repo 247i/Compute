@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Sets (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Sets (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Sets (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html" rel="up" title="Top">
+<link href="Polynomial-Manipulations.html" rel="next" title="Polynomial Manipulations">
+<link href="Statistics.html" rel="prev" title="Statistics">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="chapter-level-extent" id="Sets">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Polynomial-Manipulations.html" accesskey="n" rel="next">Polynomial Manipulations</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Statistics.html" accesskey="p" rel="prev">Statistics</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h2 class="chapter" id="Sets-1"><span>27 Sets<a class="copiable-link" href="#Sets-1"> &para;</a></span></h2>
+
+<p>Octave has a number of functions for managing sets of data.  A set is defined
+as a collection of unique elements and is typically represented by a vector of
+numbers sorted in ascending order.  Any vector or matrix can be converted to a
+set by removing duplicates through the use of the <code class="code">unique</code> function.
+However, it isn&rsquo;t necessary to explicitly create a set as all of the functions
+which operate on sets will convert their input to a set before proceeding.
+</p>
+<a class="anchor" id="XREFunique"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-unique"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">unique</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-unique"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-unique-1"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">unique</strong> <code class="def-code-arguments">(<var class="var">x</var>, &quot;rows&quot;)</code><a class="copiable-link" href="#index-unique-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-unique-2"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">unique</strong> <code class="def-code-arguments">(&hellip;, &quot;sorted&quot;)</code><a class="copiable-link" href="#index-unique-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-unique-3"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">unique</strong> <code class="def-code-arguments">(&hellip;, &quot;stable&quot;)</code><a class="copiable-link" href="#index-unique-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-unique-4"><span><code class="def-type">[<var class="var">y</var>, <var class="var">i</var>, <var class="var">j</var>] =</code> <strong class="def-name">unique</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-unique-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-unique-5"><span><code class="def-type">[<var class="var">y</var>, <var class="var">i</var>, <var class="var">j</var>] =</code> <strong class="def-name">unique</strong> <code class="def-code-arguments">(&hellip;, &quot;first&quot;)</code><a class="copiable-link" href="#index-unique-5"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-unique-6"><span><code class="def-type">[<var class="var">y</var>, <var class="var">i</var>, <var class="var">j</var>] =</code> <strong class="def-name">unique</strong> <code class="def-code-arguments">(&hellip;, &quot;last&quot;)</code><a class="copiable-link" href="#index-unique-6"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-unique-7"><span><code class="def-type">[<var class="var">y</var>, <var class="var">i</var>, <var class="var">j</var>] =</code> <strong class="def-name">unique</strong> <code class="def-code-arguments">(&hellip;, &quot;legacy&quot;)</code><a class="copiable-link" href="#index-unique-7"> &para;</a></span></dt>
+<dd><p>Return the unique elements of <var class="var">x</var>.
+</p>
+<p>If the input <var class="var">x</var> is a column vector then return a column vector;
+Otherwise, return a row vector.  <var class="var">x</var> may also be a cell array of
+strings.
+</p>
+<p>If the optional argument <code class="code">&quot;rows&quot;</code> is given then return the unique
+rows of <var class="var">x</var>.  The input must be a 2-D numeric matrix to use this option.
+</p>
+<p>The optional argument <code class="code">&quot;sorted&quot;</code>/<code class="code">&quot;stable&quot;</code> controls the order
+in which unique values appear in the output.  The default is
+<code class="code">&quot;sorted&quot;</code> and values in the output are placed in ascending order.
+The alternative <code class="code">&quot;stable&quot;</code> preserves the order found in the input
+<var class="var">x</var>.
+</p>
+<p>If requested, return column index vectors <var class="var">i</var> and <var class="var">j</var> such that
+<code class="code"><var class="var">y</var> = <var class="var">x</var>(<var class="var">i</var>)</code> and <code class="code"><var class="var">x</var> = <var class="var">y</var>(<var class="var">j</var>)</code>.
+</p>
+<p>Additionally, if <var class="var">i</var> is a requested output then one of the flags
+<code class="code">&quot;first&quot;</code> or <code class="code">&quot;last&quot;</code> may be given.  If <code class="code">&quot;last&quot;</code> is
+specified, return the highest possible indices in <var class="var">i</var>, otherwise, if
+<code class="code">&quot;first&quot;</code> is specified, return the lowest.  The default is
+<code class="code">&quot;first&quot;</code>.
+</p>
+<p>Example 1 : sort order
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">unique ([3, 1, 1, 2])
+&rArr;  [1, 2, 3]
+unique ([3, 1, 1, 2], &quot;stable&quot;)
+&rArr;  [3, 1, 2]
+</pre></div></div>
+
+<p>Example 2 : index selection
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">[~, <var class="var">i</var>] = unique ([3, 1, 1, 2], &quot;first&quot;)
+&rArr;  <var class="var">i</var> = [2; 4; 1]
+[~, <var class="var">i</var>] = unique ([3, 1, 1, 2], &quot;last&quot;)
+&rArr;  <var class="var">i</var> = [3; 4; 1]
+</pre></div></div>
+
+<p>Programming Notes: The input flag <code class="code">&quot;legacy&quot;</code> changes the algorithm
+to be compatible with <small class="sc">MATLAB</small> releases prior to R2012b.  Specifically,
+The index ordering flag is changed to <code class="code">&quot;last&quot;</code>, and the shape of the
+outputs <var class="var">i</var>, <var class="var">j</var> will follow the shape of the input <var class="var">x</var> rather
+than always being column vectors.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFuniquetol">uniquetol</a>, <a class="ref" href="Set-Operations.html#XREFunion">union</a>, <a class="ref" href="Set-Operations.html#XREFintersect">intersect</a>, <a class="ref" href="Set-Operations.html#XREFsetdiff">setdiff</a>, <a class="ref" href="Set-Operations.html#XREFsetxor">setxor</a>, <a class="ref" href="Set-Operations.html#XREFismember">ismember</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFuniquetol"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-uniquetol"><span><code class="def-type"><var class="var">c</var> =</code> <strong class="def-name">uniquetol</strong> <code class="def-code-arguments">(<var class="var">A</var>)</code><a class="copiable-link" href="#index-uniquetol"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-uniquetol-1"><span><code class="def-type"><var class="var">c</var> =</code> <strong class="def-name">uniquetol</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">tol</var>)</code><a class="copiable-link" href="#index-uniquetol-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-uniquetol-2"><span><code class="def-type"><var class="var">c</var> =</code> <strong class="def-name">uniquetol</strong> <code class="def-code-arguments">(&hellip;, <var class="var">property</var>, <var class="var">value</var>)</code><a class="copiable-link" href="#index-uniquetol-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-uniquetol-3"><span><code class="def-type">[<var class="var">c</var>, <var class="var">ia</var>, <var class="var">ic</var>] =</code> <strong class="def-name">uniquetol</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-uniquetol-3"> &para;</a></span></dt>
+<dd><p>Return the unique elements of <var class="var">A</var> within tolerance <var class="var">tol</var>.
+</p>
+<p>Two values, <var class="var">x</var> and <var class="var">y</var>, are within relative tolerance if
+<code class="code">abs (<var class="var">x</var> - <var class="var">y</var>) &lt;= <var class="var">tol</var> * max (abs (<var class="var">A</var>(:)))</code>.
+</p>
+<p>The input <var class="var">A</var> must be a real (non-complex) floating point type (double
+or single).
+</p>
+<p>If <var class="var">tol</var> is unspecified, the default tolerance is 1e-12 for double
+precision input or 1e-6 for single precision input.
+</p>
+<p>The function may also be called with the following optional property/value
+pairs.  Property/value pairs must be passed after other input arguments:
+</p>
+<dl class="table">
+<dt><code class="code">&quot;ByRows&quot;</code> (default: <code class="code">false</code>)</dt>
+<dd><p>When true, return the unique rows of <var class="var">A</var>.  <var class="var">A</var> must be a 2-D array
+to use this option.  For rows, the criteria for uniqueness is changed to
+<code class="code">all (abs (<var class="var">x</var> - <var class="var">y</var>) &lt;= <var class="var">tol</var>*max (abs (<var class="var">A</var>),[],1))</code>
+which compares each column component of a row against a column-specific
+tolerance.
+</p>
+</dd>
+<dt><code class="code">&quot;DataScale&quot;</code></dt>
+<dd><p>The tolerance test is changed to
+<code class="code">abs (<var class="var">x</var> - <var class="var">y</var>) &lt;= <var class="var">tol</var>*<var class="var">DS</var></code> where <var class="var">DS</var> is a
+scalar unless the property <code class="code">&quot;ByRows&quot;</code> is true.  In that case, <var class="var">DS</var>
+can either be a scalar or a vector with a length equal to the number of
+columns in <var class="var">A</var>.  Using a value of <code class="code">1.0</code> for <var class="var">DS</var> will change
+the tolerance from a relative one to an absolute tolerance.  Using a value
+of <code class="code">Inf</code> will disable testing.
+</p>
+</dd>
+<dt><code class="code">&quot;OutputAllIndices&quot;</code> (default: <code class="code">false</code>)</dt>
+<dd><p>When true, <var class="var">ia</var> is a cell array (not a vector) that contains the indices
+for <em class="emph">all</em> elements in <var class="var">A</var> that are within tolerance of a value in
+<var class="var">C</var>.  That is, each cell in <var class="var">ia</var> corresponds to a single unique
+value in <var class="var">C</var>, and the values in each cell correspond to locations in
+<var class="var">A</var>.
+</p></dd>
+</dl>
+
+<p>The output <var class="var">c</var> is a row vector if the input <var class="var">A</var> is a row vector.
+For all other cases, a column vector is returned.
+</p>
+<p>The optional output <var class="var">ia</var> is a column index vector such that
+<code class="code"><var class="var">c</var> = <var class="var">A</var>(<var class="var">ia</var>)</code>.  If the <code class="code">&quot;ByRows&quot;</code> property is
+true, the condition is <code class="code"><var class="var">c</var> = <var class="var">A</var>(<var class="var">ia</var>, :)</code>.  If the
+<code class="code">&quot;OutputAllIndices&quot;</code> property is true, then the values
+<code class="code"><var class="var">A</var>(<var class="var">ia</var>{<var class="var">i</var>})</code> are all within tolerance of the unique
+value <code class="code"><var class="var">c</var>(<var class="var">i</var>)</code>.
+</p>
+<p>The optional output <var class="var">ic</var> is a column index vector such that
+<code class="code"><var class="var">A</var> = <var class="var">c</var>(<var class="var">ic</var>)</code> when <var class="var">A</var> is a vector.  When <var class="var">A</var>
+is a matrix, <code class="code"><var class="var">A</var>(:) = <var class="var">c</var>(<var class="var">ic</var>)</code>.  If the <code class="code">&quot;ByRows&quot;</code>
+property is true then <code class="code"><var class="var">A</var> = <var class="var">c</var>(<var class="var">ic</var>,:)</code>.
+</p>
+<p>Example: small round-off errors require <code class="code">uniquetol</code>, not <code class="code">unique</code>
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">x = [1:5];
+## Inverse_Function (Function (x)) should return exactly x
+y = exp (log (x));
+D = unique ([x, y])
+&rArr;  [1   2   3   3   4   5   5]
+C = uniquetol ([x, y])
+&rArr;  [1   2   3   4   5]
+</pre></div></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFunique">unique</a>, <a class="ref" href="Set-Operations.html#XREFunion">union</a>, <a class="ref" href="Set-Operations.html#XREFintersect">intersect</a>, <a class="ref" href="Set-Operations.html#XREFsetdiff">setdiff</a>, <a class="ref" href="Set-Operations.html#XREFsetxor">setxor</a>, <a class="ref" href="Set-Operations.html#XREFismember">ismember</a>.
+</p></dd></dl>
+
+
+
+<ul class="mini-toc">
+<li><a href="Set-Operations.html" accesskey="1">Set Operations</a></li>
+</ul>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Polynomial-Manipulations.html">Polynomial Manipulations</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Statistics.html">Statistics</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

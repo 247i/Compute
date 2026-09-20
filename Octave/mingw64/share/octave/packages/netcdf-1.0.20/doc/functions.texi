@@ -1,0 +1,913 @@
+@c ---------------------------------------------------
+@node High-level functions
+@section High-level functions
+@cindex High-level functions
+@c High-level functions nccreate
+@c -----------------------------------------
+@subsection nccreate
+@cindex nccreate
+@deftypefn  {} {} nccreate(@var{filename},@var{varname})
+@deftypefnx  {} {} nccreate(@var{filename},@var{varname},"property",@var{value},...)
+
+ Create the variable @var{varname} in the file @var{filename}.
+
+@subsubheading Properties
+ The following properties can be used:
+@itemize
+@item "Dimensions": a cell array with the dimension names followed by their
+ length or Inf if the dimension is unlimited. If the property is omitted, a
+ scalar variable is created.
+@item "Datatype": a string with the Octave data type name
+ (see @code{ncinfo} for the correspondence between Octave and NetCDF data
+ types). The default data type is a "double".
+@item "Format": This can be "netcdf4_classic" (default), "classic", "64bit"
+ or "netcdf4".
+@item "FillValue": the value used for undefined elements of the NetCDF
+ variable.
+@item "ChunkSize": the size of the data chunks. If omitted, the variable is
+ not chunked.
+@item "DeflateLevel": The deflate level for compression. It can be the string
+ "disable" (default) for no compression or an integer between 0 (no
+ compression) and 9 (maximum compression).
+@item "Shuffle": true for enabling the shuffle filter or false (default) for
+ disabling it.
+@end itemize
+
+@subsubheading Example
+@example
+ nccreate("test.nc","temp","Dimensions",@{"lon",10,"lat",20@},"Format","classic");
+ ncdisp("test.nc");
+@end example
+@xseealso{ncwrite}
+@end deftypefn
+@c High-level functions ncdisp
+@c -----------------------------------------
+@subsection ncdisp
+@cindex ncdisp
+@deftypefn {} {} ncdisp (@var{filename})
+ Display meta-data of the NetCDF file @var{filename}
+
+@subsubheading Example
+@example
+ ncdisp("test.nc");
+@end example
+@xseealso{ncinfo}
+@end deftypefn
+@c High-level functions ncinfo
+@c -----------------------------------------
+@subsection ncinfo
+@cindex ncinfo
+@deftypefn  {} {@var{info} =} ncinfo (@var{filename})
+@deftypefnx  {} {@var{info} =} ncinfo (@var{filename}, @var{varname})
+@deftypefnx  {} {@var{info} =} ncinfo (@var{filename}, @var{groupname})
+ Return information about an entire NetCDF file @var{filename} (i.e. the root
+ group "/"), about the variable called @var{varname} or the group called
+@var{groupname}.
+
+ The structure @var{info} has always the following fields:
+@itemize
+@item @var{Filename}: the name of the NetCDF file
+@item @var{Format}: one of the strings "CLASSIC", "64BIT", "NETCDF4"
+ or "NETCDF4_CLASSIC"
+@end itemize
+
+ The structure @var{info} has additional fields depending on whether a
+ group of variable is queried.
+
+@subsubheading Groups
+
+ Groups are returned as an array structure with the following fields:
+
+@itemize
+@item @var{Name}: the group name. The root group is named "/".
+@item @var{Dimensions}: a array structure with the dimensions.
+@item @var{Variables}: a array structure with the variables.
+@item @var{Attributes}: a array structure with global attributes.
+@item @var{Groups}: a array structure (one for each group) with the
+ same fields as this structure.
+@end itemize
+
+@subsubheading Dimensions
+
+ Dimensions are returned as an array structure with the following fields:
+@itemize
+   @item @var{Name}: the name of the dimension
+   @item @var{Length}: the length of the dimension
+   @item @var{Unlimited}: true of the dimension has no fixed limited, false
+@end itemize
+
+@subsubheading Variables
+
+ Variables are returned as an array structure with the following fields:
+@itemize
+   @item @var{Name}: the name of the dimension
+   @item @var{Dimensions}: array structure of all dimensions of this variable
+ with the same structure as above.
+   @item @var{Size}: array with the size of the variable
+   @item @var{Datatype}: string with the corresponding octave data-type
+ (see below)
+   @item @var{Attributes}: a array structure of attributes
+   @item @var{FillValue}: the NetCDF fill value of the variable. If the fill
+ value is not defined, then this attribute is an empty array ([]).
+   @item @var{DeflateLevel}: the NetCDF deflate level between 0 (no
+   compression) and 9 (maximum compression).
+   @item @var{Shuffle}: is true if the shuffle filter is activated to improve
+   compression, otherwise false.
+   @item @var{CheckSum}: is set to "fletcher32", if check-sums are used,
+    otherwise this field is not defined.
+@end itemize
+
+@subsubheading Attributes
+
+ Attributes are returned as an array structure with the following fields:
+@itemize
+   @item @var{Name}: the name of the attribute
+   @item @var{Value}: the value of the attribute (with the corresponding type)
+   @item @var{Unlimited}: true of the dimension has no fixed limited, false
+@end itemize
+
+@subsubheading Data-types
+
+ The following the the correspondence between the Octave and NetCDF
+ data-types:
+
+@multitable @columnfractions .5 .5
+@headitem Octave type @tab NetCDF type
+@item @code{int8}    @tab @code{NC_BYTE}
+@item @code{uint8}   @tab @code{NC_UBYTE}
+@item @code{int16}   @tab @code{NC_SHORT}
+@item @code{uint16}  @tab @code{NC_USHORT}
+@item @code{int32}   @tab @code{NC_INT}
+@item @code{uint32}  @tab @code{NC_UINT}
+@item @code{int64}   @tab @code{NC_INT64}
+@item @code{uint64}  @tab @code{NC_UINT64}
+@item @code{single}  @tab @code{NC_FLOAT}
+@item @code{double}  @tab @code{NC_DOUBLE}
+@item @code{char}    @tab @code{NC_CHAR}
+@end multitable
+
+ The output of @code{ncinfo} can be used to create a NetCDF file with the same
+ meta-data using @code{ncwriteschema}.
+
+ Note: If there are no attributes (or variable or groups), the corresponding
+ field is an empty matrix and not an empty struct array for compatibility
+ with matlab.
+
+@xseealso{ncread,nccreate,ncwriteschema,ncdisp}
+
+@end deftypefn
+@c High-level functions ncread
+@c -----------------------------------------
+@subsection ncread
+@cindex ncread
+@deftypefn  {} {@var{x} =} ncread (@var{filename}, @var{varname})
+@deftypefnx  {} {@var{x} =} ncread (@var{filename}, @var{varname},@var{start},@var{count},@var{stride})
+
+ Read the variable @var{varname} from the NetCDF file @var{filename}.
+
+ If @var{start},@var{count} and @var{stride} are present, a subset of the
+ variable is loaded. The parameter @var{start} contains the starting indices
+ (1-based), @var{count} is the number of elements and @var{stride} the
+ increment between two successive elements. These parameters are vectors whose
+ length is equal to the number of dimension of the variable. Elements of
+@var{count} might be Inf which means that as many values as possible are
+ loaded.
+
+ If the variable has the _FillValue attribute, then the corresponding values
+ are replaced by NaN (except for characters). NetCDF attributes scale_factor
+ (default 1) and add_offset (default 0) are use the transform the variable
+ during the loading:
+
+ x = scale_factor * x_in_file + add_offset
+
+ The output data type matches the NetCDF datatype, except when the attributes
+ _FillValue, add_offset or scale_factor are defined in which case the output
+ is a array in double precision.
+
+ Note that values equal to the attribute missing_value are not replaced by
+ NaN (for compatibility).
+
+@subsubheading Example
+ Read the data from variable 'mydata' in the file test.nc.
+@example
+ data  = ncread('test.nc','mydata');
+@end example
+
+@xseealso{ncwrite,ncinfo,ncdisp}
+
+@end deftypefn
+@c High-level functions ncreadatt
+@c -----------------------------------------
+@subsection ncreadatt
+@cindex ncreadatt
+@deftypefn  {} {@var{val} =} ncreadatt(@var{filename},@var{varname},@var{attname})
+
+ Return the attribute @var{attname} of the variable @var{varname} in the file
+@var{filename}.
+
+ Global attributes can be accessed by using "/" or the group name as
+@var{varname}. The type of attribute is mapped to the Octave data types.
+ (see @code{ncinfo}).
+
+@subsubheading Example
+ Read global attribute 'creation_date'
+@example
+ d = ncreadatt('test.nc','/','creation_date')
+@end example
+ Read atribute 'myattr' assigned to variable mydata.
+@example
+ d = ncreadattr('test.nc', 'mydata', 'myattr');
+@end example
+@xseealso{ncinfo,ncwriteatt}
+@end deftypefn
+@c High-level functions ncwrite
+@c -----------------------------------------
+@subsection ncwrite
+@cindex ncwrite
+@deftypefn  {} {} ncwrite (@var{filename}, @var{varname}, @var{x})
+@deftypefnx  {} {} ncwrite (@var{filename}, @var{varname}, @var{x}, @var{start}, @var{stride})
+
+ Write array @var{x} to the the variable @var{varname} in the NetCDF file
+@var{filename}.
+
+ The variable with the name @var{varname} and the appropriate dimension must
+ already exist in the NetCDF file.
+
+ If @var{start} and @var{stride} are present, a subset of the
+ variable is written. The parameter @var{start} contains the starting indices
+ (1-based) and @var{stride} the
+ increment between two successive elements. These parameters are vectors whose
+ length is equal to the number of dimension of the variable.
+
+ If the variable has the _FillValue attribute, then the values equal to NaN
+ are replaced by corresponding fill value NetCDF attributes scale_factor
+ (default 1) and add_oddset (default 0) are use the transform the variable
+ during writing:
+
+ x_in_file = (x - add_offset)/scale_factor
+
+@subsubheading Example
+ Create a netcdf file with a variable of 'mydata' and then write
+ data to that variable.
+@example
+ nccreate('myfile.nc','mydata');
+ ncwrite('myfile.nc','mydata', 101);
+@end example
+
+@xseealso{ncread,nccreate}
+
+@end deftypefn
+@c High-level functions ncwriteatt
+@c -----------------------------------------
+@subsection ncwriteatt
+@cindex ncwriteatt
+@deftypefn  {} {} ncwriteatt(@var{filename},@var{varname},@var{attname},@var{val})
+
+ Defines the attribute @var{attname} of the variable @var{varname} in the file
+@var{filename} with the value @var{val}.
+
+ Global attributes can be defined by using "/" or the group name as
+@var{varname}. The type of value is mapped to the NetCDF data types.
+ (see @code{ncinfo}).
+
+@subsubheading Example
+ Create a netcdf4 format file with a variable mydata and assign an attribute "units" to it.
+@example
+ nccreate("myfile.nc", "mydata", "Format", "netcdf4");
+ ncwriteatt("myfile.nc", "mydata", "Units", "K");
+@end example
+
+@xseealso{ncinfo}
+@end deftypefn
+@c High-level functions ncwriteschema
+@c -----------------------------------------
+@subsection ncwriteschema
+@cindex ncwriteschema
+@deftypefn  {} {} ncwriteschema (@var{filename}, @var{schema})
+
+ Create a NetCDF called @var{filename} with the dimensions, attributes,
+ variables and groups given by the structure @var{schema}.
+
+ The variable @var{schema} has the same structure as the results of
+@code{ncinfo}. @code{ncinfo} and @code{ncwriteschema} can be used together to
+ create a NetCDF using another file as a template:
+
+@subsubheading Example
+@example
+ schema = ncinfo("template.nc");
+ # the new file should be named "new_file.nc"
+ ncwriteschema("new_file.nc",schema);
+@end example
+
+ Unused field in @var{schema} such as @var{ChunkSize}, @var{Shuffle},
+@var{DeflateLevel}, @var{FillValue}, @var{Checksum} can be left-out if the
+ corresponding feature is not used.
+
+ Dimensions are considered as limited if the field @var{Unlimited} is missing,
+ unless the dimension length is Inf.
+
+@xseealso{ncinfo}
+
+@end deftypefn
+@c ---------------------------------------------------
+@node Low-level functions
+@section Low-level functions
+@cindex Low-level functions
+@c ---------------------------------------------------
+@node Low-level functions - Library Functions
+@subsection Library Functions
+@cindex Low-level functions - Library Functions
+@c Low-level functionsLibrary Functions netcdf.getChunkCache
+@c -----------------------------------------
+@subsubsection netcdf.getChunkCache
+@cindex getChunkCache
+@deftypefn {} {[@var{size}, @var{nelems}, @var{preemption}] =} netcdf.getChunkCache()
+ Gets the default chunk cache settings in the HDF5 library.
+@end deftypefn
+@c Low-level functionsLibrary Functions netcdf.inqLibVers
+@c -----------------------------------------
+@subsubsection netcdf.inqLibVers
+@cindex inqLibVers
+@deftypefn {} {@var{vers} =} netcdf.inqLibVers()
+ Returns the version of the NetCDF library as a string.
+@end deftypefn
+@c Low-level functionsLibrary Functions netcdf.setChunkCache
+@c -----------------------------------------
+@subsubsection netcdf.setChunkCache
+@cindex setChunkCache
+@deftypefn {} {} netcdf.setChunkCache(@var{size}, @var{nelems}, @var{preemption})
+ Sets the default chunk cache settings in the HDF5 library.
+
+ The settings applies to all files which are subsequently opened or created.
+@end deftypefn
+@c Low-level functionsLibrary Functions netcdf.setDefaultFormat
+@c -----------------------------------------
+@subsubsection netcdf.setDefaultFormat
+@cindex setDefaultFormat
+@deftypefn {} {@var{old_format} =} netcdf.setDefaultFormat(@var{format})
+ Sets the default format of the NetCDF library and returns the previous default format (as a numeric value).
+
+@var{format} can be "format_classic", "format_64bit", "format_netcdf4" or "format_netcdf4_classic".
+@end deftypefn
+@c ---------------------------------------------------
+@node Low-level functions - File Operations
+@subsection File Operations
+@cindex Low-level functions - File Operations
+@c Low-level functionsFile Operations netcdf.abort
+@c -----------------------------------------
+@subsubsection netcdf.abort
+@cindex abort
+@deftypefn {} {} netcdf.abort(@var{ncid})
+ Aborts all changes since the last time the dataset entered in define mode.
+@end deftypefn
+@c Low-level functionsFile Operations netcdf.close
+@c -----------------------------------------
+@subsubsection netcdf.close
+@cindex close
+@deftypefn {} {} netcdf.close(@var{ncid})
+ Close the NetCDF file with the id @var{ncid}.
+@end deftypefn
+@c Low-level functionsFile Operations netcdf.create
+@c -----------------------------------------
+@subsubsection netcdf.create
+@cindex create
+@deftypefn {} {@var{ncid} =} netcdf.create(@var{filename},@var{mode})
+ Creates the file named @var{filename} in the mode @var{mode}.
+
+@var{mode} can have the following values:
+@table @asis
+@item "clobber" (overwrite existing files),
+@item "noclobber" (prevent to overwrite existing files)
+@item "64bit_offset" (use the 64bit-offset format),
+@item "netcdf4" (use the NetCDF4, i.e. HDF5 format) or
+@item "share" (concurrent reading of the dataset).
+@end table
+@var{mode} can also be the numeric value return by netcdf.getConstant. In the later-case it can be combined with a bitwise-or.
+@end deftypefn
+@subsubheading Example
+@example
+ mode = bitor(netcdf.getConstant("classic_model"), ...
+ netcdf.getConstant("netcdf4"));
+ ncid = netcdf.create("test.nc",mode);
+@end example
+@xseealso {netcdf.open, netcdf.close}
+@c Low-level functionsFile Operations netcdf.endDef
+@c -----------------------------------------
+@subsubsection netcdf.endDef
+@cindex endDef
+@deftypefn {} {} netcdf.endDef (@var{ncid})
+ Leaves define-mode of NetCDF file @var{ncid}.
+@end deftypefn
+@c Low-level functionsFile Operations netcdf.inq
+@c -----------------------------------------
+@subsubsection netcdf.inq
+@cindex inq
+@deftypefn {} {[@var{ndims},@var{nvars},@var{ngatts},@var{unlimdimid}] =} netcdf.inq(@var{ncid})
+ Return informat about a netcdf file.
+
+ Return the number of dimension (@var{ndims}), the number of variables (@var{nvars}), the number
+ of global attributes (@var{ngatts}) and the id of the unlimited dimension (@var{unlimdimid}).
+
+ If no unlimited dimension is declared -1 is returned.
+
+ For NetCDF4 files, one should use the function netcdf.inqUnlimDims as multiple unlimited dimension exists.
+@end deftypefn
+@c Low-level functionsFile Operations netcdf.inqFormat
+@c -----------------------------------------
+@subsubsection netcdf.inqFormat
+@cindex inqFormat
+@deftypefn {} {@var{format} =} netcdf.inqFormat(@var{ncid})
+ Return the NetCDF format of the dataset @var{ncid}.
+
+ Format might be one of the following
+ "FORMAT_CLASSIC", "FORMAT_64BIT", "FORMAT_NETCDF4" or "FORMAT_NETCDF4_CLASSIC"
+@end deftypefn
+@c Low-level functionsFile Operations netcdf.inqGrps
+@c -----------------------------------------
+@subsubsection netcdf.inqGrps
+@cindex inqGrps
+@deftypefn {} {@var{ncids} =} netcdf.inqGrps(@var{ncid})
+ Return all groups ids in a NetCDF file.
+@xseealso{netcdf.inqGrps}
+@end deftypefn
+@c Low-level functionsFile Operations netcdf.inqUnlimDims
+@c -----------------------------------------
+@subsubsection netcdf.inqUnlimDims
+@cindex inqUnlimDims
+@deftypefn {} {@var{unlimdimids} =} netcdf.inqUnlimDims(@var{ncid})
+ Return the id of all unlimited dimensions of the NetCDF file @var{ncid}.
+@end deftypefn
+@c Low-level functionsFile Operations netcdf.open
+@c -----------------------------------------
+@subsubsection netcdf.open
+@cindex open
+@deftypefn {} {@var{ncid} =} netcdf.open(@var{filename},@var{mode})
+ Opens the file named @var{filename} in the mode @var{mode}.
+@xseealso{netcdf.create, netcdf.close}
+@end deftypefn
+@c Low-level functionsFile Operations netcdf.reDef
+@c -----------------------------------------
+@subsubsection netcdf.reDef
+@cindex reDef
+@deftypefn {} {} netcdf.reDef (@var{ncid})
+ Enter define-mode of NetCDF file @var{ncid}.
+@end deftypefn
+@c Low-level functionsFile Operations netcdf.setFill
+@c -----------------------------------------
+@subsubsection netcdf.setFill
+@cindex setFill
+@deftypefn {} {@var{old_mode} =} netcdf.setFill(@var{ncid},@var{fillmode})
+ Change the fill mode (@var{fillmode}) of the data set @var{ncid}.
+
+@var{fillmode} can be either "fill" or "nofill".
+
+ The previous value of the fill mode is returned.
+@end deftypefn
+@c Low-level functionsFile Operations netcdf.sync
+@c -----------------------------------------
+@subsubsection netcdf.sync
+@cindex sync
+@deftypefn {} {} netcdf.sync(@var{ncid})
+ Writes all changes to the disk and leaves the file open.
+@end deftypefn
+@c ---------------------------------------------------
+@node Low-level functions - Dimensions
+@subsection Dimensions
+@cindex Low-level functions - Dimensions
+@c Low-level functionsDimensions netcdf.defDim
+@c -----------------------------------------
+@subsubsection netcdf.defDim
+@cindex defDim
+@deftypefn {} {@var{dimid} =} netcdf.defDim(@var{ncid},@var{name},@var{len})
+ Define the dimension with the name @var{name} and the length @var{len} in the dataset @var{ncid}.
+
+ The id of the dimension is returned.
+@end deftypefn
+@c Low-level functionsDimensions netcdf.inqDim
+@c -----------------------------------------
+@subsubsection netcdf.inqDim
+@cindex inqDim
+@deftypefn {} {[@var{name},@var{length}] =} netcdf.inqDim(@var{ncid},@var{dimid})
+ Returns the name and length of a NetCDF dimension.
+@xseealso{netcdf.inqDimID}
+@end deftypefn
+@c Low-level functionsDimensions netcdf.inqDimID
+@c -----------------------------------------
+@subsubsection netcdf.inqDimID
+@cindex inqDimID
+@deftypefn {} {@var{dimid} =} netcdf.inqDimID(@var{ncid},@var{dimname})
+ Return the id of a NetCDF dimension.
+@xseealso{netcdf.inqDim}
+@end deftypefn
+@c Low-level functionsDimensions netcdf.renameDim
+@c -----------------------------------------
+@subsubsection netcdf.renameDim
+@cindex renameDim
+@deftypefn {} {} netcdf.renameDim(@var{ncid},@var{dimid},@var{name})
+ Renames the dimension with the id @var{dimid} in the data set @var{ncid}. @var{name} is the new name of the dimension.
+@end deftypefn
+@c ---------------------------------------------------
+@node Low-level functions - Groups
+@subsection Groups
+@cindex Low-level functions - Groups
+@c Low-level functionsGroups netcdf.defGrp
+@c -----------------------------------------
+@subsubsection netcdf.defGrp
+@cindex defGrp
+@deftypefn {} {@var{new_ncid} =} netcdf.defGrp(@var{ncid},@var{name})
+ Define a group in a NetCDF file.
+@xseealso{netcdf.inqGrps}
+@end deftypefn
+@c Low-level functionsGroups netcdf.inqDimIDs
+@c -----------------------------------------
+@subsubsection netcdf.inqDimIDs
+@cindex inqDimIDs
+@deftypefn {} {@var{dimids} =} netcdf.inqDimID(@var{ncid})
+@deftypefnx {} {@var{dimids} =} netcdf.inqDimID(@var{ncid},@var{include_parents})
+ Return the dimension ids defined in a NetCDF file.
+ If @var{include_parents} is 1, the dimension ids of the parent group are also returned.
+ Per default this is not the case (@var{include_parents} is 0).
+@xseealso{netcdf.inqDim}
+@end deftypefn
+@c Low-level functionsGroups netcdf.inqGrpFullNcid
+@c -----------------------------------------
+@subsubsection netcdf.inqGrpFullNcid
+@cindex inqGrpFullNcid
+@deftypefn {} {@var{grp_ncid} =} netcdf.inqGrpFullNcid(@var{ncid},@var{name})
+ Return the group id based on the full group name.
+@xseealso{netcdf.inqGrpName}
+@end deftypefn
+@c Low-level functionsGroups netcdf.inqGrpName
+@c -----------------------------------------
+@subsubsection netcdf.inqGrpName
+@cindex inqGrpName
+@deftypefn {} {@var{name} =} netcdf.inqGrpName(@var{ncid})
+ Return group name in a NetCDF file.
+@xseealso{netcdf.inqGrps}
+@end deftypefn
+@c Low-level functionsGroups netcdf.inqGrpNameFull
+@c -----------------------------------------
+@subsubsection netcdf.inqGrpNameFull
+@cindex inqGrpNameFull
+@deftypefn {} {@var{name} =} netcdf.inqGrpNameFull(@var{ncid})
+ Return full name of group in NetCDF file.
+@xseealso{netcdf.inqGrpName}
+@end deftypefn
+@c Low-level functionsGroups netcdf.inqGrpParent
+@c -----------------------------------------
+@subsubsection netcdf.inqGrpParent
+@cindex inqGrpParent
+@deftypefn {} {@var{parent_ncid} =} netcdf.inqGrpParent(@var{ncid})
+ Return id of the parent group
+@xseealso{netcdf.inqGrpName}
+@end deftypefn
+@c Low-level functionsGroups netcdf.inqNcid
+@c -----------------------------------------
+@subsubsection netcdf.inqNcid
+@cindex inqNcid
+@deftypefn {} {@var{grp_ncid} =} netcdf.inqNcid(@var{ncid},@var{name})
+ Return group id based on its name
+@xseealso{netcdf.inqGrpFullNcid}
+@end deftypefn
+@c Low-level functionsGroups netcdf.inqVarIDs
+@c -----------------------------------------
+@subsubsection netcdf.inqVarIDs
+@cindex inqVarIDs
+@deftypefn {} {@var{varids} = } netcdf.inqVarID (@var{ncid})
+ Return all variable ids.
+
+ This functions returns all variable ids in a NetCDF file or NetCDF group.
+@xseealso{netcdf.inqVarID}
+@end deftypefn
+@c ---------------------------------------------------
+@node Low-level functions - Variables
+@subsection Variables
+@cindex Low-level functions - Variables
+@c Low-level functionsVariables netcdf.defVar
+@c -----------------------------------------
+@subsubsection netcdf.defVar
+@cindex defVar
+@deftypefn {} {@var{varid} = } netcdf.defVar(@var{ncid},@var{name},@var{xtype},@var{dimids})
+ Defines a variable with the name @var{name} in the dataset @var{ncid}.
+
+@var{xtype} can be "byte", "ubyte", "short", "ushort", "int", "uint", "int64", "uint64",
+ "float", "double", "char" or the corresponding number as returned by netcdf.getConstant.
+
+ The parameter @var{dimids} define the ids of the dimension. For scalar this parameter is the empty array ([]).
+
+ The variable id is returned.
+@end deftypefn
+@c Low-level functionsVariables netcdf.defVarChunking
+@c -----------------------------------------
+@subsubsection netcdf.defVarChunking
+@cindex defVarChunking
+@deftypefn {} {} netcdf.defVarChunking (@var{ncid},@var{varid},@var{storage},@var{chunkSizes})
+ Define the chunking settings of NetCDF variable @var{varid}.
+
+ If @var{storage} is the string "chunked", the variable is stored by chunk of the size @var{chunkSizes}.@*
+ If @var{storage} is the string "contiguous", the variable is stored in a contiguous way.
+@end deftypefn
+@c Low-level functionsVariables netcdf.defVarDeflate
+@c -----------------------------------------
+@subsubsection netcdf.defVarDeflate
+@cindex defVarDeflate
+@deftypefn {} {} netcdf.defVarDeflate (@var{ncid},@var{varid},@var{shuffle},@var{deflate},@var{deflate_level})
+ Define the compression settings NetCDF variable @var{varid}.
+
+ If @var{deflate} is true, then the variable is compressed.
+
+ The compression level @var{deflate_level} is an integer between 0 (no compression) and 9 (maximum compression).
+@end deftypefn
+@c Low-level functionsVariables netcdf.defVarFill
+@c -----------------------------------------
+@subsubsection netcdf.defVarFill
+@cindex defVarFill
+@deftypefn {} {} netcdf.defVarFill(@var{ncid},@var{varid},@var{no_fill},@var{fillvalue})
+ Define the fill-value settings of the NetCDF variable @var{varid}.
+
+ If @var{no_fill} is false, then the values between no-contiguous writes are filled with the
+ value @var{fill_value}.
+
+ This is disabled by setting @var{no_fill} to true.
+@end deftypefn
+@c Low-level functionsVariables netcdf.defVarFletcher32
+@c -----------------------------------------
+@subsubsection netcdf.defVarFletcher32
+@cindex defVarFletcher32
+@deftypefn {} {} netcdf.defVarFletcher32(@var{ncid},@var{varid},@var{checksum})
+ Defines the checksum settings of the variable with the id @var{varid} in the data set @var{ncid}.
+
+ If @var{checksum} is the string "FLETCHER32", then fletcher32 checksums will be turned on for this variable.
+
+ If @var{checksum} is "NOCHECKSUM", then checksums will be disabled.
+@end deftypefn
+@c Low-level functionsVariables netcdf.getVar
+@c -----------------------------------------
+@subsubsection netcdf.getVar
+@cindex getVar
+@deftypefn {} {@var{data} =} netcdf.getVar (@var{ncid},@var{varid})
+@deftypefnx {} {@var{data} =} netcdf.getVar (@var{ncid},@var{varid},@var{start})
+@deftypefnx {} {@var{data} =} netcdf.getVar (@var{ncid},@var{varid},@var{start},@var{count})
+@deftypefnx {} {@var{data} =} netcdf.getVar (@var{ncid},@var{varid},@var{start},@var{count},@var{stride})
+ Get the data from a NetCDF variable.
+#
+ The data @var{data} is loaded from the variable @var{varid} of the NetCDF file @var{ncid}.
+
+@var{start} is the start index of each dimension (0-based and defaults to a vector of zeros),
+
+@var{count} is the number of elements of to be written along each dimension (default all elements)
+
+@var{stride} is the sampling interval.
+@end deftypefn
+@c Low-level functionsVariables netcdf.inqVar
+@c -----------------------------------------
+@subsubsection netcdf.inqVar
+@cindex inqVar
+@deftypefn {} {[@var{name},@var{nctype},@var{dimids},@var{nattr}] = } netcdf.inqVar (@var{ncid},@var{varid})
+ Inquires information about a NetCDF variable.
+
+ This functions returns the @var{name}, the NetCDF type @var{nctype}, an array of dimension ids
+
+@var{dimids} and the number of attributes @var{nattr} of the NetCDF variable.
+
+@var{nctype} in an integer corresponding NetCDF constants.
+@xseealso{netcdf.inqVarID,netcdf.getConstant}
+@end deftypefn
+@c Low-level functionsVariables netcdf.inqVarChunking
+@c -----------------------------------------
+@subsubsection netcdf.inqVarChunking
+@cindex inqVarChunking
+@deftypefn {} {[@var{storage},@var{chunkSizes}] = } netcdf.inqVarChunking (@var{ncid},@var{varid})
+ Determines the chunking settings of NetCDF variable @var{varid}.
+
+ If @var{storage} is the string "chunked", the variable is stored by chunk of the size @var{chunkSizes}.@*
+ If @var{storage} is the string "contiguous", the variable is stored in a contiguous way.
+@end deftypefn
+@c Low-level functionsVariables netcdf.inqVarDeflate
+@c -----------------------------------------
+@subsubsection netcdf.inqVarDeflate
+@cindex inqVarDeflate
+@deftypefn {} {[@var{shuffle},@var{deflate},@var{deflate_level}] = } netcdf.inqVarDeflate (@var{ncid},@var{varid})
+ Determines the compression settings NetCDF variable @var{varid}.
+
+ If @var{deflate} is true, then the variable is compressed.
+
+ The compression level @var{deflate_level} is an integer between 0 (no compression) and 9 (maximum compression).
+@end deftypefn
+@c Low-level functionsVariables netcdf.inqVarFill
+@c -----------------------------------------
+@subsubsection netcdf.inqVarFill
+@cindex inqVarFill
+@deftypefn {} {[@var{no_fill},@var{fillvalue}] = } netcdf.inqVarFill(@var{ncid},@var{varid})
+ Determines the fill-value settings of the NetCDF variable @var{varid}.
+
+ If @var{no_fill} is false, then the values between no-contiguous writes are filled with the value @var{fill_value}.
+
+ This is disabled by setting @var{no_fill} to true.
+@end deftypefn
+@c Low-level functionsVariables netcdf.inqVarFletcher32
+@c -----------------------------------------
+@subsubsection netcdf.inqVarFletcher32
+@cindex inqVarFletcher32
+@deftypefn {} {@var{checksum} =} netcdf.inqVarFletcher32(@var{ncid},@var{varid})
+ Determines the checksum settings of the variable with the id @var{varid} in the data set @var{ncid}.
+
+ If fletcher32 checksums is turned on for this variable, then @var{checksum} is the string "FLETCHER32".
+ Otherwise it is the string "NOCHECKSUM".
+@end deftypefn
+@c Low-level functionsVariables netcdf.inqVarID
+@c -----------------------------------------
+@subsubsection netcdf.inqVarID
+@cindex inqVarID
+@deftypefn {} {@var{varid} = } netcdf.inqVarID (@var{ncid},@var{name})
+ Return the id of a variable based on its name.
+@xseealso{netcdf.defVar, netcdf.inqVarIDs}
+@end deftypefn
+@c Low-level functionsVariables netcdf.putVar
+@c -----------------------------------------
+@subsubsection netcdf.putVar
+@cindex putVar
+@deftypefn {} {} netcdf.putVar (@var{ncid},@var{varid},@var{data})
+@deftypefnx {} {} netcdf.putVar (@var{ncid},@var{varid},@var{start},@var{data})
+@deftypefnx {} {} netcdf.putVar (@var{ncid},@var{varid},@var{start},@var{count},@var{data})
+@deftypefnx {} {} netcdf.putVar (@var{ncid},@var{varid},@var{start},@var{count},@var{stride},@var{data})
+ Put data in a NetCDF variable.
+
+ The data @var{data} is stored in the variable @var{varid} of the NetCDF file @var{ncid}.
+
+@var{start} is the start index of each dimension (0-based and defaults to a vector of zeros),
+
+@var{count} is the number of elements of to be written along each dimension (default all elements)
+
+@var{stride} is the sampling interval.
+@end deftypefn
+@c Low-level functionsVariables netcdf.renameVar
+@c -----------------------------------------
+@subsubsection netcdf.renameVar
+@cindex renameVar
+@deftypefn {} {} netcdf.renameVar(@var{ncid},@var{varid},@var{name})
+ Renames the variable with the id @var{varid} in the data set @var{ncid}. @var{name} is the new name of the variable.
+@end deftypefn
+@c ---------------------------------------------------
+@node Low-level functions - Attributes
+@subsection Attributes
+@cindex Low-level functions - Attributes
+@c Low-level functionsAttributes netcdf.copyAtt
+@c -----------------------------------------
+@subsubsection netcdf.copyAtt
+@cindex copyAtt
+@deftypefn {} {} netcdf.copyAtt (@var{ncid},@var{varid},@var{name},@var{ncid_out},@var{varid_out})
+ Copies the attribute named @var{old_name} of the variable @var{varid} in the data set @var{ncid}
+ to the variable @var{varid_out} in the data set @var{ncid_out}.
+
+ To copy a global attribute use netcdf.getConstant("global") for @var{varid} or @var{varid_out}.
+@xseealso{netcdf.getAtt,netcdf.getConstant}
+@end deftypefn
+@c Low-level functionsAttributes netcdf.delAtt
+@c -----------------------------------------
+@subsubsection netcdf.delAtt
+@cindex delAtt
+@deftypefn {} {} netcdf.delAtt(@var{ncid},@var{varid},@var{name})
+ Deletes the attribute named @var{name} of the variable @var{varid} in the data set @var{ncid}.
+
+ To delete a global attribute use netcdf.getConstant("global") for @var{varid}.
+@xseealso{netcdf.defAtt,netcdf.getConstant}
+@end deftypefn
+@c Low-level functionsAttributes netcdf.getAtt
+@c -----------------------------------------
+@subsubsection netcdf.getAtt
+@cindex getAtt
+@deftypefn {} {@var{data} =} netcdf.getAtt (@var{ncid},@var{varid},@var{name})
+ Get the value of a NetCDF attribute.
+
+ This function returns the value of the attribute called @var{name} of the variable
+@var{varid} in the NetCDF file @var{ncid}.
+
+ For global attributes @var{varid} can be netcdf.getConstant("global").
+@xseealso{netcdf.putAtt}
+@end deftypefn
+@c Low-level functionsAttributes netcdf.inqAtt
+@c -----------------------------------------
+@subsubsection netcdf.inqAtt
+@cindex inqAtt
+@deftypefn {} {[@var{xtype},@var{len}] = } netcdf.inqAtt(@var{ncid},@var{varid},@var{name})
+ Get attribute type and length.
+@xseealso{netcdf.inqAttName}
+@end deftypefn
+@c Low-level functionsAttributes netcdf.inqAttID
+@c -----------------------------------------
+@subsubsection netcdf.inqAttID
+@cindex inqAttID
+@deftypefn {} {@var{attnum} =} netcdf.inqAttID(@var{ncid},@var{varid},@var{attname})
+ Return the attribute id @var{attnum} of the attribute named @var{attname} of the variable @var{varid} in the dataset @var{ncid}.
+
+ For global attributes @var{varid} can be
+ netcdf.getConstant("global").
+@xseealso{netcdf.inqAttName}
+@end deftypefn
+@c Low-level functionsAttributes netcdf.inqAttName
+@c -----------------------------------------
+@subsubsection netcdf.inqAttName
+@cindex inqAttName
+@deftypefn {} {@var{name} =} netcdf.inqAttName (@var{ncid},@var{varid},@var{attnum})
+ Get the name of a NetCDF attribute.
+
+ This function returns the name of the attribute with the id @var{attnum} of the variable
+@var{varid} in the NetCDF file @var{ncid}.
+
+ For global attributes @var{varid} can be netcdf.getConstant("global").
+@xseealso{netcdf.inqAttName}
+@end deftypefn
+@c Low-level functionsAttributes netcdf.putAtt
+@c -----------------------------------------
+@subsubsection netcdf.putAtt
+@cindex putAtt
+@deftypefn {} {} netcdf.putAtt (@var{ncid},@var{varid},@var{name},@var{data})
+ Defines a NetCDF attribute.
+
+ This function defines the attribute called @var{name} of the variable
+@var{varid} in the NetCDF file @var{ncid}. The value of the attribute will be @var{data}.
+
+ For global attributes @var{varid} can be
+ netcdf.getConstant("global").
+@xseealso{netcdf.getAtt}
+@end deftypefn
+@c Low-level functionsAttributes netcdf.renameAtt
+@c -----------------------------------------
+@subsubsection netcdf.renameAtt
+@cindex renameAtt
+@deftypefn {} {} netcdf.renameAtt(@var{ncid},@var{varid},@var{old_name},@var{new_name})
+ Renames the attribute named @var{old_name} of the variable @var{varid} in the data set @var{ncid}.
+
+@var{new_name} is the new name of the attribute.
+
+ To rename a global attribute use netcdf.getConstant("global") for @var{varid}.
+@xseealso{netcdf.copyAtt,netcdf.getConstant}
+@end deftypefn
+@c ---------------------------------------------------
+@node Low-level functions - User-Defined Types
+@subsection User-Defined Types
+@cindex Low-level functions - User-Defined Types
+@c Low-level functionsUser-Defined Types netcdf.defVlen
+@c -----------------------------------------
+@subsubsection netcdf.defVlen
+@cindex defVlen
+@deftypefn {} {@var{varid} = } netcdf.defVlen(@var{ncid},@var{typename},@var{basetype})
+ Defines a NC_VLEN variable length array type with the type name @var{typename} and a base
+ datatype of @var{basetype} in the dataset @var{ncid}.
+
+@var{basetype} can be "byte", "ubyte", "short", "ushort", "int", "uint", "int64", "uint64",
+ "float", "double", "char" or the corresponding number as returned by netcdf.getConstant.
+
+ The new data type id is returned.
+@end deftypefn
+@c Low-level functionsUser-Defined Types netcdf.inqUserType
+@c -----------------------------------------
+@subsubsection netcdf.inqUserType
+@cindex inqUserType
+@deftypefn {} {[@var{typename}, @var{bytesize}, @var{basetypeid}, @var{numfields}, @var{classid}] = } netcdf.inqUserType(@var{ncid},@var{typeid})
+ Provide information on a user defined type @var{typeid} in the dataset @var{ncid}.
+
+ The function returns the typename, bytesize, base type id, number of fields and class identifier of the type.
+
+@end deftypefn
+@c Low-level functionsUser-Defined Types netcdf.inqVlen
+@c -----------------------------------------
+@subsubsection netcdf.inqVlen
+@cindex inqVlen
+@deftypefn {} {[@var{typename}, @var{bytesize}, @var{basetypeid}] = } netcdf.inqVlen(@var{ncid},@var{typeid})
+ Provide information on a NC_VLEN variable length array type @var{typeid} in the dataset @var{ncid}.
+
+ The function returns the typename, bytesize, and base type id.
+
+@end deftypefn
+@c ---------------------------------------------------
+@node Low-level functions - Utilities
+@subsection Utilities
+@cindex Low-level functions - Utilities
+@c Low-level functionsUtilities netcdf.getConstant
+@c -----------------------------------------
+@subsubsection netcdf.getConstant
+@cindex getConstant
+@deftypefn {} {@var{value} =} netcdf.getConstant(@var{name})
+ Returns the value of a NetCDF constant called @var{name}.
+@xseealso{netcdf.getConstantNames}
+@end deftypefn
+@c Low-level functionsUtilities netcdf.getConstantNames
+@c -----------------------------------------
+@subsubsection netcdf.getConstantNames
+@cindex getConstantNames
+@deftypefn {} {@var{value} =} netcdf.getConstantNames()
+ Returns a list of all constant names.
+@end deftypefn
+@c ---------------------------------------------------
+@node Test function
+@section Test function
+@cindex Test function
+@c Test function test_netcdf
+@c -----------------------------------------
+@subsection test_netcdf
+@cindex test_netcdf
+@deftypefn {} {} test_netcdf
+ Function to do a basic test of the netcdf interface
+@end deftypefn

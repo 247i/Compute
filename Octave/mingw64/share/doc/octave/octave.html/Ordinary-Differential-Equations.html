@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Ordinary Differential Equations (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Ordinary Differential Equations (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Ordinary Differential Equations (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Differential-Equations.html" rel="up" title="Differential Equations">
+<link href="Differential_002dAlgebraic-Equations.html" rel="next" title="Differential-Algebraic Equations">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Ordinary-Differential-Equations">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Differential_002dAlgebraic-Equations.html" accesskey="n" rel="next">Differential-Algebraic Equations</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Differential-Equations.html" accesskey="u" rel="up">Differential Equations</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Ordinary-Differential-Equations-1"><span>24.1 Ordinary Differential Equations<a class="copiable-link" href="#Ordinary-Differential-Equations-1"> &para;</a></span></h3>
+
+<p>The function <code class="code">lsode</code> can be used to solve ODEs of the form
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">dx
+-- = f (x, t)
+dt
+</pre></div></div>
+
+
+<p>using Hindmarsh&rsquo;s ODE solver <small class="sc">LSODE</small>.
+</p>
+<a class="anchor" id="XREFlsode"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-lsode"><span><code class="def-type">[<var class="var">x</var>, <var class="var">istate</var>, <var class="var">msg</var>] =</code> <strong class="def-name">lsode</strong> <code class="def-code-arguments">(<var class="var">fcn</var>, <var class="var">x_0</var>, <var class="var">t</var>)</code><a class="copiable-link" href="#index-lsode"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-lsode-1"><span><code class="def-type">[<var class="var">x</var>, <var class="var">istate</var>, <var class="var">msg</var>] =</code> <strong class="def-name">lsode</strong> <code class="def-code-arguments">(<var class="var">fcn</var>, <var class="var">x_0</var>, <var class="var">t</var>, <var class="var">t_crit</var>)</code><a class="copiable-link" href="#index-lsode-1"> &para;</a></span></dt>
+<dd><p>Ordinary Differential Equation (ODE) solver.
+</p>
+<p>The set of differential equations to solve is
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">dx
+-- = f (x, t)
+dt
+</pre></div></div>
+
+<p>with
+</p>
+<div class="example">
+<pre class="example-preformatted">x(t_0) = x_0
+</pre></div>
+
+<p>The solution is returned in the matrix <var class="var">x</var>, with each row
+corresponding to an element of the vector <var class="var">t</var>.  The first element
+of <var class="var">t</var> should be <em class="math">t_0</em> and should correspond to the initial
+state of the system <var class="var">x_0</var>, so that the first row of the output
+is <var class="var">x_0</var>.
+</p>
+<p>The first argument, <var class="var">fcn</var>, is a string, inline, or function handle
+that names the function <em class="math">f</em> to call to compute the vector of right
+hand sides for the set of equations.  The function must have the form
+</p>
+<div class="example">
+<pre class="example-preformatted"><var class="var">xdot</var> = f (<var class="var">x</var>, <var class="var">t</var>)
+</pre></div>
+
+<p>in which <var class="var">xdot</var> and <var class="var">x</var> are vectors and <var class="var">t</var> is a scalar.
+</p>
+<p>If <var class="var">fcn</var> is a two-element string array or a two-element cell array
+of strings, inline functions, or function handles, the first element names
+the function <em class="math">f</em> described above, and the second element names a
+function to compute the Jacobian of <em class="math">f</em>.  The Jacobian function
+must have the form
+</p>
+<div class="example">
+<pre class="example-preformatted"><var class="var">jac</var> = j (<var class="var">x</var>, <var class="var">t</var>)
+</pre></div>
+
+<p>in which <var class="var">jac</var> is the matrix of partial derivatives
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">             | df_1  df_1       df_1 |
+             | ----  ----  ...  ---- |
+             | dx_1  dx_2       dx_N |
+             |                       |
+             | df_2  df_2       df_2 |
+             | ----  ----  ...  ---- |
+      df_i   | dx_1  dx_2       dx_N |
+jac = ---- = |                       |
+      dx_j   |  .    .     .    .    |
+             |  .    .      .   .    |
+             |  .    .       .  .    |
+             |                       |
+             | df_M  df_M       df_M |
+             | ----  ----  ...  ---- |
+             | dx_1  dx_2       dx_N |
+</pre></div></div>
+
+
+<p>The second argument specifies the initial state of the system <em class="math">x_0</em>.  The
+third argument is a vector, <var class="var">t</var>, specifying the time values for which a
+solution is sought.
+</p>
+<p>The fourth argument is optional, and may be used to specify a set of
+times that the ODE solver should not integrate past.  It is useful for
+avoiding difficulties with singularities and points where there is a
+discontinuity in the derivative.
+</p>
+<p>After a successful computation, the value of <var class="var">istate</var> will be 2
+(consistent with the Fortran version of <small class="sc">LSODE</small>).
+</p>
+<p>If the computation is not successful, <var class="var">istate</var> will be something
+other than 2 and <var class="var">msg</var> will contain additional information.
+</p>
+<p>You can use the function <code class="code">lsode_options</code> to set optional
+parameters for <code class="code">lsode</code>.
+</p>
+<p>See Alan C. Hindmarsh,
+&quot;ODEPACK, A Systematized Collection of ODE Solvers&quot;,
+<cite class="cite">Scientific Computing</cite>, R. S. Stepleman, editor, 1983.
+or <a class="url" href="https://computing.llnl.gov/projects/odepack">https://computing.llnl.gov/projects/odepack</a>
+for more information about the inner workings of <code class="code">lsode</code>.
+</p>
+<p>Example: Solve the Van der Pol equation
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">fvdp = @(<var class="var">y</var>,<var class="var">t</var>) [<var class="var">y</var>(2); (1 - <var class="var">y</var>(1)^2) * <var class="var">y</var>(2) - <var class="var">y</var>(1)];
+<var class="var">t</var> = linspace (0, 20, 100);
+<var class="var">y</var> = lsode (fvdp, [2; 0], <var class="var">t</var>);
+</pre></div></div>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Differential_002dAlgebraic-Equations.html#XREFdaspk">daspk</a>, <a class="ref" href="Differential_002dAlgebraic-Equations.html#XREFdassl">dassl</a>, <a class="ref" href="Differential_002dAlgebraic-Equations.html#XREFdasrt">dasrt</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFlsode_005foptions"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-lsode_005foptions"><span><strong class="def-name">lsode_options</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-lsode_005foptions"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-lsode_005foptions-1"><span><code class="def-type">val =</code> <strong class="def-name">lsode_options</strong> <code class="def-code-arguments">(<var class="var">opt</var>)</code><a class="copiable-link" href="#index-lsode_005foptions-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-lsode_005foptions-2"><span><strong class="def-name">lsode_options</strong> <code class="def-code-arguments">(<var class="var">opt</var>, <var class="var">val</var>)</code><a class="copiable-link" href="#index-lsode_005foptions-2"> &para;</a></span></dt>
+<dd><p>Query or set options for the function <code class="code">lsode</code>.
+</p>
+<p>When called with no arguments, the names of all available options and
+their current values are displayed.
+</p>
+<p>Given one argument, return the value of the option <var class="var">opt</var>.
+</p>
+<p>When called with two arguments, <code class="code">lsode_options</code> sets the option
+<var class="var">opt</var> to value <var class="var">val</var>.
+</p>
+<p>Options include
+</p>
+<dl class="table">
+<dt><code class="code">&quot;absolute tolerance&quot;</code></dt>
+<dd><p>Absolute tolerance.  May be either vector or scalar.  If a vector, it
+must match the dimension of the state vector.
+</p>
+</dd>
+<dt><code class="code">&quot;relative tolerance&quot;</code></dt>
+<dd><p>Relative tolerance parameter.  Unlike the absolute tolerance, this
+parameter may only be a scalar.
+</p>
+<p>The local error test applied at each integration step is
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">  abs (local error in x(i)) &lt;= ...
+      rtol * abs (y(i)) + atol(i)
+</pre></div></div>
+
+</dd>
+<dt><code class="code">&quot;integration method&quot;</code></dt>
+<dd><p>A string specifying the method of integration to use to solve the ODE
+system.  Valid values are
+</p>
+<dl class="table">
+<dt><code class="code">&quot;adams&quot;</code></dt>
+<dt><code class="code">&quot;non-stiff&quot;</code></dt>
+<dd><p>No Jacobian used (even if it is available).
+</p>
+</dd>
+<dt><code class="code">&quot;bdf&quot;</code></dt>
+<dt><code class="code">&quot;stiff&quot;</code></dt>
+<dd><p>Use stiff backward differentiation formula (BDF) method.  If a
+function to compute the Jacobian is not supplied, <code class="code">lsode</code> will
+compute a finite difference approximation of the Jacobian matrix.
+</p></dd>
+</dl>
+
+</dd>
+<dt><code class="code">&quot;initial step size&quot;</code></dt>
+<dd><p>The step size to be attempted on the first step (default is determined
+automatically).
+</p>
+</dd>
+<dt><code class="code">&quot;maximum order&quot;</code></dt>
+<dd><p>Restrict the maximum order of the solution method.  If using the Adams
+method, this option must be between 1 and 12.  Otherwise, it must be
+between 1 and 5, inclusive.
+</p>
+</dd>
+<dt><code class="code">&quot;maximum step size&quot;</code></dt>
+<dd><p>Setting the maximum stepsize will avoid passing over very large
+regions  (default is not specified).
+</p>
+</dd>
+<dt><code class="code">&quot;minimum step size&quot;</code></dt>
+<dd><p>The minimum absolute step size allowed (default is 0).
+</p>
+</dd>
+<dt><code class="code">&quot;step limit&quot;</code></dt>
+<dd><p>Maximum number of steps allowed (default is 100000).
+</p>
+</dd>
+<dt><code class="code">&quot;jacobian type&quot;</code></dt>
+<dd><p>A string specifying the type of Jacobian used with the stiff backward
+differentiation formula (BDF) integration method.  Valid values are
+</p>
+<dl class="table">
+<dt><code class="code">&quot;full&quot;</code></dt>
+<dd><p>The default.  All partial derivatives are approximated or used from the
+user-supplied Jacobian function.
+</p>
+</dd>
+<dt><code class="code">&quot;banded&quot;</code></dt>
+<dd><p>Only the diagonal and the number of lower and upper subdiagonals specified by
+the options <code class="code">&quot;lower jacobian subdiagonals&quot;</code> and <code class="code">&quot;upper jacobian
+subdiagonals&quot;</code>, respectively, are approximated or used from the user-supplied
+Jacobian function.  A user-supplied Jacobian function may set all other
+partial derivatives to arbitrary values.
+</p>
+</dd>
+<dt><code class="code">&quot;diagonal&quot;</code></dt>
+<dd><p>If a Jacobian function is supplied by the user, this setting has no effect.
+A Jacobian approximated by <code class="code">lsode</code> is restricted to the diagonal, where
+each partial derivative is computed by applying a finite change to all
+elements of the state together; if the real Jacobian is indeed always diagonal,
+this has the same effect as applying the finite change only to the respective
+element of the state, but is more efficient.
+</p></dd>
+</dl>
+
+</dd>
+<dt><code class="code">&quot;lower jacobian subdiagonals&quot;</code></dt>
+<dd><p>Number of lower subdiagonals used if option <code class="code">&quot;jacobian type&quot;</code> is set to
+<code class="code">&quot;banded&quot;</code>.  The default is zero.
+</p>
+</dd>
+<dt><code class="code">&quot;upper jacobian subdiagonals&quot;</code></dt>
+<dd><p>Number of upper subdiagonals used if option <code class="code">&quot;jacobian type&quot;</code> is set to
+<code class="code">&quot;banded&quot;</code>.  The default is zero.
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+
+<p>Here is an example of solving a set of three differential equations using
+<code class="code">lsode</code>.  Given the function
+</p>
+<a class="index-entry-id" id="index-oregonator"></a>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">## oregonator differential equation
+function xdot = f (x, t)
+
+  xdot = zeros (3,1);
+
+  xdot(1) = 77.27 * (x(2) - x(1)*x(2) + x(1) ...
+            - 8.375e-06*x(1)^2);
+  xdot(2) = (x(3) - x(1)*x(2) - x(2)) / 77.27;
+  xdot(3) = 0.161*(x(1) - x(3));
+
+endfunction
+</pre></div></div>
+
+<p>and the initial condition <code class="code">x0 = [ 4; 1.1; 4 ]</code>, the set of
+equations can be integrated using the command
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">t = linspace (0, 500, 1000);
+
+y = lsode (&quot;f&quot;, x0, t);
+</pre></div></div>
+
+<p>If you try this, you will see that the value of the result changes
+dramatically between <var class="var">t</var> = 0 and 5, and again around <var class="var">t</var> = 305.
+A more efficient set of output points might be
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">t = [0, logspace(-1, log10(303), 150), ...
+        logspace(log10(304), log10(500), 150)];
+</pre></div></div>
+
+<p>An m-file for the differential equation used above is included with the
+Octave distribution in the examples directory under the name
+<samp class="file">oregonator.m</samp>.
+</p>
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Differential_002dAlgebraic-Equations.html">Differential-Algebraic Equations</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Differential-Equations.html">Differential Equations</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

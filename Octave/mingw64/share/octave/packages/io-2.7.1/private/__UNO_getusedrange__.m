@@ -1,0 +1,62 @@
+## Copyright (C) 2011-2026 Philip Nienhuis
+##
+## This program is free software; you can redistribute it and/or modify it under
+## the terms of the GNU General Public License as published by the Free Software
+## Foundation; either version 3 of the License, or (at your option) any later
+## version.
+##
+## This program is distributed in the hope that it will be useful, but WITHOUT
+## ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+## FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+## details.
+##
+## You should have received a copy of the GNU General Public License along with
+## this program; if not, see <http://www.gnu.org/licenses/>.
+
+## __UNO_getusedrange__
+
+## Author: Philip Nienhuis <prnienhuis@users.sf.net>
+## Created: 2011-05-06
+
+function [ srow, erow, scol, ecol ] = __UNO_getusedrange__ (ods, ii)
+
+  # Get desired sheet
+  sheets = ods.workbook.getSheets ();
+  sh_names = sheets.getElementNames ();
+  unotmp = javaObject ("com.sun.star.uno.Type", "com.sun.star.sheet.XSpreadsheet");
+  sh = sheets.getByName (sh_names(ii)).getObject.queryInterface (unotmp);
+
+  ## Prepare cell range query
+  unotmp = javaObject ("com.sun.star.uno.Type", "com.sun.star.sheet.XCellRangesQuery");
+  xRQ = sh.queryInterface (unotmp);
+  Cellflgs = javaObject ("java.lang.Short", "23");
+  ccells = xRQ.queryContentCells (Cellflgs);
+
+  ## Get addresses of all blocks containing data
+  addrs = ccells.getRangeAddressesAsString ();
+
+  ## Strip sheet name from addresses. Watch out, in LO3.5 they changed
+  ## the separator from ',' to ';' (without telling me 8-Z)
+  ## 1. Get nr of range blocks
+  adrblks = cell2mat (regexp (addrs, '.*?([A-Z]+\d+:[A-Z]+\d+|[A-Z]+\d+)', "tokens"));
+  nblks = numel (adrblks);
+  ## 2. First try with "," separator...
+  if (isempty (adrblks) || isempty (adrblks{1}))
+    srow = erow = scol = ecol = 0;
+    return
+  endif
+
+  ## Find leftmost & rightmost columns, and highest and lowest row with data
+  srow = scol = 1e10;
+  erow = ecol = 0;
+  for ii=1:numel (adrblks)
+    [dummy, nrows, ncols, trow, lcol] = parse_sp_range (adrblks{ii});
+    brow = trow + nrows - 1;
+    rcol = lcol + ncols - 1;
+    srow = min (srow, trow);
+    scol = min (scol, lcol);
+    erow = max (erow, brow);
+    ecol = max (ecol, rcol);
+  endfor
+
+endfunction

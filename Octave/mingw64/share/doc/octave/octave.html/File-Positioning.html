@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>File Positioning (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="File Positioning (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="File Positioning (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="C_002dStyle-I_002fO-Functions.html" rel="up" title="C-Style I/O Functions">
+<link href="EOF-_0028End-of-File_0029-and-Errors.html" rel="prev" title="EOF (End of File) and Errors">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="File-Positioning">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="EOF-_0028End-of-File_0029-and-Errors.html" accesskey="p" rel="prev">EOF (End of File) and Errors</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="C_002dStyle-I_002fO-Functions.html" accesskey="u" rel="up">C-Style I/O Functions</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="File-Positioning-1"><span>14.2.19 File Positioning<a class="copiable-link" href="#File-Positioning-1"> &para;</a></span></h4>
+
+<p>Three functions are available for setting and determining the position of
+the file pointer for a given file.
+</p>
+<a class="anchor" id="XREFftell"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-ftell"><span><code class="def-type"><var class="var">pos</var> =</code> <strong class="def-name">ftell</strong> <code class="def-code-arguments">(<var class="var">fid</var>)</code><a class="copiable-link" href="#index-ftell"> &para;</a></span></dt>
+<dd><p>Return the position of the file pointer as the number of characters from the
+beginning of the file specified by file descriptor <var class="var">fid</var>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFfseek">fseek</a>, <a class="ref" href="#XREFfrewind">frewind</a>, <a class="ref" href="EOF-_0028End-of-File_0029-and-Errors.html#XREFfeof">feof</a>, <a class="ref" href="Opening-and-Closing-Files.html#XREFfopen">fopen</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFfseek"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-fseek"><span><code class="def-type"><var class="var">status</var> =</code> <strong class="def-name">fseek</strong> <code class="def-code-arguments">(<var class="var">fid</var>, <var class="var">offset</var>)</code><a class="copiable-link" href="#index-fseek"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-fseek-1"><span><code class="def-type"><var class="var">status</var> =</code> <strong class="def-name">fseek</strong> <code class="def-code-arguments">(<var class="var">fid</var>, <var class="var">offset</var>, <var class="var">origin</var>)</code><a class="copiable-link" href="#index-fseek-1"> &para;</a></span></dt>
+<dd><p>Set the file pointer to the location <var class="var">offset</var> within the file <var class="var">fid</var>.
+</p>
+<p>The pointer is positioned <var class="var">offset</var> characters from the <var class="var">origin</var>, which
+may be one of the predefined variables <code class="code">SEEK_SET</code><!-- /@w -->&nbsp;(beginning),
+<code class="code">SEEK_CUR</code><!-- /@w -->&nbsp;(current position), or <code class="code">SEEK_END</code><!-- /@w -->&nbsp;(end of file)
+or strings <code class="code">&quot;bof&quot;</code>, <code class="code">&quot;cof&quot;</code>, or
+<code class="code">&quot;eof&quot;</code>.  If <var class="var">origin</var> is omitted, <code class="code">SEEK_SET</code><!-- /@w -->&nbsp;is
+assumed.  <var class="var">offset</var> may be positive, negative, or zero but not all
+combinations of <var class="var">origin</var> and <var class="var">offset</var> can be realized.
+</p>
+<p><code class="code">fseek</code> returns 0 on success and -1 on error.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Line_002dOriented-Input.html#XREFfskipl">fskipl</a>, <a class="ref" href="#XREFfrewind">frewind</a>, <a class="ref" href="#XREFftell">ftell</a>, <a class="ref" href="Opening-and-Closing-Files.html#XREFfopen">fopen</a>, <a class="ref" href="#XREFSEEK_005fSET">SEEK_SET</a>, <a class="ref" href="#XREFSEEK_005fCUR">SEEK_CUR</a>, <a class="ref" href="#XREFSEEK_005fEND">SEEK_END</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFSEEK_005fSET"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-SEEK_005fSET"><span><code class="def-type"><var class="var">fseek_origin</var> =</code> <strong class="def-name">SEEK_SET</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-SEEK_005fSET"> &para;</a></span></dt>
+<dd><p>Return the numerical value to pass to <code class="code">fseek</code> to position the file pointer
+relative to the beginning of the file.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFSEEK_005fCUR">SEEK_CUR</a>, <a class="ref" href="#XREFSEEK_005fEND">SEEK_END</a>, <a class="ref" href="#XREFfseek">fseek</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFSEEK_005fCUR"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-SEEK_005fCUR"><span><code class="def-type"><var class="var">fseek_origin</var> =</code> <strong class="def-name">SEEK_CUR</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-SEEK_005fCUR"> &para;</a></span></dt>
+<dd><p>Return the numerical value to pass to <code class="code">fseek</code> to position the file pointer
+relative to the current position.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFSEEK_005fSET">SEEK_SET</a>, <a class="ref" href="#XREFSEEK_005fEND">SEEK_END</a>, <a class="ref" href="#XREFfseek">fseek</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFSEEK_005fEND"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-SEEK_005fEND"><span><code class="def-type"><var class="var">fseek_origin</var> =</code> <strong class="def-name">SEEK_END</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-SEEK_005fEND"> &para;</a></span></dt>
+<dd><p>Return the numerical value to pass to <code class="code">fseek</code> to position the file pointer
+relative to the end of the file.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFSEEK_005fSET">SEEK_SET</a>, <a class="ref" href="#XREFSEEK_005fCUR">SEEK_CUR</a>, <a class="ref" href="#XREFfseek">fseek</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFfrewind"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-frewind"><span><strong class="def-name">frewind</strong> <code class="def-code-arguments">(<var class="var">fid</var>)</code><a class="copiable-link" href="#index-frewind"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-frewind-1"><span><code class="def-type"><var class="var">status</var> =</code> <strong class="def-name">frewind</strong> <code class="def-code-arguments">(<var class="var">fid</var>)</code><a class="copiable-link" href="#index-frewind-1"> &para;</a></span></dt>
+<dd><p>Move the file pointer to the beginning of the file specified by file
+descriptor <var class="var">fid</var>.
+</p>
+<p>If an output <var class="var">status</var> is requested then <code class="code">frewind</code> returns 0 for
+success, and -1 if an error is encountered.
+</p>
+<p>Programming Note: <code class="code">frewind</code> is equivalent to
+<code class="code">fseek (<var class="var">fid</var>, 0, SEEK_SET)</code>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFfseek">fseek</a>, <a class="ref" href="#XREFftell">ftell</a>, <a class="ref" href="Opening-and-Closing-Files.html#XREFfopen">fopen</a>.
+</p></dd></dl>
+
+
+<p>The following example stores the current file position in the variable
+<code class="code">marker</code>, moves the pointer to the beginning of the file, reads
+four characters, and then returns to the original position.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">marker = ftell (myfile);
+frewind (myfile);
+fourch = fgets (myfile, 4);
+fseek (myfile, marker, SEEK_SET);
+</pre></div></div>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="EOF-_0028End-of-File_0029-and-Errors.html">EOF (End of File) and Errors</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="C_002dStyle-I_002fO-Functions.html">C-Style I/O Functions</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Short-circuit Boolean Operators (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Short-circuit Boolean Operators (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Short-circuit Boolean Operators (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Boolean-Expressions.html" rel="up" title="Boolean Expressions">
+<link href="Element_002dby_002delement-Boolean-Operators.html" rel="prev" title="Element-by-element Boolean Operators">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Short_002dcircuit-Boolean-Operators">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Element_002dby_002delement-Boolean-Operators.html" accesskey="p" rel="prev">Element-by-element Boolean Operators</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Boolean-Expressions.html" accesskey="u" rel="up">Boolean Expressions</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Short_002dcircuit-Boolean-Operators-1"><span>8.5.2 Short-circuit Boolean Operators<a class="copiable-link" href="#Short_002dcircuit-Boolean-Operators-1"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-short_002dcircuit-evaluation"></a>
+
+<p>Combined with the implicit conversion to scalar values in <code class="code">if</code> and
+<code class="code">while</code> conditions, Octave&rsquo;s element-by-element boolean operators
+are often sufficient for performing most logical operations.  However,
+it is sometimes desirable to stop evaluating a boolean expression as
+soon as the overall truth value can be determined.  Octave&rsquo;s
+<em class="dfn">short-circuit</em> boolean operators work this way.
+</p>
+<dl class="table">
+<dt><a id="index-_0026_0026"></a><span><code class="code"><var class="var">boolean1</var> &amp;&amp; <var class="var">boolean2</var></code><a class="copiable-link" href="#index-_0026_0026"> &para;</a></span></dt>
+<dd><p>The expression <var class="var">boolean1</var> is evaluated and converted to a scalar using
+the equivalent of the operation <code class="code">all (<var class="var">boolean1</var>(:))</code>.  If
+<var class="var">boolean1</var> is not a logical value, it is considered true if its value
+is nonzero, and false if its value is zero.  If <var class="var">boolean1</var> is an array,
+it is considered true only if it is non-empty and all elements are
+nonzero.  If <var class="var">boolean1</var> evaluates to false, the result of the overall
+expression is false.  If it is true, the expression <var class="var">boolean2</var> is
+evaluated in the same way as <var class="var">boolean1</var>.  If it is true, the result of
+the overall expression is true.  Otherwise the result of the overall
+expression is false.
+</p>
+<p><strong class="strong">Warning:</strong> the one exception to the equivalence with evaluating
+<code class="code">all (<var class="var">boolean1</var>(:))</code> is when <code class="code">boolean1</code> an the empty array.
+For <small class="sc">MATLAB</small> compatibility, the truth value of an empty array is always
+<code class="code">false</code> so <code class="code">[] &amp;&amp; true</code> evaluates to <code class="code">false</code> even though
+<code class="code">all ([])</code> is <code class="code">true</code>.
+</p>
+</dd>
+<dt><a id="index-_007c_007c"></a><span><code class="code"><var class="var">boolean1</var> || <var class="var">boolean2</var></code><a class="copiable-link" href="#index-_007c_007c"> &para;</a></span></dt>
+<dd><p>The expression <var class="var">boolean1</var> is evaluated and converted to a scalar using
+the equivalent of the operation <code class="code">all (<var class="var">boolean1</var>(:))</code>.  If
+<var class="var">boolean1</var> is not a logical value, it is considered true if its value
+is nonzero, and false if its value is zero.  If <var class="var">boolean1</var> is an array,
+it is considered true only if it is non-empty and all elements are
+nonzero.  If <var class="var">boolean1</var> evaluates to true, the result of the overall
+expression is true.  If it is false, the expression <var class="var">boolean2</var> is
+evaluated in the same way as <var class="var">boolean1</var>.  If it is true, the result of
+the overall expression is true.  Otherwise the result of the overall
+expression is false.
+</p>
+<p><strong class="strong">Warning:</strong> the truth value of an empty matrix is always
+<code class="code">false</code>, see the previous list item for details.
+</p></dd>
+</dl>
+
+<p>The fact that both operands may not be evaluated before determining the
+overall truth value of the expression can be important.  For example, in
+the expression
+</p>
+<div class="example">
+<pre class="example-preformatted">a &amp;&amp; b++
+</pre></div>
+
+<p>the value of the variable <var class="var">b</var> is only incremented if the variable
+<var class="var">a</var> is nonzero.
+</p>
+<p>This can be used to write somewhat more concise code.  For example, it
+is possible write
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">function f (a, b, c)
+  if (nargin &gt; 2 &amp;&amp; ischar (c))
+    ...
+</pre></div></div>
+
+<p>instead of having to use two <code class="code">if</code> statements to avoid attempting to
+evaluate an argument that doesn&rsquo;t exist.  For example, without the
+short-circuit feature, it would be necessary to write
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">function f (a, b, c)
+  if (nargin &gt; 2)
+    if (ischar (c))
+      ...
+</pre></div></div>
+
+<p>Writing
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">function f (a, b, c)
+  if (nargin &gt; 2 &amp; ischar (c))
+    ...
+</pre></div></div>
+
+<p>would result in an error if <code class="code">f</code> were called with one or two
+arguments because Octave would be forced to try to evaluate both of the
+operands for the operator &lsquo;<samp class="samp">&amp;</samp>&rsquo;.
+</p>
+<p><small class="sc">MATLAB</small> has special behavior that allows the operators &lsquo;<samp class="samp">&amp;</samp>&rsquo; and
+&lsquo;<samp class="samp">|</samp>&rsquo; to short-circuit when used in the truth expression for <code class="code">if</code>
+and <code class="code">while</code> statements.  Octave behaves the same way for
+compatibility, however, the use of the &lsquo;<samp class="samp">&amp;</samp>&rsquo; and &lsquo;<samp class="samp">|</samp>&rsquo; operators in
+this way is strongly discouraged and a warning will be issued.  Instead,
+you should use the &lsquo;<samp class="samp">&amp;&amp;</samp>&rsquo; and &lsquo;<samp class="samp">||</samp>&rsquo; operators that always have
+short-circuit behavior.
+</p>
+<p>Finally, the ternary operator (?:) is not supported in Octave.  If
+short-circuiting is not important, it can be replaced by the <code class="code">ifelse</code>
+function.
+</p>
+<a class="anchor" id="XREFmerge"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-merge"><span><code class="def-type"><var class="var">M</var> =</code> <strong class="def-name">merge</strong> <code class="def-code-arguments">(<var class="var">mask</var>, <var class="var">tval</var>, <var class="var">fval</var>)</code><a class="copiable-link" href="#index-merge"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ifelse"><span><code class="def-type"><var class="var">M</var> =</code> <strong class="def-name">ifelse</strong> <code class="def-code-arguments">(<var class="var">mask</var>, <var class="var">tval</var>, <var class="var">fval</var>)</code><a class="copiable-link" href="#index-ifelse"> &para;</a></span></dt>
+<dd><p>Merge elements of <var class="var">true_val</var> and <var class="var">false_val</var>, depending on the
+value of <var class="var">mask</var>.
+</p>
+<p>If <var class="var">mask</var> is a logical scalar, the other two arguments can be arbitrary
+values.  Otherwise, <var class="var">mask</var> must be a logical array, and <var class="var">tval</var>,
+<var class="var">fval</var> should be arrays of matching class, or cell arrays.  In the
+scalar mask case, <var class="var">tval</var> is returned if <var class="var">mask</var> is true, otherwise
+<var class="var">fval</var> is returned.
+</p>
+<p>In the array mask case, both <var class="var">tval</var> and <var class="var">fval</var> must be either
+scalars or arrays with dimensions equal to <var class="var">mask</var>.  The result is
+constructed as follows:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">result(mask) = tval(mask);
+result(! mask) = fval(! mask);
+</pre></div></div>
+
+<p><var class="var">mask</var> can also be arbitrary numeric type, in which case it is first
+converted to logical.
+</p>
+<p>Programming Note: <code class="code">ifelse</code> is an alias for <code class="code">merge</code> and can be used
+interchangeably.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Logical-Values.html#XREFlogical">logical</a>, <a class="ref" href="Finding-Elements-and-Checking-Conditions.html#XREFdiff">diff</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Element_002dby_002delement-Boolean-Operators.html">Element-by-element Boolean Operators</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Boolean-Expressions.html">Boolean Expressions</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

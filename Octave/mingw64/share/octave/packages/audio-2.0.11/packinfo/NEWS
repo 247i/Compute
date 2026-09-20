@@ -1,0 +1,132 @@
+Summary of important user-visible changes for releases of the audio package
+
+===============================================================================
+audio-2.0.11   Release Date: 2026-03-16
+===============================================================================
+
+  ** minor updates to documentation
+
+  ** added additional BIST
+
+  ** midicontrols: minor updates to construction and value checking
+
+  ** midimsg: clean up internal data structures, add isprop override
+
+===============================================================================
+audio-2.0.10   Release Date: 2026-01-25
+===============================================================================
+
+  ** midimsg, add properties, size and default creation methods
+
+  ** minor updates to documentation
+
+===============================================================================
+audio-2.0.9   Release Date: 2024-09-23
+===============================================================================
+
+  ** minor bug fixes
+
+  ** minor updates to documentation
+
+  ** NEW FUNCTIONS:
+    - phone2sone
+    - sone2phone
+
+===============================================================================
+audio-2.0.8   Release Date: 2023-10-02
+===============================================================================
+
+  ** bugfix midisend with multiple messages
+
+  ** audioOscillator: update to allow functioning in < octave 6
+
+  ** minor updated for Octave 9+ compatibility
+
+===============================================================================
+audio-2.0.7   Release Date: 2023-07-26
+===============================================================================
+
+  ** bugfix crash on create mididevice without a midisystem
+
+  ** minor updates to documentation
+
+===============================================================================
+audio-2.0.6   Release Date: 2023-07-20
+===============================================================================
+
+  ** minor updates for octave dld classes
+
+  ** NEW FUNCTIONS:
+    - erb2hz and hz2erb
+    - bark2hz and hz2bark
+    - mel2hz and hz2mel
+    - audioOscillator
+
+  ** minor updates to documentation
+
+===============================================================================
+audio-2.0.5   Release Date: 2022-07-20
+===============================================================================
+
+  ** minor updates for octave dld classes
+
+  ** NEW FUNCTIONS:
+    - @octave_midi/hasdata
+    - midicallback
+    - midiflush
+
+  ** midirecv always returns abs timestamp from midimsg results
+
+  ** added qt5 documentation
+
+===============================================================================
+audio-2.0.4   Release Date: 2021-12-05
+===============================================================================
+
+  ** minor updates for octave 7 compatibility
+
+===============================================================================
+audio-2.0.3   Release Date: 2021-10-22
+===============================================================================
+
+  ** midifilewrite: updates for time processing
+
+  ** midifileread: updates reading sysex messages
+
+  ** midimsg: allow horzcat to add multiple messages
+
+  ** midisend: dont send metadata to mididevice
+
+===============================================================================
+audio-2.0.2   Release Date: 2020-10-13
+===============================================================================
+
+ ** added 'other' field to midifileinfo structure
+
+ ** added metaevent type to midimsg
+
+ ** additional FXX type message file reading
+
+ ** added format specifier to midifileread
+
+ ** bugfix  ref count on midi_object unique_clone
+
+ ** minor documentation updates
+
+===============================================================================
+audio-2.0.1   Release Date: 2020-05-08
+===============================================================================
+
+ ** added additional midimsg property set/get
+
+ ** added midimsgtype enumeration class
+
+ ** minor documentation updates
+
+===============================================================================
+audio-2.0.0   Release Date: 2020-01-03
+===============================================================================
+
+ ** Added midi functions
+
+ ** remove obsolete / old audio functions

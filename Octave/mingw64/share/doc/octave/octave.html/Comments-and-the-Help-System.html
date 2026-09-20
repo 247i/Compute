@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Comments and the Help System (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Comments and the Help System (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Comments and the Help System (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Comments-in-Octave-Programs.html" rel="up" title="Comments in Octave Programs">
+<link href="Block-Comments.html" rel="prev" title="Block Comments">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+kbd.kbd {font-style: oblique}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Comments-and-the-Help-System">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Block-Comments.html" accesskey="p" rel="prev">Block Comments</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Comments-in-Octave-Programs.html" accesskey="u" rel="up">Comments in Octave Programs</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Comments-and-the-Help-System-1"><span>2.7.3 Comments and the Help System<a class="copiable-link" href="#Comments-and-the-Help-System-1"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-documenting-functions"></a>
+<a class="index-entry-id" id="index-documenting-user-scripts"></a>
+<a class="index-entry-id" id="index-help_002c-user_002ddefined-functions"></a>
+
+<p>The <code class="code">help</code> command (see <a class="pxref" href="Getting-Help.html">Commands for Getting Help</a>) is able to find the first
+block of comments in a function and return those as a documentation
+string.  This means that the same commands used to get help
+on built-in functions are available for properly formatted user-defined
+functions.  For example, after defining the function <code class="code">f</code> below,
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">function xdot = f (x, t)
+
+# usage: f (x, t)
+#
+# This function defines the right-hand
+# side functions for a set of nonlinear
+# differential equations.
+
+  r = 0.25;
+  ...
+endfunction
+</pre></div></div>
+
+<p>the command <kbd class="kbd">help f</kbd> produces the output
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted"> usage: f (x, t)
+
+ This function defines the right-hand
+ side functions for a set of nonlinear
+ differential equations.
+</pre></div></div>
+
+<p>Although it is possible to put comment lines into keyboard-composed,
+throw-away Octave programs, it usually isn&rsquo;t very useful because the
+purpose of a comment is to help you or another person understand the
+program at a later time.
+</p>
+<p>The <code class="code">help</code> parser currently only recognizes single line comments
+(see <a class="pxref" href="Single-Line-Comments.html">Single Line Comments</a>) and not block comments for the initial
+help text.
+</p>
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Block-Comments.html">Block Comments</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Comments-in-Octave-Programs.html">Comments in Octave Programs</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

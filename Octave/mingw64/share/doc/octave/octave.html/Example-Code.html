@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Example Code (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Example Code (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Example Code (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Diagonal-and-Permutation-Matrices.html" rel="up" title="Diagonal and Permutation Matrices">
+<link href="Zeros-Treatment.html" rel="next" title="Zeros Treatment">
+<link href="Function-Support.html" rel="prev" title="Function Support">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Example-Code">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Zeros-Treatment.html" accesskey="n" rel="next">Differences in Treatment of Zero Elements</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Function-Support.html" accesskey="p" rel="prev">Functions That Are Aware of These Matrices</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Diagonal-and-Permutation-Matrices.html" accesskey="u" rel="up">Diagonal and Permutation Matrices</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Examples-of-Usage"><span>21.4 Examples of Usage<a class="copiable-link" href="#Examples-of-Usage"> &para;</a></span></h3>
+
+<p>The following can be used to solve a linear system <code class="code">A*x = b</code>
+using the pivoted LU&nbsp;factorization:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">  [L, U, P] = lu (A); ## now L*U = P*A
+  x = U \ (L \ P) * b;
+</pre></div></div>
+
+<p>This is one way to normalize columns of a matrix <var class="var">X</var> to unit norm:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">  s = norm (X, &quot;columns&quot;);
+  X /= diag (s);
+</pre></div></div>
+
+<p>The same can also be accomplished with broadcasting (see <a class="pxref" href="Broadcasting.html">Broadcasting</a>):
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">  s = norm (X, &quot;columns&quot;);
+  X ./= s;
+</pre></div></div>
+
+<p>The following expression is a way to efficiently calculate the sign of a
+permutation, given by a permutation vector <var class="var">p</var>.  It will also work
+in earlier versions of Octave, but slowly.
+</p>
+<div class="example">
+<pre class="example-preformatted">  det (eye (length (p))(p, :))
+</pre></div>
+
+<p>Finally, here&rsquo;s how to solve a linear system <code class="code">A*x = b</code>
+with Tikhonov regularization (ridge regression) using SVD (a skeleton
+only):
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">  m = rows (A); n = columns (A);
+  [U, S, V] = svd (A);
+  ## determine the regularization factor alpha
+  ## alpha = ...
+  ## transform to orthogonal basis
+  b = U'*b;
+  ## Use the standard formula, replacing A with S.
+  ## S is diagonal, so the following will be very fast and accurate.
+  x = (S'*S + alpha^2 * eye (n)) \ (S' * b);
+  ## transform to solution basis
+  x = V*x;
+</pre></div></div>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Zeros-Treatment.html">Differences in Treatment of Zero Elements</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Function-Support.html">Functions That Are Aware of These Matrices</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Diagonal-and-Permutation-Matrices.html">Diagonal and Permutation Matrices</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

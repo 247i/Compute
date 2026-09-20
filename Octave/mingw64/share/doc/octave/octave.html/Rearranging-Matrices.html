@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Rearranging Matrices (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Rearranging Matrices (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Rearranging Matrices (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Matrix-Manipulation.html" rel="up" title="Matrix Manipulation">
+<link href="Special-Utility-Matrices.html" rel="next" title="Special Utility Matrices">
+<link href="Finding-Elements-and-Checking-Conditions.html" rel="prev" title="Finding Elements and Checking Conditions">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Rearranging-Matrices">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Special-Utility-Matrices.html" accesskey="n" rel="next">Special Utility Matrices</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Finding-Elements-and-Checking-Conditions.html" accesskey="p" rel="prev">Finding Elements and Checking Conditions</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Matrix-Manipulation.html" accesskey="u" rel="up">Matrix Manipulation</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Rearranging-Matrices-1"><span>16.2 Rearranging Matrices<a class="copiable-link" href="#Rearranging-Matrices-1"> &para;</a></span></h3>
+
+<a class="anchor" id="XREFfliplr"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-fliplr"><span><code class="def-type"><var class="var">B</var> =</code> <strong class="def-name">fliplr</strong> <code class="def-code-arguments">(<var class="var">A</var>)</code><a class="copiable-link" href="#index-fliplr"> &para;</a></span></dt>
+<dd><p>Flip array left to right.
+</p>
+<p>Return a copy of <var class="var">A</var> with the order of the columns reversed.  In other
+words, <var class="var">A</var> is flipped left-to-right about a vertical axis.  For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">fliplr ([1, 2; 3, 4])
+     &rArr;   2  1
+         4  3
+</pre></div></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFflipud">flipud</a>, <a class="ref" href="#XREFflip">flip</a>, <a class="ref" href="#XREFrot90">rot90</a>, <a class="ref" href="#XREFrotdim">rotdim</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFflipud"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-flipud"><span><code class="def-type"><var class="var">B</var> =</code> <strong class="def-name">flipud</strong> <code class="def-code-arguments">(<var class="var">A</var>)</code><a class="copiable-link" href="#index-flipud"> &para;</a></span></dt>
+<dd><p>Flip array upside down.
+</p>
+<p>Return a copy of <var class="var">A</var> with the order of the rows reversed.  In other
+words, <var class="var">A</var> is flipped upside-down about a horizontal axis.  For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">flipud ([1, 2; 3, 4])
+     &rArr;   3  4
+         1  2
+</pre></div></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFfliplr">fliplr</a>, <a class="ref" href="#XREFflip">flip</a>, <a class="ref" href="#XREFrot90">rot90</a>, <a class="ref" href="#XREFrotdim">rotdim</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFflip"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-flip"><span><code class="def-type"><var class="var">B</var> =</code> <strong class="def-name">flip</strong> <code class="def-code-arguments">(<var class="var">A</var>)</code><a class="copiable-link" href="#index-flip"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-flip-1"><span><code class="def-type"><var class="var">B</var> =</code> <strong class="def-name">flip</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">dim</var>)</code><a class="copiable-link" href="#index-flip-1"> &para;</a></span></dt>
+<dd><p>Return a copy of array <var class="var">A</var> flipped across dimension <var class="var">dim</var>.
+</p>
+<p>If <var class="var">dim</var> is unspecified it defaults to the first non-singleton
+dimension.
+</p>
+<p>Examples:
+</p>
+<div class="example">
+<pre class="example-preformatted">## row vector
+flip ([1  2  3  4])
+      &rArr;   4  3  2  1
+
+## column vector
+flip ([1; 2; 3; 4])
+      &rArr;   4
+          3
+          2
+          1
+
+## 2-D matrix along dimension 1
+flip ([1 2; 3 4])
+      &rArr;   3  4
+          1  2
+
+## 2-D matrix along dimension 2
+flip ([1 2; 3 4], 2)
+      &rArr;   2  1
+          4  3
+</pre></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFfliplr">fliplr</a>, <a class="ref" href="#XREFflipud">flipud</a>, <a class="ref" href="#XREFrot90">rot90</a>, <a class="ref" href="#XREFrotdim">rotdim</a>, <a class="ref" href="#XREFpermute">permute</a>, <a class="ref" href="Arithmetic-Ops.html#XREFtranspose">transpose</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFrot90"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-rot90"><span><code class="def-type"><var class="var">B</var> =</code> <strong class="def-name">rot90</strong> <code class="def-code-arguments">(<var class="var">A</var>)</code><a class="copiable-link" href="#index-rot90"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rot90-1"><span><code class="def-type"><var class="var">B</var> =</code> <strong class="def-name">rot90</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">k</var>)</code><a class="copiable-link" href="#index-rot90-1"> &para;</a></span></dt>
+<dd><p>Rotate array by 90 degree increments.
+</p>
+<p>Return a copy of <var class="var">A</var> with the elements rotated counterclockwise in
+90-degree increments.
+</p>
+<p>The second argument is optional, and specifies how many 90-degree rotations
+are to be applied (the default value is 1).  Negative values of <var class="var">k</var>
+rotate the matrix in a clockwise direction.
+For example,
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">rot90 ([1, 2; 3, 4], -1)
+    &rArr;   3  1
+        4  2
+</pre></div></div>
+
+<p>rotates the given matrix clockwise by 90 degrees.  The following are all
+equivalent statements:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">rot90 ([1, 2; 3, 4], -1)
+rot90 ([1, 2; 3, 4], 3)
+rot90 ([1, 2; 3, 4], 7)
+</pre></div></div>
+
+<p>The rotation is always performed on the plane of the first two dimensions,
+i.e., rows and columns.  To perform a rotation on any other plane, use
+<code class="code">rotdim</code>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFrotdim">rotdim</a>, <a class="ref" href="#XREFfliplr">fliplr</a>, <a class="ref" href="#XREFflipud">flipud</a>, <a class="ref" href="#XREFflip">flip</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFrotdim"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-rotdim"><span><code class="def-type"><var class="var">B</var> =</code> <strong class="def-name">rotdim</strong> <code class="def-code-arguments">(<var class="var">A</var>)</code><a class="copiable-link" href="#index-rotdim"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rotdim-1"><span><code class="def-type"><var class="var">B</var> =</code> <strong class="def-name">rotdim</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">n</var>)</code><a class="copiable-link" href="#index-rotdim-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rotdim-2"><span><code class="def-type"><var class="var">B</var> =</code> <strong class="def-name">rotdim</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">n</var>, <var class="var">plane</var>)</code><a class="copiable-link" href="#index-rotdim-2"> &para;</a></span></dt>
+<dd><p>Return a copy of <var class="var">A</var> with the elements rotated counterclockwise in
+90-degree increments.
+</p>
+<p>The second argument <var class="var">n</var> is optional, and specifies how many 90-degree
+rotations are to be applied (the default value is 1).  Negative values of
+<var class="var">n</var> rotate the matrix in a clockwise direction.
+</p>
+<p>The third argument is also optional and defines the plane of the rotation.
+If present, <var class="var">plane</var> is a two element vector containing two different
+valid dimensions of the matrix.  When <var class="var">plane</var> is not given the first two
+non-singleton dimensions are used.
+</p>
+<p>For example,
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">rotdim ([1, 2; 3, 4], -1, [1, 2])
+     &rArr;   3  1
+         4  2
+</pre></div></div>
+
+<p>rotates the given matrix clockwise by 90 degrees.  The following are all
+equivalent statements:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">rotdim ([1, 2; 3, 4], -1, [1, 2])
+rotdim ([1, 2; 3, 4], 3, [1, 2])
+rotdim ([1, 2; 3, 4], 7, [1, 2])
+</pre></div></div>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFrot90">rot90</a>, <a class="ref" href="#XREFfliplr">fliplr</a>, <a class="ref" href="#XREFflipud">flipud</a>, <a class="ref" href="#XREFflip">flip</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFcat"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-cat"><span><code class="def-type"><var class="var">A</var> =</code> <strong class="def-name">cat</strong> <code class="def-code-arguments">(<var class="var">dim</var>, <var class="var">array1</var>, <var class="var">array2</var>, &hellip;, <var class="var">arrayN</var>)</code><a class="copiable-link" href="#index-cat"> &para;</a></span></dt>
+<dd><p>Return the concatenation of N-D array objects, <var class="var">array1</var>, <var class="var">array2</var>,
+&hellip;, <var class="var">arrayN</var> along dimension <var class="var">dim</var>.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">A = ones (2, 2);
+B = zeros (2, 2);
+cat (2, A, B)
+  &rArr;  1 1 0 0
+     1 1 0 0
+</pre></div></div>
+
+<p>Alternatively, we can concatenate <var class="var">A</var> and <var class="var">B</var> along the second
+dimension in the following way:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">[A, B]
+</pre></div></div>
+
+<p><var class="var">dim</var> can be larger than the dimensions of the N-D array objects and the
+result will thus have <var class="var">dim</var> dimensions as the following example shows:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">cat (4, ones (2, 2), zeros (2, 2))
+  &rArr;  ans(:,:,1,1) =
+
+       1 1
+       1 1
+
+     ans(:,:,1,2) =
+
+       0 0
+       0 0
+</pre></div></div>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFhorzcat">horzcat</a>, <a class="ref" href="#XREFvertcat">vertcat</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFhorzcat"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-horzcat"><span><code class="def-type"><var class="var">A</var> =</code> <strong class="def-name">horzcat</strong> <code class="def-code-arguments">(<var class="var">array1</var>, <var class="var">array2</var>, &hellip;, <var class="var">arrayN</var>)</code><a class="copiable-link" href="#index-horzcat"> &para;</a></span></dt>
+<dd><p>Return the horizontal concatenation of N-D array objects, <var class="var">array1</var>,
+<var class="var">array2</var>, &hellip;, <var class="var">arrayN</var> along dimension 2.
+</p>
+<p>Arrays may also be concatenated horizontally using the syntax for creating
+new matrices.  For example:
+</p>
+<div class="example">
+<pre class="example-preformatted"><var class="var">A</var> = [ <var class="var">array1</var>, <var class="var">array2</var>, ... ]
+</pre></div>
+
+<p>This syntax is slightly more efficient because the Octave parser can
+concatenate the arrays without the overhead of a function call.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFcat">cat</a>, <a class="ref" href="#XREFvertcat">vertcat</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFvertcat"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-vertcat"><span><code class="def-type"><var class="var">A</var> =</code> <strong class="def-name">vertcat</strong> <code class="def-code-arguments">(<var class="var">array1</var>, <var class="var">array2</var>, &hellip;, <var class="var">arrayN</var>)</code><a class="copiable-link" href="#index-vertcat"> &para;</a></span></dt>
+<dd><p>Return the vertical concatenation of N-D array objects, <var class="var">array1</var>,
+<var class="var">array2</var>, &hellip;, <var class="var">arrayN</var> along dimension 1.
+</p>
+<p>Arrays may also be concatenated vertically using the syntax for creating
+new matrices.  For example:
+</p>
+<div class="example">
+<pre class="example-preformatted"><var class="var">A</var> = [ <var class="var">array1</var>; <var class="var">array2</var>; ... ]
+</pre></div>
+
+<p>This syntax is slightly more efficient because the Octave parser can
+concatenate the arrays without the overhead of a function call.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFcat">cat</a>, <a class="ref" href="#XREFhorzcat">horzcat</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFpermute"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-permute"><span><code class="def-type"><var class="var">B</var> =</code> <strong class="def-name">permute</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">perm</var>)</code><a class="copiable-link" href="#index-permute"> &para;</a></span></dt>
+<dd><p>Return the generalized transpose for an N-D array object <var class="var">A</var>.
+</p>
+<p>The permutation vector <var class="var">perm</var> must contain the elements
+<code class="code">1:ndims&nbsp;(A)</code><!-- /@w -->&nbsp;(in any order, but each element must appear only
+once).  The <var class="var">N</var>th dimension of <var class="var">A</var> gets remapped to dimension
+<code class="code"><var class="var">PERM</var>(<var class="var">N</var>)</code>.  For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted"><var class="var">x</var> = zeros ([2, 3, 5, 7]);
+size (<var class="var">x</var>)
+   &rArr;   2   3   5   7
+
+size (permute (<var class="var">x</var>, [2, 1, 3, 4]))
+   &rArr;   3   2   5   7
+
+size (permute (<var class="var">x</var>, [1, 3, 4, 2]))
+   &rArr;   2   5   7   3
+
+## The identity permutation
+size (permute (<var class="var">x</var>, [1, 2, 3, 4]))
+   &rArr;   2   3   5   7
+</pre></div></div>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFipermute">ipermute</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFipermute"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-ipermute"><span><code class="def-type"><var class="var">A</var> =</code> <strong class="def-name">ipermute</strong> <code class="def-code-arguments">(<var class="var">B</var>, <var class="var">iperm</var>)</code><a class="copiable-link" href="#index-ipermute"> &para;</a></span></dt>
+<dd><p>The inverse of the <code class="code">permute</code> function.
+</p>
+<p>The expression
+</p>
+<div class="example">
+<pre class="example-preformatted">ipermute (permute (A, perm), perm)
+</pre></div>
+
+<p>returns the original array <var class="var">A</var>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFpermute">permute</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFreshape"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-reshape"><span><code class="def-type"><var class="var">B</var> =</code> <strong class="def-name">reshape</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">m</var>, <var class="var">n</var>, &hellip;)</code><a class="copiable-link" href="#index-reshape"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-reshape-1"><span><code class="def-type"><var class="var">B</var> =</code> <strong class="def-name">reshape</strong> <code class="def-code-arguments">(<var class="var">A</var>, [<var class="var">m</var> <var class="var">n</var> &hellip;])</code><a class="copiable-link" href="#index-reshape-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-reshape-2"><span><code class="def-type"><var class="var">B</var> =</code> <strong class="def-name">reshape</strong> <code class="def-code-arguments">(<var class="var">A</var>, &hellip;, [], &hellip;)</code><a class="copiable-link" href="#index-reshape-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-reshape-3"><span><code class="def-type"><var class="var">B</var> =</code> <strong class="def-name">reshape</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">size</var>)</code><a class="copiable-link" href="#index-reshape-3"> &para;</a></span></dt>
+<dd><p>Return a matrix with the specified dimensions (<var class="var">m</var>, <var class="var">n</var>, &hellip;)
+whose elements are taken from the matrix <var class="var">A</var>.
+</p>
+<p>The elements of the matrix are accessed in column-major order (like Fortran
+arrays are stored).
+</p>
+<p>The following code demonstrates reshaping a 1x4 row vector into a 2x2 square
+matrix.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">reshape ([1, 2, 3, 4], 2, 2)
+      &rArr;   1  3
+          2  4
+</pre></div></div>
+
+<p>Note that the total number of elements in the original matrix
+(<code class="code">prod (size (<var class="var">A</var>))</code>) must match the total number of elements
+in the new matrix (<code class="code">prod ([<var class="var">m</var> <var class="var">n</var> &hellip;])</code>).
+</p>
+<p>A single dimension of the return matrix may be left unspecified and Octave
+will determine its size automatically.  An empty matrix ([]) is used to flag
+the unspecified dimension.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFresize">resize</a>, <a class="ref" href="#XREFvec">vec</a>, <a class="ref" href="#XREFpostpad">postpad</a>, <a class="ref" href="#XREFcat">cat</a>, <a class="ref" href="Object-Sizes.html#XREFsqueeze">squeeze</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFresize"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-resize"><span><code class="def-type"><var class="var">B</var> =</code> <strong class="def-name">resize</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">m</var>)</code><a class="copiable-link" href="#index-resize"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-resize-1"><span><code class="def-type"><var class="var">B</var> =</code> <strong class="def-name">resize</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">m</var>, <var class="var">n</var>, &hellip;)</code><a class="copiable-link" href="#index-resize-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-resize-2"><span><code class="def-type"><var class="var">B</var> =</code> <strong class="def-name">resize</strong> <code class="def-code-arguments">(<var class="var">A</var>, [<var class="var">m</var> <var class="var">n</var> &hellip;])</code><a class="copiable-link" href="#index-resize-2"> &para;</a></span></dt>
+<dd><p>Resize <var class="var">A</var> cutting off elements as necessary.
+</p>
+<p>In the result, element with certain indices is equal to the corresponding
+element of <var class="var">A</var> if the indices are within the bounds of <var class="var">A</var>; otherwise,
+the element is set to zero.
+</p>
+<p>In other words, the statement
+</p>
+<div class="example">
+<pre class="example-preformatted">B = resize (A, dv)
+</pre></div>
+
+<p>is equivalent to the following code:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">B = zeros (dv, class (A));
+sz = min (dv, size (A));
+for i = 1:length (sz)
+  idx{i} = 1:sz(i);
+endfor
+B(idx{:}) = A(idx{:});
+</pre></div></div>
+
+<p>but is performed more efficiently.
+</p>
+<p>If only <var class="var">m</var> is supplied, and it is a scalar, the dimension of the result is
+<var class="var">m</var>-by-<var class="var">m</var>.  If <var class="var">m</var>, <var class="var">n</var>, &hellip; are all scalars, then the
+dimensions of the result are <var class="var">m</var>-by-<var class="var">n</var>-by-<small class="enddots">...</small>  If given a
+vector as input, then the dimensions of the result are given by the elements of
+that vector.
+</p>
+<p>An object can be resized to more dimensions than it has; in such case the
+missing dimensions are assumed to be 1.  Resizing an object to fewer dimensions
+is not possible.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFreshape">reshape</a>, <a class="ref" href="#XREFpostpad">postpad</a>, <a class="ref" href="#XREFprepad">prepad</a>, <a class="ref" href="#XREFcat">cat</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFcircshift"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-circshift"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">circshift</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">n</var>)</code><a class="copiable-link" href="#index-circshift"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-circshift-1"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">circshift</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">n</var>, <var class="var">dim</var>)</code><a class="copiable-link" href="#index-circshift-1"> &para;</a></span></dt>
+<dd><p>Circularly shift the values of the array <var class="var">x</var>.
+</p>
+<p><var class="var">n</var> must be a vector of integers no longer than the number of dimensions
+in <var class="var">x</var>.  The values of <var class="var">n</var> can be either positive or negative, which
+determines the direction in which the values of <var class="var">x</var> are shifted.  If an
+element of <var class="var">n</var> is zero, then the corresponding dimension of <var class="var">x</var> will
+not be shifted.  If <var class="var">n</var> is a scalar and no <var class="var">dim</var> is specified then
+the shift is applied to the first non-singular dimension.
+</p>
+<p>If a scalar <var class="var">dim</var> is given then operate along the specified dimension.
+In this case <var class="var">n</var> must be a scalar as well.
+</p>
+<p>Examples:
+</p>
+<div class="example">
+<pre class="example-preformatted">x = [1, 2, 3;
+     4, 5, 6;
+     7, 8, 9];
+## positive shift on rows (1st non-singular dim)
+circshift (x, 1)
+  &rArr; 
+       7   8   9
+       1   2   3
+       4   5   6
+## negative shift on rows (1st non-singular dim)
+circshift (x, -2)
+  &rArr; 
+       7   8   9
+       1   2   3
+       4   5   6
+## no shift of rows, shift columns by 1 (2nd dimension)
+circshift (x, [0,1])
+  &rArr; 
+       3   1   2
+       6   4   5
+       9   7   8
+## shift columns (2nd dimension)
+circshift (x, 1, 2)
+  &rArr; 
+       3   1   2
+       6   4   5
+       9   7   8
+</pre></div>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFpermute">permute</a>, <a class="ref" href="#XREFipermute">ipermute</a>, <a class="ref" href="#XREFshiftdim">shiftdim</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFshiftdim"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-shiftdim"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">shiftdim</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">n</var>)</code><a class="copiable-link" href="#index-shiftdim"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-shiftdim-1"><span><code class="def-type">[<var class="var">y</var>, <var class="var">ns</var>] =</code> <strong class="def-name">shiftdim</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-shiftdim-1"> &para;</a></span></dt>
+<dd><p>Shift the dimensions of <var class="var">x</var> by <var class="var">n</var>, where <var class="var">n</var> must be
+an integer scalar.
+</p>
+<p>When <var class="var">n</var> is positive, the dimensions of <var class="var">x</var> are shifted to the left,
+with the leading dimensions circulated to the end.  If <var class="var">n</var> is negative,
+then the dimensions of <var class="var">x</var> are shifted to the right, with <var class="var">n</var>
+leading singleton dimensions added.
+</p>
+<p>Called with a single argument, <code class="code">shiftdim</code>, removes the leading
+singleton dimensions, returning the number of dimensions removed in the
+second output argument <var class="var">ns</var>.
+</p>
+<p>For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">x = ones (1, 2, 3);
+size (shiftdim (x, -1))
+  &rArr;    1   1   2   3
+size (shiftdim (x, 1))
+  &rArr;    2   3
+[b, ns] = shiftdim (x)
+  &rArr;  b =
+        1   1   1
+        1   1   1
+  &rArr;  ns = 1
+</pre></div></div>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFreshape">reshape</a>, <a class="ref" href="#XREFpermute">permute</a>, <a class="ref" href="#XREFipermute">ipermute</a>, <a class="ref" href="#XREFcircshift">circshift</a>, <a class="ref" href="Object-Sizes.html#XREFsqueeze">squeeze</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFsort"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-sort"><span><code class="def-type">[<var class="var">s</var>, <var class="var">i</var>] =</code> <strong class="def-name">sort</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-sort"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-sort-1"><span><code class="def-type">[<var class="var">s</var>, <var class="var">i</var>] =</code> <strong class="def-name">sort</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">dim</var>)</code><a class="copiable-link" href="#index-sort-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-sort-2"><span><code class="def-type">[<var class="var">s</var>, <var class="var">i</var>] =</code> <strong class="def-name">sort</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">mode</var>)</code><a class="copiable-link" href="#index-sort-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-sort-3"><span><code class="def-type">[<var class="var">s</var>, <var class="var">i</var>] =</code> <strong class="def-name">sort</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">dim</var>, <var class="var">mode</var>)</code><a class="copiable-link" href="#index-sort-3"> &para;</a></span></dt>
+<dd><p>Return a copy of <var class="var">x</var> with the elements arranged in increasing order.
+</p>
+<p>For matrices, <code class="code">sort</code> orders the elements within columns
+</p>
+<p>For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">sort ([1, 2; 2, 3; 3, 1])
+   &rArr;   1  1
+       2  2
+       3  3
+</pre></div></div>
+
+<p>If the optional argument <var class="var">dim</var> is given, then the matrix is sorted
+along the dimension defined by <var class="var">dim</var>.  The optional argument <var class="var">mode</var>
+defines the order in which the values will be sorted.  Valid values of
+<var class="var">mode</var> are <code class="code">&quot;ascend&quot;</code> or <code class="code">&quot;descend&quot;</code>.
+</p>
+<p>The <code class="code">sort</code> function may also be used to produce a matrix
+containing the original row indices of the elements in the sorted
+matrix.  For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">[s, i] = sort ([1, 2; 2, 3; 3, 1])
+  &rArr;  s = 1  1
+         2  2
+         3  3
+  &rArr;  i = 1  3
+         2  1
+         3  2
+</pre></div></div>
+
+<p>For equal elements, the indices are such that equal elements are listed
+in the order in which they appeared in the original list.
+</p>
+<p>Sorting of complex entries is done first by magnitude
+(<code class="code">abs&nbsp;(<var class="var">z</var>)</code><!-- /@w -->)&nbsp;and for any ties by phase angle
+(<code class="code">angle&nbsp;(z)</code><!-- /@w -->).  For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">sort ([1+i; 1; 1-i])
+    &rArr;  1 + 0i
+       1 - 1i
+       1 + 1i
+</pre></div></div>
+
+<p>NaN values are treated as being greater than any other value and are sorted
+to the end of the list.
+</p>
+<p>The <code class="code">sort</code> function may also be used to sort strings and cell arrays
+of strings, in which case ASCII dictionary order (uppercase &rsquo;A&rsquo; precedes
+lowercase &rsquo;a&rsquo;) of the strings is used.
+</p>
+<p>The algorithm used in <code class="code">sort</code> is optimized for the sorting of partially
+ordered lists.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFsortrows">sortrows</a>, <a class="ref" href="#XREFissorted">issorted</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFsortrows"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-sortrows"><span><code class="def-type">[<var class="var">s</var>, <var class="var">i</var>] =</code> <strong class="def-name">sortrows</strong> <code class="def-code-arguments">(<var class="var">A</var>)</code><a class="copiable-link" href="#index-sortrows"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-sortrows-1"><span><code class="def-type">[<var class="var">s</var>, <var class="var">i</var>] =</code> <strong class="def-name">sortrows</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">c</var>)</code><a class="copiable-link" href="#index-sortrows-1"> &para;</a></span></dt>
+<dd><p>Sort the rows of the matrix <var class="var">A</var> according to the order of the columns
+specified in <var class="var">c</var>.
+</p>
+<p>By default (<var class="var">c</var> omitted, or a particular column unspecified in <var class="var">c</var>)
+an ascending sort order is used.  However, if elements of <var class="var">c</var> are
+negative then the corresponding column is sorted in descending order.  If
+the elements of <var class="var">A</var> are strings then a lexicographical sort is used.
+</p>
+<p>Example: sort by column 2 in descending order, then 3 in ascending order
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">x = [ 7, 1, 4;
+      8, 3, 5;
+      9, 3, 6 ];
+sortrows (x, [-2, 3])
+   &rArr;  8  3  5
+      9  3  6
+      7  1  4
+</pre></div></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFsort">sort</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFissorted"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-issorted"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">issorted</strong> <code class="def-code-arguments">(<var class="var">A</var>)</code><a class="copiable-link" href="#index-issorted"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-issorted-1"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">issorted</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">mode</var>)</code><a class="copiable-link" href="#index-issorted-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-issorted-2"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">issorted</strong> <code class="def-code-arguments">(<var class="var">A</var>, &quot;rows&quot;, <var class="var">mode</var>)</code><a class="copiable-link" href="#index-issorted-2"> &para;</a></span></dt>
+<dd><p>Return true if the vector <var class="var">A</var> is sorted according to <var class="var">mode</var>, which may
+be either <code class="code">&quot;ascend&quot;</code>, <code class="code">&quot;descend&quot;</code>, <code class="code">&quot;either&quot;</code>, or
+<code class="code">&quot;monotonic&quot;</code> (<code class="code">&quot;either&quot;</code> and <code class="code">&quot;monotonic&quot;</code> are equivalent).
+</p>
+<p>By default, <var class="var">mode</var> is <code class="code">&quot;ascend&quot;</code>.  NaNs are treated in the same manner
+as <code class="code">sort</code>.
+</p>
+<p>If the optional argument <code class="code">&quot;rows&quot;</code> is supplied, check whether the matrix
+is sorted by rows as output by the function <code class="code">sortrows</code> (with no options).
+<em class="emph">Note:</em> the <code class="code">&quot;rows&quot;</code> argument can not be used with sparse matrices.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFsort">sort</a>, <a class="ref" href="#XREFsortrows">sortrows</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFnth_005felement"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-nth_005felement"><span><code class="def-type"><var class="var">nel</var> =</code> <strong class="def-name">nth_element</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">n</var>)</code><a class="copiable-link" href="#index-nth_005felement"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-nth_005felement-1"><span><code class="def-type"><var class="var">nel</var> =</code> <strong class="def-name">nth_element</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">n</var>, <var class="var">dim</var>)</code><a class="copiable-link" href="#index-nth_005felement-1"> &para;</a></span></dt>
+<dd><p>Select the n-th smallest element of a vector, using the ordering defined by
+<code class="code">sort</code>.
+</p>
+<p>The result is equivalent to <code class="code">sort(<var class="var">x</var>)(<var class="var">n</var>)</code>.
+</p>
+<p><var class="var">n</var> can also be a contiguous range, either ascending <code class="code">l:u</code>
+or descending <code class="code">u:-1:l</code>, in which case a range of elements is returned.
+</p>
+<p>If <var class="var">x</var> is an array, <code class="code">nth_element</code> operates along the dimension
+defined by <var class="var">dim</var>, or the first non-singleton dimension if <var class="var">dim</var> is
+not given.
+</p>
+<p>Programming Note: nth_element encapsulates the C++ standard library
+algorithms nth_element and partial_sort.  On average, the complexity of the
+operation is O(M*log(K)), where <code class="code">M&nbsp;=&nbsp;size&nbsp;(<var class="var">x</var>,&nbsp;<var class="var">dim</var>)</code><!-- /@w -->&nbsp;and
+<code class="code">K&nbsp;=&nbsp;length&nbsp;(<var class="var">n</var>)</code><!-- /@w -->.  This function is intended for cases where
+the ratio K/M is small; otherwise, it may be better to use <code class="code">sort</code>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFsort">sort</a>, <a class="ref" href="Utility-Functions.html#XREFmin">min</a>, <a class="ref" href="Utility-Functions.html#XREFmax">max</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFtril"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-tril"><span><code class="def-type"><var class="var">A_LO</var> =</code> <strong class="def-name">tril</strong> <code class="def-code-arguments">(<var class="var">A</var>)</code><a class="copiable-link" href="#index-tril"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-tril-1"><span><code class="def-type"><var class="var">A_LO</var> =</code> <strong class="def-name">tril</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">k</var>)</code><a class="copiable-link" href="#index-tril-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-tril-2"><span><code class="def-type"><var class="var">A_LO</var> =</code> <strong class="def-name">tril</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">k</var>, <var class="var">pack</var>)</code><a class="copiable-link" href="#index-tril-2"> &para;</a></span></dt>
+<dd><p>Return a new matrix formed by extracting the lower triangular part of the
+matrix <var class="var">A</var>, and setting all other elements to zero.
+</p>
+<p>The optional second argument specifies how many diagonals above or below the
+main diagonal should also be set to zero.  The default value of <var class="var">k</var> is
+zero which includes the main diagonal as part of the result.  If the value of
+<var class="var">k</var> is a nonzero integer then the selection of elements starts at an offset
+of <var class="var">k</var> diagonals above the main diagonal for positive <var class="var">k</var> or below the
+main diagonal for negative <var class="var">k</var>.  The absolute value of <var class="var">k</var> may not be
+greater than the number of subdiagonals or superdiagonals.
+</p>
+<p>Example 1 : exclude main diagonal
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">tril (ones (3), -1)
+     &rArr;   0  0  0
+         1  0  0
+         1  1  0
+</pre></div></div>
+
+
+<p>Example 2 : include first superdiagonal
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">tril (ones (3), 1)
+     &rArr;   1  1  0
+         1  1  1
+         1  1  1
+</pre></div></div>
+
+<p>If the optional third argument <code class="code">&quot;pack&quot;</code> is given then the extracted
+elements are not inserted into a matrix, but instead stacked column-wise one
+above another, and returned as a column vector.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFtriu">triu</a>, <a class="ref" href="Predicates-for-Numeric-Objects.html#XREFistril">istril</a>, <a class="ref" href="#XREFdiag">diag</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFtriu"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-triu"><span><code class="def-type"><var class="var">A_UP</var> =</code> <strong class="def-name">triu</strong> <code class="def-code-arguments">(<var class="var">A</var>)</code><a class="copiable-link" href="#index-triu"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-triu-1"><span><code class="def-type"><var class="var">A_UP</var> =</code> <strong class="def-name">triu</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">k</var>)</code><a class="copiable-link" href="#index-triu-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-triu-2"><span><code class="def-type"><var class="var">A_UP</var> =</code> <strong class="def-name">triu</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">k</var>, <var class="var">pack</var>)</code><a class="copiable-link" href="#index-triu-2"> &para;</a></span></dt>
+<dd><p>Return a new matrix formed by extracting the upper triangular part of the
+matrix <var class="var">A</var>, and setting all other elements to zero.
+</p>
+<p>The optional second argument specifies how many diagonals above or below the
+main diagonal should also be set to zero.  The default value of <var class="var">k</var> is
+zero which includes the main diagonal as part of the result.  If the value of
+<var class="var">k</var> is a nonzero integer then the selection of elements starts at an offset
+of <var class="var">k</var> diagonals above the main diagonal for positive <var class="var">k</var> or below the
+main diagonal for negative <var class="var">k</var>.  The absolute value of <var class="var">k</var> may not be
+greater than the number of subdiagonals or superdiagonals.
+</p>
+<p>Example 1 : exclude main diagonal
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">triu (ones (3), 1)
+     &rArr;   0  1  1
+         0  0  1
+         0  0  0
+</pre></div></div>
+
+
+<p>Example 2 : include first subdiagonal
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">triu (ones (3), -1)
+     &rArr;   1  1  1
+         1  1  1
+         0  1  1
+</pre></div></div>
+
+<p>If the optional third argument <code class="code">&quot;pack&quot;</code> is given then the extracted
+elements are not inserted into a matrix, but instead stacked column-wise one
+above another, and returned as a column vector.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFtril">tril</a>, <a class="ref" href="Predicates-for-Numeric-Objects.html#XREFistriu">istriu</a>, <a class="ref" href="#XREFdiag">diag</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFvec"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-vec"><span><code class="def-type"><var class="var">v</var> =</code> <strong class="def-name">vec</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-vec"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-vec-1"><span><code class="def-type"><var class="var">v</var> =</code> <strong class="def-name">vec</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">dim</var>)</code><a class="copiable-link" href="#index-vec-1"> &para;</a></span></dt>
+<dd><p>Return the vector obtained by stacking the columns of the matrix <var class="var">x</var>
+one above the other.
+</p>
+<p>Without <var class="var">dim</var> this is equivalent to <code class="code"><var class="var">x</var>(:)</code>.
+</p>
+<p>If <var class="var">dim</var> is supplied, the dimensions of <var class="var">v</var> are set to <var class="var">dim</var>
+with all elements along the last dimension.  This is equivalent to
+<code class="code">shiftdim (<var class="var">x</var>(:), 1-<var class="var">dim</var>)</code>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFvech">vech</a>, <a class="ref" href="#XREFresize">resize</a>, <a class="ref" href="#XREFcat">cat</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFvech"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-vech"><span><code class="def-type"><var class="var">v</var> =</code> <strong class="def-name">vech</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-vech"> &para;</a></span></dt>
+<dd><p>Return the vector obtained by eliminating all superdiagonal elements of
+the square matrix <var class="var">x</var> and stacking the result one column above the
+other.
+</p>
+<p>This has uses in matrix calculus where the underlying matrix is symmetric
+and it would be pointless to keep values above the main diagonal.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFvec">vec</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFprepad"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-prepad"><span><code class="def-type"><var class="var">B</var> =</code> <strong class="def-name">prepad</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">l</var>)</code><a class="copiable-link" href="#index-prepad"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-prepad-1"><span><code class="def-type"><var class="var">B</var> =</code> <strong class="def-name">prepad</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">l</var>, <var class="var">c</var>)</code><a class="copiable-link" href="#index-prepad-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-prepad-2"><span><code class="def-type"><var class="var">B</var> =</code> <strong class="def-name">prepad</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">l</var>, <var class="var">c</var>, <var class="var">dim</var>)</code><a class="copiable-link" href="#index-prepad-2"> &para;</a></span></dt>
+<dd><p>Prepend the scalar value <var class="var">c</var> to the vector <var class="var">A</var> until it is of length
+<var class="var">l</var>.  If <var class="var">c</var> is not given, a value of 0 is used.
+</p>
+<p>If <code class="code">length (<var class="var">A</var>) &gt; <var class="var">l</var></code>, elements from the beginning of <var class="var">A</var>
+are removed until a vector of length <var class="var">l</var> is obtained.
+</p>
+<p>If <var class="var">A</var> is a matrix, elements are prepended or removed from each row.
+</p>
+<p>If the optional argument <var class="var">dim</var> is given, operate along this dimension.
+</p>
+<p>If <var class="var">dim</var> is larger than the dimensions of <var class="var">A</var>, the result will have
+<var class="var">dim</var> dimensions.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFpostpad">postpad</a>, <a class="ref" href="#XREFcat">cat</a>, <a class="ref" href="#XREFresize">resize</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFpostpad"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-postpad"><span><code class="def-type"><var class="var">B</var> =</code> <strong class="def-name">postpad</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">l</var>)</code><a class="copiable-link" href="#index-postpad"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-postpad-1"><span><code class="def-type"><var class="var">B</var> =</code> <strong class="def-name">postpad</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">l</var>, <var class="var">c</var>)</code><a class="copiable-link" href="#index-postpad-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-postpad-2"><span><code class="def-type"><var class="var">B</var> =</code> <strong class="def-name">postpad</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">l</var>, <var class="var">c</var>, <var class="var">dim</var>)</code><a class="copiable-link" href="#index-postpad-2"> &para;</a></span></dt>
+<dd><p>Append the scalar value <var class="var">c</var> to the vector <var class="var">A</var> until it is of length
+<var class="var">l</var>.  If <var class="var">c</var> is not given, a value of 0 is used.
+</p>
+<p>If <code class="code">length (<var class="var">A</var>) &gt; <var class="var">l</var></code>, elements from the end of <var class="var">A</var> are
+removed until a vector of length <var class="var">l</var> is obtained.
+</p>
+<p>If <var class="var">A</var> is a matrix, elements are appended or removed from each row.
+</p>
+<p>If the optional argument <var class="var">dim</var> is given, operate along this dimension.
+</p>
+<p>If <var class="var">dim</var> is larger than the dimensions of <var class="var">A</var>, the result will have
+<var class="var">dim</var> dimensions.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFprepad">prepad</a>, <a class="ref" href="#XREFcat">cat</a>, <a class="ref" href="#XREFresize">resize</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFdiag"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-diag"><span><code class="def-type"><var class="var">M</var> =</code> <strong class="def-name">diag</strong> <code class="def-code-arguments">(<var class="var">v</var>)</code><a class="copiable-link" href="#index-diag"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-diag-1"><span><code class="def-type"><var class="var">M</var> =</code> <strong class="def-name">diag</strong> <code class="def-code-arguments">(<var class="var">v</var>, <var class="var">k</var>)</code><a class="copiable-link" href="#index-diag-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-diag-2"><span><code class="def-type"><var class="var">M</var> =</code> <strong class="def-name">diag</strong> <code class="def-code-arguments">(<var class="var">v</var>, <var class="var">m</var>, <var class="var">n</var>)</code><a class="copiable-link" href="#index-diag-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-diag-3"><span><code class="def-type"><var class="var">v</var> =</code> <strong class="def-name">diag</strong> <code class="def-code-arguments">(<var class="var">M</var>)</code><a class="copiable-link" href="#index-diag-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-diag-4"><span><code class="def-type"><var class="var">v</var> =</code> <strong class="def-name">diag</strong> <code class="def-code-arguments">(<var class="var">M</var>, <var class="var">k</var>)</code><a class="copiable-link" href="#index-diag-4"> &para;</a></span></dt>
+<dd><p>Return a diagonal matrix with vector <var class="var">v</var> on diagonal <var class="var">k</var>.
+</p>
+<p>The second argument is optional.  If it is positive, the vector is placed on
+the <var class="var">k</var>-th superdiagonal.  If it is negative, it is placed on the
+<var class="var">-k</var>-th subdiagonal.  The default value of <var class="var">k</var> is 0, and the vector
+is placed on the main diagonal.  For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">diag ([1, 2, 3], 1)
+   &rArr;   0  1  0  0
+       0  0  2  0
+       0  0  0  3
+       0  0  0  0
+</pre></div></div>
+
+<p>The 3-input form returns a diagonal matrix with vector <var class="var">v</var> on the main
+diagonal and the resulting matrix being of size <var class="var">m</var> rows x <var class="var">n</var>
+columns.
+</p>
+<p>Given a matrix argument, instead of a vector, <code class="code">diag</code> extracts the
+<var class="var">k</var>-th diagonal of the matrix.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFblkdiag"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-blkdiag"><span><code class="def-type"><var class="var">M</var> =</code> <strong class="def-name">blkdiag</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">B</var>, <var class="var">C</var>, &hellip;)</code><a class="copiable-link" href="#index-blkdiag"> &para;</a></span></dt>
+<dd><p>Build a block diagonal matrix from <var class="var">A</var>, <var class="var">B</var>, <var class="var">C</var>, <small class="enddots">...</small>
+</p>
+<p>All arguments must be numeric and either two-dimensional matrices or
+scalars.  If any argument is of type sparse, the output will also be sparse.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFdiag">diag</a>, <a class="ref" href="#XREFhorzcat">horzcat</a>, <a class="ref" href="#XREFvertcat">vertcat</a>, <a class="ref" href="Creating-Sparse-Matrices.html#XREFsparse">sparse</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Special-Utility-Matrices.html">Special Utility Matrices</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Finding-Elements-and-Checking-Conditions.html">Finding Elements and Checking Conditions</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Matrix-Manipulation.html">Matrix Manipulation</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

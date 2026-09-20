@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- General documentation for the parallel package for Octave.
+
+Copyright (C) 2016-2023 Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>select_sockets (parallel_doc)</title>
+
+<meta name="description" content="select_sockets (parallel_doc)">
+<meta name="keywords" content="select_sockets (parallel_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Cluster-execution.html" rel="up" title="Cluster execution">
+<link href="Example.html" rel="next" title="Example">
+<link href="reval.html" rel="prev" title="reval">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<span id="select_005fsockets"></span><div class="header">
+<p>
+Next: <a href="Example.html" accesskey="n" rel="next">Example</a>, Previous: <a href="reval.html" accesskey="p" rel="prev">reval</a>, Up: <a href="Cluster-execution.html" accesskey="u" rel="up">Cluster execution</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Call-Unix-select-for-data-connections"></span><h3 class="section">3.15 Call Unix <code>select</code> for data connections</h3>
+<span id="index-select-sockets"></span>
+
+<span id="XREFselect_005fsockets"></span><dl>
+<dt id="index-select_005fsockets">Loadable Function: <em></em> <strong>select_sockets</strong> <em>(<var>connections</var>, <var>timeout</var>)</em></dt>
+<dt id="index-select_005fsockets-1">Loadable Function: <em></em> <strong>select_sockets</strong> <em>(<var>connections</var>, <var>timeout</var>, <var>nfds</var>)</em></dt>
+<dd><p>Calls Unix <code>select</code> for data connections in a parallel cluster.
+</p>
+<p>This function is for advanced usage (and therefore has minimal
+documentation), typically the programming of schedulers. It can be
+called at the client or at a server.
+</p>
+<p><var>connections</var>: valid connections object (see <code>pconnect</code> and
+<code>pserver</code>, possibly indexed).
+</p>
+<p><var>timeout</var>: seconds, negative for infinite.
+</p>
+<p><var>nfds</var>: Passed to Unix <code>select</code> as first argument, see
+documentation of Uix <code>select</code>. Default: <code>FD_SETSIZE</code>
+(platform specific).
+</p>
+<p>An error is returned if nfds or a watched filedescriptor plus one
+exceeds FD_SETSIZE.
+</p>
+<p>Returns an index vector to <var>connections</var> indicating connections
+with pending input, readable with <code>precv</code>.
+</p>
+<p>If called at the client, the command connections are included into the
+UNIX <code>select</code> call and checked for error flags, and
+<code>select_sockets</code> returns an error if a flag for a remote error is
+received.
+</p>
+
+<p><strong>See also:</strong> <a href="pconnect.html#XREFpconnect">pconnect</a>, <a href="pserver.html#XREFpserver">pserver</a>, <a href="reval.html#XREFreval">reval</a>, <a href="psend.html#XREFpsend">psend</a>, <a href="precv.html#XREFprecv">precv</a>, <a href="sclose.html#XREFsclose">sclose</a>, <a href="Authentication.html#XREFparallel_005fgenerate_005fsrp_005fdata">parallel_generate_srp_data</a>.
+</p></dd></dl>
+
+
+
+
+
+
+
+</body>
+</html>

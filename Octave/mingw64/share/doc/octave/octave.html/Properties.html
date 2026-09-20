@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Properties (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Properties (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Properties (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="classdef-Classes.html" rel="up" title="classdef Classes">
+<link href="Methods.html" rel="next" title="Methods">
+<link href="Creating-a-classdef-Class.html" rel="prev" title="Creating a classdef Class">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Properties">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Methods.html" accesskey="n" rel="next">Methods</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Creating-a-classdef-Class.html" accesskey="p" rel="prev">Creating a <code class="code">classdef</code> Class</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="classdef-Classes.html" accesskey="u" rel="up"><code class="code">classdef</code> Classes</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Properties-1"><span>34.6.2 Properties<a class="copiable-link" href="#Properties-1"> &para;</a></span></h4>
+
+<p>All class properties must be defined within <code class="code">properties</code> blocks.  The
+definition of a default value for a property is optional and can be omitted.
+The default initial value for each class property is <code class="code">[]</code>.
+</p>
+<p>A <code class="code">properties</code> block can have additional attributes to specify access
+rights or to define constants:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">classdef some_class
+  properties (Access = <var class="var">mode</var>)
+    <var class="var">prop1</var>
+  endproperties
+
+  properties (SetAccess = <var class="var">mode</var>, GetAccess = <var class="var">mode</var>)
+    <var class="var">prop2</var>
+  endproperties
+
+  properties (Constant = true)
+    <var class="var">prop3</var> = pi ()
+  endproperties
+
+  properties
+    <var class="var">prop4</var> = 1337
+  endproperties
+endclassdef
+</pre></div></div>
+
+<p>where <var class="var">mode</var> can be one of:
+</p>
+<dl class="table">
+<dt><code class="code">public</code></dt>
+<dd><p>The properties can be accessed from everywhere.
+</p>
+</dd>
+<dt><code class="code">private</code></dt>
+<dd><p>The properties can only be accessed from class methods.  Subclasses of that
+class cannot access them.
+</p>
+</dd>
+<dt><code class="code">protected</code></dt>
+<dd><p>The properties can only be accessed from class methods and from subclasses
+of that class.
+</p></dd>
+</dl>
+
+<p>When creating an object of <code class="code">some_class</code>, <var class="var">prop1</var> has the default
+value <code class="code">[]</code> and reading from and writing to <var class="var">prop1</var> is defined by
+a single <var class="var">mode</var>.  For <var class="var">prop2</var> the read and write access can be set
+differently.  Finally, <var class="var">prop3</var> is a constant property which can only be
+initialized once within the <code class="code">properties</code> block.
+</p>
+<p>By default, in the example <var class="var">prop4</var>, properties are not constant and have
+public read and write access.
+</p>
+<a class="anchor" id="XREFproperties"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-properties"><span><strong class="def-name">properties</strong> <code class="def-code-arguments">(<var class="var">obj</var>)</code><a class="copiable-link" href="#index-properties"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-properties-1"><span><strong class="def-name">properties</strong> <code class="def-code-arguments">(<var class="var">class_name</var>)</code><a class="copiable-link" href="#index-properties-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-properties-2"><span><code class="def-type"><var class="var">proplist</var> =</code> <strong class="def-name">properties</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-properties-2"> &para;</a></span></dt>
+<dd><p>Display or return the public properties for the classdef object <var class="var">obj</var> or
+the named class <var class="var">class_name</var>.
+</p>
+<p>If an output value is requested, return the list of property names in a cell
+array.
+</p>
+<p>Programming Note: Property names are returned if the <code class="code">GetAccess</code> attribute
+is public and if the <code class="code">Hidden</code> attribute is false.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Creating-a-Class.html#XREFmethods">methods</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Methods.html">Methods</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Creating-a-classdef-Class.html">Creating a <code class="code">classdef</code> Class</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="classdef-Classes.html"><code class="code">classdef</code> Classes</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

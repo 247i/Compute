@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>&quot;latex&quot; interpreter (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="&quot;latex&quot; interpreter (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="&quot;latex&quot; interpreter (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Use-of-the-_0022interpreter_0022-Property.html" rel="up" title="Use of the &quot;interpreter&quot; Property">
+<link href="_0022tex_0022-interpreter.html" rel="prev" title="&quot;tex&quot; interpreter">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsubsection-level-extent" id="g_t_0022latex_0022-interpreter">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="_0022tex_0022-interpreter.html" accesskey="p" rel="prev">&quot;tex&quot; interpreter</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Use-of-the-_0022interpreter_0022-Property.html" accesskey="u" rel="up">Use of the &quot;interpreter&quot; Property</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsubsection" id="g_t_0022latex_0022-interpreter-1"><span>15.2.8.3 &quot;latex&quot; interpreter<a class="copiable-link" href="#g_t_0022latex_0022-interpreter-1"> &para;</a></span></h4>
+
+<p>The <code class="code">&quot;latex&quot;</code> interpreter only works if an external LaTeX tool chain
+is present.  Three binaries are needed: <code class="code">latex</code>, <code class="code">dvipng</code>, and
+<code class="code">dvisvgm</code>.  If those binaries are installed but not on the path, one can
+still provide their respective path using the following environment variables:
+<code class="env">OCTAVE_LATEX_BINARY</code><!-- /@w -->, <code class="env">OCTAVE_DVIPNG_BINARY</code><!-- /@w -->, and
+<code class="env">OCTAVE_DVISVG_BINARY</code><!-- /@w -->.
+</p>
+<p>Note that Octave does not parse or validate the text strings when in
+<code class="code">&quot;latex&quot;</code> mode&mdash;it is the responsibility of the programmer to generate
+valid strings which may include wrapping sections that should appear in Math
+mode with <code class="code">'$'</code> characters.
+See, for example, <a class="url" href="https://www.latex-project.org/help/documentation/">https://www.latex-project.org/help/documentation/</a> for
+documentation about LaTeX typesetting.
+</p>
+<p>For debugging purpose, a convenience environment variable,
+<code class="env">OCTAVE_LATEX_DEBUG</code><!-- /@w -->, can be set to trigger more verbose output when
+Octave fails to have a given text compiled by an external LaTeX engine.  For
+example, <code class="code">&quot;x^2&quot;</code> is not a valid LaTeX string and the following example
+should fail
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">setenv (&quot;OCTAVE_LATEX_DEBUG&quot;, &quot;1&quot;)
+x = 1:10;
+plot (x, x.^2)
+title (&quot;x^2&quot;, &quot;interpreter&quot;, &quot;latex&quot;)
+</pre></div></div>
+
+<p>Searching the terminal output you should find some helpful info about the
+origin of the failure:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">...
+No file default.aux.
+! Missing $ inserted.
+&lt;inserted text&gt;
+                $
+l.6 x^
+      2
+! Missing $ inserted.
+...
+</pre></div></div>
+
+<p>If no usable LaTeX tool chain is found at the first text rendering, using
+the <code class="code">&quot;latex&quot;</code> interpreter is equivalent to <code class="code">&quot;none&quot;</code>.
+</p>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="_0022tex_0022-interpreter.html">&quot;tex&quot; interpreter</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Use-of-the-_0022interpreter_0022-Property.html">Use of the &quot;interpreter&quot; Property</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

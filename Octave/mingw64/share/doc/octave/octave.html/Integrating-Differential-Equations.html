@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Integrating Differential Equations (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Integrating Differential Equations (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Integrating Differential Equations (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Simple-Examples.html" rel="up" title="Simple Examples">
+<link href="Producing-Graphical-Output.html" rel="next" title="Producing Graphical Output">
+<link href="Solving-Systems-of-Linear-Equations.html" rel="prev" title="Solving Systems of Linear Equations">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Integrating-Differential-Equations">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Producing-Graphical-Output.html" accesskey="n" rel="next">Producing Graphical Output</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Solving-Systems-of-Linear-Equations.html" accesskey="p" rel="prev">Solving Systems of Linear Equations</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Simple-Examples.html" accesskey="u" rel="up">Simple Examples</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Integrating-Differential-Equations-1"><span>1.2.5 Integrating Differential Equations<a class="copiable-link" href="#Integrating-Differential-Equations-1"> &para;</a></span></h4>
+
+<p>Octave has built-in functions for solving nonlinear differential
+equations of the form
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">dx
+-- = f (x, t)
+dt
+</pre></div></div>
+
+<p>with the initial condition
+</p>
+<div class="example">
+<pre class="example-preformatted">x(t = t0) = x0
+</pre></div>
+
+<p>For Octave to integrate equations of this form, you must first provide a
+definition of the function
+<code class="code">f(x,t)</code>.
+This is straightforward, and may be accomplished by entering the
+function body directly on the command line.  For example, the following
+commands define the right-hand side function for an interesting pair of
+nonlinear differential equations.  Note that while you are entering a
+function, Octave responds with a different prompt, to indicate that it
+is waiting for you to complete your input.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">octave:1&gt; function xdot = f (x, t)
+&gt;
+&gt;  r = 0.25;
+&gt;  k = 1.4;
+&gt;  a = 1.5;
+&gt;  b = 0.16;
+&gt;  c = 0.9;
+&gt;  d = 0.8;
+&gt;
+&gt;  xdot(1) = r*x(1)*(1 - x(1)/k) - a*x(1)*x(2)/(1 + b*x(1));
+&gt;  xdot(2) = c*a*x(1)*x(2)/(1 + b*x(1)) - d*x(2);
+&gt;
+&gt; endfunction
+</pre></div></div>
+
+<p>Given the initial condition
+</p>
+<div class="example">
+<pre class="example-preformatted">octave:2&gt; x0 = [1; 2];
+</pre></div>
+
+<p>and the set of output times as a column vector (note that the first
+output time corresponds to the initial condition given above)
+</p>
+<div class="example">
+<pre class="example-preformatted">octave:3&gt; t = linspace (0, 50, 200)';
+</pre></div>
+
+<p>it is easy to integrate the set of differential equations:
+</p>
+<div class="example">
+<pre class="example-preformatted">octave:4&gt; x = lsode (&quot;f&quot;, x0, t);
+</pre></div>
+
+<p>The function <code class="code">lsode</code> uses the Livermore Solver for Ordinary
+Differential Equations, described in A. C. Hindmarsh,
+&quot;ODEPACK, a Systematized Collection of ODE Solvers&quot;,
+<cite class="cite">Scientific Computing</cite>, R. S. Stepleman et&nbsp;al.<!-- /@w --> (Eds.),
+North-Holland, Amsterdam, 1983, pp.&nbsp;55<!-- /@w -->&ndash;64.
+</p>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Producing-Graphical-Output.html">Producing Graphical Output</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Solving-Systems-of-Linear-Equations.html">Solving Systems of Linear Equations</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Simple-Examples.html">Simple Examples</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

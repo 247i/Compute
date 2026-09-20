@@ -1,0 +1,12 @@
+Name: financial
+Version: 0.5.4
+Date: 2025-06-25
+Author: Bill Denney, Kurt Hornik
+Maintainer: Octave-Forge community <octave-dev@lists.sourceforge.net>
+Title: Financial
+Description: Monte Carlo simulation, options pricing routines, financial
+  manipulation, plotting functions and additional date manipulation tools.
+Depends: octave (>= 4.4.0), io (>= 2.4.11), statistics (>= 1.4.0)
+Autoload: no
+License: GPLv3+
+Url: http://octave.sf.net

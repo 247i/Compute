@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- Additional documentation for the optim package for Octave.
+
+Copyright © Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<title>Structure-based configuration settings (optim_doc)</title>
+
+<meta name="description" content="Structure-based configuration settings (optim_doc)">
+<meta name="keywords" content="Structure-based configuration settings (optim_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Parameter-structures.html" rel="up" title="Parameter structures">
+<link href="Non_002dscalar-parameters.html" rel="next" title="Non-scalar parameters">
+<link href="Structure_002dbased-linear-constraints.html" rel="prev" title="Structure-based linear constraints">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section-level-extent" id="Structure_002dbased-configuration-settings">
+<div class="nav-panel">
+<p>
+Next: <a href="Non_002dscalar-parameters.html" accesskey="n" rel="next">Handling named parameter arrays</a>, Previous: <a href="Structure_002dbased-linear-constraints.html" accesskey="p" rel="prev">Specify structure-based linear constraints</a>, Up: <a href="Parameter-structures.html" accesskey="u" rel="up">Handling of structures of optimized parameters</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h3 class="section" id="Parameter_002drelated-configuration-settings-in-structure-form"><span>10.4 Parameter-related configuration settings in structure form<a class="copiable-link" href="#Parameter_002drelated-configuration-settings-in-structure-form"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-structure_002dbased-configuration-settings"></a>
+
+<p>The vector-based settings <code class="code">lbound</code>, <code class="code">ubound</code>, <code class="code">fixed</code>,
+<code class="code">diffp</code>, <code class="code">diff_onesided</code>, <code class="code">fract_prec</code>, and
+<code class="code">max_fract_change</code> can be replaced by the setting
+<code class="code">param_config</code>.  It is a structure that can contain fields
+corresponding to parameter names.  For each such field, there may be
+subfields with the same names as the above vector-based settings, but
+containing a scalar value for the respective parameter.
+</p>
+<p>For example, if the parameters are named <code class="code">a</code> and <code class="code">b</code>, instead
+of specifying
+</p>
+<div class="example">
+<pre class="example-preformatted">settings = optimset (&quot;lbound&quot;, [-Inf; 0],
+                     &quot;diff_onesided&quot;, [true; true]);
+</pre></div>
+
+<p>one can specify
+</p>
+<div class="example">
+<pre class="example-preformatted">pconf.b.lbound = 0;
+pconf.a.diff_onesided = true;
+pconf.b.diff_onesided = true;
+settings = optimset (&quot;param_config&quot;, pconf);
+</pre></div>
+
+<p>If <code class="code">param_config</code> is specified, none of the above vector-based
+settings may be used.
+</p>
+
+</div>
+
+
+
+</body>
+</html>

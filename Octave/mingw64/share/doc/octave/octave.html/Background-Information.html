@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Background Information (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Background Information (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Background Information (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Packages.html" rel="up" title="Packages">
+<link href="Installing-and-Removing-Packages.html" rel="next" title="Installing and Removing Packages">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Background-Information">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Installing-and-Removing-Packages.html" accesskey="n" rel="next">Installing and Removing Packages</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Packages.html" accesskey="u" rel="up">Packages</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Background-Information-1"><span>37.1 Background Information<a class="copiable-link" href="#Background-Information-1"> &para;</a></span></h3>
+
+<p>Packages can be installed globally (i.e., for all users of the system) or
+locally (i.e., for the current user only).
+</p>
+<p>Global packages are installed by default in a system-wide location.  This is
+usually a subdirectory of the folder where Octave itself is installed.
+Therefore, Octave needs write access to this folder to install global packages,
+which is usually only available when Octave is run with administrative
+privileges, such as when run as root (or superuser) on Unix-like systems, or
+run with elevated privileges (&quot;Run as administrator&quot;) on Windows.
+</p>
+<p>In contrast, local packages are installed by default in the user&rsquo;s home
+directory (or user profile on Windows) and are only available to that specific
+user.  Usually, they can be installed without administrative privileges.
+</p>
+<p>When Octave is running with administrative privileges, <code class="code">pkg</code> will install
+packages to the global package location by default.  Otherwise, packages will
+be installed to the local location by default.  The user can override this
+default installation location with optional arguments (<samp class="option">-local</samp> or
+<samp class="option">-global</samp>) as described below.  The currently used default package
+installation location can be queried with <code class="code">pkg prefix</code>.
+</p>
+<p>For global and local packages, there are separate databases holding the
+information about the installed packages.  If some package is installed
+globally as well as locally, the local installation takes precedence over
+(&quot;shadows&quot;) the global one.  Which (global or local) package installation is
+used can also be manipulated by using prefixes and/or using the
+&lsquo;<samp class="samp">local_list</samp>&rsquo; input argument.  Using these mechanisms, several different
+releases of the same package can be installed side by side as well (but cannot
+be loaded simultaneously).
+</p>
+<p>Packages might depend on external software and/or other packages.  To be able
+to install such packages, these dependencies should be installed beforehand.
+A package that depends on other package(s) can still be installed using the
+<samp class="option">-nodeps</samp> flag.  The effects of unsatisfied dependencies on external
+software&mdash;like libraries&mdash;depends on the individual package.
+</p>
+<p>Packages must be loaded before they can be used.  When loading a package,
+Octave performs the following tasks:
+</p>
+<ol class="enumerate">
+<li> If the package depends on other packages (and <code class="code">pkg load</code> is called without
+the <samp class="option">-nodeps</samp> option), the package is not loaded immediately.  Instead,
+those dependencies are loaded first (recursively if needed).
+
+</li><li> When all dependencies are satisfied, the package&rsquo;s subdirectories are added to
+the search path.
+</li></ol>
+
+<p>This load order leads to functions that are provided by dependencies being
+potentially shadowed by functions of the same name that are provided by
+top-level packages.
+</p>
+<p>Each time, a package is added to the search path, initialization script(s) for
+the package are automatically executed if they are provided by the package.
+</p>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Installing-and-Removing-Packages.html">Installing and Removing Packages</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Packages.html">Packages</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

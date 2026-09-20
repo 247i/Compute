@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Customizing Toolkit Behavior (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Customizing Toolkit Behavior (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Customizing Toolkit Behavior (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Graphics-Toolkits.html" rel="up" title="Graphics Toolkits">
+<link href="Hardware-vs-Software-Rendering.html" rel="next" title="Hardware vs Software Rendering">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsubsection-level-extent" id="Customizing-Toolkit-Behavior">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Hardware-vs-Software-Rendering.html" accesskey="n" rel="next">Hardware vs Software Rendering</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Graphics-Toolkits.html" accesskey="u" rel="up">Graphics Toolkits</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsubsection" id="Customizing-Toolkit-Behavior-1"><span>15.4.8.1 Customizing Toolkit Behavior<a class="copiable-link" href="#Customizing-Toolkit-Behavior-1"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-toolkit-customization"></a>
+
+<p>The specific behavior of the backend toolkit may be modified using the
+following utility functions.  Note: Not all functions apply to every
+graphics toolkit.
+</p>
+<a class="anchor" id="XREFgnuplot_005fbinary"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gnuplot_005fbinary"><span><code class="def-type">[<var class="var">prog</var>, <var class="var">args</var>] =</code> <strong class="def-name">gnuplot_binary</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-gnuplot_005fbinary"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gnuplot_005fbinary-1"><span><code class="def-type">[<var class="var">old_prog</var>, <var class="var">old_args</var>] =</code> <strong class="def-name">gnuplot_binary</strong> <code class="def-code-arguments">(<var class="var">new_prog</var>)</code><a class="copiable-link" href="#index-gnuplot_005fbinary-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gnuplot_005fbinary-2"><span><code class="def-type">[<var class="var">old_prog</var>, <var class="var">old_args</var>] =</code> <strong class="def-name">gnuplot_binary</strong> <code class="def-code-arguments">(<var class="var">new_prog</var>, <var class="var">arg1</var>, &hellip;)</code><a class="copiable-link" href="#index-gnuplot_005fbinary-2"> &para;</a></span></dt>
+<dd><p>Query or set the name of the program invoked by the plot command when the
+graphics toolkit is set to <code class="code">&quot;gnuplot&quot;</code>.
+</p>
+<p>Additional arguments to pass to the external plotting program may also be
+given.  The default value is <code class="code">&quot;gnuplot&quot;</code> with no additional arguments.
+See <a class="xref" href="Installing-Octave.html">Installing Octave</a>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Graphics-Toolkits.html#XREFgraphics_005ftoolkit">graphics_toolkit</a>.
+</p></dd></dl>
+
+
+<a class="index-entry-id" id="index-GNUTERM"></a>
+
+<p>In addition, the gnuplot program usually provides a number of different
+interfaces, known as terminals.  Octave normally chooses a default terminal,
+but you can override this with the environment variable <code class="env">GNUTERM</code>.  This
+variable may be set in the shell before starting Octave or from within Octave
+before plotting for the first time.  For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">setenv (&quot;GNUTERM&quot;, &quot;wxt&quot;)
+graphics_toolkit (&quot;gnuplot&quot;)
+plot (1:10)
+</pre></div></div>
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Hardware-vs-Software-Rendering.html">Hardware vs Software Rendering</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Graphics-Toolkits.html">Graphics Toolkits</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

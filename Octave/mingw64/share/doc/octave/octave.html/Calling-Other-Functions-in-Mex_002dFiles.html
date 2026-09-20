@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Calling Other Functions in Mex-Files (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Calling Other Functions in Mex-Files (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Calling Other Functions in Mex-Files (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Mex_002dFiles.html" rel="up" title="Mex-Files">
+<link href="Sparse-Matrices-with-Mex_002dFiles.html" rel="prev" title="Sparse Matrices with Mex-Files">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Calling-Other-Functions-in-Mex_002dFiles">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Sparse-Matrices-with-Mex_002dFiles.html" accesskey="p" rel="prev">Sparse Matrices with Mex-Files</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Mex_002dFiles.html" accesskey="u" rel="up">Mex-Files</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Calling-Other-Functions-in-Mex_002dFiles-1"><span>A.2.7 Calling Other Functions in Mex-Files<a class="copiable-link" href="#Calling-Other-Functions-in-Mex_002dFiles-1"> &para;</a></span></h4>
+
+<p>It is possible to call other Octave functions from within a mex-file using
+<code class="code">mexCallMATLAB</code>.  An example of the use of <code class="code">mexCallMATLAB</code> can be see
+in the example below.
+</p>
+<div class="example smallexample">
+<pre class="verbatim">#include &quot;mex.h&quot;
+
+void
+mexFunction (int nlhs, mxArray *plhs[],
+             int nrhs, const mxArray *prhs[])
+{
+  char *str;
+
+  mexPrintf (&quot;Starting file myfeval.mex\n&quot;);
+
+  mexPrintf (&quot;I have %d inputs and %d outputs\n&quot;, nrhs, nlhs);
+
+  if (nrhs &lt; 1 || ! mxIsChar (prhs[0]))
+    mexErrMsgTxt (&quot;ARG1 must be a function name&quot;);
+
+  str = mxArrayToString (prhs[0]);
+
+  mexPrintf (&quot;I'm going to call the function %s\n&quot;, str);
+
+  if (nlhs == 0)
+    nlhs = 1;  // Octave's automatic 'ans' variable
+
+  /* Cast prhs just to get rid of 'const' qualifier and stop compile warning */
+  mexCallMATLAB (nlhs, plhs, nrhs-1, (mxArray**)prhs+1, str);
+
+  mxFree (str);
+}
+</pre></div>
+
+<p>If this code is in the file <samp class="file">myfeval.c</samp>, and is compiled to
+<samp class="file">myfeval.mex</samp>, then an example of its use is
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">a = myfeval (&quot;sin&quot;, 1)
+&rArr;  Starting file myfeval.mex
+   I have 2 inputs and 1 outputs
+   I'm going to call the interpreter function sin
+   a =  0.84147
+</pre></div></div>
+
+<p>Note that it is not possible to use function handles within a mex-file.
+</p>
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Sparse-Matrices-with-Mex_002dFiles.html">Sparse Matrices with Mex-Files</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Mex_002dFiles.html">Mex-Files</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

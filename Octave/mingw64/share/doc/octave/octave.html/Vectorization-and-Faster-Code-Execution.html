@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Vectorization and Faster Code Execution (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Vectorization and Faster Code Execution (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Vectorization and Faster Code Execution (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html" rel="up" title="Top">
+<link href="Nonlinear-Equations.html" rel="next" title="Nonlinear Equations">
+<link href="Linear-Algebra.html" rel="prev" title="Linear Algebra">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="chapter-level-extent" id="Vectorization-and-Faster-Code-Execution">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Nonlinear-Equations.html" accesskey="n" rel="next">Nonlinear Equations</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Linear-Algebra.html" accesskey="p" rel="prev">Linear Algebra</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h2 class="chapter" id="Vectorization-and-Faster-Code-Execution-1"><span>19 Vectorization and Faster Code Execution<a class="copiable-link" href="#Vectorization-and-Faster-Code-Execution-1"> &para;</a></span></h2>
+<a class="index-entry-id" id="index-vectorization"></a>
+<a class="index-entry-id" id="index-vectorize"></a>
+
+<p>Vectorization is a programming technique that uses vector operations
+instead of element-by-element loop-based operations.  Besides frequently
+producing more succinct Octave code, vectorization also allows for better
+optimization in the subsequent implementation.  The optimizations may occur
+either in Octave&rsquo;s own Fortran, C, or C++ internal implementation, or even at a
+lower level depending on the compiler and external numerical libraries used to
+build Octave.  The ultimate goal is to make use of your hardware&rsquo;s vector
+instructions if possible or to perform other optimizations in software.
+</p>
+<p>Vectorization is not a concept unique to Octave, but it is particularly
+important because Octave is a matrix-oriented language.  Vectorized
+Octave code will see a dramatic speed up (10X&ndash;100X) in most cases.
+</p>
+<p>This chapter discusses vectorization and other techniques for writing faster
+code.
+</p>
+
+<ul class="mini-toc">
+<li><a href="Basic-Vectorization.html" accesskey="1">Basic Vectorization</a></li>
+<li><a href="Broadcasting.html" accesskey="2">Broadcasting</a></li>
+<li><a href="Function-Application.html" accesskey="3">Function Application</a></li>
+<li><a href="Accumulation.html" accesskey="4">Accumulation</a></li>
+<li><a href="Memoization.html" accesskey="5">Memoization</a></li>
+<li><a href="Miscellaneous-Techniques.html" accesskey="6">Miscellaneous Techniques</a></li>
+<li><a href="Examples.html" accesskey="7">Examples</a></li>
+</ul>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Nonlinear-Equations.html">Nonlinear Equations</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Linear-Algebra.html">Linear Algebra</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

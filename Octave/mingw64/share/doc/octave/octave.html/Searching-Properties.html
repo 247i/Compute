@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Searching Properties (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Searching Properties (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Searching Properties (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Graphics-Data-Structures.html" rel="up" title="Graphics Data Structures">
+<link href="Managing-Default-Properties.html" rel="next" title="Managing Default Properties">
+<link href="Graphics-Object-Properties.html" rel="prev" title="Graphics Object Properties">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Searching-Properties">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Managing-Default-Properties.html" accesskey="n" rel="next">Managing Default Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Graphics-Object-Properties.html" accesskey="p" rel="prev">Graphics Object Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Graphics-Data-Structures.html" accesskey="u" rel="up">Graphics Data Structures</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Searching-Properties-1"><span>15.3.4 Searching Properties<a class="copiable-link" href="#Searching-Properties-1"> &para;</a></span></h4>
+
+<a class="anchor" id="XREFfindobj"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-findobj"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">findobj</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-findobj"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-findobj-1"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">findobj</strong> <code class="def-code-arguments">(<var class="var">prop_name</var>, <var class="var">prop_value</var>, &hellip;)</code><a class="copiable-link" href="#index-findobj-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-findobj-2"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">findobj</strong> <code class="def-code-arguments">(<var class="var">prop_name</var>, <var class="var">prop_value</var>, &quot;-<var class="var">logical_op</var>&quot;, <var class="var">prop_name</var>, <var class="var">prop_value</var>)</code><a class="copiable-link" href="#index-findobj-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-findobj-3"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">findobj</strong> <code class="def-code-arguments">(&quot;-property&quot;, <var class="var">prop_name</var>)</code><a class="copiable-link" href="#index-findobj-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-findobj-4"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">findobj</strong> <code class="def-code-arguments">(&quot;-regexp&quot;, <var class="var">prop_name</var>, <var class="var">pattern</var>)</code><a class="copiable-link" href="#index-findobj-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-findobj-5"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">findobj</strong> <code class="def-code-arguments">(<var class="var">hlist</var>, &hellip;)</code><a class="copiable-link" href="#index-findobj-5"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-findobj-6"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">findobj</strong> <code class="def-code-arguments">(<var class="var">hlist</var>, &quot;flat&quot;, &hellip;)</code><a class="copiable-link" href="#index-findobj-6"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-findobj-7"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">findobj</strong> <code class="def-code-arguments">(<var class="var">hlist</var>, &quot;-depth&quot;, <var class="var">d</var>, &hellip;)</code><a class="copiable-link" href="#index-findobj-7"> &para;</a></span></dt>
+<dd><p>Find graphics objects with specified properties.
+</p>
+<p>When called without arguments, return all graphic objects beginning with the
+root object (0) and including all of its descendants.
+</p>
+<p>The simplest form for narrowing the results is
+</p>
+<div class="example">
+<pre class="example-preformatted">findobj (<var class="var">prop_name</var>, <var class="var">prop_value</var>)
+</pre></div>
+
+<p>which returns the handles of all objects which have a property named
+<var class="var">prop_name</var> that has the value <var class="var">prop_value</var>.  If multiple
+property/value pairs are specified then only objects meeting all of the
+conditions (equivalent to <code class="code">-and</code>) are returned.
+</p>
+<p>The search can be limited to a particular set of objects and their
+descendants, by passing a handle or set of handles <var class="var">hlist</var> as the first
+argument.
+</p>
+<p>The depth of the object hierarchy to search can be limited with the
+<code class="code">&quot;-depth&quot;</code> argument.  An example of searching through only three
+generations of children is:
+</p>
+<div class="example">
+<pre class="example-preformatted">findobj (<var class="var">hlist</var>, &quot;-depth&quot;, 3, <var class="var">prop_name</var>, <var class="var">prop_value</var>)
+</pre></div>
+
+<p>Specifying a depth <var class="var">d</var> of 0 limits the search to the set of objects
+passed in <var class="var">hlist</var>.  A depth of 0 is also equivalent to the
+<code class="code">&quot;flat&quot;</code> argument.  The default depth value is <code class="code">Inf</code> which
+includes all descendants.
+</p>
+<p>A specified logical operator may be used between <var class="var">prop_name</var>,
+<var class="var">prop_value</var> pairs.  The supported logical operators are:
+<code class="code">&quot;-and&quot;</code>, <code class="code">&quot;-or&quot;</code>, <code class="code">&quot;-xor&quot;</code>, <code class="code">&quot;-not&quot;</code>.  Example code
+to locate all figure and axes objects is
+</p>
+<div class="example">
+<pre class="example-preformatted">findobj (&quot;type&quot;, &quot;figure&quot;, &quot;-or&quot;, &quot;type&quot;, &quot;axes&quot;)
+</pre></div>
+
+<p>Objects may also be matched by comparing a regular expression to the
+property values, where property values that match
+<code class="code">regexp (<var class="var">prop_value</var>, <var class="var">pattern</var>)</code> are returned.
+</p>
+<p>Finally, objects which have a property name can be found with the
+<code class="code">&quot;-property&quot;</code> option.  For example, code to locate objects with a
+<code class="code">&quot;meshstyle&quot;</code> property is
+</p>
+<div class="example">
+<pre class="example-preformatted">findobj (&quot;-property&quot;, &quot;meshstyle&quot;)
+</pre></div>
+
+<p>Implementation Note: The search only includes objects with visible handles
+(HandleVisibility<!-- /@w --> = <code class="code">&quot;on&quot;</code>).  See <a class="xref" href="#XREFfindall">findall</a>, to
+search for all objects including hidden ones.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFfindall">findall</a>, <a class="ref" href="Handle-Functions.html#XREFallchild">allchild</a>, <a class="ref" href="Handle-Functions.html#XREFget">get</a>, <a class="ref" href="Handle-Functions.html#XREFset">set</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFfindall"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-findall"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">findall</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-findall"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-findall-1"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">findall</strong> <code class="def-code-arguments">(<var class="var">prop_name</var>, <var class="var">prop_value</var>, &hellip;)</code><a class="copiable-link" href="#index-findall-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-findall-2"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">findall</strong> <code class="def-code-arguments">(<var class="var">prop_name</var>, <var class="var">prop_value</var>, &quot;-<var class="var">logical_op</var>&quot;, <var class="var">prop_name</var>, <var class="var">prop_value</var>)</code><a class="copiable-link" href="#index-findall-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-findall-3"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">findall</strong> <code class="def-code-arguments">(&quot;-property&quot;, <var class="var">prop_name</var>)</code><a class="copiable-link" href="#index-findall-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-findall-4"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">findall</strong> <code class="def-code-arguments">(&quot;-regexp&quot;, <var class="var">prop_name</var>, <var class="var">pattern</var>)</code><a class="copiable-link" href="#index-findall-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-findall-5"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">findall</strong> <code class="def-code-arguments">(<var class="var">hlist</var>, &hellip;)</code><a class="copiable-link" href="#index-findall-5"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-findall-6"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">findall</strong> <code class="def-code-arguments">(<var class="var">hlist</var>, &quot;flat&quot;, &hellip;)</code><a class="copiable-link" href="#index-findall-6"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-findall-7"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">findall</strong> <code class="def-code-arguments">(<var class="var">hlist</var>, &quot;-depth&quot;, <var class="var">d</var>, &hellip;)</code><a class="copiable-link" href="#index-findall-7"> &para;</a></span></dt>
+<dd><p>Find graphics object, including hidden ones, with specified properties.
+</p>
+<p>The return value <var class="var">h</var> is a list of handles to the found graphic objects.
+</p>
+<p><code class="code">findall</code> performs the same search as <code class="code">findobj</code>, but it
+includes hidden objects (HandleVisibility = <code class="code">&quot;off&quot;</code>).  For full
+documentation, see <a class="pxref" href="#XREFfindobj"><code class="code">findobj</code></a>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFfindobj">findobj</a>, <a class="ref" href="Handle-Functions.html#XREFallchild">allchild</a>, <a class="ref" href="Handle-Functions.html#XREFget">get</a>, <a class="ref" href="Handle-Functions.html#XREFset">set</a>.
+</p></dd></dl>
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Managing-Default-Properties.html">Managing Default Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Graphics-Object-Properties.html">Graphics Object Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Graphics-Data-Structures.html">Graphics Data Structures</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

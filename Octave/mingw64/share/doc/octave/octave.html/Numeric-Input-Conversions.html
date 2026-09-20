@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Numeric Input Conversions (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Numeric Input Conversions (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Numeric Input Conversions (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="C_002dStyle-I_002fO-Functions.html" rel="up" title="C-Style I/O Functions">
+<link href="String-Input-Conversions.html" rel="next" title="String Input Conversions">
+<link href="Table-of-Input-Conversions.html" rel="prev" title="Table of Input Conversions">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Numeric-Input-Conversions">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="String-Input-Conversions.html" accesskey="n" rel="next">String Input Conversions</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Table-of-Input-Conversions.html" accesskey="p" rel="prev">Table of Input Conversions</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="C_002dStyle-I_002fO-Functions.html" accesskey="u" rel="up">C-Style I/O Functions</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Numeric-Input-Conversions-1"><span>14.2.14 Numeric Input Conversions<a class="copiable-link" href="#Numeric-Input-Conversions-1"> &para;</a></span></h4>
+
+<p>This section describes the <code class="code">scanf</code> conversions for reading numeric
+values.
+</p>
+<p>The &lsquo;<samp class="samp">%d</samp>&rsquo; conversion matches an optionally signed integer in decimal
+radix.
+</p>
+<p>The &lsquo;<samp class="samp">%i</samp>&rsquo; conversion matches an optionally signed integer in any of
+the formats that the C language defines for specifying an integer
+constant.
+</p>
+<p>For example, any of the strings &lsquo;<samp class="samp">10</samp>&rsquo;, &lsquo;<samp class="samp">0xa</samp>&rsquo;, or &lsquo;<samp class="samp">012</samp>&rsquo;
+could be read in as integers under the &lsquo;<samp class="samp">%i</samp>&rsquo; conversion.  Each of
+these specifies a number with decimal value <code class="code">10</code>.
+</p>
+<p>The &lsquo;<samp class="samp">%o</samp>&rsquo;, &lsquo;<samp class="samp">%u</samp>&rsquo;, and &lsquo;<samp class="samp">%x</samp>&rsquo; conversions match unsigned
+integers in octal, decimal, and hexadecimal radices, respectively.
+</p>
+<p>The &lsquo;<samp class="samp">%X</samp>&rsquo; conversion is identical to the &lsquo;<samp class="samp">%x</samp>&rsquo; conversion.  They
+both permit either uppercase or lowercase letters to be used as digits.
+</p>
+<p>By default, integers are read as 32-bit quantities.  With the &lsquo;<samp class="samp">h</samp>&rsquo;
+modifier, 16-bit integers are used, and with the &lsquo;<samp class="samp">l</samp>&rsquo; modifier,
+64-bit integers are used.
+</p>
+<p>The &lsquo;<samp class="samp">%e</samp>&rsquo;, &lsquo;<samp class="samp">%f</samp>&rsquo;, &lsquo;<samp class="samp">%g</samp>&rsquo;, &lsquo;<samp class="samp">%E</samp>&rsquo;, and &lsquo;<samp class="samp">%G</samp>&rsquo; conversions
+match optionally signed floating-point numbers.  All five conversion
+specifications behave identically, and will read in numerical values of
+any floating point display style.
+</p>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="String-Input-Conversions.html">String Input Conversions</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Table-of-Input-Conversions.html">Table of Input Conversions</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="C_002dStyle-I_002fO-Functions.html">C-Style I/O Functions</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

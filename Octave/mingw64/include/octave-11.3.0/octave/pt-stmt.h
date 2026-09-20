@@ -1,0 +1,249 @@
+////////////////////////////////////////////////////////////////////////
+//
+// Copyright (C) 1996-2026 The Octave Project Developers
+//
+// See the file COPYRIGHT.md in the top-level directory of this
+// distribution or <https://octave.org/copyright/>.
+//
+// This file is part of Octave.
+//
+// Octave is free software: you can redistribute it and/or modify it
+// under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Octave is distributed in the hope that it will be useful, but
+// WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Octave; see the file COPYING.  If not, see
+// <https://www.gnu.org/licenses/>.
+//
+////////////////////////////////////////////////////////////////////////
+
+#if ! defined (octave_pt_stmt_h)
+#define octave_pt_stmt_h 1
+
+#include "octave-config.h"
+
+class octave_value_list;
+
+#include <deque>
+#include <list>
+
+#include "bp-table.h"
+#include "pt.h"
+#include "pt-walk.h"
+
+class event_manager;
+
+OCTAVE_BEGIN_NAMESPACE(octave)
+
+class comment_list;
+class tree_command;
+class tree_evaluator;
+class tree_expression;
+
+// A statement is either a command to execute or an expression to
+// evaluate.
+
+class OCTINTERP_API tree_statement : public tree
+{
+public:
+
+  tree_statement ()
+    : m_command (nullptr), m_expression (nullptr)
+  { }
+
+  tree_statement (tree_command *c)
+    : m_command (c), m_expression (nullptr)
+  { }
+
+  tree_statement (tree_expression *e)
+    : m_command (nullptr), m_expression (e)
+  { }
+
+  OCTAVE_DISABLE_COPY_MOVE (tree_statement)
+
+  ~tree_statement ();
+
+  void set_print_flag (bool print_flag);
+
+  bool print_result ();
+
+  bool is_command () const { return m_command != nullptr; }
+
+  bool is_expression () const { return m_expression != nullptr; }
+
+  void set_breakpoint (const std::string& condition);
+
+  void delete_breakpoint ();
+
+  bool is_breakpoint () const;
+
+  bool is_active_breakpoint (tree_evaluator& tw) const;
+
+  filepos beg_pos () const;
+  filepos end_pos () const;
+
+  comment_list leading_comments () const;
+  comment_list trailing_comments () const;
+
+  virtual void update_end_pos (const filepos& pos);
+
+  std::string bp_cond () const;
+
+  int line () const;
+  int column () const;
+
+  void echo_code (const std::string& prefix);
+
+  tree_command * command () { return m_command; }
+
+  tree_expression * expression () { return m_expression; }
+
+  bool is_null_statement () const
+  {
+    return ! (m_command || m_expression);
+  }
+
+  bool is_end_of_fcn_or_script () const;
+
+  bool is_end_of_file () const;
+
+  // Allow modification of this statement.  Note that there is no
+  // checking.  If you use these, are you sure you know what you are
+  // doing?
+
+  void set_command (tree_command *c) { m_command = c; }
+
+  void set_expression (tree_expression *e) { m_expression = e; }
+
+  void accept (tree_walker& tw)
+  {
+    tw.visit_statement (*this);
+  }
+
+private:
+
+  // Only one of cmd or expr can be valid at once.
+
+  // Command to execute.
+  tree_command *m_command;
+
+  // Expression to evaluate.
+  tree_expression *m_expression;
+};
+
+// A list of statements to evaluate.
+
+class OCTINTERP_API tree_statement_list : public std::list<tree_statement *>
+{
+public:
+
+  tree_statement_list ()
+    : m_function_body (false), m_anon_function_body (false),
+      m_script_body (false) { }
+
+  tree_statement_list (tree_statement *s)
+    : m_function_body (false), m_anon_function_body (false),
+      m_script_body (false) { push_back (s); }
+
+  OCTAVE_DISABLE_COPY_MOVE (tree_statement_list)
+
+  ~tree_statement_list ()
+  {
+    while (! empty ())
+      {
+        auto p = begin ();
+        delete *p;
+        erase (p);
+      }
+  }
+
+  filepos beg_pos () const
+  {
+    if (empty ())
+      return filepos ();
+
+    tree_statement *elt = front ();
+    return elt->beg_pos ();
+  }
+
+  filepos end_pos () const
+  {
+    if (empty ())
+      return filepos ();
+
+    tree_statement *elt = back ();
+    return elt->end_pos ();
+  }
+
+  comment_list leading_comments () const
+  {
+    if (empty ())
+      return comment_list ();
+
+    tree_statement *elt = front ();
+    return elt->leading_comments ();
+  }
+
+  comment_list trailing_comments () const
+  {
+    if (empty ())
+      return comment_list ();
+
+    tree_statement *elt = back ();
+    return elt->trailing_comments ();
+  }
+
+  void mark_as_function_body () { m_function_body = true; }
+
+  void mark_as_anon_function_body () { m_anon_function_body = true; }
+
+  void mark_as_script_body () { m_script_body = true; }
+
+  bool is_function_body () const { return m_function_body; }
+
+  bool is_anon_function_body () const { return m_anon_function_body; }
+
+  bool is_script_body () const { return m_script_body; }
+
+  int set_breakpoint (int line, const std::string& condition);
+
+  void delete_breakpoint (int line);
+
+  octave_value_list list_breakpoints ();
+
+  std::list<bp_type> breakpoints_and_conds ();
+
+  bp_table::bp_lines add_breakpoint (event_manager& evmgr,
+                                     const std::string& file,
+                                     const bp_table::bp_lines& lines,
+                                     const std::string& condition);
+
+  bp_table::bp_lines remove_all_breakpoints (event_manager& evmgr,
+      const std::string& file);
+
+  void accept (tree_walker& tw)
+  {
+    tw.visit_statement_list (*this);
+  }
+
+private:
+
+  // Does this list of statements make up the body of a function?
+  bool m_function_body;
+
+  // Does this list of statements make up the body of a function?
+  bool m_anon_function_body;
+
+  // Does this list of statements make up the body of a script?
+  bool m_script_body;
+};
+
+OCTAVE_END_NAMESPACE(octave)
+
+#endif

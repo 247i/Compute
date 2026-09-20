@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- General documentation for the parallel package for Octave.
+
+Copyright (C) 2016-2023 Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>rfeval (parallel_doc)</title>
+
+<meta name="description" content="rfeval (parallel_doc)">
+<meta name="keywords" content="rfeval (parallel_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Cluster-execution.html" rel="up" title="Cluster execution">
+<link href="psend.html" rel="next" title="psend">
+<link href="install_005fvars.html" rel="prev" title="install_vars">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<span id="rfeval"></span><div class="header">
+<p>
+Next: <a href="psend.html" accesskey="n" rel="next">psend</a>, Previous: <a href="install_005fvars.html" accesskey="p" rel="prev">install_vars</a>, Up: <a href="Cluster-execution.html" accesskey="u" rel="up">Cluster execution</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Single-remote-function-evaluation"></span><h3 class="section">3.11 Single remote function evaluation</h3>
+<span id="index-rfeval-1"></span>
+
+<span id="XREFrfeval"></span><dl>
+<dt id="index-rfeval">Function File: <em></em> <strong>rfeval</strong> <em>(<var>func</var>, &hellip;, <var>nout</var>, <var>isout</var>, <var>connection</var>)</em></dt>
+<dd><p>Evaluate a function at a remote machine.
+</p>
+<p><var>func</var> is evaluated with arguments <code>&hellip;</code> and number of
+output arguments set to <var>nout</var> at remote machine given by
+<var>connection</var>. If <var>isout</var> is not empty, it must be a logical
+array with <var>nout</var> elements, which are true for each of the
+<var>nout</var> output arguments which are requested from the function;
+the other output arguments will be  marked as not requested
+with <code>~</code> at remote execution.
+</p>
+<p>This function can only be successfully called at the client machine.
+See <code>pconnect</code> for a description of the <var>connection</var>
+variable. <var>connection</var> must contain one single connection.
+</p>
+<p>If an output argument is given to <code>rfeval</code>, the function waits
+for completion of the remote function call, retrieves the results and
+returns them. They will be returned as one cell-array with an entry
+for each output argument. If some output arguments are marked as not
+requested by setting some elements of <var>isout</var> to false, the
+returned cell-array will only have entries for the requested output
+arguments. For consistency, the returned cell-array can be empty. To
+assign the output arguments to single variables, you can for example
+use: <code>[a, b, c] = returned_cell_array{:};</code>.
+</p>
+<p>If no output argument is given to <code>rfeval</code>, the function does
+not retrieve the results of the remote function call but returns
+immediately. It is left to the user to retrieve the results with
+<code>precv</code>. The results will be in the same format as if returned
+by <code>rfeval</code>. Note that a cell-array, possibly empty, will always
+have to be retrieved, even if the remote function call should have
+been performed without output arguments.
+</p>
+<p>Parallel execution can be achieved by calling <code>rfeval</code> several
+times with different specified server machines before starting to
+retrieve the results.
+</p>
+<p>The specified function handle can refer to a function present at
+the executing machine or be an anonymous function. See
+<code>parallel_doc (&quot;limitations&quot;)</code> for possible limitations.
+</p>
+
+<p><strong>See also:</strong> <a href="pconnect.html#XREFpconnect">pconnect</a>, <a href="pserver.html#XREFpserver">pserver</a>, <a href="sclose.html#XREFsclose">sclose</a>, <a href="install_005fvars.html#XREFinstall_005fvars">install_vars</a>, <a href="netcellfun.html#XREFnetcellfun">netcellfun</a>.
+</p></dd></dl>
+
+
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="psend.html" accesskey="n" rel="next">psend</a>, Previous: <a href="install_005fvars.html" accesskey="p" rel="prev">install_vars</a>, Up: <a href="Cluster-execution.html" accesskey="u" rel="up">Cluster execution</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

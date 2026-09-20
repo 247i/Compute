@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- Additional documentation for the optim package for Octave.
+
+Copyright © Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<title>residmin_stat (optim_doc)</title>
+
+<meta name="description" content="residmin_stat (optim_doc)">
+<meta name="keywords" content="residmin_stat (optim_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Residual-optimization.html" rel="up" title="Residual optimization">
+<link href="curvefit_005fstat.html" rel="next" title="curvefit_stat">
+<link href="lm_005fsvd_005ffeasible.html" rel="prev" title="lm_svd_feasible">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section-level-extent" id="residmin_005fstat">
+<div class="nav-panel">
+<p>
+Next: <a href="curvefit_005fstat.html" accesskey="n" rel="next">Statistics for curve fitting</a>, Previous: <a href="lm_005fsvd_005ffeasible.html" accesskey="p" rel="prev">Default backend lm_svd_feasible of residual minimization</a>, Up: <a href="Residual-optimization.html" accesskey="u" rel="up">Functions for optimization of a model function returning an array</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h3 class="section" id="Statistics-for-residual-minimization"><span>2.4 Statistics for residual minimization<a class="copiable-link" href="#Statistics-for-residual-minimization"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-residmin_005fstat-1"></a>
+
+<a class="anchor" id="XREFresidmin_005fstat"></a><dl class="first-deftypefn">
+<dt class="deftypefn" id="index-residmin_005fstat"><span class="category-def">Function File: </span><span><code class="def-type"><var class="var">info</var> =</code> <strong class="def-name">residmin_stat</strong> <code class="def-code-arguments">(<var class="var">f</var>, <var class="var">p</var>, <var class="var">settings</var>)</code><a class="copiable-link" href="#index-residmin_005fstat"> &para;</a></span></dt>
+<dd><p>Frontend for computation of statistics for a residual-based
+minimization.
+</p>
+<p><var class="var">settings</var> is a structure whose fields can be set by
+<code class="code">optimset</code>. With <var class="var">settings</var> the computation of certain
+statistics is requested by setting the fields
+<code class="code">ret_&lt;name_of_statistic&gt;</code> to <code class="code">true</code>. The respective
+statistics will be returned in a structure as fields with name
+<code class="code">&lt;name_of_statistic&gt;</code>. Depending on the requested statistic and
+on the additional information provided in <var class="var">settings</var>, <var class="var">f</var> and
+<var class="var">p</var> may be empty. Otherwise, <var class="var">f</var> is the model function of an
+optimization (the interface of <var class="var">f</var> is described e.g. in
+<code class="code">nonlin_residmin</code>, please see there), and <var class="var">p</var> is a real
+column vector with parameters resulting from the same optimization.
+</p>
+<p>Currently, the following statistics (or general information) can be
+requested (the <code class="code">ret_</code> is prepended so that the option name is
+complete):
+</p>
+<p><code class="code">ret_dfdp</code>: Jacobian of model function with respect to
+parameters.
+</p>
+<p><code class="code">ret_covd</code>: Covariance matrix of data (typically guessed by
+applying a factor to the covariance matrix of the residuals).
+</p>
+<p><code class="code">ret_covp</code>: Covariance matrix of final parameters.
+</p>
+<p><code class="code">ret_corp</code>: Correlation matrix of final parameters.
+</p>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="curvefit_005fstat.html#XREFcurvefit_005fstat">curvefit_stat</a>.
+</p></dd></dl>
+
+
+<h4 class="subheading" id="Further-settings"><span>Further settings<a class="copiable-link" href="#Further-settings"> &para;</a></span></h4>
+
+<p>The fields of the <var class="var">settings</var> structure can be set with
+<a data-manual="octave" href="../octave_html/XREFoptimset.html#XREFoptimset">optimset</a>.
+</p>
+<p>For settings common to all frontends
+see
+<a class="ref" href="Common-frontend-options.html">Options common to all frontends</a>.
+</p>
+<h4 class="subsubheading" id="Additional-settings_003a-2"><span>Additional settings:<a class="copiable-link" href="#Additional-settings_003a-2"> &para;</a></span></h4>
+
+<dl class="table">
+<dt><code class="code">objf_type</code></dt>
+<dd><p>Type of objective function of the optimization; must be specified in
+many cases. This determines which backends to use. Currently, there are
+only backends for the type &quot;wls&quot; (weighted least squares).
+</p></dd>
+<dt><code class="code">residuals</code></dt>
+<dt><code class="code">covd</code></dt>
+<dd><p>Optional information on the result of optimization, residuals and
+covariance matrix of data, respectively.
+</p></dd>
+<dt><code class="code">weights</code></dt>
+<dd><p>Array of weights applied to the residuals in the previous
+optimization. Dimensions must match those of the residuals.
+</p></dd>
+<dt><code class="code">dfdp</code></dt>
+<dd><p>Can be set in the same way and has the same default as in
+<code class="code">nonlin_residmin</code> (
+see
+<a class="ref" href="nonlin_005fresidmin.html">Frontend nonlin_residmin for non-linear residual minimization</a>), but alternatively may
+already contain the computed Jacobian of the model function at the final
+parameters in matrix- or structure-form.
+</p></dd>
+<dt><code class="code">complex_step_derivative_f</code></dt>
+<dd><p>Estimate Jacobian of model function with complex step derivative
+approximation. Use only if you know that your model function is suitable
+for this. No user function for the Jacobian (<code class="code">dfdp</code>) must be
+specified.
+</p></dd>
+</dl>
+
+<h4 class="subheading" id="Structure-based-parameter-handling-2"><span>Structure based parameter handling<a class="copiable-link" href="#Structure-based-parameter-handling-2"> &para;</a></span></h4>
+
+<p>Please
+see
+<a class="ref" href="Parameter-structures.html">Handling of structures of optimized parameters</a>.
+</p>
+<h4 class="subheading" id="Backend-information-2"><span>Backend information<a class="copiable-link" href="#Backend-information-2"> &para;</a></span></h4>
+
+<p>Please
+see
+<a class="ref" href="Residual-optimization.html">Functions for optimization of a model function returning an array</a> and choose backend from menu under
+&lsquo;Statistics backends&rsquo;.
+</p>
+
+</div>
+<hr>
+<div class="nav-panel">
+<p>
+Next: <a href="curvefit_005fstat.html">Statistics for curve fitting</a>, Previous: <a href="lm_005fsvd_005ffeasible.html">Default backend lm_svd_feasible of residual minimization</a>, Up: <a href="Residual-optimization.html">Functions for optimization of a model function returning an array</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

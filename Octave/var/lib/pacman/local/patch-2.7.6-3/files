@@ -1,0 +1,8 @@
+%FILES%
+usr/
+usr/share/
+usr/bin/
+usr/share/man/
+usr/share/man/man1/
+usr/share/man/man1/patch.1.gz
+usr/bin/patch.exe

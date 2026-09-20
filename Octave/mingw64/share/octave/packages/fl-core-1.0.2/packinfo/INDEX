@@ -1,0 +1,8 @@
+fl-core >> Fuzzy Logic Core
+Set Operations
+ fl_intersect
+ fl_union
+ fl_complement
+ fl_cartproduct
+Function Composition
+ fl_compose

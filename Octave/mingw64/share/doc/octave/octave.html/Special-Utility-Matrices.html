@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Special Utility Matrices (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Special Utility Matrices (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Special Utility Matrices (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Matrix-Manipulation.html" rel="up" title="Matrix Manipulation">
+<link href="Famous-Matrices.html" rel="next" title="Famous Matrices">
+<link href="Rearranging-Matrices.html" rel="prev" title="Rearranging Matrices">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Special-Utility-Matrices">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Famous-Matrices.html" accesskey="n" rel="next">Famous Matrices</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Rearranging-Matrices.html" accesskey="p" rel="prev">Rearranging Matrices</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Matrix-Manipulation.html" accesskey="u" rel="up">Matrix Manipulation</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Special-Utility-Matrices-1"><span>16.3 Special Utility Matrices<a class="copiable-link" href="#Special-Utility-Matrices-1"> &para;</a></span></h3>
+
+<a class="anchor" id="XREFeye"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-eye"><span><code class="def-type"><var class="var">I</var> =</code> <strong class="def-name">eye</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-eye"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-eye-1"><span><code class="def-type"><var class="var">I</var> =</code> <strong class="def-name">eye</strong> <code class="def-code-arguments">(<var class="var">n</var>)</code><a class="copiable-link" href="#index-eye-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-eye-2"><span><code class="def-type"><var class="var">I</var> =</code> <strong class="def-name">eye</strong> <code class="def-code-arguments">(<var class="var">m</var>, <var class="var">n</var>)</code><a class="copiable-link" href="#index-eye-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-eye-3"><span><code class="def-type"><var class="var">I</var> =</code> <strong class="def-name">eye</strong> <code class="def-code-arguments">([<var class="var">m</var>, <var class="var">n</var>])</code><a class="copiable-link" href="#index-eye-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-eye-4"><span><code class="def-type"><var class="var">I</var> =</code> <strong class="def-name">eye</strong> <code class="def-code-arguments">(&hellip;, <var class="var">class</var>)</code><a class="copiable-link" href="#index-eye-4"> &para;</a></span></dt>
+<dd><p>Return an identity matrix.
+</p>
+<p>If called with no arguments, return the scalar value <code class="code">1</code>.
+</p>
+<p>If invoked with a single scalar argument <var class="var">n</var>, return a square NxN
+identity matrix.
+</p>
+<p>If supplied two scalar arguments (<var class="var">m</var>, <var class="var">n</var>), or a 2-element vector
+<code class="code">[<var class="var">m</var>,&nbsp;<var class="var">n</var>]</code><!-- /@w -->, return an MxN identity matrix with
+<var class="var">m</var> rows and <var class="var">n</var> columns.
+</p>
+<p>The optional argument <var class="var">class</var> specifies the return type of the matrix and
+defaults to <code class="code">&quot;double&quot;</code>.
+</p>
+<p>Example 1 : 1-input, square identity matrix
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">eye (3)
+ &rArr;   1  0  0
+     0  1  0
+     0  0  1
+</pre></div></div>
+
+<p>Example 2 : following expressions all produce 2x2 identity matrix
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">eye (2) &equiv; eye (2, 2) &equiv; eye (size ([1, 2; 3, 4]))
+ &rArr;   1  0
+     0  1
+</pre></div></div>
+
+<p>Example 3 : 2x2 uint8 identity matrix
+</p>
+<div class="example">
+<pre class="example-preformatted">I = eye (2, &quot;uint8&quot;)
+</pre></div>
+
+<p>Programming Note: Calling <code class="code">eye</code> with no arguments is equivalent to calling
+it with an argument of <code class="code">1</code>.  Any negative dimensions are treated as zero.
+These odd definitions are for compatibility with <small class="sc">MATLAB</small>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Creating-Sparse-Matrices.html#XREFspeye">speye</a>, <a class="ref" href="#XREFones">ones</a>, <a class="ref" href="#XREFzeros">zeros</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFones"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-ones"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">ones</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-ones"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ones-1"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">ones</strong> <code class="def-code-arguments">(<var class="var">n</var>)</code><a class="copiable-link" href="#index-ones-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ones-2"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">ones</strong> <code class="def-code-arguments">(<var class="var">m</var>, <var class="var">n</var>, &hellip;)</code><a class="copiable-link" href="#index-ones-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ones-3"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">ones</strong> <code class="def-code-arguments">([<var class="var">m</var>, <var class="var">n</var>, &hellip;])</code><a class="copiable-link" href="#index-ones-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ones-4"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">ones</strong> <code class="def-code-arguments">(&hellip;, <var class="var">class</var>)</code><a class="copiable-link" href="#index-ones-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ones-5"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">ones</strong> <code class="def-code-arguments">(&hellip;, &quot;like&quot;, <var class="var">var</var>)</code><a class="copiable-link" href="#index-ones-5"> &para;</a></span></dt>
+<dd><p>Return a scalar, matrix, or N-dimensional array whose elements are all
+<code class="code">1</code>.
+</p>
+<p>If called with no arguments, return the scalar value <code class="code">1</code>.
+</p>
+<p>If invoked with a single scalar integer argument <var class="var">n</var>, return a square
+NxN matrix.
+</p>
+<p>If invoked with two or more scalar integer arguments, or a vector of integer
+values, return an array with the given dimensions.
+</p>
+<p>The optional argument <var class="var">class</var> specifies the class of the return array
+and defaults to <code class="code">&quot;double&quot;</code>.
+</p>
+<p>If a variable <var class="var">var</var> is specified after <code class="code">&quot;like&quot;</code>, the output <var class="var">val</var>
+will have the same data type, complexity, and sparsity as <var class="var">var</var>.
+</p>
+<p>Example 1 : MxN matrix of constant value <var class="var">val</var>
+</p>
+<div class="example">
+<pre class="example-preformatted"><var class="var">C</var> = <var class="var">val</var> * ones (<var class="var">m</var>, <var class="var">n</var>)
+</pre></div>
+
+<p>Example 2 : MxN matrix of uint8
+</p>
+<div class="example">
+<pre class="example-preformatted"><var class="var">C</var> = ones (<var class="var">m</var>, <var class="var">n</var>, &quot;uint8&quot;)
+</pre></div>
+
+<p>Programming Note: Any negative dimensions are treated as zero, and any zero
+dimensions will result in an empty matrix.  This odd behavior is for
+<small class="sc">MATLAB</small> compatibility.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFzeros">zeros</a>, <a class="ref" href="Logical-Values.html#XREFtrue">true</a>, <a class="ref" href="Logical-Values.html#XREFfalse">false</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFzeros"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-zeros"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">zeros</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-zeros"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-zeros-1"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">zeros</strong> <code class="def-code-arguments">(<var class="var">n</var>)</code><a class="copiable-link" href="#index-zeros-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-zeros-2"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">zeros</strong> <code class="def-code-arguments">(<var class="var">m</var>, <var class="var">n</var>, &hellip;)</code><a class="copiable-link" href="#index-zeros-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-zeros-3"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">zeros</strong> <code class="def-code-arguments">([<var class="var">m</var>, <var class="var">n</var>, &hellip;])</code><a class="copiable-link" href="#index-zeros-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-zeros-4"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">zeros</strong> <code class="def-code-arguments">(&hellip;, <var class="var">class</var>)</code><a class="copiable-link" href="#index-zeros-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-zeros-5"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">zeros</strong> <code class="def-code-arguments">(&hellip;, &quot;like&quot;, <var class="var">var</var>)</code><a class="copiable-link" href="#index-zeros-5"> &para;</a></span></dt>
+<dd><p>Return a scalar, matrix, or N-dimensional array whose elements are all
+<code class="code">0</code>.
+</p>
+<p>If called with no arguments, return the scalar value <code class="code">0</code>.
+</p>
+<p>If invoked with a single scalar integer argument <var class="var">n</var>, return a square
+NxN matrix.
+</p>
+<p>If invoked with two or more scalar integer arguments, or a vector of integer
+values, return an array with the given dimensions.
+</p>
+<p>The optional argument <var class="var">class</var> specifies the class of the return array
+and defaults to <code class="code">&quot;double&quot;</code>.
+</p>
+<p>If a variable <var class="var">var</var> is specified after <code class="code">&quot;like&quot;</code>, the output <var class="var">val</var>
+will have the same data type, complexity, and sparsity as <var class="var">var</var>.
+</p>
+<p>Example : MxN matrix of uint8
+</p>
+<div class="example">
+<pre class="example-preformatted"><var class="var">C</var> = ones (<var class="var">m</var>, <var class="var">n</var>, &quot;uint8&quot;)
+</pre></div>
+
+<p>Programming Note: Any negative dimensions are treated as zero, and any zero
+dimensions will result in an empty matrix.  This odd behavior is for
+<small class="sc">MATLAB</small> compatibility.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFones">ones</a>, <a class="ref" href="Logical-Values.html#XREFtrue">true</a>, <a class="ref" href="Logical-Values.html#XREFfalse">false</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFrepmat"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-repmat"><span><code class="def-type"><var class="var">B</var> =</code> <strong class="def-name">repmat</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">m</var>)</code><a class="copiable-link" href="#index-repmat"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-repmat-1"><span><code class="def-type"><var class="var">B</var> =</code> <strong class="def-name">repmat</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">m</var>, <var class="var">n</var>)</code><a class="copiable-link" href="#index-repmat-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-repmat-2"><span><code class="def-type"><var class="var">B</var> =</code> <strong class="def-name">repmat</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">m</var>, <var class="var">n</var>, <var class="var">p</var> &hellip;)</code><a class="copiable-link" href="#index-repmat-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-repmat-3"><span><code class="def-type"><var class="var">B</var> =</code> <strong class="def-name">repmat</strong> <code class="def-code-arguments">(<var class="var">A</var>, [<var class="var">m</var> <var class="var">n</var>])</code><a class="copiable-link" href="#index-repmat-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-repmat-4"><span><code class="def-type"><var class="var">B</var> =</code> <strong class="def-name">repmat</strong> <code class="def-code-arguments">(<var class="var">A</var>, [<var class="var">m</var> <var class="var">n</var> <var class="var">p</var> &hellip;])</code><a class="copiable-link" href="#index-repmat-4"> &para;</a></span></dt>
+<dd><p>Repeat matrix or N-D array.
+</p>
+<p>Form a block matrix of size <var class="var">m</var> by <var class="var">n</var>, with a copy of matrix
+<var class="var">A</var> as each element.
+</p>
+<p>If <var class="var">n</var> is not specified, form an <var class="var">m</var> by <var class="var">m</var> block matrix.  For
+copying along more than two dimensions, specify the number of times to copy
+across each dimension <var class="var">m</var>, <var class="var">n</var>, <var class="var">p</var>, &hellip;, in a vector in the
+second argument.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Broadcasting.html#XREFbsxfun">bsxfun</a>, <a class="ref" href="Functions-of-a-Matrix.html#XREFkron">kron</a>, <a class="ref" href="#XREFrepelems">repelems</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFrepelems"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-repelems"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">repelems</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">r</var>)</code><a class="copiable-link" href="#index-repelems"> &para;</a></span></dt>
+<dd><p>Construct a vector of repeated elements from <var class="var">x</var>.
+</p>
+<p><var class="var">r</var> is a 2x<var class="var">N</var> integer matrix specifying which elements to repeat
+and how often to repeat each element.  Entries in the first row,
+<var class="var">r</var>(1,j), select an element to repeat.  The corresponding entry in the
+second row, <var class="var">r</var>(2,j), specifies the repeat count.  If <var class="var">x</var> is a
+matrix then the columns of <var class="var">x</var> are imagined to be stacked on top of
+each other for purposes of the selection index.  A row vector is always
+returned.
+</p>
+<p>Conceptually the result is calculated as follows:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">y = [];
+for i = 1:columns (<var class="var">r</var>)
+  y = [y, <var class="var">x</var>(<var class="var">r</var>(1,i)*ones(1, <var class="var">r</var>(2,i)))];
+endfor
+</pre></div></div>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFrepmat">repmat</a>, <a class="ref" href="Rearranging-Matrices.html#XREFcat">cat</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFrepelem"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-repelem"><span><code class="def-type"><var class="var">xxx</var> =</code> <strong class="def-name">repelem</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">R</var>)</code><a class="copiable-link" href="#index-repelem"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-repelem-1"><span><code class="def-type"><var class="var">xxx</var> =</code> <strong class="def-name">repelem</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">R_1</var>, &hellip;, <var class="var">R_n</var>)</code><a class="copiable-link" href="#index-repelem-1"> &para;</a></span></dt>
+<dd><p>Construct an array of repeated elements from <var class="var">x</var> and repeat instructions
+<var class="var">R_1</var>, <small class="enddots">...</small>
+</p>
+<p><var class="var">x</var> must be a scalar, vector, or N-dimensional array.
+</p>
+<p>A repeat instruction <var class="var">R_j</var> must either be a scalar or a vector.  If the
+instruction is a scalar then each component of <var class="var">x</var> in dimension <var class="var">j</var>
+is repeated <var class="var">R_j</var> times.  If the instruction is a vector then it must
+have the same number of elements as the corresponding dimension <var class="var">j</var> of
+<var class="var">x</var>.  In this case, the <var class="var">k</var>th component of dimension <var class="var">j</var> is
+repeated <code class="code"><var class="var">R_j</var>(<var class="var">k</var>)</code> times.
+</p>
+<p>If <var class="var">x</var> is a scalar or vector then <code class="code">repelem</code> may be called with just
+a single repeat instruction <var class="var">R</var> and <code class="code">repelem</code> will return a vector
+with the same orientation as the input.
+</p>
+<p>If <var class="var">x</var> is a matrix then at least two <var class="var">R_j</var>s must be specified.
+</p>
+<p>Note: Using <code class="code">repelem</code> with a vector <var class="var">x</var> and a vector for <var class="var">R_j</var>
+is equivalent to Run Length Decoding.
+</p>
+<p>Examples:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">A = [1 2 3 4 5];
+B = [2 1 0 1 2];
+repelem (A, B)
+  &rArr;    1   1   2   4   5   5
+</pre></div></div>
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">A = magic (3)
+  &rArr;  A =
+       8   1   6
+       3   5   7
+       4   9   2
+B1 = [1 2 3];
+B2 = 2;
+repelem (A, B1, B2)
+  &rArr;      8   8   1   1   6   6
+         3   3   5   5   7   7
+         3   3   5   5   7   7
+         4   4   9   9   2   2
+         4   4   9   9   2   2
+         4   4   9   9   2   2
+</pre></div></div>
+
+<p>More <var class="var">R_j</var> may be specified than the number of dimensions of <var class="var">x</var>.
+Any excess <var class="var">R_j</var> must be scalars (because <var class="var">x</var>&rsquo;s size in those
+dimensions is only 1), and <var class="var">x</var> will be replicated in those dimensions
+accordingly.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">A = [1 2 3 4 5];
+B1 = 2;
+B2 = [2 1 3 0 2];
+B3 = 3;
+repelem (A, B1, B2, B3)
+  &rArr;     ans(:,:,1) =
+           1   1   2   3   3   3   5   5
+           1   1   2   3   3   3   5   5
+
+        ans(:,:,2) =
+
+           1   1   2   3   3   3   5   5
+           1   1   2   3   3   3   5   5
+
+        ans(:,:,3) =
+           1   1   2   3   3   3   5   5
+           1   1   2   3   3   3   5   5
+</pre></div></div>
+
+<p><var class="var">R_j</var> must be specified in order.  A placeholder of 1 may be used for
+dimensions which do not need replication.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">repelem ([-1, 0; 0, 1], 1, 2, 1, 2)
+  &rArr;   ans(:,:,1,1) =
+        -1  -1   0   0
+         0   0   1   1
+
+      ans(:,:,1,2) =
+        -1  -1   0   0
+         0   0   1   1
+</pre></div></div>
+
+<p>If fewer <var class="var">R_j</var> are given than the number of dimensions in <var class="var">x</var>,
+<code class="code">repelem</code> will assume <var class="var">R_j</var> is 1 for those dimensions.
+</p>
+<div class="example">
+<pre class="example-preformatted">A = cat (3, [-1 0; 0 1], [-1 0; 0 1])
+  &rArr;   ans(:,:,1) =
+        -1   0
+         0   1
+
+      ans(:,:,2) =
+        -1   0
+         0   1
+
+repelem (A,2,3)
+  &rArr;   ans(:,:,1) =
+        -1  -1  -1   0   0   0
+        -1  -1  -1   0   0   0
+         0   0   0   1   1   1
+         0   0   0   1   1   1
+
+      ans(:,:,2) =
+        -1  -1  -1   0   0   0
+        -1  -1  -1   0   0   0
+         0   0   0   1   1   1
+         0   0   0   1   1   1
+</pre></div>
+
+<p><code class="code">repelem</code> preserves the class of <var class="var">x</var>, and works with strings,
+cell arrays, NA, and NAN inputs.  If any <var class="var">R_j</var> is 0 the output will
+be an empty array.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">repelem (&quot;Octave&quot;, 2, 3)
+  &rArr;     OOOccctttaaavvveee
+        OOOccctttaaavvveee
+
+repelem ([1 2 3; 1 2 3], 2, 0)
+  &rArr;     [](4x0)
+</pre></div></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Rearranging-Matrices.html#XREFcat">cat</a>, <a class="ref" href="Functions-of-a-Matrix.html#XREFkron">kron</a>, <a class="ref" href="#XREFrepmat">repmat</a>.
+</p></dd></dl>
+
+
+<p>The functions <code class="code">linspace</code> and <code class="code">logspace</code> make it very easy to
+create vectors with evenly or logarithmically spaced elements.
+See <a class="xref" href="Ranges.html">Ranges</a>.
+</p>
+<a class="anchor" id="XREFlinspace"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-linspace"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">linspace</strong> <code class="def-code-arguments">(<var class="var">start</var>, <var class="var">end</var>)</code><a class="copiable-link" href="#index-linspace"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-linspace-1"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">linspace</strong> <code class="def-code-arguments">(<var class="var">start</var>, <var class="var">end</var>, <var class="var">n</var>)</code><a class="copiable-link" href="#index-linspace-1"> &para;</a></span></dt>
+<dd><p>Return a row vector with <var class="var">n</var> linearly spaced elements between <var class="var">start</var>
+and <var class="var">end</var>.
+</p>
+<p>If the number of elements <var class="var">n</var> is greater than one, then the endpoints
+<var class="var">start</var> and <var class="var">end</var> are always included in the range.  If <var class="var">start</var> is
+greater than <var class="var">end</var>, the elements are stored in decreasing order.  If the
+number of points <var class="var">n</var> is not specified, a value of 100 is used.
+</p>
+<p>The <code class="code">linspace</code> function returns a row vector when both <var class="var">start</var> and
+<var class="var">end</var> are scalars.  If one, or both, inputs are vectors, then
+<code class="code">linspace</code> transforms them to column vectors and returns a matrix where
+each row is an independent sequence between
+<code class="code"><var class="var">start</var>(<var class="var">row_n</var>),&nbsp;<var class="var">end</var>(<var class="var">row_n</var>)</code><!-- /@w -->.
+</p>
+<p>Programming Notes: For compatibility with <small class="sc">MATLAB</small>, return the second
+argument (<var class="var">end</var>) when a single value (<var class="var">n</var> = 1) is requested.  If
+<var class="var">n</var> is not an integer then <code class="code">floor (<var class="var">n</var>)</code> is used to round the
+number of elements.  If <var class="var">n</var> is zero or negative then an empty 1x0 matrix
+is returned.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Defining-Indexing-And-Indexed-Assignment.html#XREFcolon">colon</a>, <a class="ref" href="#XREFlogspace">logspace</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFlogspace"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-logspace"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">logspace</strong> <code class="def-code-arguments">(<var class="var">a</var>, <var class="var">b</var>)</code><a class="copiable-link" href="#index-logspace"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-logspace-1"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">logspace</strong> <code class="def-code-arguments">(<var class="var">a</var>, <var class="var">b</var>, <var class="var">n</var>)</code><a class="copiable-link" href="#index-logspace-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-logspace-2"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">logspace</strong> <code class="def-code-arguments">(<var class="var">a</var>, pi)</code><a class="copiable-link" href="#index-logspace-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-logspace-3"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">logspace</strong> <code class="def-code-arguments">(<var class="var">a</var>, pi, <var class="var">n</var>)</code><a class="copiable-link" href="#index-logspace-3"> &para;</a></span></dt>
+<dd><p>Return a row vector with <var class="var">n</var> elements logarithmically spaced from
+10^<var class="var">a</var> to 10^<var class="var">b</var>.
+</p>
+<p>If the number of elements <var class="var">n</var> is unspecified it defaults to 50.
+</p>
+<p>If <var class="var">b</var> is equal to
+pi,
+the points are between
+10^<var class="var">a</var> and pi,
+<em class="emph">not</em>
+10^<var class="var">a</var> and 10^pi,
+which is useful in digital signal processing.
+</p>
+<p>Programming Notes: For compatibility with <small class="sc">MATLAB</small>, return the right-hand
+side of the range
+(10^<var class="var">b</var>)
+when a single value (<var class="var">n</var> = 1) is requested.
+If <var class="var">n</var> is not an integer then <code class="code">floor (<var class="var">n</var>)</code> is used to round
+the number of elements.  If <var class="var">n</var> is zero or negative then an empty 1x0
+matrix is returned.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFlinspace">linspace</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFrand"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-rand"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">rand</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-rand"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rand-1"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">rand</strong> <code class="def-code-arguments">(<var class="var">n</var>)</code><a class="copiable-link" href="#index-rand-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rand-2"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">rand</strong> <code class="def-code-arguments">(<var class="var">m</var>, <var class="var">n</var>, &hellip;)</code><a class="copiable-link" href="#index-rand-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rand-3"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">rand</strong> <code class="def-code-arguments">([<var class="var">m</var>, <var class="var">n</var>, &hellip;])</code><a class="copiable-link" href="#index-rand-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rand-4"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">rand</strong> <code class="def-code-arguments">(&hellip;, <var class="var">class</var>)</code><a class="copiable-link" href="#index-rand-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rand-5"><span><code class="def-type"><var class="var">v</var> =</code> <strong class="def-name">rand</strong> <code class="def-code-arguments">(&quot;state&quot;)</code><a class="copiable-link" href="#index-rand-5"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rand-6"><span><strong class="def-name">rand</strong> <code class="def-code-arguments">(&quot;state&quot;, <var class="var">v</var>)</code><a class="copiable-link" href="#index-rand-6"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rand-7"><span><strong class="def-name">rand</strong> <code class="def-code-arguments">(&quot;state&quot;, &quot;reset&quot;)</code><a class="copiable-link" href="#index-rand-7"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rand-8"><span><code class="def-type"><var class="var">v</var> =</code> <strong class="def-name">rand</strong> <code class="def-code-arguments">(&quot;seed&quot;)</code><a class="copiable-link" href="#index-rand-8"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rand-9"><span><strong class="def-name">rand</strong> <code class="def-code-arguments">(&quot;seed&quot;, <var class="var">v</var>)</code><a class="copiable-link" href="#index-rand-9"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rand-10"><span><strong class="def-name">rand</strong> <code class="def-code-arguments">(&quot;seed&quot;, &quot;reset&quot;)</code><a class="copiable-link" href="#index-rand-10"> &para;</a></span></dt>
+<dd><p>Return a scalar, matrix, or N-dimensional array whose elements are random
+numbers uniformly distributed on the interval (0, 1).
+</p>
+<p>If called with no arguments, return a scalar random value.
+</p>
+<p>If invoked with a single scalar integer argument <var class="var">n</var>, return a square
+NxN matrix.
+</p>
+<p>If invoked with two or more scalar integer arguments, or a vector of integer
+values, return an array with the given dimensions.
+</p>
+<p>The optional argument <var class="var">class</var> specifies the class of the return array.
+The only valid options are <code class="code">&quot;double&quot;</code> (default) or <code class="code">&quot;single&quot;</code>.
+</p>
+<p>Programming Note: Any negative dimensions are treated as zero, and any zero
+dimensions will result in an empty matrix.  This odd behavior is for
+<small class="sc">MATLAB</small> compatibility.
+</p>
+<p>The additional calling forms provide an interface to the underlying random
+number generator.
+</p>
+<p>You can query the state of the random number generator using the form
+</p>
+<div class="example">
+<pre class="example-preformatted">v = rand (&quot;state&quot;)
+</pre></div>
+
+<p>This returns a column vector <var class="var">v</var> of length 625.  Later, you can restore
+the random number generator to the state <var class="var">v</var> using the form
+</p>
+<div class="example">
+<pre class="example-preformatted">rand (&quot;state&quot;, v)
+</pre></div>
+
+<p>You may also initialize the state vector from an arbitrary vector of length
+&le; 625 for <var class="var">v</var>.  The new state will be a hash based on the value of
+<var class="var">v</var>, not <var class="var">v</var> itself.
+</p>
+<p>By default, the generator is initialized by contributing entropy from the
+wall clock time, the CPU time, the current fraction of a second, the process
+ID and&mdash;if available&mdash;up to 1024 bits from the C++ random number source
+<code class="code">random_device</code>, which might be non-deterministic (implementation
+specific).  Note that this differs from <small class="sc">MATLAB</small>, which always initializes
+the random number generator to the same state at startup.  To obtain behavior
+comparable to <small class="sc">MATLAB</small>, initialize with a deterministic state vector in
+Octave&rsquo;s startup files (see <a class="pxref" href="Startup-Files.html">Startup Files</a>).
+</p>
+<p>Programming Notes: To compute the pseudo-random sequence, <code class="code">rand</code> uses the
+Mersenne Twister with a period of <em class="math">2^{19937}-1</em> (See
+M. Matsumoto and T. Nishimura, &quot;Mersenne Twister: A
+623-dimensionally equidistributed uniform pseudorandom number generator&quot;,
+<cite class="cite">ACM Trans. on Modeling and Computer Simulation</cite>,
+Vol.&nbsp;8<!-- /@w -->, No.&nbsp;1<!-- /@w -->, pp.&nbsp;3<!-- /@w -->&ndash;30, January 1998,
+<a class="url" href="http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/emt.html">http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/emt.html</a>).
+Do <strong class="strong">not</strong> use for cryptography without securely hashing several returned
+values together, otherwise the generator state can be learned after reading 624
+consecutive values.
+</p>
+<p>Older versions of Octave used a different random number generator.  The new
+generator is used by default as it is significantly faster than the old
+generator, and produces random numbers with a significantly longer cycle time.
+However, in some circumstances it might be desirable to obtain the same random
+sequences as produced by the old generators.  To do this the keyword
+<code class="code">&quot;seed&quot;</code> is used to specify that the old generators should be used, as in
+</p>
+<div class="example">
+<pre class="example-preformatted">rand (&quot;seed&quot;, val)
+</pre></div>
+
+<p>which sets the seed of the generator to <var class="var">val</var>.  The seed of the generator
+can be queried with
+</p>
+<div class="example">
+<pre class="example-preformatted">s = rand (&quot;seed&quot;)
+</pre></div>
+
+<p>However, it should be noted that querying the seed will not cause <code class="code">rand</code>
+to use the old generators, only setting the seed will.  To cause <code class="code">rand</code> to
+once again use the new generators, the keyword <code class="code">&quot;state&quot;</code> must be used
+to reset <code class="code">rand</code> back to using the default generator.
+</p>
+<p>The state or seed of the generator can be reset to a new random value using
+the <code class="code">&quot;reset&quot;</code> keyword.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFrandi">randi</a>, <a class="ref" href="#XREFrandn">randn</a>, <a class="ref" href="#XREFrande">rande</a>, <a class="ref" href="#XREFrandg">randg</a>, <a class="ref" href="#XREFrandp">randp</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFrandi"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-randi"><span><code class="def-type"><var class="var">R</var> =</code> <strong class="def-name">randi</strong> <code class="def-code-arguments">(<var class="var">imax</var>)</code><a class="copiable-link" href="#index-randi"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-randi-1"><span><code class="def-type"><var class="var">R</var> =</code> <strong class="def-name">randi</strong> <code class="def-code-arguments">(<var class="var">imax</var>, <var class="var">n</var>)</code><a class="copiable-link" href="#index-randi-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-randi-2"><span><code class="def-type"><var class="var">R</var> =</code> <strong class="def-name">randi</strong> <code class="def-code-arguments">(<var class="var">imax</var>, <var class="var">m</var>, <var class="var">n</var>, &hellip;)</code><a class="copiable-link" href="#index-randi-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-randi-3"><span><code class="def-type"><var class="var">R</var> =</code> <strong class="def-name">randi</strong> <code class="def-code-arguments">(<var class="var">imax</var>, [<var class="var">m</var>, <var class="var">n</var>, &hellip;])</code><a class="copiable-link" href="#index-randi-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-randi-4"><span><code class="def-type"><var class="var">R</var> =</code> <strong class="def-name">randi</strong> <code class="def-code-arguments">([<var class="var">imin</var>, <var class="var">imax</var>], &hellip;)</code><a class="copiable-link" href="#index-randi-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-randi-5"><span><code class="def-type"><var class="var">R</var> =</code> <strong class="def-name">randi</strong> <code class="def-code-arguments">(&hellip;, &quot;<var class="var">class</var>&quot;)</code><a class="copiable-link" href="#index-randi-5"> &para;</a></span></dt>
+<dd><p>Return a scalar, matrix, or N-dimensional array whose elements are random
+integers in the range [1,&nbsp;<var class="var">imax</var>]<!-- /@w -->.
+</p>
+<p>If called with no size arguments, return a scalar random value.
+</p>
+<p>If invoked with a single scalar size argument <var class="var">n</var>, return a square
+NxN matrix.
+</p>
+<p>If invoked with two or more scalar integer size arguments, or a vector of
+integer values, return an array with the given dimensions.
+</p>
+<p>The integer range may optionally be described by a two-element matrix with a
+lower and upper bound in which case the returned integers will be on the
+interval [<var class="var">imin</var>,&nbsp;<var class="var">imax</var>]<!-- /@w -->.
+</p>
+<p>The optional argument <var class="var">class</var> will return a matrix of the requested type.
+The default is <code class="code">&quot;double&quot;</code>.  Supported classes are: <code class="code">&quot;double&quot;</code>,
+<code class="code">&quot;single&quot;</code>, <code class="code">&quot;int8&quot;</code>, <code class="code">&quot;int16&quot;</code>, <code class="code">&quot;int32&quot;</code>,
+<code class="code">&quot;uint8&quot;</code>, <code class="code">&quot;uint16&quot;</code>, <code class="code">&quot;uint32&quot;</code>, and <code class="code">&quot;logical&quot;</code>.
+</p>
+<p>Programming Notes: <code class="code">randi</code> relies internally on <code class="code">rand</code> which uses
+class <code class="code">&quot;double&quot;</code> to represent numbers.  This limits the maximum integer
+(<var class="var">imax</var>) and range (<var class="var">imax</var> - <var class="var">imin</var>) to the value returned by the
+<code class="code">flintmax</code> function.  For IEEE&nbsp;754 floating point numbers this value
+is <em class="math">2^{53} - 1</em><!-- /@w -->.
+</p>
+<p>When the output class is <code class="code">&quot;logical&quot;</code> the function constructs an array of
+random integers as specified and then applies the test <code class="code"><var class="var">x</var>&nbsp;&gt;&nbsp;0</code><!-- /@w -->
+to determine which elements will be true.  Because the one-input form of the
+function uses <code class="code">1</code> for <var class="var">imin</var> <code class="code">randi</code> will always return a matrix
+of all ones.
+</p>
+<p>Example: 150 integers in the range 1&ndash;10.
+</p>
+<div class="example">
+<pre class="example-preformatted">ri = randi (10, 150, 1)
+</pre></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFrand">rand</a>, <a class="ref" href="#XREFrandn">randn</a>, <a class="ref" href="#XREFrande">rande</a>, <a class="ref" href="#XREFrandg">randg</a>, <a class="ref" href="#XREFrandp">randp</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFrandn"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-randn"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">randn</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-randn"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-randn-1"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">randn</strong> <code class="def-code-arguments">(<var class="var">n</var>)</code><a class="copiable-link" href="#index-randn-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-randn-2"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">randn</strong> <code class="def-code-arguments">(<var class="var">m</var>, <var class="var">n</var>, &hellip;)</code><a class="copiable-link" href="#index-randn-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-randn-3"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">randn</strong> <code class="def-code-arguments">([<var class="var">m</var>, <var class="var">n</var>, &hellip;])</code><a class="copiable-link" href="#index-randn-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-randn-4"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">randn</strong> <code class="def-code-arguments">(&hellip;, <var class="var">class</var>)</code><a class="copiable-link" href="#index-randn-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-randn-5"><span><code class="def-type"><var class="var">v</var> =</code> <strong class="def-name">randn</strong> <code class="def-code-arguments">(&quot;state&quot;)</code><a class="copiable-link" href="#index-randn-5"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-randn-6"><span><strong class="def-name">randn</strong> <code class="def-code-arguments">(&quot;state&quot;, <var class="var">v</var>)</code><a class="copiable-link" href="#index-randn-6"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-randn-7"><span><strong class="def-name">randn</strong> <code class="def-code-arguments">(&quot;state&quot;, &quot;reset&quot;)</code><a class="copiable-link" href="#index-randn-7"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-randn-8"><span><code class="def-type"><var class="var">v</var> =</code> <strong class="def-name">randn</strong> <code class="def-code-arguments">(&quot;seed&quot;)</code><a class="copiable-link" href="#index-randn-8"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-randn-9"><span><strong class="def-name">randn</strong> <code class="def-code-arguments">(&quot;seed&quot;, <var class="var">v</var>)</code><a class="copiable-link" href="#index-randn-9"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-randn-10"><span><strong class="def-name">randn</strong> <code class="def-code-arguments">(&quot;seed&quot;, &quot;reset&quot;)</code><a class="copiable-link" href="#index-randn-10"> &para;</a></span></dt>
+<dd><p>Return a scalar, matrix, or N-dimensional array whose elements are random
+numbers from the standard normal distribution having a mean of <code class="code">0</code> and a
+variance of <code class="code">1</code>.
+</p>
+<p>If called with no arguments, return a scalar random value.
+</p>
+<p>If invoked with a single scalar integer argument <var class="var">n</var>, return a square
+NxN matrix.
+</p>
+<p>If invoked with two or more scalar integer arguments, or a vector of integer
+values, return an array with the given dimensions.
+</p>
+<p>The optional argument <var class="var">class</var> specifies the class of the return array.
+The only valid options are <code class="code">&quot;double&quot;</code> (default) or <code class="code">&quot;single&quot;</code>.
+</p>
+<p>Programming Note: Any negative dimensions are treated as zero, and any zero
+dimensions will result in an empty matrix.  This odd behavior is for
+<small class="sc">MATLAB</small> compatibility.
+</p>
+<p>The additional calling forms provide an interface to the underlying random
+number generator.  See <a class="ref" href="#XREFrand"><code class="code">rand</code></a> for documentation on
+querying and controlling the random number generator.
+</p>
+<p>Programming Note: By default, <code class="code">randn</code> uses the
+Marsaglia and Tsang &ldquo;Ziggurat technique&rdquo; to transform from a
+uniform to a normal distribution.
+</p>
+<p>Reference: G. Marsaglia and W.W. Tsang,
+&quot;Ziggurat Method for Generating Random Variables&quot;,
+<cite class="cite">J.&nbsp;Statistical Software</cite>, Vol.&nbsp;5<!-- /@w -->, 2000,
+<a class="url" href="https://www.jstatsoft.org/v05/i08/">https://www.jstatsoft.org/v05/i08/</a>
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFrand">rand</a>, <a class="ref" href="#XREFrandi">randi</a>, <a class="ref" href="#XREFrande">rande</a>, <a class="ref" href="#XREFrandg">randg</a>, <a class="ref" href="#XREFrandp">randp</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFrande"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-rande"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">rande</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-rande"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rande-1"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">rande</strong> <code class="def-code-arguments">(<var class="var">n</var>)</code><a class="copiable-link" href="#index-rande-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rande-2"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">rande</strong> <code class="def-code-arguments">(<var class="var">m</var>, <var class="var">n</var>, &hellip;)</code><a class="copiable-link" href="#index-rande-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rande-3"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">rande</strong> <code class="def-code-arguments">([<var class="var">m</var>, <var class="var">n</var>, &hellip;])</code><a class="copiable-link" href="#index-rande-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rande-4"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">rande</strong> <code class="def-code-arguments">(&hellip;, <var class="var">class</var>)</code><a class="copiable-link" href="#index-rande-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rande-5"><span><code class="def-type"><var class="var">v</var> =</code> <strong class="def-name">rande</strong> <code class="def-code-arguments">(&quot;state&quot;)</code><a class="copiable-link" href="#index-rande-5"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rande-6"><span><strong class="def-name">rande</strong> <code class="def-code-arguments">(&quot;state&quot;, <var class="var">v</var>)</code><a class="copiable-link" href="#index-rande-6"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rande-7"><span><strong class="def-name">rande</strong> <code class="def-code-arguments">(&quot;state&quot;, &quot;reset&quot;)</code><a class="copiable-link" href="#index-rande-7"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rande-8"><span><code class="def-type"><var class="var">v</var> =</code> <strong class="def-name">rande</strong> <code class="def-code-arguments">(&quot;seed&quot;)</code><a class="copiable-link" href="#index-rande-8"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rande-9"><span><strong class="def-name">rande</strong> <code class="def-code-arguments">(&quot;seed&quot;, <var class="var">v</var>)</code><a class="copiable-link" href="#index-rande-9"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rande-10"><span><strong class="def-name">rande</strong> <code class="def-code-arguments">(&quot;seed&quot;, &quot;reset&quot;)</code><a class="copiable-link" href="#index-rande-10"> &para;</a></span></dt>
+<dd><p>Return a scalar, matrix, or N-dimensional array whose elements are random
+numbers from the exponential distribution with rate parameter <code class="code">0</code>.
+</p>
+<p>If called with no arguments, return a scalar random value.
+</p>
+<p>If invoked with a single scalar integer argument <var class="var">n</var>, return a square
+NxN matrix.
+</p>
+<p>If invoked with two or more scalar integer arguments, or a vector of integer
+values, return an array with the given dimensions.
+</p>
+<p>The optional argument <var class="var">class</var> specifies the class of the return array.
+The only valid options are <code class="code">&quot;double&quot;</code> (default) or <code class="code">&quot;single&quot;</code>.
+</p>
+<p>Programming Note: Any negative dimensions are treated as zero, and any zero
+dimensions will result in an empty matrix.  This odd behavior is for
+<small class="sc">MATLAB</small> compatibility.
+</p>
+<p>The additional calling forms provide an interface to the underlying random
+number generator.  See <a class="ref" href="#XREFrand"><code class="code">rand</code></a> for documentation on
+querying and controlling the random number generator.
+</p>
+<p>Programming Note: By default, <code class="code">rande</code> uses the
+Marsaglia and Tsang &ldquo;Ziggurat technique&rdquo; to transform from a
+uniform to an exponential distribution.
+</p>
+<p>Reference: G. Marsaglia and W.W. Tsang,
+&quot;Ziggurat Method for Generating Random Variables&quot;,
+<cite class="cite">J.&nbsp;Statistical Software</cite>, Vol&nbsp;5<!-- /@w -->, 2000,
+<a class="url" href="https://www.jstatsoft.org/v05/i08/">https://www.jstatsoft.org/v05/i08/</a>
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFrand">rand</a>, <a class="ref" href="#XREFrandi">randi</a>, <a class="ref" href="#XREFrandn">randn</a>, <a class="ref" href="#XREFrandg">randg</a>, <a class="ref" href="#XREFrandp">randp</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFrandp"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-randp"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">randp</strong> <code class="def-code-arguments">(<var class="var">l</var>)</code><a class="copiable-link" href="#index-randp"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-randp-1"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">randp</strong> <code class="def-code-arguments">(<var class="var">l</var>, <var class="var">n</var>)</code><a class="copiable-link" href="#index-randp-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-randp-2"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">randp</strong> <code class="def-code-arguments">(<var class="var">l</var>, <var class="var">m</var>, <var class="var">n</var>, &hellip;)</code><a class="copiable-link" href="#index-randp-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-randp-3"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">randp</strong> <code class="def-code-arguments">(<var class="var">l</var>, [<var class="var">m</var>, <var class="var">n</var>, &hellip;])</code><a class="copiable-link" href="#index-randp-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-randp-4"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">randp</strong> <code class="def-code-arguments">(&hellip;, <var class="var">class</var>)</code><a class="copiable-link" href="#index-randp-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-randp-5"><span><code class="def-type"><var class="var">v</var> =</code> <strong class="def-name">randp</strong> <code class="def-code-arguments">(&quot;state&quot;)</code><a class="copiable-link" href="#index-randp-5"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-randp-6"><span><strong class="def-name">randp</strong> <code class="def-code-arguments">(&quot;state&quot;, <var class="var">v</var>)</code><a class="copiable-link" href="#index-randp-6"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-randp-7"><span><strong class="def-name">randp</strong> <code class="def-code-arguments">(&quot;state&quot;, &quot;reset&quot;)</code><a class="copiable-link" href="#index-randp-7"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-randp-8"><span><code class="def-type"><var class="var">v</var> =</code> <strong class="def-name">randp</strong> <code class="def-code-arguments">(&quot;seed&quot;)</code><a class="copiable-link" href="#index-randp-8"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-randp-9"><span><strong class="def-name">randp</strong> <code class="def-code-arguments">(&quot;seed&quot;, <var class="var">v</var>)</code><a class="copiable-link" href="#index-randp-9"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-randp-10"><span><strong class="def-name">randp</strong> <code class="def-code-arguments">(&quot;seed&quot;, &quot;reset&quot;)</code><a class="copiable-link" href="#index-randp-10"> &para;</a></span></dt>
+<dd><p>Return a scalar, matrix, or N-dimensional array whose elements are random
+numbers from the Poisson distribution with mean value parameter <var class="var">l</var>.
+</p>
+<p>If called with no size arguments, return a scalar random value.
+</p>
+<p>If invoked with a single scalar size argument <var class="var">n</var>, return a square
+NxN matrix.
+</p>
+<p>If invoked with two or more scalar integer size arguments, or a vector of
+integer values, return an array with the given dimensions.
+</p>
+<p>The optional argument <var class="var">class</var> specifies the class of the return array.
+The only valid options are <code class="code">&quot;double&quot;</code> (default) or <code class="code">&quot;single&quot;</code>.
+</p>
+<p>Programming Note: Any negative dimensions are treated as zero, and any zero
+dimensions will result in an empty matrix.  This odd behavior is for
+<small class="sc">MATLAB</small> compatibility.
+</p>
+<p>The additional calling forms provide an interface to the underlying random
+number generator.  See <a class="ref" href="#XREFrand"><code class="code">rand</code></a> for documentation on
+querying and controlling the random number generator.
+</p>
+<p>Programming Notes: Five different algorithms are used depending on the range of
+<var class="var">l</var> and whether <var class="var">l</var> is a scalar or a matrix.
+</p>
+<dl class="table">
+<dt>For scalar <var class="var">l</var> &le; 12, use direct method.</dt>
+<dd><p>W.H.&nbsp;Press, et&nbsp;al., <cite class="cite">Numerical Recipes in C</cite>,
+Cambridge University Press, 1992.
+</p>
+</dd>
+<dt>For scalar <var class="var">l</var> &gt; 12, use rejection method.[1]</dt>
+<dd><p>W.H.&nbsp;Press, et&nbsp;al., <cite class="cite">Numerical Recipes in C</cite>,
+Cambridge University Press, 1992.
+</p>
+</dd>
+<dt>For matrix <var class="var">l</var> &le; 10, use inversion method.[2]</dt>
+<dd><p>E.&nbsp;Stadlober, et&nbsp;al., WinRand source code, available via
+FTP.
+</p>
+</dd>
+<dt>For matrix <var class="var">l</var> &gt; 10, use patchwork rejection method.</dt>
+<dd><p>E.&nbsp;Stadlober, et&nbsp;al., WinRand source code, available via
+FTP, or H.&nbsp;Zechner, <cite class="cite">Efficient sampling from continuous and
+discrete unimodal distributions</cite>, Doctoral Dissertation, pp.&nbsp;156<!-- /@w -->,
+Technical University Graz, Austria, 1994.
+</p>
+</dd>
+<dt>For <var class="var">l</var> &gt; 1e8, use normal approximation.</dt>
+<dd><p>L.&nbsp;Montanet, et&nbsp;al., &quot;Review of Particle Properties&quot;,
+<cite class="cite">Physical Review&nbsp;D</cite>, 50, p.&nbsp;1284<!-- /@w -->, 1994.
+</p></dd>
+</dl>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFrand">rand</a>, <a class="ref" href="#XREFrandi">randi</a>, <a class="ref" href="#XREFrandn">randn</a>, <a class="ref" href="#XREFrande">rande</a>, <a class="ref" href="#XREFrandg">randg</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFrandg"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-randg"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">randg</strong> <code class="def-code-arguments">(<var class="var">a</var>)</code><a class="copiable-link" href="#index-randg"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-randg-1"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">randg</strong> <code class="def-code-arguments">(<var class="var">a</var>, <var class="var">n</var>)</code><a class="copiable-link" href="#index-randg-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-randg-2"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">randg</strong> <code class="def-code-arguments">(<var class="var">a</var>, <var class="var">m</var>, <var class="var">n</var>, &hellip;)</code><a class="copiable-link" href="#index-randg-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-randg-3"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">randg</strong> <code class="def-code-arguments">(<var class="var">a</var>, [<var class="var">m</var>, <var class="var">n</var>, &hellip;])</code><a class="copiable-link" href="#index-randg-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-randg-4"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">randg</strong> <code class="def-code-arguments">(&hellip;, <var class="var">class</var>)</code><a class="copiable-link" href="#index-randg-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-randg-5"><span><code class="def-type"><var class="var">v</var> =</code> <strong class="def-name">randg</strong> <code class="def-code-arguments">(&quot;state&quot;)</code><a class="copiable-link" href="#index-randg-5"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-randg-6"><span><strong class="def-name">randg</strong> <code class="def-code-arguments">(&quot;state&quot;, <var class="var">v</var>)</code><a class="copiable-link" href="#index-randg-6"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-randg-7"><span><strong class="def-name">randg</strong> <code class="def-code-arguments">(&quot;state&quot;, &quot;reset&quot;)</code><a class="copiable-link" href="#index-randg-7"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-randg-8"><span><code class="def-type"><var class="var">v</var> =</code> <strong class="def-name">randg</strong> <code class="def-code-arguments">(&quot;seed&quot;)</code><a class="copiable-link" href="#index-randg-8"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-randg-9"><span><strong class="def-name">randg</strong> <code class="def-code-arguments">(&quot;seed&quot;, <var class="var">v</var>)</code><a class="copiable-link" href="#index-randg-9"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-randg-10"><span><strong class="def-name">randg</strong> <code class="def-code-arguments">(&quot;seed&quot;, &quot;reset&quot;)</code><a class="copiable-link" href="#index-randg-10"> &para;</a></span></dt>
+<dd><p>Return a scalar, matrix, or N-dimensional array whose elements are random
+numbers from the gamma distribution <code class="code">gamma (<var class="var">a</var>,1)</code>.
+</p>
+<p>If called with no size arguments, return a scalar random value.
+</p>
+<p>If invoked with a single scalar size argument <var class="var">n</var>, return a square
+NxN matrix.
+</p>
+<p>If invoked with two or more scalar integer size arguments, or a vector of
+integer values, return an array with the given dimensions.
+</p>
+<p>The optional argument <var class="var">class</var> specifies the class of the return array.
+The only valid options are <code class="code">&quot;double&quot;</code> (default) or <code class="code">&quot;single&quot;</code>.
+</p>
+<p>Programming Note: Any negative dimensions are treated as zero, and any zero
+dimensions will result in an empty matrix.  This odd behavior is for
+<small class="sc">MATLAB</small> compatibility.
+</p>
+<p>The additional calling forms provide an interface to the underlying random
+number generator.  See <a class="ref" href="#XREFrand"><code class="code">rand</code></a> for documentation on
+querying and controlling the random number generator.
+</p>
+<p>Programming Notes: The gamma distribution can be used to generate many
+other distributions:
+</p>
+<dl class="table">
+<dt><code class="code">gamma (a, b)</code> for <code class="code">a &gt; -1</code>, <code class="code">b &gt; 0</code></dt>
+<dd>
+<div class="example">
+<pre class="example-preformatted">r = b * randg (a)
+</pre></div>
+
+</dd>
+<dt><code class="code">beta (a, b)</code> for <code class="code">a &gt; -1</code>, <code class="code">b &gt; -1</code></dt>
+<dd>
+<div class="example">
+<div class="group"><pre class="example-preformatted">r1 = randg (a, 1)
+r = r1 / (r1 + randg (b, 1))
+</pre></div></div>
+
+</dd>
+<dt><code class="code">Erlang (a, n)</code></dt>
+<dd>
+<div class="example">
+<pre class="example-preformatted">r = a * randg (n)
+</pre></div>
+
+</dd>
+<dt><code class="code">chisq (df)</code> for <code class="code">df &gt; 0</code></dt>
+<dd>
+<div class="example">
+<pre class="example-preformatted">r = 2 * randg (df / 2)
+</pre></div>
+
+</dd>
+<dt><code class="code">t (df)</code> for <code class="code">0 &lt; df &lt; inf</code> (use randn if df is infinite)</dt>
+<dd>
+<div class="example">
+<pre class="example-preformatted">r = randn () / sqrt (2 * randg (df / 2) / df)
+</pre></div>
+
+</dd>
+<dt><code class="code">F (n1, n2)</code> for <code class="code">0 &lt; n1</code>, <code class="code">0 &lt; n2</code></dt>
+<dd>
+<div class="example">
+<div class="group"><pre class="example-preformatted">## r1 equals 1 if n1 is infinite
+r1 = 2 * randg (n1 / 2) / n1
+## r2 equals 1 if n2 is infinite
+r2 = 2 * randg (n2 / 2) / n2
+r = r1 / r2
+</pre></div></div>
+
+</dd>
+<dt>negative <code class="code">binomial (n, p)</code> for <code class="code">n &gt; 0</code>, <code class="code">0 &lt; p &lt;= 1</code></dt>
+<dd>
+<div class="example">
+<pre class="example-preformatted">r = randp ((1 - p) / p * randg (n))
+</pre></div>
+
+</dd>
+<dt>non-central <code class="code">chisq (df, L)</code>, for <code class="code">df &gt;= 0</code> and <code class="code">L &gt; 0</code></dt>
+<dd><p>(use chisq if <code class="code">L = 0</code>)
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">r = randp (L / 2)
+r(r &gt; 0) = 2 * randg (r(r &gt; 0))
+r(df &gt; 0) += 2 * randg (df(df &gt; 0)/2)
+</pre></div></div>
+
+</dd>
+<dt><code class="code">Dirichlet (a1, &hellip; ak)</code></dt>
+<dd>
+<div class="example">
+<div class="group"><pre class="example-preformatted">r = (randg (a1), ..., randg (ak))
+r = r / sum (r)
+</pre></div></div>
+
+</dd>
+</dl>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFrand">rand</a>, <a class="ref" href="#XREFrandi">randi</a>, <a class="ref" href="#XREFrandn">randn</a>, <a class="ref" href="#XREFrande">rande</a>, <a class="ref" href="#XREFrandp">randp</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFrng"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-rng"><span><strong class="def-name">rng</strong> <code class="def-code-arguments">(<var class="var">seed</var>)</code><a class="copiable-link" href="#index-rng"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rng-1"><span><strong class="def-name">rng</strong> <code class="def-code-arguments">(<var class="var">seed</var>, &quot;<var class="var">generator</var>&quot;)</code><a class="copiable-link" href="#index-rng-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rng-2"><span><strong class="def-name">rng</strong> <code class="def-code-arguments">(&quot;shuffle&quot;)</code><a class="copiable-link" href="#index-rng-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rng-3"><span><strong class="def-name">rng</strong> <code class="def-code-arguments">(&quot;shuffle&quot;, &quot;<var class="var">generator</var>&quot;)</code><a class="copiable-link" href="#index-rng-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rng-4"><span><strong class="def-name">rng</strong> <code class="def-code-arguments">(&quot;default&quot;)</code><a class="copiable-link" href="#index-rng-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rng-5"><span><code class="def-type"><var class="var">s</var> =</code> <strong class="def-name">rng</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-rng-5"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rng-6"><span><strong class="def-name">rng</strong> <code class="def-code-arguments">(<var class="var">s</var>)</code><a class="copiable-link" href="#index-rng-6"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rng-7"><span><code class="def-type"><var class="var">s</var> =</code> <strong class="def-name">rng</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-rng-7"> &para;</a></span></dt>
+<dd><p>Set or query the seed of the random number generator used by <code class="code">rand</code> and
+<code class="code">randn</code>.
+</p>
+<p>The input <var class="var">seed</var> is a scalar numeric value used to initialize the state
+vector of the random number generator.
+</p>
+<p>The optional string <var class="var">generator</var> specifies the type of random number
+generator to be used.  Its value can be <code class="code">&quot;twister&quot;</code>,
+<code class="code">&quot;v5uniform&quot;</code>, or <code class="code">&quot;v5normal&quot;</code>.  The <code class="code">&quot;twister&quot;</code> keyword
+is described below.  <code class="code">&quot;v5uniform&quot;</code> and <code class="code">&quot;v5normal&quot;</code> refer to
+older versions of Octave that used to use a different random number
+generator.
+</p>
+<p>The state or seed of the random number generator can be reset to a new
+random value using the <code class="code">&quot;shuffle&quot;</code> keyword.
+</p>
+<p>The random number generator can be reset to default values using the
+<code class="code">&quot;default&quot;</code> keyword.  The default values are to use the Mersenne
+Twister generator with a seed of 0.
+</p>
+<p>The optional return value <var class="var">s</var> contains the state of the random number
+generator at the time the function is called (i.e., before it might be
+modified according to the input arguments).  It is encoded as a structure
+variable with three fields: <code class="code">&quot;Type&quot;</code>, <code class="code">&quot;Seed&quot;</code>, and
+<code class="code">&quot;State&quot;</code>.  The random number generator can be restored to the state
+<var class="var">s</var> using <code class="code">rng (<var class="var">s</var>)</code>.  This is useful when the identical
+sequence of pseudo-random numbers is required for an algorithm.
+</p>
+<p>By default, and with the <code class="code">&quot;twister&quot;</code> option, pseudo-random sequences
+are computed using the Mersenne Twister with a period of <em class="math">2^{19937}-1</em>
+(See M. Matsumoto and T. Nishimura,
+&quot;Mersenne Twister: A 623-dimensionally equidistributed uniform pseudorandom
+number generator&quot;,
+<cite class="cite">ACM Trans. on Modeling and Computer Simulation</cite>,
+Vol.&nbsp;8<!-- /@w -->, No.&nbsp;1<!-- /@w -->, pp.&nbsp;3<!-- /@w -->&ndash;30, January 1998,
+<a class="url" href="http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/emt.html">http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/emt.html</a>).
+Do <strong class="strong">not</strong> use for cryptography without securely hashing several
+returned values together, otherwise the generator state can be learned after
+reading 624 consecutive values.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFrand">rand</a>, <a class="ref" href="#XREFrandn">randn</a>.
+</p></dd></dl>
+
+
+<p>The generators operate in the new or old style together, it is not
+possible to mix the two.  Initializing any generator with
+<code class="code">&quot;state&quot;</code> or <code class="code">&quot;seed&quot;</code> causes the others to switch to the
+same style for future calls.
+</p>
+<p>The state of each generator is independent and calls to different
+generators can be interleaved without affecting the final result.  For
+example,
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">rand (&quot;state&quot;, [11, 22, 33]);
+randn (&quot;state&quot;, [44, 55, 66]);
+u = rand (100, 1);
+n = randn (100, 1);
+</pre></div></div>
+
+<p>and
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">rand (&quot;state&quot;, [11, 22, 33]);
+randn (&quot;state&quot;, [44, 55, 66]);
+u = zeros (100, 1);
+n = zeros (100, 1);
+for i = 1:100
+  u(i) = rand ();
+  n(i) = randn ();
+end
+</pre></div></div>
+
+<p>produce equivalent results.  When the generators are initialized in
+the old style with <code class="code">&quot;seed&quot;</code> only <code class="code">rand</code> and <code class="code">randn</code> are
+independent, because the old <code class="code">rande</code>, <code class="code">randg</code> and
+<code class="code">randp</code> generators make calls to <code class="code">rand</code> and <code class="code">randn</code>.
+</p>
+<p>The generators are initialized with random states at start-up, so
+that the sequences of random numbers are not the same each time you run
+Octave.<a class="footnote" id="DOCF7" href="#FOOT7"><sup>7</sup></a> If you really do
+need to reproduce a sequence of numbers exactly, you can set the state
+or seed to a specific value.
+</p>
+<p>If invoked without arguments, <code class="code">rand</code> and <code class="code">randn</code> return a
+single element of a random sequence.
+</p>
+<p>The original <code class="code">rand</code> and <code class="code">randn</code> functions use Fortran code from
+<small class="sc">RANLIB</small>, a library of Fortran routines for random number generation,
+compiled by Barry W. Brown and James Lovato of the Department of
+Biomathematics at The University of Texas, M.D. Anderson Cancer Center,
+Houston, TX 77030.
+</p>
+<a class="anchor" id="XREFrandperm"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-randperm"><span><code class="def-type"><var class="var">v</var> =</code> <strong class="def-name">randperm</strong> <code class="def-code-arguments">(<var class="var">n</var>)</code><a class="copiable-link" href="#index-randperm"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-randperm-1"><span><code class="def-type"><var class="var">v</var> =</code> <strong class="def-name">randperm</strong> <code class="def-code-arguments">(<var class="var">n</var>, <var class="var">m</var>)</code><a class="copiable-link" href="#index-randperm-1"> &para;</a></span></dt>
+<dd><p>Return a row vector containing a random permutation of <code class="code">1:<var class="var">n</var></code>.
+</p>
+<p>If <var class="var">m</var> is supplied, return <var class="var">m</var> unique entries, sampled without
+replacement from <code class="code">1:<var class="var">n</var></code>.
+</p>
+<p>The complexity is O(<var class="var">n</var>) in memory and O(<var class="var">m</var>) in time, unless
+<var class="var">m</var> &lt; <var class="var">n</var>/5, in which case O(<var class="var">m</var>) memory is used as well.  The
+randomization is performed using rand().  All permutations are equally
+likely.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Basic-Statistical-Functions.html#XREFperms">perms</a>.
+</p></dd></dl>
+
+
+</div>
+<div class="footnotes-segment">
+<hr>
+<h4 class="footnotes-heading">Footnotes</h4>
+
+<h5 class="footnote-body-heading"><a id="FOOT7" href="#DOCF7">(7)</a></h5>
+<p>The old versions of <code class="code">rand</code> and <code class="code">randn</code>
+obtain their initial seeds from the system clock.</p>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Famous-Matrices.html">Famous Matrices</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Rearranging-Matrices.html">Rearranging Matrices</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Matrix-Manipulation.html">Matrix Manipulation</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

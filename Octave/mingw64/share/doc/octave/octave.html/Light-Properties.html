@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Light Properties (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Light Properties (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Light Properties (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Graphics-Object-Properties.html" rel="up" title="Graphics Object Properties">
+<link href="Uimenu-Properties.html" rel="next" title="Uimenu Properties">
+<link href="Surface-Properties.html" rel="prev" title="Surface Properties">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsubsection-level-extent" id="Light-Properties">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Uimenu-Properties.html" accesskey="n" rel="next">Uimenu Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Surface-Properties.html" accesskey="p" rel="prev">Surface Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Graphics-Object-Properties.html" accesskey="u" rel="up">Graphics Object Properties</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsubsection" id="Light-Properties-1"><span>15.3.3.11 Light Properties<a class="copiable-link" href="#Light-Properties-1"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-Light-Properties"></a>
+
+
+
+<p>Properties of <code class="code">light</code> objects (see <a class="pxref" href="Creating-Graphics-Objects.html#XREFlight">light</a>):
+</p>
+<h4 class="subsubheading" id="Categories_003a-10"><span>Categories:<a class="copiable-link" href="#Categories_003a-10"> &para;</a></span></h4>
+
+<p><a class="ref" href="#XREFlightcategoryCallbackExecution">Callback&nbsp;Execution<!-- /@w --></a> | <a class="ref" href="#XREFlightcategoryCreation_002fDeletion">Creation/Deletion<!-- /@w --></a> | <a class="ref" href="#XREFlightcategoryDisplay">Display<!-- /@w --></a> | <a class="ref" href="#XREFlightcategoryLighting">Lighting<!-- /@w --></a> | <a class="ref" href="#XREFlightcategoryMouseInteraction">Mouse&nbsp;Interaction<!-- /@w --></a> | <a class="ref" href="#XREFlightcategoryObjectIdentification">Object&nbsp;Identification<!-- /@w --></a> | <a class="ref" href="#XREFlightcategoryParent_002fChildren">Parent/Children<!-- /@w --></a> 
+</p>
+<a class="anchor" id="XREFlightcategoryCallbackExecution"></a><h4 class="subsubheading" id="Callback-Execution-10"><span>Callback Execution<a class="copiable-link" href="#Callback-Execution-10"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFlightbusyaction"></a></dd>
+<dt><a id="index-light-busyaction"></a><span><code class="code">busyaction</code>: <code class="code">&quot;cancel&quot;</code> | {<code class="code">&quot;queue&quot;</code>}<a class="copiable-link" href="#index-light-busyaction"> &para;</a></span></dt>
+<dd><p>Define how Octave handles the execution of this object&rsquo;s callback properties when it is unable to interrupt another object&rsquo;s executing callback.  This is only relevant when the currently executing callback object has its <code class="code">interruptible</code> property set to <code class="code">&quot;off&quot;</code>.  The <code class="code">busyaction</code> property of the interrupting callback object indicates whether the interrupting callback is queued (<code class="code">&quot;queue&quot;</code> (default)) or discarded (<code class="code">&quot;cancel&quot;</code>).
+See <a class="xref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFlightinterruptible"></a></dd>
+<dt><a id="index-light-interruptible"></a><span><code class="code">interruptible</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-light-interruptible"> &para;</a></span></dt>
+<dd><p>Specify whether this object&rsquo;s callback functions may be interrupted by other callbacks.  By default <code class="code">interruptible</code> is <code class="code">&quot;on&quot;</code> and callbacks that make use of <code class="code">drawnow</code>, <code class="code">figure</code>, <code class="code">waitfor</code>, <code class="code">getframe</code> or <code class="code">pause</code> functions are eventually interrupted.
+See <a class="xref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFlightcategoryCreation_002fDeletion"></a><h4 class="subsubheading" id="Creation_002fDeletion-8"><span>Creation/Deletion<a class="copiable-link" href="#Creation_002fDeletion-8"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFlightbeingdeleted"></a></dd>
+<dt><a id="index-light-beingdeleted"></a><span><code class="code">beingdeleted</code>: {<code class="code">&quot;off&quot;</code>} | <code class="code">&quot;on&quot;</code><a class="copiable-link" href="#index-light-beingdeleted"> &para;</a></span></dt>
+<dd><p>Property indicating that a function has initiated deletion of the object.  <code class="code">beingdeleted</code> is set to true until the object no longer exists.
+</p>
+
+<a class="anchor" id="XREFlightcreatefcn"></a></dd>
+<dt><a id="index-light-createfcn"></a><span><code class="code">createfcn</code>: string | function handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-light-createfcn"> &para;</a></span></dt>
+<dd><p>Callback function executed immediately after light has been created.  Function is set by using default property on root object, e.g., <code class="code">set (groot, &quot;defaultlightcreatefcn&quot;, 'disp (&quot;light created!&quot;)')</code>.
+</p>
+<p>For information on how to write graphics listener functions, see <a class="pxref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFlightdeletefcn"></a></dd>
+<dt><a id="index-light-deletefcn"></a><span><code class="code">deletefcn</code>: string | function handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-light-deletefcn"> &para;</a></span></dt>
+<dd><p>Callback function executed immediately before light is deleted.
+</p>
+<p>For information on how to write graphics listener functions, see <a class="pxref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFlightcategoryDisplay"></a><h4 class="subsubheading" id="Display-8"><span>Display<a class="copiable-link" href="#Display-8"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFlightclipping"></a></dd>
+<dt><a id="index-light-clipping"></a><span><code class="code">clipping</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-light-clipping"> &para;</a></span></dt>
+<dd><p>If <code class="code">clipping</code> is <code class="code">&quot;on&quot;</code>, the light is clipped in its parent axes limits.
+</p>
+
+<a class="anchor" id="XREFlightvisible"></a></dd>
+<dt><a id="index-light-visible"></a><span><code class="code">visible</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-light-visible"> &para;</a></span></dt>
+<dd><p>If <code class="code">visible</code> is <code class="code">&quot;off&quot;</code>, the light is not rendered on screen.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFlightcategoryLighting"></a><h4 class="subsubheading" id="Lighting-2"><span>Lighting<a class="copiable-link" href="#Lighting-2"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFlightcolor"></a></dd>
+<dt><a id="index-light-color"></a><span><code class="code">color</code>: colorspec, def. <code class="code">[1   1   1]</code><a class="copiable-link" href="#index-light-color"> &para;</a></span></dt>
+<dd><p>Color of the light source.  See <a class="xref" href="Colors.html">colorspec</a>.
+</p>
+
+<a class="anchor" id="XREFlightposition"></a></dd>
+<dt><a id="index-light-position"></a><span><code class="code">position</code>: def. <code class="code">[1   0   1]</code><a class="copiable-link" href="#index-light-position"> &para;</a></span></dt>
+<dd><p>Position of the light source.
+</p>
+
+<a class="anchor" id="XREFlightstyle"></a></dd>
+<dt><a id="index-light-style"></a><span><code class="code">style</code>: {<code class="code">&quot;infinite&quot;</code>} | <code class="code">&quot;local&quot;</code><a class="copiable-link" href="#index-light-style"> &para;</a></span></dt>
+<dd><p>This string defines whether the light emanates from a light source at infinite distance (<code class="code">&quot;infinite&quot;</code>) or from a local point source (<code class="code">&quot;local&quot;</code>).
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFlightcategoryMouseInteraction"></a><h4 class="subsubheading" id="Mouse-Interaction-9"><span>Mouse Interaction<a class="copiable-link" href="#Mouse-Interaction-9"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFlightbuttondownfcn"></a></dd>
+<dt><a id="index-light-buttondownfcn"></a><span><code class="code">buttondownfcn</code>: string | function handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-light-buttondownfcn"> &para;</a></span></dt>
+<dd><p>For information on how to write graphics listener functions, see <a class="pxref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFlightcontextmenu"></a></dd>
+<dt><a id="index-light-contextmenu"></a><span><code class="code">contextmenu</code>: graphics handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-light-contextmenu"> &para;</a></span></dt>
+<dd><p>Graphics handle of the uicontextmenu object that is currently associated to this light object.
+</p>
+
+<a class="anchor" id="XREFlighthittest"></a></dd>
+<dt><a id="index-light-hittest"></a><span><code class="code">hittest</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-light-hittest"> &para;</a></span></dt>
+<dd><p>Specify whether light processes mouse events or passes them to ancestors of the object.  When enabled, the object may respond to mouse clicks by evaluating the <code class="code">&quot;buttondownfcn&quot;</code>, showing the uicontextmenu, and eventually becoming the root <code class="code">&quot;currentobject&quot;</code>.  This property is only relevant when the object can accept mouse clicks which is determined by the <code class="code">&quot;pickableparts&quot;</code> property.  See <a class="xref" href="#XREFlightpickableparts">pickableparts&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFlightpickableparts"></a></dd>
+<dt><a id="index-light-pickableparts"></a><span><code class="code">pickableparts</code>: <code class="code">&quot;all&quot;</code> | <code class="code">&quot;none&quot;</code> | {<code class="code">&quot;visible&quot;</code>}<a class="copiable-link" href="#index-light-pickableparts"> &para;</a></span></dt>
+<dd><p>Specify whether light will accept mouse clicks.  By default, <code class="code">pickableparts</code> is <code class="code">&quot;visible&quot;</code> and only visible parts of the light or its children may react to mouse clicks.  When <code class="code">pickableparts</code> is <code class="code">&quot;all&quot;</code> both visible and invisible parts (or children) may react to mouse clicks.  When <code class="code">pickableparts</code> is <code class="code">&quot;none&quot;</code> mouse clicks on the object are ignored and transmitted to any objects underneath this one.  When an object is configured to accept mouse clicks the <code class="code">&quot;hittest&quot;</code> property will determine how they are processed.  See <a class="xref" href="#XREFlighthittest">hittest&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFlightselected"></a></dd>
+<dt><a id="index-light-selected"></a><span><code class="code">selected</code>: {<code class="code">&quot;off&quot;</code>} | <code class="code">&quot;on&quot;</code><a class="copiable-link" href="#index-light-selected"> &para;</a></span></dt>
+<dd><p>Property indicates whether this light is selected.
+</p>
+
+<a class="anchor" id="XREFlightselectionhighlight"></a></dd>
+<dt><a id="index-light-selectionhighlight"></a><span><code class="code">selectionhighlight</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-light-selectionhighlight"> &para;</a></span></dt>
+<dd><p>If <code class="code">selectionhighlight</code> is <code class="code">&quot;on&quot;</code>, then the light&rsquo;s selection state is visually highlighted.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFlightcategoryObjectIdentification"></a><h4 class="subsubheading" id="Object-Identification-10"><span>Object Identification<a class="copiable-link" href="#Object-Identification-10"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFlighttag"></a></dd>
+<dt><a id="index-light-tag"></a><span><code class="code">tag</code>: string, def. <code class="code">&quot;&quot;</code><a class="copiable-link" href="#index-light-tag"> &para;</a></span></dt>
+<dd><p>A user-defined string to label the graphics object.
+</p>
+
+<a class="anchor" id="XREFlighttype"></a></dd>
+<dt><a id="index-light-type"></a><span><code class="code">type</code> (read-only): string<a class="copiable-link" href="#index-light-type"> &para;</a></span></dt>
+<dd><p>Class name of the graphics object.  <code class="code">type</code> is always <code class="code">&quot;light&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFlightuserdata"></a></dd>
+<dt><a id="index-light-userdata"></a><span><code class="code">userdata</code>: Any Octave data, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-light-userdata"> &para;</a></span></dt>
+<dd><p>User-defined data to associate with the graphics object.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFlightcategoryParent_002fChildren"></a><h4 class="subsubheading" id="Parent_002fChildren-9"><span>Parent/Children<a class="copiable-link" href="#Parent_002fChildren-9"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFlightchildren"></a></dd>
+<dt><a id="index-light-children"></a><span><code class="code">children</code> (read-only): vector of graphics handles, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-light-children"> &para;</a></span></dt>
+<dd><p>light objects have no child objects.  <code class="code">children</code> is unused.
+</p>
+
+<a class="anchor" id="XREFlighthandlevisibility"></a></dd>
+<dt><a id="index-light-handlevisibility"></a><span><code class="code">handlevisibility</code>: <code class="code">&quot;callback&quot;</code> | <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-light-handlevisibility"> &para;</a></span></dt>
+<dd><p>If <code class="code">handlevisibility</code> is <code class="code">&quot;off&quot;</code>, the light&rsquo;s handle is not visible in its parent&rsquo;s <code class="code">&quot;children&quot;</code> property.
+</p>
+
+<a class="anchor" id="XREFlightparent"></a></dd>
+<dt><a id="index-light-parent"></a><span><code class="code">parent</code>: graphics handle<a class="copiable-link" href="#index-light-parent"> &para;</a></span></dt>
+<dd><p>Handle of the parent graphics object.
+</p>
+</dd>
+</dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Uimenu-Properties.html">Uimenu Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Surface-Properties.html">Surface Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Graphics-Object-Properties.html">Graphics Object Properties</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

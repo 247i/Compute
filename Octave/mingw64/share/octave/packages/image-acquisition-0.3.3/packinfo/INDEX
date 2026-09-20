@@ -1,0 +1,11 @@
+image >> Image acquisition
+list devices
+ imaqhwinfo
+videoinput
+ @videoinput/videoinput
+ @videoinput/get
+ @videoinput/set
+ @videoinput/start
+ @videoinput/preview
+ @videoinput/getsnapshot
+ @videoinput/stop

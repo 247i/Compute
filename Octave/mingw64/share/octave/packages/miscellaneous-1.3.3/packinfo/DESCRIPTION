@@ -1,0 +1,16 @@
+Name: miscellaneous
+Version: 1.3.3
+Date: 2026-05-24
+Author: various authors
+Maintainer: Octave-Forge community <octave-dev@lists.sourceforge.net>
+Title: Miscellaneous functions
+Description: Miscellaneous tools that don't fit somewhere else.
+Categories: Miscellaneous
+Depends: octave (>= 3.8.0)
+Autoload: no
+SystemRequirements: units
+BuildRequires: termcap-devel [Debian], libncurses5-dev, GNU units
+License: GPLv3+
+Url: https://gnu-octave.github.io/octave-miscellaneous/
+Repository: https://github.com/gnu-octave/octave-miscellaneous/
+Tracker: https://github.com/gnu-octave/octave-miscellaneous/issues

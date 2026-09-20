@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Uicontrol Properties (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Uicontrol Properties (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Uicontrol Properties (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Graphics-Object-Properties.html" rel="up" title="Graphics Object Properties">
+<link href="Uitable-Properties.html" rel="next" title="Uitable Properties">
+<link href="Uipanel-Properties.html" rel="prev" title="Uipanel Properties">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsubsection-level-extent" id="Uicontrol-Properties">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Uitable-Properties.html" accesskey="n" rel="next">Uitable Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Uipanel-Properties.html" accesskey="p" rel="prev">Uipanel Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Graphics-Object-Properties.html" accesskey="u" rel="up">Graphics Object Properties</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsubsection" id="Uicontrol-Properties-1"><span>15.3.3.16 Uicontrol Properties<a class="copiable-link" href="#Uicontrol-Properties-1"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-Uicontrol-Properties"></a>
+
+
+
+<p>Properties of <code class="code">uicontrol</code> objects (see <a class="pxref" href="UI-Elements.html#XREFuicontrol">uicontrol</a>):
+</p>
+<h4 class="subsubheading" id="Categories_003a-15"><span>Categories:<a class="copiable-link" href="#Categories_003a-15"> &para;</a></span></h4>
+
+<p><a class="ref" href="#XREFuicontrolcategoryAppearance">Appearance<!-- /@w --></a> | <a class="ref" href="#XREFuicontrolcategoryCallbackExecution">Callback&nbsp;Execution<!-- /@w --></a> | <a class="ref" href="#XREFuicontrolcategoryControlOptions">Control&nbsp;Options<!-- /@w --></a> | <a class="ref" href="#XREFuicontrolcategoryCreation_002fDeletion">Creation/Deletion<!-- /@w --></a> | <a class="ref" href="#XREFuicontrolcategoryDisplay">Display<!-- /@w --></a> | <a class="ref" href="#XREFuicontrolcategoryMouseInteraction">Mouse&nbsp;Interaction<!-- /@w --></a> | <a class="ref" href="#XREFuicontrolcategoryObjectIdentification">Object&nbsp;Identification<!-- /@w --></a> | <a class="ref" href="#XREFuicontrolcategoryObjectPosition">Object&nbsp;Position<!-- /@w --></a> | <a class="ref" href="#XREFuicontrolcategoryParent_002fChildren">Parent/Children<!-- /@w --></a> | <a class="ref" href="#XREFuicontrolcategoryTextAppearance">Text&nbsp;Appearance<!-- /@w --></a> 
+</p>
+<a class="anchor" id="XREFuicontrolcategoryAppearance"></a><h4 class="subsubheading" id="Appearance-4"><span>Appearance<a class="copiable-link" href="#Appearance-4"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFuicontrolbackgroundcolor"></a></dd>
+<dt><a id="index-uicontrol-backgroundcolor"></a><span><code class="code">backgroundcolor</code>: colorspec, def. <code class="code">[0.9400   0.9400   0.9400]</code><a class="copiable-link" href="#index-uicontrol-backgroundcolor"> &para;</a></span></dt>
+<dd><p>The color value of the background of this control object.
+</p>
+
+<a class="anchor" id="XREFuicontrolcdata"></a></dd>
+<dt><a id="index-uicontrol-cdata"></a><span><code class="code">cdata</code>: array, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-uicontrol-cdata"> &para;</a></span></dt>
+<dd><p>Image data used to represent the control object, stored as a M x N x 3 RGB array.
+</p>
+
+<a class="anchor" id="XREFuicontrolextent"></a></dd>
+<dt><a id="index-uicontrol-extent"></a><span><code class="code">extent</code> (read-only): four-element vector<a class="copiable-link" href="#index-uicontrol-extent"> &para;</a></span></dt>
+<dd><p>Size of the text string associated to the uicontrol returned in the form <code class="code">[0 0 width height]</code> (the two first elements are always zero).
+</p>
+<p>For multi-line strings the returned <code class="code">width</code> and <code class="code">height</code> indicate the size of the rectangle enclosing all lines.
+</p>
+
+<a class="anchor" id="XREFuicontrolforegroundcolor"></a></dd>
+<dt><a id="index-uicontrol-foregroundcolor"></a><span><code class="code">foregroundcolor</code>: colorspec, def. <code class="code">[0   0   0]</code><a class="copiable-link" href="#index-uicontrol-foregroundcolor"> &para;</a></span></dt>
+<dd><p>The color value of the text for this control object.  See <a class="xref" href="Colors.html">colorspec</a>.
+</p>
+
+<a class="anchor" id="XREFuicontrolstyle"></a></dd>
+<dt><a id="index-uicontrol-style"></a><span><code class="code">style</code>: <code class="code">&quot;checkbox&quot;</code> | <code class="code">&quot;edit&quot;</code> | <code class="code">&quot;frame&quot;</code> | <code class="code">&quot;listbox&quot;</code> | <code class="code">&quot;popupmenu&quot;</code> | {<code class="code">&quot;pushbutton&quot;</code>} | <code class="code">&quot;radiobutton&quot;</code> | <code class="code">&quot;slider&quot;</code> | <code class="code">&quot;text&quot;</code> | <code class="code">&quot;togglebutton&quot;</code><a class="copiable-link" href="#index-uicontrol-style"> &para;</a></span></dt>
+<dd><p>The type of control object created.  For a complete description of available control styles, see the <a class="ref" href="UI-Elements.html#XREFuicontrol"><code class="code">&quot;uicontrol&quot;</code>&nbsp;function<!-- /@w --></a>
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFuicontrolcategoryCallbackExecution"></a><h4 class="subsubheading" id="Callback-Execution-15"><span>Callback Execution<a class="copiable-link" href="#Callback-Execution-15"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFuicontrolbusyaction"></a></dd>
+<dt><a id="index-uicontrol-busyaction"></a><span><code class="code">busyaction</code>: <code class="code">&quot;cancel&quot;</code> | {<code class="code">&quot;queue&quot;</code>}<a class="copiable-link" href="#index-uicontrol-busyaction"> &para;</a></span></dt>
+<dd><p>Define how Octave handles the execution of this object&rsquo;s callback properties when it is unable to interrupt another object&rsquo;s executing callback.  This is only relevant when the currently executing callback object has its <code class="code">interruptible</code> property set to <code class="code">&quot;off&quot;</code>.  The <code class="code">busyaction</code> property of the interrupting callback object indicates whether the interrupting callback is queued (<code class="code">&quot;queue&quot;</code> (default)) or discarded (<code class="code">&quot;cancel&quot;</code>).
+See <a class="xref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFuicontrolcallback"></a></dd>
+<dt><a id="index-uicontrol-callback"></a><span><code class="code">callback</code>: string, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-uicontrol-callback"> &para;</a></span></dt>
+<dd><p>A string consisting of a valid Octave expression that will be executed whenever this control is activated.
+</p>
+
+<a class="anchor" id="XREFuicontrolinterruptible"></a></dd>
+<dt><a id="index-uicontrol-interruptible"></a><span><code class="code">interruptible</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-uicontrol-interruptible"> &para;</a></span></dt>
+<dd><p>Specify whether this object&rsquo;s callback functions may be interrupted by other callbacks.  By default <code class="code">interruptible</code> is <code class="code">&quot;on&quot;</code> and callbacks that make use of <code class="code">drawnow</code>, <code class="code">figure</code>, <code class="code">waitfor</code>, <code class="code">getframe</code> or <code class="code">pause</code> functions are eventually interrupted.
+See <a class="xref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFuicontrolkeypressfcn"></a></dd>
+<dt><a id="index-uicontrol-keypressfcn"></a><span><code class="code">keypressfcn</code>: string | function handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-uicontrol-keypressfcn"> &para;</a></span></dt>
+<dd><p>Callback function executed when a key is pressed while the uicontrol object has focus.  The first argument to the function is the handle of the calling uicontrol.  The second argument holds an event structure which has the following members:
+</p><dl class="table">
+<dt><code class="code">Character:</code></dt>
+<dd><p>The ASCII value of the key
+</p></dd>
+<dt><code class="code">Modifier:</code></dt>
+<dd><p>A cell array containing strings representing the modifiers pressed with the key.
+</p></dd>
+<dt><code class="code">Key:</code></dt>
+<dd><p>Lowercase description of the key
+</p></dd>
+<dt><code class="code">Source:</code></dt>
+<dd><p>Graphics handle of the object executing the callback function
+</p></dd>
+<dt><code class="code">EventName:</code></dt>
+<dd><p>&quot;KeyPress&quot;
+</p></dd>
+</dl>
+
+<p>For information on how to write graphics listener functions, see <a class="pxref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFuicontrolcategoryControlOptions"></a><h4 class="subsubheading" id="Control-Options"><span>Control Options<a class="copiable-link" href="#Control-Options"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFuicontrolenable"></a></dd>
+<dt><a id="index-uicontrol-enable"></a><span><code class="code">enable</code>: <code class="code">&quot;inactive&quot;</code> | <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-uicontrol-enable"> &para;</a></span></dt>
+<dd><p>Sets whether this control object is active or is grayed out.
+</p>
+
+<a class="anchor" id="XREFuicontrollistboxtop"></a></dd>
+<dt><a id="index-uicontrol-listboxtop"></a><span><code class="code">listboxtop</code>: scalar, def. <code class="code">1</code><a class="copiable-link" href="#index-uicontrol-listboxtop"> &para;</a></span></dt>
+<dd><p>The index of the string option that will appear at the top of &quot;listbox&quot; controls 
+</p>
+
+<a class="anchor" id="XREFuicontrolmax"></a></dd>
+<dt><a id="index-uicontrol-max"></a><span><code class="code">max</code>: scalar, def. <code class="code">1</code><a class="copiable-link" href="#index-uicontrol-max"> &para;</a></span></dt>
+<dd><p>The maximum control value, whose effect on the control is dependent on the control type.  For <code class="code">&quot;checkbox&quot;</code>, <code class="code">&quot;togglebutton&quot;</code>, and <code class="code">&quot;radiobutton&quot;</code> controls, the <code class="code">&quot;max&quot;</code> value is assigned to the <code class="code">&quot;value&quot;</code> property when the control object is selected.  For <code class="code">&quot;slider&quot;</code> controls, <code class="code">&quot;max&quot;</code> defines the maximum value of the slider.  For <code class="code">&quot;edit&quot;</code> and <code class="code">&quot;listbox&quot;</code> controls, if <code class="code">Max - Min &gt; 1</code>, then the control will permit multiple line entries or list item selections, respectively.
+</p>
+
+<a class="anchor" id="XREFuicontrolmin"></a></dd>
+<dt><a id="index-uicontrol-min"></a><span><code class="code">min</code>: scalar, def. <code class="code">0</code><a class="copiable-link" href="#index-uicontrol-min"> &para;</a></span></dt>
+<dd><p>The minimum control value, whose effect on the control is dependent on the control type.  For <code class="code">&quot;checkbox&quot;</code>, <code class="code">&quot;togglebutton&quot;</code>, and <code class="code">&quot;radiobutton&quot;</code> controls, the <code class="code">&quot;min&quot;</code> value is assigned to the <code class="code">&quot;value&quot;</code> property when the control object is not selected.  For <code class="code">&quot;slider&quot;</code> controls, <code class="code">&quot;min&quot;</code> defines the minimum value of the slider.  For <code class="code">&quot;edit&quot;</code> and <code class="code">&quot;listbox&quot;</code> controls, if <code class="code">Max - Min &gt; 1</code>, then the control will permit multiple line entries or list item selections, respectively.
+</p>
+
+<a class="anchor" id="XREFuicontrolsliderstep"></a></dd>
+<dt><a id="index-uicontrol-sliderstep"></a><span><code class="code">sliderstep</code>: two-element vector, def. <code class="code">[0.010000   0.100000]</code><a class="copiable-link" href="#index-uicontrol-sliderstep"> &para;</a></span></dt>
+<dd><p>The fractional step size, measured relative to the <code class="code">Min - Max</code> span of the slider, that the slider moves when the user clicks on the object.  <code class="code">&quot;sliderstep&quot;</code> is specified as a two-element vector consisting of <code class="code">[minor major]</code>, where <code class="code">&quot;minor&quot;</code> is the step size for clicking on the slider arrows, and <code class="code">&quot;major&quot;</code> is the step size for clicking within the slider bar.
+</p>
+
+<a class="anchor" id="XREFuicontrolvalue"></a></dd>
+<dt><a id="index-uicontrol-value"></a><span><code class="code">value</code>: scalar, def. <code class="code">0</code><a class="copiable-link" href="#index-uicontrol-value"> &para;</a></span></dt>
+<dd><p>A numerical value associated with the current state of the control object, with the meaning of the value dependent on the &quot;style&quot; of the control object.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFuicontrolcategoryCreation_002fDeletion"></a><h4 class="subsubheading" id="Creation_002fDeletion-13"><span>Creation/Deletion<a class="copiable-link" href="#Creation_002fDeletion-13"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFuicontrolbeingdeleted"></a></dd>
+<dt><a id="index-uicontrol-beingdeleted"></a><span><code class="code">beingdeleted</code>: {<code class="code">&quot;off&quot;</code>} | <code class="code">&quot;on&quot;</code><a class="copiable-link" href="#index-uicontrol-beingdeleted"> &para;</a></span></dt>
+<dd><p>Property indicating that a function has initiated deletion of the object.  <code class="code">beingdeleted</code> is set to true until the object no longer exists.
+</p>
+
+<a class="anchor" id="XREFuicontrolcreatefcn"></a></dd>
+<dt><a id="index-uicontrol-createfcn"></a><span><code class="code">createfcn</code>: string | function handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-uicontrol-createfcn"> &para;</a></span></dt>
+<dd><p>Callback function executed immediately after uicontrol has been created.  Function is set by using default property on root object, e.g., <code class="code">set (groot, &quot;defaultuicontrolcreatefcn&quot;, 'disp (&quot;uicontrol created!&quot;)')</code>.
+</p>
+<p>For information on how to write graphics listener functions, see <a class="pxref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFuicontroldeletefcn"></a></dd>
+<dt><a id="index-uicontrol-deletefcn"></a><span><code class="code">deletefcn</code>: string | function handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-uicontrol-deletefcn"> &para;</a></span></dt>
+<dd><p>Callback function executed immediately before uicontrol is deleted.
+</p>
+<p>For information on how to write graphics listener functions, see <a class="pxref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFuicontrolcategoryDisplay"></a><h4 class="subsubheading" id="Display-13"><span>Display<a class="copiable-link" href="#Display-13"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFuicontrolclipping"></a></dd>
+<dt><a id="index-uicontrol-clipping"></a><span><code class="code">clipping</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-uicontrol-clipping"> &para;</a></span></dt>
+<dd><p>If <code class="code">clipping</code> is <code class="code">&quot;on&quot;</code>, the uicontrol is clipped in its parent axes limits.
+</p>
+
+<a class="anchor" id="XREFuicontrolvisible"></a></dd>
+<dt><a id="index-uicontrol-visible"></a><span><code class="code">visible</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-uicontrol-visible"> &para;</a></span></dt>
+<dd><p>If <code class="code">visible</code> is <code class="code">&quot;off&quot;</code>, the uicontrol is not rendered on screen.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFuicontrolcategoryMouseInteraction"></a><h4 class="subsubheading" id="Mouse-Interaction-14"><span>Mouse Interaction<a class="copiable-link" href="#Mouse-Interaction-14"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFuicontrolbuttondownfcn"></a></dd>
+<dt><a id="index-uicontrol-buttondownfcn"></a><span><code class="code">buttondownfcn</code>: string | function handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-uicontrol-buttondownfcn"> &para;</a></span></dt>
+<dd><p>For information on how to write graphics listener functions, see <a class="pxref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFuicontrolcontextmenu"></a></dd>
+<dt><a id="index-uicontrol-contextmenu"></a><span><code class="code">contextmenu</code>: graphics handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-uicontrol-contextmenu"> &para;</a></span></dt>
+<dd><p>Graphics handle of the uicontextmenu object that is currently associated to this uicontrol object.
+</p>
+
+<a class="anchor" id="XREFuicontrolhittest"></a></dd>
+<dt><a id="index-uicontrol-hittest"></a><span><code class="code">hittest</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-uicontrol-hittest"> &para;</a></span></dt>
+<dd><p>Specify whether uicontrol processes mouse events or passes them to ancestors of the object.  When enabled, the object may respond to mouse clicks by evaluating the <code class="code">&quot;buttondownfcn&quot;</code>, showing the uicontextmenu, and eventually becoming the root <code class="code">&quot;currentobject&quot;</code>.  This property is only relevant when the object can accept mouse clicks which is determined by the <code class="code">&quot;pickableparts&quot;</code> property.  See <a class="xref" href="#XREFuicontrolpickableparts">pickableparts&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFuicontrolpickableparts"></a></dd>
+<dt><a id="index-uicontrol-pickableparts"></a><span><code class="code">pickableparts</code>: <code class="code">&quot;all&quot;</code> | <code class="code">&quot;none&quot;</code> | {<code class="code">&quot;visible&quot;</code>}<a class="copiable-link" href="#index-uicontrol-pickableparts"> &para;</a></span></dt>
+<dd><p>Specify whether uicontrol will accept mouse clicks.  By default, <code class="code">pickableparts</code> is <code class="code">&quot;visible&quot;</code> and only visible parts of the uicontrol or its children may react to mouse clicks.  When <code class="code">pickableparts</code> is <code class="code">&quot;all&quot;</code> both visible and invisible parts (or children) may react to mouse clicks.  When <code class="code">pickableparts</code> is <code class="code">&quot;none&quot;</code> mouse clicks on the object are ignored and transmitted to any objects underneath this one.  When an object is configured to accept mouse clicks the <code class="code">&quot;hittest&quot;</code> property will determine how they are processed.  See <a class="xref" href="#XREFuicontrolhittest">hittest&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFuicontrolselected"></a></dd>
+<dt><a id="index-uicontrol-selected"></a><span><code class="code">selected</code>: {<code class="code">&quot;off&quot;</code>} | <code class="code">&quot;on&quot;</code><a class="copiable-link" href="#index-uicontrol-selected"> &para;</a></span></dt>
+<dd><p>Property indicates whether this uicontrol is selected.
+</p>
+
+<a class="anchor" id="XREFuicontrolselectionhighlight"></a></dd>
+<dt><a id="index-uicontrol-selectionhighlight"></a><span><code class="code">selectionhighlight</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-uicontrol-selectionhighlight"> &para;</a></span></dt>
+<dd><p>If <code class="code">selectionhighlight</code> is <code class="code">&quot;on&quot;</code>, then the uicontrol&rsquo;s selection state is visually highlighted.
+</p>
+
+<a class="anchor" id="XREFuicontroltooltipstring"></a></dd>
+<dt><a id="index-uicontrol-tooltipstring"></a><span><code class="code">tooltipstring</code>: string, def. <code class="code">&quot;&quot;</code><a class="copiable-link" href="#index-uicontrol-tooltipstring"> &para;</a></span></dt>
+<dd><p>A text string that appears in a tooltip when the mouse pointer hovers over the control object.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFuicontrolcategoryObjectIdentification"></a><h4 class="subsubheading" id="Object-Identification-15"><span>Object Identification<a class="copiable-link" href="#Object-Identification-15"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFuicontroltag"></a></dd>
+<dt><a id="index-uicontrol-tag"></a><span><code class="code">tag</code>: string, def. <code class="code">&quot;&quot;</code><a class="copiable-link" href="#index-uicontrol-tag"> &para;</a></span></dt>
+<dd><p>A user-defined string to label the graphics object.
+</p>
+
+<a class="anchor" id="XREFuicontroltype"></a></dd>
+<dt><a id="index-uicontrol-type"></a><span><code class="code">type</code> (read-only): string<a class="copiable-link" href="#index-uicontrol-type"> &para;</a></span></dt>
+<dd><p>Class name of the graphics object.  <code class="code">type</code> is always <code class="code">&quot;uicontrol&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFuicontroluserdata"></a></dd>
+<dt><a id="index-uicontrol-userdata"></a><span><code class="code">userdata</code>: Any Octave data, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-uicontrol-userdata"> &para;</a></span></dt>
+<dd><p>User-defined data to associate with the graphics object.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFuicontrolcategoryObjectPosition"></a><h4 class="subsubheading" id="Object-Position-8"><span>Object Position<a class="copiable-link" href="#Object-Position-8"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFuicontrolposition"></a></dd>
+<dt><a id="index-uicontrol-position"></a><span><code class="code">position</code>: four-element vector, def. <code class="code">[0    0   80   30]</code><a class="copiable-link" href="#index-uicontrol-position"> &para;</a></span></dt>
+<dd><p>Size of the control object represented as the four-element vector [left, bottom, width, height].
+</p>
+
+<a class="anchor" id="XREFuicontrolunits"></a></dd>
+<dt><a id="index-uicontrol-units"></a><span><code class="code">units</code>: <code class="code">&quot;centimeters&quot;</code> | <code class="code">&quot;characters&quot;</code> | <code class="code">&quot;inches&quot;</code> | <code class="code">&quot;normalized&quot;</code> | {<code class="code">&quot;pixels&quot;</code>} | <code class="code">&quot;points&quot;</code><a class="copiable-link" href="#index-uicontrol-units"> &para;</a></span></dt>
+<dd><p>Unit of measurement used to interpret the <code class="code">&quot;position&quot;</code> property.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFuicontrolcategoryParent_002fChildren"></a><h4 class="subsubheading" id="Parent_002fChildren-14"><span>Parent/Children<a class="copiable-link" href="#Parent_002fChildren-14"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFuicontrolchildren"></a></dd>
+<dt><a id="index-uicontrol-children"></a><span><code class="code">children</code> (read-only): vector of graphics handles, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-uicontrol-children"> &para;</a></span></dt>
+<dd><p>Graphics handles of the uicontrol&rsquo;s children.
+</p>
+
+<a class="anchor" id="XREFuicontrolhandlevisibility"></a></dd>
+<dt><a id="index-uicontrol-handlevisibility"></a><span><code class="code">handlevisibility</code>: <code class="code">&quot;callback&quot;</code> | <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-uicontrol-handlevisibility"> &para;</a></span></dt>
+<dd><p>If <code class="code">handlevisibility</code> is <code class="code">&quot;off&quot;</code>, the uicontrol&rsquo;s handle is not visible in its parent&rsquo;s <code class="code">&quot;children&quot;</code> property.
+</p>
+
+<a class="anchor" id="XREFuicontrolparent"></a></dd>
+<dt><a id="index-uicontrol-parent"></a><span><code class="code">parent</code>: graphics handle<a class="copiable-link" href="#index-uicontrol-parent"> &para;</a></span></dt>
+<dd><p>Handle of the parent graphics object.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFuicontrolcategoryTextAppearance"></a><h4 class="subsubheading" id="Text-Appearance-5"><span>Text Appearance<a class="copiable-link" href="#Text-Appearance-5"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFuicontrolfontangle"></a></dd>
+<dt><a id="index-uicontrol-fontangle"></a><span><code class="code">fontangle</code>: <code class="code">&quot;italic&quot;</code> | {<code class="code">&quot;normal&quot;</code>}<a class="copiable-link" href="#index-uicontrol-fontangle"> &para;</a></span></dt>
+<dd><p>Control whether the font is italic or normal.
+</p>
+
+<a class="anchor" id="XREFuicontrolfontname"></a></dd>
+<dt><a id="index-uicontrol-fontname"></a><span><code class="code">fontname</code>: string, def. <code class="code">&quot;*&quot;</code><a class="copiable-link" href="#index-uicontrol-fontname"> &para;</a></span></dt>
+<dd><p>Name of font used for text rendering.  When setting this property, the text rendering engine will search for a matching font in your system.  If none is found then text is rendered using a default sans serif font (same as the default <code class="code">&quot;*&quot;</code> value).
+</p>
+<p>Programming Note: On systems that don’t use FontConfig natively (all but Linux), the font cache is built when Octave is installed.  You will need to run <code class="code">system (&quot;fc-cache -fv&quot;)</code> manually after installing new fonts.
+</p>
+
+<a class="anchor" id="XREFuicontrolfontsize"></a></dd>
+<dt><a id="index-uicontrol-fontsize"></a><span><code class="code">fontsize</code>: scalar, def. <code class="code">10</code><a class="copiable-link" href="#index-uicontrol-fontsize"> &para;</a></span></dt>
+<dd><p>Size of the font used for text rendering.  See <a class="xref" href="#XREFuicontrolfontunits">fontunits property</a>.
+</p>
+
+<a class="anchor" id="XREFuicontrolfontunits"></a></dd>
+<dt><a id="index-uicontrol-fontunits"></a><span><code class="code">fontunits</code>: <code class="code">&quot;centimeters&quot;</code> | <code class="code">&quot;inches&quot;</code> | <code class="code">&quot;normalized&quot;</code> | <code class="code">&quot;pixels&quot;</code> | {<code class="code">&quot;points&quot;</code>}<a class="copiable-link" href="#index-uicontrol-fontunits"> &para;</a></span></dt>
+<dd><p>Units used to interpret the <code class="code">&quot;fontsize&quot;</code> property.
+</p>
+
+<a class="anchor" id="XREFuicontrolfontweight"></a></dd>
+<dt><a id="index-uicontrol-fontweight"></a><span><code class="code">fontweight</code>: <code class="code">&quot;bold&quot;</code> | {<code class="code">&quot;normal&quot;</code>}<a class="copiable-link" href="#index-uicontrol-fontweight"> &para;</a></span></dt>
+<dd><p>Control the variant of the base font used for text rendering.
+</p>
+
+<a class="anchor" id="XREFuicontrolhorizontalalignment"></a></dd>
+<dt><a id="index-uicontrol-horizontalalignment"></a><span><code class="code">horizontalalignment</code>: {<code class="code">&quot;center&quot;</code>} | <code class="code">&quot;left&quot;</code> | <code class="code">&quot;right&quot;</code><a class="copiable-link" href="#index-uicontrol-horizontalalignment"> &para;</a></span></dt>
+<dd><p>Specifies the horizontal justification of the text within the uicontrol object.
+</p>
+
+<a class="anchor" id="XREFuicontrolstring"></a></dd>
+<dt><a id="index-uicontrol-string"></a><span><code class="code">string</code>: string, def. <code class="code">&quot;&quot;</code><a class="copiable-link" href="#index-uicontrol-string"> &para;</a></span></dt>
+<dd><p>The text appearing with the control object.
+</p>
+
+<a class="anchor" id="XREFuicontrolverticalalignment"></a></dd>
+<dt><a id="index-uicontrol-verticalalignment"></a><span><code class="code">verticalalignment</code>: <code class="code">&quot;bottom&quot;</code> | {<code class="code">&quot;middle&quot;</code>} | <code class="code">&quot;top&quot;</code><a class="copiable-link" href="#index-uicontrol-verticalalignment"> &para;</a></span></dt>
+<dd><p>Specifies the vertical position of the text in the uicontrol object.
+</p>
+</dd>
+</dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Uitable-Properties.html">Uitable Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Uipanel-Properties.html">Uipanel Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Graphics-Object-Properties.html">Graphics Object Properties</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

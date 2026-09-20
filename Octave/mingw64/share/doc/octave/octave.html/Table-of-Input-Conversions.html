@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Table of Input Conversions (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Table of Input Conversions (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Table of Input Conversions (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="C_002dStyle-I_002fO-Functions.html" rel="up" title="C-Style I/O Functions">
+<link href="Numeric-Input-Conversions.html" rel="next" title="Numeric Input Conversions">
+<link href="Input-Conversion-Syntax.html" rel="prev" title="Input Conversion Syntax">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Table-of-Input-Conversions">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Numeric-Input-Conversions.html" accesskey="n" rel="next">Numeric Input Conversions</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Input-Conversion-Syntax.html" accesskey="p" rel="prev">Input Conversion Syntax</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="C_002dStyle-I_002fO-Functions.html" accesskey="u" rel="up">C-Style I/O Functions</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Table-of-Input-Conversions-1"><span>14.2.13 Table of Input Conversions<a class="copiable-link" href="#Table-of-Input-Conversions-1"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-input-conversions_002c-for-scanf"></a>
+
+<p>Here is a table that summarizes the various conversion specifications:
+</p>
+<dl class="table">
+<dt>&lsquo;<samp class="samp">%d</samp>&rsquo;</dt>
+<dd><p>Matches an optionally signed integer written in decimal.
+See <a class="xref" href="Numeric-Input-Conversions.html">Numeric Input Conversions</a>.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">%i</samp>&rsquo;</dt>
+<dd><p>Matches an optionally signed integer in any of the formats that the C
+language defines for specifying an integer constant.
+See <a class="xref" href="Numeric-Input-Conversions.html">Numeric Input Conversions</a>.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">%o</samp>&rsquo;</dt>
+<dd><p>Matches an unsigned integer written in octal radix.
+See <a class="xref" href="Numeric-Input-Conversions.html">Numeric Input Conversions</a>.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">%u</samp>&rsquo;</dt>
+<dd><p>Matches an unsigned integer written in decimal radix.
+See <a class="xref" href="Numeric-Input-Conversions.html">Numeric Input Conversions</a>.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">%x</samp>&rsquo;, &lsquo;<samp class="samp">%X</samp>&rsquo;</dt>
+<dd><p>Matches an unsigned integer written in hexadecimal radix.
+See <a class="xref" href="Numeric-Input-Conversions.html">Numeric Input Conversions</a>.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">%e</samp>&rsquo;, &lsquo;<samp class="samp">%f</samp>&rsquo;, &lsquo;<samp class="samp">%g</samp>&rsquo;, &lsquo;<samp class="samp">%E</samp>&rsquo;, &lsquo;<samp class="samp">%G</samp>&rsquo;</dt>
+<dd><p>Matches an optionally signed floating-point number.
+See <a class="xref" href="Numeric-Input-Conversions.html">Numeric Input Conversions</a>.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">%s</samp>&rsquo;</dt>
+<dd><p>Matches a string containing only non-whitespace characters.
+See <a class="xref" href="String-Input-Conversions.html">String Input Conversions</a>.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">%c</samp>&rsquo;</dt>
+<dd><p>Matches a string of one or more characters; the number of characters
+read is controlled by the maximum field width given for the conversion.
+See <a class="xref" href="String-Input-Conversions.html">String Input Conversions</a>.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">%%</samp>&rsquo;</dt>
+<dd><p>This matches a literal &lsquo;<samp class="samp">%</samp>&rsquo; character in the input stream.  No
+corresponding argument is used.
+</p></dd>
+</dl>
+
+<p>If the syntax of a conversion specification is invalid, the behavior is
+undefined.  If there aren&rsquo;t enough function arguments provided to supply
+addresses for all the conversion specifications in the template strings
+that perform assignments, or if the arguments are not of the correct
+types, the behavior is also undefined.  On the other hand, extra
+arguments are simply ignored.
+</p>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Numeric-Input-Conversions.html">Numeric Input Conversions</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Input-Conversion-Syntax.html">Input Conversion Syntax</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="C_002dStyle-I_002fO-Functions.html">C-Style I/O Functions</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

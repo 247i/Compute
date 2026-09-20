@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Audio File Utilities (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Audio File Utilities (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Audio File Utilities (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Audio-Processing.html" rel="up" title="Audio Processing">
+<link href="Audio-Device-Information.html" rel="next" title="Audio Device Information">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Audio-File-Utilities">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Audio-Device-Information.html" accesskey="n" rel="next">Audio Device Information</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Audio-Processing.html" accesskey="u" rel="up">Audio Processing</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Audio-File-Utilities-1"><span>33.1 Audio File Utilities<a class="copiable-link" href="#Audio-File-Utilities-1"> &para;</a></span></h3>
+
+<p>The following functions allow you to read, write and retrieve
+information about audio files.  Various formats are supported including
+wav, flac and ogg vorbis.
+</p>
+<a class="anchor" id="XREFaudioinfo"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-audioinfo"><span><code class="def-type"><var class="var">info</var> =</code> <strong class="def-name">audioinfo</strong> <code class="def-code-arguments">(<var class="var">filename</var>)</code><a class="copiable-link" href="#index-audioinfo"> &para;</a></span></dt>
+<dd><p>Return information about an audio file specified by <var class="var">filename</var>.
+</p>
+<p>The output <var class="var">info</var> is a structure containing the following fields:
+</p>
+<dl class="table">
+<dt>&lsquo;<samp class="samp">Filename</samp>&rsquo;</dt>
+<dd><p>Name of the audio file.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">CompressionMethod</samp>&rsquo;</dt>
+<dd><p>Audio compression method.  Unused, only present for compatibility with
+<small class="sc">MATLAB</small>.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">NumChannels</samp>&rsquo;</dt>
+<dd><p>Number of audio channels.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">SampleRate</samp>&rsquo;</dt>
+<dd><p>Sample rate of the audio, in Hertz.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">TotalSamples</samp>&rsquo;</dt>
+<dd><p>Number of samples in the file.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">Duration</samp>&rsquo;</dt>
+<dd><p>Duration of the audio, in seconds.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">BitsPerSample</samp>&rsquo;</dt>
+<dd><p>Number of bits per sample.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">BitRate</samp>&rsquo;</dt>
+<dd><p>Audio bit rate.  Unused, only present for compatibility with <small class="sc">MATLAB</small>.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">Title</samp>&rsquo;</dt>
+<dd><p><code class="code">&quot;Title&quot;</code> audio metadata value as a string, or empty if not present.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">Artist</samp>&rsquo;</dt>
+<dd><p><code class="code">&quot;Artist&quot;</code> audio metadata value as a string, or empty if not present.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">Comment</samp>&rsquo;</dt>
+<dd><p><code class="code">&quot;Comment&quot;</code> audio metadata value as a string, or empty if not present.
+</p></dd>
+</dl>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFaudioread">audioread</a>, <a class="ref" href="#XREFaudiowrite">audiowrite</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFaudioread"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-audioread"><span><code class="def-type">[<var class="var">y</var>, <var class="var">fs</var>] =</code> <strong class="def-name">audioread</strong> <code class="def-code-arguments">(<var class="var">filename</var>)</code><a class="copiable-link" href="#index-audioread"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-audioread-1"><span><code class="def-type">[<var class="var">y</var>, <var class="var">fs</var>] =</code> <strong class="def-name">audioread</strong> <code class="def-code-arguments">(<var class="var">filename</var>, <var class="var">samples</var>)</code><a class="copiable-link" href="#index-audioread-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-audioread-2"><span><code class="def-type">[<var class="var">y</var>, <var class="var">fs</var>] =</code> <strong class="def-name">audioread</strong> <code class="def-code-arguments">(<var class="var">filename</var>, <var class="var">datatype</var>)</code><a class="copiable-link" href="#index-audioread-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-audioread-3"><span><code class="def-type">[<var class="var">y</var>, <var class="var">fs</var>] =</code> <strong class="def-name">audioread</strong> <code class="def-code-arguments">(<var class="var">filename</var>, <var class="var">samples</var>, <var class="var">datatype</var>)</code><a class="copiable-link" href="#index-audioread-3"> &para;</a></span></dt>
+<dd><p>Read the audio file <var class="var">filename</var> and return the audio data <var class="var">y</var> and
+sampling rate <var class="var">fs</var>.
+</p>
+<p>The audio data is stored as matrix with rows corresponding to audio frames
+and columns corresponding to channels.
+</p>
+<p>The optional two-element vector argument <var class="var">samples</var> specifies starting
+and ending frames.
+</p>
+<p>The optional argument <var class="var">datatype</var> specifies the datatype to return.
+If it is <code class="code">&quot;native&quot;</code>, then the type of data depends on how the data
+is stored in the audio file.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFaudiowrite">audiowrite</a>, <a class="ref" href="#XREFaudioformats">audioformats</a>, <a class="ref" href="#XREFaudioinfo">audioinfo</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFaudiowrite"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-audiowrite"><span><strong class="def-name">audiowrite</strong> <code class="def-code-arguments">(<var class="var">filename</var>, <var class="var">y</var>, <var class="var">fs</var>)</code><a class="copiable-link" href="#index-audiowrite"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-audiowrite-1"><span><strong class="def-name">audiowrite</strong> <code class="def-code-arguments">(<var class="var">filename</var>, <var class="var">y</var>, <var class="var">fs</var>, <var class="var">name</var>, <var class="var">value</var>, &hellip;)</code><a class="copiable-link" href="#index-audiowrite-1"> &para;</a></span></dt>
+<dd>
+<p>Write audio data from the matrix <var class="var">y</var> to <var class="var">filename</var> at sampling rate
+<var class="var">fs</var> with the file format determined by the file extension.
+</p>
+<p>Additional name/value argument pairs may be used to specify the
+following options:
+</p>
+<dl class="table">
+<dt>&lsquo;<samp class="samp">BitsPerSample</samp>&rsquo;</dt>
+<dd><p>Number of bits per sample.  Valid values are 8, 16, 24, and 32.  Default is
+16.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">BitRate</samp>&rsquo;</dt>
+<dd><p>Valid argument name, but ignored.  Left for compatibility with <small class="sc">MATLAB</small>.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">Quality</samp>&rsquo;</dt>
+<dd><p>Quality setting for the Ogg Vorbis compressor.  Values can range between 0
+and 100 with 100 being the highest quality setting.  Default is 75.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">Title</samp>&rsquo;</dt>
+<dd><p>Title for the audio file.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">Artist</samp>&rsquo;</dt>
+<dd><p>Artist name.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">Comment</samp>&rsquo;</dt>
+<dd><p>Comment.
+</p></dd>
+</dl>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFaudioread">audioread</a>, <a class="ref" href="#XREFaudioformats">audioformats</a>, <a class="ref" href="#XREFaudioinfo">audioinfo</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFaudioformats"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-audioformats"><span><strong class="def-name">audioformats</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-audioformats"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-audioformats-1"><span><strong class="def-name">audioformats</strong> <code class="def-code-arguments">(<var class="var">format</var>)</code><a class="copiable-link" href="#index-audioformats-1"> &para;</a></span></dt>
+<dd><p>Display information about all supported audio formats.
+</p>
+<p>If the optional argument <var class="var">format</var> is given, then display only formats
+with names that start with <var class="var">format</var>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFaudioread">audioread</a>, <a class="ref" href="#XREFaudiowrite">audiowrite</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Audio-Device-Information.html">Audio Device Information</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Audio-Processing.html">Audio Processing</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- Additional documentation for the optim package for Octave.
+
+Copyright © Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<title>d2_min (optim_doc)</title>
+
+<meta name="description" content="d2_min (optim_doc)">
+<meta name="keywords" content="d2_min (optim_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Scalar-optimization.html" rel="up" title="Scalar optimization">
+<link href="mdsmax.html" rel="next" title="mdsmax">
+<link href="samin.html" rel="prev" title="samin">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section-level-extent" id="d2_005fmin">
+<div class="nav-panel">
+<p>
+Next: <a href="mdsmax.html" accesskey="n" rel="next">A multidirectional search algorithm</a>, Previous: <a href="samin.html" accesskey="p" rel="prev">Simulated annealing backend samin of scalar optimization</a>, Up: <a href="Scalar-optimization.html" accesskey="u" rel="up">Functions for optimization of a scalar objective function</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h3 class="section" id="Unconstrained-Newton_002dlike-optimization"><span>1.6 Unconstrained Newton-like optimization<a class="copiable-link" href="#Unconstrained-Newton_002dlike-optimization"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-d2_005fmin"></a>
+
+<p>This backend features a Newton-like algorithm. The user has to supply a
+Hessian function. No constraints are honoured. If the supplied Hessian
+function actually returns the inverse of the Hessian, set
+<code class="code">inverse_hessian</code> to <code class="code">true</code>. Supplying the inverse Hessian is
+preferable, if possible.
+</p>
+<p>Returned value <var class="var">cvg</var> will be <code class="code">2</code> or <code class="code">3</code> for success and
+<code class="code">0</code> or <code class="code">-1</code> for failure (
+see
+<a class="ref" href="nonlin_005fmin.html">Frontend nonlin_min for scalar non-linear optimization</a> for
+meaning). Returned structure <var class="var">outp</var> will have the fields
+<code class="code">niter</code>, <code class="code">nobjf</code>, and <code class="code">user_interaction</code>.
+</p>
+<p>Interpretation of <code class="code">Display</code>: if set to <code class="code">&quot;iter&quot;</code>, some
+diagnostics are printed.
+</p>
+
+</div>
+
+
+
+</body>
+</html>

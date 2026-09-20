@@ -1,0 +1,42 @@
+## Copyright (C) 2019 Andrew Janke
+##
+## This program is free software; you can redistribute it and/or modify
+## it under the terms of the GNU General Public License as published by
+## the Free Software Foundation; either version 3 of the License, or
+## (at your option) any later version.
+##
+## This program is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU General Public License for more details.
+##
+## You should have received a copy of the GNU General Public License
+## along with this program; If not, see <http://www.gnu.org/licenses/>.
+
+## NOTE: The dataset.m.in file is a template for generating the dataset.m file.
+## The dataset.m file is auto-generated from the dataset.m.in file, and will be
+## completely overwritten when it is regenerated. All changes made directly to
+## dataset.m will be lost. To modify the dataset.m file correctly, you must modify
+## the dataset.m.in file and/or the generator tool instead of modifying it
+## directly. The generator tool is tblish.internal.generate_datasets_list, in
+## the inst/ directory.
+
+## -*- texinfo -*-
+## @deftp {Class} tblish.dataset
+##
+## The @code{tblish.dataset} class provides convenient access to the various
+## datasets included with Tablicious.
+##
+## This class just contains a bunch of static methods, each of which loads
+## the dataset of that name. It is provided as a convenience so you can use tab
+## completion or other run-time introspection on the dataset list.
+##
+## @end deftp
+classdef dataset
+
+  methods (Static)
+
+@DATASET_LIST_GOES_HERE@
+  endmethods
+
+endclassdef

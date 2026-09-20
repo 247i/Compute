@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- General documentation for the parallel package for Octave.
+
+Copyright (C) 2016-2023 Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Security (parallel_doc)</title>
+
+<meta name="description" content="Security (parallel_doc)">
+<meta name="keywords" content="Security (parallel_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Cluster-execution.html" rel="up" title="Cluster execution">
+<link href="Authentication.html" rel="next" title="Authentication">
+<link href="Cluster-execution.html" rel="prev" title="Cluster execution">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<span id="Security"></span><div class="header">
+<p>
+Next: <a href="Authentication.html" accesskey="n" rel="next">Authentication</a>, Up: <a href="Cluster-execution.html" accesskey="u" rel="up">Cluster execution</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Security-considerations"></span><h3 class="section">3.1 Security considerations</h3>
+<span id="index-security"></span>
+
+<p>Over a connection to a server of the parallel package arbitrary Octave
+commands can be executed at the server machine. This means that any
+change can be done to the server system and the resident data, only
+limited by the rights of the system account under which the server runs.
+</p>
+<p>By default, the server is started with authentication and encryption
+enabled, to avoid unauthorized access. If the server is started with
+authentication disabled (maybe to avoid the encryption overhead), it
+must be cared for that no TCP connection by unauthorized persons is
+possible to the server ports, possibly by running the client and all
+server machines behind a firewall and assuring that only trusted persons
+have access to any machine behind the firewall. This scenario might be
+achievable in home-nets.
+</p>
+<p>The server currently uses port 12502 for receiving commands and port
+12501 for data exchange.
+</p>
+<p>The client and the servers used by the client with <code>pconnect</code> must
+agree on using authentication or not.
+</p>
+<p>Do not start the server as root.
+</p>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,252 @@
+## Copyright (C) 2014 - Nir Krakauer
+## Copyright (C) 2025 Andreas Bertsatos <abertsatos@biol.uoa.gr>
+## Copyright (C) 2026 Avanish Salunke <avanishsalunke16@gmail.com>
+##
+## This file is part of the statistics package for GNU Octave.
+##
+## This program is free software; you can redistribute it and/or modify
+## it under the terms of the GNU General Public License as published by
+## the Free Software Foundation; either version 3 of the License, or
+## (at your option) any later version.
+##
+## This program is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU General Public License for more details.
+##
+## You should have received a copy of the GNU General Public License
+## along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+## -*- texinfo -*-
+## @deftypefn  {statistics} {@var{y} =} randsample (@var{v}, @var{k})
+## @deftypefnx {statistics} {@var{y} =} randsample (@var{v}, @var{k}, @var{replacement}=false)
+## @deftypefnx {statistics} {@var{y} =} randsample (@var{v}, @var{k}, @var{replacement}=false, [@var{w}=[]])
+##
+## Sample elements from a vector.
+##
+## Returns @var{k} random elements from a vector @var{v} with @var{n} elements,
+## sampled without or with @var{replacement}, with an optional weight vector.
+##
+## If @var{v} is a scalar, samples from 1:@var{v}.
+##
+## If a weight vector @var{w} of the same size as @var{v} is specified, the
+## probability of each element being sampled is proportional to @var{w}.
+## Unlike Matlab's function of the same name, this can be done for sampling with
+## or without replacement.
+##
+## Randomization is performed using rand().
+##
+## @seealso{datasample, randperm}
+## @end deftypefn
+
+function y = randsample (v, k, replacement=false, w=[])
+
+  if (isscalar (v) && isnumeric (v) && (round (v) == v) && (v >= 0))
+    n = v;
+    vector_v = false;
+  elseif (isvector (v) || isscalar (v))
+    n = length (v);
+    vector_v = true;
+  else
+    error ("randsample: The input v must be a vector or non-negative integer.");
+  endif
+
+  if (! isscalar (k) || ! isnumeric (k) || round (k) != k)
+    error ("randsample: The input k must be an integer.");
+  endif
+
+  if (max (0, k) > n && ! replacement)
+    error ("randsample: Sampling without replacement needs k <= n.");
+  endif
+
+  k = max (0, k);
+
+  if (! isempty (w))
+    if (length (w) != n)
+      error ("randsample: the size w (%d) must match the first argument (%d)", ...
+             length (w), n);
+    elseif (! all (w >= 0) || sum (w) <= 0)
+      error ("randsample: the weight vector w must consist of non-negative elements and sum to a positive number");
+    endif
+  endif
+
+
+  if (replacement)               # sample with replacement
+    if (isempty (w))             # all elements are equally likely to be sampled
+      y = round (n * rand (1, k) + 0.5);
+    else
+      y = weighted_replacement (k, w);
+    endif
+   else                          # sample without replacement
+     if (isempty (w))            # all elements are equally likely to be sampled
+       y = randperm (n, k);
+     else                        # use "accept-reject"-like sampling
+       if (k > nnz (w))
+          error ("randsample: not enough non-zero weights for sampling without replacement");
+       endif
+       y = weighted_replacement (k, w);
+       while (1)
+         [yy, idx] = sort (y);   # Note: sort keeps order of equal elements.
+         Idup = [false, (diff (yy)==0)];
+         if (! any (Idup))
+           break
+         else
+           Idup (idx) = Idup;     # find duplicates in original vector
+           w (y) = 0;             # don't permit resampling
+           ## remove duplicates, then sample again
+           y = [y(! Idup), (weighted_replacement (sum (Idup), w))];
+         endif
+       endwhile
+     endif
+  endif
+
+  if vector_v
+    y = v(y);
+    if (iscolumn (v))
+      y = y(:);
+    elseif (isrow (v))
+      y = y(:).';
+    endif
+  else
+    y = y(:);
+  endif
+
+endfunction
+
+function y = weighted_replacement (k, w)
+  w = w / sum (w);
+  w = [0, (cumsum (w(:))')];
+  ## distribute k uniform random deviates based on the given weighting
+  y = arrayfun (@(x) find (w <= x, 1, "last"), rand (1, k));
+endfunction
+
+%!test
+%! n = 20;
+%! k = 5;
+%! x = randsample(n, k);
+%! assert (size(x), [k 1]);
+%! x = randsample(n, k, true);
+%! assert (size(x), [k 1]);
+%! x = randsample(n, k, false);
+%! assert (size(x), [k 1]);
+%! x = randsample(n, k, true, ones(n, 1));
+%! assert (size(x), [k 1]);
+%! x = randsample(1:n, k);
+%! assert (size(x), [1 k]);
+%! x = randsample(1:n, k, true);
+%! assert (size(x), [1 k]);
+%! x = randsample(1:n, k, false);
+%! assert (size(x), [1 k]);
+%! x = randsample(1:n, k, true, ones(n, 1));
+%! assert (size(x), [1 k]);
+%! x = randsample((1:n)', k);
+%! assert (size(x), [k 1]);
+%! x = randsample((1:n)', k, true);
+%! assert (size(x), [k 1]);
+%! x = randsample((1:n)', k, false);
+%! assert (size(x), [k 1]);
+%! x = randsample((1:n)', k, true, ones(n, 1));
+%! assert (size(x), [k 1]);
+%! n = 10;
+%! k = 100;
+%! x = randsample(n, k, true, 1:n);
+%! assert (size(x), [k 1]);
+%! x = randsample((1:n)', k, true);
+%! assert (size(x), [k 1]);
+%! x = randsample(k, k, false, 1:k);
+%! assert (size(x), [k 1]);
+
+%!test
+%! n = 20;
+%! k = 5;
+%! p = 1:n;
+%! x = randsample(p, k);
+%! assert (isnumeric(x));
+%! assert (size(x), [1 k]);
+%! x = randsample(p, k, true);
+%! assert (isnumeric(x));
+%! assert (size(x), [1 k]);
+%! x = randsample(p, k, false);
+%! assert (isnumeric(x));
+%! assert (size(x), [1 k]);
+%! k = 30;
+%! x = randsample(p, k, true);
+%! assert (isnumeric(x));
+%! assert (size(x), [1 k]);
+
+%!test
+%! p = categorical({'a', 'b', 'c', 'd', 'a'});
+%! k = 3;
+%! x = randsample(p, k, true);
+%! assert (iscategorical(x));
+%! assert (size(x), [1 k]);
+%! x = randsample(p, k, false);
+%! assert (iscategorical(x));
+%! assert (size(x), [1 k]);
+%! k = 30;
+%! x = randsample(p, k, true, ones(length(p),1));
+%! assert (iscategorical(x));
+%! assert (size(x), [1 k]);
+
+%!test
+%! p = {'a', 'b', 'c', 'd', 'a'};
+%! k = 2;
+%! x = randsample(p, k, true);
+%! assert (iscell(x));
+%! assert (size(x), [1 k]);
+%! x = randsample(p, k, false);
+%! assert (iscell(x));
+%! assert (size(x), [1 k]);
+%! k = 30;
+%! x = randsample(p, k, true, ones(length(p),1));
+%! assert (iscell(x));
+%! assert (size(x), [1 k]);
+
+%!test
+%! p = string({'a', 'b', 'c', 'd', 'a'});
+%! k = 2;
+%! x = randsample(p, k, true);
+%! assert (isstring(x));
+%! assert (size(x), [1 k]);
+%! x = randsample(p, k, false);
+%! assert (isstring(x));
+%! assert (size(x), [1 k]);
+%! k = 30;
+%! x = randsample(p, k, true, ones(length(p),1));
+%! assert (isstring(x));
+%! assert (size(x), [1 k]);
+
+%!test
+%! assert (randsample ('A', 1), 'A');
+%! assert (randsample (true, 1), true);
+%! assert (randsample (5.5, 1), 5.5);
+%! assert (randsample (-5, 1), -5);
+
+%!test
+%! x = randsample (10, -2);
+%! assert (isempty (x));
+%! assert (size (x), [0, 1]);
+
+%!error <randsample: The input v must be a vector or non-negative integer.> ...
+%! randsample ([1 2 3; 1 2 3], 5)
+
+%!error <Sampling without replacement needs k <= n.> ...
+%! randsample (10, 100)
+
+%!error <randsample: the size w .* must match the first argument .*> ...
+%! randsample (10, 5, false, ones(5,1))
+
+%!error <the weight vector w must consist of non-negative elements> ...
+%! randsample (5, 2, true, [0, 0, 0, 0, 0])
+
+%!error <the weight vector w must consist of non-negative elements> ...
+%! randsample (5, 2, true, [1, 2, -1, 4, 5])
+
+%!error <the weight vector w must consist of non-negative elements> ...
+%! randsample (5, 2, true, [1, 2, NaN, 4, 5])
+
+%!error <not enough non-zero weights for sampling without replacement> ...
+%! randsample (5, 4, false, [1, 1, 0, 0, 0])
+
+%!error <randsample: The input k must be an integer.> ...
+%! randsample (10, 2.5)

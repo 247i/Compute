@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Installing and Removing Packages (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Installing and Removing Packages (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Installing and Removing Packages (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Packages.html" rel="up" title="Packages">
+<link href="Using-Packages.html" rel="next" title="Using Packages">
+<link href="Background-Information.html" rel="prev" title="Background Information">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Installing-and-Removing-Packages">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Using-Packages.html" accesskey="n" rel="next">Using Packages</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Background-Information.html" accesskey="p" rel="prev">Background Information</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Packages.html" accesskey="u" rel="up">Packages</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Installing-and-Removing-Packages-1"><span>37.2 Installing and Removing Packages<a class="copiable-link" href="#Installing-and-Removing-Packages-1"> &para;</a></span></h3>
+
+<p>Assuming a package is available in the file <samp class="file">image-1.0.0.tar.gz</samp>
+it can be installed from the Octave prompt with the command
+</p>
+<div class="example">
+<pre class="example-preformatted">pkg install image-1.0.0.tar.gz
+</pre></div>
+
+<p>If the package is installed successfully nothing will be printed on
+the prompt, but if a warning or error occurred during installation it
+will be reported.  It is possible to install several packages at once
+by writing several package file names after the <code class="code">pkg install</code>
+command.  If a different version of the package is already installed it
+will be removed prior to installing the new package.  This makes it
+easy to upgrade and downgrade the version of a package, but makes it
+impossible to have several versions of the same package installed at
+once.
+</p>
+<p>To see which packages are installed type
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">pkg list
+&#8867; Package Name  | Version | Installation directory
+&#8867; --------------+---------+-----------------------
+&#8867;        image *|   1.0.0 | /home/jwe/octave/image-1.0.0
+</pre></div></div>
+
+<p>In this case, version 1.0.0 of the <code class="code">image</code> package is installed.
+The <code class="code">'*'</code> character next to the package name shows that the image
+package is loaded and ready for use.
+</p>
+<p>It is possible to remove a package from the system using the
+<code class="code">pkg uninstall</code> command like this
+</p>
+<div class="example">
+<pre class="example-preformatted">pkg uninstall image
+</pre></div>
+
+<p>If the package is removed successfully nothing will be printed in the
+prompt, but if a warning or error occurred it will be reported.  It
+should be noted that the package file used for installation is not
+needed for removal, and that only the package name as reported by
+<code class="code">pkg list</code> should be used when removing a package.  It is possible
+to remove several packages at once by writing several package names
+after the <code class="code">pkg uninstall</code> command.
+</p>
+<p>To minimize the amount of code duplication between packages, it is
+possible that one package depends on another one.  If a package
+depends on another, it will check if that package is installed
+during installation.  If it is not, an error will be reported and
+the package will not be installed.  This behavior can be disabled
+by passing the <samp class="option">-nodeps</samp> flag to the <code class="code">pkg install</code>
+command
+</p>
+<div class="example">
+<pre class="example-preformatted">pkg install -nodeps my_package_with_dependencies.tar.gz
+</pre></div>
+
+<p>Since the installed package expects its dependencies to be installed
+it may not function correctly.  Because of this it is not recommended
+to disable dependency checking.
+</p>
+<a class="anchor" id="XREFpkg"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-pkg-1"><span><strong class="def-name">pkg</strong> <code class="def-code-arguments"><var class="var">command</var></code><a class="copiable-link" href="#index-pkg-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-pkg-2"><span><strong class="def-name">pkg</strong> <code class="def-code-arguments"><var class="var">command</var> <var class="var">pkg_name</var></code><a class="copiable-link" href="#index-pkg-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-pkg-3"><span><strong class="def-name">pkg</strong> <code class="def-code-arguments"><var class="var">command</var> <var class="var">pkg_name1</var> <var class="var">pkg_name2</var> &hellip;</code><a class="copiable-link" href="#index-pkg-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-pkg-4"><span><strong class="def-name">pkg</strong> <code class="def-code-arguments"><var class="var">command</var> <var class="var">option1</var> &hellip; <var class="var">pkg_name1</var> &hellip;</code><a class="copiable-link" href="#index-pkg-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-pkg-5"><span><code class="def-type">[<var class="var">out1</var>, &hellip;] =</code> <strong class="def-name">pkg</strong> <code class="def-code-arguments">(<var class="var">command</var>, &hellip;)</code><a class="copiable-link" href="#index-pkg-5"> &para;</a></span></dt>
+<dd><p>Manage or query packages (groups of add-on functions) for Octave.
+</p>
+<p>Depending on the value of <var class="var">command</var> and on the number of requested
+return arguments, <code class="code">pkg</code> can be used to perform several tasks.
+Possible values for <var class="var">command</var> are:
+</p>
+<dl class="table">
+<dt>&lsquo;<samp class="samp">search</samp>&rsquo;</dt>
+<dd><p>Search for packages having the specified search terms in the Octave Packages
+index.  This may require an internet connection and the cURL library.
+</p>
+<div class="example">
+<pre class="example-preformatted">pkg search foo bar baz
+</pre></div>
+
+<p>shows packages whose descriptions contain all the search terms.
+</p>
+<p>Search terms are case-insensitive and can be regular expressions as well.
+For example,
+</p>
+<div class="example">
+<pre class="example-preformatted">pkg search &quot;[aeiou]{4,}&quot;
+</pre></div>
+
+<p>shows all packages whose descriptions have four or more consecutive vowels.
+</p>
+<p>The option <samp class="option">-all</samp> as in
+</p>
+<div class="example">
+<pre class="example-preformatted">pkg search -all
+</pre></div>
+
+<p>shows <em class="emph">all</em> packages available on the Octave Packages index (not only
+those that can be installed with the <code class="command">pkg</code> command).
+</p>
+<p>By default, the Octave Packages index is downloaded only once per Octave
+session in order to improve performance and to reduce the load on the index
+server during repeated searches.  An update of the index can be enforced
+with the option <samp class="option">-refresh</samp>:
+</p>
+<div class="example">
+<pre class="example-preformatted">pkg search -all -refresh foo
+</pre></div>
+
+<p>If an output variable is provided, as in
+</p>
+<div class="example">
+<pre class="example-preformatted">mypackages = pkg (&quot;search&quot;, &quot;foo&quot;)
+</pre></div>
+
+<p>then <code class="code">pkg search</code> returns only those package names matching the search
+term(s) <em class="emph">and</em> which can be installed with <code class="code">pkg install</code>.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">install</samp>&rsquo;</dt>
+<dd><p>Install named packages.  For example, each of the following commands:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">pkg install pkgname
+pkg install 'pkgname-1.0.0.tar.gz'
+pkg install 'https://somewebsite.org/pkgname-1.0.0.tar.gz'
+</pre></div></div>
+
+<p>might install the package <code class="code">pkgname</code>.  The sequence for the resolution
+of the arguments after <code class="code">pkg install</code> is:
+</p>
+<ol class="enumerate">
+<li> If <code class="code">pkgname</code> is a local file, Octave installs it.
+
+</li><li> Otherwise, if <code class="code">pkgname</code> resembles a URL, Octave downloads and
+installs it.
+
+</li><li> Otherwise, Octave queries the Octave Packages index online for a package
+named <code class="code">pkgname</code>, and if found, downloads and installs its latest
+version.  If the Octave Packages index cannot be reached, a locally cached
+version of the index might be used.  The Octave Packages index is only
+downloaded once per Octave session (unless an index refresh is requested
+with the option <samp class="option">-refresh</samp>).
+</li></ol>
+
+<p>Online access requires an internet connection and the cURL library.
+</p>
+<p><em class="emph">No support</em>: the GNU Octave community is not responsible for any
+installed packages.  For support or for reporting bugs, you need to contact
+the maintainers of the installed package directly (run <code class="code">pkg describe</code>
+on the package to get information).
+</p>
+<p>The following options are accepted for <code class="code">pkg install</code>:
+</p>
+<dl class="table">
+<dt><code class="code">-nodeps</code></dt>
+<dd><p>Disable dependency checking.  With this option it is possible to install a
+package even when it depends on another package which is not installed on
+the system.  <strong class="strong">Use this option with care.</strong>
+</p>
+</dd>
+<dt><code class="code">-local</code></dt>
+<dd><p>A local installation (package available only to current user) is forced,
+even if Octave is being run with administrative privileges.
+</p>
+</dd>
+<dt><code class="code">-global</code></dt>
+<dd><p>Force a global installation (package available to all users), even if
+Octave is not being run with administrative privileges.  The user must have
+write access to the global package store.
+</p>
+</dd>
+<dt><code class="code">-verbose</code></dt>
+<dd><p>Print the output of all commands as they are performed.
+</p>
+</dd>
+<dt><code class="code">-refresh</code></dt>
+<dd><p>Force an update of the cached package database from the online index.  By
+default, Octave tries to download the Octave Packages index only once per
+Octave session.  This option forces refreshing the index even if it was
+already downloaded in the current Octave session.  The option
+<samp class="option">-refresh</samp> applies to <code class="code">install</code>, <code class="code">search</code>, and
+<code class="code">update</code> commands.
+</p>
+</dd>
+<dt><code class="code">-forge</code></dt>
+<dd><p>The option <samp class="option">-forge</samp> forces an installation of a package from the
+Octave Packages index.  It cannot be used to install packages from a URL or
+a local file.  It implies <samp class="option">-refresh</samp>.
+</p></dd>
+</dl>
+
+<p>If the package tarball contains a <samp class="file">configure</samp> script, it is run during
+the installation of the package.  If it contains a <samp class="file">Makefile</samp>, the
+command <code class="command">make</code> is used by default.  It is possible to override the
+default command with the environment variable <code class="env">MAKE</code>.  Some Octave
+packages might require GNU <code class="command">make</code> which may be present under a
+different name such as <code class="command">gmake</code>.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">update</samp>&rsquo;</dt>
+<dd><p>Check installed Octave packages against the latest version on the Octave
+Packages index and update any outdated items.  Updated packages are
+installed either globally or locally depending on whether Octave is running
+with elevated privileges.  This requires an internet connection and the cURL
+library.
+</p>
+<p>Options for the install command and the names of individual packages to be
+checked for updates may be specified as a list following the update command.
+If the option <samp class="option">-local</samp> or <samp class="option">-global</samp> is specified,
+<code class="code">pkg update</code> limits the update check to the local or global installed
+packages, and installs updates in that same context.  For example,
+</p>
+<p>Update all packages:
+</p>
+<div class="example">
+<pre class="example-preformatted">pkg update
+</pre></div>
+
+<p>Update all local packages:
+</p>
+<div class="example">
+<pre class="example-preformatted">pkg update -local
+</pre></div>
+
+<p>Update certain packages, ignore dependencies, max verbosity:
+</p>
+<div class="example">
+<pre class="example-preformatted">pkg update -verbose -nodeps image signal geometry
+</pre></div>
+
+<p>Updates for multiple packages are sorted alphabetically and not checked
+for dependencies affected by installation order.  If a dependency order
+related <code class="code">pkg update</code> failure occurs, use <code class="code">pkg update -nodeps</code> to
+ignore dependencies, or <code class="code">pkg install &lt;package_name&gt;</code> to update
+individual packages manually.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">uninstall</samp>&rsquo;</dt>
+<dd><p>Uninstall named packages.  For example,
+</p>
+<div class="example">
+<pre class="example-preformatted">pkg uninstall image
+</pre></div>
+
+<p>removes the <code class="code">image</code> package from the system.  If another installed
+package depends on the <code class="code">image</code> package an error is issued.  The package
+removal can be forced by using the <samp class="option">-nodeps</samp> option.
+</p>
+<p>Depending on whether Octave is being run with administrative privileges
+only global or local packages are removed by default.  See <samp class="option">-global</samp>
+or <samp class="option">-local</samp> to override that default behavior.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">load</samp>&rsquo;</dt>
+<dd><p>Add named packages to the path.  After loading a package it is possible to
+use the functions provided by the package.  For example,
+</p>
+<div class="example">
+<pre class="example-preformatted">pkg load image
+</pre></div>
+
+<p>adds the <code class="code">image</code> package to the path.
+</p>
+<p>Note: When loading a package, <code class="code">pkg</code> automatically tries to load any
+unloaded dependencies as well, unless the <samp class="option">-nodeps</samp> flag has been
+specified.  For example,
+</p>
+<div class="example">
+<pre class="example-preformatted">pkg load signal
+</pre></div>
+
+<p>adds the <code class="code">signal</code> package and also tries to load its dependency: the
+<code class="code">control</code> package.  Be aware that use of the <samp class="option">-nodeps</samp> option
+can adversely affect package functionality.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">unload</samp>&rsquo;</dt>
+<dd><p>Remove named packages from the path.  After unloading a package it is no
+longer possible to use the functions provided by the package.  Trying to
+unload a package that other loaded packages still depend on causes an error;
+no packages are unloaded in this case.  A package can be forcibly unloaded
+with the <samp class="option">-nodeps</samp> flag, at the risk of breaking dependent packages
+that are still loaded.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">list</samp>&rsquo;</dt>
+<dd><p>Show the list of currently installed packages.  For example,
+</p>
+<div class="example">
+<pre class="example-preformatted">pkg list
+</pre></div>
+
+<p>will produce a short report with the package name, version, and installation
+directory for each installed package.  Supply a package name to limit
+reporting to a particular package.  For example:
+</p>
+<div class="example">
+<pre class="example-preformatted">pkg list image
+</pre></div>
+
+<p>If a single return argument is requested then <code class="code">pkg</code> returns a cell
+array where each element is a structure with information on a single
+package.
+</p>
+<div class="example">
+<pre class="example-preformatted">installed_packages = pkg (&quot;list&quot;)
+</pre></div>
+
+<p>If two output arguments are requested <code class="code">pkg</code> splits the list of
+installed packages into those which were installed by the current user
+(local packages), and those which were installed by the system administrator
+(global packages).
+</p>
+<div class="example">
+<pre class="example-preformatted">[user_packages, system_packages] = pkg (&quot;list&quot;)
+</pre></div>
+
+<p>The option <samp class="option">-forge</samp> lists all packages available on the Octave
+Packages index that can be installed with the <code class="code">pkg</code> command.  This
+requires an internet connection and the cURL library.  This also updates the
+locally cached file of the Octave Packages index.  Calling
+</p>
+<div class="example">
+<pre class="example-preformatted">octave_packages = pkg (&quot;list&quot;, &quot;-forge&quot;)
+</pre></div>
+
+<p>is identical to calling
+</p>
+<div class="example">
+<pre class="example-preformatted">octave_packages = pkg (&quot;search&quot;, &quot;-refresh&quot;, &quot;-all&quot;)
+</pre></div>
+
+</dd>
+<dt>&lsquo;<samp class="samp">describe</samp>&rsquo;</dt>
+<dd><p>Show a short description of installed packages.  With the option
+<code class="code">&quot;-verbose&quot;</code> also list functions provided by the package.  For
+example,
+</p>
+<div class="example">
+<pre class="example-preformatted">pkg describe -verbose
+</pre></div>
+
+<p>describes all installed packages and the functions they provide.
+</p>
+<p>The result can be limited to a set of packages:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">## describe control and signal packages
+pkg describe control signal
+</pre></div></div>
+
+<p>If one output is requested a cell of structure containing the
+description and list of functions of each package is returned as
+output rather than printed on screen:
+</p>
+<div class="example">
+<pre class="example-preformatted">desc = pkg (&quot;describe&quot;, &quot;secs1d&quot;, &quot;image&quot;)
+</pre></div>
+
+<p>If any of the requested packages is not installed, <code class="code">pkg</code> returns an
+error, unless a second output is requested:
+</p>
+<div class="example">
+<pre class="example-preformatted">[desc, flag] = pkg (&quot;describe&quot;, &quot;secs1d&quot;, &quot;image&quot;)
+</pre></div>
+
+<p><var class="var">flag</var> takes one of the values <code class="code">&quot;Not installed&quot;</code>,
+<code class="code">&quot;Loaded&quot;</code>, or <code class="code">&quot;Not loaded&quot;</code> for each of the named packages.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">prefix</samp>&rsquo;</dt>
+<dd><p>Set the installation prefix directory.  For example,
+</p>
+<div class="example">
+<pre class="example-preformatted">pkg prefix ~/my_octave_packages
+</pre></div>
+
+<p>sets the installation prefix to <samp class="file">~/my_octave_packages</samp>.
+</p>
+<p>Packages are installed in this directory.
+</p>
+<p>Giving an output argument returns the current installation prefix.
+For example:
+</p>
+<div class="example">
+<pre class="example-preformatted">pfx = pkg (&quot;prefix&quot;)
+</pre></div>
+
+<p>The location in which to install the architecture dependent files can be
+independently specified with an additional argument.  For example:
+</p>
+<div class="example">
+<pre class="example-preformatted">pkg prefix ~/my_octave_packages ~/my_arch_dep_pkgs
+</pre></div>
+
+</dd>
+<dt>&lsquo;<samp class="samp">local_list</samp>&rsquo;</dt>
+<dd><p>Set the file in which to look for information on locally installed
+packages.  Locally installed packages are those that are typically available
+only to the current user.  For example:
+</p>
+<div class="example">
+<pre class="example-preformatted">pkg local_list ~/.octave_packages
+</pre></div>
+
+<p>Get the current value of local_list with
+</p>
+<div class="example">
+<pre class="example-preformatted">pkg local_list
+</pre></div>
+
+</dd>
+<dt>&lsquo;<samp class="samp">global_list</samp>&rsquo;</dt>
+<dd><p>Set the file in which to look for information on globally installed
+packages.  Globally installed packages are those that are typically
+available to all users.  For example:
+</p>
+<div class="example smallexample">
+<pre class="example-preformatted">pkg global_list /usr/share/octave/site/api-v59/octave_packages
+</pre></div>
+
+<p>Get the current value of global_list with
+</p>
+<div class="example">
+<pre class="example-preformatted">pkg global_list
+</pre></div>
+
+</dd>
+<dt>&lsquo;<samp class="samp">build</samp>&rsquo;</dt>
+<dd><p>Build a binary form of a package or packages.  The binary file produced
+is itself an Octave package that can be installed normally with <code class="code">pkg</code>.
+For example:
+</p>
+<div class="example">
+<pre class="example-preformatted">pkg build builddir image-1.0.0.tar.gz ...
+</pre></div>
+
+<p>where <code class="code">builddir</code> is a directory where the binary packages are built.
+The options <samp class="option">-verbose</samp> and <samp class="option">-nodeps</samp> are respected, while
+all other options are ignored.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">rebuild</samp>&rsquo;</dt>
+<dd><p>Rebuild the package database from the installed global and local packages.
+This can be used in cases where the package database has been corrupted.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">test</samp>&rsquo;</dt>
+<dd><p>Perform the built-in self tests contained in all functions provided by
+the named packages.  For example:
+</p>
+<div class="example">
+<pre class="example-preformatted">pkg test image
+</pre></div>
+
+</dd>
+</dl>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="System-Information.html#XREFver">ver</a>, <a class="ref" href="Getting-Help.html#XREFnews">news</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Using-Packages.html">Using Packages</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Background-Information.html">Background Information</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Packages.html">Packages</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

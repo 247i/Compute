@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Single Precision Data Types (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Single Precision Data Types (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Single Precision Data Types (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Numeric-Data-Types.html" rel="up" title="Numeric Data Types">
+<link href="Integer-Data-Types.html" rel="next" title="Integer Data Types">
+<link href="Ranges.html" rel="prev" title="Ranges">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Single-Precision-Data-Types">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Integer-Data-Types.html" accesskey="n" rel="next">Integer Data Types</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Ranges.html" accesskey="p" rel="prev">Ranges</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Numeric-Data-Types.html" accesskey="u" rel="up">Numeric Data Types</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Single-Precision-Data-Types-1"><span>4.3 Single Precision Data Types<a class="copiable-link" href="#Single-Precision-Data-Types-1"> &para;</a></span></h3>
+
+<p>Octave includes support for single precision data types, and most of the
+functions in Octave accept single precision values and return single
+precision answers.  A single precision variable is created with the
+<code class="code">single</code> function.
+</p>
+<a class="anchor" id="XREFsingle"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-single"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">single</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-single"> &para;</a></span></dt>
+<dd><p>Convert <var class="var">x</var> to single precision type.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Numeric-Data-Types.html#XREFdouble">double</a>.
+</p></dd></dl>
+
+
+<p>for example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">sngl = single (rand (2, 2))
+     &rArr;  sngl =
+        0.37569   0.92982
+        0.11962   0.50876
+class (sngl)
+    &rArr;  single
+</pre></div></div>
+
+<p>Many functions can also return single precision values directly.  For
+example
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">ones (2, 2, &quot;single&quot;)
+zeros (2, 2, &quot;single&quot;)
+eye (2, 2,  &quot;single&quot;)
+rand (2, 2, &quot;single&quot;)
+NaN (2, 2, &quot;single&quot;)
+NA (2, 2, &quot;single&quot;)
+Inf (2, 2, &quot;single&quot;)
+</pre></div></div>
+
+<p>will all return single precision matrices.
+</p>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Integer-Data-Types.html">Integer Data Types</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Ranges.html">Ranges</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Numeric-Data-Types.html">Numeric Data Types</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- Additional documentation for the optim package for Octave.
+
+Copyright © Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<title>Common frontend options (optim_doc)</title>
+
+<meta name="description" content="Common frontend options (optim_doc)">
+<meta name="keywords" content="Common frontend options (optim_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="index.html" rel="up" title="Top">
+<link href="Common-optimization-options.html" rel="next" title="Common optimization options">
+<link href="Compatibility-functions.html" rel="prev" title="Compatibility functions">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="chapter-level-extent" id="Common-frontend-options">
+<div class="nav-panel">
+<p>
+Next: <a href="Common-optimization-options.html" accesskey="n" rel="next">Options common to all optimization frontends</a>, Previous: <a href="Compatibility-functions.html" accesskey="p" rel="prev">Traditional functions</a>, Up: <a href="index.html" accesskey="u" rel="up">Additional documentation for the optim package for Octave</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h2 class="chapter" id="Options-common-to-all-frontends"><span>8 Options common to all frontends<a class="copiable-link" href="#Options-common-to-all-frontends"> &para;</a></span></h2>
+<a class="index-entry-id" id="index-common-options"></a>
+
+<p>All frontends for optimization and for result statistics
+(<a class="ref" href="nonlin_005fmin.html">Frontend nonlin_min for scalar non-linear optimization</a>, <a class="ref" href="nonlin_005fresidmin.html">Frontend nonlin_residmin for non-linear residual minimization</a>, <a class="ref" href="nonlin_005fcurvefit.html">Function nonlin_curvefit() for curve fitting</a>,
+<a class="ref" href="residmin_005fstat.html">Statistics for residual minimization</a>, <a class="ref" href="curvefit_005fstat.html">Statistics for curve fitting</a>)accept the following options,
+settable with <a data-manual="octave" href="../octave_html/XREFoptimset.html#XREFoptimset">optimset</a>.
+</p>
+<p>These options are handled within the frontend.
+</p>
+<dl class="table">
+<dt><code class="code">FinDiffRelStep</code></dt>
+<dd><p>Column vector (or scalar, for all parameters) of fractional intervals
+supposed to be used by gradient or Jacobian functions performing finite
+differencing. Default: <code class="code">.002 * ones (size (parameters))</code> for
+central intervals and <code class="code">.001 * ones (size (parameters))</code> for
+one-sided intervals. The default function for finite differencing won&rsquo;t
+let the absolute interval width get smaller than
+<code class="code">abs (FinDiffRelStep .* TypicalX</code> (see below).
+</p></dd>
+<dt><code class="code">diffp</code></dt>
+<dd><p>Can be used alternatively to <code class="code">FinDiffRelStep</code>, but for central
+intervals twice the specified value will be used for backwards compatibility.
+</p></dd>
+<dt><code class="code">diff_onesided</code></dt>
+<dd><p>Logical column vector (or scalar, for all parameters) indicating the
+parameters for which one-sided intervals (instead of central intervals)
+should be used by gradient or Jacobian functions performing finite
+differencing. Default: <code class="code">false (size (parameters))</code>.
+</p></dd>
+<dt><code class="code">FinDiffType</code></dt>
+<dd><p>Can be used alternatively to <code class="code">diff_onesided</code>, but always applies to
+all parameters at once. Possible values: <code class="code">&quot;central&quot;</code> (central
+intervals) or <code class="code">&quot;forward&quot;</code> (one-sided intervals).
+</p></dd>
+<dt><code class="code">TypicalX</code></dt>
+<dd><p>Column vector (or scalar, for all parameters) whose absolute value
+specifies minimal absolute parameter values for computation of intervals
+in finite differencing by gradient or Jacobian functions (see
+<code class="code">FinDiffRelStep</code>). Default: 0.0001. Must not be zero.
+</p></dd>
+<dt><code class="code">cstep</code></dt>
+<dd><p>Scalar step size for complex step derivative approximation of gradients
+or Jacobians. Default: 1e-20.
+</p></dd>
+<dt><code class="code">parallel_local</code></dt>
+<dd><p>Logical or numeric scalar, default: <code class="code">false</code>. If the <code class="code">parallel</code>
+package, <code class="code">version &gt;= 2.0.5</code>, is loaded, estimate gradients of
+objective function and Jacobians of model function and of constraints in
+parallel processes. If <code class="code">parallel_local</code> is set to an integer
+<code class="code">&gt; 1</code>, this is number of parallel processes; if it is <code class="code">&lt;= 1</code>,
+the number of processes will be the number of available processor cores.
+Works for default (real) finite differences and for complex step
+derivatives. Due to overhead, a speed advantage can only be expected if
+objective function, model function or constraint functions are time
+consuming enough. Additionally, this setting is also passed to the
+individual optimization backends, which may also consider this option
+(see documentation of backends). If this option is equivalent to
+<code class="code">true</code>, a warning (ID: <code class="code">optim:parallel_local</code>) will be issued
+if no <code class="code">parallel</code> package of a correct version is loaded.
+</p></dd>
+<dt><code class="code">parallel_net</code></dt>
+<dd><p>Empty (default) or a parallel connections object, see function
+<code class="code">pconnect</code> of the <code class="code">parallel</code> package. If not empty, estimate
+gradients of objective function and Jacobians of model function and of
+constraints using parallel processing in a network of machines. The
+considerations regarding a speed advantage are similar to those for
+option <code class="code">parallel_local</code>.
+</p></dd>
+<dt><code class="code">fixed</code></dt>
+<dd><p>Logical column vector indicating which parameters are not optimized, but
+kept to their inital value.
+</p></dd>
+</dl>
+
+
+</div>
+<hr>
+<div class="nav-panel">
+<p>
+Next: <a href="Common-optimization-options.html">Options common to all optimization frontends</a>, Previous: <a href="Compatibility-functions.html">Traditional functions</a>, Up: <a href="index.html">Additional documentation for the optim package for Octave</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

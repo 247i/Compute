@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>String Input Conversions (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="String Input Conversions (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="String Input Conversions (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="C_002dStyle-I_002fO-Functions.html" rel="up" title="C-Style I/O Functions">
+<link href="Binary-I_002fO.html" rel="next" title="Binary I/O">
+<link href="Numeric-Input-Conversions.html" rel="prev" title="Numeric Input Conversions">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="String-Input-Conversions">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Binary-I_002fO.html" accesskey="n" rel="next">Binary I/O</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Numeric-Input-Conversions.html" accesskey="p" rel="prev">Numeric Input Conversions</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="C_002dStyle-I_002fO-Functions.html" accesskey="u" rel="up">C-Style I/O Functions</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="String-Input-Conversions-1"><span>14.2.15 String Input Conversions<a class="copiable-link" href="#String-Input-Conversions-1"> &para;</a></span></h4>
+
+<p>This section describes the <code class="code">scanf</code> input conversions for reading
+string and character values: &lsquo;<samp class="samp">%s</samp>&rsquo; and &lsquo;<samp class="samp">%c</samp>&rsquo;.
+</p>
+<p>The &lsquo;<samp class="samp">%c</samp>&rsquo; conversion is the simplest: it matches a fixed number of
+characters, always.  The maximum field with says how many characters to
+read; if you don&rsquo;t specify the maximum, the default is 1.  This
+conversion does not skip over initial whitespace characters.  It reads
+precisely the next <var class="var">n</var> characters, and fails if it cannot get that
+many.
+</p>
+<p>The &lsquo;<samp class="samp">%s</samp>&rsquo; conversion matches a string of non-whitespace characters.
+It skips and discards initial whitespace, but stops when it encounters
+more whitespace after having read something.
+</p>
+<p>For example, reading the input:
+</p>
+<div class="example">
+<pre class="example-preformatted"> hello, world
+</pre></div>
+
+<p>with the conversion &lsquo;<samp class="samp">%10c</samp>&rsquo; produces <code class="code">&quot; hello, wo&quot;</code>, but
+reading the same input with the conversion &lsquo;<samp class="samp">%10s</samp>&rsquo; produces
+<code class="code">&quot;hello,&quot;</code>.
+</p>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Binary-I_002fO.html">Binary I/O</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Numeric-Input-Conversions.html">Numeric Input Conversions</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="C_002dStyle-I_002fO-Functions.html">C-Style I/O Functions</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

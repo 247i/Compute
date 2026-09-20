@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Looping Over Structure Elements (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Looping Over Structure Elements (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Looping Over Structure Elements (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="The-for-Statement.html" rel="up" title="The for Statement">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Looping-Over-Structure-Elements">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="The-for-Statement.html" accesskey="u" rel="up">The for Statement</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Looping-Over-Structure-Elements-1"><span>10.5.1 Looping Over Structure Elements<a class="copiable-link" href="#Looping-Over-Structure-Elements-1"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-structure-elements_002c-looping-over"></a>
+<a class="index-entry-id" id="index-looping-over-structure-elements"></a>
+
+<p>A special form of the <code class="code">for</code> statement allows you to loop over all
+the elements of a structure:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">for [ <var class="var">val</var>, <var class="var">key</var> ] = <var class="var">expression</var>
+  <var class="var">body</var>
+endfor
+</pre></div></div>
+
+<p>In this form of the <code class="code">for</code> statement, the value of <var class="var">expression</var>
+must be a structure.  If it is, <var class="var">key</var> and <var class="var">val</var> are set to the
+name of the element and the corresponding value in turn, until there are
+no more elements.  For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">x.a = 1
+x.b = [1, 2; 3, 4]
+x.c = &quot;string&quot;
+for [val, key] = x
+  key
+  val
+endfor
+
+     &#8867; key = a
+     &#8867; val = 1
+     &#8867; key = b
+     &#8867; val =
+     &#8867;
+     &#8867;   1  2
+     &#8867;   3  4
+     &#8867;
+     &#8867; key = c
+     &#8867; val = string
+</pre></div></div>
+
+<p>The elements are not accessed in any particular order.  If you need to
+cycle through the list in a particular way, you will have to use the
+function <code class="code">fieldnames</code> and sort the list yourself.
+</p>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="The-for-Statement.html">The for Statement</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

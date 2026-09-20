@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Basics (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Basics (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Basics (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Sparse-Matrices.html" rel="up" title="Sparse Matrices">
+<link href="Sparse-Linear-Algebra.html" rel="next" title="Sparse Linear Algebra">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Basics">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Sparse-Linear-Algebra.html" accesskey="n" rel="next">Linear Algebra on Sparse Matrices</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Sparse-Matrices.html" accesskey="u" rel="up">Sparse Matrices</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Creation-and-Manipulation-of-Sparse-Matrices"><span>22.1 Creation and Manipulation of Sparse Matrices<a class="copiable-link" href="#Creation-and-Manipulation-of-Sparse-Matrices"> &para;</a></span></h3>
+
+<p>The size of mathematical problems that can be treated at any particular
+time is generally limited by the available computing resources.  Both,
+the speed of the computer and its available memory place limitation on
+the problem size.
+</p>
+<p>There are many classes of mathematical problems which give rise to
+matrices, where a large number of the elements are zero.  In this case
+it makes sense to have a special matrix type to handle this class of
+problems where only the nonzero elements of the matrix are
+stored.  Not only does this reduce the amount of memory to store the
+matrix, but it also means that operations on this type of matrix can
+take advantage of the a priori knowledge of the positions of the
+nonzero elements to accelerate their calculations.
+</p>
+<p>A matrix type that stores only the nonzero elements is generally called
+sparse.  It is the purpose of this document to discuss the basics of the
+storage and creation of sparse matrices and the fundamental operations
+on them.
+</p>
+
+<ul class="mini-toc">
+<li><a href="Storage-of-Sparse-Matrices.html" accesskey="1">Storage of Sparse Matrices</a></li>
+<li><a href="Creating-Sparse-Matrices.html" accesskey="2">Creating Sparse Matrices</a></li>
+<li><a href="Information.html" accesskey="3">Finding Information about Sparse Matrices</a></li>
+<li><a href="Operators-and-Functions.html" accesskey="4">Basic Operators and Functions on Sparse Matrices</a></li>
+</ul>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Sparse-Linear-Algebra.html">Linear Algebra on Sparse Matrices</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Sparse-Matrices.html">Sparse Matrices</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

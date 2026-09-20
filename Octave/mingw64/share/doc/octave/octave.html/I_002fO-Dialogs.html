@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>I/O Dialogs (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="I/O Dialogs (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="I/O Dialogs (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="GUI-Development.html" rel="up" title="GUI Development">
+<link href="Progress-Bar.html" rel="next" title="Progress Bar">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+kbd.key {font-style: normal}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="I_002fO-Dialogs">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Progress-Bar.html" accesskey="n" rel="next">Progress Bar</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="GUI-Development.html" accesskey="u" rel="up">GUI Development</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="I_002fO-Dialogs-1"><span>35.1 I/O Dialogs<a class="copiable-link" href="#I_002fO-Dialogs-1"> &para;</a></span></h3>
+
+<p>Simple dialog menus are available for choosing directories or files.  They
+return a string variable which can then be used with any command requiring
+a filename.
+</p>
+<a class="index-entry-id" id="index-dialog_002c-displaying-a-dialog-for-selecting-directories"></a>
+<a class="anchor" id="XREFuigetdir"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-uigetdir"><span><code class="def-type"><var class="var">dirname</var> =</code> <strong class="def-name">uigetdir</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-uigetdir"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-uigetdir-1"><span><code class="def-type"><var class="var">dirname</var> =</code> <strong class="def-name">uigetdir</strong> <code class="def-code-arguments">(<var class="var">init_path</var>)</code><a class="copiable-link" href="#index-uigetdir-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-uigetdir-2"><span><code class="def-type"><var class="var">dirname</var> =</code> <strong class="def-name">uigetdir</strong> <code class="def-code-arguments">(<var class="var">init_path</var>, <var class="var">dialog_name</var>)</code><a class="copiable-link" href="#index-uigetdir-2"> &para;</a></span></dt>
+<dd><p>Open a GUI dialog for selecting a directory.
+</p>
+<p>If <var class="var">init_path</var> is not given the current working directory is used.
+</p>
+<p><var class="var">dialog_name</var> may be used to customize the dialog title.
+</p>
+<p>The output <var class="var">dirname</var> is a character string with the name of the selected
+directory.  However, if the &lsquo;<samp class="samp">Cancel</samp>&rsquo; button is clicked the output is of
+type double with the value <code class="code">0</code>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFuigetfile">uigetfile</a>, <a class="ref" href="#XREFuiputfile">uiputfile</a>.
+</p></dd></dl>
+
+
+<a class="index-entry-id" id="index-dialog_002c-displaying-a-dialog-for-selecting-files"></a>
+<a class="anchor" id="XREFuigetfile"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-uigetfile"><span><code class="def-type">[<var class="var">fname</var>, <var class="var">fpath</var>, <var class="var">fltidx</var>] =</code> <strong class="def-name">uigetfile</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-uigetfile"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-uigetfile-1"><span><code class="def-type">[&hellip;] =</code> <strong class="def-name">uigetfile</strong> <code class="def-code-arguments">(<var class="var">flt</var>)</code><a class="copiable-link" href="#index-uigetfile-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-uigetfile-2"><span><code class="def-type">[&hellip;] =</code> <strong class="def-name">uigetfile</strong> <code class="def-code-arguments">(<var class="var">flt</var>, <var class="var">dialog_name</var>)</code><a class="copiable-link" href="#index-uigetfile-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-uigetfile-3"><span><code class="def-type">[&hellip;] =</code> <strong class="def-name">uigetfile</strong> <code class="def-code-arguments">(<var class="var">flt</var>, <var class="var">dialog_name</var>, <var class="var">default_file</var>)</code><a class="copiable-link" href="#index-uigetfile-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-uigetfile-4"><span><code class="def-type">[&hellip;] =</code> <strong class="def-name">uigetfile</strong> <code class="def-code-arguments">(&hellip;, &quot;MultiSelect&quot;, <var class="var">mode</var>)</code><a class="copiable-link" href="#index-uigetfile-4"> &para;</a></span></dt>
+<dd>
+<p>Open a GUI dialog for selecting a file and return the filename <var class="var">fname</var>,
+the path to this file <var class="var">fpath</var>, and the filter index <var class="var">fltidx</var>.
+</p>
+<p><var class="var">flt</var> contains a (list of) file filter string(s) in one of the following
+formats:
+</p>
+<dl class="table">
+<dt><code class="code">&quot;/path/to/filename.ext&quot;</code></dt>
+<dd><p>If a filename is given then the file extension is extracted and used as
+filter.  In addition, the path is selected as current path in the dialog and
+the filename is selected as default file.
+Example: <code class="code">uigetfile (&quot;myfcn.m&quot;)</code>
+</p>
+</dd>
+<dt>A single file extension <code class="code">&quot;*.ext&quot;</code></dt>
+<dd><p>Example: <code class="code">uigetfile (&quot;*.ext&quot;)</code>
+</p>
+</dd>
+<dt>A 2-column cell array</dt>
+<dd><p>containing a file extension in the first column and a brief description in
+the second column.  Example:
+<code class="code">uigetfile ({&quot;*.ext&quot;, &quot;My Description&quot;;&quot;*.xyz&quot;, &quot;XYZ-Format&quot;})</code>
+</p>
+<p>The filter string can also contain a semicolon separated list of filter
+extensions.  Example:
+<code class="code">uigetfile ({&quot;*.gif;*.png;*.jpg&quot;, &quot;Supported Picture Formats&quot;})</code>
+</p>
+</dd>
+<dt>A directory name or path name</dt>
+<dd><p>If the folder name of path name contains a trailing file separator, the
+contents of that folder will be displayed.  If no trailing file separator
+is present the parent directory is listed.  The substring to the right of
+the rightmost file separator (if any) will be interpreted as a file or
+directory name and if that file or directory exists it will be highlighted.
+If the path name or directory name is entirely or partly nonexistent, the
+current working directory will be displayed.
+No filter will be active.
+</p></dd>
+</dl>
+
+<p><var class="var">dialog_name</var> can be used to customize the dialog title.
+</p>
+<p>If <var class="var">default_file</var> is given then it will be selected in the GUI dialog.
+If, in addition, a path is given it is also used as current path.
+</p>
+<p>Two or more files can be selected when setting the <code class="code">&quot;MultiSelect&quot;</code> key
+to <code class="code">&quot;on&quot;</code>.  In that case, <var class="var">fname</var> is a cell array containing the
+files.
+</p>
+<p>The outputs <var class="var">fname</var> and <var class="var">fpath</var> are strings returning the chosen
+name and path, respectively.  However, if the &lsquo;<samp class="samp">Cancel</samp>&rsquo; button is
+clicked the outputs are of type double with a value of <code class="code">0</code>.
+<var class="var">fltidx</var> is the index in the list of filter extensions <var class="var">flt</var> that
+was selected.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFuiputfile">uiputfile</a>, <a class="ref" href="#XREFuigetdir">uigetdir</a>.
+</p></dd></dl>
+
+
+<a class="index-entry-id" id="index-dialog_002c-displaying-a-dialog-for-storing-files"></a>
+<a class="anchor" id="XREFuiputfile"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-uiputfile"><span><code class="def-type">[<var class="var">fname</var>, <var class="var">fpath</var>, <var class="var">fltidx</var>] =</code> <strong class="def-name">uiputfile</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-uiputfile"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-uiputfile-1"><span><code class="def-type">[<var class="var">fname</var>, <var class="var">fpath</var>, <var class="var">fltidx</var>] =</code> <strong class="def-name">uiputfile</strong> <code class="def-code-arguments">(<var class="var">flt</var>)</code><a class="copiable-link" href="#index-uiputfile-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-uiputfile-2"><span><code class="def-type">[<var class="var">fname</var>, <var class="var">fpath</var>, <var class="var">fltidx</var>] =</code> <strong class="def-name">uiputfile</strong> <code class="def-code-arguments">(<var class="var">flt</var>, <var class="var">dialog_name</var>)</code><a class="copiable-link" href="#index-uiputfile-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-uiputfile-3"><span><code class="def-type">[<var class="var">fname</var>, <var class="var">fpath</var>, <var class="var">fltidx</var>] =</code> <strong class="def-name">uiputfile</strong> <code class="def-code-arguments">(<var class="var">flt</var>, <var class="var">dialog_name</var>, <var class="var">default_file</var>)</code><a class="copiable-link" href="#index-uiputfile-3"> &para;</a></span></dt>
+<dd><p>Open a GUI dialog for selecting a file.
+</p>
+<p><var class="var">flt</var> contains a (list of) file filter string(s) in one of the following
+formats:
+</p>
+<dl class="table">
+<dt><code class="code">&quot;/path/to/filename.ext&quot;</code></dt>
+<dd><p>If a filename is given the file extension is extracted and used as filter.
+In addition the path is selected as current path in the dialog and the
+filename is selected as default file.  Example:
+<code class="code">uiputfile (&quot;myfcn.m&quot;)</code>
+</p>
+</dd>
+<dt><code class="code">&quot;*.ext&quot;</code></dt>
+<dd><p>A single file extension.
+Example: <code class="code">uiputfile (&quot;*.ext&quot;)</code>
+</p>
+</dd>
+<dt><code class="code">{&quot;*.ext&quot;, &quot;My Description&quot;}</code></dt>
+<dd><p>A 2-column cell array containing the file extension in the 1st column and
+a brief description in the 2nd column.  Example:
+<code class="code">uiputfile ({&quot;*.ext&quot;,&quot;My Description&quot;;&quot;*.xyz&quot;, &quot;XYZ-Format&quot;})</code>
+</p></dd>
+</dl>
+
+<p>The filter string can also contain a semicolon separated list of filter
+extensions.  Example:
+<code class="code">uiputfile ({&quot;*.gif;*.png;*.jpg&quot;, &quot;Supported Picture Formats&quot;})</code>
+</p>
+<p><var class="var">dialog_name</var> can be used to customize the dialog title.
+If <var class="var">default_file</var> is given it is preselected in the GUI dialog.
+If, in addition, a path is given it is also used as current path.
+</p>
+<p><var class="var">fname</var> and <var class="var">fpath</var> return the chosen name and path, respectively.
+<var class="var">fltidx</var> is the index in the list of filter extensions <var class="var">flt</var> that
+was selected.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFuigetfile">uigetfile</a>, <a class="ref" href="#XREFuigetdir">uigetdir</a>.
+</p></dd></dl>
+
+
+<p>Additionally, there are dialog boxes for displaying help messages, warnings, or
+errors, and for getting text input from the user.
+</p>
+<a class="index-entry-id" id="index-dialog_002c-displaying-an-error-dialog"></a>
+<a class="anchor" id="XREFerrordlg"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-errordlg"><span><strong class="def-name">errordlg</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-errordlg"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-errordlg-1"><span><strong class="def-name">errordlg</strong> <code class="def-code-arguments">(<var class="var">msg</var>)</code><a class="copiable-link" href="#index-errordlg-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-errordlg-2"><span><strong class="def-name">errordlg</strong> <code class="def-code-arguments">(<var class="var">msg</var>, <var class="var">title</var>)</code><a class="copiable-link" href="#index-errordlg-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-errordlg-3"><span><strong class="def-name">errordlg</strong> <code class="def-code-arguments">(<var class="var">msg</var>, <var class="var">title</var>, <var class="var">opt</var>)</code><a class="copiable-link" href="#index-errordlg-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-errordlg-4"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">errordlg</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-errordlg-4"> &para;</a></span></dt>
+<dd><p>Display an error dialog box with error message <var class="var">msg</var> and caption
+<var class="var">title</var>.
+</p>
+<p>The default error message is <code class="code">&quot;This is the default error string.&quot;</code>
+and the default caption is <code class="code">&quot;Error Dialog&quot;</code>.
+</p>
+<p>The error message may have multiple lines separated by newline characters
+(&quot;\n&quot;), or it may be a cellstr array with one element for each line.
+</p>
+<p>The third optional argument <var class="var">opt</var> controls the behavior of the dialog.
+For details, see <a class="pxref" href="#XREFmsgbox"><code class="code">msgbox</code></a>.
+</p>
+<p>The return value <var class="var">h</var> is a handle to the figure object used for
+building the dialog.
+</p>
+<p>Examples:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">errordlg (&quot;Some fancy error occurred.&quot;);
+errordlg (&quot;Some fancy error\nwith two lines.&quot;);
+errordlg ({&quot;Some fancy error&quot;, &quot;with two lines.&quot;});
+errordlg (&quot;Some fancy error occurred.&quot;, &quot;Fancy caption&quot;);
+</pre></div></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFhelpdlg">helpdlg</a>, <a class="ref" href="#XREFwarndlg">warndlg</a>, <a class="ref" href="#XREFmsgbox">msgbox</a>, <a class="ref" href="#XREFinputdlg">inputdlg</a>, <a class="ref" href="#XREFlistdlg">listdlg</a>, <a class="ref" href="#XREFquestdlg">questdlg</a>.
+</p></dd></dl>
+
+
+<a class="index-entry-id" id="index-dialog_002c-displaying-a-help-dialog"></a>
+<a class="anchor" id="XREFhelpdlg"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-helpdlg"><span><strong class="def-name">helpdlg</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-helpdlg"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-helpdlg-1"><span><strong class="def-name">helpdlg</strong> <code class="def-code-arguments">(<var class="var">msg</var>)</code><a class="copiable-link" href="#index-helpdlg-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-helpdlg-2"><span><strong class="def-name">helpdlg</strong> <code class="def-code-arguments">(<var class="var">msg</var>, <var class="var">title</var>)</code><a class="copiable-link" href="#index-helpdlg-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-helpdlg-3"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">helpdlg</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-helpdlg-3"> &para;</a></span></dt>
+<dd><p>Display a help dialog box with help message <var class="var">msg</var> and caption
+<var class="var">title</var>.
+</p>
+<p>The default help message is <code class="code">&quot;This is the default help string.&quot;</code>
+and the default caption is <code class="code">&quot;Help Dialog&quot;</code>.
+</p>
+<p>The help message may have multiple lines separated by newline characters
+(&quot;\n&quot;), or it may be a cellstr array with one element for each line.
+</p>
+<p>The return value <var class="var">h</var> is a handle to the figure object used for
+building the dialog.
+</p>
+<p>Examples:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">helpdlg (&quot;Some helpful text for the user.&quot;);
+helpdlg (&quot;Some helpful text\nwith two lines.&quot;);
+helpdlg ({&quot;Some helpful text&quot;, &quot;with two lines.&quot;});
+helpdlg (&quot;Some helpful text for the user.&quot;, &quot;Fancy caption&quot;);
+</pre></div></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFerrordlg">errordlg</a>, <a class="ref" href="#XREFwarndlg">warndlg</a>, <a class="ref" href="#XREFmsgbox">msgbox</a>, <a class="ref" href="#XREFinputdlg">inputdlg</a>, <a class="ref" href="#XREFlistdlg">listdlg</a>, <a class="ref" href="#XREFquestdlg">questdlg</a>.
+</p></dd></dl>
+
+
+<a class="index-entry-id" id="index-dialog_002c-displaying-an-input-dialog"></a>
+<a class="anchor" id="XREFinputdlg"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-inputdlg"><span><code class="def-type"><var class="var">cstr</var> =</code> <strong class="def-name">inputdlg</strong> <code class="def-code-arguments">(<var class="var">prompt</var>)</code><a class="copiable-link" href="#index-inputdlg"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-inputdlg-1"><span><code class="def-type"><var class="var">cstr</var> =</code> <strong class="def-name">inputdlg</strong> <code class="def-code-arguments">(<var class="var">prompt</var>, <var class="var">title</var>)</code><a class="copiable-link" href="#index-inputdlg-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-inputdlg-2"><span><code class="def-type"><var class="var">cstr</var> =</code> <strong class="def-name">inputdlg</strong> <code class="def-code-arguments">(<var class="var">prompt</var>, <var class="var">title</var>, <var class="var">rowscols</var>)</code><a class="copiable-link" href="#index-inputdlg-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-inputdlg-3"><span><code class="def-type"><var class="var">cstr</var> =</code> <strong class="def-name">inputdlg</strong> <code class="def-code-arguments">(<var class="var">prompt</var>, <var class="var">title</var>, <var class="var">rowscols</var>, <var class="var">defaults</var>)</code><a class="copiable-link" href="#index-inputdlg-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-inputdlg-4"><span><code class="def-type"><var class="var">cstr</var> =</code> <strong class="def-name">inputdlg</strong> <code class="def-code-arguments">(<var class="var">prompt</var>, <var class="var">title</var>, <var class="var">rowscols</var>, <var class="var">defaults</var>, <var class="var">options</var>)</code><a class="copiable-link" href="#index-inputdlg-4"> &para;</a></span></dt>
+<dd><p>Return user input from a multi-textfield dialog box.
+</p>
+<p>Inputs:
+</p>
+<dl class="table">
+<dt><var class="var">prompt</var></dt>
+<dd><p>A cell array with strings labeling each text field.  This input is required.
+</p>
+</dd>
+<dt><var class="var">title</var></dt>
+<dd><p>String to use for the caption of the dialog.  The default is
+<code class="code">&quot;Input Dialog&quot;</code>.
+</p>
+</dd>
+<dt><var class="var">rowscols</var></dt>
+<dd><p>Specifies the size of the text fields and can take four forms:
+</p>
+<ol class="enumerate">
+<li> a scalar value which defines the number of rows used for each text
+field.
+
+</li><li> a row or column vector with the number of elements matching the number
+of prompts.  Each element defines the number of rows used for the
+corresponding text field.
+
+</li><li> a 1x2 row vector which defines the number of rows and the number of
+columns used for all text fields.
+
+</li><li> an Mx2 matrix which defines the individual number of rows and columns
+used for each text field.  In the matrix, each row describes a single text
+field.  The first column specifies the number of input rows to use and the
+second column specifies the text field width.
+</li></ol>
+
+</dd>
+<dt><var class="var">defaults</var></dt>
+<dd><p>A list of default values to place in each text field.  It must be a cell
+array of strings with the same size as <var class="var">prompt</var>.
+</p>
+</dd>
+<dt><var class="var">options</var></dt>
+<dd><p>Not supported, only for <small class="sc">MATLAB</small> compatibility.
+</p></dd>
+</dl>
+
+<p>Output:
+The output is a cell array of strings with each element being the text that
+was entered by the user.  An empty cell array is returned if the dialog was
+closed by the Cancel button.
+</p>
+<p>Example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">prompt = {&quot;Width&quot;, &quot;Height&quot;, &quot;Depth&quot;};
+defaults = {&quot;1.10&quot;, &quot;2.20&quot;, &quot;3.30&quot;};
+rowscols = [1,10; 2,20; 3,30];
+dims = inputdlg (prompt, &quot;Enter Box Dimensions&quot;, ...
+                 rowscols, defaults);
+</pre></div></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFerrordlg">errordlg</a>, <a class="ref" href="#XREFhelpdlg">helpdlg</a>, <a class="ref" href="#XREFlistdlg">listdlg</a>, <a class="ref" href="#XREFmsgbox">msgbox</a>, <a class="ref" href="#XREFquestdlg">questdlg</a>, <a class="ref" href="#XREFwarndlg">warndlg</a>.
+</p></dd></dl>
+
+
+<a class="index-entry-id" id="index-dialog_002c-displaying-a-list-dialog"></a>
+<a class="anchor" id="XREFlistdlg"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-listdlg"><span><code class="def-type">[<var class="var">sel</var>, <var class="var">ok</var>] =</code> <strong class="def-name">listdlg</strong> <code class="def-code-arguments">(<var class="var">key</var>, <var class="var">value</var>, &hellip;)</code><a class="copiable-link" href="#index-listdlg"> &para;</a></span></dt>
+<dd><p>Return user inputs from a list dialog box in a vector of selection indices
+(<var class="var">sel</var>) and a flag indicating how the user closed the dialog box
+(<var class="var">ok</var>).
+</p>
+<p>The indices in <var class="var">sel</var> are 1-based.
+</p>
+<p>The value of <var class="var">ok</var> is 1 if the user closed the box with the OK button,
+otherwise it is 0 and <var class="var">sel</var> is empty.
+</p>
+<p>Input arguments are specified in form of <var class="var">key</var>, <var class="var">value</var> pairs.
+The <code class="code">&quot;ListString&quot;</code> argument pair <strong class="strong">must</strong> be specified.
+</p>
+<p>Valid <var class="var">key</var> and <var class="var">value</var> pairs are:
+</p>
+<dl class="table">
+<dt><code class="code">&quot;ListString&quot;</code></dt>
+<dd><p>a cell array of strings specifying the items to list in the dialog.
+</p>
+</dd>
+<dt><code class="code">&quot;SelectionMode&quot;</code></dt>
+<dd><p>can be either <code class="code">&quot;Single&quot;</code> (only one item may be selected at a time) or
+<code class="code">&quot;Multiple&quot;</code> (default).
+</p>
+</dd>
+<dt><code class="code">&quot;ListSize&quot;</code></dt>
+<dd><p>a two-element vector <code class="code">[<var class="var">width</var>, <var class="var">height</var>]</code> specifying the size
+of the list field in pixels.  The default is [160, 300].
+</p>
+</dd>
+<dt><code class="code">&quot;InitialValue&quot;</code></dt>
+<dd><p>a vector containing 1-based indices of elements which will be pre-selected
+when the list dialog is first displayed.
+The default is 1 (first item).
+</p>
+</dd>
+<dt><code class="code">&quot;Name&quot;</code></dt>
+<dd><p>a string to be used as the dialog caption.  Default is &quot;&quot;.
+</p>
+</dd>
+<dt><code class="code">&quot;PromptString&quot;</code></dt>
+<dd><p>a cell array of strings to be displayed above the list of items.
+Default is {}.
+</p>
+</dd>
+<dt><code class="code">&quot;OKString&quot;</code></dt>
+<dd><p>a string used to label the OK button.  Default is <code class="code">&quot;OK&quot;</code>.
+</p>
+</dd>
+<dt><code class="code">&quot;CancelString&quot;</code></dt>
+<dd><p>a string used to label the Cancel button.  Default is <code class="code">&quot;Cancel&quot;</code>.
+</p></dd>
+</dl>
+
+<p>Example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">my_options = {&quot;An item&quot;, &quot;another&quot;, &quot;yet another&quot;};
+[sel, ok] = listdlg (&quot;ListString&quot;, my_options,
+                     &quot;SelectionMode&quot;, &quot;Multiple&quot;);
+if (ok == 1)
+  disp (&quot;You selected:&quot;);
+  for i = 1:numel (sel)
+    disp (sprintf (&quot;\t%s&quot;, my_options{sel(i)}));
+  endfor
+else
+  disp (&quot;You cancelled.&quot;);
+endif
+</pre></div></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Terminal-Input.html#XREFmenu">menu</a>, <a class="ref" href="#XREFerrordlg">errordlg</a>, <a class="ref" href="#XREFhelpdlg">helpdlg</a>, <a class="ref" href="#XREFinputdlg">inputdlg</a>, <a class="ref" href="#XREFmsgbox">msgbox</a>, <a class="ref" href="#XREFquestdlg">questdlg</a>, <a class="ref" href="#XREFwarndlg">warndlg</a>.
+</p></dd></dl>
+
+
+<a class="index-entry-id" id="index-dialog_002c-displaying-a-message-dialog"></a>
+<a class="anchor" id="XREFmsgbox"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-msgbox"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">msgbox</strong> <code class="def-code-arguments">(<var class="var">msg</var>)</code><a class="copiable-link" href="#index-msgbox"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-msgbox-1"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">msgbox</strong> <code class="def-code-arguments">(<var class="var">msg</var>, <var class="var">title</var>)</code><a class="copiable-link" href="#index-msgbox-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-msgbox-2"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">msgbox</strong> <code class="def-code-arguments">(<var class="var">msg</var>, <var class="var">title</var>, <var class="var">icon</var>)</code><a class="copiable-link" href="#index-msgbox-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-msgbox-3"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">msgbox</strong> <code class="def-code-arguments">(<var class="var">msg</var>, <var class="var">title</var>, &quot;custom&quot;, <var class="var">cdata</var>)</code><a class="copiable-link" href="#index-msgbox-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-msgbox-4"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">msgbox</strong> <code class="def-code-arguments">(<var class="var">msg</var>, <var class="var">title</var>, &quot;custom&quot;, <var class="var">cdata</var>, <var class="var">colormap</var>)</code><a class="copiable-link" href="#index-msgbox-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-msgbox-5"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">msgbox</strong> <code class="def-code-arguments">(&hellip;, <var class="var">opt</var>)</code><a class="copiable-link" href="#index-msgbox-5"> &para;</a></span></dt>
+<dd><p>Display <var class="var">msg</var> using a message dialog box.
+</p>
+<p>The message may have multiple lines separated by newline characters (&quot;\n&quot;),
+or it may be a cellstr array with one element for each line.
+</p>
+<p>The optional input <var class="var">title</var> (character string) can be used to decorate
+the dialog caption.
+</p>
+<p>The optional argument <var class="var">icon</var> selects a dialog icon.
+It can be one of <code class="code">&quot;none&quot;</code> (default), <code class="code">&quot;error&quot;</code>, <code class="code">&quot;help&quot;</code>,
+<code class="code">&quot;warn&quot;</code>, or <code class="code">&quot;custom&quot;</code>.  The latter must be followed by an
+image array <var class="var">cdata</var>, and for indexed images the associated colormap.
+</p>
+<p>The final optional argument <var class="var">opt</var> controls the behavior of the dialog.
+If <var class="var">opt</var> is a string, it may be one of
+</p>
+<dl class="table">
+<dt><code class="code">&quot;non-modal&quot;</code> (default)</dt>
+<dd><p>The dialog is normal.
+</p>
+</dd>
+<dt><code class="code">&quot;modal&quot;</code></dt>
+<dd><p>If any dialogs already exist with the same title, the most recent is reused
+and all others are closed.  The dialog is displayed <code class="code">&quot;modal&quot;</code> which
+means it prevents users from interacting with any other GUI element until
+the dialog has been closed.
+</p>
+</dd>
+<dt><code class="code">&quot;replace&quot;</code></dt>
+<dd><p>If any dialogs already exist with the same title, the most recent is reused
+and all others are closed.  The resulting dialog is set <code class="code">&quot;non-modal&quot;</code>.
+</p></dd>
+</dl>
+
+<p>If <var class="var">opt</var> is a structure, it must contain fields <code class="code">&quot;WindowStyle&quot;</code>
+and <code class="code">&quot;Interpreter&quot;</code>:
+</p>
+<dl class="table">
+<dt><code class="code">&quot;WindowStyle&quot;</code></dt>
+<dd><p>The value must be <code class="code">&quot;non-modal&quot;</code>, <code class="code">&quot;modal&quot;</code>, or
+<code class="code">&quot;replace&quot;</code>.  See above.
+</p>
+</dd>
+<dt><code class="code">&quot;Interpreter&quot;</code></dt>
+<dd><p>Controls the <code class="code">&quot;interpreter&quot;</code> property of the text object used for
+displaying the message.  The value must be <code class="code">&quot;tex&quot;</code> (default),
+<code class="code">&quot;none&quot;</code>, or <code class="code">&quot;latex&quot;</code>.
+</p></dd>
+</dl>
+
+<p>The return value <var class="var">h</var> is a handle to the figure object used for building
+the dialog.
+</p>
+<p>Examples:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">msgbox (&quot;Some message for the user.&quot;);
+msgbox (&quot;Some message\nwith two lines.&quot;);
+msgbox ({&quot;Some message&quot;, &quot;with two lines.&quot;});
+msgbox (&quot;Some message for the user.&quot;, &quot;Fancy caption&quot;);
+
+## A message dialog box with error icon
+msgbox (&quot;Some message for the user.&quot;, &quot;Fancy caption&quot;, &quot;error&quot;);
+</pre></div></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFerrordlg">errordlg</a>, <a class="ref" href="#XREFhelpdlg">helpdlg</a>, <a class="ref" href="#XREFinputdlg">inputdlg</a>, <a class="ref" href="#XREFlistdlg">listdlg</a>, <a class="ref" href="#XREFquestdlg">questdlg</a>, <a class="ref" href="#XREFwarndlg">warndlg</a>.
+</p></dd></dl>
+
+
+<a class="index-entry-id" id="index-dialog_002c-displaying-a-question-dialog"></a>
+<a class="anchor" id="XREFquestdlg"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-questdlg"><span><code class="def-type"><var class="var">btn</var> =</code> <strong class="def-name">questdlg</strong> <code class="def-code-arguments">(<var class="var">msg</var>)</code><a class="copiable-link" href="#index-questdlg"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-questdlg-1"><span><code class="def-type"><var class="var">btn</var> =</code> <strong class="def-name">questdlg</strong> <code class="def-code-arguments">(<var class="var">msg</var>, <var class="var">title</var>)</code><a class="copiable-link" href="#index-questdlg-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-questdlg-2"><span><code class="def-type"><var class="var">btn</var> =</code> <strong class="def-name">questdlg</strong> <code class="def-code-arguments">(<var class="var">msg</var>, <var class="var">title</var>, <var class="var">default</var>)</code><a class="copiable-link" href="#index-questdlg-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-questdlg-3"><span><code class="def-type"><var class="var">btn</var> =</code> <strong class="def-name">questdlg</strong> <code class="def-code-arguments">(<var class="var">msg</var>, <var class="var">title</var>, <var class="var">btn1</var>, <var class="var">btn2</var>, <var class="var">default</var>)</code><a class="copiable-link" href="#index-questdlg-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-questdlg-4"><span><code class="def-type"><var class="var">btn</var> =</code> <strong class="def-name">questdlg</strong> <code class="def-code-arguments">(<var class="var">msg</var>, <var class="var">title</var>, <var class="var">btn1</var>, <var class="var">btn2</var>, <var class="var">btn3</var>, <var class="var">default</var>)</code><a class="copiable-link" href="#index-questdlg-4"> &para;</a></span></dt>
+<dd><p>Display <var class="var">msg</var> using a question dialog box and return the caption of
+the activated button.
+</p>
+<p>The message may have multiple lines separated by newline characters (&quot;\n&quot;),
+or it may be a cellstr array with one element for each line.
+</p>
+<p>The optional <var class="var">title</var> (character string) can be used to specify the
+dialog caption.  It defaults to <code class="code">&quot;Question Dialog&quot;</code>.
+</p>
+<p>The dialog may contain two or three buttons which will all close the dialog.
+</p>
+<p>The string <var class="var">default</var> identifies the default button, which is activated
+by pressing the <kbd class="key">ENTER</kbd> key.  It must match one of the strings given
+in <var class="var">btn1</var>, <var class="var">btn2</var>, or <var class="var">btn3</var>.
+</p>
+<p>If only <var class="var">msg</var> and <var class="var">title</var> are specified, three buttons with the
+default captions <code class="code">&quot;Yes&quot;</code>, <code class="code">&quot;No&quot;</code>, and <code class="code">&quot;Cancel&quot;</code> are used.
+</p>
+<p>If only two button captions, <var class="var">btn1</var> and <var class="var">btn2</var>, are specified the
+dialog will have only these two buttons.
+</p>
+<p>Examples:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">btn = questdlg (&quot;Close Octave?&quot;, &quot;Some fancy title&quot;, ...
+                &quot;Yes&quot;, &quot;No&quot;, &quot;No&quot;);
+if (strcmp (btn, &quot;Yes&quot;))
+  exit ();
+endif
+</pre></div></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFerrordlg">errordlg</a>, <a class="ref" href="#XREFhelpdlg">helpdlg</a>, <a class="ref" href="#XREFinputdlg">inputdlg</a>, <a class="ref" href="#XREFlistdlg">listdlg</a>, <a class="ref" href="#XREFmsgbox">msgbox</a>, <a class="ref" href="#XREFwarndlg">warndlg</a>.
+</p></dd></dl>
+
+
+<a class="index-entry-id" id="index-dialog_002c-displaying-a-warning-dialog"></a>
+<a class="anchor" id="XREFwarndlg"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-warndlg"><span><strong class="def-name">warndlg</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-warndlg"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-warndlg-1"><span><strong class="def-name">warndlg</strong> <code class="def-code-arguments">(<var class="var">msg</var>)</code><a class="copiable-link" href="#index-warndlg-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-warndlg-2"><span><strong class="def-name">warndlg</strong> <code class="def-code-arguments">(<var class="var">msg</var>, <var class="var">title</var>)</code><a class="copiable-link" href="#index-warndlg-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-warndlg-3"><span><strong class="def-name">warndlg</strong> <code class="def-code-arguments">(<var class="var">msg</var>, <var class="var">title</var>, <var class="var">opt</var>)</code><a class="copiable-link" href="#index-warndlg-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-warndlg-4"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">warndlg</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-warndlg-4"> &para;</a></span></dt>
+<dd><p>Display a warning dialog box with warning message <var class="var">msg</var> and caption
+<var class="var">title</var>.
+</p>
+<p>The default warning message is
+<code class="code">&quot;This is the default warning string.&quot;</code> and the default caption is
+<code class="code">&quot;Warning Dialog&quot;</code>.
+</p>
+<p>The warning message may have multiple lines separated by newline characters
+(&quot;\n&quot;), or it may be a cellstr array with one element for each line.
+</p>
+<p>The third optional argument <var class="var">opt</var> controls the behavior of the dialog.
+For details, see <a class="pxref" href="#XREFmsgbox"><code class="code">msgbox</code></a>.
+</p>
+<p>The return value <var class="var">h</var> is a handle to the figure object used for
+building the dialog.
+</p>
+<p>Examples:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">warndlg (&quot;Some warning text for the user.&quot;);
+warndlg (&quot;Some warning text\nwith two lines.&quot;);
+warndlg ({&quot;Some warning text&quot;, &quot;with two lines.&quot;});
+warndlg (&quot;Some warning text for the user.&quot;, &quot;Fancy caption&quot;);
+</pre></div></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFerrordlg">errordlg</a>, <a class="ref" href="#XREFhelpdlg">helpdlg</a>, <a class="ref" href="#XREFmsgbox">msgbox</a>, <a class="ref" href="#XREFinputdlg">inputdlg</a>, <a class="ref" href="#XREFlistdlg">listdlg</a>, <a class="ref" href="#XREFquestdlg">questdlg</a>.
+</p></dd></dl>
+
+
+<a class="index-entry-id" id="index-dialog_002c-displaying-a-font-selection-dialog"></a>
+<a class="anchor" id="XREFuisetfont"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-uisetfont"><span><strong class="def-name">uisetfont</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-uisetfont"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-uisetfont-1"><span><strong class="def-name">uisetfont</strong> <code class="def-code-arguments">(<var class="var">h</var>)</code><a class="copiable-link" href="#index-uisetfont-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-uisetfont-2"><span><strong class="def-name">uisetfont</strong> <code class="def-code-arguments">(<var class="var">fontstruct</var>)</code><a class="copiable-link" href="#index-uisetfont-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-uisetfont-3"><span><strong class="def-name">uisetfont</strong> <code class="def-code-arguments">(&hellip;, <var class="var">title</var>)</code><a class="copiable-link" href="#index-uisetfont-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-uisetfont-4"><span><code class="def-type"><var class="var">fontstruct</var> =</code> <strong class="def-name">uisetfont</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-uisetfont-4"> &para;</a></span></dt>
+<dd><p>Open a font selection dialog.
+</p>
+<p>If the first argument is a handle to a text, axes, or uicontrol object,
+pressing the OK button will change the font properties of the object.
+</p>
+<p>The first argument may also be a structure with fields <code class="code">FontName</code>,
+<code class="code">FontWeight</code>, <code class="code">FontAngle</code>, <code class="code">FontUnits</code>, and <code class="code">FontSize</code>,
+indicating the initially selected font.
+</p>
+<p>The title of the dialog window can be specified by using the last argument
+<var class="var">title</var>.
+</p>
+<p>If an output argument <var class="var">fontstruct</var> is requested, the selected font
+structure is returned.  Otherwise, the font information is displayed
+onscreen.
+</p>
+<p>Programming Note: On systems that don&rsquo;t use FontConfig natively (all but
+Linux), the font cache is built when Octave is installed.  You will need to
+run <code class="code">system (&quot;fc-cache -fv&quot;)</code> manually after installing new fonts.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="GUI-Utility-Functions.html#XREFlistfonts">listfonts</a>, <a class="ref" href="Plot-Annotations.html#XREFtext">text</a>, <a class="ref" href="Creating-Graphics-Objects.html#XREFaxes">axes</a>, <a class="ref" href="UI-Elements.html#XREFuicontrol">uicontrol</a>.
+</p></dd></dl>
+
+
+<p>For creating new dialog types, there is a dialog function.
+</p>
+<a class="index-entry-id" id="index-dialog_002c-displaying-a-modal-dialog"></a>
+<a class="anchor" id="XREFdialog"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-dialog"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">dialog</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-dialog"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-dialog-1"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">dialog</strong> <code class="def-code-arguments">(&quot;<var class="var">property</var>&quot;, <var class="var">value</var>, &hellip;)</code><a class="copiable-link" href="#index-dialog-1"> &para;</a></span></dt>
+<dd>
+<p>Create an empty modal dialog window to which other uicontrols can be added.
+</p>
+<p>The dialog box is a figure object with properties as recommended for a
+dialog box.
+</p>
+<p>The default properties differing from a figure are:
+</p>
+<dl class="table">
+<dt>buttondownfcn</dt>
+<dd><p><code class="code">if isempty (allchild(gcbf)), close (gcbf), endif</code>
+</p>
+</dd>
+<dt>colormap</dt>
+<dd><p>[]
+</p>
+</dd>
+<dt>color</dt>
+<dd><p>defaultuicontrolbackgroundcolor
+</p>
+</dd>
+<dt>dockcontrols</dt>
+<dd><p>off
+</p>
+</dd>
+<dt>handlevisibility</dt>
+<dd><p>callback
+</p>
+</dd>
+<dt>integerhandle</dt>
+<dd><p>off
+</p>
+</dd>
+<dt>inverthardcopy</dt>
+<dd><p>off
+</p>
+</dd>
+<dt>menubar</dt>
+<dd><p>none
+</p>
+</dd>
+<dt>numbertitle</dt>
+<dd><p>off
+</p>
+</dd>
+<dt>paperpositionmode</dt>
+<dd><p>auto
+</p>
+</dd>
+<dt>resize</dt>
+<dd><p>off
+</p>
+</dd>
+<dt>windowstyle</dt>
+<dd><p>modal
+</p>
+</dd>
+</dl>
+
+
+<p>Multiple property-value pairs may be specified for the dialog object, but
+they must appear in pairs.  The full list of properties is documented at
+<a class="ref" href="Figure-Properties.html">Figure Properties</a>.
+</p>
+<p>The return value <var class="var">h</var> is a graphics handle to the created figure.
+</p>
+<p>Example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">## create an empty dialog window titled &quot;Dialog Example&quot;
+h = dialog (&quot;name&quot;, &quot;Dialog Example&quot;);
+
+## create a button (default style)
+b = uicontrol (h, &quot;string&quot;, &quot;OK&quot;,
+                  &quot;position&quot;, [10 10 150 40],
+                  &quot;callback&quot;, &quot;delete (gcf)&quot;);
+
+## wait for dialog to resume or close
+uiwait (h);
+</pre></div></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFerrordlg">errordlg</a>, <a class="ref" href="#XREFmsgbox">msgbox</a>, <a class="ref" href="#XREFquestdlg">questdlg</a>, <a class="ref" href="#XREFwarndlg">warndlg</a>, <a class="ref" href="Multiple-Plot-Windows.html#XREFfigure">figure</a>, <a class="ref" href="GUI-Utility-Functions.html#XREFuiwait">uiwait</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Progress-Bar.html">Progress Bar</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="GUI-Development.html">GUI Development</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

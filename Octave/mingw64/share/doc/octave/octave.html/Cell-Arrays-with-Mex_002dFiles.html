@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Cell Arrays with Mex-Files (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Cell Arrays with Mex-Files (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Cell Arrays with Mex-Files (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Mex_002dFiles.html" rel="up" title="Mex-Files">
+<link href="Structures-with-Mex_002dFiles.html" rel="next" title="Structures with Mex-Files">
+<link href="Character-Strings-in-Mex_002dFiles.html" rel="prev" title="Character Strings in Mex-Files">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Cell-Arrays-with-Mex_002dFiles">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Structures-with-Mex_002dFiles.html" accesskey="n" rel="next">Structures with Mex-Files</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Character-Strings-in-Mex_002dFiles.html" accesskey="p" rel="prev">Character Strings in Mex-Files</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Mex_002dFiles.html" accesskey="u" rel="up">Mex-Files</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Cell-Arrays-with-Mex_002dFiles-1"><span>A.2.4 Cell Arrays with Mex-Files<a class="copiable-link" href="#Cell-Arrays-with-Mex_002dFiles-1"> &para;</a></span></h4>
+
+<p>One can perform exactly the same operations on Cell arrays in mex-files as in
+oct-files.  An example that duplicates the function of the <samp class="file">celldemo.cc</samp>
+oct-file in a mex-file is given by <samp class="file">mycell.c</samp> as shown below.
+</p>
+<div class="example">
+<pre class="verbatim">#include &quot;mex.h&quot;
+
+void
+mexFunction (int nlhs, mxArray *plhs[],
+             int nrhs, const mxArray *prhs[])
+{
+  mwSize n;
+  mwIndex i;
+
+  if (nrhs != 1 || ! mxIsCell (prhs[0]))
+    mexErrMsgTxt (&quot;ARG1 must be a cell&quot;);
+
+  n = mxGetNumberOfElements (prhs[0]);
+  n = (n &gt; nlhs ? nlhs : n);
+
+  for (i = 0; i &lt; n; i++)
+    plhs[i] = mxDuplicateArray (mxGetCell (prhs[0], i));
+}
+</pre></div>
+
+<p>The output is identical to the oct-file version as well.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">[b1, b2, b3] = mycell ({1, [1, 2], &quot;test&quot;})
+&rArr; 
+b1 =  1
+b2 =
+
+   1   2
+
+b3 = test
+</pre></div></div>
+
+<p>Note in the example the use of the <code class="code">mxDuplicateArray</code> function.  This is
+needed as the <code class="code">mxArray</code> pointer returned by <code class="code">mxGetCell</code> might be
+deallocated.  The inverse function to <code class="code">mxGetCell</code>, used for setting Cell
+values, is <code class="code">mxSetCell</code> and is defined as
+</p>
+<div class="example">
+<pre class="example-preformatted">void mxSetCell (mxArray *ptr, int idx, mxArray *val);
+</pre></div>
+
+<p>Finally, to create a cell array or matrix, the appropriate functions are
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">mxArray *mxCreateCellArray (int ndims, const int *dims);
+mxArray *mxCreateCellMatrix (int m, int n);
+</pre></div></div>
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Structures-with-Mex_002dFiles.html">Structures with Mex-Files</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Character-Strings-in-Mex_002dFiles.html">Character Strings in Mex-Files</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Mex_002dFiles.html">Mex-Files</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

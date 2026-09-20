@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Block Comments (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Block Comments (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Block Comments (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Comments-in-Octave-Programs.html" rel="up" title="Comments in Octave Programs">
+<link href="Comments-and-the-Help-System.html" rel="next" title="Comments and the Help System">
+<link href="Single-Line-Comments.html" rel="prev" title="Single Line Comments">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Block-Comments">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Comments-and-the-Help-System.html" accesskey="n" rel="next">Comments and the Help System</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Single-Line-Comments.html" accesskey="p" rel="prev">Single Line Comments</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Comments-in-Octave-Programs.html" accesskey="u" rel="up">Comments in Octave Programs</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Block-Comments-1"><span>2.7.2 Block Comments<a class="copiable-link" href="#Block-Comments-1"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-block-comments"></a>
+<a class="index-entry-id" id="index-multi_002dline-comments"></a>
+
+<a class="index-entry-id" id="index-_0023_007b-block-comment-marker"></a>
+<a class="index-entry-id" id="index-_0025_007b-block-comment-marker"></a>
+<p>Entire blocks of code can be commented by enclosing the code between
+matching &lsquo;<samp class="samp">#{</samp>&rsquo; and &lsquo;<samp class="samp">#}</samp>&rsquo; or &lsquo;<samp class="samp">%{</samp>&rsquo; and &lsquo;<samp class="samp">%}</samp>&rsquo; markers.
+For example,
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">function quick_countdown
+  # Count down for main rocket engines
+  disp (3);
+ #{
+  disp (2);
+  disp (1);
+ #}
+  disp (&quot;Blast Off!&quot;);  # Rocket leaves pad
+endfunction
+</pre></div></div>
+
+<p>will produce a very quick countdown from <code class="code">'3'</code> to <code class="code">&quot;Blast Off&quot;</code> as
+the lines &quot;<code class="code">disp (2);</code>&quot; and &quot;<code class="code">disp (1);</code>&quot; won&rsquo;t be executed.
+</p>
+<p>The block comment markers must appear alone as the only characters on a line
+(excepting whitespace) in order to be parsed correctly.
+</p>
+</div>
+
+
+
+</body>
+</html>

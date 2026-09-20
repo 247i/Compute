@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Catching Errors (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Catching Errors (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Catching Errors (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Handling-Errors.html" rel="up" title="Handling Errors">
+<link href="Recovering-From-Errors.html" rel="next" title="Recovering From Errors">
+<link href="Raising-Errors.html" rel="prev" title="Raising Errors">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Catching-Errors">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Recovering-From-Errors.html" accesskey="n" rel="next">Recovering From Errors</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Raising-Errors.html" accesskey="p" rel="prev">Raising Errors</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Handling-Errors.html" accesskey="u" rel="up">Handling Errors</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Catching-Errors-1"><span>12.1.2 Catching Errors<a class="copiable-link" href="#Catching-Errors-1"> &para;</a></span></h4>
+
+<p>When an error occurs, it can be detected and handled using the
+<code class="code">try</code> statement as described in <a class="ref" href="The-try-Statement.html">The try Statement</a>.
+As an example, the following piece of code counts the number of errors
+that occurs during a <code class="code">for</code> loop.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">number_of_errors = 0;
+for n = 1:100
+  try
+    ...
+  catch
+    number_of_errors++;
+  end_try_catch
+endfor
+</pre></div></div>
+
+<p>The above example treats all errors the same.  In many situations it
+can however be necessary to discriminate between errors, and take
+different actions depending on the error.  The <code class="code">lasterror</code>
+function returns a structure containing information about the last
+error that occurred.  As an example, the code above could be changed
+to count the number of errors related to the &lsquo;<samp class="samp">*</samp>&rsquo; operator.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">number_of_errors = 0;
+for n = 1:100
+  try
+    ...
+  catch
+    msg = lasterror.message;
+    if (strfind (msg, &quot;operator *&quot;))
+      number_of_errors++;
+    endif
+  end_try_catch
+endfor
+</pre></div></div>
+
+<p>Alternatively, the output of the <code class="code">lasterror</code> function can be found
+in a variable indicated immediately after the <code class="code">catch</code> keyword, as
+in the example below showing how to redirect an error as a warning:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">try
+  ...
+catch err
+  warning(err.identifier, err.message);
+  ...
+end_try_catch
+</pre></div></div>
+
+<a class="anchor" id="XREFlasterror"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-lasterror"><span><code class="def-type"><var class="var">lasterr</var> =</code> <strong class="def-name">lasterror</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-lasterror"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-lasterror-1"><span><strong class="def-name">lasterror</strong> <code class="def-code-arguments">(<var class="var">err</var>)</code><a class="copiable-link" href="#index-lasterror-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-lasterror-2"><span><strong class="def-name">lasterror</strong> <code class="def-code-arguments">(&quot;reset&quot;)</code><a class="copiable-link" href="#index-lasterror-2"> &para;</a></span></dt>
+<dd><p>Query or set the last error message structure.
+</p>
+<p>When called without arguments, return a structure containing the last error
+message and other information related to this error.  The elements of the
+structure are:
+</p>
+<dl class="table">
+<dt><code class="code">message</code></dt>
+<dd><p>The text of the last error message
+</p>
+</dd>
+<dt><code class="code">identifier</code></dt>
+<dd><p>The message identifier of this error message
+</p>
+</dd>
+<dt><code class="code">stack</code></dt>
+<dd><p>A structure containing information on where the message occurred.  This may
+be an empty structure if the information cannot be obtained.  The fields of
+the structure are:
+</p>
+<dl class="table">
+<dt><code class="code">file</code></dt>
+<dd><p>The name of the file where the error occurred
+</p>
+</dd>
+<dt><code class="code">name</code></dt>
+<dd><p>The name of function in which the error occurred
+</p>
+</dd>
+<dt><code class="code">line</code></dt>
+<dd><p>The line number at which the error occurred
+</p>
+</dd>
+<dt><code class="code">column</code></dt>
+<dd><p>An optional field with the column number at which the error occurred
+</p></dd>
+</dl>
+</dd>
+</dl>
+
+<p>The last error structure may be set by passing a scalar structure,
+<var class="var">err</var>, as input.  Any fields of <var class="var">err</var> that match those above are
+set while any unspecified fields are initialized with default values.
+</p>
+<p>If <code class="code">lasterror</code> is called with the argument <code class="code">&quot;reset&quot;</code>, all
+fields are set to their default values.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFlasterr">lasterr</a>, <a class="ref" href="Raising-Errors.html#XREFerror">error</a>, <a class="ref" href="Issuing-Warnings.html#XREFlastwarn">lastwarn</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFlasterr"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-lasterr"><span><code class="def-type">[<var class="var">msg</var>, <var class="var">msgid</var>] =</code> <strong class="def-name">lasterr</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-lasterr"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-lasterr-1"><span><strong class="def-name">lasterr</strong> <code class="def-code-arguments">(<var class="var">msg</var>)</code><a class="copiable-link" href="#index-lasterr-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-lasterr-2"><span><strong class="def-name">lasterr</strong> <code class="def-code-arguments">(<var class="var">msg</var>, <var class="var">msgid</var>)</code><a class="copiable-link" href="#index-lasterr-2"> &para;</a></span></dt>
+<dd><p>Query or set the last error message.
+</p>
+<p>When called without input arguments, return the last error message and
+message identifier.
+</p>
+<p>With one argument, set the last error message to <var class="var">msg</var>.
+</p>
+<p>With two arguments, also set the last message identifier.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFlasterror">lasterror</a>, <a class="ref" href="Raising-Errors.html#XREFerror">error</a>, <a class="ref" href="Issuing-Warnings.html#XREFlastwarn">lastwarn</a>.
+</p></dd></dl>
+
+
+<p>The next example counts indexing errors.  The errors are caught using the
+field identifier of the structure returned by the function <code class="code">lasterror</code>.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">number_of_errors = 0;
+for n = 1:100
+  try
+    ...
+  catch
+    id = lasterror.identifier;
+    if (strcmp (id, &quot;Octave:invalid-indexing&quot;))
+      number_of_errors++;
+    endif
+  end_try_catch
+endfor
+</pre></div></div>
+
+<p>The functions distributed with Octave can issue one of the following
+errors.
+</p>
+<a class="anchor" id="XREFerror_005fids"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<a class="index-entry-id" id="index-error-ids"></a>
+
+<dl class="table">
+<dt><code class="code">Octave:bad-alloc</code></dt>
+<dd><p>Indicates that memory couldn&rsquo;t be allocated.
+</p>
+</dd>
+<dt><code class="code">Octave:invalid-context</code></dt>
+<dd><p>Indicates the error was generated by an operation that cannot be executed in
+the scope from which it was called.  For example, the function
+<code class="code">print_usage ()</code> when called from the Octave prompt raises this error.
+</p>
+</dd>
+<dt><code class="code">Octave:invalid-fun-call</code></dt>
+<dd><p>Indicates that a function was called in an incorrect way, e.g., wrong number
+of input arguments.
+</p>
+</dd>
+<dt><code class="code">Octave:invalid-indexing</code></dt>
+<dd><p>Indicates that a data-type was indexed incorrectly, e.g., real-value index
+for arrays, nonexistent field of a structure.
+</p>
+</dd>
+<dt><code class="code">Octave:invalid-input-arg</code></dt>
+<dd><p>Indicates that a function was called with invalid input arguments.
+</p>
+</dd>
+<dt><code class="code">Octave:parse-error</code></dt>
+<dd><p>The interpreter failed to parse (read) specified code.
+</p>
+</dd>
+<dt><code class="code">Octave:undefined-function</code></dt>
+<dd><p>Indicates a call to a function that is not defined.  The function may exist
+but Octave is unable to find it in the search path.
+</p>
+</dd>
+</dl>
+
+
+
+<p>When an error has been handled it is possible to raise it again.  This
+can be useful when an error needs to be detected, but the program should
+still abort.  This is possible using the <code class="code">rethrow</code> function.  The
+previous example can now be changed to count the number of errors
+related to the &lsquo;<samp class="samp">*</samp>&rsquo; operator, but still abort if another kind of
+error occurs.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">number_of_errors = 0;
+for n = 1:100
+  try
+    ...
+  catch
+    msg = lasterror.message;
+    if (strfind (msg, &quot;operator *&quot;))
+      number_of_errors++;
+    else
+      rethrow (lasterror);
+    endif
+  end_try_catch
+endfor
+</pre></div></div>
+
+<a class="anchor" id="XREFrethrow"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-rethrow"><span><strong class="def-name">rethrow</strong> <code class="def-code-arguments">(<var class="var">err</var>)</code><a class="copiable-link" href="#index-rethrow"> &para;</a></span></dt>
+<dd><p>Reissue a previous error as defined by <var class="var">err</var>.
+</p>
+<p><var class="var">err</var> is a structure that must contain at least the <code class="code">&quot;message&quot;</code>
+and <code class="code">&quot;identifier&quot;</code> fields.  <var class="var">err</var> can also contain a field
+<code class="code">&quot;stack&quot;</code> that gives information on the assumed location of the
+error.  Typically <var class="var">err</var> is returned from <code class="code">lasterror</code>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFlasterror">lasterror</a>, <a class="ref" href="#XREFlasterr">lasterr</a>, <a class="ref" href="Raising-Errors.html#XREFerror">error</a>.
+</p></dd></dl>
+
+
+
+<a class="anchor" id="XREFerrno"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-errno"><span><code class="def-type"><var class="var">err</var> =</code> <strong class="def-name">errno</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-errno"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-errno-1"><span><code class="def-type"><var class="var">err</var> =</code> <strong class="def-name">errno</strong> <code class="def-code-arguments">(<var class="var">val</var>)</code><a class="copiable-link" href="#index-errno-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-errno-2"><span><code class="def-type"><var class="var">err</var> =</code> <strong class="def-name">errno</strong> <code class="def-code-arguments">(<var class="var">name</var>)</code><a class="copiable-link" href="#index-errno-2"> &para;</a></span></dt>
+<dd><p>Query or set the system-dependent variable errno.
+</p>
+<p>When called with no inputs, return the current value of errno.
+</p>
+<p>When called with a numeric input <var class="var">val</var>, set the current value of errno
+to the specified value.  The previous value of errno is returned as <var class="var">err</var>.
+</p>
+<p>When called with a character string <var class="var">name</var>, return the numeric value of
+errno which corresponds to the specified error code.  If <var class="var">name</var> is not
+a recognized error code then -1 is returned.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFerrno_005flist">errno_list</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFerrno_005flist"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-errno_005flist"><span><code class="def-type"><var class="var">S</var> =</code> <strong class="def-name">errno_list</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-errno_005flist"> &para;</a></span></dt>
+<dd><p>Return a structure containing the system-dependent errno values.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFerrno">errno</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Recovering-From-Errors.html">Recovering From Errors</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Raising-Errors.html">Raising Errors</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Handling-Errors.html">Handling Errors</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

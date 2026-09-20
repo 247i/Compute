@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Using Publishing Markup in Script Files (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Using Publishing Markup in Script Files (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Using Publishing Markup in Script Files (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Publishing-Markup.html" rel="up" title="Publishing Markup">
+<link href="Text-Formatting.html" rel="next" title="Text Formatting">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsubsection-level-extent" id="Using-Publishing-Markup-in-Script-Files">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Text-Formatting.html" accesskey="n" rel="next">Text Formatting</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Publishing-Markup.html" accesskey="u" rel="up">Publishing Markup</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsubsection" id="Using-Publishing-Markup-in-Script-Files-1"><span>11.11.2.1 Using Publishing Markup in Script Files<a class="copiable-link" href="#Using-Publishing-Markup-in-Script-Files-1"> &para;</a></span></h4>
+
+<p>To use Publishing Markup, start by typing &lsquo;<samp class="samp">##</samp>&rsquo; or &lsquo;<samp class="samp">%%</samp>&rsquo; at the
+beginning of a new line.  For <small class="sc">MATLAB</small> compatibility &lsquo;<samp class="samp">%%%</samp>&rsquo; is treated
+the same way as &lsquo;<samp class="samp">%%</samp>&rsquo;.
+</p>
+<p>The lines following &lsquo;<samp class="samp">##</samp>&rsquo; or &lsquo;<samp class="samp">%%</samp>&rsquo; start with one of either
+&lsquo;<samp class="samp">#</samp>&rsquo; or &lsquo;<samp class="samp">%</samp>&rsquo; followed by at least one space.  These lines are
+interpreted as section.  A section ends at the first line not starting
+with &lsquo;<samp class="samp">#</samp>&rsquo; or &lsquo;<samp class="samp">%</samp>&rsquo;, or when the end of the document is reached.
+</p>
+<p>A section starting in the first line of the document, followed by another
+start of a section that might be empty, is interpreted as a document
+title and introduction text.
+</p>
+<p>See the example below for clarity:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">%% Headline title
+%
+% Some *bold*, _italic_, or |monospaced| Text with
+% a &lt;https://www.octave.org link to GNU Octave&gt;.
+%%
+
+# &quot;Real&quot; Octave commands to be evaluated
+sombrero ()
+
+## Octave comment style supported as well
+#
+# * Bulleted list item 1
+# * Bulleted list item 2
+#
+# # Numbered list item 1
+# # Numbered list item 2
+</pre></div></div>
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Text-Formatting.html">Text Formatting</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Publishing-Markup.html">Publishing Markup</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

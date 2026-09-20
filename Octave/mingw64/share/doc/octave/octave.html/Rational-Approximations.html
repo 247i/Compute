@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Rational Approximations (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Rational Approximations (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Rational Approximations (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Arithmetic.html" rel="up" title="Arithmetic">
+<link href="Coordinate-Transformations.html" rel="next" title="Coordinate Transformations">
+<link href="Special-Functions.html" rel="prev" title="Special Functions">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Rational-Approximations">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Coordinate-Transformations.html" accesskey="n" rel="next">Coordinate Transformations</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Special-Functions.html" accesskey="p" rel="prev">Special Functions</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Arithmetic.html" accesskey="u" rel="up">Arithmetic</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Rational-Approximations-1"><span>17.7 Rational Approximations<a class="copiable-link" href="#Rational-Approximations-1"> &para;</a></span></h3>
+
+<a class="anchor" id="XREFrat"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-rat"><span><code class="def-type"><var class="var">s</var> =</code> <strong class="def-name">rat</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-rat"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rat-1"><span><code class="def-type"><var class="var">s</var> =</code> <strong class="def-name">rat</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">tol</var>)</code><a class="copiable-link" href="#index-rat-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rat-2"><span><code class="def-type">[<var class="var">n</var>, <var class="var">d</var>] =</code> <strong class="def-name">rat</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-rat-2"> &para;</a></span></dt>
+<dd>
+<p>Find a rational approximation of <var class="var">x</var> to within the tolerance defined by
+<var class="var">tol</var>.
+</p>
+<p>If unspecified, the default tolerance is <code class="code">1e-6 * norm (<var class="var">x</var>(:), 1)</code>.
+</p>
+<p>When called with one output argument, return a string containing a
+continued fraction expansion (multiple terms).
+</p>
+<p>When called with two output arguments, return numeric matrices for the
+numerator and denominator of a fractional representation of <var class="var">x</var> such
+that <code class="code"><var class="var">x</var> = <var class="var">n</var> ./ <var class="var">d</var></code>.
+</p>
+<p>For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">s = rat (pi)
+&rArr;  s = 3 + 1/(7 + 1/16)
+
+[n, d] = rat (pi)
+&rArr;  n =  355
+&rArr;  d =  113
+
+n / d - pi
+&rArr;  2.6676e-07
+</pre></div></div>
+
+<p>Complex inputs are similar:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">s = rat (0.5 + i * pi)
+&rArr;  s = complex (1 + 1/(-2), 3 + 1/(7 + 1/16))
+
+[n, d] = rat (0.5 + i * pi)
+&rArr;  n =  113 + 710i
+&rArr;  d =  226
+
+n / d - (0.5 + i * pi)
+&rArr;  0 + 2.6676e-07i
+</pre></div></div>
+
+<p>Programming Notes:
+</p>
+<p>1. With one output <code class="code">rat</code> produces a string which is a continued
+fraction expansion.  To produce a string which is a simple fraction
+(one numerator, one denominator) use <code class="code">rats</code>.
+</p>
+<p>2. The string output produced by <code class="code">rat</code> can be passed to <code class="code">eval</code>
+to get back the original input up to the tolerance used.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFrats">rats</a>, <a class="ref" href="Terminal-Output.html#XREFformat">format</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFrats"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-rats"><span><code class="def-type"><var class="var">s</var> =</code> <strong class="def-name">rats</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-rats"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rats-1"><span><code class="def-type"><var class="var">s</var> =</code> <strong class="def-name">rats</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">len</var>)</code><a class="copiable-link" href="#index-rats-1"> &para;</a></span></dt>
+<dd><p>Convert <var class="var">x</var> into a rational approximation represented as a string.
+</p>
+<p>A rational approximation to a floating point number is a simple fraction
+with numerator <var class="var">N</var> and denominator <var class="var">D</var> such that
+<code class="code"><var class="var">x</var> = <var class="var">N</var>/<var class="var">D</var></code>.
+</p>
+<p>The optional second argument defines the maximum length of the string
+representing the elements of <var class="var">x</var>.  By default, <var class="var">len</var> is 13.
+</p>
+<p>If the length of the smallest possible rational approximation exceeds
+<var class="var">len</var>, an asterisk (*) padded with spaces will be returned instead.
+</p>
+<p>Example conversion from matrix to string, and back again.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">r = rats (hilb (4));
+x = str2num (r)
+</pre></div></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFrat">rat</a>, <a class="ref" href="Terminal-Output.html#XREFformat">format</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Coordinate-Transformations.html">Coordinate Transformations</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Special-Functions.html">Special Functions</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Arithmetic.html">Arithmetic</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Color Conversion (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Color Conversion (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Color Conversion (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Image-Processing.html" rel="up" title="Image Processing">
+<link href="Plotting-on-top-of-Images.html" rel="prev" title="Plotting on top of Images">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Color-Conversion">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Plotting-on-top-of-Images.html" accesskey="p" rel="prev">Plotting on top of Images</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Image-Processing.html" accesskey="u" rel="up">Image Processing</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Color-Conversion-1"><span>32.5 Color Conversion<a class="copiable-link" href="#Color-Conversion-1"> &para;</a></span></h3>
+
+<p>Octave supports conversion from the RGB color system to the HSV color system
+and vice versa.  It is also possible to convert from a color RGB image to a
+grayscale image.
+</p>
+<a class="anchor" id="XREFrgb2hsv"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-rgb2hsv"><span><code class="def-type"><var class="var">hsv_map</var> =</code> <strong class="def-name">rgb2hsv</strong> <code class="def-code-arguments">(<var class="var">rgb_map</var>)</code><a class="copiable-link" href="#index-rgb2hsv"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rgb2hsv-1"><span><code class="def-type"><var class="var">hsv_img</var> =</code> <strong class="def-name">rgb2hsv</strong> <code class="def-code-arguments">(<var class="var">rgb_img</var>)</code><a class="copiable-link" href="#index-rgb2hsv-1"> &para;</a></span></dt>
+<dd><p>Transform a colormap or image from RGB to HSV color space.
+</p>
+<p>A color in the RGB space consists of red, green, and blue intensities.
+</p>
+<p>A color in HSV space is represented by hue, saturation and value
+(brightness) levels in a cylindrical coordinate system.  Hue is the
+azimuth and describes the dominant color.  Saturation is the radial
+distance and gives the amount of hue mixed into the color.  Value is
+the height and is the amount of light in the color.
+</p>
+<p>Output class and size will be the same as input.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFhsv2rgb">hsv2rgb</a>, <a class="ref" href="Representing-Images.html#XREFrgb2ind">rgb2ind</a>, <a class="ref" href="#XREFrgb2gray">rgb2gray</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFhsv2rgb"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-hsv2rgb"><span><code class="def-type"><var class="var">rgb_map</var> =</code> <strong class="def-name">hsv2rgb</strong> <code class="def-code-arguments">(<var class="var">hsv_map</var>)</code><a class="copiable-link" href="#index-hsv2rgb"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-hsv2rgb-1"><span><code class="def-type"><var class="var">rgb_img</var> =</code> <strong class="def-name">hsv2rgb</strong> <code class="def-code-arguments">(<var class="var">hsv_img</var>)</code><a class="copiable-link" href="#index-hsv2rgb-1"> &para;</a></span></dt>
+<dd><p>Transform a colormap or image from HSV to RGB color space.
+</p>
+<p>A color in HSV space is represented by hue, saturation and value
+(brightness) levels in a cylindrical coordinate system.  Hue is the
+azimuth and describes the dominant color.  Saturation is the radial
+distance and gives the amount of hue mixed into the color.  Value is
+the height and is the amount of light in the color.
+</p>
+<p>The input can be both a colormap or RGB image.  In the case of floating
+point input, values are expected to be on the [0 1] range.  In the case
+of hue (azimuth), since the value corresponds to an angle,
+<code class="code">mod (h, 1)</code> is used.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">&gt;&gt; hsv2rgb ([0.5 1 1])
+&rArr;  ans = 0 1 1
+
+&gt;&gt; hsv2rgb ([2.5 1 1])
+&rArr;  ans = 0 1 1
+
+&gt;&gt; hsv2rgb ([3.5 1 1])
+&rArr;  ans = 0 1 1
+</pre></div></div>
+
+<p>Output class and size will be the same as input.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFrgb2hsv">rgb2hsv</a>, <a class="ref" href="Representing-Images.html#XREFind2rgb">ind2rgb</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFrgb2gray"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-rgb2gray"><span><code class="def-type"><var class="var">I</var> =</code> <strong class="def-name">rgb2gray</strong> <code class="def-code-arguments">(<var class="var">rgb_img</var>)</code><a class="copiable-link" href="#index-rgb2gray"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rgb2gray-1"><span><code class="def-type"><var class="var">gray_map</var> =</code> <strong class="def-name">rgb2gray</strong> <code class="def-code-arguments">(<var class="var">rgb_map</var>)</code><a class="copiable-link" href="#index-rgb2gray-1"> &para;</a></span></dt>
+<dd><p>Transform an image or colormap from red-green-blue (RGB) color space to
+a grayscale intensity image.
+</p>
+<p>The input may be of class uint8, int8, uint16, int16, single, or double.
+The output is of the same class as the input.
+</p>
+<p>Implementation Note:
+The grayscale intensity is calculated as
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted"><var class="var">I</var> = 0.298936*<var class="var">R</var> + 0.587043*<var class="var">G</var> + 0.114021*<var class="var">B</var>
+</pre></div></div>
+
+<p>which corresponds to the luminance channel when RGB is translated to
+YIQ as documented in <a class="url" href="https://en.wikipedia.org/wiki/YIQ">https://en.wikipedia.org/wiki/YIQ</a>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFrgb2hsv">rgb2hsv</a>, <a class="ref" href="Representing-Images.html#XREFrgb2ind">rgb2ind</a>.
+</p></dd></dl>
+
+
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Plotting-on-top-of-Images.html">Plotting on top of Images</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Image-Processing.html">Image Processing</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

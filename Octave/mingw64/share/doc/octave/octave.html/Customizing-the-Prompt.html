@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Customizing the Prompt (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Customizing the Prompt (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Customizing the Prompt (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Command-Line-Editing.html" rel="up" title="Command Line Editing">
+<link href="Diary-and-Echo-Commands.html" rel="next" title="Diary and Echo Commands">
+<link href="Customizing-readline.html" rel="prev" title="Customizing readline">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Customizing-the-Prompt">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Diary-and-Echo-Commands.html" accesskey="n" rel="next">Diary and Echo Commands</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Customizing-readline.html" accesskey="p" rel="prev">Customizing <code class="code">readline</code></a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Command-Line-Editing.html" accesskey="u" rel="up">Command Line Editing</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Customizing-the-Prompt-1"><span>2.4.7 Customizing the Prompt<a class="copiable-link" href="#Customizing-the-Prompt-1"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-prompt-customization"></a>
+<a class="index-entry-id" id="index-customizing-the-prompt"></a>
+
+<p>The following variables are available for customizing the appearance of
+the command-line prompts.  Octave allows the prompt to be customized by
+inserting a number of backslash-escaped special characters that are
+decoded as follows:
+</p>
+<dl class="table">
+<dt>&lsquo;<samp class="samp">\t</samp>&rsquo;</dt>
+<dd><p>The time.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">\d</samp>&rsquo;</dt>
+<dd><p>The date.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">\n</samp>&rsquo;</dt>
+<dd><p>Begins a new line by printing the equivalent of a carriage return
+followed by a line feed.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">\s</samp>&rsquo;</dt>
+<dd><p>The name of the program (usually just &lsquo;<samp class="samp">octave</samp>&rsquo;).
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">\w</samp>&rsquo;</dt>
+<dd><p>The current working directory.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">\W</samp>&rsquo;</dt>
+<dd><p>The basename of the current working directory.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">\u</samp>&rsquo;</dt>
+<dd><p>The username of the current user.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">\h</samp>&rsquo;</dt>
+<dd><p>The hostname, up to the first &lsquo;.&rsquo;.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">\H</samp>&rsquo;</dt>
+<dd><p>The hostname.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">\#</samp>&rsquo;</dt>
+<dd><p>The command number of this command, counting from when Octave starts.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">\!</samp>&rsquo;</dt>
+<dd><p>The history number of this command.  This differs from &lsquo;<samp class="samp">\#</samp>&rsquo; by the
+number of commands in the history list when Octave starts.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">\$</samp>&rsquo;</dt>
+<dd><p>If the effective UID is 0, a &lsquo;<samp class="samp">#</samp>&rsquo;, otherwise a &lsquo;<samp class="samp">$</samp>&rsquo;.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">\nnn</samp>&rsquo;</dt>
+<dd><p>The character whose character code in octal is <var class="var">nnn</var>.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">\\</samp>&rsquo;</dt>
+<dd><p>A backslash.
+</p></dd>
+</dl>
+
+<a class="anchor" id="XREFPS1"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-PS1"><span><code class="def-type"><var class="var">val</var> =</code> <strong class="def-name">PS1</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-PS1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-PS1-1"><span><code class="def-type"><var class="var">old_val</var> =</code> <strong class="def-name">PS1</strong> <code class="def-code-arguments">(<var class="var">new_val</var>)</code><a class="copiable-link" href="#index-PS1-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-PS1-2"><span><code class="def-type"><var class="var">old_val</var> =</code> <strong class="def-name">PS1</strong> <code class="def-code-arguments">(<var class="var">new_val</var>, &quot;local&quot;)</code><a class="copiable-link" href="#index-PS1-2"> &para;</a></span></dt>
+<dd><p>Query or set the primary prompt string.
+</p>
+<p>When executing interactively, Octave displays the primary prompt when it is
+ready to read a command.
+</p>
+<p>The default value of the primary prompt string is
+<code class="code">'octave:\#&gt; '</code>.  To change it, use a command like
+</p>
+<div class="example">
+<pre class="example-preformatted">PS1 ('\u@\H&gt; ')
+</pre></div>
+
+<p>which will result in the prompt &lsquo;<samp class="samp">boris@kremvax&gt; </samp>&rsquo; for the user
+&lsquo;<samp class="samp">boris</samp>&rsquo; logged in on the host &lsquo;<samp class="samp">kremvax.kgb.su</samp>&rsquo;.  Note that two
+backslashes are required to enter a backslash into a double-quoted
+character string.  See <a class="xref" href="Strings.html">Strings</a>.
+</p>
+<p>You can also use ANSI escape sequences if your terminal supports them.
+This can be useful for coloring the prompt.  For example,
+</p>
+<div class="example">
+<pre class="example-preformatted">PS1 ('\[\033[01;31m\]\s:\#&gt; \[\033[0m\]')
+</pre></div>
+
+<p>will give the default Octave prompt a red coloring.
+</p>
+<p>When called from inside a function with the <code class="code">&quot;local&quot;</code> option, the
+variable is changed locally for the function and any subroutines it calls.
+The original variable value is restored when exiting the function.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFPS2">PS2</a>, <a class="ref" href="#XREFPS4">PS4</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFPS2"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-PS2"><span><code class="def-type"><var class="var">val</var> =</code> <strong class="def-name">PS2</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-PS2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-PS2-1"><span><code class="def-type"><var class="var">old_val</var> =</code> <strong class="def-name">PS2</strong> <code class="def-code-arguments">(<var class="var">new_val</var>)</code><a class="copiable-link" href="#index-PS2-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-PS2-2"><span><code class="def-type"><var class="var">old_val</var> =</code> <strong class="def-name">PS2</strong> <code class="def-code-arguments">(<var class="var">new_val</var>, &quot;local&quot;)</code><a class="copiable-link" href="#index-PS2-2"> &para;</a></span></dt>
+<dd><p>Query or set the secondary prompt string.
+</p>
+<p>The secondary prompt is printed when Octave is expecting additional input to
+complete a command.  For example, if you are typing a <code class="code">for</code> loop that
+spans several lines, Octave will print the secondary prompt at the beginning
+of each line after the first.  The default value of the secondary prompt
+string is <code class="code">&quot;&gt; &quot;</code>.
+</p>
+<p>When called from inside a function with the <code class="code">&quot;local&quot;</code> option, the
+variable is changed locally for the function and any subroutines it calls.
+The original variable value is restored when exiting the function.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFPS1">PS1</a>, <a class="ref" href="#XREFPS4">PS4</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFPS4"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-PS4"><span><code class="def-type"><var class="var">val</var> =</code> <strong class="def-name">PS4</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-PS4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-PS4-1"><span><code class="def-type"><var class="var">old_val</var> =</code> <strong class="def-name">PS4</strong> <code class="def-code-arguments">(<var class="var">new_val</var>)</code><a class="copiable-link" href="#index-PS4-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-PS4-2"><span><code class="def-type"><var class="var">old_val</var> =</code> <strong class="def-name">PS4</strong> <code class="def-code-arguments">(<var class="var">new_val</var>, &quot;local&quot;)</code><a class="copiable-link" href="#index-PS4-2"> &para;</a></span></dt>
+<dd><p>Query or set the character string used to prefix output produced
+when echoing commands is enabled.
+</p>
+<p>The default value is <code class="code">&quot;+ &quot;</code>.
+See <a class="xref" href="Diary-and-Echo-Commands.html">Diary and Echo Commands</a>, for a description of echoing commands.
+</p>
+<p>When called from inside a function with the <code class="code">&quot;local&quot;</code> option, the
+variable is changed locally for the function and any subroutines it calls.
+The original variable value is restored when exiting the function.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Diary-and-Echo-Commands.html#XREFecho">echo</a>, <a class="ref" href="#XREFPS1">PS1</a>, <a class="ref" href="#XREFPS2">PS2</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Diary-and-Echo-Commands.html">Diary and Echo Commands</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Customizing-readline.html">Customizing <code class="code">readline</code></a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Command-Line-Editing.html">Command Line Editing</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- Additional documentation for the optim package for Octave.
+
+Copyright © Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<title>adsmax (optim_doc)</title>
+
+<meta name="description" content="adsmax (optim_doc)">
+<meta name="keywords" content="adsmax (optim_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Scalar-optimization.html" rel="up" title="Scalar optimization">
+<link href="nelder_005fmead_005fmin.html" rel="next" title="nelder_mead_min">
+<link href="mdsmax.html" rel="prev" title="mdsmax">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section-level-extent" id="adsmax">
+<div class="nav-panel">
+<p>
+Next: <a href="nelder_005fmead_005fmin.html" accesskey="n" rel="next">Another Nelder-Mead algorithm</a>, Previous: <a href="mdsmax.html" accesskey="p" rel="prev">A multidirectional search algorithm</a>, Up: <a href="Scalar-optimization.html" accesskey="u" rel="up">Functions for optimization of a scalar objective function</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h3 class="section" id="An-alternating-directions-algorithm"><span>1.8 An alternating directions algorithm<a class="copiable-link" href="#An-alternating-directions-algorithm"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-adsmax"></a>
+
+<h4 class="subheading" id="Helptext_003a-1"><span>Helptext:<a class="copiable-link" href="#Helptext_003a-1"> &para;</a></span></h4>
+
+<a class="anchor" id="XREFadsmax"></a><pre class="verbatim">ADSMAX  Alternating directions method for direct search optimization.
+       [x, fmax, nf] = ADSMAX(FUN, x0, STOPIT, SAVIT, P) attempts to
+       maximize the function FUN, using the starting vector x0.
+       The alternating directions direct search method is used.
+       Output arguments:
+              x    = vector yielding largest function value found,
+              fmax = function value at x,
+              nf   = number of function evaluations.
+       The iteration is terminated when either
+              - the relative increase in function value between successive
+                iterations is &lt;= STOPIT(1) (default 1e-3),
+              - STOPIT(2) function evaluations have been performed
+                (default inf, i.e., no limit), or
+              - a function value equals or exceeds STOPIT(3)
+                (default inf, i.e., no test on function values).
+       Progress of the iteration is not shown if STOPIT(5) = 0 (default 1).
+       If a non-empty fourth parameter string SAVIT is present, then
+       `SAVE SAVIT x fmax nf' is executed after each inner iteration.
+       By default, the search directions are the co-ordinate directions.
+       The columns of a fifth parameter matrix P specify alternative search
+       directions (P = EYE is the default).
+       NB: x0 can be a matrix.  In the output argument, in SAVIT saves,
+           and in function calls, x has the same shape as x0.
+       ADSMAX(fun, x0, STOPIT, SAVIT, P, P1, P2,...) allows additional
+       arguments to be passed to fun, via feval(fun,x,P1,P2,...).
+    Reference:
+    N. J. Higham, Optimization by direct search in matrix computations,
+       SIAM J. Matrix Anal. Appl, 14(2): 317-333, 1993.
+    N. J. Higham, Accuracy and Stability of Numerical Algorithms,
+       Second edition, Society for Industrial and Applied Mathematics,
+       Philadelphia, PA, 2002; sec. 20.5.
+
+</pre>
+
+</div>
+<hr>
+<div class="nav-panel">
+<p>
+Next: <a href="nelder_005fmead_005fmin.html">Another Nelder-Mead algorithm</a>, Previous: <a href="mdsmax.html">A multidirectional search algorithm</a>, Up: <a href="Scalar-optimization.html">Functions for optimization of a scalar objective function</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

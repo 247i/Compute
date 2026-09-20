@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- Additional documentation for the optim package for Octave.
+
+Copyright © Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<title>numgradient (optim_doc)</title>
+
+<meta name="description" content="numgradient (optim_doc)">
+<meta name="keywords" content="numgradient (optim_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Gradient-functions.html" rel="up" title="Gradient functions">
+<link href="numhessian.html" rel="next" title="numhessian">
+<link href="deriv.html" rel="prev" title="deriv">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section-level-extent" id="numgradient">
+<div class="nav-panel">
+<p>
+Next: <a href="numhessian.html" accesskey="n" rel="next">Numerical Hessian function</a>, Previous: <a href="deriv.html" accesskey="p" rel="prev">Higher order numerical derivatives</a>, Up: <a href="Gradient-functions.html" accesskey="u" rel="up">Functions for numerical approximation of gradients and Hessians</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h3 class="section" id="Another-numerical-gradient-function"><span>4.3 Another numerical gradient function<a class="copiable-link" href="#Another-numerical-gradient-function"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-numgradient"></a>
+
+<h4 class="subheading" id="Helptext_003a-12"><span>Helptext:<a class="copiable-link" href="#Helptext_003a-12"> &para;</a></span></h4>
+
+<a class="anchor" id="XREFnumgradient"></a><pre class="verbatim">numgradient(f, {args}, minarg)
+
+Numeric central difference gradient of f with respect
+to argument &quot;minarg&quot;.
+* first argument: function name (string)
+* second argument: all arguments of the function (cell array)
+* third argument: (optional) the argument to differentiate w.r.t.
+        (scalar, default=1)
+
+&quot;f&quot; may be vector-valued. If &quot;f&quot; returns
+an n-vector, and the argument is a k-vector, the gradient
+will be an nxk matrix
+
+Example:
+function a = f(x);
+        a = [x'*x; 2*x];
+endfunction
+numgradient(&quot;f&quot;, {ones(2,1)})
+ans =
+
+  2.00000  2.00000
+  2.00000  0.00000
+  0.00000  2.00000
+
+
+
+</pre>
+
+</div>
+
+
+
+</body>
+</html>

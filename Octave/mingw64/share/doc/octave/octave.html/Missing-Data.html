@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Missing Data (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Missing Data (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Missing Data (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Built_002din-Data-Types.html" rel="up" title="Built-in Data Types">
+<link href="String-Objects.html" rel="next" title="String Objects">
+<link href="Numeric-Objects.html" rel="prev" title="Numeric Objects">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Missing-Data">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="String-Objects.html" accesskey="n" rel="next">String Objects</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Numeric-Objects.html" accesskey="p" rel="prev">Numeric Objects</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Built_002din-Data-Types.html" accesskey="u" rel="up">Built-in Data Types</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Missing-Data-1"><span>3.1.2 Missing Data<a class="copiable-link" href="#Missing-Data-1"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-missing-data"></a>
+
+<p>It is possible to represent missing data explicitly in Octave using NA (short
+for &ldquo;Not<!-- /@w --> Available<!-- /@w -->&rdquo;).  This is helpful in distinguishing between a
+property of the data (i.e., some of it was not recorded) and calculations on
+the data which generated an error (i.e., created NaN values).  In short, if you
+do not get the result you expect is it your data or your algorithm?
+</p>
+<p>The missing data marker is a special case of the representation of NaN.
+Because of that, it can only be used with data represented by floating point
+numbers&mdash;no integer, logical, or char values.
+</p>
+<p>In general, use NA and the test <code class="code">isna</code>, to describe the dataset or to
+reduce the dataset to only valid entries.  Numerical calculations with NA will
+generally <code class="code">&quot;poison&quot;</code> the results and conclude with an output NA.
+However, this can not be guaranteed on all platforms and NA may be replaced by
+NaN.
+</p>
+<p>Example 1 : Describing the dataset
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">data = [1, NA, 3];
+percent_missing = 100 * sum (isna (data(:))) / numel (data);
+printf ('%2.0f%% of the dataset is missing\n', percent_missing);
+&#8867; 33% of the dataset is missing
+</pre></div></div>
+
+<p>Example 2 : Restrict calculations to valid data
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">raw_data = [1, NA, 3];
+printf ('mean of raw data is %.1f\n', mean (raw_data));
+&#8867; mean of raw data is NA
+valid_data = raw_data (! isna (raw_data));
+printf ('mean of valid data is %.1f\n', mean (valid_data));
+&#8867; mean of valid data is 2.0
+</pre></div></div>
+
+<a class="anchor" id="XREFNA"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-NA"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">NA</strong><a class="copiable-link" href="#index-NA"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-NA-1"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">NA</strong> <code class="def-code-arguments">(<var class="var">n</var>)</code><a class="copiable-link" href="#index-NA-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-NA-2"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">NA</strong> <code class="def-code-arguments">(<var class="var">m</var>, <var class="var">n</var>, &hellip;)</code><a class="copiable-link" href="#index-NA-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-NA-3"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">NA</strong> <code class="def-code-arguments">([<var class="var">m</var>, <var class="var">n</var>, &hellip;])</code><a class="copiable-link" href="#index-NA-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-NA-4"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">NA</strong> <code class="def-code-arguments">(&hellip;, <var class="var">class</var>)</code><a class="copiable-link" href="#index-NA-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-NA-5"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">NA</strong> <code class="def-code-arguments">(&hellip;, &quot;like&quot;, <var class="var">var</var>)</code><a class="copiable-link" href="#index-NA-5"> &para;</a></span></dt>
+<dd><p>Return a scalar, matrix, or N-dimensional array whose elements are all equal
+to the special constant NA (Not Available) used to designate missing values.
+</p>
+<p>Note that <code class="code">NA</code> always compares not equal to <code class="code">NA</code> (<code class="code">NA != NA</code>).
+To find <code class="code">NA</code> values, use the <code class="code">isna</code> function.
+</p>
+<p>If called with no arguments, return the scalar value <code class="code">NA</code>.
+</p>
+<p>If invoked with a single scalar integer argument <var class="var">n</var>, return a square
+NxN matrix.
+</p>
+<p>If invoked with two or more scalar integer arguments, or a vector of integer
+values, return an array with the given dimensions.
+</p>
+<p>The optional argument <var class="var">class</var> specifies the class of the return array.
+The only valid options are <code class="code">&quot;double&quot;</code> (default) or <code class="code">&quot;single&quot;</code>.
+</p>
+<p>Programming Note: The missing data marker <code class="code">NA</code> is a special case of the
+representation of <code class="code">NaN</code>.  Numerical calculations with <code class="code">NA</code> will
+generally &quot;poison&quot; the results and conclude with an output of <code class="code">NA</code>.
+However, this can not be guaranteed on all platforms and <code class="code">NA</code> may be
+replaced by <code class="code">NaN</code>.  See <a class="xref" href="#Missing-Data">Missing Data</a>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFisna">isna</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFisna"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-isna"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">isna</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-isna"> &para;</a></span></dt>
+<dd><p>Return a logical array which is true where the elements of <var class="var">x</var> are
+NA (missing) values and false where they are not.
+</p>
+<p>For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">isna ([13, Inf, NA, NaN])
+     &rArr;  [ 0, 0, 1, 0 ]
+</pre></div></div>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Finding-Elements-and-Checking-Conditions.html#XREFisnan">isnan</a>, <a class="ref" href="Finding-Elements-and-Checking-Conditions.html#XREFisinf">isinf</a>, <a class="ref" href="Finding-Elements-and-Checking-Conditions.html#XREFisfinite">isfinite</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="String-Objects.html">String Objects</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Numeric-Objects.html">Numeric Objects</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Built_002din-Data-Types.html">Built-in Data Types</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Matrices (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Matrices (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Matrices (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Numeric-Data-Types.html" rel="up" title="Numeric Data Types">
+<link href="Ranges.html" rel="next" title="Ranges">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Matrices">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Ranges.html" accesskey="n" rel="next">Ranges</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Numeric-Data-Types.html" accesskey="u" rel="up">Numeric Data Types</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Matrices-1"><span>4.1 Matrices<a class="copiable-link" href="#Matrices-1"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-matrices"></a>
+
+<a class="index-entry-id" id="index-_005b"></a>
+<a class="index-entry-id" id="index-_005d"></a>
+<a class="index-entry-id" id="index-_003b"></a>
+<a class="index-entry-id" id="index-_002c"></a>
+
+<p>It is easy to define a matrix of values in Octave.  The size of the
+matrix is determined automatically, so it is not necessary to explicitly
+state the dimensions.  The expression
+</p>
+<div class="example">
+<pre class="example-preformatted">a = [1, 2; 3, 4]
+</pre></div>
+
+<p>results in the matrix
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">
+
+        /      \
+        | 1  2 |
+  a  =  |      |
+        | 3  4 |
+        \      /
+
+</pre></div></div>
+
+
+<p>Elements of a matrix may be arbitrary expressions, provided that the
+dimensions all make sense when combining the various pieces.  For
+example, given the above matrix, the expression
+</p>
+<div class="example">
+<pre class="example-preformatted">[ a, a ]
+</pre></div>
+
+<p>produces the matrix
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">ans =
+
+  1  2  1  2
+  3  4  3  4
+</pre></div></div>
+
+<p>but the expression
+</p>
+<div class="example">
+<pre class="example-preformatted">[ a, 1 ]
+</pre></div>
+
+<p>produces the error
+</p>
+<div class="example">
+<pre class="example-preformatted">error: number of rows must match (1 != 2) near line 13, column 6
+</pre></div>
+
+<p>(assuming that this expression was entered as the first thing on line
+13, of course).
+</p>
+<p>Inside the square brackets that delimit a matrix expression, Octave
+looks at the surrounding context to determine whether spaces and newline
+characters should be converted into element and row separators, or
+simply ignored, so an expression like
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">a = [ 1 2
+      3 4 ]
+</pre></div></div>
+
+<p>will work.  However, some possible sources of confusion remain.  For
+example, in the expression
+</p>
+<div class="example">
+<pre class="example-preformatted">[ 1 - 1 ]
+</pre></div>
+
+<p>the &lsquo;<samp class="samp">-</samp>&rsquo; is treated as a binary operator and the result is the
+scalar 0, but in the expression
+</p>
+<div class="example">
+<pre class="example-preformatted">[ 1 -1 ]
+</pre></div>
+
+<p>the &lsquo;<samp class="samp">-</samp>&rsquo; is treated as a unary operator and the result is the
+vector <code class="code">[ 1, -1 ]</code>.  Similarly, the expression
+</p>
+<div class="example">
+<pre class="example-preformatted">[ sin (pi) ]
+</pre></div>
+
+<p>will be parsed as
+</p>
+<div class="example">
+<pre class="example-preformatted">[ sin, (pi) ]
+</pre></div>
+
+<p>and will result in an error since the <code class="code">sin</code> function will be
+called with no arguments.  To get around this, you must omit the space
+between <code class="code">sin</code> and the opening parenthesis, or enclose the
+expression in a set of parentheses:
+</p>
+<div class="example">
+<pre class="example-preformatted">[ (sin (pi)) ]
+</pre></div>
+
+<p>Whitespace surrounding the single quote character (&lsquo;<samp class="samp">'</samp>&rsquo;, used as a
+transpose operator and for delimiting character strings) can also cause
+confusion.  Given <code class="code">a = 1</code>, the expression
+</p>
+<div class="example">
+<pre class="example-preformatted">[ 1 a' ]
+</pre></div>
+
+<p>results in the single quote character being treated as a
+transpose operator and the result is the vector <code class="code">[ 1, 1 ]</code>, but the
+expression
+</p>
+<div class="example">
+<pre class="example-preformatted">[ 1 a ' ]
+</pre></div>
+
+<p>produces the error message
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">parse error:
+
+  syntax error
+
+&gt;&gt;&gt; [ 1 a ' ]
+              ^
+</pre></div></div>
+
+<p>because not doing so would cause trouble when parsing the valid expression
+</p>
+<div class="example">
+<pre class="example-preformatted">[ a 'foo' ]
+</pre></div>
+
+<p>For clarity, it is probably best to always use commas and semicolons to
+separate matrix elements and rows.
+</p>
+<p>The maximum number of elements in a matrix is fixed when Octave is compiled.
+The allowable number can be queried with the function <code class="code">sizemax</code>.  Note
+that other factors, such as the amount of memory available on your machine,
+may limit the maximum size of matrices to something smaller.
+</p>
+<a class="anchor" id="XREFsizemax"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-sizemax"><span><code class="def-type"><var class="var">max_numel</var> =</code> <strong class="def-name">sizemax</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-sizemax"> &para;</a></span></dt>
+<dd><p>Return the largest value allowed for the size of an array.
+</p>
+<p>If Octave is compiled with 64-bit indexing, the result is of class int64,
+otherwise it is of class int32.  The maximum array size is slightly smaller
+than the maximum value allowable for the relevant class as reported by
+<code class="code">intmax</code>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Integer-Data-Types.html#XREFintmax">intmax</a>.
+</p></dd></dl>
+
+
+<p>When you type a matrix or the name of a variable whose value is a
+matrix, Octave responds by printing the matrix in with neatly aligned
+rows and columns.  If the rows of the matrix are too large to fit on the
+screen, Octave splits the matrix and displays a header before each
+section to indicate which columns are being displayed.  You can use the
+following variables to control the format of the output.
+</p>
+<a class="anchor" id="XREFoutput_005fprecision"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-output_005fprecision"><span><code class="def-type"><var class="var">val</var> =</code> <strong class="def-name">output_precision</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-output_005fprecision"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-output_005fprecision-1"><span><code class="def-type"><var class="var">old_val</var> =</code> <strong class="def-name">output_precision</strong> <code class="def-code-arguments">(<var class="var">new_val</var>)</code><a class="copiable-link" href="#index-output_005fprecision-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-output_005fprecision-2"><span><code class="def-type"><var class="var">old_val</var> =</code> <strong class="def-name">output_precision</strong> <code class="def-code-arguments">(<var class="var">new_val</var>, &quot;local&quot;)</code><a class="copiable-link" href="#index-output_005fprecision-2"> &para;</a></span></dt>
+<dd><p>Query or set the internal variable that specifies the minimum number of
+significant figures to display for numeric output.
+</p>
+<p>Note that regardless of the value set for <code class="code">output_precision</code>, the
+number of digits of precision displayed is limited to 16 for double
+precision values and 7 for single precision values.  Also, calls to the
+<code class="code">format</code> function that change numeric display can also change the set
+value for <code class="code">output_precision</code>.
+</p>
+<p>When called from inside a function with the <code class="code">&quot;local&quot;</code> option, the
+variable is changed locally for the function and any subroutines it calls.
+The original variable value is restored when exiting the function.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Terminal-Output.html#XREFformat">format</a>, <a class="ref" href="#XREFfixed_005fpoint_005fformat">fixed_point_format</a>.
+</p></dd></dl>
+
+
+<p>It is possible to achieve a wide range of output styles by using
+different values of <code class="code">output_precision</code>.  Reasonable combinations can be
+set using the <code class="code">format</code> function.  See <a class="xref" href="Basic-Input-and-Output.html">Basic Input and Output</a>.
+</p>
+<a class="anchor" id="XREFsplit_005flong_005frows"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-split_005flong_005frows"><span><code class="def-type"><var class="var">val</var> =</code> <strong class="def-name">split_long_rows</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-split_005flong_005frows"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-split_005flong_005frows-1"><span><code class="def-type"><var class="var">old_val</var> =</code> <strong class="def-name">split_long_rows</strong> <code class="def-code-arguments">(<var class="var">new_val</var>)</code><a class="copiable-link" href="#index-split_005flong_005frows-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-split_005flong_005frows-2"><span><code class="def-type"><var class="var">old_val</var> =</code> <strong class="def-name">split_long_rows</strong> <code class="def-code-arguments">(<var class="var">new_val</var>, &quot;local&quot;)</code><a class="copiable-link" href="#index-split_005flong_005frows-2"> &para;</a></span></dt>
+<dd><p>Query or set the internal variable that controls whether rows of a matrix
+may be split when displayed to a terminal window.
+</p>
+<p>If the rows are split, Octave will display the matrix in a series of smaller
+pieces, each of which can fit within the limits of your terminal width and
+each set of rows is labeled so that you can easily see which columns are
+currently being displayed.  For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">octave:13&gt; rand (2,10)
+ans =
+
+ Columns 1 through 6:
+
+  0.75883  0.93290  0.40064  0.43818  0.94958  0.16467
+  0.75697  0.51942  0.40031  0.61784  0.92309  0.40201
+
+ Columns 7 through 10:
+
+  0.90174  0.11854  0.72313  0.73326
+  0.44672  0.94303  0.56564  0.82150
+</pre></div></div>
+
+<p>When called from inside a function with the <code class="code">&quot;local&quot;</code> option, the
+variable is changed locally for the function and any subroutines it calls.
+The original variable value is restored when exiting the function.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Terminal-Output.html#XREFformat">format</a>.
+</p></dd></dl>
+
+
+<p>Octave automatically switches to scientific notation when values become
+very large or very small.  This guarantees that you will see several
+significant figures for every value in a matrix.  If you would prefer to
+see all values in a matrix printed in a fixed point format, you can use
+the function <code class="code">fixed_point_format</code>.  But doing so is not
+recommended, because it can produce output that can easily be
+misinterpreted.
+</p>
+<a class="anchor" id="XREFfixed_005fpoint_005fformat"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-fixed_005fpoint_005fformat"><span><code class="def-type"><var class="var">val</var> =</code> <strong class="def-name">fixed_point_format</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-fixed_005fpoint_005fformat"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-fixed_005fpoint_005fformat-1"><span><code class="def-type"><var class="var">old_val</var> =</code> <strong class="def-name">fixed_point_format</strong> <code class="def-code-arguments">(<var class="var">new_val</var>)</code><a class="copiable-link" href="#index-fixed_005fpoint_005fformat-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-fixed_005fpoint_005fformat-2"><span><code class="def-type"><var class="var">old_val</var> =</code> <strong class="def-name">fixed_point_format</strong> <code class="def-code-arguments">(<var class="var">new_val</var>, &quot;local&quot;)</code><a class="copiable-link" href="#index-fixed_005fpoint_005fformat-2"> &para;</a></span></dt>
+<dd><p>Query or set the internal variable that controls whether Octave will
+use a scaled format to print matrix values.
+</p>
+<p>The scaled format prints a scaling factor on the first line of output chosen
+such that the largest matrix element can be written with a single leading
+digit.  For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">fixed_point_format (true)
+logspace (1, 7, 5)'
+ans =
+
+  1.0e+07  *
+
+  0.00000
+  0.00003
+  0.00100
+  0.03162
+  1.00000
+</pre></div></div>
+
+<p>Notice that the first value appears to be 0 when it is actually 1.  Because
+of the possibility for confusion you should be careful about enabling
+<code class="code">fixed_point_format</code>.
+</p>
+<p>When called from inside a function with the <code class="code">&quot;local&quot;</code> option, the
+variable is changed locally for the function and any subroutines it calls.
+The original variable value is restored when exiting the function.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Terminal-Output.html#XREFformat">format</a>, <a class="ref" href="#XREFoutput_005fprecision">output_precision</a>.
+</p></dd></dl>
+
+
+
+<ul class="mini-toc">
+<li><a href="Empty-Matrices.html" accesskey="1">Empty Matrices</a></li>
+</ul>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Ranges.html">Ranges</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Numeric-Data-Types.html">Numeric Data Types</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

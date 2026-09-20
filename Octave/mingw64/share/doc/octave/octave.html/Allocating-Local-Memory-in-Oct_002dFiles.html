@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Allocating Local Memory in Oct-Files (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Allocating Local Memory in Oct-Files (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Allocating Local Memory in Oct-Files (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Oct_002dFiles.html" rel="up" title="Oct-Files">
+<link href="Input-Parameter-Checking-in-Oct_002dFiles.html" rel="next" title="Input Parameter Checking in Oct-Files">
+<link href="Calling-External-Code-from-Oct_002dFiles.html" rel="prev" title="Calling External Code from Oct-Files">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Allocating-Local-Memory-in-Oct_002dFiles">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Input-Parameter-Checking-in-Oct_002dFiles.html" accesskey="n" rel="next">Input Parameter Checking in Oct-Files</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Calling-External-Code-from-Oct_002dFiles.html" accesskey="p" rel="prev">Calling External Code from Oct-Files</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Oct_002dFiles.html" accesskey="u" rel="up">Oct-Files</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Allocating-Local-Memory-in-Oct_002dFiles-1"><span>A.1.10 Allocating Local Memory in Oct-Files<a class="copiable-link" href="#Allocating-Local-Memory-in-Oct_002dFiles-1"> &para;</a></span></h4>
+
+<p>Allocating memory within an oct-file might seem easy, as the C++ new/delete
+operators can be used.  However, in that case great care must be taken to avoid
+memory leaks.  The preferred manner in which to allocate memory for use locally
+is to use the <code class="code">OCTAVE_LOCAL_BUFFER</code><!-- /@w -->&nbsp;macro.  An example of its use is
+</p>
+<div class="example">
+<pre class="example-preformatted">OCTAVE_LOCAL_BUFFER (double, tmp, len)
+</pre></div>
+
+<p>that returns a pointer <code class="code">tmp</code> of type <code class="code">double *</code> of length <code class="code">len</code>.
+</p>
+<p>In this case, Octave itself will worry about reference counting and variable
+scope and will properly free memory without programmer intervention.
+</p>
+</div>
+
+
+
+</body>
+</html>

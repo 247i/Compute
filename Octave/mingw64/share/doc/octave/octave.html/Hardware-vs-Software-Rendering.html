@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Hardware vs Software Rendering (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Hardware vs Software Rendering (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Hardware vs Software Rendering (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Graphics-Toolkits.html" rel="up" title="Graphics Toolkits">
+<link href="Precision-issues.html" rel="next" title="Precision issues">
+<link href="Customizing-Toolkit-Behavior.html" rel="prev" title="Customizing Toolkit Behavior">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsubsection-level-extent" id="Hardware-vs-Software-Rendering">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Precision-issues.html" accesskey="n" rel="next">Precision issues</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Customizing-Toolkit-Behavior.html" accesskey="p" rel="prev">Customizing Toolkit Behavior</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Graphics-Toolkits.html" accesskey="u" rel="up">Graphics Toolkits</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsubsection" id="Hardware-vs-Software-Rendering-1"><span>15.4.8.2 Hardware vs Software Rendering<a class="copiable-link" href="#Hardware-vs-Software-Rendering-1"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-opengl-rendering-slow-windows"></a>
+
+<p>On some platforms, it is possible to choose between hardware (GPU-accelerated)
+and software (CPU-based) OpenGL rendering through the use of the Mesa 3D
+software implementation.  The choice between hardware or software rendering
+only affects the OpenGL graphics toolkits (<code class="code">&quot;qt&quot;</code>, <code class="code">&quot;fltk&quot;</code>).
+Using software rendering can avoid rendering and printing issues due to the
+imperfect OpenGL driver implementations of diverse graphic cards from different
+vendors (notably integrated Intel graphics).  The downside is that software
+rendering may be considerably slower than hardware-accelerated rendering.
+</p>
+<p>On Linux and MacOS systems that have a Mesa 3-D based driver, switching to
+software rendering is done at Octave startup (or at least before any graphics
+function has been called) by setting the environment variable
+<code class="env">LIBGL_ALWAYS_SOFTWARE</code><!-- /@w -->, e.g.,
+<code class="code">setenv (&quot;LIBGL_ALWAYS_SOFTWARE&quot;<!-- /@w -->, &quot;1&quot;)</code>.
+</p>
+<p>On Windows, Octave is shipped with <samp class="file">opengl32.dll</samp>, a Mesa 3-D based
+software rendering library.  When using the Windows installer for Octave, the
+user has the option to select between <code class="code">&quot;System&nbsp;OpenGL&quot;</code><!-- /@w --> and
+<code class="code">&quot;Software&nbsp;OpenGL&quot;</code><!-- /@w --> renderers.  The OpenGL driver may also be switched
+later using the <code class="code">&quot;OpenGL&nbsp;Switcher&quot;</code><!-- /@w --> application from the Start menu
+while Octave is closed.  Alternatively, one can rename the following file while
+Octave is closed:
+</p>
+<p><samp class="file"><var class="var">octave-home</var>\bin\opengl32.dll</samp>
+</p>
+<p>where <var class="var">octave-home</var> is the directory returned by
+<a class="ref" href="System-Information.html#XREFOCTAVE_005fHOME"><code class="code">OCTAVE_HOME</code><!-- /@w --></a>, i.e., the directory in which
+Octave is installed (the default is
+<samp class="file">C:\Program Files\GNU Octave\Octave\Octave-<var class="var">version</var>\mingw64</samp>).
+Change the file extension to <samp class="file">.bak</samp> for hardware rendering or to
+<samp class="file">.dll</samp> for software rendering.
+</p>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Precision-issues.html">Precision issues</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Customizing-Toolkit-Behavior.html">Customizing Toolkit Behavior</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Graphics-Toolkits.html">Graphics Toolkits</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

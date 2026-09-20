@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Saving Data on Unexpected Exits (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Saving Data on Unexpected Exits (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Saving Data on Unexpected Exits (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Simple-File-I_002fO.html" rel="up" title="Simple File I/O">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsubsection-level-extent" id="Saving-Data-on-Unexpected-Exits">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Simple-File-I_002fO.html" accesskey="u" rel="up">Simple File I/O</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsubsection" id="Saving-Data-on-Unexpected-Exits-1"><span>14.1.3.1 Saving Data on Unexpected Exits<a class="copiable-link" href="#Saving-Data-on-Unexpected-Exits-1"> &para;</a></span></h4>
+
+<p>If Octave for some reason exits unexpectedly it will by default save the
+variables available in the workspace to a file in the current directory.
+By default this file is named &lsquo;<samp class="samp">octave-workspace</samp>&rsquo; and can be loaded
+into memory with the <code class="code">load</code> command.  While the default behavior
+most often is reasonable it can be changed through the following
+functions.
+</p>
+<a class="anchor" id="XREFcrash_005fdumps_005foctave_005fcore"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-crash_005fdumps_005foctave_005fcore"><span><code class="def-type"><var class="var">val</var> =</code> <strong class="def-name">crash_dumps_octave_core</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-crash_005fdumps_005foctave_005fcore"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-crash_005fdumps_005foctave_005fcore-1"><span><code class="def-type"><var class="var">old_val</var> =</code> <strong class="def-name">crash_dumps_octave_core</strong> <code class="def-code-arguments">(<var class="var">new_val</var>)</code><a class="copiable-link" href="#index-crash_005fdumps_005foctave_005fcore-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-crash_005fdumps_005foctave_005fcore-2"><span><code class="def-type"><var class="var">old_val</var> =</code> <strong class="def-name">crash_dumps_octave_core</strong> <code class="def-code-arguments">(<var class="var">new_val</var>, &quot;local&quot;)</code><a class="copiable-link" href="#index-crash_005fdumps_005foctave_005fcore-2"> &para;</a></span></dt>
+<dd><p>Query or set the internal variable that controls whether Octave tries
+to save all current variables to the file <samp class="file">octave-workspace</samp> if it
+crashes or receives a hangup, terminate or similar signal.
+</p>
+<p>When called from inside a function with the <code class="code">&quot;local&quot;</code> option, the
+variable is changed locally for the function and any subroutines it calls.
+The original variable value is restored when exiting the function.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFoctave_005fcore_005ffile_005flimit">octave_core_file_limit</a>, <a class="ref" href="#XREFoctave_005fcore_005ffile_005fname">octave_core_file_name</a>, <a class="ref" href="#XREFoctave_005fcore_005ffile_005foptions">octave_core_file_options</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFsighup_005fdumps_005foctave_005fcore"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-sighup_005fdumps_005foctave_005fcore"><span><code class="def-type"><var class="var">val</var> =</code> <strong class="def-name">sighup_dumps_octave_core</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-sighup_005fdumps_005foctave_005fcore"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-sighup_005fdumps_005foctave_005fcore-1"><span><code class="def-type"><var class="var">old_val</var> =</code> <strong class="def-name">sighup_dumps_octave_core</strong> <code class="def-code-arguments">(<var class="var">new_val</var>)</code><a class="copiable-link" href="#index-sighup_005fdumps_005foctave_005fcore-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-sighup_005fdumps_005foctave_005fcore-2"><span><code class="def-type"><var class="var">old_val</var> =</code> <strong class="def-name">sighup_dumps_octave_core</strong> <code class="def-code-arguments">(<var class="var">new_val</var>, &quot;local&quot;)</code><a class="copiable-link" href="#index-sighup_005fdumps_005foctave_005fcore-2"> &para;</a></span></dt>
+<dd><p>Query or set the internal variable that controls whether Octave tries
+to save all current variables to the file <samp class="file">octave-workspace</samp> if it
+receives a hangup signal.
+</p>
+<p>When called from inside a function with the <code class="code">&quot;local&quot;</code> option, the
+variable is changed locally for the function and any subroutines it calls.
+The original variable value is restored when exiting the function.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFsigquit_005fdumps_005foctave_005fcore"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-sigquit_005fdumps_005foctave_005fcore"><span><code class="def-type"><var class="var">val</var> =</code> <strong class="def-name">sigquit_dumps_octave_core</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-sigquit_005fdumps_005foctave_005fcore"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-sigquit_005fdumps_005foctave_005fcore-1"><span><code class="def-type"><var class="var">old_val</var> =</code> <strong class="def-name">sigquit_dumps_octave_core</strong> <code class="def-code-arguments">(<var class="var">new_val</var>)</code><a class="copiable-link" href="#index-sigquit_005fdumps_005foctave_005fcore-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-sigquit_005fdumps_005foctave_005fcore-2"><span><code class="def-type"><var class="var">old_val</var> =</code> <strong class="def-name">sigquit_dumps_octave_core</strong> <code class="def-code-arguments">(<var class="var">new_val</var>, &quot;local&quot;)</code><a class="copiable-link" href="#index-sigquit_005fdumps_005foctave_005fcore-2"> &para;</a></span></dt>
+<dd><p>Query or set the internal variable that controls whether Octave tries
+to save all current variables to the file <samp class="file">octave-workspace</samp> if it
+receives a quit signal.
+</p>
+<p>When called from inside a function with the <code class="code">&quot;local&quot;</code> option, the
+variable is changed locally for the function and any subroutines it calls.
+The original variable value is restored when exiting the function.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFsigterm_005fdumps_005foctave_005fcore"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-sigterm_005fdumps_005foctave_005fcore"><span><code class="def-type"><var class="var">val</var> =</code> <strong class="def-name">sigterm_dumps_octave_core</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-sigterm_005fdumps_005foctave_005fcore"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-sigterm_005fdumps_005foctave_005fcore-1"><span><code class="def-type"><var class="var">old_val</var> =</code> <strong class="def-name">sigterm_dumps_octave_core</strong> <code class="def-code-arguments">(<var class="var">new_val</var>)</code><a class="copiable-link" href="#index-sigterm_005fdumps_005foctave_005fcore-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-sigterm_005fdumps_005foctave_005fcore-2"><span><code class="def-type"><var class="var">old_val</var> =</code> <strong class="def-name">sigterm_dumps_octave_core</strong> <code class="def-code-arguments">(<var class="var">new_val</var>, &quot;local&quot;)</code><a class="copiable-link" href="#index-sigterm_005fdumps_005foctave_005fcore-2"> &para;</a></span></dt>
+<dd><p>Query or set the internal variable that controls whether Octave tries
+to save all current variables to the file <samp class="file">octave-workspace</samp> if it
+receives a terminate signal.
+</p>
+<p>When called from inside a function with the <code class="code">&quot;local&quot;</code> option, the
+variable is changed locally for the function and any subroutines it calls.
+The original variable value is restored when exiting the function.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFoctave_005fcore_005ffile_005foptions"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-octave_005fcore_005ffile_005foptions"><span><code class="def-type"><var class="var">val</var> =</code> <strong class="def-name">octave_core_file_options</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-octave_005fcore_005ffile_005foptions"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-octave_005fcore_005ffile_005foptions-1"><span><code class="def-type"><var class="var">old_val</var> =</code> <strong class="def-name">octave_core_file_options</strong> <code class="def-code-arguments">(<var class="var">new_val</var>)</code><a class="copiable-link" href="#index-octave_005fcore_005ffile_005foptions-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-octave_005fcore_005ffile_005foptions-2"><span><code class="def-type"><var class="var">old_val</var> =</code> <strong class="def-name">octave_core_file_options</strong> <code class="def-code-arguments">(<var class="var">new_val</var>, &quot;local&quot;)</code><a class="copiable-link" href="#index-octave_005fcore_005ffile_005foptions-2"> &para;</a></span></dt>
+<dd><p>Query or set the internal variable that specifies the options used for
+saving the workspace data if Octave aborts.
+</p>
+<p>The value of <code class="code">octave_core_file_options</code> should follow the same format
+as the options for the <code class="code">save</code> function.  The default value is Octave&rsquo;s
+binary format.
+</p>
+<p>When called from inside a function with the <code class="code">&quot;local&quot;</code> option, the
+variable is changed locally for the function and any subroutines it calls.
+The original variable value is restored when exiting the function.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFcrash_005fdumps_005foctave_005fcore">crash_dumps_octave_core</a>, <a class="ref" href="#XREFoctave_005fcore_005ffile_005fname">octave_core_file_name</a>, <a class="ref" href="#XREFoctave_005fcore_005ffile_005flimit">octave_core_file_limit</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFoctave_005fcore_005ffile_005flimit"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-octave_005fcore_005ffile_005flimit"><span><code class="def-type"><var class="var">val</var> =</code> <strong class="def-name">octave_core_file_limit</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-octave_005fcore_005ffile_005flimit"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-octave_005fcore_005ffile_005flimit-1"><span><code class="def-type"><var class="var">old_val</var> =</code> <strong class="def-name">octave_core_file_limit</strong> <code class="def-code-arguments">(<var class="var">new_val</var>)</code><a class="copiable-link" href="#index-octave_005fcore_005ffile_005flimit-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-octave_005fcore_005ffile_005flimit-2"><span><code class="def-type"><var class="var">old_val</var> =</code> <strong class="def-name">octave_core_file_limit</strong> <code class="def-code-arguments">(<var class="var">new_val</var>, &quot;local&quot;)</code><a class="copiable-link" href="#index-octave_005fcore_005ffile_005flimit-2"> &para;</a></span></dt>
+<dd><p>Query or set the internal variable that specifies the maximum amount of memory
+that Octave will save when writing a crash dump file.
+</p>
+<p>The limit is measured in kilobytes and is applied to the top-level workspace.
+The name of the crash dump file is specified by
+<var class="var">octave_core_file_name</var>.
+</p>
+<p>If <var class="var">octave_core_file_options</var> flags specify a binary format, then
+<var class="var">octave_core_file_limit</var> will be approximately the maximum size of the
+file.  If a text file format is used, then the file could be much larger than
+the limit.  The default value is -1 (unlimited).
+</p>
+<p>When called from inside a function with the <code class="code">&quot;local&quot;</code> option, the
+variable is changed locally for the function and any subroutines it calls.
+The original variable value is restored when exiting the function.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFcrash_005fdumps_005foctave_005fcore">crash_dumps_octave_core</a>, <a class="ref" href="#XREFoctave_005fcore_005ffile_005fname">octave_core_file_name</a>, <a class="ref" href="#XREFoctave_005fcore_005ffile_005foptions">octave_core_file_options</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFoctave_005fcore_005ffile_005fname"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-octave_005fcore_005ffile_005fname"><span><code class="def-type"><var class="var">val</var> =</code> <strong class="def-name">octave_core_file_name</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-octave_005fcore_005ffile_005fname"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-octave_005fcore_005ffile_005fname-1"><span><code class="def-type"><var class="var">old_val</var> =</code> <strong class="def-name">octave_core_file_name</strong> <code class="def-code-arguments">(<var class="var">new_val</var>)</code><a class="copiable-link" href="#index-octave_005fcore_005ffile_005fname-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-octave_005fcore_005ffile_005fname-2"><span><code class="def-type"><var class="var">old_val</var> =</code> <strong class="def-name">octave_core_file_name</strong> <code class="def-code-arguments">(<var class="var">new_val</var>, &quot;local&quot;)</code><a class="copiable-link" href="#index-octave_005fcore_005ffile_005fname-2"> &para;</a></span></dt>
+<dd><p>Query or set the internal variable that specifies the name of the file
+used for saving data from the top-level workspace if Octave aborts.
+</p>
+<p>The default value is <code class="code">&quot;octave-workspace&quot;</code>
+</p>
+<p>When called from inside a function with the <code class="code">&quot;local&quot;</code> option, the
+variable is changed locally for the function and any subroutines it calls.
+The original variable value is restored when exiting the function.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFcrash_005fdumps_005foctave_005fcore">crash_dumps_octave_core</a>, <a class="ref" href="#XREFoctave_005fcore_005ffile_005fname">octave_core_file_name</a>, <a class="ref" href="#XREFoctave_005fcore_005ffile_005foptions">octave_core_file_options</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Simple-File-I_002fO.html">Simple File I/O</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

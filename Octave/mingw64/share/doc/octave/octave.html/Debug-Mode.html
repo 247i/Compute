@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Debug Mode (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Debug Mode (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Debug Mode (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Debugging.html" rel="up" title="Debugging">
+<link href="Call-Stack.html" rel="next" title="Call Stack">
+<link href="Breakpoints.html" rel="prev" title="Breakpoints">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+dt.def-line {font-size: 1rem}
+kbd.key {font-style: normal}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Debug-Mode">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Call-Stack.html" accesskey="n" rel="next">Call Stack</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Breakpoints.html" accesskey="p" rel="prev">Breakpoints</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Debugging.html" accesskey="u" rel="up">Debugging</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Debug-Mode-1"><span>13.4 Debug Mode<a class="copiable-link" href="#Debug-Mode-1"> &para;</a></span></h3>
+
+<p>There are three additional support functions that allow the user to
+find out where in the execution of a script Octave entered the debug
+mode, and to print the code in the script surrounding the point where
+Octave entered debug mode.
+</p>
+<a class="anchor" id="XREFdbwhere"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-dbwhere"><span><strong class="def-name">dbwhere</strong><a class="copiable-link" href="#index-dbwhere"> &para;</a></span></dt>
+<dd><p>In debugging mode, report the current file and line number where execution
+is stopped.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Call-Stack.html#XREFdbstack">dbstack</a>, <a class="ref" href="#XREFdblist">dblist</a>, <a class="ref" href="Breakpoints.html#XREFdbstatus">dbstatus</a>, <a class="ref" href="Leaving-Debug-Mode.html#XREFdbcont">dbcont</a>, <a class="ref" href="#XREFdbstep">dbstep</a>, <a class="ref" href="Call-Stack.html#XREFdbup">dbup</a>, <a class="ref" href="Call-Stack.html#XREFdbdown">dbdown</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFdbtype"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-dbtype"><span><strong class="def-name">dbtype</strong><a class="copiable-link" href="#index-dbtype"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-dbtype-1"><span><strong class="def-name">dbtype</strong> <code class="def-code-arguments"><var class="var">lineno</var></code><a class="copiable-link" href="#index-dbtype-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-dbtype-2"><span><strong class="def-name">dbtype</strong> <code class="def-code-arguments"><var class="var">startl:endl</var></code><a class="copiable-link" href="#index-dbtype-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-dbtype-3"><span><strong class="def-name">dbtype</strong> <code class="def-code-arguments"><var class="var">startl</var>:end</code><a class="copiable-link" href="#index-dbtype-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-dbtype-4"><span><strong class="def-name">dbtype</strong> <code class="def-code-arguments"><var class="var">fcn</var></code><a class="copiable-link" href="#index-dbtype-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-dbtype-5"><span><strong class="def-name">dbtype</strong> <code class="def-code-arguments"><var class="var">fcn</var> <var class="var">lineno</var></code><a class="copiable-link" href="#index-dbtype-5"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-dbtype-6"><span><strong class="def-name">dbtype</strong> <code class="def-code-arguments"><var class="var">fcn</var> <var class="var">startl:endl</var></code><a class="copiable-link" href="#index-dbtype-6"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-dbtype-7"><span><strong class="def-name">dbtype</strong> <code class="def-code-arguments"><var class="var">fcn</var> <var class="var">startl</var>:end</code><a class="copiable-link" href="#index-dbtype-7"> &para;</a></span></dt>
+<dd><p>Display a script file with line numbers.
+</p>
+<p>When called with no arguments in debugging mode, display the script file
+currently being debugged.
+</p>
+<p>An optional range specification can be used to list only a portion of the
+file.  The special keyword <code class="code">&quot;end&quot;</code> is a valid line number specification
+for the last line of the file.
+</p>
+<p>When called with the name of a function, list that script file with line
+numbers.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFdblist">dblist</a>, <a class="ref" href="#XREFdbwhere">dbwhere</a>, <a class="ref" href="Breakpoints.html#XREFdbstatus">dbstatus</a>, <a class="ref" href="Breakpoints.html#XREFdbstop">dbstop</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFdblist"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-dblist"><span><strong class="def-name">dblist</strong><a class="copiable-link" href="#index-dblist"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-dblist-1"><span><strong class="def-name">dblist</strong> <code class="def-code-arguments"><var class="var">n</var></code><a class="copiable-link" href="#index-dblist-1"> &para;</a></span></dt>
+<dd><p>In debugging mode, list <var class="var">n</var> lines of the function being debugged
+centered around the current line to be executed.
+</p>
+<p>If unspecified <var class="var">n</var> defaults to 10 (+/- 5 lines)
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFdbwhere">dbwhere</a>, <a class="ref" href="#XREFdbtype">dbtype</a>, <a class="ref" href="Call-Stack.html#XREFdbstack">dbstack</a>.
+</p></dd></dl>
+
+
+<p>You may also use <code class="code">isdebugmode</code> to determine whether the debugger is
+currently active.
+</p>
+<a class="anchor" id="XREFisdebugmode"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-isdebugmode"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">isdebugmode</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-isdebugmode"> &para;</a></span></dt>
+<dd><p>Return true if in debugging mode, otherwise false.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFdbwhere">dbwhere</a>, <a class="ref" href="Call-Stack.html#XREFdbstack">dbstack</a>, <a class="ref" href="Breakpoints.html#XREFdbstatus">dbstatus</a>.
+</p></dd></dl>
+
+
+<p>Debug mode also allows single line stepping through a function using
+the command <code class="code">dbstep</code>.
+</p>
+<a class="anchor" id="XREFdbstep"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-dbstep"><span><strong class="def-name">dbstep</strong><a class="copiable-link" href="#index-dbstep"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-dbstep-1"><span><strong class="def-name">dbstep</strong> <code class="def-code-arguments"><var class="var">n</var></code><a class="copiable-link" href="#index-dbstep-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-dbstep-2"><span><strong class="def-name">dbstep</strong> <code class="def-code-arguments">in</code><a class="copiable-link" href="#index-dbstep-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-dbstep-3"><span><strong class="def-name">dbstep</strong> <code class="def-code-arguments">out</code><a class="copiable-link" href="#index-dbstep-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-dbnext"><span><strong class="def-name">dbnext</strong> <code class="def-code-arguments">&hellip;</code><a class="copiable-link" href="#index-dbnext"> &para;</a></span></dt>
+<dd><p>In debugging mode, execute the next <var class="var">n</var> lines of code.
+</p>
+<p>If <var class="var">n</var> is omitted, execute the next single line of code.  If the next
+line of code is itself defined in terms of an m-file remain in the existing
+function.
+</p>
+<p>Using <code class="code">dbstep in</code> will cause execution of the next line to step into
+any m-files defined on the next line.
+</p>
+<p>Using <code class="code">dbstep out</code> will cause execution to continue until the current
+function returns.
+</p>
+<p>Programming Note: <code class="code">dbnext</code> is an alias for <code class="code">dbstep</code> and can be used
+interchangeably.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Leaving-Debug-Mode.html#XREFdbcont">dbcont</a>, <a class="ref" href="Leaving-Debug-Mode.html#XREFdbquit">dbquit</a>.
+</p></dd></dl>
+
+
+<p>When in debug mode the <kbd class="key">RETURN</kbd> key will execute the last entered command.
+This is useful, for example, after hitting a breakpoint and entering
+<code class="code">dbstep</code> once.  After that, one can advance line by line through the code
+with only a single key stroke.  This feature may be disabled using the
+<code class="code">auto_repeat_debug_command</code> function.
+</p>
+<a class="anchor" id="XREFauto_005frepeat_005fdebug_005fcommand"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-auto_005frepeat_005fdebug_005fcommand"><span><code class="def-type"><var class="var">val</var> =</code> <strong class="def-name">auto_repeat_debug_command</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-auto_005frepeat_005fdebug_005fcommand"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-auto_005frepeat_005fdebug_005fcommand-1"><span><code class="def-type"><var class="var">old_val</var> =</code> <strong class="def-name">auto_repeat_debug_command</strong> <code class="def-code-arguments">(<var class="var">new_val</var>)</code><a class="copiable-link" href="#index-auto_005frepeat_005fdebug_005fcommand-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-auto_005frepeat_005fdebug_005fcommand-2"><span><code class="def-type"><var class="var">old_val</var> =</code> <strong class="def-name">auto_repeat_debug_command</strong> <code class="def-code-arguments">(<var class="var">new_val</var>, &quot;local&quot;)</code><a class="copiable-link" href="#index-auto_005frepeat_005fdebug_005fcommand-2"> &para;</a></span></dt>
+<dd><p>Query or set the internal variable that controls whether debugging
+commands are automatically repeated when the input line is empty (typing
+just <kbd class="key">RET</kbd>).
+</p>
+<p>When called from inside a function with the <code class="code">&quot;local&quot;</code> option, the
+variable is changed locally for the function and any subroutines it calls.
+The original variable value is restored when exiting the function.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Call-Stack.html">Call Stack</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Breakpoints.html">Breakpoints</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Debugging.html">Debugging</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

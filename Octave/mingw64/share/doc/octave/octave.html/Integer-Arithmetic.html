@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Integer Arithmetic (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Integer Arithmetic (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Integer Arithmetic (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Integer-Data-Types.html" rel="up" title="Integer Data Types">
+<link href="Hexadecimal-and-Binary-Integer-Constants.html" rel="prev" title="Hexadecimal and Binary Integer Constants">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Integer-Arithmetic">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Hexadecimal-and-Binary-Integer-Constants.html" accesskey="p" rel="prev">Hexadecimal and Binary Integer Constants</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Integer-Data-Types.html" accesskey="u" rel="up">Integer Data Types</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Integer-Arithmetic-1"><span>4.4.2 Integer Arithmetic<a class="copiable-link" href="#Integer-Arithmetic-1"> &para;</a></span></h4>
+
+<p>While many numerical computations can&rsquo;t be carried out in integers,
+Octave does support basic operations like addition and multiplication
+on integers.  The operators <code class="code">+</code>, <code class="code">-</code>, <code class="code">.*</code>, and <code class="code">./</code>
+work on integers of the same type.  So, it is possible to add two 32-bit
+integers, but not to add a 32-bit integer and a 16-bit integer.
+</p>
+<p>When doing integer arithmetic one should consider the possibility of
+underflow and overflow.  This happens when the result of the computation
+can&rsquo;t be represented using the chosen integer type.  As an example it is
+not possible to represent the result of <em class="math">10 - 20</em> when using
+unsigned integers.  Octave makes sure that the result of integer
+computations is the integer that is closest to the true result.  So, the
+result of <em class="math">10 - 20</em> when using unsigned integers is zero.
+</p>
+<p>When doing integer division Octave will round the result to the nearest
+integer.  This is different from most programming languages, where the
+result is often floored to the nearest integer.  So, the result of
+<code class="code">int32 (5) ./ int32 (8)</code> is <code class="code">1</code>.
+</p>
+<a class="anchor" id="XREFidivide"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-idivide"><span><code class="def-type"><var class="var">C</var> =</code> <strong class="def-name">idivide</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">B</var>, <var class="var">op</var>)</code><a class="copiable-link" href="#index-idivide"> &para;</a></span></dt>
+<dd><p>Integer division with different rounding rules.
+</p>
+<p>The standard behavior of integer division such as <code class="code"><var class="var">A</var> ./ <var class="var">B</var></code>
+is to round the result to the nearest integer.  This is not always the
+desired behavior and <code class="code">idivide</code> permits integer element-by-element
+division to be performed with different treatment for the fractional
+part of the division as determined by the <var class="var">op</var> flag.  <var class="var">op</var> is
+a string with one of the values:
+</p>
+<dl class="table">
+<dt><code class="code">&quot;fix&quot;</code></dt>
+<dd><p>Calculate <code class="code"><var class="var">A</var> ./ <var class="var">B</var></code> with the fractional part rounded
+towards zero.
+</p>
+</dd>
+<dt><code class="code">&quot;round&quot;</code></dt>
+<dd><p>Calculate <code class="code"><var class="var">A</var> ./ <var class="var">B</var></code> with the fractional part rounded
+towards the nearest integer.
+</p>
+</dd>
+<dt><code class="code">&quot;floor&quot;</code></dt>
+<dd><p>Calculate <code class="code"><var class="var">A</var> ./ <var class="var">B</var></code> with the fractional part rounded
+towards negative infinity.
+</p>
+</dd>
+<dt><code class="code">&quot;ceil&quot;</code></dt>
+<dd><p>Calculate <code class="code"><var class="var">A</var> ./ <var class="var">B</var></code> with the fractional part rounded
+towards positive infinity.
+</p></dd>
+</dl>
+
+<p>If <var class="var">op</var> is not given it defaults to <code class="code">&quot;fix&quot;</code>.
+An example demonstrating these rounding rules is
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">idivide (int8 ([-3, 3]), int8 (4), &quot;fix&quot;)
+  &rArr;    0   0
+idivide (int8 ([-3, 3]), int8 (4), &quot;round&quot;)
+  &rArr;   -1   1
+idivide (int8 ([-3, 3]), int8 (4), &quot;floor&quot;)
+  &rArr;   -1   0
+idivide (int8 ([-3, 3]), int8 (4), &quot;ceil&quot;)
+  &rArr;    0   1
+</pre></div></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Utility-Functions.html#XREFceil">ceil</a>, <a class="ref" href="Utility-Functions.html#XREFfloor">floor</a>, <a class="ref" href="Utility-Functions.html#XREFfix">fix</a>, <a class="ref" href="Utility-Functions.html#XREFround">round</a>, <a class="ref" href="Arithmetic-Ops.html#XREFldivide">ldivide</a>, <a class="ref" href="Arithmetic-Ops.html#XREFrdivide">rdivide</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Hexadecimal-and-Binary-Integer-Constants.html">Hexadecimal and Binary Integer Constants</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Integer-Data-Types.html">Integer Data Types</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

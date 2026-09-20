@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Text Properties (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Text Properties (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Text Properties (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Graphics-Object-Properties.html" rel="up" title="Graphics Object Properties">
+<link href="Image-Properties.html" rel="next" title="Image Properties">
+<link href="Line-Properties.html" rel="prev" title="Line Properties">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsubsection-level-extent" id="Text-Properties">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Image-Properties.html" accesskey="n" rel="next">Image Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Line-Properties.html" accesskey="p" rel="prev">Line Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Graphics-Object-Properties.html" accesskey="u" rel="up">Graphics Object Properties</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsubsection" id="Text-Properties-1"><span>15.3.3.6 Text Properties<a class="copiable-link" href="#Text-Properties-1"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-Text-Properties"></a>
+
+
+
+<p>Properties of <code class="code">text</code> objects (see <a class="pxref" href="Plot-Annotations.html#XREFtext">text</a>):
+</p>
+<h4 class="subsubheading" id="Categories_003a-5"><span>Categories:<a class="copiable-link" href="#Categories_003a-5"> &para;</a></span></h4>
+
+<p><a class="ref" href="#XREFtextcategoryCallbackExecution">Callback&nbsp;Execution<!-- /@w --></a> | <a class="ref" href="#XREFtextcategoryCreation_002fDeletion">Creation/Deletion<!-- /@w --></a> | <a class="ref" href="#XREFtextcategoryDisplay">Display<!-- /@w --></a> | <a class="ref" href="#XREFtextcategoryMouseInteraction">Mouse&nbsp;Interaction<!-- /@w --></a> | <a class="ref" href="#XREFtextcategoryObjectIdentification">Object&nbsp;Identification<!-- /@w --></a> | <a class="ref" href="#XREFtextcategoryObjectPosition">Object&nbsp;Position<!-- /@w --></a> | <a class="ref" href="#XREFtextcategoryParent_002fChildren">Parent/Children<!-- /@w --></a> | <a class="ref" href="#XREFtextcategoryTextAppearance">Text&nbsp;Appearance<!-- /@w --></a> | <a class="ref" href="#XREFtextcategoryTextBoxAppearance">Text&nbsp;Box&nbsp;Appearance<!-- /@w --></a> 
+</p>
+<a class="anchor" id="XREFtextcategoryCallbackExecution"></a><h4 class="subsubheading" id="Callback-Execution-5"><span>Callback Execution<a class="copiable-link" href="#Callback-Execution-5"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFtextbusyaction"></a></dd>
+<dt><a id="index-text-busyaction"></a><span><code class="code">busyaction</code>: <code class="code">&quot;cancel&quot;</code> | {<code class="code">&quot;queue&quot;</code>}<a class="copiable-link" href="#index-text-busyaction"> &para;</a></span></dt>
+<dd><p>Define how Octave handles the execution of this object&rsquo;s callback properties when it is unable to interrupt another object&rsquo;s executing callback.  This is only relevant when the currently executing callback object has its <code class="code">interruptible</code> property set to <code class="code">&quot;off&quot;</code>.  The <code class="code">busyaction</code> property of the interrupting callback object indicates whether the interrupting callback is queued (<code class="code">&quot;queue&quot;</code> (default)) or discarded (<code class="code">&quot;cancel&quot;</code>).
+See <a class="xref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFtextinterruptible"></a></dd>
+<dt><a id="index-text-interruptible"></a><span><code class="code">interruptible</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-text-interruptible"> &para;</a></span></dt>
+<dd><p>Specify whether this object&rsquo;s callback functions may be interrupted by other callbacks.  By default <code class="code">interruptible</code> is <code class="code">&quot;on&quot;</code> and callbacks that make use of <code class="code">drawnow</code>, <code class="code">figure</code>, <code class="code">waitfor</code>, <code class="code">getframe</code> or <code class="code">pause</code> functions are eventually interrupted.
+See <a class="xref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFtextcategoryCreation_002fDeletion"></a><h4 class="subsubheading" id="Creation_002fDeletion-3"><span>Creation/Deletion<a class="copiable-link" href="#Creation_002fDeletion-3"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFtextbeingdeleted"></a></dd>
+<dt><a id="index-text-beingdeleted"></a><span><code class="code">beingdeleted</code>: {<code class="code">&quot;off&quot;</code>} | <code class="code">&quot;on&quot;</code><a class="copiable-link" href="#index-text-beingdeleted"> &para;</a></span></dt>
+<dd><p>Property indicating that a function has initiated deletion of the object.  <code class="code">beingdeleted</code> is set to true until the object no longer exists.
+</p>
+
+<a class="anchor" id="XREFtextcreatefcn"></a></dd>
+<dt><a id="index-text-createfcn"></a><span><code class="code">createfcn</code>: string | function handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-text-createfcn"> &para;</a></span></dt>
+<dd><p>Callback function executed immediately after text has been created.  Function is set by using default property on root object, e.g., <code class="code">set (groot, &quot;defaulttextcreatefcn&quot;, 'disp (&quot;text created!&quot;)')</code>.
+</p>
+<p>For information on how to write graphics listener functions, see <a class="pxref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFtextdeletefcn"></a></dd>
+<dt><a id="index-text-deletefcn"></a><span><code class="code">deletefcn</code>: string | function handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-text-deletefcn"> &para;</a></span></dt>
+<dd><p>Callback function executed immediately before text is deleted.
+</p>
+<p>For information on how to write graphics listener functions, see <a class="pxref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFtextcategoryDisplay"></a><h4 class="subsubheading" id="Display-3"><span>Display<a class="copiable-link" href="#Display-3"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFtextclipping"></a></dd>
+<dt><a id="index-text-clipping"></a><span><code class="code">clipping</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-text-clipping"> &para;</a></span></dt>
+<dd><p>If <code class="code">clipping</code> is <code class="code">&quot;on&quot;</code>, the text is clipped in its parent axes limits.
+</p>
+
+<a class="anchor" id="XREFtextvisible"></a></dd>
+<dt><a id="index-text-visible"></a><span><code class="code">visible</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-text-visible"> &para;</a></span></dt>
+<dd><p>If <code class="code">visible</code> is <code class="code">&quot;off&quot;</code>, the text is not rendered on screen.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFtextcategoryMouseInteraction"></a><h4 class="subsubheading" id="Mouse-Interaction-4"><span>Mouse Interaction<a class="copiable-link" href="#Mouse-Interaction-4"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFtextbuttondownfcn"></a></dd>
+<dt><a id="index-text-buttondownfcn"></a><span><code class="code">buttondownfcn</code>: string | function handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-text-buttondownfcn"> &para;</a></span></dt>
+<dd><p>For information on how to write graphics listener functions, see <a class="pxref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFtextcontextmenu"></a></dd>
+<dt><a id="index-text-contextmenu"></a><span><code class="code">contextmenu</code>: graphics handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-text-contextmenu"> &para;</a></span></dt>
+<dd><p>Graphics handle of the uicontextmenu object that is currently associated to this text object.
+</p>
+
+<a class="anchor" id="XREFtexthittest"></a></dd>
+<dt><a id="index-text-hittest"></a><span><code class="code">hittest</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-text-hittest"> &para;</a></span></dt>
+<dd><p>Specify whether text processes mouse events or passes them to ancestors of the object.  When enabled, the object may respond to mouse clicks by evaluating the <code class="code">&quot;buttondownfcn&quot;</code>, showing the uicontextmenu, and eventually becoming the root <code class="code">&quot;currentobject&quot;</code>.  This property is only relevant when the object can accept mouse clicks which is determined by the <code class="code">&quot;pickableparts&quot;</code> property.  See <a class="xref" href="#XREFtextpickableparts">pickableparts&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFtextpickableparts"></a></dd>
+<dt><a id="index-text-pickableparts"></a><span><code class="code">pickableparts</code>: <code class="code">&quot;all&quot;</code> | <code class="code">&quot;none&quot;</code> | {<code class="code">&quot;visible&quot;</code>}<a class="copiable-link" href="#index-text-pickableparts"> &para;</a></span></dt>
+<dd><p>Specify whether text will accept mouse clicks.  By default, <code class="code">pickableparts</code> is <code class="code">&quot;visible&quot;</code> and only visible parts of the text or its children may react to mouse clicks.  When <code class="code">pickableparts</code> is <code class="code">&quot;all&quot;</code> both visible and invisible parts (or children) may react to mouse clicks.  When <code class="code">pickableparts</code> is <code class="code">&quot;none&quot;</code> mouse clicks on the object are ignored and transmitted to any objects underneath this one.  When an object is configured to accept mouse clicks the <code class="code">&quot;hittest&quot;</code> property will determine how they are processed.  See <a class="xref" href="#XREFtexthittest">hittest&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFtextselected"></a></dd>
+<dt><a id="index-text-selected"></a><span><code class="code">selected</code>: {<code class="code">&quot;off&quot;</code>} | <code class="code">&quot;on&quot;</code><a class="copiable-link" href="#index-text-selected"> &para;</a></span></dt>
+<dd><p>Property indicates whether this text is selected.
+</p>
+
+<a class="anchor" id="XREFtextselectionhighlight"></a></dd>
+<dt><a id="index-text-selectionhighlight"></a><span><code class="code">selectionhighlight</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-text-selectionhighlight"> &para;</a></span></dt>
+<dd><p>If <code class="code">selectionhighlight</code> is <code class="code">&quot;on&quot;</code>, then the text&rsquo;s selection state is visually highlighted.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFtextcategoryObjectIdentification"></a><h4 class="subsubheading" id="Object-Identification-5"><span>Object Identification<a class="copiable-link" href="#Object-Identification-5"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFtexttag"></a></dd>
+<dt><a id="index-text-tag"></a><span><code class="code">tag</code>: string, def. <code class="code">&quot;&quot;</code><a class="copiable-link" href="#index-text-tag"> &para;</a></span></dt>
+<dd><p>A user-defined string to label the graphics object.
+</p>
+
+<a class="anchor" id="XREFtexttype"></a></dd>
+<dt><a id="index-text-type"></a><span><code class="code">type</code> (read-only): string<a class="copiable-link" href="#index-text-type"> &para;</a></span></dt>
+<dd><p>Class name of the graphics object.  <code class="code">type</code> is always <code class="code">&quot;text&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFtextuserdata"></a></dd>
+<dt><a id="index-text-userdata"></a><span><code class="code">userdata</code>: Any Octave data, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-text-userdata"> &para;</a></span></dt>
+<dd><p>User-defined data to associate with the graphics object.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFtextcategoryObjectPosition"></a><h4 class="subsubheading" id="Object-Position-3"><span>Object Position<a class="copiable-link" href="#Object-Position-3"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFtextextent"></a></dd>
+<dt><a id="index-text-extent"></a><span><code class="code">extent</code> (read-only): four-element vector<a class="copiable-link" href="#index-text-extent"> &para;</a></span></dt>
+<dd><p>Vector <code class="code">[x0 y0 width height]</code> indicating the size and location of the text string.
+</p>
+
+<a class="anchor" id="XREFtexthorizontalalignment"></a></dd>
+<dt><a id="index-text-horizontalalignment"></a><span><code class="code">horizontalalignment</code>: <code class="code">&quot;center&quot;</code> | {<code class="code">&quot;left&quot;</code>} | <code class="code">&quot;right&quot;</code><a class="copiable-link" href="#index-text-horizontalalignment"> &para;</a></span></dt>
+<dd><p>Specifies the horizontal location of the point set by the <a class="ref" href="#XREFtextposition"><code class="code">&quot;position&quot;</code>&nbsp;property<!-- /@w --></a> relative to the text.
+</p>
+
+<a class="anchor" id="XREFtextposition"></a></dd>
+<dt><a id="index-text-position"></a><span><code class="code">position</code>: three-element vector, def. <code class="code">[0   0   0]</code><a class="copiable-link" href="#index-text-position"> &para;</a></span></dt>
+<dd><p>Vector <code class="code">[X0 Y0 Z0]</code> where X0, Y0, and Z0 indicate the position of the text anchor as defined by <code class="code">verticalalignment</code> and <code class="code">horizontalalignment</code>.
+</p>
+
+<a class="anchor" id="XREFtextrotation"></a></dd>
+<dt><a id="index-text-rotation"></a><span><code class="code">rotation</code>: scalar, def. <code class="code">0</code><a class="copiable-link" href="#index-text-rotation"> &para;</a></span></dt>
+<dd><p>The angle of rotation for the displayed text, measured in degrees.
+</p>
+
+<a class="anchor" id="XREFtextunits"></a></dd>
+<dt><a id="index-text-units"></a><span><code class="code">units</code>: <code class="code">&quot;centimeters&quot;</code> | {<code class="code">&quot;data&quot;</code>} | <code class="code">&quot;inches&quot;</code> | <code class="code">&quot;normalized&quot;</code> | <code class="code">&quot;pixels&quot;</code> | <code class="code">&quot;points&quot;</code><a class="copiable-link" href="#index-text-units"> &para;</a></span></dt>
+<dd><p>Sets the measurement unit or method applied to the <a class="ref" href="#XREFtextposition"><code class="code">&quot;position&quot;</code></a> and <a class="ref" href="#XREFtextextent"><code class="code">&quot;extent&quot;</code></a> properties.  The default option <code class="code">&quot;data&quot;</code> uses the same units and limits as the data plotted in the figure.  The <code class="code">&quot;normalized&quot;</code> option applies a unitless 0 to 1 scale to the limits along each axis of the displayed data.
+</p>
+
+<a class="anchor" id="XREFtextverticalalignment"></a></dd>
+<dt><a id="index-text-verticalalignment"></a><span><code class="code">verticalalignment</code>: <code class="code">&quot;baseline&quot;</code> | <code class="code">&quot;bottom&quot;</code> | <code class="code">&quot;cap&quot;</code> | {<code class="code">&quot;middle&quot;</code>} | <code class="code">&quot;top&quot;</code><a class="copiable-link" href="#index-text-verticalalignment"> &para;</a></span></dt>
+<dd><p>Specifies the vertical location of the point set by the <a class="ref" href="#XREFtextposition"><code class="code">&quot;position&quot;</code>&nbsp;property<!-- /@w --></a> relative to the text.  Note that <code class="code">&quot;top&quot;</code> and <code class="code">&quot;bottom&quot;</code> align to the edge of the text box while <code class="code">&quot;cap&quot;</code> and <code class="code">&quot;baseline&quot;</code> refer to the edges of the text itself.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFtextcategoryParent_002fChildren"></a><h4 class="subsubheading" id="Parent_002fChildren-4"><span>Parent/Children<a class="copiable-link" href="#Parent_002fChildren-4"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFtextchildren"></a></dd>
+<dt><a id="index-text-children"></a><span><code class="code">children</code> (read-only): vector of graphics handles, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-text-children"> &para;</a></span></dt>
+<dd><p>text objects have no child objects.  <code class="code">children</code> is unused.
+</p>
+
+<a class="anchor" id="XREFtexthandlevisibility"></a></dd>
+<dt><a id="index-text-handlevisibility"></a><span><code class="code">handlevisibility</code>: <code class="code">&quot;callback&quot;</code> | <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-text-handlevisibility"> &para;</a></span></dt>
+<dd><p>If <code class="code">handlevisibility</code> is <code class="code">&quot;off&quot;</code>, the text&rsquo;s handle is not visible in its parent&rsquo;s <code class="code">&quot;children&quot;</code> property.
+</p>
+
+<a class="anchor" id="XREFtextparent"></a></dd>
+<dt><a id="index-text-parent"></a><span><code class="code">parent</code>: graphics handle<a class="copiable-link" href="#index-text-parent"> &para;</a></span></dt>
+<dd><p>Handle of the parent graphics object.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFtextcategoryTextAppearance"></a><h4 class="subsubheading" id="Text-Appearance-2"><span>Text Appearance<a class="copiable-link" href="#Text-Appearance-2"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFtextcolor"></a></dd>
+<dt><a id="index-text-color"></a><span><code class="code">color</code>: colorspec, def. <code class="code">[0   0   0]</code><a class="copiable-link" href="#index-text-color"> &para;</a></span></dt>
+<dd><p>Color of the text.  See <a class="xref" href="Colors.html">colorspec</a>.
+</p>
+
+<a class="anchor" id="XREFtextediting"></a></dd>
+<dt><a id="index-text-editing"></a><span><code class="code">editing</code>: {<code class="code">&quot;off&quot;</code>} | <code class="code">&quot;on&quot;</code><a class="copiable-link" href="#index-text-editing"> &para;</a></span></dt>
+<dd><p>Interactive text editing is not yet implemented for text objects.  <code class="code">editing</code> is unused.
+</p>
+
+<a class="anchor" id="XREFtextfontangle"></a></dd>
+<dt><a id="index-text-fontangle"></a><span><code class="code">fontangle</code>: <code class="code">&quot;italic&quot;</code> | {<code class="code">&quot;normal&quot;</code>}<a class="copiable-link" href="#index-text-fontangle"> &para;</a></span></dt>
+<dd><p>Control whether the font is italic or normal.
+</p>
+
+<a class="anchor" id="XREFtextfontname"></a></dd>
+<dt><a id="index-text-fontname"></a><span><code class="code">fontname</code>: string, def. <code class="code">&quot;*&quot;</code><a class="copiable-link" href="#index-text-fontname"> &para;</a></span></dt>
+<dd><p>Name of font used for text rendering.  When setting this property, the text rendering engine will search for a matching font in your system.  If none is found then text is rendered using a default sans serif font (same as the default <code class="code">&quot;*&quot;</code> value).
+</p>
+<p>Programming Note: On systems that don’t use FontConfig natively (all but Linux), the font cache is built when Octave is installed.  You will need to run <code class="code">system (&quot;fc-cache -fv&quot;)</code> manually after installing new fonts.
+</p>
+
+<a class="anchor" id="XREFtextfontsize"></a></dd>
+<dt><a id="index-text-fontsize"></a><span><code class="code">fontsize</code>: scalar, def. <code class="code">10</code><a class="copiable-link" href="#index-text-fontsize"> &para;</a></span></dt>
+<dd><p>Size of the font used for text rendering.  See <a class="xref" href="#XREFtextfontunits">fontunits property</a>.
+</p>
+
+<a class="anchor" id="XREFtextfontsmoothing"></a></dd>
+<dt><a id="index-text-fontsmoothing"></a><span><code class="code">fontsmoothing</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-text-fontsmoothing"> &para;</a></span></dt>
+<dd><p>Control whether anti-aliasing is used when rendering text.
+</p>
+
+<a class="anchor" id="XREFtextfontunits"></a></dd>
+<dt><a id="index-text-fontunits"></a><span><code class="code">fontunits</code>: <code class="code">&quot;centimeters&quot;</code> | <code class="code">&quot;inches&quot;</code> | <code class="code">&quot;normalized&quot;</code> | <code class="code">&quot;pixels&quot;</code> | {<code class="code">&quot;points&quot;</code>}<a class="copiable-link" href="#index-text-fontunits"> &para;</a></span></dt>
+<dd><p>Units used to interpret the <code class="code">&quot;fontsize&quot;</code> property.
+</p>
+
+<a class="anchor" id="XREFtextfontweight"></a></dd>
+<dt><a id="index-text-fontweight"></a><span><code class="code">fontweight</code>: <code class="code">&quot;bold&quot;</code> | {<code class="code">&quot;normal&quot;</code>}<a class="copiable-link" href="#index-text-fontweight"> &para;</a></span></dt>
+<dd><p>Control the variant of the base font used for text rendering.
+</p>
+
+<a class="anchor" id="XREFtextinterpreter"></a></dd>
+<dt><a id="index-text-interpreter"></a><span><code class="code">interpreter</code>: <code class="code">&quot;latex&quot;</code> | <code class="code">&quot;none&quot;</code> | {<code class="code">&quot;tex&quot;</code>}<a class="copiable-link" href="#index-text-interpreter"> &para;</a></span></dt>
+<dd><p>Control the way the <code class="code">&quot;string&quot;</code> property is interpreted.
+See <a class="xref" href="Use-of-the-_0022interpreter_0022-Property.html">Use&nbsp;of&nbsp;the&nbsp;<code class="code">&quot;interpreter&quot;</code>&nbsp;Property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFtextstring"></a></dd>
+<dt><a id="index-text-string"></a><span><code class="code">string</code>: string, def. <code class="code">&quot;&quot;</code><a class="copiable-link" href="#index-text-string"> &para;</a></span></dt>
+<dd><p>The text object string content.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFtextcategoryTextBoxAppearance"></a><h4 class="subsubheading" id="Text-Box-Appearance"><span>Text Box Appearance<a class="copiable-link" href="#Text-Box-Appearance"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFtextbackgroundcolor"></a></dd>
+<dt><a id="index-text-backgroundcolor"></a><span><code class="code">backgroundcolor</code>: colorspec, def. <code class="code">&quot;none&quot;</code><a class="copiable-link" href="#index-text-backgroundcolor"> &para;</a></span></dt>
+<dd><p>Color of the background area.  See <a class="xref" href="Colors.html">colorspec</a>.
+</p>
+
+<a class="anchor" id="XREFtextedgecolor"></a></dd>
+<dt><a id="index-text-edgecolor"></a><span><code class="code">edgecolor</code>: colorspec, def. <code class="code">&quot;none&quot;</code><a class="copiable-link" href="#index-text-edgecolor"> &para;</a></span></dt>
+<dd><p>Color of the outline of the background area.  See <a class="xref" href="Colors.html">colorspec</a>.
+</p>
+
+<a class="anchor" id="XREFtextlinestyle"></a></dd>
+<dt><a id="index-text-linestyle"></a><span><code class="code">linestyle</code>: {<code class="code">&quot;-&quot;</code>} | <code class="code">&quot;--&quot;</code> | <code class="code">&quot;-.&quot;</code> | <code class="code">&quot;:&quot;</code> | <code class="code">&quot;none&quot;</code><a class="copiable-link" href="#index-text-linestyle"> &para;</a></span></dt>
+<dd><p>Style of the text box outline.  See <a class="xref" href="Line-Styles.html">Line Styles</a>.
+</p>
+
+<a class="anchor" id="XREFtextlinewidth"></a></dd>
+<dt><a id="index-text-linewidth"></a><span><code class="code">linewidth</code>: scalar, def. <code class="code">0.5000</code><a class="copiable-link" href="#index-text-linewidth"> &para;</a></span></dt>
+<dd><p>Width of the text box outline.
+</p>
+
+<a class="anchor" id="XREFtextmargin"></a></dd>
+<dt><a id="index-text-margin"></a><span><code class="code">margin</code>: scalar, def. <code class="code">3</code><a class="copiable-link" href="#index-text-margin"> &para;</a></span></dt>
+<dd><p>Margins between the borders of the background area and the texts.  The value is currently interpreted as pixels, regardless of the <code class="code">&quot;fontunits&quot;</code> property.
+</p>
+</dd>
+</dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Image-Properties.html">Image Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Line-Properties.html">Line Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Graphics-Object-Properties.html">Graphics Object Properties</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+
+
+Summary of important user-visible changes for fl-core 1.0.2:
+-------------------------------------------------------------------
+
+  *** fl_complement accepts matrix inputs
+
+Summary of important user-visible changes for fl-core 1.0.1:
+-------------------------------------------------------------------
+
+  *** C++ usage compatible with newer Octave versions (bug #61826)
+
+  *** Update to use variable types to support 64 bit
+
+  *** Updates to support cross, cygwin and windows compile
+
+Summary of important user-visible changes for fl-core 1.0.0:
+-------------------------------------------------------------------
+
+  *** Initial release

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- Additional documentation for the optim package for Octave.
+
+Copyright © Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<title>Structure-based user functions (optim_doc)</title>
+
+<meta name="description" content="Structure-based user functions (optim_doc)">
+<meta name="keywords" content="Structure-based user functions (optim_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Parameter-structures.html" rel="up" title="Parameter structures">
+<link href="Structure_002dbased-gradients-and-Hessians.html" rel="next" title="Structure-based gradients and Hessians">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section-level-extent" id="Structure_002dbased-user-functions">
+<div class="nav-panel">
+<p>
+Next: <a href="Structure_002dbased-gradients-and-Hessians.html" accesskey="n" rel="next">Format of returned values of structure-based gradient and Hessian functions</a>, Up: <a href="Parameter-structures.html" accesskey="u" rel="up">Handling of structures of optimized parameters</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h3 class="section" id="Specify-which-user-functions-accept-parameter-structures"><span>10.1 Specify which user functions accept parameter structures<a class="copiable-link" href="#Specify-which-user-functions-accept-parameter-structures"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-structure_002dbased-user-functions"></a>
+
+<p>The frontend must be told which user functions accept parameter
+structures by setting corresponding settings to <code class="code">true</code>. The names
+of these settings depend on which user functions are applicable to the
+respective frontend and are shown in the following table.
+</p>
+<table class="multitable">
+<thead><tr><th>User function</th><th>Setting</th><th>Frontends</th></tr></thead>
+<tbody><tr><td>Objective function</td><td><code class="code">objf_pstruct</code></td><td><code class="code">nonlin_min</code></td></tr>
+<tr><td>Gradient</td><td><code class="code">grad_objf_pstruct</code></td><td><code class="code">nonlin_min</code></td></tr>
+<tr><td>Hessian</td><td><code class="code">hessian_objf_pstruct</code></td><td><code class="code">nonlin_min</code></td></tr>
+<tr><td>Model function</td><td><code class="code">f_pstruct</code></td><td><code class="code">nonlin_residmin</code>, <code class="code">nonlin_curvefit</code>, <code class="code">residmin_stat</code>, <code class="code">curvefit_stat</code></td></tr>
+<tr><td>Jacobian</td><td><code class="code">df_pstruct</code></td><td><code class="code">nonlin_residmin</code>, <code class="code">nonlin_curvefit</code>, <code class="code">residmin_stat</code>, <code class="code">curvefit_stat</code></td></tr>
+<tr><td>General inequality constraints</td><td><code class="code">f_inequc_pstruct</code></td><td><code class="code">nonlin_min</code>, <code class="code">nonlin_residmin</code>, <code class="code">nonlin_curvefit</code></td></tr>
+<tr><td>Jacobian of general inequality constraints</td><td><code class="code">df_inequc_pstruct</code></td><td><code class="code">nonlin_min</code>, <code class="code">nonlin_residmin</code>, <code class="code">nonlin_curvefit</code></td></tr>
+<tr><td>General equality constraints</td><td><code class="code">f_equc_pstruct</code></td><td><code class="code">nonlin_min</code>, <code class="code">nonlin_residmin</code>, <code class="code">nonlin_curvefit</code></td></tr>
+<tr><td>Jacobian of general equality constraints</td><td><code class="code">df_equc_pstruct</code></td><td><code class="code">nonlin_min</code>, <code class="code">nonlin_residmin</code>, <code class="code">nonlin_curvefit</code></td></tr>
+</tbody>
+</table>
+
+
+</div>
+
+
+
+</body>
+</html>

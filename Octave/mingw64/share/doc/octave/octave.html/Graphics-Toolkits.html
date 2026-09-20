@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Graphics Toolkits (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Graphics Toolkits (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Graphics Toolkits (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Advanced-Plotting.html" rel="up" title="Advanced Plotting">
+<link href="Transform-Groups.html" rel="prev" title="Transform Groups">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Graphics-Toolkits">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Transform-Groups.html" accesskey="p" rel="prev">Transform Groups</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Advanced-Plotting.html" accesskey="u" rel="up">Advanced Plotting</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Graphics-Toolkits-1"><span>15.4.8 Graphics Toolkits<a class="copiable-link" href="#Graphics-Toolkits-1"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-graphics-toolkits"></a>
+<a class="index-entry-id" id="index-toolkits_002c-graphics"></a>
+
+<a class="anchor" id="XREFgraphics_005ftoolkit"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-graphics_005ftoolkit"><span><code class="def-type"><var class="var">tkit</var> =</code> <strong class="def-name">graphics_toolkit</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-graphics_005ftoolkit"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-graphics_005ftoolkit-1"><span><code class="def-type"><var class="var">tkit</var> =</code> <strong class="def-name">graphics_toolkit</strong> <code class="def-code-arguments">(<var class="var">hlist</var>)</code><a class="copiable-link" href="#index-graphics_005ftoolkit-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-graphics_005ftoolkit-2"><span><strong class="def-name">graphics_toolkit</strong> <code class="def-code-arguments">(<var class="var">name</var>)</code><a class="copiable-link" href="#index-graphics_005ftoolkit-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-graphics_005ftoolkit-3"><span><strong class="def-name">graphics_toolkit</strong> <code class="def-code-arguments">(<var class="var">hlist</var>, <var class="var">name</var>)</code><a class="copiable-link" href="#index-graphics_005ftoolkit-3"> &para;</a></span></dt>
+<dd><p>Query or set the default graphics toolkit which is assigned to new figures.
+</p>
+<p>With no inputs, return the current default graphics toolkit.  If the input
+is a list of figure graphic handles, <var class="var">hlist</var>, then return the name
+of the graphics toolkit in use for each figure.
+</p>
+<p>When called with a single input <var class="var">name</var> set the default graphics toolkit
+to <var class="var">name</var>.  If the toolkit is not already loaded, it is initialized by
+calling the function <code class="code">__init_<var class="var">name</var>__</code>.  If the first input
+is a list of figure handles, <var class="var">hlist</var>, then the graphics toolkit is set
+to <var class="var">name</var> for these figures only.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFavailable_005fgraphics_005ftoolkits">available_graphics_toolkits</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFavailable_005fgraphics_005ftoolkits"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-available_005fgraphics_005ftoolkits"><span><code class="def-type"><var class="var">toolkits</var> =</code> <strong class="def-name">available_graphics_toolkits</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-available_005fgraphics_005ftoolkits"> &para;</a></span></dt>
+<dd><p>Return a cell array of registered graphics toolkits.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFgraphics_005ftoolkit">graphics_toolkit</a>, <a class="ref" href="#XREFregister_005fgraphics_005ftoolkit">register_graphics_toolkit</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFloaded_005fgraphics_005ftoolkits"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-loaded_005fgraphics_005ftoolkits"><span><code class="def-type"><var class="var">toolkits</var> =</code> <strong class="def-name">loaded_graphics_toolkits</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-loaded_005fgraphics_005ftoolkits"> &para;</a></span></dt>
+<dd><p>Return a cell array of the currently loaded graphics toolkits.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFavailable_005fgraphics_005ftoolkits">available_graphics_toolkits</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFregister_005fgraphics_005ftoolkit"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-register_005fgraphics_005ftoolkit"><span><strong class="def-name">register_graphics_toolkit</strong> <code class="def-code-arguments">(&quot;<var class="var">toolkit</var>&quot;)</code><a class="copiable-link" href="#index-register_005fgraphics_005ftoolkit"> &para;</a></span></dt>
+<dd><p>List <var class="var">toolkit</var> as an available graphics toolkit.
+</p>
+<p>Programming Note: No input validation is done on the input string; it is simply
+added to the list of possible graphics toolkits.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFavailable_005fgraphics_005ftoolkits">available_graphics_toolkits</a>.
+</p></dd></dl>
+
+
+
+<ul class="mini-toc">
+<li><a href="Customizing-Toolkit-Behavior.html" accesskey="1">Customizing Toolkit Behavior</a></li>
+<li><a href="Hardware-vs-Software-Rendering.html" accesskey="2">Hardware vs Software Rendering</a></li>
+<li><a href="Precision-issues.html" accesskey="3">Precision issues</a></li>
+</ul>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Transform-Groups.html">Transform Groups</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Advanced-Plotting.html">Advanced Plotting</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Character Class Functions (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Character Class Functions (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Character Class Functions (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Strings.html" rel="up" title="Strings">
+<link href="Converting-Strings.html" rel="prev" title="Converting Strings">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Character-Class-Functions">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Converting-Strings.html" accesskey="p" rel="prev">Converting Strings</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Strings.html" accesskey="u" rel="up">Strings</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Character-Class-Functions-1"><span>5.5 Character Class Functions<a class="copiable-link" href="#Character-Class-Functions-1"> &para;</a></span></h3>
+
+<p>Octave also provides the following character class test functions
+patterned after the functions in the standard C library.  They all
+operate on string arrays and return matrices of zeros and ones.
+Elements that are nonzero indicate that the condition was true for the
+corresponding character in the string array.  For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">isalpha (&quot;!Q@WERT^Y&amp;&quot;)
+     &rArr;  [ 0, 1, 0, 1, 1, 1, 1, 0, 1, 0 ]
+</pre></div></div>
+
+<a class="anchor" id="XREFisalnum"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-isalnum"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">isalnum</strong> <code class="def-code-arguments">(<var class="var">s</var>)</code><a class="copiable-link" href="#index-isalnum"> &para;</a></span></dt>
+<dd><p>Return a logical array which is true where the elements of <var class="var">s</var> are
+letters or digits and false where they are not.
+</p>
+<p>This is equivalent to (<code class="code">isalpha (<var class="var">s</var>) | isdigit (<var class="var">s</var>)</code>).
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFisalpha">isalpha</a>, <a class="ref" href="#XREFisdigit">isdigit</a>, <a class="ref" href="#XREFispunct">ispunct</a>, <a class="ref" href="#XREFisspace">isspace</a>, <a class="ref" href="#XREFiscntrl">iscntrl</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFisalpha"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-isalpha"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">isalpha</strong> <code class="def-code-arguments">(<var class="var">s</var>)</code><a class="copiable-link" href="#index-isalpha"> &para;</a></span></dt>
+<dd><p>Return a logical array which is true where the elements of <var class="var">s</var> are
+letters and false where they are not.
+</p>
+<p>This is equivalent to (<code class="code">islower (<var class="var">s</var>) | isupper (<var class="var">s</var>)</code>).
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFisdigit">isdigit</a>, <a class="ref" href="#XREFispunct">ispunct</a>, <a class="ref" href="#XREFisspace">isspace</a>, <a class="ref" href="#XREFiscntrl">iscntrl</a>, <a class="ref" href="#XREFisalnum">isalnum</a>, <a class="ref" href="#XREFislower">islower</a>, <a class="ref" href="#XREFisupper">isupper</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFisletter"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-isletter"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">isletter</strong> <code class="def-code-arguments">(<var class="var">s</var>)</code><a class="copiable-link" href="#index-isletter"> &para;</a></span></dt>
+<dd><p>Return a logical array which is true where the elements of <var class="var">s</var>
+are letters and false where they are not.
+</p>
+<p>This is an alias for the <code class="code">isalpha</code> function.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFisalpha">isalpha</a>, <a class="ref" href="#XREFisdigit">isdigit</a>, <a class="ref" href="#XREFispunct">ispunct</a>, <a class="ref" href="#XREFisspace">isspace</a>, <a class="ref" href="#XREFiscntrl">iscntrl</a>, <a class="ref" href="#XREFisalnum">isalnum</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFislower"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-islower"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">islower</strong> <code class="def-code-arguments">(<var class="var">s</var>)</code><a class="copiable-link" href="#index-islower"> &para;</a></span></dt>
+<dd><p>Return a logical array which is true where the elements of <var class="var">s</var> are
+lowercase letters and false where they are not.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFisupper">isupper</a>, <a class="ref" href="#XREFisalpha">isalpha</a>, <a class="ref" href="#XREFisletter">isletter</a>, <a class="ref" href="#XREFisalnum">isalnum</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFisupper"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-isupper"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">isupper</strong> <code class="def-code-arguments">(<var class="var">s</var>)</code><a class="copiable-link" href="#index-isupper"> &para;</a></span></dt>
+<dd><p>Return a logical array which is true where the elements of <var class="var">s</var> are
+uppercase letters and false where they are not.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFislower">islower</a>, <a class="ref" href="#XREFisalpha">isalpha</a>, <a class="ref" href="#XREFisletter">isletter</a>, <a class="ref" href="#XREFisalnum">isalnum</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFisdigit"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-isdigit"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">isdigit</strong> <code class="def-code-arguments">(<var class="var">s</var>)</code><a class="copiable-link" href="#index-isdigit"> &para;</a></span></dt>
+<dd><p>Return a logical array which is true where the elements of <var class="var">s</var> are
+decimal digits (0-9) and false where they are not.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFisxdigit">isxdigit</a>, <a class="ref" href="#XREFisalpha">isalpha</a>, <a class="ref" href="#XREFisletter">isletter</a>, <a class="ref" href="#XREFispunct">ispunct</a>, <a class="ref" href="#XREFisspace">isspace</a>, <a class="ref" href="#XREFiscntrl">iscntrl</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFisxdigit"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-isxdigit"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">isxdigit</strong> <code class="def-code-arguments">(<var class="var">s</var>)</code><a class="copiable-link" href="#index-isxdigit"> &para;</a></span></dt>
+<dd><p>Return a logical array which is true where the elements of <var class="var">s</var> are
+hexadecimal digits (0-9 and a-fA-F).
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFisdigit">isdigit</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFispunct"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-ispunct"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">ispunct</strong> <code class="def-code-arguments">(<var class="var">s</var>)</code><a class="copiable-link" href="#index-ispunct"> &para;</a></span></dt>
+<dd><p>Return a logical array which is true where the elements of <var class="var">s</var> are
+punctuation characters and false where they are not.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFisalpha">isalpha</a>, <a class="ref" href="#XREFisdigit">isdigit</a>, <a class="ref" href="#XREFisspace">isspace</a>, <a class="ref" href="#XREFiscntrl">iscntrl</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFisspace"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-isspace"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">isspace</strong> <code class="def-code-arguments">(<var class="var">s</var>)</code><a class="copiable-link" href="#index-isspace"> &para;</a></span></dt>
+<dd><p>Return a logical array which is true where the elements of <var class="var">s</var> are
+whitespace characters (space, formfeed, newline, carriage return, tab, and
+vertical tab) and false where they are not.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFiscntrl">iscntrl</a>, <a class="ref" href="#XREFispunct">ispunct</a>, <a class="ref" href="#XREFisalpha">isalpha</a>, <a class="ref" href="#XREFisdigit">isdigit</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFiscntrl"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-iscntrl"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">iscntrl</strong> <code class="def-code-arguments">(<var class="var">s</var>)</code><a class="copiable-link" href="#index-iscntrl"> &para;</a></span></dt>
+<dd><p>Return a logical array which is true where the elements of <var class="var">s</var> are
+control characters and false where they are not.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFispunct">ispunct</a>, <a class="ref" href="#XREFisspace">isspace</a>, <a class="ref" href="#XREFisalpha">isalpha</a>, <a class="ref" href="#XREFisdigit">isdigit</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFisgraph"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-isgraph"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">isgraph</strong> <code class="def-code-arguments">(<var class="var">s</var>)</code><a class="copiable-link" href="#index-isgraph"> &para;</a></span></dt>
+<dd><p>Return a logical array which is true where the elements of <var class="var">s</var> are
+printable characters (but not the space character) and false where they are
+not.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFisprint">isprint</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFisprint"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-isprint"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">isprint</strong> <code class="def-code-arguments">(<var class="var">s</var>)</code><a class="copiable-link" href="#index-isprint"> &para;</a></span></dt>
+<dd><p>Return a logical array which is true where the elements of <var class="var">s</var> are
+printable characters (including the space character) and false where they
+are not.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFisgraph">isgraph</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFisascii"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-isascii"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">isascii</strong> <code class="def-code-arguments">(<var class="var">s</var>)</code><a class="copiable-link" href="#index-isascii"> &para;</a></span></dt>
+<dd><p>Return a logical array which is true where the elements of <var class="var">s</var> are
+ASCII characters (in the range 0 to 127 decimal) and false where they are
+not.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFisstrprop"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-isstrprop"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">isstrprop</strong> <code class="def-code-arguments">(<var class="var">str</var>, <var class="var">prop</var>)</code><a class="copiable-link" href="#index-isstrprop"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-isstrprop-1"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">isstrprop</strong> <code class="def-code-arguments">(<var class="var">str</var>, <var class="var">prop</var>, 'ForceCellOutput', <var class="var">flag</var>)</code><a class="copiable-link" href="#index-isstrprop-1"> &para;</a></span></dt>
+<dd><p>Test character string properties.
+</p>
+<p>For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">isstrprop (&quot;abc123&quot;, &quot;alpha&quot;)
+&rArr;  [1, 1, 1, 0, 0, 0]
+</pre></div></div>
+
+<p>If <var class="var">str</var> is a cell array, <code class="code">isstrpop</code> is applied recursively to
+each element of the cell array.
+</p>
+<p>Numeric arrays are converted to character strings.
+</p>
+<p>The second argument <var class="var">prop</var> must be one of
+</p>
+<dl class="table">
+<dt><code class="code">&quot;alpha&quot;</code></dt>
+<dd><p>True for characters that are alphabetic (letters).
+</p>
+</dd>
+<dt><code class="code">&quot;alnum&quot;</code></dt>
+<dt><code class="code">&quot;alphanum&quot;</code></dt>
+<dd><p>True for characters that are alphabetic or digits.
+</p>
+</dd>
+<dt><code class="code">&quot;lower&quot;</code></dt>
+<dd><p>True for lowercase letters.
+</p>
+</dd>
+<dt><code class="code">&quot;upper&quot;</code></dt>
+<dd><p>True for uppercase letters.
+</p>
+</dd>
+<dt><code class="code">&quot;digit&quot;</code></dt>
+<dd><p>True for decimal digits (0-9).
+</p>
+</dd>
+<dt><code class="code">&quot;xdigit&quot;</code></dt>
+<dd><p>True for hexadecimal digits (a-fA-F0-9).
+</p>
+</dd>
+<dt><code class="code">&quot;space&quot;</code></dt>
+<dt><code class="code">&quot;wspace&quot;</code></dt>
+<dd><p>True for whitespace characters (space, formfeed, newline, carriage return,
+tab, vertical tab).
+</p>
+</dd>
+<dt><code class="code">&quot;punct&quot;</code></dt>
+<dd><p>True for punctuation characters (printing characters except space or
+letter or digit).
+</p>
+</dd>
+<dt><code class="code">&quot;cntrl&quot;</code></dt>
+<dd><p>True for control characters.
+</p>
+</dd>
+<dt><code class="code">&quot;graph&quot;</code></dt>
+<dt><code class="code">&quot;graphic&quot;</code></dt>
+<dd><p>True for printing characters except space.
+</p>
+</dd>
+<dt><code class="code">&quot;print&quot;</code></dt>
+<dd><p>True for printing characters including space.
+</p>
+</dd>
+<dt><code class="code">&quot;ascii&quot;</code></dt>
+<dd><p>True for characters that are in the range of ASCII encoding.
+</p>
+</dd>
+</dl>
+
+<p>If the option <code class="code">'ForceCellOutput'</code> is given and <var class="var">flag</var> is
+true then a cell value is returned rather than a logical array.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFisalpha">isalpha</a>, <a class="ref" href="#XREFisalnum">isalnum</a>, <a class="ref" href="#XREFislower">islower</a>, <a class="ref" href="#XREFisupper">isupper</a>, <a class="ref" href="#XREFisdigit">isdigit</a>, <a class="ref" href="#XREFisxdigit">isxdigit</a>, <a class="ref" href="#XREFisspace">isspace</a>, <a class="ref" href="#XREFispunct">ispunct</a>, <a class="ref" href="#XREFiscntrl">iscntrl</a>, <a class="ref" href="#XREFisgraph">isgraph</a>, <a class="ref" href="#XREFisprint">isprint</a>, <a class="ref" href="#XREFisascii">isascii</a>.
+</p></dd></dl>
+
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Converting-Strings.html">Converting Strings</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Strings.html">Strings</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

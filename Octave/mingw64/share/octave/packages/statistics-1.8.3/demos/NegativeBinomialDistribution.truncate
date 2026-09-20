@@ -1,0 +1,32 @@
+%!demo
+%! ## Generate a deterministic data set mimicking 10000 samples from a truncated
+%! ## Negative Binomial distribution with parameters R = 5 and P = 0.5,
+%! ## truncated at [2, 10].  Fit a Negative Binomial distribution to this data
+%! ## and plot a PDF of the truncated fitted distribution superimposed on a
+%! ## histogram of the data.
+%!
+%! x_vals = 2:10;
+%! probs = nbinpdf (x_vals, 5, 0.5);
+%! total_prob = nbincdf (10, 5, 0.5) - nbincdf (1, 5, 0.5);
+%! probs = probs / total_prob;
+%! N = 10000;
+%! freq = round (probs * N);
+%! data = [];
+%! data = repelem (x_vals, freq);
+%! warning ("off", "all");
+%! pd = fitdist (data, "NegativeBinomial");
+%! t = truncate (pd, 2, 10);
+%!
+%! ## Plot histogram and truncated PDF
+%! plot (t)
+%! hold on
+%!
+%! [counts, centers] = hist (data, 50);
+%! bar (centers, counts / trapz (centers, counts), 'hist');
+%!
+%! hold off
+%! title ("Negative Binomial distribution (R=5, P=0.5) truncated at [2, 10]")
+%! legend ("Truncated PDF", "Histogram")
+%!
+%! ## This demonstrates truncating a Negative Binomial distribution to a specific
+%! ## range and visualizing the resulting distribution with random samples.

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>String encoding (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="String encoding (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="String encoding (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Converting-Strings.html" rel="up" title="Converting Strings">
+<link href="Numerical-Data-and-Strings.html" rel="next" title="Numerical Data and Strings">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="String-encoding">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Numerical-Data-and-Strings.html" accesskey="n" rel="next">Numerical Data and Strings</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Converting-Strings.html" accesskey="u" rel="up">Converting Strings</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="String-encoding-1"><span>5.4.1 String encoding<a class="copiable-link" href="#String-encoding-1"> &para;</a></span></h4>
+
+<a class="anchor" id="XREFunicode2native"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-unicode2native"><span><code class="def-type"><var class="var">native_bytes</var> =</code> <strong class="def-name">unicode2native</strong> <code class="def-code-arguments">(<var class="var">utf8_str</var>, <var class="var">codepage</var>)</code><a class="copiable-link" href="#index-unicode2native"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-unicode2native-1"><span><code class="def-type"><var class="var">native_bytes</var> =</code> <strong class="def-name">unicode2native</strong> <code class="def-code-arguments">(<var class="var">utf8_str</var>)</code><a class="copiable-link" href="#index-unicode2native-1"> &para;</a></span></dt>
+<dd><p>Convert UTF-8 string <var class="var">utf8_str</var> to byte stream using <var class="var">codepage</var>.
+</p>
+<p>The character vector <var class="var">utf8_str</var> is converted to a byte stream
+<var class="var">native_bytes</var> using the code page given by <var class="var">codepage</var>.  The
+string <var class="var">codepage</var> must be an identifier of a valid code page.
+Examples for valid code pages are <code class="code">&quot;ISO-8859-1&quot;</code>,
+<code class="code">&quot;Shift-JIS&quot;</code>, or <code class="code">&quot;UTF-16&quot;</code>.  For a list of supported code
+pages, see <a class="url" href="https://www.gnu.org/software/libiconv">https://www.gnu.org/software/libiconv</a>.  If <var class="var">codepage</var>
+is omitted or empty, the system default codepage is used.
+</p>
+<p>If any of the characters cannot be mapped into the codepage <var class="var">codepage</var>,
+they are replaced with the appropriate substitution sequence for that
+codepage.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFnative2unicode">native2unicode</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFnative2unicode"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-native2unicode"><span><code class="def-type"><var class="var">utf8_str</var> =</code> <strong class="def-name">native2unicode</strong> <code class="def-code-arguments">(<var class="var">native_bytes</var>, <var class="var">codepage</var>)</code><a class="copiable-link" href="#index-native2unicode"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-native2unicode-1"><span><code class="def-type"><var class="var">utf8_str</var> =</code> <strong class="def-name">native2unicode</strong> <code class="def-code-arguments">(<var class="var">native_bytes</var>)</code><a class="copiable-link" href="#index-native2unicode-1"> &para;</a></span></dt>
+<dd><p>Convert byte stream <var class="var">native_bytes</var> to UTF-8 using <var class="var">codepage</var>.
+</p>
+<p>The numbers in the vector <var class="var">native_bytes</var> are rounded and clipped to
+integers between 0 and 255.  This byte stream is then mapped into the
+code page given by the string <var class="var">codepage</var> and returned in the string
+<var class="var">utf8_str</var>.  Octave uses UTF-8 as its internal encoding.  The string
+<var class="var">codepage</var> must be an identifier of a valid code page.  Examples for
+valid code pages are <code class="code">&quot;ISO-8859-1&quot;</code>, <code class="code">&quot;Shift-JIS&quot;</code>, or
+<code class="code">&quot;UTF-16&quot;</code>.  For a list of supported code pages, see
+<a class="url" href="https://www.gnu.org/software/libiconv">https://www.gnu.org/software/libiconv</a>.  If <var class="var">codepage</var> is omitted
+or empty, the system default codepage is used.
+</p>
+<p>If <var class="var">native_bytes</var> is a string vector, it is returned as is.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFunicode2native">unicode2native</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Numerical-Data-and-Strings.html">Numerical Data and Strings</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Converting-Strings.html">Converting Strings</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

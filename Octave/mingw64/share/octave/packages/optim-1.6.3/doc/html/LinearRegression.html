@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- Additional documentation for the optim package for Octave.
+
+Copyright © Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<title>LinearRegression (optim_doc)</title>
+
+<meta name="description" content="LinearRegression (optim_doc)">
+<meta name="keywords" content="LinearRegression (optim_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Residual-optimization.html" rel="up" title="Residual optimization">
+<link href="wsolve.html" rel="next" title="wsolve">
+<link href="polyconf.html" rel="prev" title="polyconf">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+ul.mark-bullet {list-style-type: disc}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section-level-extent" id="LinearRegression">
+<div class="nav-panel">
+<p>
+Next: <a href="wsolve.html" accesskey="n" rel="next">Function wsolve, another linear solver</a>, Previous: <a href="polyconf.html" accesskey="p" rel="prev">Confidence and prediction intervals for polynomial fitting</a>, Up: <a href="Residual-optimization.html" accesskey="u" rel="up">Functions for optimization of a model function returning an array</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h3 class="section" id="Function-LinearRegression"><span>2.13 Function LinearRegression<a class="copiable-link" href="#Function-LinearRegression"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-LinearRegression-3"></a>
+
+<a class="anchor" id="XREFLinearRegression"></a><dl class="first-deftypefn">
+<dt class="deftypefn" id="index-LinearRegression"><span class="category-def">Function File: </span><span><strong class="def-name">LinearRegression</strong> <code class="def-code-arguments">(<var class="var">F</var>, <var class="var">y</var>)</code><a class="copiable-link" href="#index-LinearRegression"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn" id="index-LinearRegression-1"><span class="category-def">Function File: </span><span><strong class="def-name">LinearRegression</strong> <code class="def-code-arguments">(<var class="var">F</var>, <var class="var">y</var>, <var class="var">w</var>)</code><a class="copiable-link" href="#index-LinearRegression-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn" id="index-LinearRegression-2"><span class="category-def">Function File: </span><span><code class="def-type">[<var class="var">p</var>, <var class="var">e_var</var>, <var class="var">r</var>, <var class="var">p_var</var>, <var class="var">fit_var</var>] =</code> <strong class="def-name">LinearRegression</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-LinearRegression-2"> &para;</a></span></dt>
+<dd>
+
+<p>general linear regression
+</p>
+<p>determine the parameters p_j  (j=1,2,...,m) such that the function
+f(x) = sum_(j=1,...,m) p_j*f_j(x) is the best fit to the given values
+y_i by f(x_i) for i=1,...,n, i.e. minimize
+sum_(i=1,...,n)(y_i-sum_(j=1,...,m) p_j*f_j(x_i))^2 with respect to p_j
+</p>
+<p>parameters:  
+</p><ul class="itemize mark-bullet">
+<li><var class="var">F</var> is an n*m matrix with the values of the basis functions at
+the support points. In column j give the values of f_j at the points
+x_i  (i=1,2,...,n)
+</li><li><var class="var">y</var> is a column vector of length n with the given values
+</li><li><var class="var">w</var> is a column vector of length n with the weights of
+the data points. 1/w_i is expected to be proportional to the
+estimated uncertainty in the y values. Then the weighted expression
+sum_(i=1,...,n)(w_i^2*(y_i-f(x_i))^2) is minimized.
+</li></ul>
+
+<p>return values:
+</p><ul class="itemize mark-bullet">
+<li><var class="var">p</var> is the vector of length m with the estimated values
+of the parameters
+</li><li><var class="var">e_var</var> is the vector of estimated variances of the
+provided y values. If weights are provided, then the product
+e_var_i * w^2_i is assumed to be constant.
+</li><li><var class="var">r</var> is the weighted norm of the residual
+</li><li><var class="var">p_var</var> is the vector of estimated variances of the parameters p_j
+</li><li><var class="var">fit_var</var> is the vector of the estimated variances of the
+fitted function values f(x_i)
+</li></ul>
+
+<p>To estimate the variance of the difference between future y values
+and fitted y values use the sum of <var class="var">e_var</var> and <var class="var">fit_var</var>
+</p>
+<p>Caution:  
+do NOT request <var class="var">fit_var</var> for large data sets, as a n by n matrix is
+generated
+</p>
+</dd></dl>
+
+
+<p>See also <a data-manual="octave" href="../octave_html/XREFols.html#XREFols">ols</a>, <a data-manual="octave" href="../octave_html/XREFgls.html#XREFgls">gls</a>,
+<a data-manual="octave" href="../octave_html/XREFregress.html#XREFregress">regress</a>, <a class="ref" href="leasqr.html#XREFleasqr">leasqr</a>,
+<a class="ref" href="nonlin_005fcurvefit.html#XREFnonlin_005fcurvefit">nonlin_curvefit</a>,
+<a data-manual="octave" href="../octave_html/XREFpolyfit.html#XREFpolyfit">polyfit</a>, <a class="ref" href="wpolyfit.html#XREFwpolyfit">wpolyfit</a>,
+<a class="ref" href="pronyfit.html#XREFpronyfit">pronyfit</a>.
+</p>
+
+</div>
+<hr>
+<div class="nav-panel">
+<p>
+Next: <a href="wsolve.html">Function wsolve, another linear solver</a>, Previous: <a href="polyconf.html">Confidence and prediction intervals for polynomial fitting</a>, Up: <a href="Residual-optimization.html">Functions for optimization of a model function returning an array</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

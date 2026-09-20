@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Killing and Yanking (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Killing and Yanking (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Killing and Yanking (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Command-Line-Editing.html" rel="up" title="Command Line Editing">
+<link href="Commands-for-Changing-Text.html" rel="next" title="Commands for Changing Text">
+<link href="Cursor-Motion.html" rel="prev" title="Cursor Motion">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+kbd.kbd {font-style: oblique}
+kbd.key {font-style: normal}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Killing-and-Yanking">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Commands-for-Changing-Text.html" accesskey="n" rel="next">Commands for Changing Text</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Cursor-Motion.html" accesskey="p" rel="prev">Cursor Motion</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Command-Line-Editing.html" accesskey="u" rel="up">Command Line Editing</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Killing-and-Yanking-1"><span>2.4.2 Killing and Yanking<a class="copiable-link" href="#Killing-and-Yanking-1"> &para;</a></span></h4>
+
+<p><em class="dfn">Killing</em> text means to delete the text from the line, but to save
+it away for later use, usually by <em class="dfn">yanking</em> it back into the line.
+If the description for a command says that it &lsquo;kills&rsquo; text, then you can
+be sure that you can get the text back in a different (or the same)
+place later.
+</p>
+<p>Here is the list of commands for killing text.
+</p>
+<dl class="table">
+<dt><kbd class="kbd">C-k</kbd></dt>
+<dd><p>Kill the text from the current cursor position to the end of the line.
+</p>
+</dd>
+<dt><kbd class="kbd">M-d</kbd></dt>
+<dd><p>Kill from the cursor to the end of the current word, or if between
+words, to the end of the next word.
+</p>
+</dd>
+<dt><kbd class="kbd">M-<kbd class="key">DEL</kbd></kbd></dt>
+<dd><p>Kill from the cursor to the start of the previous word, or if between
+words, to the start of the previous word.
+</p>
+</dd>
+<dt><kbd class="kbd">C-w</kbd></dt>
+<dd><p>Kill from the cursor to the previous whitespace.  This is different than
+<kbd class="kbd">M-<kbd class="key">DEL</kbd></kbd> because the word boundaries differ.
+</p></dd>
+</dl>
+
+<p>And, here is how to <em class="dfn">yank</em> the text back into the line.  Yanking
+means to copy the most-recently-killed text from the kill buffer.
+</p>
+<dl class="table">
+<dt><kbd class="kbd">C-y</kbd></dt>
+<dd><p>Yank the most recently killed text back into the buffer at the cursor.
+</p>
+</dd>
+<dt><kbd class="kbd">M-y</kbd></dt>
+<dd><p>Rotate the kill-ring, and yank the new top.  You can only do this if
+the prior command is <kbd class="kbd">C-y</kbd> or <kbd class="kbd">M-y</kbd>.
+</p></dd>
+</dl>
+
+<p>When you use a kill command, the text is saved in a <em class="dfn">kill-ring</em>.
+Any number of consecutive kills save all of the killed text together, so
+that when you yank it back, you get it in one clean sweep.  The kill
+ring is not line specific; the text that you killed on a previously
+typed line is available to be yanked back later, when you are typing
+another line.
+</p>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Commands-for-Changing-Text.html">Commands for Changing Text</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Cursor-Motion.html">Cursor Motion</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Command-Line-Editing.html">Command Line Editing</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

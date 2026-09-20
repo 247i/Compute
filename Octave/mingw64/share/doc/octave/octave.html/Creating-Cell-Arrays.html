@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Creating Cell Arrays (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Creating Cell Arrays (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Creating Cell Arrays (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Cell-Arrays.html" rel="up" title="Cell Arrays">
+<link href="Indexing-Cell-Arrays.html" rel="next" title="Indexing Cell Arrays">
+<link href="Basic-Usage-of-Cell-Arrays.html" rel="prev" title="Basic Usage of Cell Arrays">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Creating-Cell-Arrays">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Indexing-Cell-Arrays.html" accesskey="n" rel="next">Indexing Cell Arrays</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Basic-Usage-of-Cell-Arrays.html" accesskey="p" rel="prev">Basic Usage of Cell Arrays</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Cell-Arrays.html" accesskey="u" rel="up">Cell Arrays</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Creating-Cell-Arrays-1"><span>6.3.2 Creating Cell Arrays<a class="copiable-link" href="#Creating-Cell-Arrays-1"> &para;</a></span></h4>
+
+<p>The introductory example (see <a class="pxref" href="Basic-Usage-of-Cell-Arrays.html">Basic Usage of Cell Arrays</a>) showed
+how to create a cell array containing currently available variables.
+In many situations, however, it is useful to create a cell array and
+then fill it with data.
+</p>
+<p>The <code class="code">cell</code> function returns a cell array of a given size, containing
+empty matrices.  This function is similar to the <code class="code">zeros</code>
+function for creating new numerical arrays.  The following example creates
+a 2-by-2 cell array containing empty matrices
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">c = cell (2,2)
+     &rArr;  c =
+
+         {
+           [1,1] = [](0x0)
+           [2,1] = [](0x0)
+           [1,2] = [](0x0)
+           [2,2] = [](0x0)
+         }
+</pre></div></div>
+
+<p>Just like numerical arrays, cell arrays can be multi-dimensional.  The
+<code class="code">cell</code> function accepts any number of positive integers to describe
+the size of the returned cell array.  It is also possible to set the size
+of the cell array through a vector of positive integers.  In the
+following example two cell arrays of equal size are created, and the size
+of the first one is displayed
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">c1 = cell (3, 4, 5);
+c2 = cell ( [3, 4, 5] );
+size (c1)
+     &rArr;  ans =
+         3   4   5
+</pre></div></div>
+
+<p>As can be seen, the <a class="ref" href="Object-Sizes.html#XREFsize">size</a> function also works
+for cell arrays.  As do other functions describing the size of an
+object, such as <a class="ref" href="Object-Sizes.html#XREFlength">length</a>, <a class="ref" href="Object-Sizes.html#XREFnumel">numel</a>,
+<a class="ref" href="Object-Sizes.html#XREFrows">rows</a>, and <a class="ref" href="Object-Sizes.html#XREFcolumns">columns</a>.
+</p>
+<a class="anchor" id="XREFcell"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-cell"><span><code class="def-type"><var class="var">C</var> =</code> <strong class="def-name">cell</strong> <code class="def-code-arguments">(<var class="var">n</var>)</code><a class="copiable-link" href="#index-cell"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-cell-1"><span><code class="def-type"><var class="var">C</var> =</code> <strong class="def-name">cell</strong> <code class="def-code-arguments">(<var class="var">m</var>, <var class="var">n</var>)</code><a class="copiable-link" href="#index-cell-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-cell-2"><span><code class="def-type"><var class="var">C</var> =</code> <strong class="def-name">cell</strong> <code class="def-code-arguments">(<var class="var">m</var>, <var class="var">n</var>, <var class="var">k</var>, &hellip;)</code><a class="copiable-link" href="#index-cell-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-cell-3"><span><code class="def-type"><var class="var">C</var> =</code> <strong class="def-name">cell</strong> <code class="def-code-arguments">([<var class="var">m</var> <var class="var">n</var> &hellip;])</code><a class="copiable-link" href="#index-cell-3"> &para;</a></span></dt>
+<dd><p>Create a new cell array object.
+</p>
+<p>If invoked with a single scalar integer argument, return a square
+NxN cell array.  If invoked with two or more scalar integer
+arguments, or a vector of integer values, return an array with the given
+dimensions.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Cell-Arrays-of-Strings.html#XREFcellstr">cellstr</a>, <a class="ref" href="#XREFmat2cell">mat2cell</a>, <a class="ref" href="#XREFnum2cell">num2cell</a>, <a class="ref" href="Processing-Data-in-Structures.html#XREFstruct2cell">struct2cell</a>.
+</p></dd></dl>
+
+
+<p>As an alternative to creating empty cell arrays, and then filling them, it
+is possible to convert numerical arrays into cell arrays using the
+<code class="code">num2cell</code>, <code class="code">mat2cell</code> and <code class="code">cellslices</code> functions.
+</p>
+<a class="anchor" id="XREFnum2cell"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-num2cell"><span><code class="def-type"><var class="var">C</var> =</code> <strong class="def-name">num2cell</strong> <code class="def-code-arguments">(<var class="var">A</var>)</code><a class="copiable-link" href="#index-num2cell"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-num2cell-1"><span><code class="def-type"><var class="var">C</var> =</code> <strong class="def-name">num2cell</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">dim</var>)</code><a class="copiable-link" href="#index-num2cell-1"> &para;</a></span></dt>
+<dd><p>Convert the numeric matrix <var class="var">A</var> to a cell array.
+</p>
+<p>When no <var class="var">dim</var> is specified, each element of <var class="var">A</var> becomes a 1x1 element
+in the output <var class="var">C</var>.
+</p>
+<p>If <var class="var">dim</var> is defined then individual elements of <var class="var">C</var> contain all of the
+elements from <var class="var">A</var> along the specified dimension.  <var class="var">dim</var> may also be a
+vector of dimensions with the same rule applied.
+</p>
+<p>For example:
+</p>
+<div class="example">
+<pre class="example-preformatted">x = [1,2;3,4]
+&rArr; 
+    1    2
+    3    4
+
+## each element of A becomes a 1x1 element of C
+num2cell (x)
+   &rArr; 
+      {
+        [1,1] =  1
+        [2,1] =  3
+        [1,2] =  2
+        [2,2] =  4
+      }
+## all rows (dim 1) of A appear in each element of C
+num2cell (x, 1)
+   &rArr; 
+      {
+        [1,1] =
+           1
+           3
+        [1,2] =
+           2
+           4
+      }
+## all columns (dim 2) of A appear in each element of C
+num2cell (x, 2)
+   &rArr; 
+      {
+        [1,1] =
+           1   2
+        [2,1] =
+           3   4
+      }
+## all rows and cols appear in each element of C
+## (hence, only 1 output)
+num2cell (x, [1, 2])
+   &rArr; 
+      {
+        [1,1] =
+           1   2
+           3   4
+      }
+</pre></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFmat2cell">mat2cell</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFmat2cell"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-mat2cell"><span><code class="def-type"><var class="var">C</var> =</code> <strong class="def-name">mat2cell</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">dim1</var>, <var class="var">dim2</var>, &hellip;, <var class="var">dimi</var>, &hellip;, <var class="var">dimn</var>)</code><a class="copiable-link" href="#index-mat2cell"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-mat2cell-1"><span><code class="def-type"><var class="var">C</var> =</code> <strong class="def-name">mat2cell</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">rowdim</var>)</code><a class="copiable-link" href="#index-mat2cell-1"> &para;</a></span></dt>
+<dd><p>Convert the matrix <var class="var">A</var> to a cell array <var class="var">C</var>.
+</p>
+<p>Each dimension argument (<var class="var">dim1</var>, <var class="var">dim2</var>, etc.) is a vector of
+integers which specifies how to divide that dimension&rsquo;s elements amongst the
+new elements in the output <var class="var">C</var>.  The number of elements in the <var class="var">i</var>-th
+dimension is <code class="code">size (<var class="var">A</var>, <var class="var">i</var>)</code>.  Because all elements in <var class="var">A</var>
+must be partitioned, there is a requirement that <code class="code">sum (<var class="var">dimi</var>) == size
+(<var class="var">A</var>, i)</code>.  The size of the output cell <var class="var">C</var> is numel (<var class="var">dim1</var>) x
+numel (<var class="var">dim2</var>) x &hellip; x numel (<var class="var">dimn</var>).
+</p>
+<p>Given a single dimensional argument, <var class="var">rowdim</var>, the output is divided into
+rows as specified.  All other dimensions are not divided and thus all
+columns (dim 2), pages (dim 3), etc. appear in each output element.
+</p>
+<p>Examples
+</p>
+<div class="example">
+<pre class="example-preformatted">x = reshape (1:12, [3, 4])'
+&rArr; 
+    1    2    3
+    4    5    6
+    7    8    9
+   10   11   12
+
+</pre><div class="group"><pre class="example-preformatted">## The 4 rows (dim1) are divided in to two cell elements
+## with 2 rows each.
+## The 3 cols (dim2) are divided in to three cell elements
+## with 1 col each.
+mat2cell (x, [2,2], [1,1,1])
+&rArr; 
+{
+  [1,1] =
+
+     1
+     4
+
+  [2,1] =
+
+      7
+     10
+
+  [1,2] =
+
+     2
+     5
+
+  [2,2] =
+      8
+     11
+
+  [1,3] =
+
+     3
+     6
+
+  [2,3] =
+      9
+     12
+}
+</pre></div><pre class="example-preformatted">
+
+</pre><div class="group"><pre class="example-preformatted">## The 4 rows (dim1) are divided in to two cell elements
+## with a 3/1 split.
+## All columns appear in each output element.
+mat2cell (x, [3,1])
+&rArr; 
+{
+  [1,1] =
+
+     1   2   3
+     4   5   6
+     7   8   9
+
+  [2,1] =
+
+     10   11   12
+}
+</pre></div></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFnum2cell">num2cell</a>, <a class="ref" href="Processing-Data-in-Cell-Arrays.html#XREFcell2mat">cell2mat</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFcellslices"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-cellslices"><span><code class="def-type"><var class="var">sl</var> =</code> <strong class="def-name">cellslices</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">lb</var>, <var class="var">ub</var>, <var class="var">dim</var>)</code><a class="copiable-link" href="#index-cellslices"> &para;</a></span></dt>
+<dd><p>Given an array <var class="var">x</var>, this function produces a cell array of slices from
+the array determined by the index vectors <var class="var">lb</var>, <var class="var">ub</var>, for lower and
+upper bounds, respectively.
+</p>
+<p>In other words, it is equivalent to the following code:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">n = length (lb);
+sl = cell (1, n);
+for i = 1:length (lb)
+  sl{i} = x(:,...,lb(i):ub(i),...,:);
+endfor
+</pre></div></div>
+
+<p>The position of the index is determined by <var class="var">dim</var>.  If not specified,
+slicing is done along the first non-singleton dimension.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Processing-Data-in-Cell-Arrays.html#XREFcell2mat">cell2mat</a>, <a class="ref" href="Indexing-Cell-Arrays.html#XREFcellindexmat">cellindexmat</a>, <a class="ref" href="Function-Application.html#XREFcellfun">cellfun</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Indexing-Cell-Arrays.html">Indexing Cell Arrays</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Basic-Usage-of-Cell-Arrays.html">Basic Usage of Cell Arrays</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Cell-Arrays.html">Cell Arrays</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

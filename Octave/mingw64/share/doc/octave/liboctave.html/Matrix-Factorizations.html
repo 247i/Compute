@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Matrix Factorizations (Octave C++ Classes)</title>
+
+<meta name="description" content="Matrix Factorizations (Octave C++ Classes)">
+<meta name="keywords" content="Matrix Factorizations (Octave C++ Classes)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-Index.html" rel="index" title="Function Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html" rel="up" title="Top">
+<link href="Ranges.html" rel="next" title="Ranges">
+<link href="Matrix-and-Vector-Operations.html" rel="prev" title="Matrix and Vector Operations">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+
+
+</head>
+
+<body>
+<div class="chapter-level-extent" id="Matrix-Factorizations">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Ranges.html" accesskey="n" rel="next">Ranges</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Matrix-and-Vector-Operations.html" accesskey="p" rel="prev">Matrix and Vector Operations</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Function-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h2 class="chapter" id="Matrix-Factorizations-1"><span>5 Matrix Factorizations<a class="copiable-link" href="#Matrix-Factorizations-1"> &para;</a></span></h2>
+<a class="index-entry-id" id="index-matrix-factorizations"></a>
+<a class="index-entry-id" id="index-factorizations"></a>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-AEPBALANCE"><span class="category-def">: </span><span><strong class="def-name">AEPBALANCE</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-AEPBALANCE"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-AEPBALANCE-1"><span class="category-def">: </span><span><strong class="def-name">AEPBALANCE</strong> <code class="def-code-arguments">(const Matrix &amp;<var class="var">a</var>, const char *<var class="var">balance_job</var>)</code><a class="copiable-link" href="#index-AEPBALANCE-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-AEPBALANCE-2"><span class="category-def">: </span><span><strong class="def-name">AEPBALANCE</strong> <code class="def-code-arguments">(const AEPBALANCE &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-AEPBALANCE-2"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003d-8"><span class="category-def">: </span><span><code class="def-type">AEPBALANCE&amp;</code> <strong class="def-name">operator =</strong> <code class="def-code-arguments">(const AEPBALANCE &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003d-8"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-balanced_005fmatrix"><span class="category-def">: </span><span><code class="def-type">Matrix</code> <strong class="def-name">balanced_matrix</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-balanced_005fmatrix"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-balancing_005fmatrix"><span class="category-def">: </span><span><code class="def-type">Matrix</code> <strong class="def-name">balancing_matrix</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-balancing_005fmatrix"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003c_003c-8"><span class="category-def">: </span><span><code class="def-type">ostream&amp;</code> <strong class="def-name">operator &lt;&lt;</strong> <code class="def-code-arguments">(ostream &amp;<var class="var">os</var>, const AEPBALANCE &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003c_003c-8"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-ComplexAEPBALANCE"><span class="category-def">: </span><span><strong class="def-name">ComplexAEPBALANCE</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-ComplexAEPBALANCE"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ComplexAEPBALANCE-1"><span class="category-def">: </span><span><strong class="def-name">ComplexAEPBALANCE</strong> <code class="def-code-arguments">(const ComplexMatrix &amp;<var class="var">a</var>, const char *<var class="var">balance_job</var>)</code><a class="copiable-link" href="#index-ComplexAEPBALANCE-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ComplexAEPBALANCE-2"><span class="category-def">: </span><span><strong class="def-name">ComplexAEPBALANCE</strong> <code class="def-code-arguments">(const ComplexAEPBALANCE &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-ComplexAEPBALANCE-2"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003d-9"><span class="category-def">: </span><span><code class="def-type">ComplexAEPBALANCE&amp;</code> <strong class="def-name">operator =</strong> <code class="def-code-arguments">(const ComplexAEPBALANCE &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003d-9"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-balanced_005fmatrix-1"><span class="category-def">: </span><span><code class="def-type">ComplexMatrix</code> <strong class="def-name">balanced_matrix</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-balanced_005fmatrix-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-balancing_005fmatrix-1"><span class="category-def">: </span><span><code class="def-type">ComplexMatrix</code> <strong class="def-name">balancing_matrix</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-balancing_005fmatrix-1"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003c_003c-9"><span class="category-def">: </span><span><code class="def-type">ostream&amp;</code> <strong class="def-name">operator &lt;&lt;</strong> <code class="def-code-arguments">(ostream &amp;<var class="var">os</var>, const ComplexAEPBALANCE &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003c_003c-9"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-DET"><span class="category-def">: </span><span><strong class="def-name">DET</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-DET"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-DET-1"><span class="category-def">: </span><span><strong class="def-name">DET</strong> <code class="def-code-arguments">(const DET &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-DET-1"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003d-10"><span class="category-def">: </span><span><code class="def-type">DET&amp;</code> <strong class="def-name">operator =</strong> <code class="def-code-arguments">(const DET &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003d-10"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-value_005fwill_005foverflow"><span class="category-def">: </span><span><code class="def-type">int</code> <strong class="def-name">value_will_overflow</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-value_005fwill_005foverflow"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-value_005fwill_005funderflow"><span class="category-def">: </span><span><code class="def-type">int</code> <strong class="def-name">value_will_underflow</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-value_005fwill_005funderflow"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-coefficient"><span class="category-def">: </span><span><code class="def-type">double</code> <strong class="def-name">coefficient</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-coefficient"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-exponent"><span class="category-def">: </span><span><code class="def-type">int</code> <strong class="def-name">exponent</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-exponent"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-value"><span class="category-def">: </span><span><code class="def-type">double</code> <strong class="def-name">value</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-value"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003c_003c-10"><span class="category-def">: </span><span><code class="def-type">ostream&amp;</code> <strong class="def-name">operator &lt;&lt;</strong> <code class="def-code-arguments">(ostream &amp;<var class="var">os</var>, const DET &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003c_003c-10"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-ComplexDET"><span class="category-def">: </span><span><strong class="def-name">ComplexDET</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-ComplexDET"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ComplexDET-1"><span class="category-def">: </span><span><strong class="def-name">ComplexDET</strong> <code class="def-code-arguments">(const ComplexDET &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-ComplexDET-1"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003d-11"><span class="category-def">: </span><span><code class="def-type">ComplexDET&amp;</code> <strong class="def-name">operator =</strong> <code class="def-code-arguments">(const ComplexDET &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003d-11"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-value_005fwill_005foverflow-1"><span class="category-def">: </span><span><code class="def-type">int</code> <strong class="def-name">value_will_overflow</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-value_005fwill_005foverflow-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-value_005fwill_005funderflow-1"><span class="category-def">: </span><span><code class="def-type">int</code> <strong class="def-name">value_will_underflow</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-value_005fwill_005funderflow-1"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-coefficient-1"><span class="category-def">: </span><span><code class="def-type">Complex</code> <strong class="def-name">coefficient</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-coefficient-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-exponent-1"><span class="category-def">: </span><span><code class="def-type">int</code> <strong class="def-name">exponent</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-exponent-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-value-1"><span class="category-def">: </span><span><code class="def-type">Complex</code> <strong class="def-name">value</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-value-1"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003c_003c-11"><span class="category-def">: </span><span><code class="def-type">ostream&amp;</code> <strong class="def-name">operator &lt;&lt;</strong> <code class="def-code-arguments">(ostream &amp;<var class="var">os</var>, const ComplexDET &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003c_003c-11"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-GEPBALANCE"><span class="category-def">: </span><span><strong class="def-name">GEPBALANCE</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-GEPBALANCE"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-GEPBALANCE-1"><span class="category-def">: </span><span><strong class="def-name">GEPBALANCE</strong> <code class="def-code-arguments">(const Matrix &amp;<var class="var">a</var>, const Matrix &amp;, const char *<var class="var">balance_job</var>)</code><a class="copiable-link" href="#index-GEPBALANCE-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-GEPBALANCE-2"><span class="category-def">: </span><span><strong class="def-name">GEPBALANCE</strong> <code class="def-code-arguments">(const GEPBALANCE &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-GEPBALANCE-2"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003d-12"><span class="category-def">: </span><span><code class="def-type">GEPBALANCE&amp;</code> <strong class="def-name">operator =</strong> <code class="def-code-arguments">(const GEPBALANCE &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003d-12"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-balanced_005fa_005fmatrix"><span class="category-def">: </span><span><code class="def-type">Matrix</code> <strong class="def-name">balanced_a_matrix</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-balanced_005fa_005fmatrix"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-balanced_005fb_005fmatrix"><span class="category-def">: </span><span><code class="def-type">Matrix</code> <strong class="def-name">balanced_b_matrix</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-balanced_005fb_005fmatrix"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-left_005fbalancing_005fmatrix"><span class="category-def">: </span><span><code class="def-type">Matrix</code> <strong class="def-name">left_balancing_matrix</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-left_005fbalancing_005fmatrix"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-right_005fbalancing_005fmatrix"><span class="category-def">: </span><span><code class="def-type">Matrix</code> <strong class="def-name">right_balancing_matrix</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-right_005fbalancing_005fmatrix"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003c_003c-12"><span class="category-def">: </span><span><code class="def-type">ostream&amp;</code> <strong class="def-name">operator &lt;&lt;</strong> <code class="def-code-arguments">(ostream &amp;<var class="var">os</var>, const GEPBALANCE &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003c_003c-12"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-CHOL"><span class="category-def">: </span><span><strong class="def-name">CHOL</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-CHOL"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-CHOL-1"><span class="category-def">: </span><span><strong class="def-name">CHOL</strong> <code class="def-code-arguments">(const Matrix &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-CHOL-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-CHOL-2"><span class="category-def">: </span><span><strong class="def-name">CHOL</strong> <code class="def-code-arguments">(const Matrix &amp;<var class="var">a</var>, int &amp;<var class="var">info</var>)</code><a class="copiable-link" href="#index-CHOL-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-CHOL-3"><span class="category-def">: </span><span><strong class="def-name">CHOL</strong> <code class="def-code-arguments">(const CHOL &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-CHOL-3"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003d-13"><span class="category-def">: </span><span><code class="def-type">CHOL&amp;</code> <strong class="def-name">operator =</strong> <code class="def-code-arguments">(const CHOL &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003d-13"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-chol_005fmatrix"><span class="category-def">: </span><span><code class="def-type">Matrix</code> <strong class="def-name">chol_matrix</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-chol_005fmatrix"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003c_003c-13"><span class="category-def">: </span><span><code class="def-type">ostream&amp;</code> <strong class="def-name">operator &lt;&lt;</strong> <code class="def-code-arguments">(ostream &amp;<var class="var">os</var>, const CHOL &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003c_003c-13"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-ComplexCHOL"><span class="category-def">: </span><span><strong class="def-name">ComplexCHOL</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-ComplexCHOL"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ComplexCHOL-1"><span class="category-def">: </span><span><strong class="def-name">ComplexCHOL</strong> <code class="def-code-arguments">(const ComplexMatrix &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-ComplexCHOL-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ComplexCHOL-2"><span class="category-def">: </span><span><strong class="def-name">ComplexCHOL</strong> <code class="def-code-arguments">(const ComplexMatrix &amp;<var class="var">a</var>, int &amp;<var class="var">info</var>)</code><a class="copiable-link" href="#index-ComplexCHOL-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ComplexCHOL-3"><span class="category-def">: </span><span><strong class="def-name">ComplexCHOL</strong> <code class="def-code-arguments">(const ComplexCHOL &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-ComplexCHOL-3"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003d-14"><span class="category-def">: </span><span><code class="def-type">ComplexCHOL&amp;</code> <strong class="def-name">operator =</strong> <code class="def-code-arguments">(const ComplexCHOL &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003d-14"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-chol_005fmatrix-1"><span class="category-def">: </span><span><code class="def-type">ComplexMatrix</code> <strong class="def-name">chol_matrix</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-chol_005fmatrix-1"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003c_003c-14"><span class="category-def">: </span><span><code class="def-type">ostream&amp;</code> <strong class="def-name">operator &lt;&lt;</strong> <code class="def-code-arguments">(ostream &amp;<var class="var">os</var>, const ComplexCHOL &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003c_003c-14"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-HESS"><span class="category-def">: </span><span><strong class="def-name">HESS</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-HESS"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-HESS-1"><span class="category-def">: </span><span><strong class="def-name">HESS</strong> <code class="def-code-arguments">(const Matrix &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-HESS-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-HESS-2"><span class="category-def">: </span><span><strong class="def-name">HESS</strong> <code class="def-code-arguments">(const Matrix&amp;a, int &amp;<var class="var">info</var>)</code><a class="copiable-link" href="#index-HESS-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-HESS-3"><span class="category-def">: </span><span><strong class="def-name">HESS</strong> <code class="def-code-arguments">(const HESS &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-HESS-3"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003d-15"><span class="category-def">: </span><span><code class="def-type">HESS&amp;</code> <strong class="def-name">operator =</strong> <code class="def-code-arguments">(const HESS &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003d-15"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-hess_005fmatrix"><span class="category-def">: </span><span><code class="def-type">Matrix</code> <strong class="def-name">hess_matrix</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-hess_005fmatrix"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-unitary_005fhess_005fmatrix"><span class="category-def">: </span><span><code class="def-type">Matrix</code> <strong class="def-name">unitary_hess_matrix</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-unitary_005fhess_005fmatrix"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003c_003c-15"><span class="category-def">: </span><span><code class="def-type">ostream&amp;</code> <strong class="def-name">operator &lt;&lt;</strong> <code class="def-code-arguments">(ostream &amp;<var class="var">os</var>, const HESS &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003c_003c-15"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-ComplexHESS"><span class="category-def">: </span><span><strong class="def-name">ComplexHESS</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-ComplexHESS"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ComplexHESS-1"><span class="category-def">: </span><span><strong class="def-name">ComplexHESS</strong> <code class="def-code-arguments">(const ComplexMatrix &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-ComplexHESS-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ComplexHESS-2"><span class="category-def">: </span><span><strong class="def-name">ComplexHESS</strong> <code class="def-code-arguments">(const ComplexMatrix &amp;<var class="var">a</var>, int &amp;<var class="var">info</var>)</code><a class="copiable-link" href="#index-ComplexHESS-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ComplexHESS-3"><span class="category-def">: </span><span><strong class="def-name">ComplexHESS</strong> <code class="def-code-arguments">(const ComplexHESS &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-ComplexHESS-3"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003d-16"><span class="category-def">: </span><span><code class="def-type">ComplexHESS&amp;</code> <strong class="def-name">operator =</strong> <code class="def-code-arguments">(const ComplexHESS &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003d-16"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-hess_005fmatrix-1"><span class="category-def">: </span><span><code class="def-type">ComplexMatrix</code> <strong class="def-name">hess_matrix</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-hess_005fmatrix-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-unitary_005fhess_005fmatrix-1"><span class="category-def">: </span><span><code class="def-type">ComplexMatrix</code> <strong class="def-name">unitary_hess_matrix</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-unitary_005fhess_005fmatrix-1"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003c_003c-16"><span class="category-def">: </span><span><code class="def-type">ostream&amp;</code> <strong class="def-name">operator &lt;&lt;</strong> <code class="def-code-arguments">(ostream &amp;<var class="var">os</var>, const ComplexHESS &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003c_003c-16"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-SCHUR"><span class="category-def">: </span><span><strong class="def-name">SCHUR</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-SCHUR"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-SCHUR-1"><span class="category-def">: </span><span><strong class="def-name">SCHUR</strong> <code class="def-code-arguments">(const Matrix &amp;<var class="var">a</var>, const char *<var class="var">ord</var>)</code><a class="copiable-link" href="#index-SCHUR-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-SCHUR-2"><span class="category-def">: </span><span><strong class="def-name">SCHUR</strong> <code class="def-code-arguments">(const Matrix &amp;<var class="var">a</var>, const char *<var class="var">ord</var>, int &amp;<var class="var">info</var>)</code><a class="copiable-link" href="#index-SCHUR-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-SCHUR-3"><span class="category-def">: </span><span><strong class="def-name">SCHUR</strong> <code class="def-code-arguments">(const SCHUR &amp;<var class="var">a</var>, const char *<var class="var">ord</var>)</code><a class="copiable-link" href="#index-SCHUR-3"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003d-17"><span class="category-def">: </span><span><code class="def-type">SCHUR&amp;</code> <strong class="def-name">operator =</strong> <code class="def-code-arguments">(const SCHUR &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003d-17"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-schur_005fmatrix"><span class="category-def">: </span><span><code class="def-type">Matrix</code> <strong class="def-name">schur_matrix</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-schur_005fmatrix"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-unitary_005fmatrix"><span class="category-def">: </span><span><code class="def-type">Matrix</code> <strong class="def-name">unitary_matrix</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-unitary_005fmatrix"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003c_003c-17"><span class="category-def">: </span><span><code class="def-type">ostream&amp;</code> <strong class="def-name">operator &lt;&lt;</strong> <code class="def-code-arguments">(ostream &amp;<var class="var">os</var>, const SCHUR &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003c_003c-17"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-ComplexSCHUR"><span class="category-def">: </span><span><strong class="def-name">ComplexSCHUR</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-ComplexSCHUR"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ComplexSCHUR-1"><span class="category-def">: </span><span><strong class="def-name">ComplexSCHUR</strong> <code class="def-code-arguments">(const ComplexMatrix &amp;<var class="var">a</var>, const char *<var class="var">ord</var>)</code><a class="copiable-link" href="#index-ComplexSCHUR-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ComplexSCHUR-2"><span class="category-def">: </span><span><strong class="def-name">ComplexSCHUR</strong> <code class="def-code-arguments">(const ComplexMatrix &amp;<var class="var">a</var>, const char *<var class="var">ord</var>, int &amp;<var class="var">info</var>)</code><a class="copiable-link" href="#index-ComplexSCHUR-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ComplexSCHUR-3"><span class="category-def">: </span><span><strong class="def-name">ComplexSCHUR</strong> <code class="def-code-arguments">(const ComplexSCHUR &amp;<var class="var">a</var>, const char *<var class="var">ord</var>)</code><a class="copiable-link" href="#index-ComplexSCHUR-3"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003d-18"><span class="category-def">: </span><span><code class="def-type">ComplexSCHUR&amp;</code> <strong class="def-name">operator =</strong> <code class="def-code-arguments">(const ComplexSCHUR &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003d-18"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-schur_005fmatrix-1"><span class="category-def">: </span><span><code class="def-type">ComplexMatrix</code> <strong class="def-name">schur_matrix</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-schur_005fmatrix-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-unitary_005fmatrix-1"><span class="category-def">: </span><span><code class="def-type">ComplexMatrix</code> <strong class="def-name">unitary_matrix</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-unitary_005fmatrix-1"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003c_003c-18"><span class="category-def">: </span><span><code class="def-type">ostream&amp;</code> <strong class="def-name">operator &lt;&lt;</strong> <code class="def-code-arguments">(ostream &amp;<var class="var">os</var>, const ComplexSCHUR &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003c_003c-18"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-SVD"><span class="category-def">: </span><span><strong class="def-name">SVD</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-SVD"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-SVD-1"><span class="category-def">: </span><span><strong class="def-name">SVD</strong> <code class="def-code-arguments">(const Matrix &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-SVD-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-SVD-2"><span class="category-def">: </span><span><strong class="def-name">SVD</strong> <code class="def-code-arguments">(const Matrix &amp;<var class="var">a</var>, int &amp;<var class="var">info</var>)</code><a class="copiable-link" href="#index-SVD-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-SVD-3"><span class="category-def">: </span><span><strong class="def-name">SVD</strong> <code class="def-code-arguments">(const SVD &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-SVD-3"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003d-19"><span class="category-def">: </span><span><code class="def-type">SVD&amp;</code> <strong class="def-name">operator =</strong> <code class="def-code-arguments">(const SVD &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003d-19"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-singular_005fvalues"><span class="category-def">: </span><span><code class="def-type">DiagMatrix</code> <strong class="def-name">singular_values</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-singular_005fvalues"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-left_005fsingular_005fmatrix"><span class="category-def">: </span><span><code class="def-type">Matrix</code> <strong class="def-name">left_singular_matrix</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-left_005fsingular_005fmatrix"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-right_005fsingular_005fmatrix"><span class="category-def">: </span><span><code class="def-type">Matrix</code> <strong class="def-name">right_singular_matrix</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-right_005fsingular_005fmatrix"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003c_003c-19"><span class="category-def">: </span><span><code class="def-type">ostream&amp;</code> <strong class="def-name">operator &lt;&lt;</strong> <code class="def-code-arguments">(ostream &amp;<var class="var">os</var>, const SVD &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003c_003c-19"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-ComplexSVD"><span class="category-def">: </span><span><strong class="def-name">ComplexSVD</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-ComplexSVD"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ComplexSVD-1"><span class="category-def">: </span><span><strong class="def-name">ComplexSVD</strong> <code class="def-code-arguments">(const ComplexMatrix &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-ComplexSVD-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ComplexSVD-2"><span class="category-def">: </span><span><strong class="def-name">ComplexSVD</strong> <code class="def-code-arguments">(const ComplexMatrix &amp;<var class="var">a</var>, int &amp;<var class="var">info</var>)</code><a class="copiable-link" href="#index-ComplexSVD-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ComplexSVD-3"><span class="category-def">: </span><span><strong class="def-name">ComplexSVD</strong> <code class="def-code-arguments">(const ComplexSVD &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-ComplexSVD-3"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003d-20"><span class="category-def">: </span><span><code class="def-type">ComplexSVD&amp;</code> <strong class="def-name">operator =</strong> <code class="def-code-arguments">(const ComplexSVD &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003d-20"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-singular_005fvalues-1"><span class="category-def">: </span><span><code class="def-type">DiagMatrix</code> <strong class="def-name">singular_values</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-singular_005fvalues-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-left_005fsingular_005fmatrix-1"><span class="category-def">: </span><span><code class="def-type">ComplexMatrix</code> <strong class="def-name">left_singular_matrix</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-left_005fsingular_005fmatrix-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-right_005fsingular_005fmatrix-1"><span class="category-def">: </span><span><code class="def-type">ComplexMatrix</code> <strong class="def-name">right_singular_matrix</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-right_005fsingular_005fmatrix-1"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003c_003c-20"><span class="category-def">: </span><span><code class="def-type">ostream&amp;</code> <strong class="def-name">operator &lt;&lt;</strong> <code class="def-code-arguments">(ostream &amp;<var class="var">os</var>, const ComplexSVD &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003c_003c-20"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-EIG"><span class="category-def">: </span><span><strong class="def-name">EIG</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-EIG"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-EIG-1"><span class="category-def">: </span><span><strong class="def-name">EIG</strong> <code class="def-code-arguments">(const Matrix &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-EIG-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-EIG-2"><span class="category-def">: </span><span><strong class="def-name">EIG</strong> <code class="def-code-arguments">(const Matrix &amp;<var class="var">a</var>, int &amp;<var class="var">info</var>)</code><a class="copiable-link" href="#index-EIG-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-EIG-3"><span class="category-def">: </span><span><strong class="def-name">EIG</strong> <code class="def-code-arguments">(const ComplexMatrix &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-EIG-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-EIG-4"><span class="category-def">: </span><span><strong class="def-name">EIG</strong> <code class="def-code-arguments">(const ComplexMatrix &amp;<var class="var">a</var>, int &amp;<var class="var">info</var>)</code><a class="copiable-link" href="#index-EIG-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-EIG-5"><span class="category-def">: </span><span><strong class="def-name">EIG</strong> <code class="def-code-arguments">(const EIG &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-EIG-5"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003d-21"><span class="category-def">: </span><span><code class="def-type">EIG&amp;</code> <strong class="def-name">operator =</strong> <code class="def-code-arguments">(const EIG &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003d-21"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-eigenvalues"><span class="category-def">: </span><span><code class="def-type">ComplexColumnVector</code> <strong class="def-name">eigenvalues</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-eigenvalues"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-eigenvectors"><span class="category-def">: </span><span><code class="def-type">ComplexMatrix</code> <strong class="def-name">eigenvectors</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-eigenvectors"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003c_003c-21"><span class="category-def">: </span><span><code class="def-type">ostream&amp;</code> <strong class="def-name">operator &lt;&lt;</strong> <code class="def-code-arguments">(ostream &amp;<var class="var">os</var>, const EIG &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003c_003c-21"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-LU"><span class="category-def">: </span><span><strong class="def-name">LU</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-LU"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-LU-1"><span class="category-def">: </span><span><strong class="def-name">LU</strong> <code class="def-code-arguments">(const Matrix &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-LU-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-LU-2"><span class="category-def">: </span><span><strong class="def-name">LU</strong> <code class="def-code-arguments">(const LU &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-LU-2"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003d-22"><span class="category-def">: </span><span><code class="def-type">LU&amp;</code> <strong class="def-name">operator =</strong> <code class="def-code-arguments">(const LU &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003d-22"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-L"><span class="category-def">: </span><span><code class="def-type">Matrix</code> <strong class="def-name">L</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-L"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-U"><span class="category-def">: </span><span><code class="def-type">Matrix</code> <strong class="def-name">U</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-U"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-P"><span class="category-def">: </span><span><code class="def-type">Matrix</code> <strong class="def-name">P</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-P"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003c_003c-22"><span class="category-def">: </span><span><code class="def-type">ostream&amp;</code> <strong class="def-name">operator &lt;&lt;</strong> <code class="def-code-arguments">(ostream &amp;<var class="var">os</var>, const LU &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003c_003c-22"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-ComplexLU"><span class="category-def">: </span><span><strong class="def-name">ComplexLU</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-ComplexLU"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ComplexLU-1"><span class="category-def">: </span><span><strong class="def-name">ComplexLU</strong> <code class="def-code-arguments">(const ComplexMatrix &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-ComplexLU-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ComplexLU-2"><span class="category-def">: </span><span><strong class="def-name">ComplexLU</strong> <code class="def-code-arguments">(const ComplexLU &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-ComplexLU-2"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003d-23"><span class="category-def">: </span><span><code class="def-type">ComplexLU&amp;</code> <strong class="def-name">operator =</strong> <code class="def-code-arguments">(const ComplexLU &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003d-23"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-L-1"><span class="category-def">: </span><span><code class="def-type">ComplexMatrix</code> <strong class="def-name">L</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-L-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-U-1"><span class="category-def">: </span><span><code class="def-type">ComplexMatrix</code> <strong class="def-name">U</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-U-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-P-1"><span class="category-def">: </span><span><code class="def-type">Matrix</code> <strong class="def-name">P</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-P-1"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003c_003c-23"><span class="category-def">: </span><span><code class="def-type">ostream&amp;</code> <strong class="def-name">operator &lt;&lt;</strong> <code class="def-code-arguments">(ostream &amp;<var class="var">os</var>, const ComplexLU &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003c_003c-23"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-QR"><span class="category-def">: </span><span><strong class="def-name">QR</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-QR"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-QR-1"><span class="category-def">: </span><span><strong class="def-name">QR</strong> <code class="def-code-arguments">(const Matrix &amp;<var class="var">A</var>)</code><a class="copiable-link" href="#index-QR-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-QR-2"><span class="category-def">: </span><span><strong class="def-name">QR</strong> <code class="def-code-arguments">(const QR &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-QR-2"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003d-24"><span class="category-def">: </span><span><code class="def-type">QR&amp;</code> <strong class="def-name">operator =</strong> <code class="def-code-arguments">(const QR &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003d-24"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-Q"><span class="category-def">: </span><span><code class="def-type">Matrix</code> <strong class="def-name">Q</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-Q"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-R"><span class="category-def">: </span><span><code class="def-type">Matrix</code> <strong class="def-name">R</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-R"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003c_003c-24"><span class="category-def">: </span><span><code class="def-type">ostream&amp;</code> <strong class="def-name">operator &lt;&lt;</strong> <code class="def-code-arguments">(ostream &amp;<var class="var">os</var>, const QR &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003c_003c-24"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-ComplexQR"><span class="category-def">: </span><span><strong class="def-name">ComplexQR</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-ComplexQR"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ComplexQR-1"><span class="category-def">: </span><span><strong class="def-name">ComplexQR</strong> <code class="def-code-arguments">(const ComplexMatrix &amp;<var class="var">A</var>)</code><a class="copiable-link" href="#index-ComplexQR-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ComplexQR-2"><span class="category-def">: </span><span><strong class="def-name">ComplexQR</strong> <code class="def-code-arguments">(const ComplexQR &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-ComplexQR-2"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003d-25"><span class="category-def">: </span><span><code class="def-type">ComplexQR&amp;</code> <strong class="def-name">operator =</strong> <code class="def-code-arguments">(const ComplexQR &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003d-25"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-Q-1"><span class="category-def">: </span><span><code class="def-type">ComplexMatrix</code> <strong class="def-name">Q</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-Q-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-R-1"><span class="category-def">: </span><span><code class="def-type">ComplexMatrix</code> <strong class="def-name">R</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-R-1"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003c_003c-25"><span class="category-def">: </span><span><code class="def-type">ostream&amp;</code> <strong class="def-name">operator &lt;&lt;</strong> <code class="def-code-arguments">(ostream &amp;<var class="var">os</var>, const ComplexQR &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003c_003c-25"> &para;</a></span></dt>
+</dl>
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Ranges.html">Ranges</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Matrix-and-Vector-Operations.html">Matrix and Vector Operations</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Function-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

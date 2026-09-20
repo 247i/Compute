@@ -1,0 +1,14 @@
+autoload ("network_get_info", "parallel_interface.oct");
+autoload ("reval", "parallel_interface.oct");
+autoload ("__parcellfun_get_next_result__", "__parcellfun_interface__.oct");
+autoload ("precv", "parallel_interface.oct");
+autoload ("psend", "parallel_interface.oct");
+autoload ("__parcellfun_send_next_args__", "__parcellfun_interface__.oct");
+autoload ("pconnect", "parallel_interface.oct");
+autoload ("parcellfun_set_nproc", "__parcellfun_interface__.oct");
+autoload ("select_sockets", "parallel_interface.oct");
+autoload ("__octave_server__", "parallel_interface.oct");
+autoload ("network_set", "parallel_interface.oct");
+autoload ("sclose", "parallel_interface.oct");
+autoload ("__parcellfun_set_nproc_used__", "__parcellfun_interface__.oct");
+autoload ("__parcellfun_initialize_job__", "__parcellfun_interface__.oct");

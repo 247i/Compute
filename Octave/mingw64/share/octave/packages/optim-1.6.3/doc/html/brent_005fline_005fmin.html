@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- Additional documentation for the optim package for Octave.
+
+Copyright © Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<title>brent_line_min (optim_doc)</title>
+
+<meta name="description" content="brent_line_min (optim_doc)">
+<meta name="keywords" content="brent_line_min (optim_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Scalar-optimization.html" rel="up" title="Scalar optimization">
+<link href="line_005fmin.html" rel="next" title="line_min">
+<link href="cg_005fmin.html" rel="prev" title="cg_min">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+ul.mark-bullet {list-style-type: disc}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section-level-extent" id="brent_005fline_005fmin">
+<div class="nav-panel">
+<p>
+Next: <a href="line_005fmin.html" accesskey="n" rel="next">Linesearch, minimize a function along dx</a>, Previous: <a href="cg_005fmin.html" accesskey="p" rel="prev">A conjugate gradient method</a>, Up: <a href="Scalar-optimization.html" accesskey="u" rel="up">Functions for optimization of a scalar objective function</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h3 class="section" id="Linesearch_002c-Brent-method"><span>1.14 Linesearch, Brent method<a class="copiable-link" href="#Linesearch_002c-Brent-method"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-brent_005fline_005fmin-1"></a>
+
+<a class="anchor" id="XREFbrent_005fline_005fmin"></a><dl class="first-deftypefn">
+<dt class="deftypefn" id="index-brent_005fline_005fmin"><span class="category-def">Function File: </span><span><code class="def-type">[<var class="var">s</var>,<var class="var">v</var>,<var class="var">n</var>]</code> <strong class="def-name">brent_line_min</strong> <code class="def-code-arguments">( <var class="var">f</var>,<var class="var">df</var>,<var class="var">args</var>,<var class="var">ctl</var> )</code><a class="copiable-link" href="#index-brent_005fline_005fmin"> &para;</a></span></dt>
+<dd><p>Line minimization of f along df
+</p>
+<p>Finds minimum of f on line <em class="math">x0 + dx*w | a &lt; w &lt; b </em> by
+bracketing. a and b are passed through argument ctl.
+</p>
+<h4 class="subheading" id="Arguments-2"><span>Arguments<a class="copiable-link" href="#Arguments-2"> &para;</a></span></h4>
+<ul class="itemize mark-bullet">
+<li><var class="var">f</var>     : string : Name of function. Must return a real value
+</li><li><var class="var">args</var>  : cell   : Arguments passed to f or RxC    : f&rsquo;s only argument. x0 must be at <var class="var">args</var>{ <var class="var">ctl</var>(2) }
+</li><li><var class="var">ctl</var>   : 5      : (optional) Control variables, described below.
+</li></ul>
+
+<h4 class="subheading" id="Returned-values-1"><span>Returned values<a class="copiable-link" href="#Returned-values-1"> &para;</a></span></h4>
+<ul class="itemize mark-bullet">
+<li><var class="var">s</var>   : 1        : Minimum is at x0 + s*dx
+</li><li><var class="var">v</var>   : 1        : Value of f at x0 + s*dx
+</li><li><var class="var">nev</var> : 1        : Number of function evaluations
+</li></ul>
+
+<h4 class="subheading" id="Control-Variables-1"><span>Control Variables<a class="copiable-link" href="#Control-Variables-1"> &para;</a></span></h4>
+<ul class="itemize mark-bullet">
+<li><var class="var">ctl</var>(1)       : Upper bound for error on s              Default=sqrt(eps)
+</li><li><var class="var">ctl</var>(2)       : Position of minimized argument in args  Default= 1
+</li><li><var class="var">ctl</var>(3)       : Maximum number of function evaluations  Default= inf
+</li><li><var class="var">ctl</var>(4)       : a                                       Default=-inf
+</li><li><var class="var">ctl</var>(5)       : b                                       Default= inf
+</li></ul>
+
+<p>Default values will be used if ctl is not passed or if nan values are
+given.
+</p></dd></dl>
+
+
+
+</div>
+
+
+
+</body>
+</html>

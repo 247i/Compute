@@ -1,0 +1,9 @@
+autoload ("__mqtt_pkg_lock__", "__mqtt__.oct");
+__mqtt_pkg_lock__(1);
+autoload ("__mqtt_client__", "__mqtt__.oct");
+autoload ("__mqtt_subscribe__", "__mqtt__.oct");
+autoload ("__mqtt_unsubscribe__", "__mqtt__.oct");
+autoload ("__mqtt_write__", "__mqtt__.oct");
+autoload ("__mqtt_read__", "__mqtt__.oct");
+autoload ("__mqtt_peek__", "__mqtt__.oct");
+autoload ("__mqtt_flush__", "__mqtt__.oct");

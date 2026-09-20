@@ -1,0 +1,9 @@
+Name: coder
+Version: 1.11.1
+Date: 2026-02-15
+Author: Seyyed Hossein Sajjadi
+Maintainer: Seyyed Hossein Sajjadi
+Title: Octave Coder
+Description: A code generator and build system that converts Octave to C++.
+Depends: octave (>= 4.4.0)
+License: GPLv3+

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Coordinate Transformations (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Coordinate Transformations (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Coordinate Transformations (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Arithmetic.html" rel="up" title="Arithmetic">
+<link href="Mathematical-Constants.html" rel="next" title="Mathematical Constants">
+<link href="Rational-Approximations.html" rel="prev" title="Rational Approximations">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Coordinate-Transformations">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Mathematical-Constants.html" accesskey="n" rel="next">Mathematical Constants</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Rational-Approximations.html" accesskey="p" rel="prev">Rational Approximations</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Arithmetic.html" accesskey="u" rel="up">Arithmetic</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Coordinate-Transformations-1"><span>17.8 Coordinate Transformations<a class="copiable-link" href="#Coordinate-Transformations-1"> &para;</a></span></h3>
+
+<a class="anchor" id="XREFcart2pol"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-cart2pol"><span><code class="def-type">[<var class="var">theta</var>, <var class="var">r</var>] =</code> <strong class="def-name">cart2pol</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>)</code><a class="copiable-link" href="#index-cart2pol"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-cart2pol-1"><span><code class="def-type">[<var class="var">theta</var>, <var class="var">r</var>, <var class="var">z</var>] =</code> <strong class="def-name">cart2pol</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>)</code><a class="copiable-link" href="#index-cart2pol-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-cart2pol-2"><span><code class="def-type">[<var class="var">theta</var>, <var class="var">r</var>] =</code> <strong class="def-name">cart2pol</strong> <code class="def-code-arguments">(<var class="var">C</var>)</code><a class="copiable-link" href="#index-cart2pol-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-cart2pol-3"><span><code class="def-type">[<var class="var">theta</var>, <var class="var">r</var>, <var class="var">z</var>] =</code> <strong class="def-name">cart2pol</strong> <code class="def-code-arguments">(<var class="var">C</var>)</code><a class="copiable-link" href="#index-cart2pol-3"> &para;</a></span></dt>
+<dd>
+<p>Transform Cartesian coordinates to polar or cylindrical coordinates.
+</p>
+<p>The inputs <var class="var">x</var>, <var class="var">y</var> (, and <var class="var">z</var>) must be the same shape, or
+scalar.  If called with a single matrix argument then each row of <var class="var">C</var>
+represents the Cartesian coordinate pair (<var class="var">x</var>, <var class="var">y</var>) or triplet
+(<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>).
+</p>
+<p>The outputs <var class="var">theta</var>, <var class="var">r</var> (, and <var class="var">z</var>) match the shape of the
+inputs.  For a matrix input <var class="var">C</var> the outputs will be column vectors with
+rows corresponding to the rows of the input matrix.
+</p>
+<p><var class="var">theta</var> describes the angle relative to the positive x-axis measured in
+the xy-plane.
+</p>
+<p><var class="var">r</var> is the distance to the z-axis (0,&nbsp;0,&nbsp;z)<!-- /@w -->.
+</p>
+<p><var class="var">z</var>, if present, is unchanged by the transformation.
+</p>
+<p>The coordinate transformation is computed using:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted"><var class="var">theta</var> = arctan (<var class="var">y</var> / <var class="var">x</var>)
+<var class="var">r</var> = sqrt (<var class="var">x</var>^2 + <var class="var">y</var>^2)
+<var class="var">z</var> = <var class="var">z</var>
+</pre></div></div>
+
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFpol2cart">pol2cart</a>, <a class="ref" href="#XREFcart2sph">cart2sph</a>, <a class="ref" href="#XREFsph2cart">sph2cart</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFpol2cart"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-pol2cart"><span><code class="def-type">[<var class="var">x</var>, <var class="var">y</var>] =</code> <strong class="def-name">pol2cart</strong> <code class="def-code-arguments">(<var class="var">theta</var>, <var class="var">r</var>)</code><a class="copiable-link" href="#index-pol2cart"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-pol2cart-1"><span><code class="def-type">[<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>] =</code> <strong class="def-name">pol2cart</strong> <code class="def-code-arguments">(<var class="var">theta</var>, <var class="var">r</var>, <var class="var">z</var>)</code><a class="copiable-link" href="#index-pol2cart-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-pol2cart-2"><span><code class="def-type">[<var class="var">x</var>, <var class="var">y</var>] =</code> <strong class="def-name">pol2cart</strong> <code class="def-code-arguments">(<var class="var">P</var>)</code><a class="copiable-link" href="#index-pol2cart-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-pol2cart-3"><span><code class="def-type">[<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>] =</code> <strong class="def-name">pol2cart</strong> <code class="def-code-arguments">(<var class="var">P</var>)</code><a class="copiable-link" href="#index-pol2cart-3"> &para;</a></span></dt>
+<dd><p>Transform polar or cylindrical coordinates to Cartesian coordinates.
+</p>
+<p>The inputs <var class="var">theta</var>, <var class="var">r</var>, (and <var class="var">z</var>) must be the same shape, or
+scalar.  If called with a single matrix argument then each row of <var class="var">P</var>
+represents the polar coordinate pair (<var class="var">theta</var>, <var class="var">r</var>) or the
+cylindrical triplet (<var class="var">theta</var>, <var class="var">r</var>, <var class="var">z</var>).
+</p>
+<p>The outputs <var class="var">x</var>, <var class="var">y</var> (, and <var class="var">z</var>) match the shape of the inputs.
+For a matrix input <var class="var">P</var> the outputs will be column vectors with rows
+corresponding to the rows of the input matrix.
+</p>
+<p><var class="var">theta</var> describes the angle relative to the positive x-axis measured in
+the xy-plane.
+</p>
+<p><var class="var">r</var> is the distance to the z-axis (0,&nbsp;0,&nbsp;z)<!-- /@w -->.
+</p>
+<p><var class="var">z</var>, if present, is unchanged by the transformation.
+</p>
+<p>The coordinate transformation is computed using:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted"><var class="var">x</var> = <var class="var">r</var> * cos (<var class="var">theta</var>)
+<var class="var">y</var> = <var class="var">r</var> * sin (<var class="var">theta</var>)
+<var class="var">z</var> = <var class="var">z</var>
+</pre></div></div>
+
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFcart2pol">cart2pol</a>, <a class="ref" href="#XREFsph2cart">sph2cart</a>, <a class="ref" href="#XREFcart2sph">cart2sph</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFcart2sph"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-cart2sph"><span><code class="def-type">[<var class="var">theta</var>, <var class="var">phi</var>, <var class="var">r</var>] =</code> <strong class="def-name">cart2sph</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>)</code><a class="copiable-link" href="#index-cart2sph"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-cart2sph-1"><span><code class="def-type">[<var class="var">theta</var>, <var class="var">phi</var>, <var class="var">r</var>] =</code> <strong class="def-name">cart2sph</strong> <code class="def-code-arguments">(<var class="var">C</var>)</code><a class="copiable-link" href="#index-cart2sph-1"> &para;</a></span></dt>
+<dd><p>Transform Cartesian coordinates to spherical coordinates.
+</p>
+<p>The inputs <var class="var">x</var>, <var class="var">y</var>, and <var class="var">z</var> must be the same shape, or scalar.
+If called with a single matrix argument then each row of <var class="var">C</var> must
+represent a Cartesian coordinate triplet (<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>).
+</p>
+<p>The outputs <var class="var">theta</var>, <var class="var">phi</var>, <var class="var">r</var> match the shape of the inputs.
+For a matrix input <var class="var">C</var> the outputs will be column vectors with rows
+corresponding to the rows of the input matrix.
+</p>
+<p><var class="var">theta</var> describes the azimuth angle relative to the positive x-axis
+measured in the xy-plane.
+</p>
+<p><var class="var">phi</var> is the elevation angle measured relative to the xy-plane.
+</p>
+<p><var class="var">r</var> is the distance to the origin (0,&nbsp;0,&nbsp;0)<!-- /@w -->.
+</p>
+<p>The coordinate transformation is computed using:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted"><var class="var">theta</var> = arctan (<var class="var">y</var> / <var class="var">x</var>)
+<var class="var">phi</var> = arctan (<var class="var">z</var> / sqrt (<var class="var">x</var>^2 + <var class="var">y</var>^2))
+<var class="var">r</var> = sqrt (<var class="var">x</var>^2 + <var class="var">y</var>^2 + <var class="var">z</var>^2)
+</pre></div></div>
+
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFsph2cart">sph2cart</a>, <a class="ref" href="#XREFcart2pol">cart2pol</a>, <a class="ref" href="#XREFpol2cart">pol2cart</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFsph2cart"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-sph2cart"><span><code class="def-type">[<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>] =</code> <strong class="def-name">sph2cart</strong> <code class="def-code-arguments">(<var class="var">theta</var>, <var class="var">phi</var>, <var class="var">r</var>)</code><a class="copiable-link" href="#index-sph2cart"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-sph2cart-1"><span><code class="def-type">[<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>] =</code> <strong class="def-name">sph2cart</strong> <code class="def-code-arguments">(<var class="var">S</var>)</code><a class="copiable-link" href="#index-sph2cart-1"> &para;</a></span></dt>
+<dd><p>Transform spherical coordinates to Cartesian coordinates.
+</p>
+<p>The inputs <var class="var">theta</var>, <var class="var">phi</var>, and <var class="var">r</var> must be the same shape, or
+scalar.  If called with a single matrix argument then each row of <var class="var">S</var>
+must represent a spherical coordinate triplet (<var class="var">theta</var>, <var class="var">phi</var>,
+<var class="var">r</var>).
+</p>
+<p>The outputs <var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var> match the shape of the inputs.  For a
+matrix input <var class="var">S</var> the outputs are column vectors with rows corresponding
+to the rows of the input matrix.
+</p>
+<p><var class="var">theta</var> describes the azimuth angle relative to the positive x-axis
+measured in the xy-plane.
+</p>
+<p><var class="var">phi</var> is the elevation angle measured relative to the xy-plane.
+</p>
+<p><var class="var">r</var> is the distance to the origin (0,&nbsp;0,&nbsp;0)<!-- /@w -->.
+</p>
+<p>The coordinate transformation is computed using:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted"><var class="var">x</var> = r * cos (<var class="var">phi</var>) * cos (<var class="var">theta</var>)
+<var class="var">y</var> = r * cos (<var class="var">phi</var>) * sin (<var class="var">theta</var>)
+<var class="var">z</var> = r * sin (<var class="var">phi</var>)
+</pre></div></div>
+
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFcart2sph">cart2sph</a>, <a class="ref" href="#XREFpol2cart">pol2cart</a>, <a class="ref" href="#XREFcart2pol">cart2pol</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Mathematical-Constants.html">Mathematical Constants</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Rational-Approximations.html">Rational Approximations</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Arithmetic.html">Arithmetic</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

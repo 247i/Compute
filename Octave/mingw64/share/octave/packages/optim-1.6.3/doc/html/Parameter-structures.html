@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- Additional documentation for the optim package for Octave.
+
+Copyright © Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<title>Parameter structures (optim_doc)</title>
+
+<meta name="description" content="Parameter structures (optim_doc)">
+<meta name="keywords" content="Parameter structures (optim_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="index.html" rel="up" title="Top">
+<link href="Additional-parameters.html" rel="next" title="Additional parameters">
+<link href="Common-optimization-options.html" rel="prev" title="Common optimization options">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="chapter-level-extent" id="Parameter-structures">
+<div class="nav-panel">
+<p>
+Next: <a href="Additional-parameters.html" accesskey="n" rel="next">Passing additional parameters to user functions</a>, Previous: <a href="Common-optimization-options.html" accesskey="p" rel="prev">Options common to all optimization frontends</a>, Up: <a href="index.html" accesskey="u" rel="up">Additional documentation for the optim package for Octave</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h2 class="chapter" id="Handling-of-structures-of-optimized-parameters"><span>10 Handling of structures of optimized parameters<a class="copiable-link" href="#Handling-of-structures-of-optimized-parameters"> &para;</a></span></h2>
+<a class="index-entry-id" id="index-parameter-structures"></a>
+
+<p>It can be convenient not to handle the optimized parameters as elements
+of a vector, but as named fields of a structure.  The frontends
+<code class="code">nonlin_residmin</code>, <code class="code">nonlin_curvefit</code>, <code class="code">residmin_stat</code>,
+<code class="code">curvefit_stat</code>, and <code class="code">nonlin_min</code> can accept parameter
+information in structure form, and can pass the parameters as a
+structure to user functions, although the backends still handle the
+parameters as vectors.
+</p>
+<p>To use this feature, the initial parameters must be given in structure
+form, or the setting <code class="code">param_order</code> must be given, a cell-array with
+names of the parameters.  If both is done, only the parameters in
+structure fields named in <code class="code">param_order</code> will be optimized.  If
+there are still some non-structure-based configuration settings or user
+functions, specifying <code class="code">param_order</code> is mandatory even if the
+initial parameters are given in structure form.
+</p>
+<p>If the initial parameters are a structure, the parameters being the
+optimization result will also be returned as a structure.
+</p>
+
+
+<ul class="mini-toc">
+<li><a href="Structure_002dbased-user-functions.html" accesskey="1">Specify which user functions accept parameter structures</a></li>
+<li><a href="Structure_002dbased-gradients-and-Hessians.html" accesskey="2">Format of returned values of structure-based gradient and Hessian functions</a></li>
+<li><a href="Structure_002dbased-linear-constraints.html" accesskey="3">Specify structure-based linear constraints</a></li>
+<li><a href="Structure_002dbased-configuration-settings.html" accesskey="4">Parameter-related configuration settings in structure form</a></li>
+<li><a href="Non_002dscalar-parameters.html" accesskey="5">Handling named parameter arrays</a></li>
+</ul>
+</div>
+
+
+
+</body>
+</html>

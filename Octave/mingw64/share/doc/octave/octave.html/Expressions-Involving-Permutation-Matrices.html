@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Expressions Involving Permutation Matrices (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Expressions Involving Permutation Matrices (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Expressions Involving Permutation Matrices (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Matrix-Algebra.html" rel="up" title="Matrix Algebra">
+<link href="Expressions-Involving-Diagonal-Matrices.html" rel="prev" title="Expressions Involving Diagonal Matrices">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Expressions-Involving-Permutation-Matrices">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Expressions-Involving-Diagonal-Matrices.html" accesskey="p" rel="prev">Expressions Involving Diagonal Matrices</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Matrix-Algebra.html" accesskey="u" rel="up">Linear Algebra with Diagonal/Permutation Matrices</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Expressions-Involving-Permutation-Matrices-1"><span>21.2.2 Expressions Involving Permutation Matrices<a class="copiable-link" href="#Expressions-Involving-Permutation-Matrices-1"> &para;</a></span></h4>
+
+<p>If <var class="var">P</var> is a permutation matrix and <var class="var">M</var> a matrix, the expression
+<code class="code">P*M</code> will permute the rows of <var class="var">M</var>.  Similarly, <code class="code">M*P</code> will
+yield a column permutation.
+Matrix division <code class="code">P\M</code> and <code class="code">M/P</code> can be used to do inverse
+permutation.
+</p>
+<p>The previously described syntax for creating permutation matrices can actually
+help an user to understand the connection between a permutation matrix and
+a permuting vector.  Namely, the following holds, where <code class="code">I = eye (n)</code>
+is an identity matrix:
+</p>
+<div class="example">
+<pre class="example-preformatted">  I(p,:) * M = (I*M) (p,:) = M(p,:)
+</pre></div>
+
+<p>Similarly,
+</p>
+<div class="example">
+<pre class="example-preformatted">  M * I(:,p) = (M*I) (:,p) = M(:,p)
+</pre></div>
+
+<p>The expressions <code class="code">I(p,:)</code> and <code class="code">I(:,p)</code> are permutation matrices.
+</p>
+<p>A permutation matrix can be transposed (or conjugate-transposed, which is the
+same, because a permutation matrix is never complex), inverting the
+permutation, or equivalently, turning a row-permutation matrix into a
+column-permutation one.  For permutation matrices, transpose is equivalent to
+inversion, thus <code class="code">P\M</code> is equivalent to <code class="code">P'*M</code>.  Transpose of a
+permutation matrix (or inverse) is a constant-time operation, flipping only a
+flag internally, and thus the choice between the two above equivalent
+expressions for inverse permuting is completely up to the user&rsquo;s taste.
+</p>
+<p>Multiplication and division by permutation matrices works efficiently also when
+combined with sparse matrices, i.e., <code class="code">P*S</code>, where <var class="var">P</var> is a permutation
+matrix and <var class="var">S</var> is a sparse matrix permutes the rows of the sparse matrix
+and returns a sparse matrix.  The expressions <code class="code">S*P</code>, <code class="code">P\S</code>,
+<code class="code">S/P</code> work analogically.
+</p>
+<p>Two permutation matrices can be multiplied or divided (if their sizes match),
+performing a composition of permutations.  Also a permutation matrix can be
+indexed by a permutation vector (or two vectors), giving again a permutation
+matrix.  Any other operations do not generally yield a permutation matrix and
+will thus trigger the implicit conversion.
+</p>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Expressions-Involving-Diagonal-Matrices.html">Expressions Involving Diagonal Matrices</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Matrix-Algebra.html">Linear Algebra with Diagonal/Permutation Matrices</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

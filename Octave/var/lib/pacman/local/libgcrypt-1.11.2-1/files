@@ -1,0 +1,12 @@
+%FILES%
+usr/
+usr/share/
+usr/bin/
+usr/share/info/
+usr/share/info/gcrypt.info.gz
+usr/share/info/gcrypt.info-1.gz
+usr/share/info/gcrypt.info-2.gz
+usr/bin/mpicalc.exe
+usr/bin/msys-gcrypt-20.dll
+usr/bin/hmac256.exe
+usr/bin/dumpsexp.exe

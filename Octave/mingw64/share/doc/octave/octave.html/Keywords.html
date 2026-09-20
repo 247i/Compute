@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Keywords (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Keywords (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Keywords (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Grammar-and-Parser.html" rel="up" title="Grammar and Parser">
+<link href="Parser.html" rel="next" title="Parser">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+ul.mark-bullet {list-style-type: disc}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Keywords">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Parser.html" accesskey="n" rel="next">Parser</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Grammar-and-Parser.html" accesskey="u" rel="up">Grammar and Parser</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Keywords-1"><span>F.1 Keywords<a class="copiable-link" href="#Keywords-1"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-keywords"></a>
+
+<p>The function <code class="code">iskeyword</code> can be used to check whether an identifier is
+reserved by Octave.
+</p>
+<a class="anchor" id="XREFiskeyword"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-iskeyword"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">iskeyword</strong> <code class="def-code-arguments">(<var class="var">name</var>)</code><a class="copiable-link" href="#index-iskeyword"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-iskeyword-1"><span><code class="def-type"><var class="var">keyword_list</var> =</code> <strong class="def-name">iskeyword</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-iskeyword-1"> &para;</a></span></dt>
+<dd><p>Return true if <var class="var">name</var> is an Octave keyword.
+</p>
+<p>If <var class="var">name</var> is omitted, return a list of keywords.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Variables.html#XREFisvarname">isvarname</a>, <a class="ref" href="Status-of-Variables.html#XREFexist">exist</a>.
+</p></dd></dl>
+
+
+<h4 class="subsubheading" id="Keyword-Categories"><span>Keyword Categories<a class="copiable-link" href="#Keyword-Categories"> &para;</a></span></h4>
+
+<p><a class="ref" href="#XREFkwcategoryVariableDeclaration">Variable&nbsp;Declaration<!-- /@w --></a> |
+<a class="ref" href="#XREFkwcategoryFunctionDefinition">Function&nbsp;Definition<!-- /@w --></a> |
+<a class="ref" href="#XREFkwcategoryControlStructures">Control&nbsp;Statements<!-- /@w --></a> |
+<a class="ref" href="#XREFkwcategoryIteratingStructures">Iterating&nbsp;Structures<!-- /@w --></a> |
+<a class="ref" href="#XREFkwcategoryClassdefStructures">Classdef&nbsp;Structures<!-- /@w --></a> |
+<a class="ref" href="#XREFkwcategoryExecutionEnvironment">Execution&nbsp;Environment<!-- /@w --></a>
+</p>
+<h4 class="subsubheading" id="Alphabetical-Keyword-Listing"><span>Alphabetical Keyword Listing<a class="copiable-link" href="#Alphabetical-Keyword-Listing"> &para;</a></span></h4>
+
+<p>The identifiers below are keywords, and may not be used as variable or function
+names.
+</p>
+<p><a class="ref" href="#XREF_005f_005fFILE_005f_005f">__FILE__</a> |
+<a class="ref" href="#XREF_005f_005fLINE_005f_005f">__LINE__</a> |
+<a class="ref" href="#XREFarguments">arguments</a> |
+<a class="ref" href="#XREFbreak">break</a> |
+<a class="ref" href="#XREFcase">case</a> |
+<a class="ref" href="#XREFcatch">catch</a> |
+<a class="ref" href="#XREFclassdef">classdef</a> |
+<a class="ref" href="#XREFcontinue">continue</a> |
+<a class="ref" href="#XREFdo">do</a> |
+<a class="ref" href="#XREFelse">else</a> |
+<a class="ref" href="#XREFelseif">elseif</a> |
+<a class="ref" href="#XREFend">end</a> |
+<a class="ref" href="#XREFend_005ftry_005fcatch">end_try_catch</a> |
+<a class="ref" href="#XREFend_005funwind_005fprotect">end_unwind_protect</a> |
+<a class="ref" href="#XREFendarguments">endarguments</a> |
+<a class="ref" href="#XREFendclassdef">endclassdef</a> |
+<a class="ref" href="#XREFendenumeration">endenumeration</a> |
+<a class="ref" href="#XREFendevents">endevents</a> |
+<a class="ref" href="#XREFendfor">endfor</a> |
+<a class="ref" href="#XREFendfunction">endfunction</a> |
+<a class="ref" href="#XREFendif">endif</a> |
+<a class="ref" href="#XREFendmethods">endmethods</a> |
+<a class="ref" href="#XREFendparfor">endparfor</a> |
+<a class="ref" href="#XREFendproperties">endproperties</a> |
+<a class="ref" href="#XREFendswitch">endswitch</a> |
+<a class="ref" href="#XREFendwhile">endwhile</a> |
+<a class="ref" href="#XREFenumeration">enumeration</a> |
+<a class="ref" href="#XREFevents">events</a> |
+<a class="ref" href="#XREFfor">for</a> |
+<a class="ref" href="#XREFfunction">function</a> |
+<a class="ref" href="#XREFglobal">global</a> |
+<a class="ref" href="#XREFif">if</a> |
+<a class="ref" href="#XREFkwpropertymethods">methods</a> |
+<a class="ref" href="#XREFotherwise">otherwise</a> |
+<a class="ref" href="#XREFparfor">parfor</a> |
+<a class="ref" href="#XREFpersistent">persistent</a> |
+<a class="ref" href="#XREFkwpropertyproperties">properties</a> |
+<a class="ref" href="#XREFreturn">return</a> |
+<a class="ref" href="#XREFswitch">switch</a> |
+<a class="ref" href="#XREFtry">try</a> |
+<a class="ref" href="#XREFuntil">until</a> |
+<a class="ref" href="#XREFunwind_005fprotect">unwind_protect</a> |
+<a class="ref" href="#XREFunwind_005fprotect_005fcleanup">unwind_protect_cleanup</a> |
+<a class="ref" href="#XREFwhile">while</a>
+</p>
+
+<a class="anchor" id="XREFkwcategoryVariableDeclaration"></a><h4 class="subheading" id="Variable-Declaration"><span>Variable Declaration<a class="copiable-link" href="#Variable-Declaration"> &para;</a></span></h4>
+
+<a class="anchor" id="XREFglobal"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-global"><span><strong class="def-name">global</strong> <code class="def-code-arguments"><var class="var">var</var></code><a class="copiable-link" href="#index-global"> &para;</a></span></dt>
+<dd><p>Declare variables to have global scope.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">global <var class="var">x</var>;
+if (isempty (<var class="var">x</var>))
+  x = 1;
+endif
+</pre></div></div>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFpersistent">persistent</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFpersistent"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-persistent"><span><strong class="def-name">persistent</strong> <code class="def-code-arguments"><var class="var">var</var></code><a class="copiable-link" href="#index-persistent"> &para;</a></span></dt>
+<dd><p>Declare variables as persistent.
+</p>
+<p>A variable that has been declared persistent within a function will retain its
+contents in memory between subsequent calls to the same function.  The
+difference between persistent variables and global variables is that persistent
+variables are local in scope to a particular function and are not visible
+elsewhere.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFglobal">global</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFkwcategoryFunctionDefinition"></a><h4 class="subheading" id="Function-Definition"><span>Function Definition<a class="copiable-link" href="#Function-Definition"> &para;</a></span></h4>
+
+<a class="anchor" id="XREFfunction"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-function"><span><strong class="def-name">function</strong> <code class="def-code-arguments">[<var class="var">output1</var>, &hellip;] = function_name (<var class="var">input1</var>, &hellip;)</code><a class="copiable-link" href="#index-function"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-function-1"><span><strong class="def-name">function</strong> <code class="def-code-arguments"> function_name (<var class="var">input1</var>, &hellip;)</code><a class="copiable-link" href="#index-function-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-function-2"><span><strong class="def-name">function</strong> <code class="def-code-arguments"><var class="var">output</var> = function_name</code><a class="copiable-link" href="#index-function-2"> &para;</a></span></dt>
+<dd><p>Begin a function body with name <code class="code">function_name</code>, with <var class="var">outputs</var> as
+results, and with <var class="var">inputs</var> as parameters.
+</p>
+<p>The function can later be invoked in Octave using the syntax
+</p>
+<div class="example">
+<pre class="example-preformatted">[<var class="var">output1</var>, <var class="var">output2</var>, ...] = function_name (<var class="var">input1</var>, <var class="var">input2</var>, ...)
+</pre></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFreturn">return</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFendfunction"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-endfunction"><span><strong class="def-name">endfunction</strong><a class="copiable-link" href="#index-endfunction"> &para;</a></span></dt>
+<dd><p>Terminate a function definition.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFfunction">function</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFend"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-end"><span><strong class="def-name">end</strong><a class="copiable-link" href="#index-end"> &para;</a></span></dt>
+<dd><p>The termination of a code block <em class="emph">or</em> the last element of an array.
+</p>
+<p>The keyword <code class="code">end</code> is used to terminate blocks of code begun with
+<code class="code">for</code>, <code class="code">parfor</code>, <code class="code">if</code>, <code class="code">do</code>, <code class="code">while</code>, <code class="code">function</code>,
+<code class="code">switch</code>, <code class="code">try</code>, or <code class="code">unwind_protect</code>.
+</p>
+<p>When using classdef (object-oriented) programming, the keyword terminates blocks
+of code begun with <code class="code">classdef</code>, <code class="code">properties</code>, <code class="code">methods</code>,
+<code class="code">events</code>, or <code class="code">enumeration</code>.
+</p>
+<p>As an index of an array, the magic index <code class="code">&quot;end&quot;</code> refers to the last valid
+entry in an indexing operation.
+</p>
+<p>Examples:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted"><var class="var">x</var> = [ 1 2 3; 4 5 6 ];
+<var class="var">x</var>(1,end)
+ &rArr;  3
+<var class="var">x</var>(end,1)
+ &rArr;  4
+<var class="var">x</var>(end,end)
+ &rArr;  6
+</pre></div></div>
+
+<p>Programming Notes:
+</p><ol class="enumerate">
+<li> The <code class="code">end</code> keyword cannot be used within <code class="code">subsref</code>, <code class="code">subsasgn</code>, or
+<code class="code">substruct</code> for manual indexing operations.
+
+</li><li> For custom classes, enabling use of <code class="code">end</code> in indexing expressions requires
+writing an overloaded function such as:
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">function last_index = end (obj, end_dim, ndim_obj)
+  if (end_dim == ndim_obj)
+    last_index = prod (size (obj)(end_dim:ndim_obj));
+  else
+    last_index = size (obj, end_dim);
+  endif
+endfunction
+</pre></div></div>
+
+<p>For more information, see <a class="pxref" href="Object-Oriented-Programming.html">Object Oriented Programming</a>.
+</p></li></ol>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFfor">for</a>, <a class="ref" href="#XREFparfor">parfor</a>, <a class="ref" href="#XREFif">if</a>, <a class="ref" href="#XREFdo">do</a>, <a class="ref" href="#XREFwhile">while</a>, <a class="ref" href="#XREFfunction">function</a>, <a class="ref" href="#XREFswitch">switch</a>, <a class="ref" href="#XREFtry">try</a>, <a class="ref" href="#XREFunwind_005fprotect">unwind_protect</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFreturn"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-return-1"><span><strong class="def-name">return</strong><a class="copiable-link" href="#index-return-1"> &para;</a></span></dt>
+<dd><p>Return execution control immediately from a function or script to the calling
+code.
+</p>
+<p><code class="code">return</code> is used to stop executing code and exit an m-file immediately
+rather than continuing until the end of the function or script is reached.
+</p>
+<p>If the function or script was invoked directly, rather than from calling code
+in an m-file, then Octave returns to the command line.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFfunction">function</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFarguments"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-arguments"><span><strong class="def-name">arguments</strong><a class="copiable-link" href="#index-arguments"> &para;</a></span></dt>
+<dd><p>Begin a function arguments block.
+</p>
+<p><strong class="strong">Warning:</strong> Function arguments validation blocks are not yet implemented
+in Octave.  Use of the keyword <code class="code">arguments</code> will cause the parser to emit a
+warning, and may throw an error depending on the contents of the code in the
+block.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFendarguments"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-endarguments"><span><strong class="def-name">endarguments</strong><a class="copiable-link" href="#index-endarguments"> &para;</a></span></dt>
+<dd><p>Terminate a function arguments block.
+</p>
+<p><strong class="strong">Warning:</strong> Function arguments validation blocks are not yet implemented
+in Octave.  Use of the keyword <code class="code">arguments</code> will cause the parser to emit a
+warning, and may throw an error depending on the contents of the code in the
+block.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFarguments">arguments</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFkwcategoryControlStructures"></a><h4 class="subheading" id="Control-Statements"><span>Control Statements<a class="copiable-link" href="#Control-Statements"> &para;</a></span></h4>
+
+<a class="anchor" id="XREFif"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-if"><span><strong class="def-name">if</strong> <code class="def-code-arguments">(<var class="var">cond</var>) &hellip; endif</code><a class="copiable-link" href="#index-if"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-if-1"><span><strong class="def-name">if</strong> <code class="def-code-arguments">(<var class="var">cond</var>) &hellip; else &hellip; endif</code><a class="copiable-link" href="#index-if-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-if-2"><span><strong class="def-name">if</strong> <code class="def-code-arguments">(<var class="var">cond</var>) &hellip; elseif (<var class="var">cond</var>) &hellip; endif</code><a class="copiable-link" href="#index-if-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-if-3"><span><strong class="def-name">if</strong> <code class="def-code-arguments">(<var class="var">cond</var>) &hellip; elseif (<var class="var">cond</var>) &hellip; else &hellip; endif</code><a class="copiable-link" href="#index-if-3"> &para;</a></span></dt>
+<dd><p>Begin an if block.
+</p>
+<p>The conditional <var class="var">cond</var> is true if it is not empty and if <em class="emph">all</em> values
+are nonzero.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">x = 1;
+if (x == 1)
+  disp (&quot;one&quot;);
+elseif (x == 2)
+  disp (&quot;two&quot;);
+else
+  disp (&quot;not one or two&quot;);
+endif
+</pre></div></div>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFswitch">switch</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFelse"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-else"><span><strong class="def-name">else</strong><a class="copiable-link" href="#index-else"> &para;</a></span></dt>
+<dd><p>Alternate action for an if block.
+</p>
+<p>See <code class="code">if</code> for an example.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFif">if</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFelseif"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-elseif"><span><strong class="def-name">elseif</strong> <code class="def-code-arguments">(<var class="var">cond</var>)</code><a class="copiable-link" href="#index-elseif"> &para;</a></span></dt>
+<dd><p>Alternate conditional test for an if block.
+</p>
+<p>The conditional <var class="var">cond</var> is true if it is not empty and if <em class="emph">all</em> values
+are nonzero.
+</p>
+<p>See <code class="code">if</code> for an example.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFif">if</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFendif"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-endif"><span><strong class="def-name">endif</strong><a class="copiable-link" href="#index-endif"> &para;</a></span></dt>
+<dd><p>Terminate an if block.
+</p>
+<p>See <code class="code">if</code> for an example.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFif">if</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFswitch"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-switch"><span><strong class="def-name">switch</strong> <code class="def-code-arguments"><var class="var">statement</var></code><a class="copiable-link" href="#index-switch"> &para;</a></span></dt>
+<dd><p>Begin a switch block.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">yesno = &quot;yes&quot;;
+
+switch (yesno)
+  case {&quot;Yes&quot; &quot;yes&quot; &quot;YES&quot; &quot;y&quot; &quot;Y&quot;}
+    value = 1;
+  case {&quot;No&quot; &quot;no&quot; &quot;NO&quot; &quot;n&quot; &quot;N&quot;}
+    value = 0;
+  otherwise
+    error (&quot;invalid value&quot;);
+endswitch
+</pre></div></div>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFif">if</a>, <a class="ref" href="#XREFcase">case</a>, <a class="ref" href="#XREFotherwise">otherwise</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFcase"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-case"><span><strong class="def-name">case</strong> <code class="def-code-arguments"><var class="var">value</var></code><a class="copiable-link" href="#index-case"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-case-1"><span><strong class="def-name">case</strong> <code class="def-code-arguments">{<var class="var">value1</var>, &hellip;}</code><a class="copiable-link" href="#index-case-1"> &para;</a></span></dt>
+<dd><p>A case statement in a switch block.
+</p>
+<p>The code associated with a <code class="code">case</code> statement is executed if one of the
+tests below succeeds given a <code class="code">switch</code> argument <var class="var">statement</var> and a
+<var class="var">value</var> of type:
+</p>
+<ul class="itemize mark-bullet">
+<li>number : <code class="code"><var class="var">statement</var> == <var class="var">value</var></code>
+
+</li><li>character array or string : <code class="code">strcmp (<var class="var">statement</var>, <var class="var">value</var>)</code>
+
+</li><li>object : <code class="code">eq (<var class="var">statement</var>, <var class="var">value</var>)</code><br>
+(programmer must write overloaded <code class="code">eq</code> function which performs &lsquo;<samp class="samp">==</samp>&rsquo;) 
+
+</li><li>cell array : One of the <var class="var">values</var> in the cell array must match
+<var class="var">statement</var> using the criteria above.
+
+</li></ul>
+
+<p>Programming Notes: Octave cases are exclusive and do not fall-through as do
+C-language<!-- /@w --> cases.  A <code class="code">switch</code> statement must have at least one
+<code class="code">case</code>.
+</p>
+<p>See <code class="code">switch</code> for an example.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFswitch">switch</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFotherwise"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-otherwise"><span><strong class="def-name">otherwise</strong><a class="copiable-link" href="#index-otherwise"> &para;</a></span></dt>
+<dd><p>The default statement in a <code class="code">switch</code> block which is executed when no other
+<code class="code">case</code> statements match the input.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFswitch">switch</a>, <a class="ref" href="#XREFcase">case</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFendswitch"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-endswitch"><span><strong class="def-name">endswitch</strong><a class="copiable-link" href="#index-endswitch"> &para;</a></span></dt>
+<dd><p>Terminate a switch block.
+</p>
+<p>See <code class="code">switch</code> for an example.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFswitch">switch</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFtry"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-try"><span><strong class="def-name">try</strong><a class="copiable-link" href="#index-try"> &para;</a></span></dt>
+<dd><p>Begin a try-catch block.
+</p>
+<p>If an error occurs within a <code class="code">try</code> block, then the code in the <code class="code">catch</code>
+block will be run.  Execution will proceed after the <code class="code">catch</code> block (though
+it is often recommended to use the <code class="code">lasterr</code> function to re-throw the
+error after cleanup is completed).
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFcatch">catch</a>, <a class="ref" href="#XREFunwind_005fprotect">unwind_protect</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFcatch"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-catch-1"><span><strong class="def-name">catch</strong><a class="copiable-link" href="#index-catch-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-catch-2"><span><strong class="def-name">catch</strong> <code class="def-code-arguments"><var class="var">exception_var</var></code><a class="copiable-link" href="#index-catch-2"> &para;</a></span></dt>
+<dd><p>Begin the cleanup part of a try-catch block.
+</p>
+<p>If <var class="var">exception_var</var> is specified then a variable of that name will defined
+in the scope of the <code class="code">catch</code> block.  The variable is a scalar struct with
+fields <code class="code">identifier</code>, <code class="code">message</code>, and <code class="code">stack</code> which describes
+the error that was caught.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFtry">try</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFend_005ftry_005fcatch"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-end_005ftry_005fcatch-1"><span><strong class="def-name">end_try_catch</strong><a class="copiable-link" href="#index-end_005ftry_005fcatch-1"> &para;</a></span></dt>
+<dd><p>Terminate a try-catch block.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFtry">try</a>, <a class="ref" href="#XREFcatch">catch</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFunwind_005fprotect"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-unwind_005fprotect"><span><strong class="def-name">unwind_protect</strong><a class="copiable-link" href="#index-unwind_005fprotect"> &para;</a></span></dt>
+<dd><p>Begin an unwind_protect block.
+</p>
+<p>If an error occurs within the first part of an <code class="code">unwind_protect</code> block the
+commands within the <code class="code">unwind_protect_cleanup</code> block are executed before the
+error is thrown.  If an error is not thrown, then the
+<code class="code">unwind_protect_cleanup</code> block is still executed.  In other words, the
+<code class="code">unwind_protect_cleanup</code> code is guaranteed to execute regardless of
+success or failure in the <code class="code">unwind_protect</code> block.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFunwind_005fprotect_005fcleanup">unwind_protect_cleanup</a>, <a class="ref" href="#XREFtry">try</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFunwind_005fprotect_005fcleanup"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-unwind_005fprotect_005fcleanup-1"><span><strong class="def-name">unwind_protect_cleanup</strong><a class="copiable-link" href="#index-unwind_005fprotect_005fcleanup-1"> &para;</a></span></dt>
+<dd><p>Begin the cleanup section of an <code class="code">unwind_protect</code> block.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFunwind_005fprotect">unwind_protect</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFend_005funwind_005fprotect"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-end_005funwind_005fprotect-1"><span><strong class="def-name">end_unwind_protect</strong><a class="copiable-link" href="#index-end_005funwind_005fprotect-1"> &para;</a></span></dt>
+<dd><p>Terminate an unwind_protect block.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFunwind_005fprotect">unwind_protect</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFkwcategoryIteratingStructures"></a><h4 class="subheading" id="Iterating-Structures"><span>Iterating Structures<a class="copiable-link" href="#Iterating-Structures"> &para;</a></span></h4>
+
+<a class="anchor" id="XREFfor"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-for"><span><strong class="def-name">for</strong> <code class="def-code-arguments"><var class="var">i</var> = <var class="var">range</var></code><a class="copiable-link" href="#index-for"> &para;</a></span></dt>
+<dd><p>Begin a for loop.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">for i = 1:10
+  i
+endfor
+</pre></div></div>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFparfor">parfor</a>, <a class="ref" href="#XREFdo">do</a>, <a class="ref" href="#XREFwhile">while</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFendfor"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-endfor"><span><strong class="def-name">endfor</strong><a class="copiable-link" href="#index-endfor"> &para;</a></span></dt>
+<dd><p>Terminate a for loop.
+</p>
+<p>See <code class="code">for</code> for an example.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFfor">for</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFwhile"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-while"><span><strong class="def-name">while</strong> <code class="def-code-arguments">(<var class="var">cond</var>)</code><a class="copiable-link" href="#index-while"> &para;</a></span></dt>
+<dd><p>Begin a while loop.
+</p>
+<p>The conditional <var class="var">cond</var> is true if it is not empty and if <em class="emph">all</em> values
+are nonzero.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">i = 0;
+while (i &lt; 10)
+  i++
+endwhile
+</pre></div></div>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFdo">do</a>, <a class="ref" href="#XREFendwhile">endwhile</a>, <a class="ref" href="#XREFfor">for</a>, <a class="ref" href="#XREFuntil">until</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFendwhile"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-endwhile"><span><strong class="def-name">endwhile</strong><a class="copiable-link" href="#index-endwhile"> &para;</a></span></dt>
+<dd><p>Terminate a while loop.
+</p>
+<p>See <code class="code">while</code> for an example.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFdo">do</a>, <a class="ref" href="#XREFwhile">while</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFdo"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-do"><span><strong class="def-name">do</strong><a class="copiable-link" href="#index-do"> &para;</a></span></dt>
+<dd><p>Begin a do-until loop.
+</p>
+<p>This differs from a <code class="code">while</code> loop in that the body of the loop is executed
+at least once.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">i = 0;
+do
+  i++
+until (i == 10)
+</pre></div></div>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFfor">for</a>, <a class="ref" href="#XREFuntil">until</a>, <a class="ref" href="#XREFwhile">while</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFuntil"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-until"><span><strong class="def-name">until</strong> <code class="def-code-arguments">(<var class="var">cond</var>)</code><a class="copiable-link" href="#index-until"> &para;</a></span></dt>
+<dd><p>End a do-until loop.
+</p>
+<p>The conditional <var class="var">cond</var> is true if it is not empty and if <em class="emph">all</em> values
+are nonzero.
+</p>
+<p>See <code class="code">do</code> for an example.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFdo">do</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFparfor"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-parfor"><span><strong class="def-name">parfor</strong> <code class="def-code-arguments"><var class="var">i</var> = <var class="var">range</var></code><a class="copiable-link" href="#index-parfor"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-parfor-1"><span><strong class="def-name">parfor</strong> <code class="def-code-arguments">(<var class="var">i</var> = <var class="var">range</var>, <var class="var">maxproc</var>)</code><a class="copiable-link" href="#index-parfor-1"> &para;</a></span></dt>
+<dd><p>Begin a for loop that may execute in parallel.
+</p>
+<p>A <code class="code">parfor</code> loop has the same syntax as a <code class="code">for</code> loop.  If your Octave
+session has a parallel processing pool enabled, the iterations of the
+<code class="code">parfor</code> loop will be executed in parallel across the pool&rsquo;s workers.
+Otherwise, <code class="code">parfor</code> will behave exactly as <code class="code">for</code>.
+</p>
+<p>When operating in parallel mode, a <code class="code">parfor</code> loop&rsquo;s iterations are not
+guaranteed to occur sequentially, and there are additional restrictions about
+the data access operations you can do inside the loop body.
+</p>
+<p><strong class="strong">Warning:</strong> parallel processing pools are currently unimplemented in
+Octave; <code class="code">parfor</code> currently behaves exactly as a normal <code class="code">for</code> loop.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">parfor i = 1:10
+  i
+endparfor
+</pre></div></div>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFfor">for</a>, <a class="ref" href="#XREFdo">do</a>, <a class="ref" href="#XREFwhile">while</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFendparfor"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-endparfor"><span><strong class="def-name">endparfor</strong><a class="copiable-link" href="#index-endparfor"> &para;</a></span></dt>
+<dd><p>Terminate a parfor loop.
+</p>
+<p>See <code class="code">parfor</code> for an example.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFparfor">parfor</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFbreak"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-break"><span><strong class="def-name">break</strong><a class="copiable-link" href="#index-break"> &para;</a></span></dt>
+<dd><p>Exit the innermost enclosing <code class="code">do</code>, <code class="code">while</code>, or <code class="code">for</code> loop.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFcontinue">continue</a>, <a class="ref" href="#XREFdo">do</a>, <a class="ref" href="#XREFwhile">while</a>, <a class="ref" href="#XREFfor">for</a>, <a class="ref" href="#XREFparfor">parfor</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFcontinue"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-continue"><span><strong class="def-name">continue</strong><a class="copiable-link" href="#index-continue"> &para;</a></span></dt>
+<dd><p>Jump to the end of the innermost enclosing <code class="code">do</code>, <code class="code">while</code>, or
+<code class="code">for</code> loop.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFbreak">break</a>, <a class="ref" href="#XREFdo">do</a>, <a class="ref" href="#XREFwhile">while</a>, <a class="ref" href="#XREFfor">for</a>, <a class="ref" href="#XREFparfor">parfor</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFkwcategoryClassdefStructures"></a><h4 class="subheading" id="Classdef-Structures"><span>Classdef Structures<a class="copiable-link" href="#Classdef-Structures"> &para;</a></span></h4>
+
+<a class="anchor" id="XREFclassdef"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-classdef"><span><strong class="def-name">classdef</strong><a class="copiable-link" href="#index-classdef"> &para;</a></span></dt>
+<dd><p>Begin a classdef block.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFkwpropertyproperties">properties</a>, <a class="ref" href="#XREFkwpropertymethods">methods</a>, <a class="ref" href="#XREFevents">events</a>, <a class="ref" href="#XREFenumeration">enumeration</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFendclassdef"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-endclassdef"><span><strong class="def-name">endclassdef</strong><a class="copiable-link" href="#index-endclassdef"> &para;</a></span></dt>
+<dd><p>Terminate a classdef definition.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFclassdef">classdef</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFkwpropertyproperties"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-properties-3"><span><strong class="def-name">properties</strong><a class="copiable-link" href="#index-properties-3"> &para;</a></span></dt>
+<dd><p>Mark the beginning of a block of properties in a classdef definition.
+</p>
+<p>Note that the <a class="ref" href="Properties.html#XREFproperties">function <code class="code">&quot;properties&quot;</code></a> is not a
+keyword, but rather an ordinary function that lists the properties of a classdef
+class or object.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFendproperties">endproperties</a>.
+</p></dd></dl>
+
+<a class="anchor" id="XREFendproperties"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-endproperties"><span><strong class="def-name">endproperties</strong><a class="copiable-link" href="#index-endproperties"> &para;</a></span></dt>
+<dd><p>Terminate a properties block in a classdef definition.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFkwpropertyproperties">properties</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFkwpropertymethods"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-methods-4"><span><strong class="def-name">methods</strong><a class="copiable-link" href="#index-methods-4"> &para;</a></span></dt>
+<dd><p>Mark the beginning of a block of methods in a classdef definition.
+</p>
+<p>Note that the <a class="ref" href="Creating-a-Class.html#XREFmethods">function <code class="code">&quot;methods&quot;</code></a> is not a keyword,
+but rather an ordinary function that lists the methods of a class or object.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFendmethods">endmethods</a>.
+</p></dd></dl>
+
+<a class="anchor" id="XREFendmethods"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-endmethods"><span><strong class="def-name">endmethods</strong><a class="copiable-link" href="#index-endmethods"> &para;</a></span></dt>
+<dd><p>Terminate a methods block in a classdef definition.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFkwpropertymethods">methods</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFevents"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-events"><span><strong class="def-name">events</strong><a class="copiable-link" href="#index-events"> &para;</a></span></dt>
+<dd><p>Begin an events block in a classdef definition.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFendevents"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-endevents"><span><strong class="def-name">endevents</strong><a class="copiable-link" href="#index-endevents"> &para;</a></span></dt>
+<dd><p>Terminate an events block in a classdef definition.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFevents">events</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFenumeration"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-enumeration"><span><strong class="def-name">enumeration</strong><a class="copiable-link" href="#index-enumeration"> &para;</a></span></dt>
+<dd><p>Begin an enumeration block in a classdef definition.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFendenumeration"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-endenumeration"><span><strong class="def-name">endenumeration</strong><a class="copiable-link" href="#index-endenumeration"> &para;</a></span></dt>
+<dd><p>Terminate an enumeration block in a classdef definition.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFenumeration">enumeration</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFkwcategoryExecutionEnvironment"></a><h4 class="subheading" id="Execution-Environment"><span>Execution Environment<a class="copiable-link" href="#Execution-Environment"> &para;</a></span></h4>
+
+<a class="anchor" id="XREF_005f_005fFILE_005f_005f"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_005f_005fFILE_005f_005f"><span><strong class="def-name">__FILE__</strong><a class="copiable-link" href="#index-_005f_005fFILE_005f_005f"> &para;</a></span></dt>
+<dd><p>When the lexer recognizes the <code class="code">&quot;__FILE__&quot;</code> keyword it returns a character
+array containing the full name and path of the file that is being executed.
+<code class="code">&quot;__FILE__&quot;</code> will return <code class="code">&quot;stdin&quot;</code> if called from the command line.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREF_005f_005fLINE_005f_005f">__LINE__</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREF_005f_005fLINE_005f_005f"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_005f_005fLINE_005f_005f"><span><strong class="def-name">__LINE__</strong><a class="copiable-link" href="#index-_005f_005fLINE_005f_005f"> &para;</a></span></dt>
+<dd><p>When the lexer recognizes the <code class="code">&quot;__LINE__&quot;</code> keyword it returns a numeric
+value containing the current input line number of the function or file being
+executed.  <code class="code">&quot;__LINE__&quot;</code> will return <code class="code">1</code> if called from the command
+line.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREF_005f_005fFILE_005f_005f">__FILE__</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Parser.html">Parser</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Grammar-and-Parser.html">Grammar and Parser</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

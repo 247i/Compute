@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Basic Usage (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Basic Usage (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Basic Usage (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Diagonal-and-Permutation-Matrices.html" rel="up" title="Diagonal and Permutation Matrices">
+<link href="Matrix-Algebra.html" rel="next" title="Matrix Algebra">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Basic-Usage">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Matrix-Algebra.html" accesskey="n" rel="next">Linear Algebra with Diagonal/Permutation Matrices</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Diagonal-and-Permutation-Matrices.html" accesskey="u" rel="up">Diagonal and Permutation Matrices</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Creating-and-Manipulating-Diagonal_002fPermutation-Matrices"><span>21.1 Creating and Manipulating Diagonal/Permutation Matrices<a class="copiable-link" href="#Creating-and-Manipulating-Diagonal_002fPermutation-Matrices"> &para;</a></span></h3>
+
+<p>A diagonal matrix is defined as a matrix that has zero entries outside the main
+diagonal; that is,
+<code class="code">D(i,j) == 0</code> if <code class="code">i != j</code>.
+Most often, square diagonal matrices are considered; however, the definition
+can equally be applied to non-square matrices, in which case we usually speak
+of a rectangular diagonal matrix.
+</p>
+<p>A permutation matrix is defined as a square matrix that has a single element
+equal to unity in each row and each column; all other elements are zero.  That
+is, there exists a permutation (vector)
+<code class="code">p</code> such that <code class="code">P(i,j) == 1</code> if <code class="code">j == p(i)</code> and
+<code class="code">P(i,j) == 0</code> otherwise.
+</p>
+<p>Octave provides special treatment of real and complex rectangular diagonal
+matrices, as well as permutation matrices.  They are stored as special objects,
+using efficient storage and algorithms, facilitating writing both readable and
+efficient matrix algebra expressions in the Octave language.  The special
+treatment may be disabled by using the functions <em class="dfn">optimize_diagonal_matrix</em>
+and <em class="dfn">optimize_permutation_matrix</em>.
+</p>
+<a class="anchor" id="XREFoptimize_005fdiagonal_005fmatrix"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-optimize_005fdiagonal_005fmatrix"><span><code class="def-type"><var class="var">val</var> =</code> <strong class="def-name">optimize_diagonal_matrix</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-optimize_005fdiagonal_005fmatrix"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-optimize_005fdiagonal_005fmatrix-1"><span><code class="def-type"><var class="var">old_val</var> =</code> <strong class="def-name">optimize_diagonal_matrix</strong> <code class="def-code-arguments">(<var class="var">new_val</var>)</code><a class="copiable-link" href="#index-optimize_005fdiagonal_005fmatrix-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-optimize_005fdiagonal_005fmatrix-2"><span><code class="def-type"><var class="var">old_val</var> =</code> <strong class="def-name">optimize_diagonal_matrix</strong> <code class="def-code-arguments">(<var class="var">new_val</var>, &quot;local&quot;)</code><a class="copiable-link" href="#index-optimize_005fdiagonal_005fmatrix-2"> &para;</a></span></dt>
+<dd><p>Query or set whether a special space-efficient format is used for storing
+diagonal matrices.
+</p>
+<p>The default value is true.  If this option is set to false, Octave will store
+diagonal matrices as full matrices.
+</p>
+<p>When called from inside a function with the <code class="code">&quot;local&quot;</code> option, the setting
+is changed locally for the function and any subroutines it calls.  The original
+setting is restored when exiting the function.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Ranges.html#XREFoptimize_005frange">optimize_range</a>, <a class="ref" href="#XREFoptimize_005fpermutation_005fmatrix">optimize_permutation_matrix</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFoptimize_005fpermutation_005fmatrix"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-optimize_005fpermutation_005fmatrix"><span><code class="def-type"><var class="var">val</var> =</code> <strong class="def-name">optimize_permutation_matrix</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-optimize_005fpermutation_005fmatrix"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-optimize_005fpermutation_005fmatrix-1"><span><code class="def-type"><var class="var">old_val</var> =</code> <strong class="def-name">optimize_permutation_matrix</strong> <code class="def-code-arguments">(<var class="var">new_val</var>)</code><a class="copiable-link" href="#index-optimize_005fpermutation_005fmatrix-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-optimize_005fpermutation_005fmatrix-2"><span><code class="def-type"><var class="var">old_val</var> =</code> <strong class="def-name">optimize_permutation_matrix</strong> <code class="def-code-arguments">(<var class="var">new_val</var>, &quot;local&quot;)</code><a class="copiable-link" href="#index-optimize_005fpermutation_005fmatrix-2"> &para;</a></span></dt>
+<dd><p>Query or set whether a special space-efficient format is used for storing
+permutation matrices.
+</p>
+<p>The default value is true.  If this option is set to false, Octave will store
+permutation matrices as full matrices.
+</p>
+<p>When called from inside a function with the <code class="code">&quot;local&quot;</code> option, the setting
+is changed locally for the function and any subroutines it calls.  The original
+setting is restored when exiting the function.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Ranges.html#XREFoptimize_005frange">optimize_range</a>, <a class="ref" href="#XREFoptimize_005fdiagonal_005fmatrix">optimize_diagonal_matrix</a>.
+</p></dd></dl>
+
+
+<p>The space savings are significant as demonstrated by the following code.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">x = diag (rand (10, 1));
+xf = full (x);
+sizeof (x)
+&rArr;  80
+sizeof (xf)
+&rArr;  800
+</pre></div></div>
+
+
+<ul class="mini-toc">
+<li><a href="Creating-Diagonal-Matrices.html" accesskey="1">Creating Diagonal Matrices</a></li>
+<li><a href="Creating-Permutation-Matrices.html" accesskey="2">Creating Permutation Matrices</a></li>
+<li><a href="Explicit-and-Implicit-Conversions.html" accesskey="3">Explicit and Implicit Conversions</a></li>
+</ul>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Matrix-Algebra.html">Linear Algebra with Diagonal/Permutation Matrices</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Diagonal-and-Permutation-Matrices.html">Diagonal and Permutation Matrices</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

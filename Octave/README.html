@@ -1,0 +1,123 @@
+<html>
+<head>
+<title>GNU Octave</title>
+</head>
+<body>
+<h1>Welcome</h1>
+<p>Thank you for installing GNU Octave!</p>
+<p>Octave 11.3.0 is a minor release which mainly fixes an incorrect soversion
+of <code>liboctinterp</code> in Octave 11.2.0 which made it incompatible with
+Octave 11.1.0 when it comes to previously built <code>.oct</code> files.
+Octave 11.3.0 is API compatible with Octave 11.1.0 (but incompatible to
+Octave 11.2.0 when it comes to previously built <code>.oct</code> files).
+Otherwise, Octave 11.3.0 and Octave 11.2.0 are almost identical.  If you have
+not yet updated to Octave 11.2.0, directly update from Octave 11.1.0 to
+Octave 11.3.0 (skipping Octave 11.2.0).</p>
+<p>Octave 11.1.0 was a major release with many new features and improvements.
+Among other things, it brought better support for <code>classdef</code> objects
+and arrays, broadcasting for special matrix types (like sparse, diagonal, or
+permutation matrices), updates for Matlab compatibility (notably support for
+the <code>nanflag</code>, <code>vecdim</code> and other parameters for many
+basic math and statistics functions), and performance improvements in many
+functions.</p>
+<p>Octave 11 is not feature or API compatible to Octave 10 or earlier. Binaries
+(<code>.oct</code> or <code>.mex</code> files) need to be re-built when
+upgrading from Octave 10 or earlier to this version. That is with the exception
+that — starting with Octave 10 — <code>.mex</code> files are linked with the
+new library <code>liboctmex.dll</code>. That means that it should no longer be
+necessary to rebuilt <code>.mex</code> files when upgrading from Octave 10 or
+later to newer versions. That might allow package developers to more easily
+distribute <code>.mex</code> files in binary form.</p>
+<p>Octave for Windows 11 is compatible with the new Windows Terminal App on
+Windows 11 24H2 or later. Earlier versions of Windows still need to switch the
+default to the Windows Console Host (see below).</p>
+<p>Octave for Windows 9.2 or newer is built with Qt6. This should improve the
+user experience on screens with DPI scaling.</p>
+<p>Binaries are no longer distributed for Windows 32-bit (or WoW64) by the
+Octave project.</p>
+<p>Since Octave 7, the minimum required version of the Windows API is 6.1
+(Windows 7 or newer).</p>
+<p>A full list of changes can be found in the Release Notes from the News
+menu or by typing <code>news</code> on the command prompt.</p>
+
+<h2>Changed default installation location</h2>
+<p>Since version 6.1, Octave installs to the system wide default program
+installation location (likely inside <code>C:\Program Files\GNU Octave</code>)
+by default.<br />
+It is a known issue that some operations might fail if Octave is installed in
+a location containing spaces if short file names have been disabled for the file
+system of the installation folder. Some systems seem to have disabled that
+feature for some partitions (e.g., on <code>D:</code>). If you are unsure
+whether your file system supports short file names, chose an installation folder
+that doesn't contain spaces.</p>
+<p>It is now also possible to install Octave without administrative privileges.
+<br />In that case (or if an admin choses to install for the "local user" only),
+the default installation location is inside
+<code>%LOCALAPPDATA%\Programs\GNU Octave</code>.</p>
+
+<h2>Included Octave Packages</h2>
+<p>More than 50
+<a href="https://wiki.octave.org/Octave_for_Microsoft_Windows#Octave_Packages">
+Octave packages</a> are included with Octave for Windows.
+However, these packages must be loaded in order to use them.</p>
+<p>
+<ul>
+<li>To list the available installed packages, use the
+<code>pkg list</code> command.</li>
+<li>To load a package in order to use its functions, use the
+<code>pkg load PACKAGENAME</code> command.</li>
+</ul>
+</p>
+<p>Some of these packages are slightly modified to run on Windows or to install
+correctly with this version of Octave. Re-installing some of these bundled
+Octave packages from the packages index with
+<code>pkg install -forge PACKAGENAME</code> might break these modifications.</p>
+<p>More packages are available from
+<a href="https://packages.octave.org/">Octave Packages</a>.</p>
+
+<h2>BLAS Library Selection</h2>
+<p>During the installation, a default BLAS library was selected. The installer
+contains two BLAS implementations,
+the <a href="http://www.netlib.org/blas/">NetLib reference BLAS</a>
+and <a href="http://www.openblas.net/">OpenBLAS</a>.</p>
+<p>The implementation by OpenBLAS tries to use the CPU features available on the
+system. That means that it might perform faster than the reference
+implementation. On the other hand, using it might result in higher round-off
+errors.</p>
+<p>The used implementation can be changed after installation with the "BLAS
+Switcher" in the Start menu.</p>
+
+<h2>OpenGL Renderer Selection</h2>
+<p>During installation, an OpenGL renderer was selected. Octave for Windows
+includes a software OpenGL renderer (llvmpipe by
+<a href="https://www.mesa3d.org/">Mesa 3D</a>). That renderer can be used if the
+OpenGL renderer drivers installed on the system aren't working as expected.</p>
+<p>Note that the OpenGL renderer installed on the system might be hardware
+accelerated. That means it might perform much faster than the software OpenGL
+renderer.</p>
+<p>The OpenGL renderer used by Octave can be changed after installation with the
+"OpenGL Switcher" in the Start menu.</p>
+
+<h2>General information for Octave on Windows</h2>
+<p>Octave is developed primarily on GNU/Linux. The programs and wrapper scripts
+bundled in this installer make a best effort to provide a seamless experience
+of Octave on Windows.<br />
+However, there are some (minor) limitations and idiosyncracies on that platform.
+Please, read the <a href="https://wiki.octave.org/Octave_for_Microsoft_Windows">
+corresponding article</a> for further information and possible work-arounds.</p>
+<p>The Octave GUI is compatible with the new Windows Terminal App on Windows 11
+24H2 or later. On earlier versions of Windows, please switch the default to the
+Windows Console Host for Octave to work correctly. See, e.g.,
+<a href="https://devblogs.microsoft.com/commandline/windows-terminal-as-your-default-command-line-experience/">
+these instructions by Microsoft</a> for how to change the default terminal and
+select "Windows Console Host".</p>
+
+<h2>Contributing to Octave</h2>
+<p>Octave has a community that lives from its users. You are welcome to share
+with that community.</p>
+<p>For help and support, visit the
+<a href="https://octave.discourse.group/">Octave Discourse forum</a>.</p>
+<p>Please, report any problems with Octave on the
+<a href="https://octave.org/bugs.html">Octave website</a>.</p>
+</body>
+</html>

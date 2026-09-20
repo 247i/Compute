@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- General documentation for the parallel package for Octave.
+
+Copyright (C) 2016-2023 Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>install_vars (parallel_doc)</title>
+
+<meta name="description" content="install_vars (parallel_doc)">
+<meta name="keywords" content="install_vars (parallel_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Cluster-execution.html" rel="up" title="Cluster execution">
+<link href="rfeval.html" rel="next" title="rfeval">
+<link href="netarrayfun.html" rel="prev" title="netarrayfun">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<span id="install_005fvars"></span><div class="header">
+<p>
+Next: <a href="rfeval.html" accesskey="n" rel="next">rfeval</a>, Previous: <a href="netarrayfun.html" accesskey="p" rel="prev">netarrayfun</a>, Up: <a href="Cluster-execution.html" accesskey="u" rel="up">Cluster execution</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Distribute-Octave-variables"></span><h3 class="section">3.10 Distribute Octave variables</h3>
+<span id="index-install_005fvars-1"></span>
+
+<span id="XREFinstall_005fvars"></span><dl>
+<dt id="index-install_005fvars">Function File: <em></em> <strong>install_vars</strong> <em>(<var>varname</var>, &hellip;, <var>connections</var>)</em></dt>
+<dd><p>Install named variables at remote machines.
+</p>
+<p>The variables named in the arguments are distrubted to the remote
+machines specified by <var>connections</var> and installed there. The
+variables must be accessible within the calling function. If
+variables have been declared to have global scope, they will also
+have global scope at the remote machines.
+</p>
+<p>This function can only be successfully called at the client machine.
+See <code>pconnect</code> for a description of the <var>connections</var>
+variable. <var>connections</var> can contain all connections of the
+network, a subset of them, or a single connection. The local machine
+(client), if contained in <var>connections</var>, is ignored.
+</p>
+<p>To install, e.g., all visible variables,
+</p>
+<p><code>install_vars (who (){:}, &hellip;);</code>
+</p>
+<p>can be used.
+</p>
+<p>Internally, this function sends the variables only to one server and
+then issues the necessary commands to distribute them to all
+specified servers over server-to-server data connections.
+</p>
+
+<p><strong>See also:</strong> <a href="pconnect.html#XREFpconnect">pconnect</a>, <a href="pserver.html#XREFpserver">pserver</a>, <a href="sclose.html#XREFsclose">sclose</a>, <a href="rfeval.html#XREFrfeval">rfeval</a>, <a href="netcellfun.html#XREFnetcellfun">netcellfun</a>.
+</p></dd></dl>
+
+
+
+
+
+
+</body>
+</html>

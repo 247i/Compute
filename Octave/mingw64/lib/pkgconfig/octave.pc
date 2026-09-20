@@ -1,0 +1,9 @@
+Name: GNU Octave
+Description: C++ interface to GNU Octave underlying library.
+URL: https://www.octave.org
+Version: 11.3.0
+Requires:
+Requires.private:
+Libs: -L/usr/lib/octave/11.3.0 -loctave
+Libs.private: -lcurl -lcholmod -lumfpack -lamd -lcamd -lcolamd -lccolamd -lcxsparse -lsuitesparseconfig -lspqr -larpack -lqrupdate -lfftw3 -lfftw3f -llapack -lblas -lxerbla -L/usr/lib -lreadline -R/usr/lib  -lpcre2-8  -lpthread  -L"/usr/lib" -L"/usr/qt6/lib" -L/usr/lib/gcc/x86_64-w64-mingw32/15.2.0 -L/usr/lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib/../lib -L/usr/lib/gcc/x86_64-w64-mingw32/15.2.0/../../../../x86_64-w64-mingw32/lib -lm -lgfortran -lmingw32 -lmingwex -lssp_nonshared -lssp -lmsvcrt -lkernel32 -lquadmath -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lshlwapi -lgdi32 -lpthread -lm     -lws2_32   -ladvapi32 -lbcrypt   -lws2_32    -L/usr/lib -liconv -R/usr/lib  -L/usr/lib -lreadline -R/usr/lib      -lws2_32   
+Cflags: -I/usr/include/octave-11.3.0/octave/..

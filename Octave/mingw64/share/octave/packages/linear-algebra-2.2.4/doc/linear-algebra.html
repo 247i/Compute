@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.2, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Octave linear-algebra - linear-algebra package for GNU octave</title>
+
+<meta name="description" content="Octave linear-algebra - linear-algebra package for GNU octave">
+<meta name="keywords" content="Octave linear-algebra - linear-algebra package for GNU octave">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="#Top" rel="start" title="Top">
+<link href="#Overview" rel="next" title="Overview">
+<style type="text/css">
+<!--
+div.example {margin-left: 3.2em}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+ul.mark-bullet {list-style-type: disc}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="linear-algebra.css">
+
+
+</head>
+
+<body lang="en">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="top-level-extent" id="Top">
+<h1 class="top" id="Octave-linear_002dalgebra-package">Octave linear-algebra package</h1>
+<p>Copyright © The Octave Project Developers 
+</p>
+<p>Permission is granted to make and distribute verbatim copies of this manual provided the copyright notice
+and this permission notice are preserved on all copies. 
+</p>
+<p>Permission is granted to copy and distribute modified versions of this manual under the conditions for
+verbatim copying, provided that the entire resulting derived work is distributed under the terms of a
+permission notice identical to this one. 
+</p>
+<p>Permission is granted to copy and distribute translations of this manual into another language, under the
+above conditions for modified versions. 
+</p><hr>
+<div class="chapter-level-extent" id="Overview">
+<h2 class="chapter" id="Overview-1">1 Overview</h2>
+<a class="index-entry-id" id="index-Overview"></a>
+
+<p>The linear-algebra package contains additional linear algebra functions.
+</p>    
+<hr>
+</div>
+<div class="chapter-level-extent" id="Installing-and-loading">
+<h2 class="chapter" id="Installing-and-loading-1">2 Installing and loading</h2>
+<a class="index-entry-id" id="index-Installing-and-loading"></a>
+
+<p>The linear-algebra package must be installed and then loaded to be used.
+</p>
+<p>It can be installed in <abbr class="acronym">GNU</abbr> Octave directly from octave-forge,
+</p>
+<div class="section-level-extent" id="Windows-install">
+<h3 class="section">2.1 Windows install</h3>
+<a class="index-entry-id" id="index-Windows-install"></a>
+<p>If running in Windows, the package may already be installed, to check run:
+</p>
+<div class="example">
+<pre class="example-preformatted">pkg list linear-algebra
+</pre></div>
+
+</div>
+<div class="section-level-extent" id="Installing">
+<h3 class="section">2.2 Installing</h3>
+<a class="index-entry-id" id="index-Installing"></a>
+<p>With an internet connection available, the linear-algebra package can be
+installed from packages.octave.org using the following command within
+<abbr class="acronym">GNU</abbr> Octave:
+</p>
+<div class="example">
+<pre class="example-preformatted">pkg install linear-algebra
+</pre></div>
+
+<p>The latest released version of the package will be downloaded and installed.
+</p>
+<p>Otherwise, if the package file has already been downloaded it can be installed
+using the following command in <abbr class="acronym">GNU</abbr> Octave:
+</p>
+<div class="example">
+<pre class="example-preformatted">pkg install linear-algebra-2.2.4.tar.gz
+</pre></div>
+
+</div>
+<div class="section-level-extent" id="Loading">
+<h3 class="section">2.3 Loading</h3>
+<a class="index-entry-id" id="index-Loading"></a>
+<p>Regardless of the method of installing the package, in order to use its functions,
+the package must be loaded using the pkg load command:
+</p>
+<div class="example">
+<pre class="example-preformatted">pkg load linear-algebra
+</pre></div>
+
+<p>The package must be loaded on each <abbr class="acronym">GNU</abbr> Octave session.
+</p>
+<hr>
+</div>
+</div>
+<div class="chapter-level-extent" id="Function-Reference">
+<h2 class="chapter" id="Function-Reference-1">3 Function Reference</h2>
+<a class="index-entry-id" id="index-Function-Reference"></a>
+
+<hr>
+<div class="section-level-extent" id="Vector-functions">
+<h3 class="section" id="Vector-functions-1">3.1 Vector functions</h3>
+<a class="index-entry-id" id="index-Vector-functions"></a>
+<div class="subsection-level-extent" id="vec_005fprojection">
+<h4 class="subsection">3.1.1 vec_projection</h4>
+<a class="index-entry-id" id="index-vec_005fprojection"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-vec_005fprojection-1"><span class="category-def">Function File: </span><code class="def-type"><var class="var">out</var> =</code> <strong class="def-name">vec_projection</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>)</code></dt>
+<dd><p>Compute the vector projection of a 3-vector onto another.
+<var class="var">x</var> : size 1 x 3 and <var class="var">y</var> : size 1 x 3 <var class="var">tol</var> : size 1 x 1
+</p>
+<div class="example">
+<pre class="example-preformatted">      vec_projection ([1,0,0], [0.5,0.5,0])
+      &rArr; 0.7071
+</pre></div>
+
+<p>Vector projection of <var class="var">x</var> onto <var class="var">y</var>, both are 3-vectors,
+ returning the value of <var class="var">x</var> along <var class="var">y</var>.  Function uses dot product,
+ Euclidean norm, and angle between vectors to compute the proper length along
+<var class="var">y</var>.
+</p></dd></dl>
+<hr>
+</div>
+</div>
+<div class="section-level-extent" id="Matrix-functions">
+<h3 class="section" id="Matrix-functions-1">3.2 Matrix functions</h3>
+<a class="index-entry-id" id="index-Matrix-functions"></a>
+<div class="subsection-level-extent" id="cartprod">
+<h4 class="subsection">3.2.1 cartprod</h4>
+<a class="index-entry-id" id="index-cartprod"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-cartprod-1"><span class="category-def">Function File: </span><strong class="def-name">cartprod</strong> <code class="def-code-arguments">(<var class="var">varargin</var>)</code></dt>
+<dd>
+<p>Computes the cartesian product of given column vectors ( row vectors ).
+ The vector elements are assumend to be numbers.
+</p>
+<p>Alternatively the vectors can be specified by as a matrix, by its columns.
+</p>
+<p>To calculate the cartesian product of vectors,
+ P = A x B x C x D ... . Requires A, B, C, D be column vectors.
+ The algorithm is iteratively calcualte the products,
+  ( ( (A x B ) x C ) x D ) x  etc.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">   cartprod(1:2,3:4,0:1)
+   ans =   1   3   0
+           2   3   0
+           1   4   0
+           2   4   0
+           1   3   1
+           2   3   1
+           1   4   1
+           2   4   1
+</pre></div></div>
+</dd></dl>
+
+<p><strong class="strong">See also:</strong> kron.
+</p></div>
+<div class="subsection-level-extent" id="cod">
+<h4 class="subsection">3.2.2 cod</h4>
+<a class="index-entry-id" id="index-cod"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-cod-1"><span class="category-def">Function File: </span><code class="def-type">[<var class="var">q</var>, <var class="var">r</var>, <var class="var">z</var>] =</code> <strong class="def-name">cod</strong> <code class="def-code-arguments">(<var class="var">a</var>)</code></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-cod-2"><span class="category-def">Function File: </span><code class="def-type">[<var class="var">q</var>, <var class="var">r</var>, <var class="var">z</var>, <var class="var">p</var>] =</code> <strong class="def-name">cod</strong> <code class="def-code-arguments">(<var class="var">a</var>)</code></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-cod-3"><span class="category-def">Function File: </span><code class="def-type">[&hellip;] =</code> <strong class="def-name">cod</strong> <code class="def-code-arguments">(<var class="var">a</var>, '0')</code></dt>
+<dd><p>Computes the complete orthogonal decomposition (COD) of the matrix <var class="var">a</var>:
+</p><div class="example">
+<pre class="example-preformatted">   <var class="var">a</var> = <var class="var">q</var>*<var class="var">r</var>*<var class="var">z</var>'
+</pre></div>
+<p>Let <var class="var">a</var> be an M-by-N matrix, and let <code class="code">K = min(M, N)</code>.
+ Then <var class="var">q</var> is M-by-M orthogonal, <var class="var">z</var> is N-by-N orthogonal,
+ and <var class="var">r</var> is M-by-N such that <code class="code"><var class="var">r</var>(:,1:K)</code> is upper
+ trapezoidal and <code class="code"><var class="var">r</var>(:,K+1:N)</code> is zero.
+ The additional <var class="var">p</var> output argument specifies that pivoting should be used in
+ the first step (QR decomposition). In this case,
+</p><div class="example">
+<pre class="example-preformatted">   <var class="var">a</var>*<var class="var">p</var> = <var class="var">q</var>*<var class="var">r</var>*<var class="var">z</var>'
+</pre></div>
+<p>If a second argument of &rsquo;0&rsquo; is given, an economy-sized factorization is returned
+ so that <var class="var">r</var> is K-by-K.
+</p>
+<p><em class="emph">NOTE</em>: This is currently implemented by double QR factorization plus some
+ tricky manipulations, and is not as efficient as using xRZTZF from LAPACK.
+</p>
+<p><strong class="strong">See also:</strong> qr.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="funm">
+<h4 class="subsection">3.2.3 funm</h4>
+<a class="index-entry-id" id="index-funm"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-funm-1"><span class="category-def">Function File: </span><code class="def-type"><var class="var">B</var> =</code> <strong class="def-name">funm</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">F</var>)</code></dt>
+<dd><p>Compute matrix equivalent of function F; F can be a function name or
+ a function handle and A must be a square matrix.
+</p>
+<p>For trigonometric and hyperbolic functions, <code class="code">thfm</code> is automatically
+ invoked as that is based on <code class="code">expm</code> and diagonalization is avoided.
+ For other functions diagonalization is invoked, which implies that
+ -depending on the properties of input matrix <var class="var">A</var>- the results
+ can be very inaccurate <em class="emph">without any warning</em>. For easy diagonizable and
+ stable matrices the results of funm will be sufficiently accurate.
+</p>
+<p>Note that you should not use funm for &rsquo;sqrt&rsquo;, &rsquo;log&rsquo; or &rsquo;exp&rsquo;; instead
+ use sqrtm, logm and expm as these are more robust.
+</p>
+<p>Examples:
+</p>
+<div class="example">
+<pre class="example-preformatted">   B = funm (A, sin);
+   (Compute matrix equivalent of sin() )
+</pre></div>
+
+<div class="example">
+<pre class="example-preformatted">   function bk1 = besselk1 (x)
+      bk1 = besselk(1, x);
+   endfunction
+   B = funm (A, besselk1);
+   (Compute matrix equivalent of bessel function K1();
+    a helper function is needed here to convey extra
+    arguments for besselk() )
+</pre></div>
+
+<p>Note that a much improved funm.m function has been implemented in Octave
+ 11.1.0, so funm.m will be removed from the linear-algebra package if that
+ is installed in Octave 11+.
+</p>
+
+<p><strong class="strong">See also:</strong> thfm, expm, logm, sqrtm.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="lobpcg">
+<h4 class="subsection">3.2.4 lobpcg</h4>
+<a class="index-entry-id" id="index-lobpcg"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-lobpcg-1"><span class="category-def">Function File: </span><code class="def-type">[<var class="var">blockVectorX</var>, <var class="var">lambda</var>] =</code> <strong class="def-name">lobpcg</strong> <code class="def-code-arguments">(<var class="var">blockVectorX</var>, <var class="var">operatorA</var>)</code></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-lobpcg-2"><span class="category-def">Function File: </span><code class="def-type">[<var class="var">blockVectorX</var>, <var class="var">lambda</var>, <var class="var">failureFlag</var>] =</code> <strong class="def-name">lobpcg</strong> <code class="def-code-arguments">(<var class="var">blockVectorX</var>, <var class="var">operatorA</var>)</code></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-lobpcg-3"><span class="category-def">Function File: </span><code class="def-type">[<var class="var">blockVectorX</var>, <var class="var">lambda</var>, <var class="var">failureFlag</var>, <var class="var">lambdaHistory</var>, <var class="var">residualNormsHistory</var>] =</code> <strong class="def-name">lobpcg</strong> <code class="def-code-arguments">(<var class="var">blockVectorX</var>, <var class="var">operatorA</var>, <var class="var">operatorB</var>, <var class="var">operatorT</var>, <var class="var">blockVectorY</var>, <var class="var">residualTolerance</var>, <var class="var">maxIterations</var>, <var class="var">verbosityLevel</var>)</code></dt>
+<dd><p>Solves Hermitian partial eigenproblems using preconditioning.
+</p>
+<p>The first form outputs the array of algebraic smallest eigenvalues <var class="var">lambda</var> and
+ corresponding matrix of orthonormalized eigenvectors <var class="var">blockVectorX</var> of the
+ Hermitian (full or sparse) operator <var class="var">operatorA</var> using input matrix
+<var class="var">blockVectorX</var> as an initial guess, without preconditioning, somewhat
+ similar to:
+</p>
+<div class="example">
+<pre class="example-preformatted"> # for real symmetric operator operatorA
+ opts.issym  = 1; opts.isreal = 1; K = size (blockVectorX, 2);
+ [blockVectorX, lambda] = eigs (operatorA, K, 'SR', opts);
+
+ # for Hermitian operator operatorA
+ K = size (blockVectorX, 2);
+ [blockVectorX, lambda] = eigs (operatorA, K, 'SR');
+</pre></div>
+
+<p>The second form returns a convergence flag. If <var class="var">failureFlag</var> is 0 then
+ all the eigenvalues converged; otherwise not all converged.
+</p>
+<p>The third form computes smallest eigenvalues <var class="var">lambda</var> and corresponding eigenvectors
+<var class="var">blockVectorX</var> of the generalized eigenproblem Ax=lambda Bx, where
+ Hermitian operators <var class="var">operatorA</var> and <var class="var">operatorB</var> are given as functions, as
+ well as a preconditioner, <var class="var">operatorT</var>. The operators <var class="var">operatorB</var> and
+<var class="var">operatorT</var> must be in addition <em class="emph">positive definite</em>. To compute the largest
+ eigenpairs of <var class="var">operatorA</var>, simply apply the code to <var class="var">operatorA</var> multiplied by
+ -1. The code does not involve <em class="emph">any</em> matrix factorizations of <var class="var">operatorA</var> and
+<var class="var">operatorB</var>, thus, e.g., it preserves the sparsity and the structure of
+<var class="var">operatorA</var> and <var class="var">operatorB</var>.
+</p>
+<p><var class="var">residualTolerance</var> and <var class="var">maxIterations</var> control tolerance and max number of
+ steps, and <var class="var">verbosityLevel</var> = 0, 1, or 2 controls the amount of printed
+ info. <var class="var">lambdaHistory</var> is a matrix with all iterative lambdas, and
+<var class="var">residualNormsHistory</var> are matrices of the history of 2-norms of residuals
+</p>
+<p>Required input:
+</p><ul class="itemize mark-bullet">
+<li><var class="var">blockVectorX</var> (class numeric) - initial approximation to eigenvectors,
+ full or sparse matrix n-by-blockSize. <var class="var">blockVectorX</var> must be full rank.
+</li><li><var class="var">operatorA</var> (class numeric, char, or function_handle) - the main operator
+ of the eigenproblem, can be a matrix, a function name, or handle
+</li></ul>
+
+<p>Optional function input:
+</p><ul class="itemize mark-bullet">
+<li><var class="var">operatorB</var> (class numeric, char, or function_handle) - the second operator,
+ if solving a generalized eigenproblem, can be a matrix, a function name, or
+ handle; by default if empty, <code class="code">operatorB = I</code>.
+</li><li><var class="var">operatorT</var> (class char or function_handle) - the preconditioner, by
+ default <code class="code">operatorT(blockVectorX) = blockVectorX</code>.
+</li></ul>
+
+<p>Optional constraints input:
+</p><ul class="itemize mark-bullet">
+<li><var class="var">blockVectorY</var> (class numeric) - a full or sparse n-by-sizeY matrix of
+ constraints, where sizeY &lt; n. <var class="var">blockVectorY</var> must be full rank. The
+ iterations will be performed in the (operatorB-) orthogonal complement of the
+ column-space of <var class="var">blockVectorY</var>.
+</li></ul>
+
+<p>Optional scalar input parameters:
+</p><ul class="itemize mark-bullet">
+<li><var class="var">residualTolerance</var> (class numeric) - tolerance, by default, <code class="code">residualTolerance = n * sqrt (eps)</code>
+</li><li><var class="var">maxIterations</var> - max number of iterations, by default, <code class="code">maxIterations = min (n, 20)</code>
+</li><li><var class="var">verbosityLevel</var> - either 0 (no info), 1, or 2 (with pictures); by
+ default, <code class="code">verbosityLevel = 0</code>.
+</li></ul>
+
+<p>Required output:
+</p><ul class="itemize mark-bullet">
+<li><var class="var">blockVectorX</var> and <var class="var">lambda</var> (class numeric) both are computed
+ blockSize eigenpairs, where <code class="code">blockSize = size (blockVectorX, 2)</code>
+ for the initial guess <var class="var">blockVectorX</var> if it is full rank.
+</li></ul>
+
+<p>Optional output:
+</p><ul class="itemize mark-bullet">
+<li><var class="var">failureFlag</var> (class integer) as described above.
+</li><li><var class="var">lambdaHistory</var> (class numeric) as described above.
+</li><li><var class="var">residualNormsHistory</var> (class numeric) as described above.
+</li></ul>
+
+<p>Functions <code class="code">operatorA(blockVectorX)</code>, <code class="code">operatorB(blockVectorX)</code> and
+<code class="code">operatorT(blockVectorX)</code> must support <var class="var">blockVectorX</var> being a matrix, not
+ just a column vector.
+</p>
+<p>Every iteration involves one application of <var class="var">operatorA</var> and <var class="var">operatorB</var>, and
+ one of <var class="var">operatorT</var>.
+</p>
+<p>Main memory requirements: 6 (9 if <code class="code">isempty(operatorB)=0</code>) matrices of the
+ same size as <var class="var">blockVectorX</var>, 2 matrices of the same size as <var class="var">blockVectorY</var>
+ (if present), and two square matrices of the size 3*blockSize.
+</p>
+<p>In all examples below, we use the Laplacian operator in a 20x20 square
+ with the mesh size 1 which can be generated in MATLAB by running:
+</p><div class="example">
+<pre class="example-preformatted"> A = delsq (numgrid ('S', 21));
+ n = size (A, 1);
+</pre></div>
+
+<p>or in MATLAB and Octave by:
+</p><div class="example">
+<pre class="example-preformatted"> [~,~,A] = laplacian ([19, 19]);
+ n = size (A, 1);
+</pre></div>
+
+<p>Note that <code class="code">laplacian</code> is a function of the specfun octave-forge package.
+</p>
+<p>The following Example:
+</p><div class="example">
+<pre class="example-preformatted"> [blockVectorX, lambda, failureFlag] = lobpcg (randn (n, 8), A, 1e-5, 50, 2);
+</pre></div>
+
+<p>attempts to compute 8 first eigenpairs without preconditioning, but not all
+ eigenpairs converge after 50 steps, so failureFlag=1.
+</p>
+<p>The next Example:
+</p><div class="example">
+<pre class="example-preformatted"> blockVectorY = [];
+ lambda_all = [];
+ for j = 1:4
+   [blockVectorX, lambda] = lobpcg (randn (n, 2), A, blockVectorY, 1e-5, 200, 2);
+   blockVectorY           = [blockVectorY, blockVectorX];
+   lambda_all             = [lambda_all' lambda']';
+   pause;
+ end
+</pre></div>
+
+<p>attemps to compute the same 8 eigenpairs by calling the code 4 times with
+ blockSize=2 using orthogonalization to the previously founded eigenvectors.
+</p>
+<p>The following Example:
+</p><div class="example">
+<pre class="example-preformatted"> R       = ichol (A, struct('michol', 'on'));
+ precfun = @(x)R\(R'\x);
+ [blockVectorX, lambda, failureFlag] = lobpcg (randn (n, 8), A, [], @(x)precfun(x), 1e-5, 60, 2);
+</pre></div>
+
+<p>computes the same eigenpairs in less then 25 steps, so that failureFlag=0
+ using the preconditioner function <code class="code">precfun</code>, defined inline. If <code class="code">precfun</code>
+ is defined as an octave function in a file, the function handle
+<code class="code">@(x)precfun(x)</code> can be equivalently replaced by the function name <code class="code">precfun</code>. Running:
+</p>
+<div class="example">
+<pre class="example-preformatted"> [blockVectorX, lambda, failureFlag] = lobpcg (randn (n, 8), A, speye (n), @(x)precfun(x), 1e-5, 50, 2);
+</pre></div>
+
+<p>produces similar answers, but is somewhat slower and needs more memory as
+ technically a generalized eigenproblem with B=I is solved here.
+</p>
+<p>The following example for a mostly diagonally dominant sparse matrix A
+ demonstrates different types of preconditioning, compared to the standard
+ use of the main diagonal of A:
+</p>
+<div class="example">
+<pre class="example-preformatted"> clear all; close all;
+ n       = 1000;
+ M       = spdiags ([1:n]', 0, n, n);
+ precfun = @(x)M\x;
+ A       = M + sprandsym (n, .1);
+ Xini    = randn (n, 5);
+ maxiter = 15;
+ tol     = 1e-5;
+ [~,~,~,~,rnp] = lobpcg (Xini, A, tol, maxiter, 1);
+ [~,~,~,~,r]   = lobpcg (Xini, A, [], @(x)precfun(x), tol, maxiter, 1);
+ subplot (2,2,1), semilogy (r'); hold on;
+ semilogy (rnp', ':&gt;');
+ title ('No preconditioning (top)'); axis tight;
+ M(1,2)  = 2;
+ precfun = @(x)M\x; % M is no longer symmetric
+ [~,~,~,~,rns] = lobpcg (Xini, A, [], @(x)precfun(x), tol, maxiter, 1);
+ subplot (2,2,2), semilogy (r'); hold on;
+ semilogy (rns', '--s');
+ title ('Nonsymmetric preconditioning (square)'); axis tight;
+ M(1,2)  = 0;
+ precfun = @(x)M\(x+10*sin(x)); % nonlinear preconditioning
+ [~,~,~,~,rnl] = lobpcg (Xini, A, [], @(x)precfun(x), tol, maxiter, 1);
+ subplot (2,2,3),  semilogy (r'); hold on;
+ semilogy (rnl', '-.*');
+ title ('Nonlinear preconditioning (star)'); axis tight;
+ M       = abs (M - 3.5 * speye (n, n));
+ precfun = @(x)M\x;
+ [~,~,~,~,rs] = lobpcg (Xini, A, [], @(x)precfun(x), tol, maxiter, 1);
+ subplot (2,2,4),  semilogy (r'); hold on;
+ semilogy (rs', '-d');
+ title ('Selective preconditioning (diamond)'); axis tight;
+</pre></div>
+
+<h3 class="heading" id="References">References</h3>
+<p>This main function <code class="code">lobpcg</code> is a version of the preconditioned conjugate
+ gradient method (Algorithm 5.1) described in A. V. Knyazev, Toward the Optimal
+ Preconditioned Eigensolver:
+ Locally Optimal Block Preconditioned Conjugate Gradient Method,
+ SIAM Journal on Scientific Computing 23 (2001), no. 2, pp. 517-541.
+<a class="uref" href="http://dx.doi.org/10.1137/S1064827500366124">http://dx.doi.org/10.1137/S1064827500366124</a>
+</p>
+<h3 class="heading" id="Known-bugs_002ffeatures">Known bugs/features</h3>
+<ul class="itemize mark-bullet">
+<li>an excessively small requested tolerance may result in often restarts and
+ instability. The code is not written to produce an eps-level accuracy! Use
+ common sense.
+</li><li>the code may be very sensitive to the number of eigenpairs computed,
+ if there is a cluster of eigenvalues not completely included, cf.
+<div class="example">
+<pre class="example-preformatted"> operatorA = diag ([1 1.99 2:99]);
+ [blockVectorX, lambda] = lobpcg (randn (100, 1),operatorA, 1e-10, 80, 2);
+ [blockVectorX, lambda] = lobpcg (randn (100, 2),operatorA, 1e-10, 80, 2);
+ [blockVectorX, lambda] = lobpcg (randn (100, 3),operatorA, 1e-10, 80, 2);
+</pre></div>
+</li></ul>
+
+<h3 class="heading" id="Distribution">Distribution</h3>
+<p>The main distribution site: <a class="uref" href="http://math.ucdenver.edu/~aknyazev/">http://math.ucdenver.edu/~aknyazev/</a>
+</p>
+<p>A C-version of this code is a part of the <a class="uref" href="http://code.google.com/p/blopex/">http://code.google.com/p/blopex/</a>
+ package and is directly available, e.g., in PETSc and HYPRE.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="ndcovlt">
+<h4 class="subsection">3.2.5 ndcovlt</h4>
+<a class="index-entry-id" id="index-ndcovlt"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-ndcovlt-1"><span class="category-def">Function File: </span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">ndcovlt</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">t1</var>, <var class="var">t2</var>, &hellip;)</code></dt>
+<dd><p>Computes an n-dimensional covariant linear transform of an n-d tensor, given a
+ transformation matrix for each dimension. The number of columns of each transformation
+ matrix must match the corresponding extent of <var class="var">x</var>, and the number of rows determines
+ the corresponding extent of <var class="var">y</var>. For example:
+</p>
+<div class="example">
+<pre class="example-preformatted">   size (<var class="var">x</var>, 2) == columns (<var class="var">t2</var>)
+   size (<var class="var">y</var>, 2) == rows (<var class="var">t2</var>)
+</pre></div>
+
+<p>The element <code class="code"><var class="var">y</var>(i1, i2, &hellip;)</code> is defined as a sum of
+</p>
+<div class="example">
+<pre class="example-preformatted">   <var class="var">x</var>(j1, j2, ...) * <var class="var">t1</var>(i1, j1) * <var class="var">t2</var>(i2, j2) * ...
+</pre></div>
+
+<p>over all j1, j2, &hellip;. For two dimensions, this reduces to
+</p><div class="example">
+<pre class="example-preformatted">   <var class="var">y</var> = <var class="var">t1</var> * <var class="var">x</var> * <var class="var">t2</var>.'
+</pre></div>
+
+<p>[] passed as a transformation matrix is converted to identity matrix for
+ the corresponding dimension.
+</p>
+</dd></dl>
+</div>
+<div class="subsection-level-extent" id="rotparams">
+<h4 class="subsection">3.2.6 rotparams</h4>
+<a class="index-entry-id" id="index-rotparams"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-rotparams-1"><span class="category-def">Function File: </span><code class="def-type">[<var class="var">vstacked</var>, <var class="var">astacked</var>] =</code> <strong class="def-name">rotparams</strong> <code class="def-code-arguments">(<var class="var">rstacked</var>)</code></dt>
+<dd><p>The function w = rotparams (r)            - Inverse to rotv().
+  Using, <var class="var">w</var>    = rotparams(<var class="var">r</var>)  is such that
+  rotv(w)*r&rsquo; == eye(3).
+</p>
+<p>If used as, [v,a]=rotparams(r) ,  idem, with v (1 x 3) s.t. w == a*v.
+</p>
+<p>0 &lt;= norm(w)==a &lt;= pi
+</p>
+<p>:-O !!  Does not check if &rsquo;r&rsquo; is a rotation matrix.
+</p>
+<p>Ignores matrices with zero rows or with NaNs. (returns 0 for them)
+</p>
+
+<p><strong class="strong">See also:</strong> rotv.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="rotv">
+<h4 class="subsection">3.2.7 rotv</h4>
+<a class="index-entry-id" id="index-rotv"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-rotv-1"><span class="category-def">Function File: </span><code class="def-type"><var class="var">r</var> =</code> <strong class="def-name">rotv</strong> <code class="def-code-arguments">( v, ang )</code></dt>
+<dd><p>The functionrotv calculates a Matrix of rotation about <var class="var">v</var> w/ angle |v|
+ r = rotv(v [,ang])
+</p>
+<p>Returns the rotation matrix w/ axis v, and angle, in radians, norm(v) or
+ ang (if present).
+</p>
+<p>rotv(v) == w&rsquo;*w + cos(a) * (eye(3)-w&rsquo;*w) - sin(a) * crossmat(w)
+</p>
+<p>where a = norm (v) and w = v/a.
+</p>
+<p>v and ang may be vertically stacked : If &rsquo;v&rsquo; is 2x3, then
+ rotv( v ) == [rotv(v(1,:)); rotv(v(2,:))]
+</p>
+
+<p><strong class="strong">See also:</strong> rotparams, rota, rot.
+</p>
+</dd></dl>
+</div>
+<div class="subsection-level-extent" id="smwsolve">
+<h4 class="subsection">3.2.8 smwsolve</h4>
+<a class="index-entry-id" id="index-smwsolve"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-smwsolve-1"><span class="category-def">Function File: </span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">smwsolve</strong> <code class="def-code-arguments">(<var class="var">a</var>, <var class="var">u</var>, <var class="var">v</var>, <var class="var">b</var>)</code></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-smwsolve-2"><span class="category-def">Function File: </span><strong class="def-name">smwsolve</strong> <code class="def-code-arguments">(<var class="var">solver</var>, <var class="var">u</var>, <var class="var">v</var>, <var class="var">b</var>)</code></dt>
+<dd><p>Solves the square system <code class="code">(A + U*V')*X == B</code>, where <var class="var">u</var> and <var class="var">v</var> are
+ matrices with several columns, using the Sherman-Morrison-Woodbury formula,
+ so that a system with <var class="var">a</var> as left-hand side is actually solved. This is
+ especially advantageous if <var class="var">a</var> is diagonal, sparse, triangular or
+ positive definite.
+<var class="var">a</var> can be sparse or full, the other matrices are expected to be full.
+ Instead of a matrix <var class="var">a</var>, a user may alternatively provide a function
+<var class="var">solver</var> that performs the left division operation.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="thfm">
+<h4 class="subsection">3.2.9 thfm</h4>
+<a class="index-entry-id" id="index-thfm"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-thfm-1"><span class="category-def">Function File: </span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">thfm</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">mode</var>)</code></dt>
+<dd><p>Trigonometric/hyperbolic functions of square matrix <var class="var">x</var>.
+</p>
+<p><var class="var">mode</var> must be the name of a function. Valid functions are &rsquo;sin&rsquo;, &rsquo;cos&rsquo;,
+ &rsquo;tan&rsquo;, &rsquo;sec&rsquo;, &rsquo;csc&rsquo;, &rsquo;cot&rsquo; and all their inverses and/or hyperbolic variants,
+ and &rsquo;sqrt&rsquo;, &rsquo;log&rsquo; and &rsquo;exp&rsquo;.
+</p>
+<p>The code <code class="code">thfm (x, 'cos')</code> calculates matrix cosinus <em class="emph">even if</em> input
+ matrix <var class="var">x</var> is <em class="emph">not</em> diagonalizable.
+</p>
+<p><em class="emph">Important note</em>:
+ This algorithm does <em class="emph">not</em> use an eigensystem similarity transformation. It
+ maps the <var class="var">mode</var> functions to functions of <code class="code">expm</code>, <code class="code">logm</code> and
+<code class="code">sqrtm</code>, which are known to be robust with respect to non-diagonalizable
+ (&rsquo;defective&rsquo;) <var class="var">x</var>.
+</p>
+
+<p><strong class="strong">See also:</strong> funm.
+</p></dd></dl>
+<hr>
+</div>
+</div>
+<div class="section-level-extent" id="Matrix-factorization">
+<h3 class="section" id="Matrix-factorization-1">3.3 Matrix factorization</h3>
+<a class="index-entry-id" id="index-Matrix-factorization"></a>
+<div class="subsection-level-extent" id="nmf_005fbpas">
+<h4 class="subsection">3.3.1 nmf_bpas</h4>
+<a class="index-entry-id" id="index-nmf_005fbpas"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-nmf_005fbpas-1"><span class="category-def">Function File: </span><code class="def-type">[<var class="var">W</var>, <var class="var">H</var>, <var class="var">iter</var>, <var class="var">HIS</var>] =</code> <strong class="def-name">nmf_bpas</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">k</var>)</code></dt>
+<dd><p>Nonnegative Matrix Factorization by Alternating Nonnegativity Constrained Least Squares
+ using Block Principal Pivoting/Active Set method.
+</p>
+<p>This function solves one the following problems: given <var class="var">A</var> and <var class="var">k</var>, find <var class="var">W</var> and <var class="var">H</var> such that
+</p>
+<div class="group"><p>(1) minimize 1/2 * || <var class="var">A</var>-<var class="var">W</var><var class="var">H</var> ||_F^2
+</p>
+<p>(2) minimize 1/2 * ( || <var class="var">A</var>-<var class="var">W</var><var class="var">H</var> ||_F^2 + alpha * || <var class="var">W</var> ||_F^2 + beta * || <var class="var">H</var> ||_F^2 )
+</p>
+<p>(3) minimize 1/2 * ( || <var class="var">A</var>-<var class="var">W</var><var class="var">H</var> ||_F^2 + alpha * || <var class="var">W</var> ||_F^2 + beta * (sum_(i=1)^n || <var class="var">H</var>(:,i) ||_1^2 ) )
+</p></div>
+<p>where <var class="var">W</var>&gt;=0 and <var class="var">H</var>&gt;=0 elementwise.
+ The input arguments are <var class="var">A</var> : Input data matrix (m x n) and <var class="var">k</var> : Target low-rank.
+</p>
+
+<p><strong class="strong">Optional Inputs</strong>
+</p><dl class="table">
+<dt>&lsquo;<samp class="samp">Type</samp>&rsquo;</dt>
+<dd><p>Default is &rsquo;regularized&rsquo;, which is recommended for quick application testing unless &rsquo;sparse&rsquo; or &rsquo;plain&rsquo; is explicitly needed. If sparsity is needed for &rsquo;W&rsquo; factor, then apply this function for the transpose of &rsquo;A&rsquo; with formulation (3). Then, exchange &rsquo;W&rsquo; and &rsquo;H&rsquo; and obtain the transpose of them. Imposing sparsity for both factors is not recommended and thus not included in this software.
+</p><dl class="table">
+<dt>&rsquo;plain&rsquo;</dt>
+<dd><p>to use formulation (1)
+</p></dd>
+<dt>&rsquo;regularized&rsquo;</dt>
+<dd><p>to use formulation (2)
+</p></dd>
+<dt>&rsquo;sparse&rsquo;</dt>
+<dd><p>to use formulation (3)
+</p></dd>
+</dl>
+
+</dd>
+<dt>&lsquo;<samp class="samp">NNLSSolver</samp>&rsquo;</dt>
+<dd><p>Default is &rsquo;bp&rsquo;, which is in general faster.
+</p><dl class="table">
+<dt>&rsquo;bp&rsquo;</dt>
+<dd><p>to use the algorithm in [1]
+</p></dd>
+<dt>&rsquo;as&rsquo;</dt>
+<dd><p>to use the algorithm in [2]
+</p></dd>
+</dl>
+
+</dd>
+<dt>&lsquo;<samp class="samp">Alpha</samp>&rsquo;</dt>
+<dd><p>Parameter alpha in the formulation (2) or (3). Default is the average of all elements in A. No good justfication for this default value, and you might want to try other values.
+</p></dd>
+<dt>&lsquo;<samp class="samp">Beta</samp>&rsquo;</dt>
+<dd><p>Parameter beta in the formulation (2) or (3).
+ Default is the average of all elements in A. No good justfication for this default value, and you might want to try other values.
+</p></dd>
+<dt>&lsquo;<samp class="samp">MaxIter</samp>&rsquo;</dt>
+<dd><p>Maximum number of iterations. Default is 100.
+</p></dd>
+<dt>&lsquo;<samp class="samp">MinIter</samp>&rsquo;</dt>
+<dd><p>Minimum number of iterations. Default is 20.
+</p></dd>
+<dt>&lsquo;<samp class="samp">MaxTime</samp>&rsquo;</dt>
+<dd><p>Maximum amount of time in seconds. Default is 100,000.
+</p></dd>
+<dt>&lsquo;<samp class="samp">Winit</samp>&rsquo;</dt>
+<dd><p>(m x k) initial value for W.
+</p></dd>
+<dt>&lsquo;<samp class="samp">Hinit</samp>&rsquo;</dt>
+<dd><p>(k x n) initial value for H.
+</p></dd>
+<dt>&lsquo;<samp class="samp">Tol</samp>&rsquo;</dt>
+<dd><p>Stopping tolerance. Default is 1e-3. If you want to obtain a more accurate solution, decrease TOL and increase MAX_ITER at the same time.
+</p></dd>
+<dt>&lsquo;<samp class="samp">Verbose</samp>&rsquo;</dt>
+<dd><p>If present the function will show information during the calculations.
+</p></dd>
+</dl>
+
+<p><strong class="strong">Outputs</strong>
+</p><dl class="table">
+<dt>&lsquo;<samp class="samp">W</samp>&rsquo;</dt>
+<dd><p>Obtained basis matrix (m x k)
+</p></dd>
+<dt>&lsquo;<samp class="samp">H</samp>&rsquo;</dt>
+<dd><p>Obtained coefficients matrix (k x n)
+</p></dd>
+<dt>&lsquo;<samp class="samp">iter</samp>&rsquo;</dt>
+<dd><p>Number of iterations
+</p></dd>
+<dt>&lsquo;<samp class="samp">HIS</samp>&rsquo;</dt>
+<dd><p>If present the history of computation is returned.
+</p></dd>
+</dl>
+
+<p>Usage Examples:
+</p><div class="example">
+<pre class="example-preformatted">  nmf_bpas (A,10)
+  nmf_bpas (A,20,'verbose')
+  nmf_bpas (A,30,'verbose','nnlssolver','as')
+  nmf_bpas (A,5,'verbose','type','sparse')
+  nmf_bpas (A,60,'verbose','type','plain','Winit',rand(size(A,1),60))
+  nmf_bpas (A,70,'verbose','type','sparse','nnlssolver','bp','alpha',1.1,'beta',1.3)
+</pre></div>
+
+<p>References:
+  [1] For using this software, please cite:<br>
+      Jingu Kim and Haesun Park, Toward Faster Nonnegative Matrix Factorization: A New Algorithm and Comparisons,<br>
+      In Proceedings of the 2008 Eighth IEEE International Conference on Data Mining (ICDM&rsquo;08), 353-362, 2008<br>
+  [2] If you use &rsquo;nnls_solver&rsquo;=&rsquo;as&rsquo; (see below), please cite:<br>
+      Hyunsoo Kim and Haesun Park, Nonnegative Matrix Factorization Based <br>
+      on Alternating Nonnegativity Constrained Least Squares and Active Set Method, <br>
+      SIAM Journal on Matrix Analysis and Applications, 2008, 30, 713-730
+</p>
+<p>Check original code at <a class="url" href="http://www.cc.gatech.edu/~jingu">http://www.cc.gatech.edu/~jingu</a>
+</p>
+
+<p><strong class="strong">See also:</strong> nmf_pg.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="nmf_005fpg">
+<h4 class="subsection">3.3.2 nmf_pg</h4>
+<a class="index-entry-id" id="index-nmf_005fpg"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-nmf_005fpg-1"><span class="category-def">Function File: </span><code class="def-type">[<var class="var">W</var>, <var class="var">H</var>] =</code> <strong class="def-name">nmf_pg</strong> <code class="def-code-arguments">(<var class="var">V</var>, <var class="var">Winit</var>, <var class="var">Hinit</var>, <var class="var">tol</var>, <var class="var">timelimit</var>, <var class="var">maxiter</var>)</code></dt>
+<dd>
+<p>Non-negative matrix factorization by alternative non-negative least squares
+ using projected gradients.
+</p>
+<p>The matrix <var class="var">V</var> is factorized into two possitive matrices <var class="var">W</var> and
+<var class="var">H</var> such that <code class="code">V = W*H + U</code>. Where <var class="var">U</var> is a matrix of residuals
+ that can be negative or positive. When the matrix <var class="var">V</var> is positive the order
+ of the elements in <var class="var">U</var> is bounded by the optional named argument <var class="var">tol</var>
+ (default value <code class="code">1e-9</code>).
+</p>
+<p>The factorization is not unique and depends on the inital guess for the matrices
+<var class="var">W</var> and <var class="var">H</var>. You can pass this initalizations using the optional
+ named arguments <var class="var">Winit</var> and <var class="var">Hinit</var>.
+</p>
+<p>timelimit, maxiter: limit of time and iterations
+</p>
+<p>Examples:
+</p>
+<div class="example">
+<pre class="example-preformatted">   A     = rand(10,5);
+   [W H] = nmf_pg(A,tol=1e-3);
+   U     = W*H -A;
+   disp(max(abs(U)));
+</pre></div>
+
+</dd></dl>
+<hr>
+</div>
+</div>
+<div class="section-level-extent" id="Block-sparse-matrices">
+<h3 class="section" id="Block-sparse-matrices-1">3.4 Block sparse matrices</h3>
+<a class="index-entry-id" id="index-Block-sparse-matrices"></a>
+<div class="subsection-level-extent" id="g_t_0040blksparse_002fblksize">
+<h4 class="subsection">3.4.1 @blksparse/blksize</h4>
+<a class="index-entry-id" id="index-blksize"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028x_0029"><span class="category-def">Function File: </span><code class="def-type">blksize</code> <strong class="def-name">(<var class="var">x</var>)</strong></dt>
+<dd><p>Returns the block size of the matrix.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040blksparse_002fblksparse">
+<h4 class="subsection">3.4.2 @blksparse/blksparse</h4>
+<a class="index-entry-id" id="index-blksparse"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-blksparse-1"><span class="category-def">Function File: </span><code class="def-type"><var class="var">s</var> =</code> <strong class="def-name">blksparse</strong> <code class="def-code-arguments">(<var class="var">i</var>, <var class="var">j</var>, <var class="var">sv</var>)</code></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-blksparse-2"><span class="category-def">Function File: </span><code class="def-type"><var class="var">s</var> =</code> <strong class="def-name">blksparse</strong> <code class="def-code-arguments">(<var class="var">i</var>, <var class="var">j</var>, <var class="var">sv</var>, <var class="var">m</var>, <var class="var">n</var>)</code></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-blksparse-3"><span class="category-def">Function File: </span><code class="def-type"><var class="var">s</var> =</code> <strong class="def-name">blksparse</strong> <code class="def-code-arguments">(&hellip;, <var class="var">mode</var>)</code></dt>
+<dd>
+<p>Construct a block sparse matrix. The meaning of arguments is analogous to the
+ built-in <code class="code">sparse</code> function, except that <var class="var">i</var>, <var class="var">j</var> are indices of
+ blocks rather than elements, and <var class="var">sv</var> is a 3-dimensional array, the first two
+ dimensions determining the block size. Optionally, <var class="var">m</var> and <var class="var">n</var> can be
+ specified as the true block dimensions; if not, the maximum values of <var class="var">i</var>, <var class="var">j</var>
+ are taken instead. The resulting sparse matrix has the size
+</p>
+<div class="example">
+<pre class="example-preformatted">   [<var class="var">m</var>*<var class="var">p</var>, <var class="var">n</var>*<var class="var">q</var>]
+</pre></div>
+
+<p>where
+</p>
+<div class="example">
+<pre class="example-preformatted">   <var class="var">p</var> = size (<var class="var">sv</var>, 1)
+   <var class="var">q</var> = size (<var class="var">sv</var>, 2)
+</pre></div>
+
+<p>The blocks are located so that
+</p>
+<div class="example">
+<pre class="example-preformatted"><var class="var">s</var>(<var class="var">i</var>(k):<var class="var">i</var>(k)+<var class="var">p</var>-1, <var class="var">j</var>(k):<var class="var">j</var>(K)+<var class="var">q</var>-1) = <var class="var">sv</var>(:,:,k)
+</pre></div>
+
+<p>Multiple blocks corresponding to the same pair of indices are summed, unless
+<var class="var">mode</var> is &quot;unique&quot;, in which case the last of them is used.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040blksparse_002fctranspose">
+<h4 class="subsection">3.4.3 @blksparse/ctranspose</h4>
+<a class="index-entry-id" id="index-ctranspose"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028x_0029-1"><span class="category-def">Function File: </span><code class="def-type">ctranspose</code> <strong class="def-name">(<var class="var">x</var>)</strong></dt>
+<dd><p>Returns the conjugate transpose of a block sparse matrix <var class="var">x</var>.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040blksparse_002fdisplay">
+<h4 class="subsection">3.4.4 @blksparse/display</h4>
+<a class="index-entry-id" id="index-display"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028x_0029-2"><span class="category-def">Function File: </span><code class="def-type">display</code> <strong class="def-name">(<var class="var">x</var>)</strong></dt>
+<dd><p>Displays the block sparse matrix.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040blksparse_002ffull">
+<h4 class="subsection">3.4.5 @blksparse/full</h4>
+<a class="index-entry-id" id="index-full"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028x_0029-3"><span class="category-def">Function File: </span><code class="def-type">full</code> <strong class="def-name">(<var class="var">x</var>)</strong></dt>
+<dd><p>Converts a block sparse matrix to full.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040blksparse_002fismatrix">
+<h4 class="subsection">3.4.6 @blksparse/ismatrix</h4>
+<a class="index-entry-id" id="index-ismatrix"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028s_0029"><span class="category-def">Function File: </span><code class="def-type">ismatrix</code> <strong class="def-name">(<var class="var">s</var>)</strong></dt>
+<dd><p>Returns true (a blksparse object is a matrix).
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040blksparse_002fisreal">
+<h4 class="subsection">3.4.7 @blksparse/isreal</h4>
+<a class="index-entry-id" id="index-isreal"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028s_0029-1"><span class="category-def">Function File: </span><code class="def-type">isreal</code> <strong class="def-name">(<var class="var">s</var>)</strong></dt>
+<dd><p>Returns true if the array is non-complex.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040blksparse_002fissparse">
+<h4 class="subsection">3.4.8 @blksparse/issparse</h4>
+<a class="index-entry-id" id="index-issparse"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028s_0029-2"><span class="category-def">Function File: </span><code class="def-type">issparse</code> <strong class="def-name">(<var class="var">s</var>)</strong></dt>
+<dd><p>Returns true since a blksparse is sparse by definition.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040blksparse_002fminus">
+<h4 class="subsection">3.4.9 @blksparse/minus</h4>
+<a class="index-entry-id" id="index-minus"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028s1_002c"><span class="category-def">Function File: </span><code class="def-type">minus</code> <strong class="def-name">(<var class="var">s1</var>,</strong> <code class="def-code-arguments"><var class="var">s2</var>)</code></dt>
+<dd><p>Subtract two blksparse objects.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040blksparse_002fmldivide">
+<h4 class="subsection">3.4.10 @blksparse/mldivide</h4>
+<a class="index-entry-id" id="index-mldivide"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028x_002c"><span class="category-def">Function File: </span><code class="def-type">mldivide</code> <strong class="def-name">(<var class="var">x</var>,</strong> <code class="def-code-arguments"><var class="var">y</var>)</code></dt>
+<dd><p>Performs a left division with a block sparse matrix.
+ If <var class="var">x</var> is a block sparse matrix, it must be either diagonal
+ or triangular, and <var class="var">y</var> must be full.
+ If <var class="var">x</var> is built-in sparse or full, <var class="var">y</var> is converted
+ accordingly, then the built-in division is used.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040blksparse_002fmrdivide">
+<h4 class="subsection">3.4.11 @blksparse/mrdivide</h4>
+<a class="index-entry-id" id="index-mrdivide"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028x_002c-1"><span class="category-def">Function File: </span><code class="def-type">mrdivide</code> <strong class="def-name">(<var class="var">x</var>,</strong> <code class="def-code-arguments"><var class="var">y</var>)</code></dt>
+<dd><p>Performs a left division with a block sparse matrix.
+ If <var class="var">y</var> is a block sparse matrix, it must be either diagonal
+ or triangular, and <var class="var">x</var> must be full.
+ If <var class="var">y</var> is built-in sparse or full, <var class="var">x</var> is converted
+ accordingly, then the built-in division is used.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040blksparse_002fmtimes">
+<h4 class="subsection">3.4.12 @blksparse/mtimes</h4>
+<a class="index-entry-id" id="index-mtimes"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028x_002c-2"><span class="category-def">Function File: </span><code class="def-type">mtimes</code> <strong class="def-name">(<var class="var">x</var>,</strong> <code class="def-code-arguments"><var class="var">y</var>)</code></dt>
+<dd><p>Multiplies a block sparse matrix with a full matrix, or two block sparse
+ matrices. Multiplication of block sparse * sparse is not implemented.
+ If one of arguments is a scalar, it&rsquo;s a scalar multiply.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040blksparse_002fplus">
+<h4 class="subsection">3.4.13 @blksparse/plus</h4>
+<a class="index-entry-id" id="index-plus"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028s1_002c-1"><span class="category-def">Function File: </span><code class="def-type">plus</code> <strong class="def-name">(<var class="var">s1</var>,</strong> <code class="def-code-arguments"><var class="var">s2</var>)</code></dt>
+<dd><p>Add two blksparse objects.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040blksparse_002fsize">
+<h4 class="subsection">3.4.14 @blksparse/size</h4>
+<a class="index-entry-id" id="index-size"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028x_0029-4"><span class="category-def">Function File: </span><code class="def-type">size</code> <strong class="def-name">(<var class="var">x</var>)</strong></dt>
+<dd><p>Returns the size of the matrix.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040blksparse_002fsparse">
+<h4 class="subsection">3.4.15 @blksparse/sparse</h4>
+<a class="index-entry-id" id="index-sparse"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028x_0029-5"><span class="category-def">Function File: </span><code class="def-type">sparse</code> <strong class="def-name">(<var class="var">x</var>)</strong></dt>
+<dd><p>Converts a block sparse matrix to (built-in) sparse.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040blksparse_002fsubsref">
+<h4 class="subsection">3.4.16 @blksparse/subsref</h4>
+<a class="index-entry-id" id="index-subsref"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028s_002c"><span class="category-def">Function File: </span><code class="def-type">subsref</code> <strong class="def-name">(<var class="var">s</var>,</strong> <code class="def-code-arguments"><var class="var">subs</var>)</code></dt>
+<dd><p>Index elements from a blksparse object.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040blksparse_002ftranspose">
+<h4 class="subsection">3.4.17 @blksparse/transpose</h4>
+<a class="index-entry-id" id="index-transpose"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028x_0029-6"><span class="category-def">Function File: </span><code class="def-type">transpose</code> <strong class="def-name">(<var class="var">x</var>)</strong></dt>
+<dd><p>Returns the transpose of a block sparse matrix <var class="var">x</var>.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040blksparse_002fuminus">
+<h4 class="subsection">3.4.18 @blksparse/uminus</h4>
+<a class="index-entry-id" id="index-uminus"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028x_0029-7"><span class="category-def">Function File: </span><code class="def-type">uminus</code> <strong class="def-name">(<var class="var">x</var>)</strong></dt>
+<dd><p>Returns the negative of a block sparse matrix <var class="var">x</var>.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040blksparse_002fuplus">
+<h4 class="subsection">3.4.19 @blksparse/uplus</h4>
+<a class="index-entry-id" id="index-uplus"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028x_0029-8"><span class="category-def">Function File: </span><code class="def-type">uplus</code> <strong class="def-name">(<var class="var">x</var>)</strong></dt>
+<dd><p>Returns the unary plus of a block sparse matrix <var class="var">x</var>.
+ Effectively the matrix itself, except signs of zeros.
+</p></dd></dl>
+<hr>
+</div>
+</div>
+<div class="section-level-extent" id="Kronecker-Products">
+<h3 class="section" id="Kronecker-Products-1">3.5 Kronecker Products</h3>
+<a class="index-entry-id" id="index-Kronecker-Products"></a>
+<div class="subsection-level-extent" id="g_t_0040kronprod_002fcolumns">
+<h4 class="subsection">3.5.1 @kronprod/columns</h4>
+<a class="index-entry-id" id="index-columns"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028KP_0029"><span class="category-def">Function File: </span><code class="def-type">columns</code> <strong class="def-name">(<var class="var">KP</var>)</strong></dt>
+<dd><p>Return the number of columns in the Kronecker product <var class="var">KP</var>.
+</p>
+<p><strong class="strong">See also:</strong> @kronprod/rows, @kronprod/size, @kronprod/numel.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040kronprod_002fctranspose">
+<h4 class="subsection">3.5.2 @kronprod/ctranspose</h4>
+<a class="index-entry-id" id="index-ctranspose-1"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028KP_0029-1"><span class="category-def">Function File: </span><code class="def-type">ctranspose</code> <strong class="def-name">(<var class="var">KP</var>)</strong></dt>
+<dd><p>The complex conjugate transpose of a Kronecker product. This is equivalent
+ to
+</p>
+<div class="example">
+<pre class="example-preformatted"><var class="var">KP</var>'
+</pre></div>
+
+<p><strong class="strong">See also:</strong> ctranspose, @kronprod/transpose.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040kronprod_002fdet">
+<h4 class="subsection">3.5.3 @kronprod/det</h4>
+<a class="index-entry-id" id="index-det"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028KP_0029-2"><span class="category-def">Function File: </span><code class="def-type">det</code> <strong class="def-name">(<var class="var">KP</var>)</strong></dt>
+<dd><p>Compute the determinant of a Kronecker product.
+</p>
+<p>If <var class="var">KP</var> is the Kronecker product of the <var class="var">n</var>-by-<var class="var">n</var> matrix <var class="var">A</var>
+ and the <var class="var">q</var>-by-<var class="var">q</var> matrix <var class="var">B</var>, then the determinant is computed
+ as
+</p>
+<div class="example">
+<pre class="example-preformatted"> det (<var class="var">A</var>)^q * det (<var class="var">B</var>)^n
+</pre></div>
+
+<p>If <var class="var">KP</var> is not a Kronecker product of square matrices the determinant is
+ computed by forming the full matrix and then computing the determinant.
+</p>
+<p><strong class="strong">See also:</strong> det, @kronprod/trace, @kronprod/rank, @kronprod/full.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040kronprod_002fdisp">
+<h4 class="subsection">3.5.4 @kronprod/disp</h4>
+<a class="index-entry-id" id="index-disp"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028KP_0029-3"><span class="category-def">Function File: </span><code class="def-type">disp</code> <strong class="def-name">(<var class="var">KP</var>)</strong></dt>
+<dd><p>Show the content of the Kronecker product <var class="var">KP</var>. To avoid evaluating the
+ Kronecker product, this function displays the two matrices defining the product.
+ To display the actual values of <var class="var">KP</var>, use <code class="code">disp (full (<var class="var">KP</var>))</code>.
+</p>
+<p>This function is equivalent to <code class="code">@kronprod/display</code>.
+</p>
+<p><strong class="strong">See also:</strong> @kronprod/display, @kronprod/full.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040kronprod_002fdisplay">
+<h4 class="subsection">3.5.5 @kronprod/display</h4>
+<a class="index-entry-id" id="index-display-1"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028KP_0029-4"><span class="category-def">Function File: </span><code class="def-type">display</code> <strong class="def-name">(<var class="var">KP</var>)</strong></dt>
+<dd><p>Show the content of the Kronecker product <var class="var">KP</var>. To avoid evaluating the
+ Kronecker product, this function displays the two matrices defining the product.
+ To display the actual values of <var class="var">KP</var>, use <code class="code">display (full (<var class="var">KP</var>))</code>.
+</p>
+<p><strong class="strong">See also:</strong> @kronprod/displ, @kronprod/full.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040kronprod_002ffull">
+<h4 class="subsection">3.5.6 @kronprod/full</h4>
+<a class="index-entry-id" id="index-full-1"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028KP_0029-5"><span class="category-def">Function File: </span><code class="def-type">full</code> <strong class="def-name">(<var class="var">KP</var>)</strong></dt>
+<dd><p>Return the full matrix representation of the Kronecker product <var class="var">KP</var>.
+</p>
+<p>If <var class="var">KP</var> is the Kronecker product of an <var class="var">n</var>-by-<var class="var">m</var> matrix and a
+<var class="var">q</var>-by-<var class="var">r</var> matrix, then the result is a <var class="var">n</var><var class="var">q</var>-by-<var class="var">m</var><var class="var">r</var>
+ matrix. Thus, the result can require vast amount of memory, so this function
+ should be avoided whenever possible.
+</p>
+<p><strong class="strong">See also:</strong> full, @kronprod/sparse.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040kronprod_002finv">
+<h4 class="subsection">3.5.7 @kronprod/inv</h4>
+<a class="index-entry-id" id="index-inv"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028KP_0029-6"><span class="category-def">Function File: </span><code class="def-type">inv</code> <strong class="def-name">(<var class="var">KP</var>)</strong></dt>
+<dd><p>Return the inverse of the Kronecker product <var class="var">KP</var>.
+</p>
+<p>If <var class="var">KP</var> is the Kronecker product of two square matrices <var class="var">A</var> and <var class="var">B</var>,
+ the inverse will be computed as the Kronecker product of the inverse of
+<var class="var">A</var> and <var class="var">B</var>.
+</p>
+<p>If <var class="var">KP</var> is square but not a Kronecker product of square matrices, the
+ inverse will be computed using the SVD
+</p>
+<p><strong class="strong">See also:</strong> @kronprod/sparse.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040kronprod_002fiscomplex">
+<h4 class="subsection">3.5.8 @kronprod/iscomplex</h4>
+<a class="index-entry-id" id="index-iscomplex"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028KP_0029-7"><span class="category-def">Function File: </span><code class="def-type">iscomplex</code> <strong class="def-name">(<var class="var">KP</var>)</strong></dt>
+<dd><p>Return <code class="t">true</code> if the Kronecker product <var class="var">KP</var> contains any complex values.
+</p>
+<p><strong class="strong">See also:</strong> iscomplex, @kronprod/isreal.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040kronprod_002fismatrix">
+<h4 class="subsection">3.5.9 @kronprod/ismatrix</h4>
+<a class="index-entry-id" id="index-ismatrix-1"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028KP_0029-8"><span class="category-def">Function File: </span><code class="def-type">ismatrix</code> <strong class="def-name">(<var class="var">KP</var>)</strong></dt>
+<dd><p>Return <code class="t">true</code> to indicate that the Kronecker product <var class="var">KP</var> always is a
+ matrix.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040kronprod_002fisreal">
+<h4 class="subsection">3.5.10 @kronprod/isreal</h4>
+<a class="index-entry-id" id="index-isreal-1"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028KP_0029-9"><span class="category-def">Function File: </span><code class="def-type">isreal</code> <strong class="def-name">(<var class="var">KP</var>)</strong></dt>
+<dd><p>Return <code class="t">true</code> if the Kronecker product <var class="var">KP</var> is real, i.e. has no
+ imaginary components.
+</p>
+<p><strong class="strong">See also:</strong> isreal, @kronprod/iscomplex.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040kronprod_002fissparse">
+<h4 class="subsection">3.5.11 @kronprod/issparse</h4>
+<a class="index-entry-id" id="index-issparse-1"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028KP_0029-10"><span class="category-def">Function File: </span><code class="def-type">issparse</code> <strong class="def-name">(<var class="var">KP</var>)</strong></dt>
+<dd><p>Return <code class="t">true</code> if one of the matrices in the Kronecker product <var class="var">KP</var>
+ is sparse.
+</p>
+<p><strong class="strong">See also:</strong> @kronprod/sparse.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040kronprod_002fissquare">
+<h4 class="subsection">3.5.12 @kronprod/issquare</h4>
+<a class="index-entry-id" id="index-issquare"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028KP_0029-11"><span class="category-def">Function File: </span><code class="def-type">issquare</code> <strong class="def-name">(<var class="var">KP</var>)</strong></dt>
+<dd><p>Return <code class="t">true</code> if the Kronecker product <var class="var">KP</var> is a square matrix.
+</p>
+<p><strong class="strong">See also:</strong> @kronprod/size.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040kronprod_002fkronprod">
+<h4 class="subsection">3.5.13 @kronprod/kronprod</h4>
+<a class="index-entry-id" id="index-kronprod"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028A_002c"><span class="category-def">Function File: </span><code class="def-type">kronprod</code> <strong class="def-name">(<var class="var">A</var>,</strong> <code class="def-code-arguments"><var class="var">B</var>)</code></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-_0028A_002c-1"><span class="category-def">Function File: </span><code class="def-type">kronprod</code> <strong class="def-name">(<var class="var">A</var>,</strong> <code class="def-code-arguments"><var class="var">B</var>, <var class="var">P</var>)</code></dt>
+<dd><p>Construct a Kronecker product object.
+ XXX: Write proper documentation
+</p>
+<p>With two input arguments, the following matrix is represented: kron (A, B);
+</p>
+<p>With three input arguments, the following matrix is represented: P * kron (A, B) * P&rsquo;
+ (P must be a permutation matrix)
+</p>
+</dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040kronprod_002fminus">
+<h4 class="subsection">3.5.14 @kronprod/minus</h4>
+<a class="index-entry-id" id="index-minus-1"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028a_002c"><span class="category-def">Function File: </span><code class="def-type">minus</code> <strong class="def-name">(<var class="var">a</var>,</strong> <code class="def-code-arguments"><var class="var">a</var>)</code></dt>
+<dd><p>Return the difference between a Kronecker product and another matrix. This is performed
+ by forming the full matrix of both inputs and is as such a potential expensive
+ operation.
+</p>
+<p><strong class="strong">See also:</strong> minus, @kronprod/plus.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040kronprod_002fmldivide">
+<h4 class="subsection">3.5.15 @kronprod/mldivide</h4>
+<a class="index-entry-id" id="index-mldivide-1"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028M1_002c"><span class="category-def">Function File: </span><code class="def-type">mldivide</code> <strong class="def-name">(<var class="var">M1</var>,</strong> <code class="def-code-arguments"><var class="var">M2</var>)</code></dt>
+<dd><p>Perform matrix left division.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040kronprod_002fmpower">
+<h4 class="subsection">3.5.16 @kronprod/mpower</h4>
+<a class="index-entry-id" id="index-mpower"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028KP_002c"><span class="category-def">Function File: </span><code class="def-type">mpower</code> <strong class="def-name">(<var class="var">KP</var>,</strong> <code class="def-code-arguments"><var class="var">k</var>)</code></dt>
+<dd><p>Perform matrix power operation.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040kronprod_002fmtimes">
+<h4 class="subsection">3.5.17 @kronprod/mtimes</h4>
+<a class="index-entry-id" id="index-mtimes-1"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028KP1_002c"><span class="category-def">Function File: </span><code class="def-type">mtimes</code> <strong class="def-name">(<var class="var">KP1</var>,</strong> <code class="def-code-arguments"><var class="var">KP2</var>)</code></dt>
+<dd><p>Perform matrix multiplication operation.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040kronprod_002fnumel">
+<h4 class="subsection">3.5.18 @kronprod/numel</h4>
+<a class="index-entry-id" id="index-numel"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028KP_0029-12"><span class="category-def">Function File: </span><code class="def-type">numel</code> <strong class="def-name">(<var class="var">KP</var>)</strong></dt>
+<dd><p>Return the number of elements in the Kronecker product <var class="var">KP</var>.
+</p>
+<p><strong class="strong">See also:</strong> numel, @kronprod/rows, @kronprod/columns, @kronprod/size.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040kronprod_002fplus">
+<h4 class="subsection">3.5.19 @kronprod/plus</h4>
+<a class="index-entry-id" id="index-plus-1"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028a_002c-1"><span class="category-def">Function File: </span><code class="def-type">plus</code> <strong class="def-name">(<var class="var">a</var>,</strong> <code class="def-code-arguments"><var class="var">a</var>)</code></dt>
+<dd><p>Return the sum of a Kronecker product and another matrix. This is performed
+ by forming the full matrix of both inputs and is as such a potential expensive
+ operation.
+</p>
+<p><strong class="strong">See also:</strong> plus, @kronprod/minus.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040kronprod_002frank">
+<h4 class="subsection">3.5.20 @kronprod/rank</h4>
+<a class="index-entry-id" id="index-rank"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028KP_0029-13"><span class="category-def">Function File: </span><code class="def-type">rank</code> <strong class="def-name">(<var class="var">KP</var>)</strong></dt>
+<dd><p>Return the rank of the Kronecker product <var class="var">KP</var>. This is computed as the
+ product of the ranks of the matrices forming the product.
+</p>
+<p><strong class="strong">See also:</strong> rank, @kronprod/det, @kronprod/trace.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040kronprod_002frdivide">
+<h4 class="subsection">3.5.21 @kronprod/rdivide</h4>
+<a class="index-entry-id" id="index-rdivide"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028a_002c-2"><span class="category-def">Function File: </span><code class="def-type">rdivide</code> <strong class="def-name">(<var class="var">a</var>,</strong> <code class="def-code-arguments"><var class="var">b</var>)</code></dt>
+<dd><p>Perform element-by-element right division.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040kronprod_002frows">
+<h4 class="subsection">3.5.22 @kronprod/rows</h4>
+<a class="index-entry-id" id="index-rows"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028KP_0029-14"><span class="category-def">Function File: </span><code class="def-type">rows</code> <strong class="def-name">(<var class="var">KP</var>)</strong></dt>
+<dd><p>Return the number of rows in the Kronecker product <var class="var">KP</var>.
+</p>
+<p><strong class="strong">See also:</strong> rows, @kronprod/size, @kronprod/columns, @kronprod/numel.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040kronprod_002fsize">
+<h4 class="subsection">3.5.23 @kronprod/size</h4>
+<a class="index-entry-id" id="index-size-1"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028KP_0029-15"><span class="category-def">Function File: </span><code class="def-type">size</code> <strong class="def-name">(<var class="var">KP</var>)</strong></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-_0028KP_002c-1"><span class="category-def">Function File: </span><code class="def-type">size</code> <strong class="def-name">(<var class="var">KP</var>,</strong> <code class="def-code-arguments"><var class="var">dim</var>)</code></dt>
+<dd><p>Return the size of the Kronecker product <var class="var">KP</var> as a vector.
+</p>
+<p><strong class="strong">See also:</strong> size, @kronprod/rows, @kronprod/columns, @kronprod/numel.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040kronprod_002fsize_005fequal">
+<h4 class="subsection">3.5.24 @kronprod/size_equal</h4>
+<a class="index-entry-id" id="index-size_005fequal"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028_002e_002e_002e_0029"><span class="category-def">Function File: </span><code class="def-type">size_equal</code> <strong class="def-name">(&hellip;)</strong></dt>
+<dd><p>True if all input have same dimensions.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040kronprod_002fsparse">
+<h4 class="subsection">3.5.25 @kronprod/sparse</h4>
+<a class="index-entry-id" id="index-sparse-1"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028KP_0029-16"><span class="category-def">Function File: </span><code class="def-type">sparse</code> <strong class="def-name">(<var class="var">KP</var>)</strong></dt>
+<dd><p>Return the Kronecker product <var class="var">KP</var> represented as a sparse matrix.
+</p>
+<p><strong class="strong">See also:</strong> sparse, @kronprod/issparse, @kronprod/full.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040kronprod_002ftimes">
+<h4 class="subsection">3.5.26 @kronprod/times</h4>
+<a class="index-entry-id" id="index-times"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028KP_002c-2"><span class="category-def">Function File: </span><code class="def-type">times</code> <strong class="def-name">(<var class="var">KP</var>,</strong> <code class="def-code-arguments"><var class="var">KP2</var>)</code></dt>
+<dd><p>Perform elemtn-by-element multiplication.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040kronprod_002ftrace">
+<h4 class="subsection">3.5.27 @kronprod/trace</h4>
+<a class="index-entry-id" id="index-trace"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028KP_0029-17"><span class="category-def">Function File: </span><code class="def-type">trace</code> <strong class="def-name">(<var class="var">KP</var>)</strong></dt>
+<dd><p>Returns the trace of the Kronecker product <var class="var">KP</var>.
+</p>
+<p>If <var class="var">KP</var> is a Kronecker product of two square matrices, the trace is
+ computed as the product of the trace of these two matrices. Otherwise the
+ trace is computed by forming the full matrix.
+</p>
+<p><strong class="strong">See also:</strong> @kronprod/det, @kronprod/rank, @kronprod/full.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040kronprod_002ftranspose">
+<h4 class="subsection">3.5.28 @kronprod/transpose</h4>
+<a class="index-entry-id" id="index-transpose-1"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028KP_0029-18"><span class="category-def">Function File: </span><code class="def-type">transpose</code> <strong class="def-name">(<var class="var">KP</var>)</strong></dt>
+<dd><p>Returns the transpose of the Kronecker product <var class="var">KP</var>. This is equivalent
+ to
+</p>
+<div class="example">
+<pre class="example-preformatted"><var class="var">KP</var>.'
+</pre></div>
+
+<p><strong class="strong">See also:</strong> transpose, @kronprod/ctranspose.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040kronprod_002fuminus">
+<h4 class="subsection">3.5.29 @kronprod/uminus</h4>
+<a class="index-entry-id" id="index-uminus-1"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028KP_0029-19"><span class="category-def">Function File: </span><code class="def-type">uminus</code> <strong class="def-name">(<var class="var">KP</var>)</strong></dt>
+<dd><p>Returns the unary minus operator working on the Kronecker product <var class="var">KP</var>.
+ This corresponds to <code class="code">-<var class="var">KP</var></code> and simply returns the Kronecker
+ product with the sign of the smallest matrix in the product reversed.
+</p>
+<p><strong class="strong">See also:</strong> @kronprod/uminus.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="g_t_0040kronprod_002fuplus">
+<h4 class="subsection">3.5.30 @kronprod/uplus</h4>
+<a class="index-entry-id" id="index-uplus-1"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-_0028KP_0029-20"><span class="category-def">Function File: </span><code class="def-type">uplus</code> <strong class="def-name">(<var class="var">KP</var>)</strong></dt>
+<dd><p>Returns the unary plus operator working on the Kronecker product <var class="var">KP</var>.
+ This corresponds to <code class="code">+<var class="var">KP</var></code> and simply returns the Kronecker
+ product unchanged.
+</p>
+<p><strong class="strong">See also:</strong> @kronprod/uminus.
+</p></dd></dl>
+<hr>
+</div>
+</div>
+<div class="section-level-extent" id="Circulant-matrices">
+<h3 class="section" id="Circulant-matrices-1">3.6 Circulant matrices</h3>
+<a class="index-entry-id" id="index-Circulant-matrices"></a>
+<div class="subsection-level-extent" id="circulant_005feig">
+<h4 class="subsection">3.6.1 circulant_eig</h4>
+<a class="index-entry-id" id="index-circulant_005feig"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-circulant_005feig-1"><span class="category-def">Function File: </span><code class="def-type"><var class="var">lambda</var> =</code> <strong class="def-name">circulant_eig</strong> <code class="def-code-arguments">(<var class="var">v</var>)</code></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-circulant_005feig-2"><span class="category-def">Function File: </span><code class="def-type">[<var class="var">vs</var>, <var class="var">lambda</var>] =</code> <strong class="def-name">circulant_eig</strong> <code class="def-code-arguments">(<var class="var">v</var>)</code></dt>
+<dd>
+<p>Fast, compact calculation of eigenvalues and eigenvectors of a circulant matrix<br>
+ Given an <var class="var">n</var>*1 vector <var class="var">v</var>, return the eigenvalues <var class="var">lambda</var> and optionally eigenvectors <var class="var">vs</var> of the <var class="var">n</var>*<var class="var">n</var> circulant matrix <var class="var">C</var> that has <var class="var">v</var> as its first column
+</p>
+<p>Theoretically same as <code class="code">eig(make_circulant_matrix(v))</code>, but many fewer computations; does not form <var class="var">C</var> explicitly
+</p>
+<p>Reference: Robert M. Gray, Toeplitz and Circulant Matrices: A Review, Now Publishers, http://ee.stanford.edu/~gray/toeplitz.pdf, Chapter 3
+</p>
+
+<p><strong class="strong">See also:</strong> gallery, circulant_matrix_vector_product, circulant_inv.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="circulant_005finv">
+<h4 class="subsection">3.6.2 circulant_inv</h4>
+<a class="index-entry-id" id="index-circulant_005finv"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-circulant_005finv-1"><span class="category-def">Function File: </span><code class="def-type"><var class="var">c</var> =</code> <strong class="def-name">circulant_inv</strong> <code class="def-code-arguments">(<var class="var">v</var>)</code></dt>
+<dd>
+<p>Fast, compact calculation of inverse of a circulant matrix<br>
+ Given an <var class="var">n</var>*1 vector <var class="var">v</var>, return the inverse <var class="var">c</var> of the <var class="var">n</var>*<var class="var">n</var> circulant matrix <var class="var">C</var> that has <var class="var">v</var> as its first column
+ The returned <var class="var">c</var> is the first column of the inverse, which is also circulant &ndash; to get the full matrix, use &lsquo;circulant_make_matrix(c)&rsquo;
+</p>
+<p>Theoretically same as <code class="code">inv(make_circulant_matrix(v))(:, 1)</code>, but requires many fewer computations and does not form matrices explicitly
+</p>
+<p>Roundoff may induce a small imaginary component in <var class="var">c</var> even if <var class="var">v</var> is real &ndash; use <code class="code">real(c)</code> to remedy this
+</p>
+<p>Reference: Robert M. Gray, Toeplitz and Circulant Matrices: A Review, Now Publishers, http://ee.stanford.edu/~gray/toeplitz.pdf, Chapter 3
+</p>
+
+<p><strong class="strong">See also:</strong> gallery, circulant_matrix_vector_product, circulant_eig.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="circulant_005fmake_005fmatrix">
+<h4 class="subsection">3.6.3 circulant_make_matrix</h4>
+<a class="index-entry-id" id="index-circulant_005fmake_005fmatrix"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-circulant_005fmake_005fmatrix-1"><span class="category-def">Function File: </span><code class="def-type"><var class="var">C</var> =</code> <strong class="def-name">circulant_make_matrix</strong> <code class="def-code-arguments">(<var class="var">v</var>)</code></dt>
+<dd><p>Produce a full circulant matrix given the first column.
+</p>
+<p><em class="emph">Note:</em> this function has been deprecated and will be removed in the
+ future.  Instead, use <code class="code">gallery</code> with the the <code class="code">circul</code> option.
+ To obtain the exactly same matrix, transpose the result, i.e., replace
+<code class="code">circulant_make_matrix (<var class="var">v</var>)</code> with
+<code class="code">gallery (&quot;circul&quot;, <var class="var">v</var>)'</code>.
+</p>
+<p>Given an <var class="var">n</var>*1 vector <var class="var">v</var>, returns the <var class="var">n</var>*<var class="var">n</var> circulant
+ matrix <var class="var">C</var> where <var class="var">v</var> is the left column and all other columns are
+ downshifted versions of <var class="var">v</var>.
+</p>
+<p>Note: If the first row <var class="var">r</var> of a circulant matrix is given, the first
+ column <var class="var">v</var> can be obtained as <code class="code">v = r([1 end:-1:2])</code>.
+</p>
+<p>Reference: Gene H. Golub and Charles F. Van Loan, Matrix Computations, 3rd Ed., Section 4.7.7
+</p>
+
+<p><strong class="strong">See also:</strong> gallery, circulant_matrix_vector_product, circulant_eig, circulant_inv.
+</p></dd></dl>
+</div>
+<div class="subsection-level-extent" id="circulant_005fmatrix_005fvector_005fproduct">
+<h4 class="subsection">3.6.4 circulant_matrix_vector_product</h4>
+<a class="index-entry-id" id="index-circulant_005fmatrix_005fvector_005fproduct"></a>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-circulant_005fmatrix_005fvector_005fproduct-1"><span class="category-def">Function File: </span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">circulant_matrix_vector_product</strong> <code class="def-code-arguments">(<var class="var">v</var>, <var class="var">x</var>)</code></dt>
+<dd>
+<p>Fast, compact calculation of the product of a circulant matrix with a vector<br>
+ Given <var class="var">n</var>*1 vectors <var class="var">v</var> and <var class="var">x</var>, return the matrix-vector product <var class="var">y</var> = <var class="var">C</var><var class="var">x</var>, where <var class="var">C</var> is the <var class="var">n</var>*<var class="var">n</var> circulant matrix that has <var class="var">v</var> as its first column
+</p>
+<p>Theoretically the same as <code class="code">make_circulant_matrix(x) * v</code>, but does not form <var class="var">C</var> explicitly; uses the discrete Fourier transform
+</p>
+<p>Because of roundoff, the returned <var class="var">y</var> may have a small imaginary component even if <var class="var">v</var> and <var class="var">x</var> are real (use <code class="code">real(y)</code> to remedy this)
+</p>
+<p>Reference: Gene H. Golub and Charles F. Van Loan, Matrix Computations, 3rd Ed., Section 4.7.7
+</p>
+
+<p><strong class="strong">See also:</strong> gallery, circulant_eig, circulant_inv.
+</p></dd></dl>
+
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+</body>
+</html>

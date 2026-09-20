@@ -1,0 +1,15 @@
+prefix=/usr
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include/GraphicsMagick
+
+
+Name: GraphicsMagick
+Version: 1.3.46
+Description: GraphicsMagick image processing library
+URL: http://www.graphicsmagick.org/
+Requires.private: libxml-2.0
+Libs: -L${libdir} -lGraphicsMagick
+Libs.private: -L/usr/lib -L/usr/lib -lGraphicsMagick -llcms2 -lfreetype -lbz2 -lz -lltdl -lgdi32 -luser32 -lm -lpthread
+Libs.private: -L/usr/lib -llcms2 -lfreetype -lbz2 -lz -lltdl -lgdi32 -luser32 -lm -lpthread 
+Cflags: -I${includedir}  -D_DLL -D_MT

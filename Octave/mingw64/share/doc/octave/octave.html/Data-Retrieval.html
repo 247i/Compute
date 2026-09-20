@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Data Retrieval (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Data Retrieval (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Data Retrieval (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Audio-Recorder.html" rel="up" title="Audio Recorder">
+<link href="Recorder-Properties.html" rel="next" title="Recorder Properties">
+<link href="Recording.html" rel="prev" title="Recording">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Data-Retrieval">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Recorder-Properties.html" accesskey="n" rel="next">Recorder Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Recording.html" accesskey="p" rel="prev">Recording</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Audio-Recorder.html" accesskey="u" rel="up">Audio Recorder</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Data-Retrieval-1"><span>33.4.2 Data Retrieval<a class="copiable-link" href="#Data-Retrieval-1"> &para;</a></span></h4>
+
+<p>The following methods allow you to retrieve recorded audio data in
+various ways.
+</p>
+<a class="anchor" id="XREF_0040audiorecorder_002fgetaudiodata"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-getaudiodata"><span><code class="def-type"><var class="var">data</var> =</code> <strong class="def-name">getaudiodata</strong> <code class="def-code-arguments">(<var class="var">recorder</var>)</code><a class="copiable-link" href="#index-getaudiodata"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-getaudiodata-1"><span><code class="def-type"><var class="var">data</var> =</code> <strong class="def-name">getaudiodata</strong> <code class="def-code-arguments">(<var class="var">recorder</var>, <var class="var">datatype</var>)</code><a class="copiable-link" href="#index-getaudiodata-1"> &para;</a></span></dt>
+<dd><p>Return audio data from audiorecorder object <var class="var">recorder</var> as a double
+matrix with values between -1.0 and 1.0 and with as many columns as there
+are channels in <var class="var">recorder</var>.
+</p>
+<p>Given the optional argument <var class="var">datatype</var>, convert the recorded data
+to the specified type, which may be one of <code class="code">&quot;double&quot;</code>,
+<code class="code">&quot;single&quot;</code>, <code class="code">&quot;int16&quot;</code>, <code class="code">&quot;int8&quot;</code> or <code class="code">&quot;uint8&quot;</code>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Audio-Recorder.html#XREF_0040audiorecorder_002faudiorecorder">@audiorecorder/audiorecorder</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREF_0040audiorecorder_002fgetplayer"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-getplayer"><span><code class="def-type"><var class="var">player</var> =</code> <strong class="def-name">getplayer</strong> <code class="def-code-arguments">(<var class="var">recorder</var>)</code><a class="copiable-link" href="#index-getplayer"> &para;</a></span></dt>
+<dd><p>Return an audioplayer object with data recorded by the audiorecorder object
+<var class="var">recorder</var>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Audio-Player.html#XREF_0040audioplayer_002faudioplayer">@audioplayer/audioplayer</a>, <a class="ref" href="Audio-Recorder.html#XREF_0040audiorecorder_002faudiorecorder">@audiorecorder/audiorecorder</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREF_0040audiorecorder_002fplay"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-play-3"><span><code class="def-type"><var class="var">player</var> =</code> <strong class="def-name">play</strong> <code class="def-code-arguments">(<var class="var">recorder</var>)</code><a class="copiable-link" href="#index-play-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-play-4"><span><code class="def-type"><var class="var">player</var> =</code> <strong class="def-name">play</strong> <code class="def-code-arguments">(<var class="var">recorder</var>, <var class="var">start</var>)</code><a class="copiable-link" href="#index-play-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-play-5"><span><code class="def-type"><var class="var">player</var> =</code> <strong class="def-name">play</strong> <code class="def-code-arguments">(<var class="var">recorder</var>, [<var class="var">start</var>, <var class="var">end</var>])</code><a class="copiable-link" href="#index-play-5"> &para;</a></span></dt>
+<dd><p>Play the audio recorded in <var class="var">recorder</var> without blocking and return a
+corresponding audioplayer object.
+</p>
+<p>If the optional argument <var class="var">start</var> is provided, begin playing
+<var class="var">start</var> seconds into the recording.
+</p>
+<p>If the optional argument <var class="var">end</var> is provided, stop playing at
+<var class="var">end</var> seconds into the recording.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREF_0040audiorecorder_002fgetplayer">@audiorecorder/getplayer</a>, <a class="ref" href="Audio-Player.html#XREF_0040audioplayer_002faudioplayer">@audioplayer/audioplayer</a>, <a class="ref" href="Audio-Recorder.html#XREF_0040audiorecorder_002faudiorecorder">@audiorecorder/audiorecorder</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Recorder-Properties.html">Recorder Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Recording.html">Recording</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Audio-Recorder.html">Audio Recorder</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+This package contains the following sets of functions:
+
+-- Functions for initialization of a cluster and execution of
+   arbitrary commands on chosen remote machines. Please see e.g. the
+   documentation of "pconnect()", "pserver()", and of the functions
+   referenced therein.
+
+-- Higher level functions, based on the lower level parallel cluster
+   functions ("netcellfun", "netarrayfun", "rfeval", "install_vars").
+
+-- Functions for parallel execution on a single multiprocessor
+   machine: "parcellfun" and "pararrayfun" (by Jaroslav Hajek,
+   originally in package "general").
+
+See also package mpi, maintained by Carlo de Falco.

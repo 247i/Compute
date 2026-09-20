@@ -1,0 +1,11 @@
+Name: fuzzy-logic-toolkit
+Version: 0.6.2
+Date: 2025-05-15
+Author: L. Markowsky <lmarkowsky@gmail.com>
+Maintainer: L. Markowsky <lmarkowsky@gmail.com>
+Title: Octave Fuzzy Logic Toolkit
+Description: A mostly MATLAB-compatible fuzzy logic toolkit for Octave.
+Depends: octave (>= 3.2.4)
+Autoload: no
+License: GPLv3+
+Url: https://github.com/lmarkowsky/fuzzy-logic-toolkit/releases/tag/0.6.2

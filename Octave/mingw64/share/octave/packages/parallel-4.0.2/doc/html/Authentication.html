@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- General documentation for the parallel package for Octave.
+
+Copyright (C) 2016-2023 Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Authentication (parallel_doc)</title>
+
+<meta name="description" content="Authentication (parallel_doc)">
+<meta name="keywords" content="Authentication (parallel_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Cluster-execution.html" rel="up" title="Cluster execution">
+<link href="pserver.html" rel="next" title="pserver">
+<link href="Security.html" rel="prev" title="Security">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<span id="Authentication"></span><div class="header">
+<p>
+Next: <a href="pserver.html" accesskey="n" rel="next">pserver</a>, Previous: <a href="Security.html" accesskey="p" rel="prev">Security</a>, Up: <a href="Cluster-execution.html" accesskey="u" rel="up">Cluster execution</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Generating-authentication-keys"></span><h3 class="section">3.2 Generating authentication keys</h3>
+<span id="index-authentication"></span>
+<span id="index-parallel_005fgenerate_005fsrp_005fdata-2"></span>
+
+<span id="XREFparallel_005fgenerate_005fsrp_005fdata"></span><dl>
+<dt id="index-parallel_005fgenerate_005fsrp_005fdata">Loadable Function: <em></em> <strong>parallel_generate_srp_data</strong> <em>(<var>username</var>)</em></dt>
+<dt id="index-parallel_005fgenerate_005fsrp_005fdata-1">Loadable Function: <em></em> <strong>parallel_generate_srp_data</strong> <em>(<var>username</var>, <var>options</var>)</em></dt>
+<dd><p>Prompts for a password (press enter for a random password) and writes TLS-SRP authentication files into the directory given by:
+</p>
+<p><code>fullfile (a = pkg (&quot;prefix&quot;), &quot;parallel-srp-data&quot;)</code>
+</p>
+<p>Server files are placed in subdirectory <code>server</code>. By default, a
+client authentication file is placed in subdirectory
+<code>client</code>. The latter contains the given <var>username</var> and the
+cleartext password. You do not need this file if you prefer to be
+prompted for username and password at connection time. In this case,
+you can prevent the client authentication file from being written by
+passing as the argument <var>options</var> a structure with a value of
+<code>false</code> in the field <code>unattended</code>.
+</p>
+<p>For authentication, subdir <code>server</code>, and possibly subdir
+<code>client</code>, have to be placed together with their contents at the
+respective machines (but see &quot;Notes&quot; below). They can either be
+placed under the directory given by:
+</p>
+<p><code>fullfile (OCTAVE_HOME (), &quot;share&quot;, &quot;octave&quot;, &quot;parallel-srp-data&quot;)</code>
+</p>
+<p>or &ndash; which might be the same directory &ndash; under:
+</p>
+<p><code>fullfile (a = pkg (&quot;prefix&quot;), &quot;parallel-srp-data&quot;)</code>
+</p>
+<p>Files in the former directory will take precedence over those in the
+latter. The contents of the files <code>passwd</code> and <code>user_passwd</code>
+(if present) must be kept secret.
+</p>
+<p>Notes: One of the two server files is named &quot;passwd&quot;. It contains one
+line per user &ndash; the line starts with the username and a &quot;:&quot;. If this
+file pre-exists, the new line will be appended to it. You may have to
+manually merge this file with a potentially pre-existing file at the
+server machine, e.g. if you want to add a new user there. Also, you
+have to manually assure that in the version of this file at the server
+machine each username appears only once (i.e. old lines for the same
+user may have to be deleted). The username is arbitrary.
+</p>
+<p>This function zeroizes sensitive data before releasing its memory. Due
+to usage of external libraries, however, it still can&rsquo;t be excluded
+that sensitive data is still on the swap device after application
+shutdown.
+</p>
+
+<p><strong>See also:</strong> <a href="pconnect.html#XREFpconnect">pconnect</a>, <a href="pserver.html#XREFpserver">pserver</a>, <a href="reval.html#XREFreval">reval</a>, <a href="psend.html#XREFpsend">psend</a>, <a href="precv.html#XREFprecv">precv</a>, <a href="sclose.html#XREFsclose">sclose</a>, <a href="select_005fsockets.html#XREFselect_005fsockets">select_sockets</a>.
+</p></dd></dl>
+
+
+
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="pserver.html" accesskey="n" rel="next">pserver</a>, Previous: <a href="Security.html" accesskey="p" rel="prev">Security</a>, Up: <a href="Cluster-execution.html" accesskey="u" rel="up">Cluster execution</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

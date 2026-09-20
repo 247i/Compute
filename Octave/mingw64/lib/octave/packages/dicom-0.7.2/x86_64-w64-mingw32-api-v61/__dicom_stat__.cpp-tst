@@ -1,0 +1,8 @@
+## DO NOT EDIT! Generated from __dicom_stat__.cpp
+%!shared testfile
+%! testfile = file_in_loadpath("imdata/simpleImageWithIcon.dcm");
+%!fail("__dicom_stat__")
+%!fail("__dicom_stat__(1)")
+%!test
+%! s=__dicom_stat__(testfile);
+%! assert(s.Filenames,testfile);

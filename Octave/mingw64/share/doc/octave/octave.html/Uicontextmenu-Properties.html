@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Uicontextmenu Properties (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Uicontextmenu Properties (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Uicontextmenu Properties (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Graphics-Object-Properties.html" rel="up" title="Graphics Object Properties">
+<link href="Uipanel-Properties.html" rel="next" title="Uipanel Properties">
+<link href="Uibuttongroup-Properties.html" rel="prev" title="Uibuttongroup Properties">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsubsection-level-extent" id="Uicontextmenu-Properties">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Uipanel-Properties.html" accesskey="n" rel="next">Uipanel Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Uibuttongroup-Properties.html" accesskey="p" rel="prev">Uibuttongroup Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Graphics-Object-Properties.html" accesskey="u" rel="up">Graphics Object Properties</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsubsection" id="Uicontextmenu-Properties-1"><span>15.3.3.14 Uicontextmenu Properties<a class="copiable-link" href="#Uicontextmenu-Properties-1"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-Uicontextmenu-Properties"></a>
+
+
+
+<p>Properties of <code class="code">uicontextmenu</code> objects (see <a class="pxref" href="UI-Elements.html#XREFuicontextmenu">uicontextmenu</a>):
+</p>
+<h4 class="subsubheading" id="Categories_003a-13"><span>Categories:<a class="copiable-link" href="#Categories_003a-13"> &para;</a></span></h4>
+
+<p><a class="ref" href="#XREFuicontextmenucategoryCallbackExecution">Callback&nbsp;Execution<!-- /@w --></a> | <a class="ref" href="#XREFuicontextmenucategoryCreation_002fDeletion">Creation/Deletion<!-- /@w --></a> | <a class="ref" href="#XREFuicontextmenucategoryDisplay">Display<!-- /@w --></a> | <a class="ref" href="#XREFuicontextmenucategoryMouseInteraction">Mouse&nbsp;Interaction<!-- /@w --></a> | <a class="ref" href="#XREFuicontextmenucategoryObjectIdentification">Object&nbsp;Identification<!-- /@w --></a> | <a class="ref" href="#XREFuicontextmenucategoryObjectPosition">Object&nbsp;Position<!-- /@w --></a> | <a class="ref" href="#XREFuicontextmenucategoryParent_002fChildren">Parent/Children<!-- /@w --></a> 
+</p>
+<a class="anchor" id="XREFuicontextmenucategoryCallbackExecution"></a><h4 class="subsubheading" id="Callback-Execution-13"><span>Callback Execution<a class="copiable-link" href="#Callback-Execution-13"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFuicontextmenubusyaction"></a></dd>
+<dt><a id="index-uicontextmenu-busyaction"></a><span><code class="code">busyaction</code>: <code class="code">&quot;cancel&quot;</code> | {<code class="code">&quot;queue&quot;</code>}<a class="copiable-link" href="#index-uicontextmenu-busyaction"> &para;</a></span></dt>
+<dd><p>Define how Octave handles the execution of this object&rsquo;s callback properties when it is unable to interrupt another object&rsquo;s executing callback.  This is only relevant when the currently executing callback object has its <code class="code">interruptible</code> property set to <code class="code">&quot;off&quot;</code>.  The <code class="code">busyaction</code> property of the interrupting callback object indicates whether the interrupting callback is queued (<code class="code">&quot;queue&quot;</code> (default)) or discarded (<code class="code">&quot;cancel&quot;</code>).
+See <a class="xref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFuicontextmenucallback"></a></dd>
+<dt><a id="index-uicontextmenu-callback"></a><span><code class="code">callback</code>: string, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-uicontextmenu-callback"> &para;</a></span></dt>
+<dd><p>A string consisting of a valid Octave expression that will be executed whenever this item is selected.
+</p>
+
+<a class="anchor" id="XREFuicontextmenuinterruptible"></a></dd>
+<dt><a id="index-uicontextmenu-interruptible"></a><span><code class="code">interruptible</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-uicontextmenu-interruptible"> &para;</a></span></dt>
+<dd><p>Specify whether this object&rsquo;s callback functions may be interrupted by other callbacks.  By default <code class="code">interruptible</code> is <code class="code">&quot;on&quot;</code> and callbacks that make use of <code class="code">drawnow</code>, <code class="code">figure</code>, <code class="code">waitfor</code>, <code class="code">getframe</code> or <code class="code">pause</code> functions are eventually interrupted.
+See <a class="xref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFuicontextmenucategoryCreation_002fDeletion"></a><h4 class="subsubheading" id="Creation_002fDeletion-11"><span>Creation/Deletion<a class="copiable-link" href="#Creation_002fDeletion-11"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFuicontextmenubeingdeleted"></a></dd>
+<dt><a id="index-uicontextmenu-beingdeleted"></a><span><code class="code">beingdeleted</code>: {<code class="code">&quot;off&quot;</code>} | <code class="code">&quot;on&quot;</code><a class="copiable-link" href="#index-uicontextmenu-beingdeleted"> &para;</a></span></dt>
+<dd><p>Property indicating that a function has initiated deletion of the object.  <code class="code">beingdeleted</code> is set to true until the object no longer exists.
+</p>
+
+<a class="anchor" id="XREFuicontextmenucreatefcn"></a></dd>
+<dt><a id="index-uicontextmenu-createfcn"></a><span><code class="code">createfcn</code>: string | function handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-uicontextmenu-createfcn"> &para;</a></span></dt>
+<dd><p>Callback function executed immediately after uicontextmenu has been created.  Function is set by using default property on root object, e.g., <code class="code">set (groot, &quot;defaultuicontextmenucreatefcn&quot;, 'disp (&quot;uicontextmenu created!&quot;)')</code>.
+</p>
+<p>For information on how to write graphics listener functions, see <a class="pxref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFuicontextmenudeletefcn"></a></dd>
+<dt><a id="index-uicontextmenu-deletefcn"></a><span><code class="code">deletefcn</code>: string | function handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-uicontextmenu-deletefcn"> &para;</a></span></dt>
+<dd><p>Callback function executed immediately before uicontextmenu is deleted.
+</p>
+<p>For information on how to write graphics listener functions, see <a class="pxref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFuicontextmenucategoryDisplay"></a><h4 class="subsubheading" id="Display-11"><span>Display<a class="copiable-link" href="#Display-11"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFuicontextmenuclipping"></a></dd>
+<dt><a id="index-uicontextmenu-clipping"></a><span><code class="code">clipping</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-uicontextmenu-clipping"> &para;</a></span></dt>
+<dd><p>If <code class="code">clipping</code> is <code class="code">&quot;on&quot;</code>, the uicontextmenu is clipped in its parent axes limits.
+</p>
+
+<a class="anchor" id="XREFuicontextmenuvisible"></a></dd>
+<dt><a id="index-uicontextmenu-visible"></a><span><code class="code">visible</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-uicontextmenu-visible"> &para;</a></span></dt>
+<dd><p>If <code class="code">visible</code> is <code class="code">&quot;off&quot;</code>, the uicontextmenu is not rendered on screen.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFuicontextmenucategoryMouseInteraction"></a><h4 class="subsubheading" id="Mouse-Interaction-12"><span>Mouse Interaction<a class="copiable-link" href="#Mouse-Interaction-12"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFuicontextmenubuttondownfcn"></a></dd>
+<dt><a id="index-uicontextmenu-buttondownfcn"></a><span><code class="code">buttondownfcn</code>: string | function handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-uicontextmenu-buttondownfcn"> &para;</a></span></dt>
+<dd><p><code class="code">buttondownfcn</code> is unused.
+</p>
+
+<a class="anchor" id="XREFuicontextmenucontextmenu"></a></dd>
+<dt><a id="index-uicontextmenu-contextmenu"></a><span><code class="code">contextmenu</code>: graphics handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-uicontextmenu-contextmenu"> &para;</a></span></dt>
+<dd><p>Graphics handle of the uicontextmenu object that is currently associated to this uicontextmenu object.
+</p>
+
+<a class="anchor" id="XREFuicontextmenuhittest"></a></dd>
+<dt><a id="index-uicontextmenu-hittest"></a><span><code class="code">hittest</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-uicontextmenu-hittest"> &para;</a></span></dt>
+<dd><p>Specify whether uicontextmenu processes mouse events or passes them to ancestors of the object.  When enabled, the object may respond to mouse clicks by evaluating the <code class="code">&quot;buttondownfcn&quot;</code>, showing the uicontextmenu, and eventually becoming the root <code class="code">&quot;currentobject&quot;</code>.  This property is only relevant when the object can accept mouse clicks which is determined by the <code class="code">&quot;pickableparts&quot;</code> property.  See <a class="xref" href="#XREFuicontextmenupickableparts">pickableparts&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFuicontextmenupickableparts"></a></dd>
+<dt><a id="index-uicontextmenu-pickableparts"></a><span><code class="code">pickableparts</code>: <code class="code">&quot;all&quot;</code> | <code class="code">&quot;none&quot;</code> | {<code class="code">&quot;visible&quot;</code>}<a class="copiable-link" href="#index-uicontextmenu-pickableparts"> &para;</a></span></dt>
+<dd><p>Specify whether uicontextmenu will accept mouse clicks.  By default, <code class="code">pickableparts</code> is <code class="code">&quot;visible&quot;</code> and only visible parts of the uicontextmenu or its children may react to mouse clicks.  When <code class="code">pickableparts</code> is <code class="code">&quot;all&quot;</code> both visible and invisible parts (or children) may react to mouse clicks.  When <code class="code">pickableparts</code> is <code class="code">&quot;none&quot;</code> mouse clicks on the object are ignored and transmitted to any objects underneath this one.  When an object is configured to accept mouse clicks the <code class="code">&quot;hittest&quot;</code> property will determine how they are processed.  See <a class="xref" href="#XREFuicontextmenuhittest">hittest&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFuicontextmenuselected"></a></dd>
+<dt><a id="index-uicontextmenu-selected"></a><span><code class="code">selected</code>: {<code class="code">&quot;off&quot;</code>} | <code class="code">&quot;on&quot;</code><a class="copiable-link" href="#index-uicontextmenu-selected"> &para;</a></span></dt>
+<dd><p>Property indicates whether this uicontextmenu is selected.
+</p>
+
+<a class="anchor" id="XREFuicontextmenuselectionhighlight"></a></dd>
+<dt><a id="index-uicontextmenu-selectionhighlight"></a><span><code class="code">selectionhighlight</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-uicontextmenu-selectionhighlight"> &para;</a></span></dt>
+<dd><p>If <code class="code">selectionhighlight</code> is <code class="code">&quot;on&quot;</code>, then the uicontextmenu&rsquo;s selection state is visually highlighted.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFuicontextmenucategoryObjectIdentification"></a><h4 class="subsubheading" id="Object-Identification-13"><span>Object Identification<a class="copiable-link" href="#Object-Identification-13"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFuicontextmenutag"></a></dd>
+<dt><a id="index-uicontextmenu-tag"></a><span><code class="code">tag</code>: string, def. <code class="code">&quot;&quot;</code><a class="copiable-link" href="#index-uicontextmenu-tag"> &para;</a></span></dt>
+<dd><p>A user-defined string to label the graphics object.
+</p>
+
+<a class="anchor" id="XREFuicontextmenutype"></a></dd>
+<dt><a id="index-uicontextmenu-type"></a><span><code class="code">type</code> (read-only): string<a class="copiable-link" href="#index-uicontextmenu-type"> &para;</a></span></dt>
+<dd><p>Class name of the graphics object.  <code class="code">type</code> is always <code class="code">&quot;uicontextmenu&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFuicontextmenuuserdata"></a></dd>
+<dt><a id="index-uicontextmenu-userdata"></a><span><code class="code">userdata</code>: Any Octave data, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-uicontextmenu-userdata"> &para;</a></span></dt>
+<dd><p>User-defined data to associate with the graphics object.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFuicontextmenucategoryObjectPosition"></a><h4 class="subsubheading" id="Object-Position-6"><span>Object Position<a class="copiable-link" href="#Object-Position-6"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFuicontextmenuposition"></a></dd>
+<dt><a id="index-uicontextmenu-position"></a><span><code class="code">position</code>: def. <code class="code">[0   0]</code><a class="copiable-link" href="#index-uicontextmenu-position"> &para;</a></span></dt>
+<dd><p>Manually setting location for uicontextmenu to appear is not yet implemented for uicontextmenu objects.  <code class="code">position</code> is unused.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFuicontextmenucategoryParent_002fChildren"></a><h4 class="subsubheading" id="Parent_002fChildren-12"><span>Parent/Children<a class="copiable-link" href="#Parent_002fChildren-12"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFuicontextmenuchildren"></a></dd>
+<dt><a id="index-uicontextmenu-children"></a><span><code class="code">children</code> (read-only): vector of graphics handles, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-uicontextmenu-children"> &para;</a></span></dt>
+<dd><p>Graphics handles of the uicontextmenu&rsquo;s children.
+</p>
+
+<a class="anchor" id="XREFuicontextmenuhandlevisibility"></a></dd>
+<dt><a id="index-uicontextmenu-handlevisibility"></a><span><code class="code">handlevisibility</code>: <code class="code">&quot;callback&quot;</code> | <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-uicontextmenu-handlevisibility"> &para;</a></span></dt>
+<dd><p>If <code class="code">handlevisibility</code> is <code class="code">&quot;off&quot;</code>, the uicontextmenu&rsquo;s handle is not visible in its parent&rsquo;s <code class="code">&quot;children&quot;</code> property.
+</p>
+
+<a class="anchor" id="XREFuicontextmenuparent"></a></dd>
+<dt><a id="index-uicontextmenu-parent"></a><span><code class="code">parent</code>: graphics handle<a class="copiable-link" href="#index-uicontextmenu-parent"> &para;</a></span></dt>
+<dd><p>Handle of the parent graphics object.
+</p>
+</dd>
+</dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Uipanel-Properties.html">Uipanel Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Uibuttongroup-Properties.html">Uibuttongroup Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Graphics-Object-Properties.html">Graphics Object Properties</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

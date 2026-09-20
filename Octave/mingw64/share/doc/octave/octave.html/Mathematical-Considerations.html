@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Mathematical Considerations (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Mathematical Considerations (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Mathematical Considerations (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Operators-and-Functions.html" rel="up" title="Operators and Functions">
+<link href="Return-Types-of-Operators-and-Functions.html" rel="prev" title="Return Types of Operators and Functions">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.center {text-align:center}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsubsection-level-extent" id="Mathematical-Considerations">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Return-Types-of-Operators-and-Functions.html" accesskey="p" rel="prev">Return Types of Operators and Functions</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Operators-and-Functions.html" accesskey="u" rel="up">Basic Operators and Functions on Sparse Matrices</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsubsection" id="Mathematical-Considerations-1"><span>22.1.4.3 Mathematical Considerations<a class="copiable-link" href="#Mathematical-Considerations-1"> &para;</a></span></h4>
+
+<p>The attempt has been made to make sparse matrices behave in exactly the
+same manner as there full counterparts.  However, there are certain differences
+and especially differences with other products sparse implementations.
+</p>
+<p>First, the <code class="code">&quot;./&quot;</code> and <code class="code">&quot;.^&quot;</code> operators must be used with care.
+Consider what the examples
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">  s = speye (4);
+  a1 = s .^ 2;
+  a2 = s .^ s;
+  a3 = s .^ -2;
+  a4 = s ./ 2;
+  a5 = 2 ./ s;
+  a6 = s ./ s;
+</pre></div></div>
+
+<p>will give.  The first example of <var class="var">s</var> raised to the power of 2 causes
+no problems.  However <var class="var">s</var> raised element-wise to itself involves a
+large number of terms <code class="code">0 .^ 0</code> which is 1.  There <code class="code"><var class="var">s</var> .^
+<var class="var">s</var></code> is a full matrix.
+</p>
+<p>Likewise <code class="code"><var class="var">s</var> .^ -2</code> involves terms like <code class="code">0 .^ -2</code> which
+is infinity, and so <code class="code"><var class="var">s</var> .^ -2</code> is equally a full matrix.
+</p>
+<p>For the &quot;./&quot; operator <code class="code"><var class="var">s</var> ./ 2</code> has no problems, but
+<code class="code">2 ./ <var class="var">s</var></code> involves a large number of infinity terms as well
+and is equally a full matrix.  The case of <code class="code"><var class="var">s</var> ./ <var class="var">s</var></code>
+involves terms like <code class="code">0 ./ 0</code> which is a <code class="code">NaN</code> and so this
+is equally a full matrix with the zero elements of <var class="var">s</var> filled with
+<code class="code">NaN</code> values.
+</p>
+<p>The above behavior is consistent with full matrices, but is not
+consistent with sparse implementations in other products.
+</p>
+<p>A particular problem of sparse matrices comes about due to the fact that
+as the zeros are not stored, the sign-bit of these zeros is equally not
+stored.  In certain cases the sign-bit of zero is important.  For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted"> a = 0 ./ [-1, 1; 1, -1];
+ b = 1 ./ a
+ &rArr;  -Inf            Inf
+     Inf           -Inf
+ c = 1 ./ sparse (a)
+ &rArr;   Inf            Inf
+     Inf            Inf
+</pre></div></div>
+
+<p>To correct this behavior would mean that zero elements with a negative
+sign-bit would need to be stored in the matrix to ensure that their
+sign-bit was respected.  This is not done at this time, for reasons of
+efficiency, and so the user is warned that calculations where the sign-bit
+of zero is important must not be done using sparse matrices.
+</p>
+<p>In general any function or operator used on a sparse matrix will
+result in a sparse matrix with the same or a larger number of nonzero
+elements than the original matrix.  This is particularly true for the
+important case of sparse matrix factorizations.  The usual way to
+address this is to reorder the matrix, such that its factorization is
+sparser than the factorization of the original matrix.  That is the
+factorization of <code class="code">L * U = P * S * Q</code> has sparser terms <code class="code">L</code>
+and <code class="code">U</code> than the equivalent factorization <code class="code">L * U = S</code>.
+</p>
+<p>Several functions are available to reorder depending on the type of the
+matrix to be factorized.  If the matrix is symmetric positive-definite,
+then <em class="dfn">symamd</em> or <em class="dfn">csymamd</em> should be used.  Otherwise
+<em class="dfn">amd</em>, <em class="dfn">colamd</em> or <em class="dfn">ccolamd</em> should be used.  For completeness
+the reordering functions <em class="dfn">colperm</em> and <em class="dfn">randperm</em> are
+also available.
+</p>
+<p>See <a class="xref" href="#fig_003asimplematrix">Figure 22.3</a>, for an example of the structure of a simple
+positive definite matrix.
+</p>
+<div class="float" id="fig_003asimplematrix">
+<div class="center"><img class="image" src="spmatrix.png" alt="spmatrix">
+</div><div class="caption"><p><strong class="strong">Figure 22.3: </strong>Structure of simple sparse matrix.</p></div></div>
+<p>The standard Cholesky&nbsp;factorization of this matrix can be
+obtained by the same command that would be used for a full
+matrix.  This can be visualized with the command
+<code class="code">r = chol (A); spy (r);</code>.
+See <a class="xref" href="#fig_003asimplechol">Figure 22.4</a>.
+The original matrix had
+598
+nonzero terms, while this Cholesky&nbsp;factorization has
+10200,
+with only half of the symmetric matrix being stored.  This
+is a significant level of fill in, and although not an issue
+for such a small test case, can represents a large overhead
+in working with other sparse matrices.
+</p>
+<p>The appropriate sparsity preserving permutation of the original
+matrix is given by <em class="dfn">symamd</em> and the factorization using this
+reordering can be visualized using the command <code class="code">q = symamd (A);
+r = chol (A(q,q)); spy (r)</code>.  This gives
+399
+nonzero terms which is a significant improvement.
+</p>
+<p>The Cholesky&nbsp;factorization itself can be used to determine the
+appropriate sparsity preserving reordering of the matrix during the
+factorization, In that case this might be obtained with three return
+arguments as <code class="code">[r, p, q] = chol (A); spy (r)</code>.
+</p>
+<div class="float" id="fig_003asimplechol">
+<div class="center"><img class="image" src="spchol.png" alt="spchol">
+</div><div class="caption"><p><strong class="strong">Figure 22.4: </strong>Structure of the unpermuted Cholesky&nbsp;factorization of the above matrix.</p></div></div>
+<div class="float" id="fig_003asimplecholperm">
+<div class="center"><img class="image" src="spcholperm.png" alt="spcholperm">
+</div><div class="caption"><p><strong class="strong">Figure 22.5: </strong>Structure of the permuted Cholesky&nbsp;factorization of the above matrix.</p></div></div>
+<p>In the case of an asymmetric matrix, the appropriate sparsity
+preserving permutation is <em class="dfn">colamd</em> and the factorization using
+this reordering can be visualized using the command
+<code class="code">q = colamd (A); [l, u, p] = lu (A(:,q)); spy (l+u)</code>.
+</p>
+<p>Finally, Octave implicitly reorders the matrix when using the div (/)
+and ldiv (\) operators, and so no the user does not need to explicitly
+reorder the matrix to maximize performance.
+</p>
+<a class="anchor" id="XREFamd"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-amd"><span><code class="def-type"><var class="var">p</var> =</code> <strong class="def-name">amd</strong> <code class="def-code-arguments">(<var class="var">S</var>)</code><a class="copiable-link" href="#index-amd"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-amd-1"><span><code class="def-type"><var class="var">p</var> =</code> <strong class="def-name">amd</strong> <code class="def-code-arguments">(<var class="var">S</var>, <var class="var">opts</var>)</code><a class="copiable-link" href="#index-amd-1"> &para;</a></span></dt>
+<dd>
+<p>Return the approximate minimum degree permutation of a matrix.
+</p>
+<p>This is a permutation such that the Cholesky&nbsp;factorization of
+<code class="code"><var class="var">S</var> (<var class="var">p</var>, <var class="var">p</var>)</code> tends to be sparser than the
+Cholesky&nbsp;factorization of <var class="var">S</var> itself.  <code class="code">amd</code> is typically
+faster than <code class="code">symamd</code> but serves a similar purpose.
+</p>
+<p>The optional parameter <var class="var">opts</var> is a structure that controls the behavior
+of <code class="code">amd</code>.  The fields of the structure are
+</p>
+<dl class="table">
+<dt><var class="var">opts</var>.dense</dt>
+<dd><p>Determines what <code class="code">amd</code> considers to be a dense row or column of the
+input matrix.  Rows or columns with more than <code class="code">max (16, (dense *
+sqrt (<var class="var">n</var>)))</code> entries, where <var class="var">n</var> is the order of the matrix <var class="var">S</var>,
+are ignored by <code class="code">amd</code> during the calculation of the permutation.
+The value of dense must be a positive scalar and the default value is 10.0
+</p>
+</dd>
+<dt><var class="var">opts</var>.aggressive</dt>
+<dd><p>If this value is a nonzero scalar, then <code class="code">amd</code> performs aggressive
+absorption.  The default is not to perform aggressive absorption.
+</p></dd>
+</dl>
+
+<p>The author of the code itself is Timothy A. Davis
+(see <a class="url" href="http://faculty.cse.tamu.edu/davis/suitesparse.html">http://faculty.cse.tamu.edu/davis/suitesparse.html</a>).
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFsymamd">symamd</a>, <a class="ref" href="#XREFcolamd">colamd</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFccolamd"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-ccolamd"><span><code class="def-type"><var class="var">p</var> =</code> <strong class="def-name">ccolamd</strong> <code class="def-code-arguments">(<var class="var">S</var>)</code><a class="copiable-link" href="#index-ccolamd"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ccolamd-1"><span><code class="def-type"><var class="var">p</var> =</code> <strong class="def-name">ccolamd</strong> <code class="def-code-arguments">(<var class="var">S</var>, <var class="var">knobs</var>)</code><a class="copiable-link" href="#index-ccolamd-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ccolamd-2"><span><code class="def-type"><var class="var">p</var> =</code> <strong class="def-name">ccolamd</strong> <code class="def-code-arguments">(<var class="var">S</var>, <var class="var">knobs</var>, <var class="var">cmember</var>)</code><a class="copiable-link" href="#index-ccolamd-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ccolamd-3"><span><code class="def-type">[<var class="var">p</var>, <var class="var">stats</var>] =</code> <strong class="def-name">ccolamd</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-ccolamd-3"> &para;</a></span></dt>
+<dd>
+<p>Constrained column approximate minimum degree permutation.
+</p>
+<p><code class="code"><var class="var">p</var> = ccolamd (<var class="var">S</var>)</code> returns the column approximate minimum
+degree permutation vector for the sparse matrix <var class="var">S</var>.  For a
+non-symmetric matrix <var class="var">S</var>, <code class="code"><var class="var">S</var>(:, <var class="var">p</var>)</code> tends to have
+sparser LU&nbsp;factors than <var class="var">S</var>.
+<code class="code">chol (<var class="var">S</var>(:, <var class="var">p</var>)' * <var class="var">S</var>(:, <var class="var">p</var>))</code> also tends to be
+sparser than <code class="code">chol (<var class="var">S</var>' * <var class="var">S</var>)</code>.
+<code class="code"><var class="var">p</var> = ccolamd (<var class="var">S</var>, 1)</code> optimizes the ordering for
+<code class="code">lu (<var class="var">S</var>(:, <var class="var">p</var>))</code>.  The ordering is followed by a column
+elimination tree post-ordering.
+</p>
+<p><var class="var">knobs</var> is an optional 1-element to 5-element input vector, with a
+default value of <code class="code">[0 10 10 1 0]</code> if not present or empty.  Entries not
+present are set to their defaults.
+</p>
+<dl class="table">
+<dt><code class="code"><var class="var">knobs</var>(1)</code></dt>
+<dd><p>if nonzero, the ordering is optimized for <code class="code">lu (S(:, p))</code>.  It will be a
+poor ordering for <code class="code">chol (<var class="var">S</var>(:, <var class="var">p</var>)' * <var class="var">S</var>(:, <var class="var">p</var>))</code>.
+This is the most important knob for ccolamd.
+</p>
+</dd>
+<dt><code class="code"><var class="var">knobs</var>(2)</code></dt>
+<dd><p>if <var class="var">S</var> is m-by-n, rows with more than
+<code class="code">max (16, <var class="var">knobs</var>(2) * sqrt (n))</code> entries are ignored.
+</p>
+</dd>
+<dt><code class="code"><var class="var">knobs</var>(3)</code></dt>
+<dd><p>columns with more than
+<code class="code">max (16, <var class="var">knobs</var>(3) * sqrt (min (<var class="var">m</var>, <var class="var">n</var>)))</code> entries are
+ignored and ordered last in the output permutation
+(subject to the <var class="var">cmember</var> constraints).
+</p>
+</dd>
+<dt><code class="code"><var class="var">knobs</var>(4)</code></dt>
+<dd><p>if nonzero, aggressive absorption is performed.
+</p>
+</dd>
+<dt><code class="code"><var class="var">knobs</var>(5)</code></dt>
+<dd><p>if nonzero, statistics and knobs are printed.
+</p>
+</dd>
+</dl>
+
+<p><var class="var">cmember</var> is an optional vector of length <em class="math">n</em>.  It defines the
+constraints on the column ordering.  If <code class="code"><var class="var">cmember</var>(j) = <var class="var">c</var></code>,
+then column <var class="var">j</var> is in constraint set <var class="var">c</var> (<var class="var">c</var> must be in the
+range 1 to n).  In the output permutation <var class="var">p</var>, all columns in set 1
+appear first, followed by all columns in set 2, and so on.
+<code class="code"><var class="var">cmember</var> = ones (1,n)</code> if not present or empty.
+<code class="code">ccolamd (<var class="var">S</var>, [], 1 : n)</code> returns <code class="code">1 : n</code>
+</p>
+<p><code class="code"><var class="var">p</var> = ccolamd (<var class="var">S</var>)</code> is about the same as
+<code class="code"><var class="var">p</var> = colamd (<var class="var">S</var>)</code>.  <var class="var">knobs</var> and its default values
+differ.  <code class="code">colamd</code> always does aggressive absorption, and it finds an
+ordering suitable for both <code class="code">lu (<var class="var">S</var>(:, <var class="var">p</var>))</code> and <code class="code">chol
+(<var class="var">S</var>(:, <var class="var">p</var>)' * <var class="var">S</var>(:, <var class="var">p</var>))</code>; it cannot optimize its
+ordering for <code class="code">lu (<var class="var">S</var>(:, <var class="var">p</var>))</code> to the extent that
+<code class="code">ccolamd (<var class="var">S</var>, 1)</code> can.
+</p>
+<p><var class="var">stats</var> is an optional 20-element output vector that provides data
+about the ordering and the validity of the input matrix <var class="var">S</var>.  Ordering
+statistics are in <code class="code"><var class="var">stats</var>(1 : 3)</code>.  <code class="code"><var class="var">stats</var>(1)</code> and
+<code class="code"><var class="var">stats</var>(2)</code> are the number of dense or empty rows and columns
+ignored by <small class="sc">CCOLAMD</small> and <code class="code"><var class="var">stats</var>(3)</code> is the number of garbage
+collections performed on the internal data structure used by <small class="sc">CCOLAMD</small>
+(roughly of size <code class="code">2.2 * nnz (<var class="var">S</var>) + 4 * <var class="var">m</var> + 7 * <var class="var">n</var></code>
+integers).
+</p>
+<p><code class="code"><var class="var">stats</var>(4 : 7)</code> provide information if CCOLAMD was able to
+continue.  The matrix is OK if <code class="code"><var class="var">stats</var>(4)</code> is zero, or 1 if
+invalid.  <code class="code"><var class="var">stats</var>(5)</code> is the rightmost column index that is
+unsorted or contains duplicate entries, or zero if no such column exists.
+<code class="code"><var class="var">stats</var>(6)</code> is the last seen duplicate or out-of-order row
+index in the column index given by <code class="code"><var class="var">stats</var>(5)</code>, or zero if no
+such row index exists.  <code class="code"><var class="var">stats</var>(7)</code> is the number of duplicate
+or out-of-order row indices.  <code class="code"><var class="var">stats</var>(8 : 20)</code> is always zero in
+the current version of <small class="sc">CCOLAMD</small> (reserved for future use).
+</p>
+<p>The authors of the code itself are S. Larimore, T. Davis and
+S. Rajamanickam in collaboration with J. Bilbert and E. Ng.
+Supported by the National Science Foundation
+(DMS-9504974, DMS-9803599, CCR-0203270), and a grant from
+Sandia National Lab.
+See <a class="url" href="http://faculty.cse.tamu.edu/davis/suitesparse.html">http://faculty.cse.tamu.edu/davis/suitesparse.html</a> for ccolamd,
+csymamd, amd, colamd, symamd, and other related orderings.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFcolamd">colamd</a>, <a class="ref" href="#XREFcsymamd">csymamd</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFcolamd"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-colamd"><span><code class="def-type"><var class="var">p</var> =</code> <strong class="def-name">colamd</strong> <code class="def-code-arguments">(<var class="var">S</var>)</code><a class="copiable-link" href="#index-colamd"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-colamd-1"><span><code class="def-type"><var class="var">p</var> =</code> <strong class="def-name">colamd</strong> <code class="def-code-arguments">(<var class="var">S</var>, <var class="var">knobs</var>)</code><a class="copiable-link" href="#index-colamd-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-colamd-2"><span><code class="def-type">[<var class="var">p</var>, <var class="var">stats</var>] =</code> <strong class="def-name">colamd</strong> <code class="def-code-arguments">(<var class="var">S</var>)</code><a class="copiable-link" href="#index-colamd-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-colamd-3"><span><code class="def-type">[<var class="var">p</var>, <var class="var">stats</var>] =</code> <strong class="def-name">colamd</strong> <code class="def-code-arguments">(<var class="var">S</var>, <var class="var">knobs</var>)</code><a class="copiable-link" href="#index-colamd-3"> &para;</a></span></dt>
+<dd>
+<p>Compute the column approximate minimum degree permutation.
+</p>
+<p><code class="code"><var class="var">p</var> = colamd (<var class="var">S</var>)</code> returns the column approximate minimum
+degree permutation vector for the sparse matrix <var class="var">S</var>.  For a
+non-symmetric matrix <var class="var">S</var>, <code class="code"><var class="var">S</var>(:,<var class="var">p</var>)</code> tends to have
+sparser LU&nbsp;factors than <var class="var">S</var>.  The Cholesky&nbsp;factorization of
+<code class="code"><var class="var">S</var>(:,<var class="var">p</var>)' * <var class="var">S</var>(:,<var class="var">p</var>)</code> also tends to be sparser
+than that of <code class="code"><var class="var">S</var>' * <var class="var">S</var></code>.
+</p>
+<p><var class="var">knobs</var> is an optional one- to three-element input vector.  If <var class="var">S</var>
+is m-by-n, then rows with more than <code class="code">max(16,<var class="var">knobs</var>(1)*sqrt(n))</code>
+entries are ignored.  Columns with more than
+<code class="code">max (16,<var class="var">knobs</var>(2)*sqrt(min(m,n)))</code> entries are removed prior to
+ordering, and ordered last in the output permutation <var class="var">p</var>.  Only
+completely dense rows or columns are removed if <code class="code"><var class="var">knobs</var>(1)</code> and
+<code class="code"><var class="var">knobs</var>(2)</code> are &lt; 0, respectively.  If <code class="code"><var class="var">knobs</var>(3)</code> is
+nonzero, <var class="var">stats</var> and <var class="var">knobs</var> are printed.  The default is
+<code class="code"><var class="var">knobs</var> = [10 10 0]</code>.  Note that <var class="var">knobs</var> differs from earlier
+versions of colamd.
+</p>
+<p><var class="var">stats</var> is an optional 20-element output vector that provides data
+about the ordering and the validity of the input matrix <var class="var">S</var>.  Ordering
+statistics are in <code class="code"><var class="var">stats</var>(1:3)</code>.  <code class="code"><var class="var">stats</var>(1)</code> and
+<code class="code"><var class="var">stats</var>(2)</code> are the number of dense or empty rows and columns
+ignored by <small class="sc">COLAMD</small> and <code class="code"><var class="var">stats</var>(3)</code> is the number of garbage
+collections performed on the internal data structure used by <small class="sc">COLAMD</small>
+(roughly of size <code class="code">2.2 * nnz(<var class="var">S</var>) + 4 * <var class="var">m</var> + 7 * <var class="var">n</var></code>
+integers).
+</p>
+<p>Octave built-in functions are intended to generate valid sparse matrices,
+with no duplicate entries, with ascending row indices of the nonzeros
+in each column, with a non-negative number of entries in each column (!)
+and so on.  If a matrix is invalid, then <small class="sc">COLAMD</small> may or may not be able
+to continue.  If there are duplicate entries (a row index appears two or
+more times in the same column) or if the row indices in a column are out
+of order, then <small class="sc">COLAMD</small> can correct these errors by ignoring the
+duplicate entries and sorting each column of its internal copy of the
+matrix <var class="var">S</var> (the input matrix <var class="var">S</var> is not repaired, however).  If a
+matrix is invalid in other ways then <small class="sc">COLAMD</small> cannot continue, an error
+message is printed, and no output arguments (<var class="var">p</var> or <var class="var">stats</var>) are
+returned.
+<small class="sc">COLAMD</small> is thus a simple way to check a sparse matrix to see if it&rsquo;s
+valid.
+</p>
+<p><code class="code"><var class="var">stats</var>(4:7)</code> provide information if <small class="sc">COLAMD</small> was able to
+continue.  The matrix is OK if <code class="code"><var class="var">stats</var>(4)</code> is zero, or 1 if
+invalid.  <code class="code"><var class="var">stats</var>(5)</code> is the rightmost column index that is
+unsorted or contains duplicate entries, or zero if no such column exists.
+<code class="code"><var class="var">stats</var>(6)</code> is the last seen duplicate or out-of-order row
+index in the column index given by <code class="code"><var class="var">stats</var>(5)</code>, or zero if no
+such row index exists.  <code class="code"><var class="var">stats</var>(7)</code> is the number of duplicate
+or out-of-order row indices.  <code class="code"><var class="var">stats</var>(8:20)</code> is always zero in
+the current version of <small class="sc">COLAMD</small> (reserved for future use).
+</p>
+<p>The ordering is followed by a column elimination tree post-ordering.
+</p>
+<p>The authors of the code itself are Stefan I. Larimore and
+Timothy A. Davis.  The algorithm was developed in collaboration with
+John Gilbert, Xerox PARC, and Esmond Ng, Oak Ridge National
+Laboratory.  (see <a class="url" href="http://faculty.cse.tamu.edu/davis/suitesparse.html">http://faculty.cse.tamu.edu/davis/suitesparse.html</a>)
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFcolperm">colperm</a>, <a class="ref" href="#XREFsymamd">symamd</a>, <a class="ref" href="#XREFccolamd">ccolamd</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFcolperm"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-colperm"><span><code class="def-type"><var class="var">p</var> =</code> <strong class="def-name">colperm</strong> <code class="def-code-arguments">(<var class="var">s</var>)</code><a class="copiable-link" href="#index-colperm"> &para;</a></span></dt>
+<dd><p>Return the column permutations such that the columns of
+<code class="code"><var class="var">s</var>(:, <var class="var">p</var>)</code> are ordered in terms of increasing number of
+nonzero elements.
+</p>
+<p>If <var class="var">s</var> is symmetric, then <var class="var">p</var> is chosen such that
+<code class="code"><var class="var">s</var>(<var class="var">p</var>, <var class="var">p</var>)</code> orders the rows and columns with
+increasing number of nonzero elements.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFcsymamd"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-csymamd"><span><code class="def-type"><var class="var">p</var> =</code> <strong class="def-name">csymamd</strong> <code class="def-code-arguments">(<var class="var">S</var>)</code><a class="copiable-link" href="#index-csymamd"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-csymamd-1"><span><code class="def-type"><var class="var">p</var> =</code> <strong class="def-name">csymamd</strong> <code class="def-code-arguments">(<var class="var">S</var>, <var class="var">knobs</var>)</code><a class="copiable-link" href="#index-csymamd-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-csymamd-2"><span><code class="def-type"><var class="var">p</var> =</code> <strong class="def-name">csymamd</strong> <code class="def-code-arguments">(<var class="var">S</var>, <var class="var">knobs</var>, <var class="var">cmember</var>)</code><a class="copiable-link" href="#index-csymamd-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-csymamd-3"><span><code class="def-type">[<var class="var">p</var>, <var class="var">stats</var>] =</code> <strong class="def-name">csymamd</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-csymamd-3"> &para;</a></span></dt>
+<dd>
+<p>For a symmetric positive definite matrix <var class="var">S</var>, return the permutation
+vector <var class="var">p</var> such that <code class="code"><var class="var">S</var>(<var class="var">p</var>,<var class="var">p</var>)</code> tends to have a
+sparser Cholesky&nbsp;factor than <var class="var">S</var>.
+</p>
+<p>Sometimes <code class="code">csymamd</code> works well for symmetric indefinite matrices too.
+The matrix <var class="var">S</var> is assumed to be symmetric; only the strictly lower
+triangular part is referenced.  <var class="var">S</var> must be square.  The ordering is
+followed by an elimination tree post-ordering.
+</p>
+<p><var class="var">knobs</var> is an optional 1-element to 3-element input vector, with a
+default value of <code class="code">[10 1 0]</code>.  Entries not present are set to their
+defaults.
+</p>
+<dl class="table">
+<dt><code class="code"><var class="var">knobs</var>(1)</code></dt>
+<dd><p>If <var class="var">S</var> is n-by-n, then rows and columns with more than
+<code class="code">max(16,<var class="var">knobs</var>(1)*sqrt(n))</code> entries are ignored, and ordered
+last in the output permutation (subject to the cmember constraints).
+</p>
+</dd>
+<dt><code class="code"><var class="var">knobs</var>(2)</code></dt>
+<dd><p>If nonzero, aggressive absorption is performed.
+</p>
+</dd>
+<dt><code class="code"><var class="var">knobs</var>(3)</code></dt>
+<dd><p>If nonzero, statistics and knobs are printed.
+</p>
+</dd>
+</dl>
+
+<p><var class="var">cmember</var> is an optional vector of length n.  It defines the constraints
+on the ordering.  If <code class="code"><var class="var">cmember</var>(j) = <var class="var">S</var></code>, then row/column j is
+in constraint set <var class="var">c</var> (<var class="var">c</var> must be in the range 1 to n).  In the
+output permutation <var class="var">p</var>, rows/columns in set 1 appear first, followed
+by all rows/columns in set 2, and so on.  <code class="code"><var class="var">cmember</var> = ones (1,n)</code>
+if not present or empty.  <code class="code">csymamd (<var class="var">S</var>,[],1:n)</code> returns
+<code class="code">1:n</code>.
+</p>
+<p><code class="code"><var class="var">p</var> = csymamd (<var class="var">S</var>)</code> is about the same as
+<code class="code"><var class="var">p</var> = symamd (<var class="var">S</var>)</code>.  <var class="var">knobs</var> and its default values
+differ.
+</p>
+<p><code class="code"><var class="var">stats</var>(4:7)</code> provide information if CCOLAMD was able to
+continue.  The matrix is OK if <code class="code"><var class="var">stats</var>(4)</code> is zero, or 1 if
+invalid.  <code class="code"><var class="var">stats</var>(5)</code> is the rightmost column index that is
+unsorted or contains duplicate entries, or zero if no such column exists.
+<code class="code"><var class="var">stats</var>(6)</code> is the last seen duplicate or out-of-order row
+index in the column index given by <code class="code"><var class="var">stats</var>(5)</code>, or zero if no
+such row index exists.  <code class="code"><var class="var">stats</var>(7)</code> is the number of duplicate
+or out-of-order row indices.  <code class="code"><var class="var">stats</var>(8:20)</code> is always zero in
+the current version of <small class="sc">CCOLAMD</small> (reserved for future use).
+</p>
+<p>The authors of the code itself are S. Larimore, T. Davis and
+S. Rajamanickam in collaboration with J. Bilbert and E. Ng.
+Supported by the National Science Foundation
+(DMS-9504974, DMS-9803599, CCR-0203270), and a grant from
+Sandia National Lab.
+See <a class="url" href="http://faculty.cse.tamu.edu/davis/suitesparse.html">http://faculty.cse.tamu.edu/davis/suitesparse.html</a> for ccolamd,
+colamd, csymamd, amd, colamd, symamd, and other related orderings.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFsymamd">symamd</a>, <a class="ref" href="#XREFccolamd">ccolamd</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFdmperm"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-dmperm"><span><code class="def-type"><var class="var">p</var> =</code> <strong class="def-name">dmperm</strong> <code class="def-code-arguments">(<var class="var">A</var>)</code><a class="copiable-link" href="#index-dmperm"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-dmperm-1"><span><code class="def-type">[<var class="var">p</var>, <var class="var">q</var>, <var class="var">r</var>, <var class="var">s</var>, <var class="var">cc</var>, <var class="var">rr</var>] =</code> <strong class="def-name">dmperm</strong> <code class="def-code-arguments">(<var class="var">A</var>)</code><a class="copiable-link" href="#index-dmperm-1"> &para;</a></span></dt>
+<dd>
+<a class="index-entry-id" id="index-Dulmage_002dMendelsohn-decomposition"></a>
+<p>Perform a Dulmage-Mendelsohn permutation of the sparse matrix
+<var class="var">A</var>.
+</p>
+<p>With a single output argument <code class="code">dmperm</code>, return a maximum matching <var class="var">p</var>
+such that <code class="code">p(j) = i</code> if column <var class="var">j</var> is matched to row <var class="var">i</var>, or 0 if
+column <var class="var">j</var> is unmatched.  If <var class="var">A</var> is square and full structural rank,
+<var class="var">p</var> is a row permutation and <code class="code">A(p,:)</code> has a zero-free diagonal.  The
+structural rank of <var class="var">A</var> is <code class="code">sprank(A) = sum(p&gt;0)</code>.
+</p>
+<p>Called with two or more output arguments, return the
+Dulmage-Mendelsohn decomposition of <var class="var">A</var>.  <var class="var">p</var> and <var class="var">q</var> are
+permutation vectors.  <var class="var">cc</var> and <var class="var">rr</var> are vectors of length 5.
+<code class="code">c = A(p,q)</code> is split into a 4-by-4 set of coarse blocks:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">   A11 A12 A13 A14
+    0  0   A23 A24
+    0  0    0  A34
+    0  0    0  A44
+</pre></div></div>
+
+<p>where <code class="code">A12</code>, <code class="code">A23</code>, and <code class="code">A34</code> are square with zero-free
+diagonals.  The columns of <code class="code">A11</code> are the unmatched columns, and the rows
+of <code class="code">A44</code> are the unmatched rows.  Any of these blocks can be empty.  In
+the &quot;coarse&quot; decomposition, the (i,j)-th block is
+<code class="code">C(rr(i):rr(i+1)-1,cc(j):cc(j+1)-1)</code>.  In terms of a linear system,
+<code class="code">[A11 A12]</code> is the underdetermined part of the system (it is always
+rectangular and with more columns and rows, or 0-by-0), <code class="code">A23</code> is the
+well-determined part of the system (it is always square), and
+<code class="code">[A34 ; A44]</code> is the over-determined part of the system (it is always
+rectangular with more rows than columns, or 0-by-0).
+</p>
+<p>The structural rank of <var class="var">A</var> is <code class="code">sprank (A) = rr(4)-1</code>, which is an
+upper bound on the numerical rank of <var class="var">A</var>.
+<code class="code">sprank(A) = rank(full(sprand(A)))</code> with probability 1 in exact
+arithmetic.
+</p>
+<p>The <code class="code">A23</code> submatrix is further subdivided into block upper triangular form
+via the &quot;fine&quot; decomposition (the strongly-connected components of <code class="code">A23</code>).
+If <var class="var">A</var> is square and structurally non-singular, <code class="code">A23</code> is the entire
+matrix.
+</p>
+<p><code class="code">C(r(i):r(i+1)-1,s(j):s(j+1)-1)</code> is the (i,j)-th block of the fine
+decomposition.  The (1,1) block is the rectangular block <code class="code">[A11 A12]</code>,
+unless this block is 0-by-0.  The (b,b) block is the rectangular block
+<code class="code">[A34 ; A44]</code>, unless this block is 0-by-0, where <code class="code">b = length(r)-1</code>.
+All other blocks of the form <code class="code">C(r(i):r(i+1)-1,s(i):s(i+1)-1)</code> are diagonal
+blocks of <code class="code">A23</code>, and are square with a zero-free diagonal.
+</p>
+<p>The method used is described in: A. Pothen &amp; C.-J. Fan.
+&quot;Computing the Block Triangular Form of a Sparse Matrix&quot;.
+<cite class="cite">ACM Trans. Math. Software</cite>, 16(4), pp.&nbsp;303<!-- /@w -->&ndash;324,
+1990.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFcolamd">colamd</a>, <a class="ref" href="#XREFccolamd">ccolamd</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFsymamd"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-symamd"><span><code class="def-type"><var class="var">p</var> =</code> <strong class="def-name">symamd</strong> <code class="def-code-arguments">(<var class="var">S</var>)</code><a class="copiable-link" href="#index-symamd"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-symamd-1"><span><code class="def-type"><var class="var">p</var> =</code> <strong class="def-name">symamd</strong> <code class="def-code-arguments">(<var class="var">S</var>, <var class="var">knobs</var>)</code><a class="copiable-link" href="#index-symamd-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-symamd-2"><span><code class="def-type">[<var class="var">p</var>, <var class="var">stats</var>] =</code> <strong class="def-name">symamd</strong> <code class="def-code-arguments">(<var class="var">S</var>)</code><a class="copiable-link" href="#index-symamd-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-symamd-3"><span><code class="def-type">[<var class="var">p</var>, <var class="var">stats</var>] =</code> <strong class="def-name">symamd</strong> <code class="def-code-arguments">(<var class="var">S</var>, <var class="var">knobs</var>)</code><a class="copiable-link" href="#index-symamd-3"> &para;</a></span></dt>
+<dd>
+<p>For a symmetric positive definite matrix <var class="var">S</var>, returns the permutation
+vector p such that <code class="code"><var class="var">S</var>(<var class="var">p</var>, <var class="var">p</var>)</code> tends to have a
+sparser Cholesky&nbsp;factor than <var class="var">S</var>.
+</p>
+<p>Sometimes <code class="code">symamd</code> works well for symmetric indefinite matrices too.
+The matrix <var class="var">S</var> is assumed to be symmetric; only the strictly lower
+triangular part is referenced.  <var class="var">S</var> must be square.
+</p>
+<p><var class="var">knobs</var> is an optional one- to two-element input vector.  If <var class="var">S</var> is
+n-by-n, then rows and columns with more than
+<code class="code">max (16,<var class="var">knobs</var>(1)*sqrt(n))</code> entries are removed prior to
+ordering, and ordered last in the output permutation <var class="var">p</var>.  No
+rows/columns are removed if <code class="code"><var class="var">knobs</var>(1) &lt; 0</code>.  If
+<code class="code"><var class="var">knobs</var>(2)</code> is nonzero, <var class="var">stats</var> and <var class="var">knobs</var> are
+printed.  The default is <code class="code"><var class="var">knobs</var> = [10 0]</code>.  Note that
+<var class="var">knobs</var> differs from earlier versions of <code class="code">symamd</code>.
+</p>
+<p><var class="var">stats</var> is an optional 20-element output vector that provides data
+about the ordering and the validity of the input matrix <var class="var">S</var>.  Ordering
+statistics are in <code class="code"><var class="var">stats</var>(1:3)</code>.
+<code class="code"><var class="var">stats</var>(1) = <var class="var">stats</var>(2)</code> is the number of dense or empty rows
+and columns ignored by SYMAMD and <code class="code"><var class="var">stats</var>(3)</code> is the number of
+garbage collections performed on the internal data structure used by SYMAMD
+(roughly of size <code class="code">8.4 * nnz (tril (<var class="var">S</var>, -1)) + 9 * <var class="var">n</var></code>
+integers).
+</p>
+<p>Octave built-in functions are intended to generate valid sparse matrices,
+with no duplicate entries, with ascending row indices of the nonzeros
+in each column, with a non-negative number of entries in each column (!)
+and so on.  If a matrix is invalid, then SYMAMD may or may not be able
+to continue.  If there are duplicate entries (a row index appears two or
+more times in the same column) or if the row indices in a column are out
+of order, then SYMAMD can correct these errors by ignoring the duplicate
+entries and sorting each column of its internal copy of the matrix S (the
+input matrix S is not repaired, however).  If a matrix is invalid in
+other ways then SYMAMD cannot continue, an error message is printed, and
+no output arguments (<var class="var">p</var> or <var class="var">stats</var>) are returned.  SYMAMD is
+thus a simple way to check a sparse matrix to see if it&rsquo;s valid.
+</p>
+<p><code class="code"><var class="var">stats</var>(4:7)</code> provide information if SYMAMD was able to
+continue.  The matrix is OK if <code class="code"><var class="var">stats</var> (4)</code> is zero, or 1
+if invalid.  <code class="code"><var class="var">stats</var>(5)</code> is the rightmost column index that
+is unsorted or contains duplicate entries, or zero if no such column
+exists.  <code class="code"><var class="var">stats</var>(6)</code> is the last seen duplicate or out-of-order
+row index in the column index given by <code class="code"><var class="var">stats</var>(5)</code>, or zero
+if no such row index exists.  <code class="code"><var class="var">stats</var>(7)</code> is the number of
+duplicate or out-of-order row indices.  <code class="code"><var class="var">stats</var>(8:20)</code> is
+always zero in the current version of SYMAMD (reserved for future use).
+</p>
+<p>The ordering is followed by a column elimination tree post-ordering.
+</p>
+<p>The authors of the code itself are Stefan I. Larimore and
+Timothy A. Davis.  The algorithm was developed in collaboration with
+John Gilbert, Xerox PARC, and Esmond Ng, Oak Ridge National
+Laboratory.  (see <a class="url" href="http://faculty.cse.tamu.edu/davis/suitesparse.html">http://faculty.cse.tamu.edu/davis/suitesparse.html</a>)
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFcolperm">colperm</a>, <a class="ref" href="#XREFcolamd">colamd</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFsymrcm"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-symrcm"><span><code class="def-type"><var class="var">p</var> =</code> <strong class="def-name">symrcm</strong> <code class="def-code-arguments">(<var class="var">S</var>)</code><a class="copiable-link" href="#index-symrcm"> &para;</a></span></dt>
+<dd><p>Return the symmetric reverse Cuthill-McKee permutation of <var class="var">S</var>.
+</p>
+<p><var class="var">p</var> is a permutation vector such that
+<code class="code"><var class="var">S</var>(<var class="var">p</var>, <var class="var">p</var>)</code> tends to have its diagonal elements closer
+to the diagonal than <var class="var">S</var>.  This is a good preordering for LU or
+Cholesky&nbsp;factorization of matrices that come from &ldquo;long, skinny&rdquo;
+problems.  It works for both symmetric and asymmetric <var class="var">S</var>.
+</p>
+<p>The algorithm represents a heuristic approach to the NP-complete bandwidth
+minimization problem.  The implementation is based in the descriptions found
+in
+</p>
+<p>E. Cuthill, J. McKee.
+&quot;Reducing the Bandwidth of Sparse Symmetric Matrices&quot;.
+<cite class="cite">Proceedings of the 24th ACM National Conference</cite>,
+pp.&nbsp;157<!-- /@w -->&ndash;172, 1969, Brandon Press, New Jersey.
+</p>
+<p>A. George, J.W.H. Liu.
+&quot;Computer Solution of Large Sparse Positive Definite Systems&quot;,
+<cite class="cite">Prentice Hall Series in Computational Mathematics</cite>, ISBN 0-13-165274-5,
+1981.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFcolperm">colperm</a>, <a class="ref" href="#XREFcolamd">colamd</a>, <a class="ref" href="#XREFsymamd">symamd</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Return-Types-of-Operators-and-Functions.html">Return Types of Operators and Functions</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Operators-and-Functions.html">Basic Operators and Functions on Sparse Matrices</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

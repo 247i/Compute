@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Default Arguments (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Default Arguments (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Default Arguments (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Functions-and-Scripts.html" rel="up" title="Functions and Scripts">
+<link href="Validating-Arguments.html" rel="next" title="Validating Arguments">
+<link href="Ignoring-Arguments.html" rel="prev" title="Ignoring Arguments">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Default-Arguments">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Validating-Arguments.html" accesskey="n" rel="next">Validating Arguments</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Ignoring-Arguments.html" accesskey="p" rel="prev">Ignoring Arguments</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Functions-and-Scripts.html" accesskey="u" rel="up">Functions and Scripts</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Default-Arguments-1"><span>11.8 Default Arguments<a class="copiable-link" href="#Default-Arguments-1"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-default-arguments"></a>
+
+<p>Since Octave supports variable number of input arguments, it is very useful
+to assign default values to some input arguments.  When an input argument
+is declared in the argument list it is possible to assign a default
+value to the argument like this
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">function <var class="var">name</var> (<var class="var">arg1</var> = <var class="var">val1</var>, ...)
+  <var class="var">body</var>
+endfunction
+</pre></div></div>
+
+<p>If no value is assigned to <var class="var">arg1</var> by the user, it will have the
+value <var class="var">val1</var>.
+</p>
+<p>As an example, the following function implements a variant of the classic
+&ldquo;Hello, World&rdquo; program.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">function hello (who = &quot;World&quot;)
+  printf (&quot;Hello, %s!\n&quot;, who);
+endfunction
+</pre></div></div>
+
+<p>When called without an input argument the function prints the following
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">hello ();
+     &#8867; Hello, World!
+</pre></div></div>
+
+<p>and when it&rsquo;s called with an input argument it prints the following
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">hello (&quot;Beautiful World of Free Software&quot;);
+     &#8867; Hello, Beautiful World of Free Software!
+</pre></div></div>
+
+<p>Sometimes it is useful to explicitly tell Octave to use the default value
+of an input argument.  This can be done writing a &lsquo;<samp class="samp">:</samp>&rsquo; as the value
+of the input argument when calling the function.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">hello (:);
+     &#8867; Hello, World!
+</pre></div></div>
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Validating-Arguments.html">Validating Arguments</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Ignoring-Arguments.html">Ignoring Arguments</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Functions-and-Scripts.html">Functions and Scripts</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

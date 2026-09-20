@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Orthogonal Collocation (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Orthogonal Collocation (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Orthogonal Collocation (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Numerical-Integration.html" rel="up" title="Numerical Integration">
+<link href="Functions-of-Multiple-Variables.html" rel="next" title="Functions of Multiple Variables">
+<link href="Functions-of-One-Variable.html" rel="prev" title="Functions of One Variable">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Orthogonal-Collocation">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Functions-of-Multiple-Variables.html" accesskey="n" rel="next">Functions of Multiple Variables</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Functions-of-One-Variable.html" accesskey="p" rel="prev">Functions of One Variable</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Numerical-Integration.html" accesskey="u" rel="up">Numerical Integration</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Orthogonal-Collocation-1"><span>23.2 Orthogonal Collocation<a class="copiable-link" href="#Orthogonal-Collocation-1"> &para;</a></span></h3>
+
+<a class="anchor" id="XREFcolloc"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-colloc"><span><code class="def-type">[<var class="var">r</var>, <var class="var">amat</var>, <var class="var">bmat</var>, <var class="var">q</var>] =</code> <strong class="def-name">colloc</strong> <code class="def-code-arguments">(<var class="var">n</var>, &quot;left&quot;, &quot;right&quot;)</code><a class="copiable-link" href="#index-colloc"> &para;</a></span></dt>
+<dd><p>Compute derivative and integral weight matrices for orthogonal collocation.
+</p>
+<p>Reference: J. Villadsen, M. L. Michelsen,
+<cite class="cite">Solution of Differential Equation Models by Polynomial Approximation</cite>.
+</p></dd></dl>
+
+
+<p>Here is an example of using <code class="code">colloc</code> to generate weight matrices
+for solving the second order differential equation
+<var class="var">u</var>&rsquo; - <var class="var">alpha</var> * <var class="var">u</var>&rdquo; = 0 with the boundary conditions
+<var class="var">u</var>(0) = 0 and <var class="var">u</var>(1) = 1.
+</p>
+<p>First, we can generate the weight matrices for <var class="var">n</var> points (including
+the endpoints of the interval), and incorporate the boundary conditions
+in the right hand side (for a specific value of
+<var class="var">alpha</var>).
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">n = 7;
+alpha = 0.1;
+[r, a, b] = colloc (n-2, &quot;left&quot;, &quot;right&quot;);
+at = a(2:n-1,2:n-1);
+bt = b(2:n-1,2:n-1);
+rhs = alpha * b(2:n-1,n) - a(2:n-1,n);
+</pre></div></div>
+
+<p>Then the solution at the roots <var class="var">r</var> is
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">u = [ 0; (at - alpha * bt) \ rhs; 1]
+     &rArr;  [ 0.00; 0.004; 0.01 0.00; 0.12; 0.62; 1.00 ]
+</pre></div></div>
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Functions-of-Multiple-Variables.html">Functions of Multiple Variables</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Functions-of-One-Variable.html">Functions of One Variable</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Numerical-Integration.html">Numerical Integration</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

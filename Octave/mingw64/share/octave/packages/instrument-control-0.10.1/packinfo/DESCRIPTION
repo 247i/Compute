@@ -1,0 +1,14 @@
+Name: instrument-control
+Version: 0.10.1
+Date: 2026-05-24
+Author: Andrius Sutas <andrius.sutas@gmail.com>, Stefan Mahr <dac922@gmx.de>, John Donoghue <john.donoghue@ieee.org>
+Maintainer: John Donoghue <john.donoghue@ieee.org>
+Title: Instrument Control
+Description: Low level I/O functions for serial, i2c, spi, parallel, tcp, gpib, modbus, visa, vxi11, udp and usbtmc interfaces.
+Categories: instrument-control
+Depends: octave (>= 4.0.0)
+Autoload: no
+License: GPLv3+
+Url: https://gnu-octave.github.io/instrument-control/
+Repository: https://github.com/gnu-octave/instrument-control
+Tracker: https://github.com/gnu-octave/instrument-control/issues

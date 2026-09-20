@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Comma-Separated Lists (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Comma-Separated Lists (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Comma-Separated Lists (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Data-Containers.html" rel="up" title="Data Containers">
+<link href="Cell-Arrays.html" rel="prev" title="Cell Arrays">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Comma_002dSeparated-Lists">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Cell-Arrays.html" accesskey="p" rel="prev">Cell Arrays</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Data-Containers.html" accesskey="u" rel="up">Data Containers</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Comma_002dSeparated-Lists-1"><span>6.4 Comma-Separated Lists<a class="copiable-link" href="#Comma_002dSeparated-Lists-1"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-comma_002dseparated-lists"></a>
+<a class="index-entry-id" id="index-cs_002dlists"></a>
+
+<p>Comma-separated lists <a class="footnote" id="DOCF2" href="#FOOT2"><sup>2</sup></a> are the basic argument type to all Octave
+functions&mdash;both for input and return arguments.  In the example
+</p>
+<div class="example">
+<pre class="example-preformatted">max (<var class="var">a</var>, <var class="var">b</var>)
+</pre></div>
+
+<p>&lsquo;<samp class="samp"><var class="var">a</var>, <var class="var">b</var></samp>&rsquo; is a comma-separated list.  Comma-separated lists
+can appear on both the right and left hand side of an assignment.  For
+example
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">x = [1 0 1 0 0 1 1; 0 0 0 0 0 0 7];
+[<var class="var">i</var>, <var class="var">j</var>] = find (<var class="var">x</var>, 2, &quot;last&quot;);
+</pre></div></div>
+
+<p>Here, &lsquo;<samp class="samp"><var class="var">x</var>, 2, &quot;last&quot;</samp>&rsquo; is a comma-separated list constituting
+the input arguments of <code class="code">find</code>.  <code class="code">find</code> returns a comma-separated list
+of output arguments which is assigned element by element to the comma-separated
+list &lsquo;<samp class="samp"><var class="var">i</var>, <var class="var">j</var></samp>&rsquo;.
+</p>
+<p>Another example of where comma-separated lists are used is in the creation of a
+new array with <code class="code">[]</code> (see <a class="pxref" href="Matrices.html">Matrices</a>) or the creation of a cell array
+with <code class="code">{}</code> (see <a class="pxref" href="Basic-Usage-of-Cell-Arrays.html">Basic Usage of Cell Arrays</a>).  In the expressions
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">a = [1, 2, 3, 4];
+c = {4, 5, 6, 7};
+</pre></div></div>
+
+<p>both &lsquo;<samp class="samp">1, 2, 3, 4</samp>&rsquo; and &lsquo;<samp class="samp">4, 5, 6, 7</samp>&rsquo; are comma-separated lists.
+</p>
+<p>Comma-separated lists cannot be directly manipulated by the
+user.  However, both structure arrays and cell arrays can be converted
+into comma-separated lists, and thus used in place of explicitly
+written comma-separated lists.  This feature is useful in many ways,
+as will be shown in the following subsections.
+</p>
+
+<ul class="mini-toc">
+<li><a href="Comma_002dSeparated-Lists-Generated-from-Cell-Arrays.html" accesskey="1">Comma-Separated Lists Generated from Cell Arrays</a></li>
+<li><a href="Comma_002dSeparated-Lists-Generated-from-Structure-Arrays.html" accesskey="2">Comma-Separated Lists Generated from Structure Arrays</a></li>
+</ul>
+</div>
+<div class="footnotes-segment">
+<hr>
+<h4 class="footnotes-heading">Footnotes</h4>
+
+<h5 class="footnote-body-heading"><a id="FOOT2" href="#DOCF2">(2)</a></h5>
+<p>Comma-separated lists are also sometimes
+referred to as <em class="dfn">cs-lists</em>.</p>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Cell-Arrays.html">Cell Arrays</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Data-Containers.html">Data Containers</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

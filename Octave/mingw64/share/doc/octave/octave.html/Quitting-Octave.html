@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Quitting Octave (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Quitting Octave (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Quitting Octave (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Getting-Started.html" rel="up" title="Getting Started">
+<link href="Getting-Help.html" rel="next" title="Getting Help">
+<link href="Invoking-Octave-from-the-Command-Line.html" rel="prev" title="Invoking Octave from the Command Line">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Quitting-Octave">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Getting-Help.html" accesskey="n" rel="next">Commands for Getting Help</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Invoking-Octave-from-the-Command-Line.html" accesskey="p" rel="prev">Invoking Octave from the Command Line</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Getting-Started.html" accesskey="u" rel="up">Getting Started</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Quitting-Octave-1"><span>2.2 Quitting Octave<a class="copiable-link" href="#Quitting-Octave-1"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-exiting-octave-1"></a>
+<a class="index-entry-id" id="index-quitting-octave-1"></a>
+<a class="index-entry-id" id="index-finish_002em"></a>
+<a class="index-entry-id" id="index-site-exiting-file"></a>
+
+<p>Shutdown is initiated with the <code class="code">exit</code> or <code class="code">quit</code> commands (they are
+equivalent).  Similar to startup, Octave has a shutdown process that can be
+customized by user script files.  During shutdown Octave will search for the
+script file <samp class="file">finish.m</samp> in the function load path.  Commands to save all
+workspace variables or cleanup temporary files may be placed there.  Additional
+functions to execute on shutdown may be registered with <code class="code">atexit</code>.
+</p>
+<a class="anchor" id="XREFquit"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-quit"><span><strong class="def-name">quit</strong><a class="copiable-link" href="#index-quit"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-quit-1"><span><strong class="def-name">quit</strong> <code class="def-code-arguments">cancel</code><a class="copiable-link" href="#index-quit-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-quit-2"><span><strong class="def-name">quit</strong> <code class="def-code-arguments">force</code><a class="copiable-link" href="#index-quit-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-quit-3"><span><strong class="def-name">quit</strong> <code class="def-code-arguments">(&quot;cancel&quot;)</code><a class="copiable-link" href="#index-quit-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-quit-4"><span><strong class="def-name">quit</strong> <code class="def-code-arguments">(&quot;force&quot;)</code><a class="copiable-link" href="#index-quit-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-quit-5"><span><strong class="def-name">quit</strong> <code class="def-code-arguments">(<var class="var">status</var>)</code><a class="copiable-link" href="#index-quit-5"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-quit-6"><span><strong class="def-name">quit</strong> <code class="def-code-arguments">(<var class="var">status</var>, &quot;force&quot;)</code><a class="copiable-link" href="#index-quit-6"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-exit"><span><strong class="def-name">exit</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-exit"> &para;</a></span></dt>
+<dd><p>Quit the current Octave session.
+</p>
+<p>If the optional integer value <var class="var">status</var> is supplied, pass that value to
+the operating system as Octave&rsquo;s exit status.  The default value is zero.
+</p>
+<p>When exiting, Octave will attempt to run the m-file <samp class="file">finish.m</samp> if it
+exists.  User commands to save the workspace or clean up temporary files
+may be placed in that file.  Alternatively, another m-file may be scheduled
+to run using <code class="code">atexit</code>.  If an error occurs while executing the
+<samp class="file">finish.m</samp> file, Octave does not exit and control is returned to
+the command prompt.
+</p>
+<p>If the optional argument <code class="code">&quot;cancel&quot;</code> is provided, Octave does not
+exit and control is returned to the command prompt.  This feature allows
+the <code class="code">finish.m</code> file to cancel the quit process.
+</p>
+<p>If the user preference to request confirmation before exiting, Octave
+will display a dialog and give the user an option to cancel the exit
+process.
+</p>
+<p>If the optional argument <code class="code">&quot;force&quot;</code> is provided, no confirmation is
+requested, and the execution of the <samp class="file">finish.m</samp> file is skipped.
+</p>
+<p>Programming Note: <code class="code">exit</code> is an alias for <code class="code">quit</code> and can be used
+interchangeably.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFatexit">atexit</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFatexit"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-atexit"><span><strong class="def-name">atexit</strong> <code class="def-code-arguments">(<var class="var">fcn</var>)</code><a class="copiable-link" href="#index-atexit"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-atexit-1"><span><strong class="def-name">atexit</strong> <code class="def-code-arguments">(<var class="var">fcn</var>, true)</code><a class="copiable-link" href="#index-atexit-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-atexit-2"><span><strong class="def-name">atexit</strong> <code class="def-code-arguments">(<var class="var">fcn</var>, false)</code><a class="copiable-link" href="#index-atexit-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-atexit-3"><span><code class="def-type"><var class="var">status</var> =</code> <strong class="def-name">atexit</strong> <code class="def-code-arguments">(<var class="var">fcn</var>, false)</code><a class="copiable-link" href="#index-atexit-3"> &para;</a></span></dt>
+<dd><p>Register a function to be called when Octave exits.
+</p>
+<p>For example,
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">function last_words ()
+  disp (&quot;Bye bye&quot;);
+endfunction
+atexit (&quot;last_words&quot;);
+</pre></div></div>
+
+<p>will print the message <code class="code">&quot;Bye bye&quot;</code> when Octave exits.
+</p>
+<p>The additional argument <var class="var">flag</var> will register or unregister <var class="var">fcn</var>
+from the list of functions to be called when Octave exits.  If <var class="var">flag</var> is
+true, the function is registered, and if <var class="var">flag</var> is false, it is
+unregistered.  For example, after registering the function <code class="code">last_words</code>
+above,
+</p>
+<div class="example">
+<pre class="example-preformatted">atexit (&quot;last_words&quot;, false);
+</pre></div>
+
+<p>will remove the function from the list and Octave will not call
+<code class="code">last_words</code> when it exits.
+</p>
+<p>The optional output <var class="var">status</var> is only available when unregistering a
+function.  The value is true if the unregistering was successful and false
+otherwise.
+</p>
+<p>Programming Note: <code class="code">atexit</code> only removes the first occurrence of a function
+from the list; if a function was placed in the list multiple times with
+<code class="code">atexit</code>, it must also be removed from the list multiple times.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFquit">quit</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Getting-Help.html">Commands for Getting Help</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Invoking-Octave-from-the-Command-Line.html">Invoking Octave from the Command Line</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Getting-Started.html">Getting Started</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

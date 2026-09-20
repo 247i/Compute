@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- General documentation for the parallel package for Octave.
+
+Copyright (C) 2016-2023 Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>select (parallel_doc)</title>
+
+<meta name="description" content="select (parallel_doc)">
+<meta name="keywords" content="select (parallel_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Further-functions.html" rel="up" title="Further functions">
+<link href="Limitations.html" rel="next" title="Limitations">
+<link href="fsave-fload.html" rel="prev" title="fsave fload">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<span id="select"></span><div class="header">
+<p>
+Previous: <a href="fsave-fload.html" accesskey="p" rel="prev">fsave fload</a>, Up: <a href="Further-functions.html" accesskey="u" rel="up">Further functions</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Call-Unix-select-on-Octave-streams"></span><h3 class="section">4.2 Call Unix <code>select</code> on Octave streams</h3>
+<span id="index-select-1"></span>
+
+<p>Note that for cluster connections <a href="select_005fsockets.html">select_sockets</a> should be used
+instead.
+</p>
+<span id="XREFselect"></span><dl>
+<dt id="index-select">Loadable Function: <em>[<var>n</var>, <var>ridx</var>, <var>widx</var>, <var>eidx</var>] =</em> <strong>select</strong> <em>(<var>read_fids</var>, <var>write_fids</var>, <var>except_fids</var>, <var>timeout</var>[, <var>nfds</var>])</em></dt>
+<dd><p>Calls Unix <code>select</code>, see the respective manual.
+</p>
+<p>The following interface was chosen:
+<var>read_fids</var>, <var>write_fids</var>, <var>except_fids</var>: vectors of stream-ids.
+<var>timeout</var>: seconds, negative for infinite.
+<var>nfds</var>: optional, default is Unix&rsquo; FD_SETSIZE (platform specific).
+An error is returned if nfds or a filedescriptor belonging to a stream-id
+plus one exceeds FD_SETSIZE.
+Return values are:
+<var>n</var>: number of ready streams.
+<var>ridx</var>, <var>widx</var>, <var>eidx</var>: index vectors of ready streams in
+<var>read_fids</var>, <var>write_fids</var>, and <var>except_fids</var>, respectively.
+</p></dd></dl>
+
+
+
+
+
+
+
+</body>
+</html>

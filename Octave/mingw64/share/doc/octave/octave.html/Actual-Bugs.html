@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Actual Bugs (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Actual Bugs (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Actual Bugs (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Trouble.html" rel="up" title="Trouble">
+<link href="Reporting-Bugs.html" rel="next" title="Reporting Bugs">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+ul.mark-bullet {list-style-type: disc}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="appendixsec-level-extent" id="Actual-Bugs">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Reporting-Bugs.html" accesskey="n" rel="next">Reporting Bugs</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Trouble.html" accesskey="u" rel="up">Known Causes of Trouble</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="appendixsec" id="Actual-Bugs-We-Haven_0027t-Fixed-Yet"><span>D.1 Actual Bugs We Haven&rsquo;t Fixed Yet<a class="copiable-link" href="#Actual-Bugs-We-Haven_0027t-Fixed-Yet"> &para;</a></span></h3>
+
+<ul class="itemize mark-bullet">
+<li>Output that comes directly from Fortran functions is not sent through
+the pager and may appear out of sequence with other output that is sent
+through the pager.  One way to avoid this is to force pending output to
+be flushed before calling a function that will produce output from
+within Fortran functions.  To do this, use the command
+
+<div class="example">
+<pre class="example-preformatted">fflush (stdout)
+</pre></div>
+
+<p>Another possible workaround is to use the command
+</p>
+<div class="example">
+<pre class="example-preformatted">page_screen_output (false);
+</pre></div>
+
+<p>to turn the pager off.
+</p></li></ul>
+
+<p>A list of ideas for future enhancements is distributed with Octave.  See
+the file <samp class="file">PROJECTS</samp> in the top level directory in the source
+distribution.
+</p>
+</div>
+
+
+
+</body>
+</html>

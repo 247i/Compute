@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Nonlinear Equations (Octave C++ Classes)</title>
+
+<meta name="description" content="Nonlinear Equations (Octave C++ Classes)">
+<meta name="keywords" content="Nonlinear Equations (Octave C++ Classes)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-Index.html" rel="index" title="Function Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html" rel="up" title="Top">
+<link href="Optimization.html" rel="next" title="Optimization">
+<link href="Nonlinear-Functions.html" rel="prev" title="Nonlinear Functions">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+
+
+</head>
+
+<body>
+<div class="chapter-level-extent" id="Nonlinear-Equations">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Optimization.html" accesskey="n" rel="next">Optimization</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Nonlinear-Functions.html" accesskey="p" rel="prev">Nonlinear Functions</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Function-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h2 class="chapter" id="Nonlinear-Equations-1"><span>8 Nonlinear Equations<a class="copiable-link" href="#Nonlinear-Equations-1"> &para;</a></span></h2>
+<a class="index-entry-id" id="index-nonlinear-equations"></a>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-NLEqn_005foptions"><span class="category-def">: </span><span><strong class="def-name">NLEqn_options</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-NLEqn_005foptions"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-NLEqn_005foptions-1"><span class="category-def">: </span><span><strong class="def-name">NLEqn_options</strong> <code class="def-code-arguments">(const NLEqn_options &amp;<var class="var">opt</var>)</code><a class="copiable-link" href="#index-NLEqn_005foptions-1"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003d-27"><span class="category-def">: </span><span><code class="def-type">NLEqn_options&amp;</code> <strong class="def-name">operator =</strong> <code class="def-code-arguments">(const NLEqn_options &amp;<var class="var">opt</var>)</code><a class="copiable-link" href="#index-operator-_003d-27"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-init"><span class="category-def">: </span><span><code class="def-type">void</code> <strong class="def-name">init</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-init"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-copy"><span class="category-def">: </span><span><code class="def-type">void</code> <strong class="def-name">copy</strong> <code class="def-code-arguments">(const NLEqn_options &amp;<var class="var">opt</var>)</code><a class="copiable-link" href="#index-copy"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-set_005fdefault_005foptions"><span class="category-def">: </span><span><code class="def-type">void</code> <strong class="def-name">set_default_options</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-set_005fdefault_005foptions"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-set_005ftolerance"><span class="category-def">: </span><span><code class="def-type">void</code> <strong class="def-name">set_tolerance</strong> <code class="def-code-arguments">(double <var class="var">val</var>)</code><a class="copiable-link" href="#index-set_005ftolerance"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-tolerance"><span class="category-def">: </span><span><code class="def-type">double</code> <strong class="def-name">tolerance</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-tolerance"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-NLEqn"><span class="category-def">: </span><span><strong class="def-name">NLEqn</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-NLEqn"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-NLEqn-1"><span class="category-def">: </span><span><strong class="def-name">NLEqn</strong> <code class="def-code-arguments">(const ColumnVector&amp;, const <var class="var">NLFunc</var>)</code><a class="copiable-link" href="#index-NLEqn-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-NLEqn-2"><span class="category-def">: </span><span><strong class="def-name">NLEqn</strong> <code class="def-code-arguments">(const NLEqn &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-NLEqn-2"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003d-28"><span class="category-def">: </span><span><code class="def-type">NLEqn&amp;</code> <strong class="def-name">operator =</strong> <code class="def-code-arguments">(const NLEqn &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003d-28"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-resize"><span class="category-def">: </span><span><code class="def-type">void</code> <strong class="def-name">resize</strong> <code class="def-code-arguments">(int <var class="var">n</var>)</code><a class="copiable-link" href="#index-resize"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-set_005fstates"><span class="category-def">: </span><span><code class="def-type">void</code> <strong class="def-name">set_states</strong> <code class="def-code-arguments">(const ColumnVector &amp;<var class="var">x</var>)</code><a class="copiable-link" href="#index-set_005fstates"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-states"><span class="category-def">: </span><span><code class="def-type">ColumnVector</code> <strong class="def-name">states</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-states"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-size"><span class="category-def">: </span><span><code class="def-type">int</code> <strong class="def-name">size</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-size"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-solve-21"><span class="category-def">: </span><span><code class="def-type">ColumnVector</code> <strong class="def-name">solve</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-solve-21"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-solve-22"><span class="category-def">: </span><span><code class="def-type">ColumnVector</code> <strong class="def-name">solve</strong> <code class="def-code-arguments">(const ColumnVector &amp;<var class="var">x</var>)</code><a class="copiable-link" href="#index-solve-22"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-solve-23"><span class="category-def">: </span><span><code class="def-type">ColumnVector</code> <strong class="def-name">solve</strong> <code class="def-code-arguments">(int &amp;<var class="var">info</var>)</code><a class="copiable-link" href="#index-solve-23"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-solve-24"><span class="category-def">: </span><span><code class="def-type">ColumnVector</code> <strong class="def-name">solve</strong> <code class="def-code-arguments">(const ColumnVector &amp;<var class="var">x</var>, int &amp;<var class="var">info</var>)</code><a class="copiable-link" href="#index-solve-24"> &para;</a></span></dt>
+</dl>
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Optimization.html">Optimization</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Nonlinear-Functions.html">Nonlinear Functions</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Function-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

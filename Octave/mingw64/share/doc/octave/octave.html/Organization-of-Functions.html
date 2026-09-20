@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Organization of Functions (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Organization of Functions (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Organization of Functions (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Functions-and-Scripts.html" rel="up" title="Functions and Scripts">
+<link href="Command-Syntax-and-Function-Syntax.html" rel="prev" title="Command Syntax and Function Syntax">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Organization-of-Functions">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Command-Syntax-and-Function-Syntax.html" accesskey="p" rel="prev">Command Syntax and Function Syntax</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Functions-and-Scripts.html" accesskey="u" rel="up">Functions and Scripts</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Organization-of-Functions-Distributed-with-Octave"><span>11.14 Organization of Functions Distributed with Octave<a class="copiable-link" href="#Organization-of-Functions-Distributed-with-Octave"> &para;</a></span></h3>
+
+<p>Many of Octave&rsquo;s standard functions are distributed as function files.
+They are loosely organized by topic, in subdirectories of
+<samp class="file"><var class="var">octave-home</var>/share/octave/<var class="var">version</var>/m</samp>, to make it easier
+to find them.
+</p>
+<p>The following is a list of all the function file subdirectories, and the
+types of functions you will find there.
+</p>
+<dl class="table">
+<dt><samp class="file">@ftp</samp></dt>
+<dd><p>Class functions for the FTP object.
+</p>
+</dd>
+<dt><samp class="file">+containers</samp></dt>
+<dd><p>Package for the containers classes.
+</p>
+</dd>
+<dt><samp class="file">audio</samp></dt>
+<dd><p>Functions for playing and recording sounds.
+</p>
+</dd>
+<dt><samp class="file">deprecated</samp></dt>
+<dd><p>Out-of-date functions which will eventually be removed from Octave.
+</p>
+</dd>
+<dt><samp class="file">elfun</samp></dt>
+<dd><p>Elementary functions, principally trigonometric.
+</p>
+</dd>
+<dt><samp class="file">general</samp></dt>
+<dd><p>Miscellaneous matrix manipulations, like <code class="code">flipud</code>, <code class="code">rot90</code>,
+and <code class="code">triu</code>, as well as other basic functions, like
+<code class="code">ismatrix</code>, <code class="code">narginchk</code>, etc.
+</p>
+</dd>
+<dt><samp class="file">geometry</samp></dt>
+<dd><p>Functions related to Delaunay triangulation.
+</p>
+</dd>
+<dt><samp class="file">gui</samp></dt>
+<dd><p>Functions for GUI elements like dialog, message box, etc.
+</p>
+</dd>
+<dt><samp class="file">help</samp></dt>
+<dd><p>Functions for Octave&rsquo;s built-in help system.
+</p>
+</dd>
+<dt><samp class="file">image</samp></dt>
+<dd><p>Image processing tools.  These functions require the X Window System.
+</p>
+</dd>
+<dt><samp class="file">io</samp></dt>
+<dd><p>Input-output functions.
+</p>
+</dd>
+<dt><samp class="file">java</samp></dt>
+<dd><p>Functions related to the Java integration.
+</p>
+</dd>
+<dt><samp class="file">linear-algebra</samp></dt>
+<dd><p>Functions for linear algebra.
+</p>
+</dd>
+<dt><samp class="file">miscellaneous</samp></dt>
+<dd><p>Functions that don&rsquo;t really belong anywhere else.
+</p>
+</dd>
+<dt><samp class="file">ode</samp></dt>
+<dd><p>Functions to solve ordinary differential equations (ODEs).
+</p>
+</dd>
+<dt><samp class="file">optimization</samp></dt>
+<dd><p>Functions related to minimization, optimization, and root finding.
+</p>
+</dd>
+<dt><samp class="file">path</samp></dt>
+<dd><p>Functions to manage the directory path Octave uses to find functions.
+</p>
+</dd>
+<dt><samp class="file">pkg</samp></dt>
+<dd><p>Package manager for installing external packages of functions in Octave.
+</p>
+</dd>
+<dt><samp class="file">plot</samp></dt>
+<dd><p>Functions for displaying and printing two- and three-dimensional graphs.
+</p>
+</dd>
+<dt><samp class="file">polynomial</samp></dt>
+<dd><p>Functions for manipulating polynomials.
+</p>
+</dd>
+<dt><samp class="file">prefs</samp></dt>
+<dd><p>Functions implementing user-defined preferences.
+</p>
+</dd>
+<dt><samp class="file">set</samp></dt>
+<dd><p>Functions for creating and manipulating sets of unique values.
+</p>
+</dd>
+<dt><samp class="file">signal</samp></dt>
+<dd><p>Functions for signal processing applications.
+</p>
+</dd>
+<dt><samp class="file">sparse</samp></dt>
+<dd><p>Functions for handling sparse matrices.
+</p>
+</dd>
+<dt><samp class="file">specfun</samp></dt>
+<dd><p>Special functions such as <code class="code">bessel</code> or <code class="code">factor</code>.
+</p>
+</dd>
+<dt><samp class="file">special-matrix</samp></dt>
+<dd><p>Functions that create special matrix forms such as Hilbert or
+Vandermonde matrices.
+</p>
+</dd>
+<dt><samp class="file">startup</samp></dt>
+<dd><p>Octave&rsquo;s system-wide startup file.
+</p>
+</dd>
+<dt><samp class="file">statistics</samp></dt>
+<dd><p>Statistical functions.
+</p>
+</dd>
+<dt><samp class="file">strings</samp></dt>
+<dd><p>Miscellaneous string-handling functions.
+</p>
+</dd>
+<dt><samp class="file">testfun</samp></dt>
+<dd><p>Functions for performing unit tests on other functions.
+</p>
+</dd>
+<dt><samp class="file">time</samp></dt>
+<dd><p>Functions related to time and date processing.
+</p></dd>
+</dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Command-Syntax-and-Function-Syntax.html">Command Syntax and Function Syntax</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Functions-and-Scripts.html">Functions and Scripts</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

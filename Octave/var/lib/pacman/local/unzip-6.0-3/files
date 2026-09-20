@@ -1,0 +1,12 @@
+%FILES%
+usr/
+usr/share/
+usr/bin/
+usr/share/licenses/
+usr/share/licenses/unzip/
+usr/share/licenses/unzip/LICENSE
+usr/bin/unzip.exe
+usr/bin/unzipsfx.exe
+usr/bin/zipgrep
+usr/bin/funzip.exe
+usr/bin/zipinfo.exe

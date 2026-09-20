@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- Additional documentation for the optim package for Octave.
+
+Copyright © Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<title>lm_svd_feasible (optim_doc)</title>
+
+<meta name="description" content="lm_svd_feasible (optim_doc)">
+<meta name="keywords" content="lm_svd_feasible (optim_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Residual-optimization.html" rel="up" title="Residual optimization">
+<link href="residmin_005fstat.html" rel="next" title="residmin_stat">
+<link href="nonlin_005fcurvefit.html" rel="prev" title="nonlin_curvefit">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section-level-extent" id="lm_005fsvd_005ffeasible">
+<div class="nav-panel">
+<p>
+Next: <a href="residmin_005fstat.html" accesskey="n" rel="next">Statistics for residual minimization</a>, Previous: <a href="nonlin_005fcurvefit.html" accesskey="p" rel="prev">Function nonlin_curvefit() for curve fitting</a>, Up: <a href="Residual-optimization.html" accesskey="u" rel="up">Functions for optimization of a model function returning an array</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h3 class="section" id="Default-backend-lm_005fsvd_005ffeasible-of-residual-minimization"><span>2.3 Default backend lm_svd_feasible of residual minimization<a class="copiable-link" href="#Default-backend-lm_005fsvd_005ffeasible-of-residual-minimization"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-lm_005fsvd_005ffeasible"></a>
+
+<p>Levenberg/Marquardt algorithm using singular value decomposition.
+Constraints must be met by the initial parameters and are attempted to
+be kept met throughout the optimization.
+</p>
+<p>Returned value <var class="var">cvg</var> will be <code class="code">0</code>, <code class="code">1</code>, or <code class="code">2</code>.
+Returned structure <var class="var">outp</var> will have the fields <code class="code">niter</code> and
+<code class="code">user_interaction</code>.
+</p>
+<p>Backend-specific defaults are: <code class="code">MaxIter</code>: 20, <code class="code">fract_prec</code>:
+<code class="code">zeros (size (parameters))</code>, <code class="code">max_fract_change</code>: <code class="code">Inf</code>
+for all parameters. The setting <code class="code">TolX</code> is not honoured.
+</p>
+<p>Interpretation of <code class="code">Display</code>: if set to <code class="code">&quot;iter&quot;</code>, currently
+some diagnostics are printed.
+</p>
+<p>Specific option: <code class="code">lm_svd_feasible_alt_s</code>: if falling back to nearly
+gradient descent, do it more like original Levenberg/Marquardt method,
+with descent in each gradient component; for testing only.
+</p>
+
+
+</div>
+
+
+
+</body>
+</html>

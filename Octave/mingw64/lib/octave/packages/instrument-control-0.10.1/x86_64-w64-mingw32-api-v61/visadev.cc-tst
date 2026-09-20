@@ -1,0 +1,8 @@
+## Generated from visadev.cc
+%!xtest
+%! # can create a serial obj
+%! a = visadev('ASRL1::INSTR');
+%! assert (isa (a, 'octave_visadev'));
+%! assert (a.Type, "serial");
+%! clear a;
+%!error a = visadev (1)

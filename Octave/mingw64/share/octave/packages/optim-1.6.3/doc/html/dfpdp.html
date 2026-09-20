@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- Additional documentation for the optim package for Octave.
+
+Copyright © Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<title>dfpdp (optim_doc)</title>
+
+<meta name="description" content="dfpdp (optim_doc)">
+<meta name="keywords" content="dfpdp (optim_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Gradient-functions.html" rel="up" title="Gradient functions">
+<link href="deriv.html" rel="next" title="deriv">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section-level-extent" id="dfpdp">
+<div class="nav-panel">
+<p>
+Next: <a href="deriv.html" accesskey="n" rel="next">Higher order numerical derivatives</a>, Up: <a href="Gradient-functions.html" accesskey="u" rel="up">Functions for numerical approximation of gradients and Hessians</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h3 class="section" id="Direct-user-interface-to-default-numerical-gradient-method-of-new-frontends"><span>4.1 Direct user interface to default numerical gradient method of new frontends<a class="copiable-link" href="#Direct-user-interface-to-default-numerical-gradient-method-of-new-frontends"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-dfpdp"></a>
+
+<h4 class="subheading" id="Helptext_003a-11"><span>Helptext:<a class="copiable-link" href="#Helptext_003a-11"> &para;</a></span></h4>
+
+<a class="anchor" id="XREFdfpdp"></a><pre class="verbatim">function jac = dfpdp (p, func[, hook])
+
+Returns Jacobian of func (p) with respect to p with finite
+differencing. The optional argument hook is a structure which can
+contain the following fields at the moment:
+
+hook.f: value of func(p) for p as given in the arguments
+
+hook.diffp: positive vector of fractional steps from given p in
+finite differencing (actual steps may be smaller if bounds are
+given). The default is .001 * ones (size (p)).
+
+hook.diff_onesided: logical vector, indexing elements of p for
+which only one-sided differences should be computed (faster); even
+if not one-sided, differences might not be exactly central if
+bounds are given. The default is false (size (p)).
+
+hook.fixed: logical vector, indexing elements of p for which zero
+should be returned instead of the guessed partial derivatives
+(useful in optimization if some parameters are not optimized, but
+are 'fixed').
+
+hook.lbound, hook.ubound: vectors of lower and upper parameter
+bounds (or -Inf or +Inf, respectively) to be respected in finite
+differencing. The consistency of bounds is not checked.
+
+</pre>
+
+</div>
+
+
+
+</body>
+</html>

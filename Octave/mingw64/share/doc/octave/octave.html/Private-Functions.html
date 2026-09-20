@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Private Functions (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Private Functions (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Private Functions (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Function-Files.html" rel="up" title="Function Files">
+<link href="Nested-Functions.html" rel="next" title="Nested Functions">
+<link href="Subfunctions.html" rel="prev" title="Subfunctions">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Private-Functions">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Nested-Functions.html" accesskey="n" rel="next">Nested Functions</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Subfunctions.html" accesskey="p" rel="prev">Subfunctions</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Function-Files.html" accesskey="u" rel="up">Function Files</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Private-Functions-1"><span>11.10.3 Private Functions<a class="copiable-link" href="#Private-Functions-1"> &para;</a></span></h4>
+
+<p>In many cases one function needs to access one or more helper
+functions.  If the helper function is limited to the scope of a single
+function, then subfunctions as discussed above might be used.  However,
+if a single helper function is used by more than one function, then
+this is no longer possible.  In this case the helper functions might
+be placed in a subdirectory, called &quot;private&quot;, of the directory in which
+the functions needing access to this helper function are found.
+</p>
+<p>As a simple example, consider a function <code class="code">func1</code>, that calls a helper
+function <code class="code">func2</code> to do much of the work.  For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">function y = func1 (x)
+  y = func2 (x);
+endfunction
+</pre></div></div>
+
+<p>Then if the path to <code class="code">func1</code> is <code class="code">&lt;directory&gt;/func1.m</code>, and if
+<code class="code">func2</code> is found in the directory <code class="code">&lt;directory&gt;/private/func2.m</code>,
+then <code class="code">func2</code> is only available for use of the functions, like
+<code class="code">func1</code>, that are found in <code class="code">&lt;directory&gt;</code>.
+</p>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Nested-Functions.html">Nested Functions</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Subfunctions.html">Subfunctions</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Function-Files.html">Function Files</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

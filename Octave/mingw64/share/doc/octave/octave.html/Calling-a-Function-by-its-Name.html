@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Calling a Function by its Name (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Calling a Function by its Name (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Calling a Function by its Name (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Evaluation.html" rel="up" title="Evaluation">
+<link href="Evaluation-in-a-Different-Context.html" rel="next" title="Evaluation in a Different Context">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Calling-a-Function-by-its-Name">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Evaluation-in-a-Different-Context.html" accesskey="n" rel="next">Evaluation in a Different Context</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Evaluation.html" accesskey="u" rel="up">Evaluation</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Calling-a-Function-by-its-Name-1"><span>9.1 Calling a Function by its Name<a class="copiable-link" href="#Calling-a-Function-by-its-Name-1"> &para;</a></span></h3>
+
+<p>The <code class="code">feval</code> function allows you to call a function from a string
+containing its name.  This is useful when writing a function that needs to
+call user-supplied functions.  The <code class="code">feval</code> function takes the name
+of the function to call as its first argument, and the remaining
+arguments are given to the function.
+</p>
+<p>The following example is a simple-minded function using <code class="code">feval</code>
+that finds the root of a user-supplied function of one variable using
+Newton&rsquo;s method.
+</p>
+<div class="example">
+<pre class="example-preformatted">function result = newtroot (fname, x)
+
+# usage: newtroot (fname, x)
+#
+#   fname : a string naming a function f(x).
+#   x     : initial guess
+
+  delta = tol = sqrt (eps);
+  maxit = 200;
+  fx = feval (fname, x);
+  for i = 1:maxit
+    if (abs (fx) &lt; tol)
+      result = x;
+      return;
+    else
+      fx_new = feval (fname, x + delta);
+      deriv = (fx_new - fx) / delta;
+      x = x - fx / deriv;
+      fx = fx_new;
+    endif
+  endfor
+
+  result = x;
+
+endfunction
+</pre></div>
+
+<p>Note that this is only meant to be an example of calling user-supplied
+functions and should not be taken too seriously.  In addition to using a
+more robust algorithm, any serious code would check the number and type
+of all the arguments, ensure that the supplied function really was a
+function, etc.  See <a class="xref" href="Predicates-for-Numeric-Objects.html">Predicates for Numeric Objects</a>,
+for a list of predicates for numeric objects, and see <a class="pxref" href="Status-of-Variables.html">Status of Variables</a>,
+for a description of the <code class="code">exist</code> function.
+</p>
+<a class="anchor" id="XREFfeval"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-feval"><span><code class="def-type">[<var class="var">y1</var>, <var class="var">y2</var>, &hellip;] =</code> <strong class="def-name">feval</strong> <code class="def-code-arguments">('<var class="var">fcn</var>', <var class="var">x1</var>, <var class="var">x2</var>, &hellip;)</code><a class="copiable-link" href="#index-feval"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-feval-1"><span><code class="def-type">[<var class="var">y1</var>, <var class="var">y2</var>, &hellip;] =</code> <strong class="def-name">feval</strong> <code class="def-code-arguments">(@<var class="var">fcn</var>, <var class="var">x1</var>, <var class="var">x2</var>, &hellip;)</code><a class="copiable-link" href="#index-feval-1"> &para;</a></span></dt>
+<dd><p>Evaluate the function <var class="var">fcn</var> with inputs <var class="var">x1</var>, <var class="var">x2</var>, <small class="enddots">...</small>
+</p>
+<p>The function <var class="var">fcn</var> may be specified by name in a string or given as a
+function handle.  Any arguments after the first are passed as inputs to the
+named function.  For example,
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">feval (&quot;acos&quot;, -1)
+     &rArr;  3.1416
+</pre></div></div>
+
+<p>calls the function <code class="code">acos</code> with the argument &lsquo;<samp class="samp">-1</samp>&rsquo;.
+</p>
+<p>The function <code class="code">feval</code> can also be used with function handles of any sort
+(see <a class="pxref" href="Function-Handles.html">Function Handles</a>).  Historically, <code class="code">feval</code> was the only way to
+call user-supplied functions in strings, but function handles are now preferred
+due to the cleaner syntax they offer.  For example,
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted"><var class="var">f</var> = @exp;
+feval (<var class="var">f</var>, 1)
+    &rArr;  2.7183
+<var class="var">f</var> (1)
+    &rArr;  2.7183
+</pre></div></div>
+
+<p>are equivalent ways to call the function referred to by <var class="var">f</var>.  If it cannot
+be predicted beforehand whether <var class="var">f</var> is a function handle, function name in
+a string, or inline function then <code class="code">feval</code> can be used instead.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Overloading-and-Autoloading.html#XREFbuiltin">builtin</a>, <a class="ref" href="Evaluation.html#XREFeval">eval</a>, <a class="ref" href="Evaluation-in-a-Different-Context.html#XREFevalin">evalin</a>.
+</p></dd></dl>
+
+
+<p>A similar function <code class="code">run</code> exists for calling user script files, that
+are not necessarily on the user path
+</p>
+<a class="anchor" id="XREFrun"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-run"><span><strong class="def-name">run</strong> <code class="def-code-arguments"><var class="var">script</var></code><a class="copiable-link" href="#index-run"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-run-1"><span><strong class="def-name">run</strong> <code class="def-code-arguments">(&quot;<var class="var">script</var>&quot;)</code><a class="copiable-link" href="#index-run-1"> &para;</a></span></dt>
+<dd><p>Run <var class="var">script</var> in the current workspace.
+</p>
+<p>Scripts which reside in directories specified in Octave&rsquo;s load path, and
+which end with the extension <samp class="file">.m</samp>, can be run simply by typing
+their name.  For scripts not located on the load path, use <code class="code">run</code>.
+</p>
+<p>The filename <var class="var">script</var> can be a bare, fully qualified, or relative
+filename and with or without a file extension.  If no extension is
+specified, Octave will first search for a script with the <samp class="file">.m</samp>
+extension before falling back to the script name without an extension.
+</p>
+<p>Implementation Note: If <var class="var">script</var> includes a path component, then
+<code class="code">run</code> first changes the working directory to the directory where
+<var class="var">script</var> is found.  Next, the script is executed.  Finally, <code class="code">run</code>
+returns to the original working directory <em class="emph">unless</em> <var class="var">script</var> has
+specifically changed directories.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Manipulating-the-Load-Path.html#XREFpath">path</a>, <a class="ref" href="Manipulating-the-Load-Path.html#XREFaddpath">addpath</a>, <a class="ref" href="Script-Files.html#XREFsource">source</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Evaluation-in-a-Different-Context.html">Evaluation in a Different Context</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Evaluation.html">Evaluation</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+Name: parallel
+Version: 4.0.2
+Date: 2023-09-09
+Author: Hayato Fujiwara, Jaroslav Hajek, Olaf Till
+Maintainer: Olaf Till <i7tiol@t-online.de>
+Title: Parallel Computing.
+Description: Parallel execution package.
+# FIXME: Octave version might need to be incremented.
+Depends: octave (>= 4.0.0), struct (>= 1.0.12)
+BuildRequires: libgnutls..-dev
+Autoload: no
+License: GPLv3+

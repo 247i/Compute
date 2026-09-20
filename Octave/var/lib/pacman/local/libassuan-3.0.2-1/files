@@ -1,0 +1,11 @@
+%FILES%
+usr/
+usr/share/
+usr/bin/
+usr/share/info/
+usr/share/licenses/
+usr/share/info/assuan.info.gz
+usr/share/licenses/libassuan/
+usr/share/licenses/libassuan/COPYING
+usr/bin/msys-assuan-0.dll
+usr/bin/msys-assuan-9.dll

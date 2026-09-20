@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Introduction to Plotting (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Introduction to Plotting (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Introduction to Plotting (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Plotting.html" rel="up" title="Plotting">
+<link href="High_002dLevel-Plotting.html" rel="next" title="High-Level Plotting">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Introduction-to-Plotting">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="High_002dLevel-Plotting.html" accesskey="n" rel="next">High-Level Plotting</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Plotting.html" accesskey="u" rel="up">Plotting</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Introduction-to-Plotting-1"><span>15.1 Introduction to Plotting<a class="copiable-link" href="#Introduction-to-Plotting-1"> &para;</a></span></h3>
+
+<p>Earlier versions of Octave provided plotting through the use of gnuplot.  This
+capability is still available.  But, newer versions of Octave offer more modern
+plotting capabilities using OpenGL.  Which plotting system is used is
+controlled by the <code class="code">graphics_toolkit</code> function.  See <a class="xref" href="Graphics-Toolkits.html">Graphics Toolkits</a>.
+</p>
+<p>The function call <code class="code">graphics_toolkit (&quot;qt&quot;)</code> selects the Qt/OpenGL system,
+<code class="code">graphics_toolkit (&quot;fltk&quot;)</code> selects the FLTK/OpenGL system, and
+<code class="code">graphics_toolkit (&quot;gnuplot&quot;)</code> selects the gnuplot system.  The three
+systems may be used selectively through the use of the <code class="code">graphics_toolkit</code>
+property of the graphics handle for each figure.  This is explained in
+<a class="ref" href="Graphics-Data-Structures.html">Graphics Data Structures</a>.
+</p>
+<p><strong class="strong">Caution:</strong> The OpenGL-based toolkits use single precision variables
+internally which limits the maximum value that can be displayed to
+approximately <em class="math">10^{38}</em>.  If your data contains larger values you must use
+the gnuplot toolkit which supports values up to <em class="math">10^{308}</em>.  Similarly,
+single precision variables can accurately represent only 6-9 base10 digits.  If
+your data contains very fine differences (approximately 1e-8) these cannot be
+resolved with the OpenGL-based graphics toolkits and the gnuplot toolkit
+is required.
+</p>
+<p><strong class="strong">Note:</strong> The gnuplot graphics toolkit uses the third party program
+gnuplot for plotting.  The communication from Octave to gnuplot is done via a
+one-way pipe.  This has implications for performance and functionality.
+Performance is significantly slower because the entire data set, which could
+be many megabytes, must be passed to gnuplot over the pipe.  Functionality
+is negatively affected because the pipe is one-way from Octave to gnuplot.
+Octave has no way of knowing about user interactions with the plot window (be
+it resizing, moving, closing, or anything else).  It is recommended not to
+interact with (or close) a gnuplot window if you will access the figure from
+Octave later on.
+</p>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="High_002dLevel-Plotting.html">High-Level Plotting</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Plotting.html">Plotting</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

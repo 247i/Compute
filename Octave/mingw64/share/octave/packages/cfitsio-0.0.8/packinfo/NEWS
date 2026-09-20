@@ -1,0 +1,54 @@
+Version 0.0.8 released 2026-03-15
+===================================
+
+ * bugfixes/feayures:
+   - writeKey: detect and write complex values
+   - readKeyUnit: fix typo in call
+   - readKey: allow read of uint64 types
+
+ * additional tests added
+
+ * minor documentation updates
+
+Version 0.0.7 released 2024-09-23
+===================================
+
+ * minor documentation updates
+
+ * minor bug fixes
+
+Version 0.0.6 released 2023-12-20
+===================================
+
+ * minor documentation updates
+
+ * handle spaces in windows path during configuration
+
+Version 0.0.5 released 2023-06-12
+===================================
+
+ * documentation updates
+
+ * minor configure detection changes
+
+Version 0.0.4 released 2022-09-21
+===================================
+
+ * documentation updates
+
+Version 0.0.3 released 2022-06-28
+===================================
+
+ * handle 3 digit versions in cfitsio 4.X+
+
+ * add better lib detection in windows
+
+Version 0.0.2 released 2022-04-27
+===================================
+
+ * rename package from octave-cfitsio to cfitsio
+
+Version 0.0.1 released 2022-04-26
+===================================
+
+ * Initial release

@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Statistics on Sliding Windows of Data (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Statistics on Sliding Windows of Data (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Statistics on Sliding Windows of Data (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Statistics.html" rel="up" title="Statistics">
+<link href="Basic-Statistical-Functions.html" rel="next" title="Basic Statistical Functions">
+<link href="Descriptive-Statistics.html" rel="prev" title="Descriptive Statistics">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+ul.mark-bullet {list-style-type: disc}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Statistics-on-Sliding-Windows-of-Data">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Basic-Statistical-Functions.html" accesskey="n" rel="next">Basic Statistical Functions</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Descriptive-Statistics.html" accesskey="p" rel="prev">Descriptive Statistics</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Statistics.html" accesskey="u" rel="up">Statistics</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Statistics-on-Sliding-Windows-of-Data-1"><span>26.2 Statistics on Sliding Windows of Data<a class="copiable-link" href="#Statistics-on-Sliding-Windows-of-Data-1"> &para;</a></span></h3>
+
+<p>It is often useful to calculate descriptive statistics over a subsection
+(i.e., window) of a full dataset.  Octave provides the function <code class="code">movfun</code>
+which will call an arbitrary function handle with windows of data and
+accumulate the results.  Many of the most commonly desired functions, such as
+the moving average over a window of data (<code class="code">movmean</code>), are already
+provided.
+</p>
+<a class="anchor" id="XREFmovfun"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-movfun"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movfun</strong> <code class="def-code-arguments">(<var class="var">fcn</var>, <var class="var">x</var>, <var class="var">wlen</var>)</code><a class="copiable-link" href="#index-movfun"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movfun-1"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movfun</strong> <code class="def-code-arguments">(<var class="var">fcn</var>, <var class="var">x</var>, [<var class="var">nb</var>, <var class="var">na</var>])</code><a class="copiable-link" href="#index-movfun-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movfun-2"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movfun</strong> <code class="def-code-arguments">(&hellip;, &quot;<var class="var">property</var>&quot;, <var class="var">value</var>)</code><a class="copiable-link" href="#index-movfun-2"> &para;</a></span></dt>
+<dd>
+<p>Apply function <var class="var">fcn</var> to a moving window of length <var class="var">wlen</var> on data
+<var class="var">x</var>.
+</p>
+<p>The moving window length input <var class="var">wlen</var> can either be a numeric scalar
+or a 2-element numeric array <code class="code">[<var class="var">nb</var>,&nbsp;<var class="var">na</var>]</code><!-- /@w -->.  The elements
+included in the moving window depend on the size and value of <var class="var">wlen</var>
+as well as whether the <code class="code">&quot;SamplePoints&quot;</code> option has been specified.
+For full details of element inclusion,
+see <a class="pxref" href="#XREFmovslice"><code class="code">movslice</code></a>.
+</p>
+<p>During calculations the data input <var class="var">x</var> is reshaped into a 2-dimensional
+<var class="var">wlen</var>-by-<var class="var">N</var> matrix and <var class="var">fcn</var> is called on this new matrix.
+Therefore, <var class="var">fcn</var> must accept an array input argument and apply the
+computation along dimension 1, i.e., down the columns of the array.
+</p>
+<p>When applied to an array (possibly multi-dimensional) with <var class="var">n</var> columns,
+<var class="var">fcn</var> may return a result in either of two formats: Format&nbsp;1)<!-- /@w -->&nbsp;an
+array of size 1-by-<var class="var">n</var>-by-<var class="var">dim3</var>-by-&hellip;-by-<var class="var">dimN</var>.  This
+is the typical output format from Octave core functions.  Type
+<code class="code">demo (&quot;movfun&quot;, 5)</code> for an example of this use case.
+Format&nbsp;2)<!-- /@w -->&nbsp;a row vector of length
+<code class="code"><var class="var">n</var> * <var class="var">numel_higher_dims</var></code> where <var class="var">numel_higher_dims</var> is
+<code class="code">prod&nbsp;(size&nbsp;(<var class="var">x</var>)(3:end))</code><!-- /@w -->.  The output of <var class="var">fcn</var> for the
+i-th input column must be found in the output at indices
+<code class="code">i:<var class="var">n</var>:(<var class="var">n</var>*<var class="var">numel_higher_dims</var>)</code><!-- /@w -->.
+This format is useful when concatenating functions into arrays, or when
+using <code class="code">nthargout</code>.  Type <code class="code">demo (&quot;movfun&quot;, 6)</code> for an example of
+this case.
+</p>
+<p>The calculation can be controlled by specifying <var class="var">property</var>/<var class="var">value</var>
+pairs.  Valid properties are
+</p>
+<dl class="table">
+<dt><code class="code">&quot;dim&quot;</code></dt>
+<dd><p>Operate along the dimension specified, rather than the default of the first
+non-singleton dimension.
+</p>
+</dd>
+<dt><code class="code">&quot;SamplePoints&quot;</code></dt>
+<dd>
+<p>This property specifies a sorted, numeric vector of unique coordinate
+positions of the data points in <var class="var">x</var>.  The default value is the vector
+<code class="code">[1&nbsp;:&nbsp;<var class="var">numel&nbsp;(x)</var>]</code><!-- /@w -->.  When a non-default SamplePoints vector
+is specified, the moving window length <var class="var">wlen</var> is measured
+against the SamplePoints positions to determine which points are
+included in each window slice.  SamplePoints need not be uniformly spaced.
+This can result in window slices containing different numbers of points.
+</p>
+</dd>
+<dt><code class="code">&quot;Endpoints&quot;</code></dt>
+<dd>
+<p>This property controls how results are calculated at the boundaries
+(endpoints<!-- /@w -->) of the window.  Possible values are:
+</p>
+<dl class="table">
+<dt><code class="code">&quot;shrink&quot;</code> (default)</dt>
+<dd><p>The window is truncated at the beginning and end of the array to exclude
+elements for which there is no source data.  For example, with a window of
+length 3, <code class="code"><var class="var">y</var>(1) = <var class="var">fcn</var> (<var class="var">x</var>(1:2))</code>, and
+<code class="code"><var class="var">y</var>(end) = <var class="var">fcn</var> (<var class="var">x</var>(end-1:end))</code>.
+</p>
+</dd>
+<dt><code class="code">&quot;discard&quot;</code></dt>
+<dd><p>Any <var class="var">y</var> values that use a window extending beyond the original
+data array are deleted.  For example, with a 10-element data vector and a
+window of length 3, the output will contain only 8 elements.  The first
+element would require calculating the function over indices
+<code class="code">[0,&nbsp;1,&nbsp;2]</code><!-- /@w -->&nbsp;and is therefore discarded.  The last element would
+require calculating the function over indices <code class="code">[9,&nbsp;10,&nbsp;11]</code><!-- /@w -->&nbsp;and is
+therefore discarded.
+</p>
+</dd>
+<dt><code class="code">&quot;fill&quot;</code></dt>
+<dd><p>Any window elements outside the data array are replaced by <code class="code">NaN</code>.  For
+example, with a window of length 3,
+<code class="code"><var class="var">y</var>(1) = <var class="var">fcn</var> ([NaN, <var class="var">x</var>(1:2)])</code>, and
+<code class="code"><var class="var">y</var>(end) = <var class="var">fcn</var> ([<var class="var">x</var>(end-1:end), NaN])</code>.
+This option usually results in <var class="var">y</var> having <code class="code">NaN</code> values at the
+boundaries, although it is influenced by how <var class="var">fcn</var> handles <code class="code">NaN</code>,
+and also by the property <code class="code">&quot;nancond&quot;</code>.
+</p>
+</dd>
+<dt><var class="var">user_value</var></dt>
+<dd><p>Any window elements outside the data array are replaced by the specified
+value <var class="var">user_value</var> which must be a numeric scalar.  For example, with a
+window of length 3,
+<code class="code"><var class="var">y</var>(1) = <var class="var">fcn</var> ([<var class="var">user_value</var>, <var class="var">x</var>(1:2)])</code>, and
+<code class="code"><var class="var">y</var>(end) = <var class="var">fcn</var> ([<var class="var">x</var>(end-1:end), <var class="var">user_value</var>])</code>.
+A common choice for <var class="var">user_value</var> is 0.
+</p>
+</dd>
+<dt><code class="code">&quot;same&quot;</code></dt>
+<dd><p>Any window elements outside the data array are replaced by the value of
+<var class="var">x</var> at the boundary.  For example, with a window of length 3,
+<code class="code"><var class="var">y</var>(1) = <var class="var">fcn</var> ([<var class="var">x</var>(1), <var class="var">x</var>(1:2)])</code>, and
+<code class="code"><var class="var">y</var>(end) = <var class="var">fcn</var> ([<var class="var">x</var>(end-1:end), <var class="var">x</var>(end)])</code>.
+</p>
+</dd>
+<dt><code class="code">&quot;periodic&quot;</code></dt>
+<dd><p>The window is wrapped so that any missing data elements are taken from
+the other side of the data.  For example, with a window of length 3,
+<code class="code"><var class="var">y</var>(1) = <var class="var">fcn</var> ([<var class="var">x</var>(end), <var class="var">x</var>(1:2)])</code>, and
+<code class="code"><var class="var">y</var>(end) = <var class="var">fcn</var> ([<var class="var">x</var>(end-1:end), <var class="var">x</var>(1)])</code>.
+</p>
+</dd>
+</dl>
+
+<p>Note 1: For non-uniform SamplePoint spacing, the only permitted value for
+<code class="code">&quot;EndPoints&quot;</code> is <code class="code">&quot;shrink&quot;</code>.
+</p>
+<p>Note 2: For some <code class="code">&quot;Endpoints&quot;</code> options, the window size at the
+boundaries may not be the same as for the central part, and <var class="var">fcn</var> must
+work in these cases.
+</p>
+</dd>
+<dt><code class="code">&quot;nancond&quot;</code></dt>
+<dd><p>Controls haw <code class="code">NaN</code> and <code class="code">NA</code> values affect the output of
+<code class="code">&quot;movfun&quot;</code>.  The value <code class="code">&quot;includenan&quot;</code> (default) causes
+<code class="code">NaN</code> and <code class="code">NA</code> values to be included in the moving window, and any
+window slice containing <code class="code">NaN</code> or <code class="code">NA</code> values will return
+<code class="code">NaN</code> for that element.  The value <code class="code">&quot;omitnan&quot;</code> causes
+<code class="code">&quot;movfun&quot;</code> to ignore any <code class="code">NaN</code> or <code class="code">NA</code> values resulting
+in fewer elements being used to calculate the result for that window
+slice.  If <code class="code">&quot;omitnan&quot;</code> is specified and a window slice contains all
+<code class="code">NaN</code> or <code class="code">NA</code> values, <code class="code">&quot;movfun&quot;</code> returns the value
+specified by the <code class="code">&quot;nanval&quot;</code> property for that element.  The values
+<code class="code">&quot;includemissing&quot;</code> and <code class="code">&quot;omitmissing&quot;</code> may be used
+synonymously with <code class="code">&quot;includenan&quot;</code> and <code class="code">&quot;omitnan&quot;</code>,
+respectively.
+</p>
+</dd>
+<dt><code class="code">&quot;nanval&quot;</code></dt>
+<dd><p>Specifies the value to return when <code class="code">&quot;nancond&quot;</code> is set to
+<code class="code">&quot;omitnan&quot;</code> or <code class="code">&quot;omitmissing&quot;</code> and all elements in a window
+are <code class="code">NaN</code> or <code class="code">NA</code>.  <code class="code">&quot;nanval&quot;</code> must be a numeric scalar
+value or <code class="code">NaN</code> (default).
+</p>
+</dd>
+<dt><code class="code">&quot;outdim&quot;</code></dt>
+<dd><p>A row vector that selects which dimensions of the calculation will appear
+in the output <var class="var">y</var>.  This is only useful when <var class="var">fcn</var> returns an
+N-dimensional array in Format&nbsp;1<!-- /@w -->.  The default is to return all output
+dimensions.
+</p>
+</dd>
+</dl>
+
+<p>Programming Note: The property <code class="code">&quot;outdim&quot;</code> can be used to save memory
+when the output of <var class="var">fcn</var> has many dimensions, or when a wrapper to the
+base function that selects the desired outputs is too costly.  When memory
+is not an issue, the easiest way to select output dimensions is to first
+calculate the complete result with <code class="code">movfun</code> and then filter that
+result with indexing.  If code complexity is not an issue then a wrapper
+can be created using anonymous functions.  For example, if <code class="code">basefcn</code>
+is a function returning a <var class="var">K</var>-dimensional row output, and only
+dimension <var class="var">D</var> is desired, then the following wrapper could be used.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted"><var class="var">fcn</var> = @(x) basefcn (x)(:,columns(x) * (<var class="var">D</var>-1) + (1:columns(x)));
+<var class="var">y</var> = movfun (@fcn, ...);
+</pre></div></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFmovslice">movslice</a>, <a class="ref" href="Rearranging-Matrices.html#XREFprepad">prepad</a>, <a class="ref" href="Rearranging-Matrices.html#XREFpostpad">postpad</a>, <a class="ref" href="Rearranging-Matrices.html#XREFpermute">permute</a>, <a class="ref" href="Rearranging-Matrices.html#XREFreshape">reshape</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFmovslice"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-movslice"><span><code class="def-type"><var class="var">slcidx</var> =</code> <strong class="def-name">movslice</strong> <code class="def-code-arguments">(<var class="var">N</var>, <var class="var">wlen</var>)</code><a class="copiable-link" href="#index-movslice"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movslice-1"><span><code class="def-type"><var class="var">slcidx</var> =</code> <strong class="def-name">movslice</strong> <code class="def-code-arguments">(<var class="var">N</var>, <var class="var">wlen</var>, <var class="var">samplepoints</var>)</code><a class="copiable-link" href="#index-movslice-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movslice-2"><span><code class="def-type">[<var class="var">slcidx</var>, <var class="var">C</var>, <var class="var">Cpre</var>, <var class="var">Cpost</var>, <var class="var">win</var>, <var class="var">wlen</var>, <var class="var">scalar_wlen</var>] =</code> <strong class="def-name">movslice</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-movslice-2"> &para;</a></span></dt>
+<dd><p>Generate indices to slice a vector of length <var class="var">N</var> into windows of length
+<var class="var">wlen</var>.
+</p>
+<p>The input <var class="var">N</var> must be a positive integer.
+</p>
+<p>The moving window length input <var class="var">wlen</var> can either be a numeric scalar
+or a 2-element numeric array.  The elements included in the moving window
+will depend on the size and value of <var class="var">wlen</var> as well as whether the
+<var class="var">samplepoints</var> input was specified.
+</p>
+<p>The optional input <var class="var">samplepoints</var> is a sorted, numeric vector of unique
+positions of the <var class="var">N</var> data points.  The default value is the vector
+<code class="code">[1 : <var class="var">N</var>]</code>.  When a non-default <var class="var">samplepoints</var> vector is
+specified, the moving window length <var class="var">wlen</var> is measured
+against the <var class="var">samplepoints</var> positions to determine which points are
+included in each window slice.  It should be noted that <var class="var">samplepoints</var>
+need not be uniformly spaced which can result in window slices containing
+different numbers of points.  Because of this, as specified below the
+shape and content of some <code class="code">movslice</code> outputs will be different when
+a non-default <var class="var">samplepoints</var> is used.
+</p>
+<p>The moving window size and included elements will be defined as follows:
+</p>
+<ul class="itemize mark-bullet">
+<li>If <var class="var">samplepoints</var> has the default value of <code class="code">1:<var class="var">N</var></code> (or has
+not been specified):
+
+<ul class="itemize mark-bullet">
+<li>For integer-valued <var class="var">wlen</var>:
+
+<ul class="itemize mark-bullet">
+<li>For odd, integer-valued, scalar <var class="var">wlen</var> the window is symmetric and
+includes <code class="code">(<var class="var">wlen</var>&nbsp;-&nbsp;1)&nbsp;/&nbsp;2</code><!-- /@w -->&nbsp;elements on either side of the
+central element.  For example, the window slice at index 5 with a window
+length of 3 will include the elements <code class="code">[4,&nbsp;5,&nbsp;6]</code><!-- /@w -->.
+
+</li><li>For even, integer-valued, scalar <var class="var">wlen</var> the window is asymmetric and
+has <code class="code"><var class="var">wlen</var>/2</code><!-- /@w -->&nbsp;elements to the left of the central element
+and <code class="code"><var class="var">wlen</var>/2&nbsp;-&nbsp;1</code><!-- /@w -->&nbsp;elements to the right of the central
+element.  For example, the window slice at index 5 with a window length of
+4 will include the elements <code class="code">[3,&nbsp;4,&nbsp;5,&nbsp;6]</code><!-- /@w -->.
+
+</li><li>For integer-valued vector <var class="var">wlen</var> of the form
+<code class="code">[<var class="var">nb</var>,&nbsp;<var class="var">na</var>]</code><!-- /@w -->&nbsp;where <var class="var">nb</var> and <var class="var">na</var> are integer
+valued the window includes <var class="var">nb</var> elements to the left of the central
+element and <var class="var">na</var> elements to the right of the central element.  For
+example, given <code class="code"><var class="var">wlen</var>&nbsp;=&nbsp;[3,&nbsp;1]</code><!-- /@w -->, the window slice at index 5
+will include the elements <code class="code">[2,&nbsp;3,&nbsp;4,&nbsp;5,&nbsp;6]</code><!-- /@w -->.
+</li></ul>
+
+</li><li>For non-integer-valued scalar <var class="var">wlen</var>:
+
+<ul class="itemize mark-bullet">
+<li>Non-integer-valued scalar <var class="var">wlen</var> will be converted to
+two-element vector form with
+<code class="code"><var class="var">nb</var>&nbsp;=&nbsp;<var class="var">na</var>&nbsp;=&nbsp;fix&nbsp;(<var class="var">wlen</var>&nbsp;/&nbsp;2)</code><!-- /@w -->, and then processed
+as stated above for integer-valued vectors.  For example, the window slice
+at index 5 with <code class="code"><var class="var">wlen</var>&nbsp;=&nbsp;2.5</code><!-- /@w -->&nbsp;will include the elements
+<code class="code">[3,&nbsp;4,&nbsp;5,&nbsp;6,&nbsp;7]</code><!-- /@w -->.
+
+</li><li>Non-integer-valued vector <var class="var">wlen</var> will be truncated to integer values
+with <code class="code"><var class="var">wlen</var>&nbsp;=&nbsp;fix&nbsp;(<var class="var">wlen</var>)</code><!-- /@w -->&nbsp;and then processed as
+stated above for integer-valued vectors.  For example, the window slice
+at index 5 with <code class="code"><var class="var">wlen</var>&nbsp;=&nbsp;[1.2,&nbsp;2.3]</code><!-- /@w -->&nbsp;will include the
+elements <code class="code">[4,&nbsp;5,&nbsp;6,&nbsp;7]</code><!-- /@w -->.
+</li></ul>
+</li></ul>
+
+</li><li>If <var class="var">samplepoints</var> has been specified with a non-default vector:
+
+<ul class="itemize mark-bullet">
+<li>For vector <var class="var">wlen</var> specified as <code class="code">[<var class="var">nb</var>,&nbsp;<var class="var">na</var>]</code><!-- /@w -->, the
+window will include all points within a distance less than or equal to
+<var class="var">nb</var> before and <var class="var">na</var> after the central element&rsquo;s position, with
+point positions defined by the elements of <var class="var">samplepoints</var>.  For
+example, at index 5 with <code class="code"><var class="var">wlen</var>&nbsp;=&nbsp;[2,&nbsp;3]</code><!-- /@w -->&nbsp;and the 3rd-8th
+elements of <var class="var">samplepoints</var> being <code class="code">[1,&nbsp;3,&nbsp;5,&nbsp;7,&nbsp;8&nbsp;,9]</code><!-- /@w -->, the
+window slice will include the elements <code class="code">[4,&nbsp;5,&nbsp;6,&nbsp;7]</code><!-- /@w -->&nbsp;corresponding to <var class="var">samplepoints</var> <code class="code">[3,&nbsp;5,&nbsp;7,&nbsp;8]</code><!-- /@w -->.
+
+</li><li>Scalar <var class="var">wlen</var> will be converted to two-element vector form with
+<code class="code"><var class="var">nb</var>&nbsp;=&nbsp;<var class="var">na</var>&nbsp;=&nbsp;<var class="var">wlen</var>&nbsp;/&nbsp;2</code><!-- /@w -->.  The window will then
+include all points within a distance of less than or equal to <var class="var">nb</var>
+before and less than, but not equal to, <var class="var">na</var> after the central
+element&rsquo;s position, <code class="code">[<var class="var">nb</var>,&nbsp;<var class="var">na</var>)</code><!-- /@w -->.  For example, at
+index 5 with <code class="code"><var class="var">wlen</var>&nbsp;=&nbsp;[2,&nbsp;3]</code><!-- /@w -->&nbsp;and the 3rd-8th elements of
+<var class="var">samplepoints</var> being <code class="code">[1,&nbsp;3,&nbsp;5,&nbsp;7,&nbsp;8&nbsp;,9]</code><!-- /@w -->, the window slice
+will include the elements <code class="code">[4,&nbsp;5,&nbsp;6]</code><!-- /@w -->&nbsp;corresponding to
+<var class="var">samplepoints</var> <code class="code">[3,&nbsp;5,&nbsp;7]</code><!-- /@w -->.
+</li></ul>
+</li></ul>
+
+<p>The output <var class="var">slcidx</var> is an array of indices of the slices of the vector.
+</p>
+<ul class="itemize mark-bullet">
+<li>If <var class="var">samplepoints</var> is default or unspecified, <var class="var">slcidx</var> will contain
+only the indices of the slices that fit fully within the vector.  Each
+column will be the indices of one slice as the window moves from left to
+right.  The slices will have <code class="code">fix&nbsp;(<var class="var">wlen</var>)</code><!-- /@w -->&nbsp;elements for
+scalar <var class="var">wlen</var>, or <code class="code"><var class="var">nb</var>&nbsp;+&nbsp;<var class="var">na</var>&nbsp;+&nbsp;1</code><!-- /@w -->&nbsp;elements for array
+valued <var class="var">wlen</var>.
+
+</li><li>If a non-default <var class="var">samplepoints</var> has been specified, <var class="var">slcidx</var> will
+be a 2x<var class="var">N</var> array with the first and second rows containing the first
+and last elements of each slice, respectively.
+</li></ul>
+
+<p>Optional output <var class="var">C</var> is a row vector of window center positions where
+the window stays fully within the vector.
+</p>
+<p>Optional outputs <var class="var">Cpre</var> and <var class="var">Cpost</var> contain the vector elements at
+the start and end of the vector, respectively, that result in the window
+extending beyond the ends of the vector.
+</p>
+<p>Optional output <var class="var">win</var> contains information for creating the moving
+window.
+</p>
+<ul class="itemize mark-bullet">
+<li>If <var class="var">samplepoints</var> is default or unspecified, <var class="var">win</var> is a column
+vector with the same number of rows as <var class="var">slcidx</var> that contains the
+moving window defined as a center relative position stencil.
+
+</li><li>If a non-default <var class="var">samplepoints</var> has been specified, <var class="var">win</var> will
+be a 2x<var class="var">N</var> array with the first and second rows containing the left and
+right bounds of each window slice, respectively, using the same
+coordinates as <var class="var">samplepoints</var>.  These bounds may lie outside of the
+position vector specified by <var class="var">samplepoints</var>.
+</li></ul>
+
+<p>Optional output <var class="var">wlen</var> returns the window length used by
+<code class="code">movslice</code> in two-element <code class="code">[<var class="var">nb</var>,&nbsp;<var class="var">na</var>]</code><!-- /@w -->&nbsp;form.
+</p>
+<p>Optional logical output <var class="var">scalar_wlen</var> returns the scalar or vector
+state of the input <var class="var">wlen</var> so that calling functions can determinine
+whether the moving window should be inclusive or exclusive of the right
+window endpoints.  I.e., inclusive <code class="code">[<var class="var">nb</var>,&nbsp;<var class="var">na</var>]</code><!-- /@w -->&nbsp;for
+vector <var class="var">wlen</var> or exclusive <code class="code">[<var class="var">nb</var>,&nbsp;<var class="var">na</var>)</code><!-- /@w -->&nbsp;for scalar
+<var class="var">wlen</var>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFmovfun">movfun</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFmovmad"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-movmad"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movmad</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">wlen</var>)</code><a class="copiable-link" href="#index-movmad"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movmad-1"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movmad</strong> <code class="def-code-arguments">(<var class="var">x</var>, [<var class="var">nb</var>, <var class="var">na</var>])</code><a class="copiable-link" href="#index-movmad-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movmad-2"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movmad</strong> <code class="def-code-arguments">(&hellip;, <var class="var">dim</var>)</code><a class="copiable-link" href="#index-movmad-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movmad-3"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movmad</strong> <code class="def-code-arguments">(&hellip;, <var class="var">nancond</var>)</code><a class="copiable-link" href="#index-movmad-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movmad-4"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movmad</strong> <code class="def-code-arguments">(&hellip;, <var class="var">property</var>, <var class="var">value</var>)</code><a class="copiable-link" href="#index-movmad-4"> &para;</a></span></dt>
+<dd><p>Calculate the moving median or mean absolute deviation over a sliding
+window of length <var class="var">wlen</var> on data <var class="var">x</var>.
+</p>
+<p>The moving window length input <var class="var">wlen</var> can either be a numeric scalar
+or a 2-element numeric array <code class="code">[<var class="var">nb</var>,&nbsp;<var class="var">na</var>]</code><!-- /@w -->.  The elements
+included in the moving window depend on the size and value of <var class="var">wlen</var>
+as well as whether the <code class="code">&quot;SamplePoints&quot;</code> option has been specified.
+For full details of element inclusion,
+see <a class="pxref" href="#XREFmovslice"><code class="code">movslice</code></a>.
+</p>
+<p>If the optional argument <var class="var">dim</var> is given, operate along this dimension.
+</p>
+<p>The optional argument <var class="var">nancond</var> is a string that controls how <code class="code">NaN</code>
+and <code class="code">NA</code> values affect the output of <code class="code">&quot;movmad&quot;</code>.  The value
+<code class="code">&quot;includenan&quot;</code> causes <code class="code">NaN</code> and <code class="code">NA</code> values to be included
+in the moving window, and any window slice containing <code class="code">NaN</code> or
+<code class="code">NA</code> values will return <code class="code">NaN</code> for that element.  The value
+<code class="code">&quot;omitnan&quot;</code> (default) causes <code class="code">&quot;movmad&quot;</code> to ignore any <code class="code">NaN</code>
+or <code class="code">NA</code> values resulting in fewer elements being used to calculate the
+mad for that window slice.  If <code class="code">&quot;omitnan&quot;</code> is specified and a window
+slice contains all <code class="code">NaN</code> or <code class="code">NA</code> values, <code class="code">&quot;movmad&quot;</code> returns
+<code class="code">NaN</code> for that element.  The values <code class="code">&quot;includemissing&quot;</code> and
+<code class="code">&quot;omitmissing&quot;</code> may be used synonymously with <code class="code">&quot;includenan&quot;</code> and
+<code class="code">&quot;omitnan&quot;</code>, respectively.
+</p>
+<p>The calculation can be controlled by specifying <var class="var">property</var>/<var class="var">value</var>
+pairs:
+</p>
+<ul class="itemize mark-bullet">
+<li>The <code class="code">&quot;method&quot;</code> property can take the value <code class="code">&quot;median&quot;</code> (default)
+or <code class="code">&quot;mean&quot;</code> to control whether <code class="code">&quot;movmad&quot;</code> performs median or
+mean absolute deviation calculations on the data.
+
+</li><li>Additional valid properties are <code class="code">&quot;Endpoints&quot;</code> and
+<code class="code">&quot;SamplePoints&quot;</code>.  For full descriptions of these properties and valid
+options, see <a class="pxref" href="#XREFmovfun"><code class="code">movfun</code></a>.
+</li></ul>
+
+<p>Programming Note: This function is a wrapper which calls <code class="code">movfun</code>.  For
+full documentation of inputs and options, see <a class="pxref" href="#XREFmovfun"><code class="code">movfun</code></a>.
+</p>
+<p>Compatibility Note: Prior to Octave 10 this function only calculated mean
+absolute deviation.  For <small class="sc">MATLAB</small> compatibility, the default has been
+changed to median absolute deviation.  The <code class="code">&quot;method&quot;</code> property is now
+provided to enable access to both <code class="code">&quot;mad&quot;</code> calculation methods.  This
+property should not be expected to be functional outside of Octave code.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Descriptive-Statistics.html#XREFmad">mad</a>, <a class="ref" href="#XREFmovfun">movfun</a>, <a class="ref" href="#XREFmovslice">movslice</a>, <a class="ref" href="#XREFmovmax">movmax</a>, <a class="ref" href="#XREFmovmean">movmean</a>, <a class="ref" href="#XREFmovmedian">movmedian</a>, <a class="ref" href="#XREFmovmin">movmin</a>, <a class="ref" href="#XREFmovprod">movprod</a>, <a class="ref" href="#XREFmovstd">movstd</a>, <a class="ref" href="#XREFmovsum">movsum</a>, <a class="ref" href="#XREFmovvar">movvar</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFmovmax"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-movmax"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movmax</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">wlen</var>)</code><a class="copiable-link" href="#index-movmax"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movmax-1"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movmax</strong> <code class="def-code-arguments">(<var class="var">x</var>, [<var class="var">nb</var>, <var class="var">na</var>])</code><a class="copiable-link" href="#index-movmax-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movmax-2"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movmax</strong> <code class="def-code-arguments">(&hellip;, <var class="var">dim</var>)</code><a class="copiable-link" href="#index-movmax-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movmax-3"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movmax</strong> <code class="def-code-arguments">(&hellip;, <var class="var">nancond</var>)</code><a class="copiable-link" href="#index-movmax-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movmax-4"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movmax</strong> <code class="def-code-arguments">(&hellip;, <var class="var">property</var>, <var class="var">value</var>)</code><a class="copiable-link" href="#index-movmax-4"> &para;</a></span></dt>
+<dd><p>Calculate the moving maximum over a sliding window of length <var class="var">wlen</var> on
+data <var class="var">x</var>.
+</p>
+<p>The moving window length input <var class="var">wlen</var> can either be a numeric scalar
+or a 2-element numeric array <code class="code">[<var class="var">nb</var>,&nbsp;<var class="var">na</var>]</code><!-- /@w -->.  The elements
+included in the moving window depend on the size and value of <var class="var">wlen</var>
+as well as whether the <code class="code">&quot;SamplePoints&quot;</code> option has been specified.
+For full details of element inclusion,
+see <a class="pxref" href="#XREFmovslice"><code class="code">movslice</code></a>.
+</p>
+<p>If the optional argument <var class="var">dim</var> is given, operate along this dimension.
+</p>
+<p>The optional argument <var class="var">nancond</var> is a string that controls how <code class="code">NaN</code>
+and <code class="code">NA</code> values affect the output of <code class="code">&quot;movmax&quot;</code>.  The value
+<code class="code">&quot;includenan&quot;</code> causes <code class="code">NaN</code> and <code class="code">NA</code> values to be
+included in the moving window, and any window slice containing <code class="code">NaN</code> or
+<code class="code">NA</code> values will return <code class="code">NaN</code> for that element.  The value
+<code class="code">&quot;omitnan&quot;</code> (default) causes <code class="code">&quot;movmax&quot;</code> to ignore any <code class="code">NaN</code>
+or <code class="code">NA</code> values resulting in fewer elements being used to calculate the
+maximum for that window slice.  If <code class="code">&quot;omitnan&quot;</code> is specified and a
+window slice contains all <code class="code">NaN</code> or <code class="code">NA</code> values, <code class="code">&quot;movmax&quot;</code>
+returns <code class="code">NaN</code> for that element.  The values <code class="code">&quot;includemissing&quot;</code>
+and <code class="code">&quot;omitmissing&quot;</code> may be used synonymously with
+<code class="code">&quot;includenan&quot;</code> and <code class="code">&quot;omitnan&quot;</code>, respectively.
+</p>
+<p>The calculation can be controlled by specifying <var class="var">property</var>/<var class="var">value</var>
+pairs.  Valid properties are <code class="code">&quot;Endpoints&quot;</code> and
+<code class="code">&quot;SamplePoints&quot;</code>.  For full descriptions of these properties and
+valid options, see <a class="pxref" href="#XREFmovfun"><code class="code">movfun</code></a>.
+</p>
+<p>Programming Note: This function is a wrapper which calls <code class="code">movfun</code>.
+For full documentation of inputs and options,
+see <a class="pxref" href="#XREFmovfun"><code class="code">movfun</code></a>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Utility-Functions.html#XREFmax">max</a>, <a class="ref" href="#XREFmovfun">movfun</a>, <a class="ref" href="#XREFmovslice">movslice</a>, <a class="ref" href="#XREFmovmad">movmad</a>, <a class="ref" href="#XREFmovmean">movmean</a>, <a class="ref" href="#XREFmovmedian">movmedian</a>, <a class="ref" href="#XREFmovmin">movmin</a>, <a class="ref" href="#XREFmovprod">movprod</a>, <a class="ref" href="#XREFmovstd">movstd</a>, <a class="ref" href="#XREFmovsum">movsum</a>, <a class="ref" href="#XREFmovvar">movvar</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFmovmean"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-movmean"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movmean</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">wlen</var>)</code><a class="copiable-link" href="#index-movmean"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movmean-1"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movmean</strong> <code class="def-code-arguments">(<var class="var">x</var>, [<var class="var">nb</var>, <var class="var">na</var>])</code><a class="copiable-link" href="#index-movmean-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movmean-2"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movmean</strong> <code class="def-code-arguments">(&hellip;, <var class="var">dim</var>)</code><a class="copiable-link" href="#index-movmean-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movmean-3"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movmean</strong> <code class="def-code-arguments">(&hellip;, <var class="var">nancond</var>)</code><a class="copiable-link" href="#index-movmean-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movmean-4"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movmean</strong> <code class="def-code-arguments">(&hellip;, <var class="var">property</var>, <var class="var">value</var>)</code><a class="copiable-link" href="#index-movmean-4"> &para;</a></span></dt>
+<dd><p>Calculate the moving average over a sliding window of length <var class="var">wlen</var> on
+data <var class="var">x</var>.
+</p>
+<p>The moving window length input <var class="var">wlen</var> can either be a numeric scalar
+or a 2-element numeric array <code class="code">[<var class="var">nb</var>,&nbsp;<var class="var">na</var>]</code><!-- /@w -->.  The elements
+included in the moving window depend on the size and value of <var class="var">wlen</var>
+as well as whether the <code class="code">&quot;SamplePoints&quot;</code> option has been specified.
+For full details of element inclusion,
+see <a class="pxref" href="#XREFmovslice"><code class="code">movslice</code></a>.
+</p>
+<p>If the optional argument <var class="var">dim</var> is given, operate along this dimension.
+</p>
+<p>The optional argument <var class="var">nancond</var> is a string that controls how <code class="code">NaN</code>
+and <code class="code">NA</code> values affect the output of <code class="code">&quot;movmean&quot;</code>.  The value
+<code class="code">&quot;includenan&quot;</code> (default) causes <code class="code">NaN</code> and <code class="code">NA</code> values to be
+included in the moving window, and any window slice containing <code class="code">NaN</code> or
+<code class="code">NA</code> values will return <code class="code">NaN</code> for that element.  The value
+<code class="code">&quot;omitnan&quot;</code> causes <code class="code">&quot;movmean&quot;</code> to ignore any <code class="code">NaN</code>
+or <code class="code">NA</code> values resulting in fewer elements being used to calculate the
+mean for that window slice.  If <code class="code">&quot;omitnan&quot;</code> is specified and a window
+slice contains all <code class="code">NaN</code> or <code class="code">NA</code> values, <code class="code">&quot;movmean&quot;</code> returns
+<code class="code">NaN</code> for that element.  The values <code class="code">&quot;includemissing&quot;</code> and
+<code class="code">&quot;omitmissing&quot;</code> may be used synonymously with <code class="code">&quot;includenan&quot;</code> and
+<code class="code">&quot;omitnan&quot;</code>, respectively.
+</p>
+<p>The calculation can be controlled by specifying <var class="var">property</var>/<var class="var">value</var>
+pairs.  Valid properties are <code class="code">&quot;Endpoints&quot;</code> and
+<code class="code">&quot;SamplePoints&quot;</code>.  For full descriptions of these properties and
+valid options, see <a class="pxref" href="#XREFmovfun"><code class="code">movfun</code></a>.
+</p>
+<p>Programming Note: This function is a wrapper which calls <code class="code">movfun</code>.
+For full documentation of inputs and options,
+see <a class="pxref" href="#XREFmovfun"><code class="code">movfun</code></a>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Descriptive-Statistics.html#XREFmean">mean</a>, <a class="ref" href="#XREFmovfun">movfun</a>, <a class="ref" href="#XREFmovslice">movslice</a>, <a class="ref" href="#XREFmovmad">movmad</a>, <a class="ref" href="#XREFmovmax">movmax</a>, <a class="ref" href="#XREFmovmedian">movmedian</a>, <a class="ref" href="#XREFmovmin">movmin</a>, <a class="ref" href="#XREFmovprod">movprod</a>, <a class="ref" href="#XREFmovstd">movstd</a>, <a class="ref" href="#XREFmovsum">movsum</a>, <a class="ref" href="#XREFmovvar">movvar</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFmovmedian"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-movmedian"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movmedian</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">wlen</var>)</code><a class="copiable-link" href="#index-movmedian"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movmedian-1"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movmedian</strong> <code class="def-code-arguments">(<var class="var">x</var>, [<var class="var">nb</var>, <var class="var">na</var>])</code><a class="copiable-link" href="#index-movmedian-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movmedian-2"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movmedian</strong> <code class="def-code-arguments">(&hellip;, <var class="var">dim</var>)</code><a class="copiable-link" href="#index-movmedian-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movmedian-3"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movmedian</strong> <code class="def-code-arguments">(&hellip;, <var class="var">nancond</var>)</code><a class="copiable-link" href="#index-movmedian-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movmedian-4"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movmedian</strong> <code class="def-code-arguments">(&hellip;, <var class="var">property</var>, <var class="var">value</var>)</code><a class="copiable-link" href="#index-movmedian-4"> &para;</a></span></dt>
+<dd><p>Calculate the moving median over a sliding window of length <var class="var">wlen</var> on
+data <var class="var">x</var>.
+</p>
+<p>The moving window length input <var class="var">wlen</var> can either be a numeric scalar
+or a 2-element numeric array <code class="code">[<var class="var">nb</var>,&nbsp;<var class="var">na</var>]</code><!-- /@w -->.  The elements
+included in the moving window depend on the size and value of <var class="var">wlen</var>
+as well as whether the <code class="code">&quot;SamplePoints&quot;</code> option has been specified.
+For full details of element inclusion,
+see <a class="pxref" href="#XREFmovslice"><code class="code">movslice</code></a>.
+</p>
+<p>If the optional argument <var class="var">dim</var> is given, operate along this dimension.
+</p>
+<p>The optional argument <var class="var">nancond</var> is a string that controls how <code class="code">NaN</code>
+and <code class="code">NA</code> values affect the output of <code class="code">&quot;movmedian&quot;</code>.  The value
+<code class="code">&quot;includenan&quot;</code> (default) causes <code class="code">NaN</code> and <code class="code">NA</code> values to be
+included in the moving window, and any window slice containing <code class="code">NaN</code> or
+<code class="code">NA</code> values will return <code class="code">NaN</code> for that element.  The value
+<code class="code">&quot;omitnan&quot;</code> causes <code class="code">&quot;movmedian&quot;</code> to ignore any <code class="code">NaN</code>
+or <code class="code">NA</code> values resulting in fewer elements being used to calculate the
+median for that window slice.  If <code class="code">&quot;omitnan&quot;</code> is specified and a
+window slice contains all <code class="code">NaN</code> or <code class="code">NA</code> values,
+<code class="code">&quot;movmedian&quot;</code> returns <code class="code">NaN</code> for that element.  The values
+<code class="code">&quot;includemissing&quot;</code> and <code class="code">&quot;omitmissing&quot;</code> may be used
+synonymously with <code class="code">&quot;includenan&quot;</code> and <code class="code">&quot;omitnan&quot;</code>,
+respectively.
+</p>
+<p>The calculation can be controlled by specifying <var class="var">property</var>/<var class="var">value</var>
+pairs.  Valid properties are <code class="code">&quot;Endpoints&quot;</code> and
+<code class="code">&quot;SamplePoints&quot;</code>.  For full descriptions of these properties and
+valid options, see <a class="pxref" href="#XREFmovfun"><code class="code">movfun</code></a>.
+</p>
+<p>Programming Note: This function is a wrapper which calls <code class="code">movfun</code>.
+For full documentation of inputs and options,
+see <a class="pxref" href="#XREFmovfun"><code class="code">movfun</code></a>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Descriptive-Statistics.html#XREFmedian">median</a>, <a class="ref" href="#XREFmovfun">movfun</a>, <a class="ref" href="#XREFmovslice">movslice</a>, <a class="ref" href="#XREFmovmad">movmad</a>, <a class="ref" href="#XREFmovmax">movmax</a>, <a class="ref" href="#XREFmovmean">movmean</a>, <a class="ref" href="#XREFmovmin">movmin</a>, <a class="ref" href="#XREFmovprod">movprod</a>, <a class="ref" href="#XREFmovstd">movstd</a>, <a class="ref" href="#XREFmovsum">movsum</a>, <a class="ref" href="#XREFmovvar">movvar</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFmovmin"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-movmin"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movmin</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">wlen</var>)</code><a class="copiable-link" href="#index-movmin"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movmin-1"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movmin</strong> <code class="def-code-arguments">(<var class="var">x</var>, [<var class="var">nb</var>, <var class="var">na</var>])</code><a class="copiable-link" href="#index-movmin-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movmin-2"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movmin</strong> <code class="def-code-arguments">(&hellip;, <var class="var">dim</var>)</code><a class="copiable-link" href="#index-movmin-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movmin-3"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movmin</strong> <code class="def-code-arguments">(&hellip;, <var class="var">nancond</var>)</code><a class="copiable-link" href="#index-movmin-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movmin-4"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movmin</strong> <code class="def-code-arguments">(&hellip;, <var class="var">property</var>, <var class="var">value</var>)</code><a class="copiable-link" href="#index-movmin-4"> &para;</a></span></dt>
+<dd><p>Calculate the moving minimum over a sliding window of length <var class="var">wlen</var> on
+data <var class="var">x</var>.
+</p>
+<p>The moving window length input <var class="var">wlen</var> can either be a numeric scalar
+or a 2-element numeric array <code class="code">[<var class="var">nb</var>,&nbsp;<var class="var">na</var>]</code><!-- /@w -->.  The elements
+included in the moving window depend on the size and value of <var class="var">wlen</var>
+as well as whether the <code class="code">&quot;SamplePoints&quot;</code> option has been specified.
+For full details of element inclusion,
+see <a class="pxref" href="#XREFmovslice"><code class="code">movslice</code></a>.
+</p>
+<p>If the optional argument <var class="var">dim</var> is given, operate along this dimension.
+</p>
+<p>The optional argument <var class="var">nancond</var> is a string that controls how <code class="code">NaN</code>
+and <code class="code">NA</code> values affect the output of <code class="code">&quot;movmin&quot;</code>.  The value
+<code class="code">&quot;includenan&quot;</code> causes <code class="code">NaN</code> and <code class="code">NA</code> values to be
+included in the moving window, and any window slice containing <code class="code">NaN</code> or
+<code class="code">NA</code> values will return <code class="code">NaN</code> for that element.  The value
+<code class="code">&quot;omitnan&quot;</code> (default) causes <code class="code">&quot;movmin&quot;</code> to ignore any <code class="code">NaN</code>
+or <code class="code">NA</code> values resulting in fewer elements being used to calculate the
+minimum for that window slice.  If <code class="code">&quot;omitnan&quot;</code> is specified and a
+window slice contains all <code class="code">NaN</code> or <code class="code">NA</code> values, <code class="code">&quot;movmin&quot;</code>
+returns <code class="code">NaN</code> for that element.  The values <code class="code">&quot;includemissing&quot;</code>
+and <code class="code">&quot;omitmissing&quot;</code> may be used synonymously with
+<code class="code">&quot;includenan&quot;</code> and <code class="code">&quot;omitnan&quot;</code>, respectively.
+</p>
+<p>The calculation can be controlled by specifying <var class="var">property</var>/<var class="var">value</var>
+pairs.  Valid properties are <code class="code">&quot;Endpoints&quot;</code> and
+<code class="code">&quot;SamplePoints&quot;</code>.  For full descriptions of these properties and
+valid options, see <a class="pxref" href="#XREFmovfun"><code class="code">movfun</code></a>.
+</p>
+<p>Programming Note: This function is a wrapper which calls <code class="code">movfun</code>.
+For full documentation of inputs and options,
+see <a class="pxref" href="#XREFmovfun"><code class="code">movfun</code></a>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Utility-Functions.html#XREFmin">min</a>, <a class="ref" href="#XREFmovfun">movfun</a>, <a class="ref" href="#XREFmovslice">movslice</a>, <a class="ref" href="#XREFmovmad">movmad</a>, <a class="ref" href="#XREFmovmax">movmax</a>, <a class="ref" href="#XREFmovmean">movmean</a>, <a class="ref" href="#XREFmovmedian">movmedian</a>, <a class="ref" href="#XREFmovprod">movprod</a>, <a class="ref" href="#XREFmovstd">movstd</a>, <a class="ref" href="#XREFmovsum">movsum</a>, <a class="ref" href="#XREFmovvar">movvar</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFmovprod"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-movprod"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movprod</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">wlen</var>)</code><a class="copiable-link" href="#index-movprod"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movprod-1"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movprod</strong> <code class="def-code-arguments">(<var class="var">x</var>, [<var class="var">nb</var>, <var class="var">na</var>])</code><a class="copiable-link" href="#index-movprod-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movprod-2"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movprod</strong> <code class="def-code-arguments">(&hellip;, <var class="var">dim</var>)</code><a class="copiable-link" href="#index-movprod-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movprod-3"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movprod</strong> <code class="def-code-arguments">(&hellip;, <var class="var">nancond</var>)</code><a class="copiable-link" href="#index-movprod-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movprod-4"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movprod</strong> <code class="def-code-arguments">(&hellip;, <var class="var">property</var>, <var class="var">value</var>)</code><a class="copiable-link" href="#index-movprod-4"> &para;</a></span></dt>
+<dd><p>Calculate the moving product over a sliding window of length <var class="var">wlen</var> on
+data <var class="var">x</var>.
+</p>
+<p>The moving window length input <var class="var">wlen</var> can either be a numeric scalar
+or a 2-element numeric array <code class="code">[<var class="var">nb</var>,&nbsp;<var class="var">na</var>]</code><!-- /@w -->.  The elements
+included in the moving window depend on the size and value of <var class="var">wlen</var>
+as well as whether the <code class="code">&quot;SamplePoints&quot;</code> option has been specified.
+For full details of element inclusion,
+see <a class="pxref" href="#XREFmovslice"><code class="code">movslice</code></a>.
+</p>
+<p>If the optional argument <var class="var">dim</var> is given, operate along this dimension.
+</p>
+<p>The optional argument <var class="var">nancond</var> is a string that controls how <code class="code">NaN</code>
+and <code class="code">NA</code> values affect the output of <code class="code">&quot;movprod&quot;</code>.  The value
+<code class="code">&quot;includenan&quot;</code> (default) causes <code class="code">NaN</code> and <code class="code">NA</code> values to be
+included in the moving window, and any window slice containing <code class="code">NaN</code> or
+<code class="code">NA</code> values will return <code class="code">NaN</code> for that element.  The value
+<code class="code">&quot;omitnan&quot;</code> causes <code class="code">&quot;movprod&quot;</code> to ignore any <code class="code">NaN</code>
+or <code class="code">NA</code> values resulting in fewer elements being used to calculate the
+product for that window slice.  If <code class="code">&quot;omitnan&quot;</code> is specified and a
+window slice contains all <code class="code">NaN</code> or <code class="code">NA</code> values, <code class="code">&quot;movprod&quot;</code>
+returns 1 for that element.  The values <code class="code">&quot;includemissing&quot;</code> and
+<code class="code">&quot;omitmissing&quot;</code> may be used synonymously with <code class="code">&quot;includenan&quot;</code> and
+<code class="code">&quot;omitnan&quot;</code>, respectively.
+</p>
+<p>The calculation can be controlled by specifying <var class="var">property</var>/<var class="var">value</var>
+pairs.  Valid properties are <code class="code">&quot;Endpoints&quot;</code> and
+<code class="code">&quot;SamplePoints&quot;</code>.  For full descriptions of these properties and
+valid options, see <a class="pxref" href="#XREFmovfun"><code class="code">movfun</code></a>.
+</p>
+<p>Programming Note: This function is a wrapper which calls <code class="code">movfun</code>.
+For full documentation of inputs and options,
+see <a class="pxref" href="#XREFmovfun"><code class="code">movfun</code></a>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Sums-and-Products.html#XREFprod">prod</a>, <a class="ref" href="#XREFmovfun">movfun</a>, <a class="ref" href="#XREFmovslice">movslice</a>, <a class="ref" href="#XREFmovmad">movmad</a>, <a class="ref" href="#XREFmovmax">movmax</a>, <a class="ref" href="#XREFmovmean">movmean</a>, <a class="ref" href="#XREFmovmedian">movmedian</a>, <a class="ref" href="#XREFmovmin">movmin</a>, <a class="ref" href="#XREFmovstd">movstd</a>, <a class="ref" href="#XREFmovsum">movsum</a>, <a class="ref" href="#XREFmovvar">movvar</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFmovstd"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-movstd"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movstd</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">wlen</var>)</code><a class="copiable-link" href="#index-movstd"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movstd-1"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movstd</strong> <code class="def-code-arguments">(<var class="var">x</var>, [<var class="var">nb</var>, <var class="var">na</var>])</code><a class="copiable-link" href="#index-movstd-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movstd-2"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movstd</strong> <code class="def-code-arguments">(&hellip;, <var class="var">opt</var>)</code><a class="copiable-link" href="#index-movstd-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movstd-3"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movstd</strong> <code class="def-code-arguments">(&hellip;, <var class="var">opt</var>, <var class="var">dim</var>)</code><a class="copiable-link" href="#index-movstd-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movstd-4"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movstd</strong> <code class="def-code-arguments">(&hellip;, <var class="var">nancond</var>)</code><a class="copiable-link" href="#index-movstd-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movstd-5"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movstd</strong> <code class="def-code-arguments">(&hellip;, <var class="var">property</var>, <var class="var">value</var>)</code><a class="copiable-link" href="#index-movstd-5"> &para;</a></span></dt>
+<dd><p>Calculate the moving standard deviation over a sliding window of length
+<var class="var">wlen</var> on data <var class="var">x</var>.
+</p>
+<p>The moving window length input <var class="var">wlen</var> can either be a numeric scalar
+or a 2-element numeric array <code class="code">[<var class="var">nb</var>,&nbsp;<var class="var">na</var>]</code><!-- /@w -->.  The elements
+included in the moving window depend on the size and value of <var class="var">wlen</var>
+as well as whether the <code class="code">&quot;SamplePoints&quot;</code> option has been specified.
+For full details of element inclusion,
+see <a class="pxref" href="#XREFmovslice"><code class="code">movslice</code></a>.
+</p>
+<p>The optional argument <var class="var">opt</var> determines the type of normalization to use.
+Valid values are
+</p>
+<dl class="table">
+<dt>0:</dt>
+<dd><p>normalize with <em class="math">N-1</em>, provides the square root of the best unbiased
+estimator of the variance [default]
+</p>
+</dd>
+<dt>1:</dt>
+<dd><p>normalize with <em class="math">N</em>, this provides the square root of the second
+moment around the mean
+</p></dd>
+</dl>
+
+<p>If the optional argument <var class="var">dim</var> is given, operate along this dimension.
+The normalization argument <var class="var">opt</var> must be given before the dimension.
+To use the default value for <var class="var">opt</var> you may pass an empty input
+argument <code class="code">[]</code>.
+</p>
+<p>The optional argument <var class="var">nancond</var> is a string that controls how <code class="code">NaN</code>
+and <code class="code">NA</code> values affect the output of <code class="code">&quot;movstd&quot;</code>.  The value
+<code class="code">&quot;includenan&quot;</code> (default) causes <code class="code">NaN</code> and <code class="code">NA</code> values to be
+included in the moving window, and any window slice containing <code class="code">NaN</code> or
+<code class="code">NA</code> values will return <code class="code">NaN</code> for that element.  The value
+<code class="code">&quot;omitnan&quot;</code> causes <code class="code">&quot;movstd&quot;</code> to ignore any <code class="code">NaN</code>
+or <code class="code">NA</code> values resulting in fewer elements being used to calculate the
+standard deviation for that window slice.  If <code class="code">&quot;omitnan&quot;</code> is specified
+and a window slice contains all <code class="code">NaN</code> or <code class="code">NA</code> values,
+<code class="code">&quot;movstd&quot;</code> returns <code class="code">NaN</code> for that element.  The values
+<code class="code">&quot;includemissing&quot;</code> and <code class="code">&quot;omitmissing&quot;</code> may be used synonymously
+with <code class="code">&quot;includenan&quot;</code> and <code class="code">&quot;omitnan&quot;</code>, respectively.
+</p>
+<p>The calculation can be controlled by specifying <var class="var">property</var>/<var class="var">value</var>
+pairs.  Valid properties are <code class="code">&quot;Endpoints&quot;</code> and
+<code class="code">&quot;SamplePoints&quot;</code>.  For full descriptions of these properties and
+valid options, see <a class="pxref" href="#XREFmovfun"><code class="code">movfun</code></a>.
+</p>
+<p>Programming Note: This function is a wrapper which calls <code class="code">movfun</code>.
+For full documentation of inputs and options,
+see <a class="pxref" href="#XREFmovfun"><code class="code">movfun</code></a>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Descriptive-Statistics.html#XREFstd">std</a>, <a class="ref" href="#XREFmovfun">movfun</a>, <a class="ref" href="#XREFmovslice">movslice</a>, <a class="ref" href="#XREFmovmad">movmad</a>, <a class="ref" href="#XREFmovmax">movmax</a>, <a class="ref" href="#XREFmovmean">movmean</a>, <a class="ref" href="#XREFmovmedian">movmedian</a>, <a class="ref" href="#XREFmovmin">movmin</a>, <a class="ref" href="#XREFmovprod">movprod</a>, <a class="ref" href="#XREFmovsum">movsum</a>, <a class="ref" href="#XREFmovvar">movvar</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFmovsum"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-movsum"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movsum</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">wlen</var>)</code><a class="copiable-link" href="#index-movsum"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movsum-1"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movsum</strong> <code class="def-code-arguments">(<var class="var">x</var>, [<var class="var">nb</var>, <var class="var">na</var>])</code><a class="copiable-link" href="#index-movsum-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movsum-2"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movsum</strong> <code class="def-code-arguments">(&hellip;, <var class="var">dim</var>)</code><a class="copiable-link" href="#index-movsum-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movsum-3"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movsum</strong> <code class="def-code-arguments">(&hellip;, <var class="var">nancond</var>)</code><a class="copiable-link" href="#index-movsum-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movsum-4"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movsum</strong> <code class="def-code-arguments">(&hellip;, <var class="var">property</var>, <var class="var">value</var>)</code><a class="copiable-link" href="#index-movsum-4"> &para;</a></span></dt>
+<dd><p>Calculate the moving sum over a sliding window of length <var class="var">wlen</var> on
+data <var class="var">x</var>.
+</p>
+<p>The moving window length input <var class="var">wlen</var> can either be a numeric scalar
+or a 2-element numeric array <code class="code">[<var class="var">nb</var>,&nbsp;<var class="var">na</var>]</code><!-- /@w -->.  The elements
+included in the moving window depend on the size and value of <var class="var">wlen</var>
+as well as whether the <code class="code">&quot;SamplePoints&quot;</code> option has been specified.
+For full details of element inclusion,
+see <a class="pxref" href="#XREFmovslice"><code class="code">movslice</code></a>.
+</p>
+<p>If the optional argument <var class="var">dim</var> is given, operate along this dimension.
+</p>
+<p>The optional argument <var class="var">nancond</var> is a string that controls how <code class="code">NaN</code>
+and <code class="code">NA</code> values affect the output of <code class="code">&quot;movsum&quot;</code>.  The value
+<code class="code">&quot;includenan&quot;</code> (default) causes <code class="code">NaN</code> and <code class="code">NA</code> values to be
+included in the moving window, and any window slice containing <code class="code">NaN</code> or
+<code class="code">NA</code> values will return <code class="code">NaN</code> for that element.  The value
+<code class="code">&quot;omitnan&quot;</code> causes <code class="code">&quot;movsum&quot;</code> to ignore any <code class="code">NaN</code>
+or <code class="code">NA</code> values resulting in fewer elements being used to calculate the
+sum for that window slice.  If <code class="code">&quot;omitnan&quot;</code> is specified and a window
+slice contains all <code class="code">NaN</code> or <code class="code">NA</code> values, <code class="code">&quot;movsum&quot;</code> returns
+0 for that element.  The values <code class="code">&quot;includemissing&quot;</code> and
+<code class="code">&quot;omitmissing&quot;</code> may be used synonymously with <code class="code">&quot;includenan&quot;</code> and
+<code class="code">&quot;omitnan&quot;</code>, respectively.
+</p>
+<p>The calculation can be controlled by specifying <var class="var">property</var>/<var class="var">value</var>
+pairs.  Valid properties are <code class="code">&quot;Endpoints&quot;</code> and
+<code class="code">&quot;SamplePoints&quot;</code>.  For full descriptions of these properties and
+valid options, see <a class="pxref" href="#XREFmovfun"><code class="code">movfun</code></a>.
+</p>
+<p>Programming Note: This function is a wrapper which calls <code class="code">movfun</code>.
+For full documentation of inputs and options,
+see <a class="pxref" href="#XREFmovfun"><code class="code">movfun</code></a>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Sums-and-Products.html#XREFsum">sum</a>, <a class="ref" href="#XREFmovfun">movfun</a>, <a class="ref" href="#XREFmovslice">movslice</a>, <a class="ref" href="#XREFmovmad">movmad</a>, <a class="ref" href="#XREFmovmax">movmax</a>, <a class="ref" href="#XREFmovmean">movmean</a>, <a class="ref" href="#XREFmovmedian">movmedian</a>, <a class="ref" href="#XREFmovmin">movmin</a>, <a class="ref" href="#XREFmovprod">movprod</a>, <a class="ref" href="#XREFmovstd">movstd</a>, <a class="ref" href="#XREFmovvar">movvar</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFmovvar"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-movvar"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movvar</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">wlen</var>)</code><a class="copiable-link" href="#index-movvar"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movvar-1"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movvar</strong> <code class="def-code-arguments">(<var class="var">x</var>, [<var class="var">nb</var>, <var class="var">na</var>])</code><a class="copiable-link" href="#index-movvar-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movvar-2"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movvar</strong> <code class="def-code-arguments">(&hellip;, <var class="var">opt</var>)</code><a class="copiable-link" href="#index-movvar-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movvar-3"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movvar</strong> <code class="def-code-arguments">(&hellip;, <var class="var">opt</var>, <var class="var">dim</var>)</code><a class="copiable-link" href="#index-movvar-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movvar-4"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movvar</strong> <code class="def-code-arguments">(&hellip;, <var class="var">nancond</var>)</code><a class="copiable-link" href="#index-movvar-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movvar-5"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">movvar</strong> <code class="def-code-arguments">(&hellip;, <var class="var">property</var>, <var class="var">value</var>)</code><a class="copiable-link" href="#index-movvar-5"> &para;</a></span></dt>
+<dd><p>Calculate the moving variance over a sliding window of length <var class="var">wlen</var> on
+data <var class="var">x</var>.
+</p>
+
+<p>The moving window length input <var class="var">wlen</var> can either be a numeric scalar
+or a 2-element numeric array <code class="code">[<var class="var">nb</var>,&nbsp;<var class="var">na</var>]</code><!-- /@w -->.  The elements
+included in the moving window depend on the size and value of <var class="var">wlen</var>
+as well as whether the <code class="code">&quot;SamplePoints&quot;</code> option has been specified.
+For full details of element inclusion,
+see <a class="pxref" href="#XREFmovslice"><code class="code">movslice</code></a>.
+</p>
+<p>The optional argument <var class="var">opt</var> determines the type of normalization to use.
+Valid values are:
+</p>
+<dl class="table">
+<dt>0:</dt>
+<dd><p>normalize with <em class="math">N-1</em>, provides the best unbiased estimator of the
+variance [default]
+</p>
+</dd>
+<dt>1:</dt>
+<dd><p>normalizes with <em class="math">N</em>, this provides the second moment around the mean
+</p></dd>
+</dl>
+
+<p>If the optional argument <var class="var">dim</var> is given, operate along this dimension.
+The normalization argument <var class="var">opt</var> must be given before the dimension.
+To use the default value for <var class="var">opt</var> you may pass an empty input
+argument <code class="code">[]</code>.
+</p>
+<p>The optional argument <var class="var">nancond</var> is a string that controls how <code class="code">NaN</code>
+and <code class="code">NA</code> values affect the output of <code class="code">&quot;movvar&quot;</code>.  The value
+<code class="code">&quot;includenan&quot;</code> (default) causes <code class="code">NaN</code> and <code class="code">NA</code> values to be
+included in the moving window, and any window slice containing <code class="code">NaN</code> or
+<code class="code">NA</code> values will return <code class="code">NaN</code> for that element.  The value
+<code class="code">&quot;omitnan&quot;</code> causes <code class="code">&quot;movvar&quot;</code> to ignore any <code class="code">NaN</code>
+or <code class="code">NA</code> values resulting in fewer elements being used to calculate the
+variance for that window slice.  If <code class="code">&quot;omitnan&quot;</code> is specified and a
+window slice contains all <code class="code">NaN</code> or <code class="code">NA</code> values, <code class="code">&quot;movvar&quot;</code>
+returns <code class="code">NaN</code> for that element.  The values <code class="code">&quot;includemissing&quot;</code>
+and <code class="code">&quot;omitmissing&quot;</code> may be used synonymously with
+<code class="code">&quot;includenan&quot;</code> and <code class="code">&quot;omitnan&quot;</code>, respectively.
+</p>
+<p>The calculation can be controlled by specifying <var class="var">property</var>/<var class="var">value</var>
+pairs.  Valid properties are <code class="code">&quot;Endpoints&quot;</code> and
+<code class="code">&quot;SamplePoints&quot;</code>.  For full descriptions of these properties and
+valid options, see <a class="pxref" href="#XREFmovfun"><code class="code">movfun</code></a>.
+</p>
+<p>Programming Note: This function is a wrapper which calls <code class="code">movfun</code>.
+For full documentation of inputs and options,
+see <a class="pxref" href="#XREFmovfun"><code class="code">movfun</code></a>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Descriptive-Statistics.html#XREFvar">var</a>, <a class="ref" href="#XREFmovfun">movfun</a>, <a class="ref" href="#XREFmovslice">movslice</a>, <a class="ref" href="#XREFmovmad">movmad</a>, <a class="ref" href="#XREFmovmax">movmax</a>, <a class="ref" href="#XREFmovmean">movmean</a>, <a class="ref" href="#XREFmovmedian">movmedian</a>, <a class="ref" href="#XREFmovmin">movmin</a>, <a class="ref" href="#XREFmovprod">movprod</a>, <a class="ref" href="#XREFmovstd">movstd</a>, <a class="ref" href="#XREFmovsum">movsum</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Basic-Statistical-Functions.html">Basic Statistical Functions</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Descriptive-Statistics.html">Descriptive Statistics</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Statistics.html">Statistics</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

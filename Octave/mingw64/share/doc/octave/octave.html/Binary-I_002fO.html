@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Binary I/O (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Binary I/O (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Binary I/O (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="C_002dStyle-I_002fO-Functions.html" rel="up" title="C-Style I/O Functions">
+<link href="Temporary-Files.html" rel="next" title="Temporary Files">
+<link href="String-Input-Conversions.html" rel="prev" title="String Input Conversions">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Binary-I_002fO">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Temporary-Files.html" accesskey="n" rel="next">Temporary Files</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="String-Input-Conversions.html" accesskey="p" rel="prev">String Input Conversions</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="C_002dStyle-I_002fO-Functions.html" accesskey="u" rel="up">C-Style I/O Functions</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Binary-I_002fO-1"><span>14.2.16 Binary I/O<a class="copiable-link" href="#Binary-I_002fO-1"> &para;</a></span></h4>
+
+<p>Octave can read and write binary data using the functions <code class="code">fread</code>
+and <code class="code">fwrite</code>, which are patterned after the standard C functions
+with the same names.  They are able to automatically swap the byte order
+of integer data and convert among the supported floating point formats
+as the data are read.
+</p>
+<a class="anchor" id="XREFfread"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-fread"><span><code class="def-type"><var class="var">val</var> =</code> <strong class="def-name">fread</strong> <code class="def-code-arguments">(<var class="var">fid</var>)</code><a class="copiable-link" href="#index-fread"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-fread-1"><span><code class="def-type"><var class="var">val</var> =</code> <strong class="def-name">fread</strong> <code class="def-code-arguments">(<var class="var">fid</var>, <var class="var">size</var>)</code><a class="copiable-link" href="#index-fread-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-fread-2"><span><code class="def-type"><var class="var">val</var> =</code> <strong class="def-name">fread</strong> <code class="def-code-arguments">(<var class="var">fid</var>, <var class="var">size</var>, <var class="var">precision</var>)</code><a class="copiable-link" href="#index-fread-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-fread-3"><span><code class="def-type"><var class="var">val</var> =</code> <strong class="def-name">fread</strong> <code class="def-code-arguments">(<var class="var">fid</var>, <var class="var">size</var>, <var class="var">precision</var>, <var class="var">skip</var>)</code><a class="copiable-link" href="#index-fread-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-fread-4"><span><code class="def-type"><var class="var">val</var> =</code> <strong class="def-name">fread</strong> <code class="def-code-arguments">(<var class="var">fid</var>, <var class="var">size</var>, <var class="var">precision</var>, <var class="var">skip</var>, <var class="var">arch</var>)</code><a class="copiable-link" href="#index-fread-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-fread-5"><span><code class="def-type">[<var class="var">val</var>, <var class="var">count</var>] =</code> <strong class="def-name">fread</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-fread-5"> &para;</a></span></dt>
+<dd><p>Read binary data from the file specified by the file descriptor <var class="var">fid</var>.
+</p>
+<p>The optional argument <var class="var">size</var> specifies the amount of data to read
+and may be one of
+</p>
+<dl class="table">
+<dt><code class="code">Inf</code></dt>
+<dd><p>Read as much as possible, returning a column vector.
+</p>
+</dd>
+<dt><code class="code"><var class="var">nr</var></code></dt>
+<dd><p>Read up to <var class="var">nr</var> elements, returning a column vector.
+</p>
+</dd>
+<dt><code class="code">[<var class="var">nr</var>, Inf]</code></dt>
+<dd><p>Read as much as possible, returning a matrix with <var class="var">nr</var> rows.  If the
+number of elements read is not an exact multiple of <var class="var">nr</var>, the last
+column is padded with zeros.
+</p>
+</dd>
+<dt><code class="code">[<var class="var">nr</var>, <var class="var">nc</var>]</code></dt>
+<dd><p>Read up to <code class="code"><var class="var">nr</var> * <var class="var">nc</var></code> elements, returning a matrix with
+<var class="var">nr</var> rows.  If the number of elements read is not an exact multiple
+of <var class="var">nr</var>, the last column is padded with zeros.
+</p></dd>
+</dl>
+
+<p>If <var class="var">size</var> is omitted, a value of <code class="code">Inf</code> is assumed.
+</p>
+<p>The optional argument <var class="var">precision</var> is a string specifying the type of
+data to read and may be one of
+</p>
+<dl class="table">
+<dt><code class="code">&quot;uint8&quot;</code> (default)</dt>
+<dd><p>8-bit unsigned integer.
+</p>
+</dd>
+<dt><code class="code">&quot;int8&quot;</code></dt>
+<dt><code class="code">&quot;integer*1&quot;</code></dt>
+<dd><p>8-bit signed integer.
+</p>
+</dd>
+<dt><code class="code">&quot;uint16&quot;</code></dt>
+<dt><code class="code">&quot;ushort&quot;</code></dt>
+<dt><code class="code">&quot;unsigned short&quot;</code></dt>
+<dd><p>16-bit unsigned integer.
+</p>
+</dd>
+<dt><code class="code">&quot;int16&quot;</code></dt>
+<dt><code class="code">&quot;integer*2&quot;</code></dt>
+<dt><code class="code">&quot;short&quot;</code></dt>
+<dd><p>16-bit signed integer.
+</p>
+</dd>
+<dt><code class="code">&quot;uint&quot;</code></dt>
+<dt><code class="code">&quot;uint32&quot;</code></dt>
+<dt><code class="code">&quot;unsigned int&quot;</code></dt>
+<dt><code class="code">&quot;ulong&quot;</code></dt>
+<dt><code class="code">&quot;unsigned long&quot;</code></dt>
+<dd><p>32-bit unsigned integer.
+</p>
+</dd>
+<dt><code class="code">&quot;int&quot;</code></dt>
+<dt><code class="code">&quot;int32&quot;</code></dt>
+<dt><code class="code">&quot;integer*4&quot;</code></dt>
+<dt><code class="code">&quot;long&quot;</code></dt>
+<dd><p>32-bit signed integer.
+</p>
+</dd>
+<dt><code class="code">&quot;uint64&quot;</code></dt>
+<dd><p>64-bit unsigned integer.
+</p>
+</dd>
+<dt><code class="code">&quot;int64&quot;</code></dt>
+<dt><code class="code">&quot;integer*8&quot;</code></dt>
+<dd><p>64-bit signed integer.
+</p>
+</dd>
+<dt><code class="code">&quot;single&quot;</code></dt>
+<dt><code class="code">&quot;float&quot;</code></dt>
+<dt><code class="code">&quot;float32&quot;</code></dt>
+<dt><code class="code">&quot;real*4&quot;</code></dt>
+<dd><p>32-bit floating point number.
+</p>
+</dd>
+<dt><code class="code">&quot;double&quot;</code></dt>
+<dt><code class="code">&quot;float64&quot;</code></dt>
+<dt><code class="code">&quot;real*8&quot;</code></dt>
+<dd><p>64-bit floating point number.
+</p>
+</dd>
+<dt><code class="code">&quot;char&quot;</code></dt>
+<dt><code class="code">&quot;char*1&quot;</code></dt>
+<dd><p>8-bit single character.
+</p>
+</dd>
+<dt><code class="code">&quot;uchar&quot;</code></dt>
+<dt><code class="code">&quot;unsigned char&quot;</code></dt>
+<dd><p>8-bit unsigned character.
+</p>
+</dd>
+<dt><code class="code">&quot;schar&quot;</code></dt>
+<dt><code class="code">&quot;signed char&quot;</code></dt>
+<dd><p>8-bit signed character.
+</p>
+</dd>
+</dl>
+
+<p>The default precision is <code class="code">&quot;uint8&quot;</code>.
+</p>
+<p>The <var class="var">precision</var> argument may also specify an optional repeat
+count.  For example, &lsquo;<samp class="samp">32*single</samp>&rsquo; causes <code class="code">fread</code> to read
+a block of 32 single precision floating point numbers.  Reading in
+blocks is useful in combination with the <var class="var">skip</var> argument.
+</p>
+<p>The <var class="var">precision</var> argument may also specify a type conversion.
+For example, &lsquo;<samp class="samp">int16=&gt;int32</samp>&rsquo; causes <code class="code">fread</code> to read 16-bit
+integer values and return an array of 32-bit integer values.  By
+default, <code class="code">fread</code> returns a double precision array.  The special
+form &lsquo;<samp class="samp">*TYPE</samp>&rsquo; is shorthand for &lsquo;<samp class="samp">TYPE=&gt;TYPE</samp>&rsquo;.
+</p>
+<p>The conversion and repeat counts may be combined.  For example, the
+specification &lsquo;<samp class="samp">32*single=&gt;single</samp>&rsquo; causes <code class="code">fread</code> to read
+blocks of single precision floating point values and return an array
+of single precision values instead of the default array of double
+precision values.
+</p>
+<p>The optional argument <var class="var">skip</var> specifies the number of bytes to skip
+after each element (or block of elements) is read.  If it is not
+specified, a value of 0 is assumed.  If the final block read is not
+complete, the final skip is omitted.  For example,
+</p>
+<div class="example">
+<pre class="example-preformatted">fread (f, 10, &quot;3*single=&gt;single&quot;, 8)
+</pre></div>
+
+<p>will omit the final 8-byte skip because the last read will not be
+a complete block of 3 values.
+</p>
+<p>The optional argument <var class="var">arch</var> is a string specifying the data format
+for the file.  Valid values are
+</p>
+<dl class="table">
+<dt><code class="code">&quot;native&quot;</code> or <code class="code">&quot;n&quot;</code></dt>
+<dd><p>The format of the current machine.
+</p>
+</dd>
+<dt><code class="code">&quot;ieee-be&quot;</code> or <code class="code">&quot;b&quot;</code></dt>
+<dd><p>IEEE big endian.
+</p>
+</dd>
+<dt><code class="code">&quot;ieee-le&quot;</code> or <code class="code">&quot;l&quot;</code></dt>
+<dd><p>IEEE little endian.
+</p></dd>
+</dl>
+
+<p>If no <var class="var">arch</var> is given the value used in the call to <code class="code">fopen</code> which
+created the file descriptor is used.  Otherwise, the value specified with
+<code class="code">fread</code> overrides that of <code class="code">fopen</code> and determines the data format.
+</p>
+<p>The output argument <var class="var">val</var> contains the data read from the file.
+</p>
+<p>The optional return value <var class="var">count</var> contains the number of elements read.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFfwrite">fwrite</a>, <a class="ref" href="Line_002dOriented-Input.html#XREFfgets">fgets</a>, <a class="ref" href="Line_002dOriented-Input.html#XREFfgetl">fgetl</a>, <a class="ref" href="Formatted-Input.html#XREFfscanf">fscanf</a>, <a class="ref" href="Opening-and-Closing-Files.html#XREFfopen">fopen</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFfwrite"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-fwrite"><span><code class="def-type"><var class="var">count</var> =</code> <strong class="def-name">fwrite</strong> <code class="def-code-arguments">(<var class="var">fid</var>, <var class="var">data</var>)</code><a class="copiable-link" href="#index-fwrite"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-fwrite-1"><span><code class="def-type"><var class="var">count</var> =</code> <strong class="def-name">fwrite</strong> <code class="def-code-arguments">(<var class="var">fid</var>, <var class="var">data</var>, <var class="var">precision</var>)</code><a class="copiable-link" href="#index-fwrite-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-fwrite-2"><span><code class="def-type"><var class="var">count</var> =</code> <strong class="def-name">fwrite</strong> <code class="def-code-arguments">(<var class="var">fid</var>, <var class="var">data</var>, <var class="var">precision</var>, <var class="var">skip</var>)</code><a class="copiable-link" href="#index-fwrite-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-fwrite-3"><span><code class="def-type"><var class="var">count</var> =</code> <strong class="def-name">fwrite</strong> <code class="def-code-arguments">(<var class="var">fid</var>, <var class="var">data</var>, <var class="var">precision</var>, <var class="var">skip</var>, <var class="var">arch</var>)</code><a class="copiable-link" href="#index-fwrite-3"> &para;</a></span></dt>
+<dd><p>Write data in binary form to the file specified by the file descriptor
+<var class="var">fid</var>.
+</p>
+<p>The argument <var class="var">data</var> is a matrix of values that are to be written to the
+file.  The values are extracted in column-major order.
+</p>
+<p>The remaining arguments <var class="var">precision</var>, <var class="var">skip</var>, and <var class="var">arch</var> are
+optional, and are interpreted as described for <code class="code">fread</code>.
+</p>
+<p>The output <var class="var">count</var> is the number of data items successfully written.
+</p>
+<p>Programming Note: The behavior of <code class="code">fwrite</code> is undefined if the values in
+<var class="var">data</var> are too large to fit in the specified precision.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFfread">fread</a>, <a class="ref" href="Simple-Output.html#XREFfputs">fputs</a>, <a class="ref" href="Formatted-Output.html#XREFfprintf">fprintf</a>, <a class="ref" href="Opening-and-Closing-Files.html#XREFfopen">fopen</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Temporary-Files.html">Temporary Files</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="String-Input-Conversions.html">String Input Conversions</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="C_002dStyle-I_002fO-Functions.html">C-Style I/O Functions</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

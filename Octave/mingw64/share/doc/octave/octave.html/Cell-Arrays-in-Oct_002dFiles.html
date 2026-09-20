@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Cell Arrays in Oct-Files (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Cell Arrays in Oct-Files (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Cell Arrays in Oct-Files (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Oct_002dFiles.html" rel="up" title="Oct-Files">
+<link href="Structures-in-Oct_002dFiles.html" rel="next" title="Structures in Oct-Files">
+<link href="Character-Strings-in-Oct_002dFiles.html" rel="prev" title="Character Strings in Oct-Files">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Cell-Arrays-in-Oct_002dFiles">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Structures-in-Oct_002dFiles.html" accesskey="n" rel="next">Structures in Oct-Files</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Character-Strings-in-Oct_002dFiles.html" accesskey="p" rel="prev">Character Strings in Oct-Files</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Oct_002dFiles.html" accesskey="u" rel="up">Oct-Files</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Cell-Arrays-in-Oct_002dFiles-1"><span>A.1.4 Cell Arrays in Oct-Files<a class="copiable-link" href="#Cell-Arrays-in-Oct_002dFiles-1"> &para;</a></span></h4>
+
+<p>Octave&rsquo;s cell type is also available from within oct-files.  A cell array is
+just an <code class="code">Array</code> of <code class="code">octave_value</code>s, and thus each element of the cell
+array can be treated like any other <code class="code">octave_value</code>.  A simple example is
+</p>
+<div class="example">
+<pre class="verbatim">#include &lt;octave/oct.h&gt;
+#include &lt;octave/Cell.h&gt;
+
+DEFUN_DLD (celldemo, args, , &quot;Cell Demo&quot;)
+{
+  if (args.length () != 1)
+    print_usage ();
+
+  Cell c = args(0).cell_value ();
+
+  octave_value_list retval;
+  retval.resize (c.numel ());    // faster code by pre-declaring size
+
+  for (octave_idx_type i = 0; i &lt; c.numel (); i++)
+    {
+      retval(i) = c(i);          // using operator syntax
+      //retval(i) = c.elem (i);  // using method syntax
+    }
+
+  return retval;
+}
+</pre></div>
+
+<p>Note that cell arrays are used less often in standard oct-files and so the
+<samp class="file">Cell.h</samp> header file must be explicitly included.  The rest of the example
+extracts the <code class="code">octave_value</code>s one by one from the cell array and returns
+them as individual output arguments.  For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">[b1, b2, b3] = celldemo ({1, [1, 2], &quot;test&quot;})
+&rArr; 
+b1 =  1
+b2 =
+
+   1   2
+
+b3 = test
+</pre></div></div>
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Structures-in-Oct_002dFiles.html">Structures in Oct-Files</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Character-Strings-in-Oct_002dFiles.html">Character Strings in Oct-Files</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Oct_002dFiles.html">Oct-Files</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

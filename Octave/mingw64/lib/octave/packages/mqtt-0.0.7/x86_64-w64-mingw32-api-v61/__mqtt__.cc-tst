@@ -1,0 +1,8 @@
+## DO NOT EDIT! Generated from __mqtt__.cc
+%!assert(exist("__mqtt_client__"), 3)
+%!assert(exist("__mqtt_subscribe__"), 3)
+%!assert(exist("__mqtt_unsubscribe__"), 3)
+%!assert(exist("__mqtt_peek__"), 3)
+%!assert(exist("__mqtt_read__"), 3)
+%!assert(exist("__mqtt_write__"), 3)
+%!assert(exist("__mqtt_flush__"), 3)

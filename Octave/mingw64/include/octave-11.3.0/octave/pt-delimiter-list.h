@@ -1,0 +1,100 @@
+////////////////////////////////////////////////////////////////////////
+//
+// Copyright (C) 2024-2026 The Octave Project Developers
+//
+// See the file COPYRIGHT.md in the top-level directory of this
+// distribution or <https://octave.org/copyright/>.
+//
+// This file is part of Octave.
+//
+// Octave is free software: you can redistribute it and/or modify it
+// under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Octave is distributed in the hope that it will be useful, but
+// WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Octave; see the file COPYING.  If not, see
+// <https://www.gnu.org/licenses/>.
+//
+////////////////////////////////////////////////////////////////////////
+
+#if ! defined (octave_tree_delimiter_list_h)
+#define octave_tree_delimiter_list_h 1
+
+#include "octave-config.h"
+
+#include <stack>
+
+#include "filepos.h"
+#include "token.h"
+
+OCTAVE_BEGIN_NAMESPACE(octave)
+
+class OCTINTERP_API tree_delimiter_list
+{
+public:
+
+  typedef std::pair<token, token> element_type;
+
+  OCTAVE_DEFAULT_CONSTRUCT_COPY_MOVE_DELETE (tree_delimiter_list)
+
+  size_t count () const { return m_delimiters.size (); }
+
+  bool empty () const { return m_delimiters.empty (); }
+
+  void push (const token& open_delim, const token& close_delim)
+  {
+    m_delimiters.push (element_type (open_delim, close_delim));
+  }
+
+  filepos beg_pos () const
+  {
+    if (m_delimiters.empty ())
+      return filepos ();
+
+    const element_type& elt = m_delimiters.top ();
+    return elt.first.beg_pos ();
+  }
+
+  filepos end_pos () const
+  {
+    if (m_delimiters.empty ())
+      return filepos ();
+
+    const element_type& elt = m_delimiters.top ();
+    return elt.second.end_pos ();
+  }
+
+  comment_list leading_comments () const
+  {
+    if (m_delimiters.empty ())
+      return comment_list ();
+
+    const element_type& elt = m_delimiters.top ();
+    return elt.first.leading_comments ();
+  }
+
+  comment_list trailing_comments () const
+  {
+    if (m_delimiters.empty ())
+      return comment_list ();
+
+    const element_type& elt = m_delimiters.top ();
+    return elt.second.trailing_comments ();
+  }
+
+  std::stack<element_type> delims () const { return m_delimiters; }
+
+private:
+
+  std::stack<element_type> m_delimiters;
+};
+
+OCTAVE_END_NAMESPACE(octave)
+
+#endif

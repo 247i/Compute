@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Integer Data Types (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Integer Data Types (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Integer Data Types (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Numeric-Data-Types.html" rel="up" title="Numeric Data Types">
+<link href="Bit-Manipulations.html" rel="next" title="Bit Manipulations">
+<link href="Single-Precision-Data-Types.html" rel="prev" title="Single Precision Data Types">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Integer-Data-Types">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Bit-Manipulations.html" accesskey="n" rel="next">Bit Manipulations</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Single-Precision-Data-Types.html" accesskey="p" rel="prev">Single Precision Data Types</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Numeric-Data-Types.html" accesskey="u" rel="up">Numeric Data Types</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Integer-Data-Types-1"><span>4.4 Integer Data Types<a class="copiable-link" href="#Integer-Data-Types-1"> &para;</a></span></h3>
+
+<p>Octave supports integer matrices as an alternative to using double precision.
+It is possible to use both signed and unsigned integers represented by 8, 16,
+32, or 64 bits.  It should be noted that most computations require floating
+point data, meaning that integers will often change type when involved in
+numeric computations.  For this reason integers are most often used to store
+data, and not for calculations.
+</p>
+<p>In general, most integer matrices are created by casting existing matrices to
+integers.  The following example shows how to cast a matrix into 32-bit
+integers.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">float = rand (2, 2)
+     &rArr;  float = 0.37569   0.92982
+                0.11962   0.50876
+integer = int32 (float)
+     &rArr;  integer = 0  1
+                  0  1
+</pre></div></div>
+
+<p>As can be seen, floating point values are rounded to the nearest integer when
+converted.
+</p>
+<a class="anchor" id="XREFisinteger"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-isinteger"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">isinteger</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-isinteger"> &para;</a></span></dt>
+<dd><p>Return true if <var class="var">x</var> is an integer object (int8, uint8, int16, etc.).
+</p>
+<p>Note that <code class="code">isinteger&nbsp;(14)</code><!-- /@w -->&nbsp;is false because numeric constants in
+Octave are double precision floating point values.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Predicates-for-Numeric-Objects.html#XREFisfloat">isfloat</a>, <a class="ref" href="Character-Arrays.html#XREFischar">ischar</a>, <a class="ref" href="Predicates-for-Numeric-Objects.html#XREFislogical">islogical</a>, <a class="ref" href="Character-Arrays.html#XREFisstring">isstring</a>, <a class="ref" href="Predicates-for-Numeric-Objects.html#XREFisnumeric">isnumeric</a>, <a class="ref" href="Built_002din-Data-Types.html#XREFisa">isa</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFint8"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-int8"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">int8</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-int8"> &para;</a></span></dt>
+<dd><p>Convert <var class="var">x</var> to 8-bit integer type.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFuint8">uint8</a>, <a class="ref" href="#XREFint16">int16</a>, <a class="ref" href="#XREFuint16">uint16</a>, <a class="ref" href="#XREFint32">int32</a>, <a class="ref" href="#XREFuint32">uint32</a>, <a class="ref" href="#XREFint64">int64</a>, <a class="ref" href="#XREFuint64">uint64</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFuint8"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-uint8"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">uint8</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-uint8"> &para;</a></span></dt>
+<dd><p>Convert <var class="var">x</var> to unsigned 8-bit integer type.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFint8">int8</a>, <a class="ref" href="#XREFint16">int16</a>, <a class="ref" href="#XREFuint16">uint16</a>, <a class="ref" href="#XREFint32">int32</a>, <a class="ref" href="#XREFuint32">uint32</a>, <a class="ref" href="#XREFint64">int64</a>, <a class="ref" href="#XREFuint64">uint64</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFint16"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-int16"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">int16</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-int16"> &para;</a></span></dt>
+<dd><p>Convert <var class="var">x</var> to 16-bit integer type.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFint8">int8</a>, <a class="ref" href="#XREFuint8">uint8</a>, <a class="ref" href="#XREFuint16">uint16</a>, <a class="ref" href="#XREFint32">int32</a>, <a class="ref" href="#XREFuint32">uint32</a>, <a class="ref" href="#XREFint64">int64</a>, <a class="ref" href="#XREFuint64">uint64</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFuint16"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-uint16"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">uint16</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-uint16"> &para;</a></span></dt>
+<dd><p>Convert <var class="var">x</var> to unsigned 16-bit integer type.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFint8">int8</a>, <a class="ref" href="#XREFuint8">uint8</a>, <a class="ref" href="#XREFint16">int16</a>, <a class="ref" href="#XREFint32">int32</a>, <a class="ref" href="#XREFuint32">uint32</a>, <a class="ref" href="#XREFint64">int64</a>, <a class="ref" href="#XREFuint64">uint64</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFint32"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-int32"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">int32</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-int32"> &para;</a></span></dt>
+<dd><p>Convert <var class="var">x</var> to 32-bit integer type.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFint8">int8</a>, <a class="ref" href="#XREFuint8">uint8</a>, <a class="ref" href="#XREFint16">int16</a>, <a class="ref" href="#XREFuint16">uint16</a>, <a class="ref" href="#XREFuint32">uint32</a>, <a class="ref" href="#XREFint64">int64</a>, <a class="ref" href="#XREFuint64">uint64</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFuint32"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-uint32"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">uint32</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-uint32"> &para;</a></span></dt>
+<dd><p>Convert <var class="var">x</var> to unsigned 32-bit integer type.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFint8">int8</a>, <a class="ref" href="#XREFuint8">uint8</a>, <a class="ref" href="#XREFint16">int16</a>, <a class="ref" href="#XREFuint16">uint16</a>, <a class="ref" href="#XREFint32">int32</a>, <a class="ref" href="#XREFint64">int64</a>, <a class="ref" href="#XREFuint64">uint64</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFint64"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-int64"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">int64</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-int64"> &para;</a></span></dt>
+<dd><p>Convert <var class="var">x</var> to 64-bit integer type.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFint8">int8</a>, <a class="ref" href="#XREFuint8">uint8</a>, <a class="ref" href="#XREFint16">int16</a>, <a class="ref" href="#XREFuint16">uint16</a>, <a class="ref" href="#XREFint32">int32</a>, <a class="ref" href="#XREFuint32">uint32</a>, <a class="ref" href="#XREFuint64">uint64</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFuint64"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-uint64"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">uint64</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-uint64"> &para;</a></span></dt>
+<dd><p>Convert <var class="var">x</var> to unsigned 64-bit integer type.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFint8">int8</a>, <a class="ref" href="#XREFuint8">uint8</a>, <a class="ref" href="#XREFint16">int16</a>, <a class="ref" href="#XREFuint16">uint16</a>, <a class="ref" href="#XREFint32">int32</a>, <a class="ref" href="#XREFuint32">uint32</a>, <a class="ref" href="#XREFint64">int64</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFintmax"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-intmax"><span><code class="def-type"><var class="var">Imax</var> =</code> <strong class="def-name">intmax</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-intmax"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-intmax-1"><span><code class="def-type"><var class="var">Imax</var> =</code> <strong class="def-name">intmax</strong> <code class="def-code-arguments">(&quot;<var class="var">type</var>&quot;)</code><a class="copiable-link" href="#index-intmax-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-intmax-2"><span><code class="def-type"><var class="var">Imax</var> =</code> <strong class="def-name">intmax</strong> <code class="def-code-arguments">(<var class="var">var</var>)</code><a class="copiable-link" href="#index-intmax-2"> &para;</a></span></dt>
+<dd><p>Return the largest integer that can be represented by a specific integer type.
+</p>
+<p>The input is either a string <code class="code">&quot;<var class="var">type</var>&quot;</code> specifying an integer type,
+or it is an existing integer variable <var class="var">var</var>.
+</p>
+<p>Possible values for <var class="var">type</var> are
+</p>
+<dl class="table">
+<dt><code class="code">&quot;int8&quot;</code></dt>
+<dd><p>signed 8-bit integer.
+</p>
+</dd>
+<dt><code class="code">&quot;int16&quot;</code></dt>
+<dd><p>signed 16-bit integer.
+</p>
+</dd>
+<dt><code class="code">&quot;int32&quot;</code></dt>
+<dd><p>signed 32-bit integer.
+</p>
+</dd>
+<dt><code class="code">&quot;int64&quot;</code></dt>
+<dd><p>signed 64-bit integer.
+</p>
+</dd>
+<dt><code class="code">&quot;uint8&quot;</code></dt>
+<dd><p>unsigned 8-bit integer.
+</p>
+</dd>
+<dt><code class="code">&quot;uint16&quot;</code></dt>
+<dd><p>unsigned 16-bit integer.
+</p>
+</dd>
+<dt><code class="code">&quot;uint32&quot;</code></dt>
+<dd><p>unsigned 32-bit integer.
+</p>
+</dd>
+<dt><code class="code">&quot;uint64&quot;</code></dt>
+<dd><p>unsigned 64-bit integer.
+</p></dd>
+</dl>
+
+<p>The default for <var class="var">type</var> is <code class="code">&quot;int32&quot;</code>.
+</p>
+<p>Example Code - query an existing variable
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">x = int8 (1);
+intmax (x)
+  &rArr;  127
+</pre></div></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFintmin">intmin</a>, <a class="ref" href="#XREFflintmax">flintmax</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFintmin"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-intmin"><span><code class="def-type"><var class="var">Imin</var> =</code> <strong class="def-name">intmin</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-intmin"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-intmin-1"><span><code class="def-type"><var class="var">Imin</var> =</code> <strong class="def-name">intmin</strong> <code class="def-code-arguments">(&quot;<var class="var">type</var>&quot;)</code><a class="copiable-link" href="#index-intmin-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-intmin-2"><span><code class="def-type"><var class="var">Imin</var> =</code> <strong class="def-name">intmin</strong> <code class="def-code-arguments">(<var class="var">var</var>)</code><a class="copiable-link" href="#index-intmin-2"> &para;</a></span></dt>
+<dd><p>Return the smallest integer that can be represented by a specific integer type.
+</p>
+<p>The input is either a string <code class="code">&quot;<var class="var">type</var>&quot;</code> specifying an integer type,
+or it is an existing integer variable <var class="var">var</var>.
+</p>
+<p>Possible values for <var class="var">type</var> are
+</p>
+<dl class="table">
+<dt><code class="code">&quot;int8&quot;</code></dt>
+<dd><p>signed 8-bit integer.
+</p>
+</dd>
+<dt><code class="code">&quot;int16&quot;</code></dt>
+<dd><p>signed 16-bit integer.
+</p>
+</dd>
+<dt><code class="code">&quot;int32&quot;</code></dt>
+<dd><p>signed 32-bit integer.
+</p>
+</dd>
+<dt><code class="code">&quot;int64&quot;</code></dt>
+<dd><p>signed 64-bit integer.
+</p>
+</dd>
+<dt><code class="code">&quot;uint8&quot;</code></dt>
+<dd><p>unsigned 8-bit integer.
+</p>
+</dd>
+<dt><code class="code">&quot;uint16&quot;</code></dt>
+<dd><p>unsigned 16-bit integer.
+</p>
+</dd>
+<dt><code class="code">&quot;uint32&quot;</code></dt>
+<dd><p>unsigned 32-bit integer.
+</p>
+</dd>
+<dt><code class="code">&quot;uint64&quot;</code></dt>
+<dd><p>unsigned 64-bit integer.
+</p></dd>
+</dl>
+
+<p>The default for <var class="var">type</var> is <code class="code">&quot;int32&quot;</code>.
+</p>
+<p>Example Code - query an existing variable
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">x = int8 (1);
+intmin (x)
+  &rArr;  -128
+</pre></div></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFintmax">intmax</a>, <a class="ref" href="#XREFflintmax">flintmax</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFflintmax"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-flintmax"><span><code class="def-type"><var class="var">Imax</var> =</code> <strong class="def-name">flintmax</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-flintmax"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-flintmax-1"><span><code class="def-type"><var class="var">Imax</var> =</code> <strong class="def-name">flintmax</strong> <code class="def-code-arguments">(&quot;double&quot;)</code><a class="copiable-link" href="#index-flintmax-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-flintmax-2"><span><code class="def-type"><var class="var">Imax</var> =</code> <strong class="def-name">flintmax</strong> <code class="def-code-arguments">(&quot;single&quot;)</code><a class="copiable-link" href="#index-flintmax-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-flintmax-3"><span><code class="def-type"><var class="var">Imax</var> =</code> <strong class="def-name">flintmax</strong> <code class="def-code-arguments">(<var class="var">var</var>)</code><a class="copiable-link" href="#index-flintmax-3"> &para;</a></span></dt>
+<dd><p>Return the largest integer that can be represented consecutively in a
+floating point value.
+</p>
+<p>The input is either a string specifying a floating point type, or it is an
+existing floating point variable <var class="var">var</var>.
+</p>
+<p>The default type is <code class="code">&quot;double&quot;</code>, but <code class="code">&quot;single&quot;</code> is a valid option.
+On IEEE&nbsp;754 compatible systems, <code class="code">flintmax</code> is <em class="math">2^{53}</em><!-- /@w -->&nbsp;for
+<code class="code">&quot;double&quot;</code> and <em class="math">2^{24}</em><!-- /@w -->&nbsp;for <code class="code">&quot;single&quot;</code>.
+</p>
+<p>Example Code - query an existing variable
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">x = single (1);
+flintmax (x)
+  &rArr;  16777216
+</pre></div></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFintmax">intmax</a>, <a class="ref" href="Mathematical-Constants.html#XREFrealmax">realmax</a>, <a class="ref" href="Mathematical-Constants.html#XREFrealmin">realmin</a>.
+</p></dd></dl>
+
+
+
+<ul class="mini-toc">
+<li><a href="Hexadecimal-and-Binary-Integer-Constants.html" accesskey="1">Hexadecimal and Binary Integer Constants</a></li>
+<li><a href="Integer-Arithmetic.html" accesskey="2">Integer Arithmetic</a></li>
+</ul>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Bit-Manipulations.html">Bit Manipulations</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Single-Precision-Data-Types.html">Single Precision Data Types</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Numeric-Data-Types.html">Numeric Data Types</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Basic Matrix Functions (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Basic Matrix Functions (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Basic Matrix Functions (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Linear-Algebra.html" rel="up" title="Linear Algebra">
+<link href="Matrix-Factorizations.html" rel="next" title="Matrix Factorizations">
+<link href="Techniques-Used-for-Linear-Algebra.html" rel="prev" title="Techniques Used for Linear Algebra">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+ul.mark-bullet {list-style-type: disc}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Basic-Matrix-Functions">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Matrix-Factorizations.html" accesskey="n" rel="next">Matrix Factorizations</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Techniques-Used-for-Linear-Algebra.html" accesskey="p" rel="prev">Techniques Used for Linear Algebra</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Linear-Algebra.html" accesskey="u" rel="up">Linear Algebra</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Basic-Matrix-Functions-1"><span>18.2 Basic Matrix Functions<a class="copiable-link" href="#Basic-Matrix-Functions-1"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-matrix-functions_002c-basic"></a>
+
+<a class="anchor" id="XREFbalance"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-balance"><span><code class="def-type"><var class="var">AA</var> =</code> <strong class="def-name">balance</strong> <code class="def-code-arguments">(<var class="var">A</var>)</code><a class="copiable-link" href="#index-balance"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-balance-1"><span><code class="def-type"><var class="var">AA</var> =</code> <strong class="def-name">balance</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">opt</var>)</code><a class="copiable-link" href="#index-balance-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-balance-2"><span><code class="def-type">[<var class="var">DD</var>, <var class="var">AA</var>] =</code> <strong class="def-name">balance</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">opt</var>)</code><a class="copiable-link" href="#index-balance-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-balance-3"><span><code class="def-type">[<var class="var">D</var>, <var class="var">P</var>, <var class="var">AA</var>] =</code> <strong class="def-name">balance</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">opt</var>)</code><a class="copiable-link" href="#index-balance-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-balance-4"><span><code class="def-type">[<var class="var">CC</var>, <var class="var">DD</var>, <var class="var">AA</var>, <var class="var">BB</var>] =</code> <strong class="def-name">balance</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">B</var>, <var class="var">opt</var>)</code><a class="copiable-link" href="#index-balance-4"> &para;</a></span></dt>
+<dd>
+<p>Balance the matrix <var class="var">A</var> to reduce numerical errors in future
+calculations.
+</p>
+<p>Compute <code class="code"><var class="var">AA</var> = <var class="var">DD</var> \ <var class="var">A</var> * <var class="var">DD</var></code> in which <var class="var">AA</var>
+is a matrix whose row and column norms are roughly equal in magnitude, and
+<code class="code"><var class="var">DD</var> = <var class="var">P</var> * <var class="var">D</var></code>, in which <var class="var">P</var> is a permutation
+matrix and <var class="var">D</var> is a diagonal matrix of powers of two.  This allows the
+equilibration to be computed without round-off.  Results of eigenvalue
+calculation are typically improved by balancing first.
+</p>
+<p>If two output values are requested, <code class="code">balance</code> returns
+the diagonal <var class="var">D</var> and the permutation <var class="var">P</var> separately as vectors.
+In this case, <code class="code"><var class="var">DD</var> = eye(n)(:,<var class="var">P</var>) * diag (<var class="var">D</var>)</code>, where
+<em class="math">n</em> is the matrix size.
+</p>
+<p>If four output values are requested, compute <code class="code"><var class="var">AA</var> =
+<var class="var">CC</var>*<var class="var">A</var>*<var class="var">DD</var></code> and <code class="code"><var class="var">BB</var> = <var class="var">CC</var>*<var class="var">B</var>*<var class="var">DD</var></code>,
+in which <var class="var">AA</var> and <var class="var">BB</var> have nonzero elements of approximately the
+same magnitude and <var class="var">CC</var> and <var class="var">DD</var> are permuted diagonal matrices as
+in <var class="var">DD</var> for the algebraic eigenvalue problem.
+</p>
+<p>The eigenvalue balancing option <var class="var">opt</var> may be one of:
+</p>
+<dl class="table">
+<dt><code class="code">&quot;noperm&quot;</code>, <code class="code">&quot;S&quot;</code></dt>
+<dd><p>Scale only; do not permute.
+</p>
+</dd>
+<dt><code class="code">&quot;noscal&quot;</code>, <code class="code">&quot;P&quot;</code></dt>
+<dd><p>Permute only; do not scale.
+</p></dd>
+</dl>
+
+<p>Algebraic eigenvalue balancing uses standard <small class="sc">LAPACK</small> routines.
+</p>
+<p>Generalized eigenvalue problem balancing uses Ward&rsquo;s algorithm
+(SIAM Journal on Scientific and Statistical Computing, 1981).
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFbandwidth"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-bandwidth"><span><code class="def-type"><var class="var">bw</var> =</code> <strong class="def-name">bandwidth</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">type</var>)</code><a class="copiable-link" href="#index-bandwidth"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-bandwidth-1"><span><code class="def-type">[<var class="var">lower</var>, <var class="var">upper</var>] =</code> <strong class="def-name">bandwidth</strong> <code class="def-code-arguments">(<var class="var">A</var>)</code><a class="copiable-link" href="#index-bandwidth-1"> &para;</a></span></dt>
+<dd><p>Compute the bandwidth of <var class="var">A</var>.
+</p>
+<p>The <var class="var">type</var> argument is the string <code class="code">&quot;lower&quot;</code> for the lower
+bandwidth and <code class="code">&quot;upper&quot;</code> for the upper bandwidth.  If no <var class="var">type</var> is
+specified return both the lower and upper bandwidth of <var class="var">A</var>.
+</p>
+<p>The lower/upper bandwidth of a matrix is the number of
+subdiagonals/superdiagonals with nonzero entries.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Predicates-for-Numeric-Objects.html#XREFisbanded">isbanded</a>, <a class="ref" href="Predicates-for-Numeric-Objects.html#XREFisdiag">isdiag</a>, <a class="ref" href="Predicates-for-Numeric-Objects.html#XREFistril">istril</a>, <a class="ref" href="Predicates-for-Numeric-Objects.html#XREFistriu">istriu</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFcond"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-cond"><span><code class="def-type"><var class="var">c</var> =</code> <strong class="def-name">cond</strong> <code class="def-code-arguments">(<var class="var">A</var>)</code><a class="copiable-link" href="#index-cond"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-cond-1"><span><code class="def-type"><var class="var">c</var> =</code> <strong class="def-name">cond</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">p</var>)</code><a class="copiable-link" href="#index-cond-1"> &para;</a></span></dt>
+<dd><p>Compute the <var class="var">p</var>-norm condition number of a matrix with respect to
+inversion.
+</p>
+<p><code class="code">cond (<var class="var">A</var>)</code> is defined as
+<code class="code">norm (<var class="var">A</var>, <var class="var">p</var>) * norm (inv (<var class="var">A</var>), <var class="var">p</var>)</code>.
+</p>
+<p>By default, <code class="code"><var class="var">p</var> = 2</code> is used which implies a (relatively slow)
+singular value decomposition.  Other possible selections are
+<code class="code"><var class="var">p</var> = 1, Inf, &quot;fro&quot;</code> which are generally faster.  For a full
+discussion of possible <var class="var">p</var> values, see <a class="pxref" href="#XREFnorm"><code class="code">norm</code></a>.
+</p>
+<p>The condition number of a matrix quantifies the sensitivity of the matrix
+inversion operation when small changes are made to matrix elements.  Ideally
+the condition number will be close to 1.  When the number is large this
+indicates small changes (such as underflow or round-off error) will produce
+large changes in the resulting output.  In such cases the solution results
+from numerical computing are not likely to be accurate.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Sparse-Linear-Algebra.html#XREFcondest">condest</a>, <a class="ref" href="#XREFrcond">rcond</a>, <a class="ref" href="#XREFcondeig">condeig</a>, <a class="ref" href="#XREFnorm">norm</a>, <a class="ref" href="Matrix-Factorizations.html#XREFsvd">svd</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFcondeig"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-condeig"><span><code class="def-type"><var class="var">c</var> =</code> <strong class="def-name">condeig</strong> <code class="def-code-arguments">(<var class="var">a</var>)</code><a class="copiable-link" href="#index-condeig"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-condeig-1"><span><code class="def-type">[<var class="var">v</var>, <var class="var">lambda</var>, <var class="var">c</var>] =</code> <strong class="def-name">condeig</strong> <code class="def-code-arguments">(<var class="var">a</var>)</code><a class="copiable-link" href="#index-condeig-1"> &para;</a></span></dt>
+<dd><p>Compute condition numbers of a matrix with respect to eigenvalues.
+</p>
+<p>The condition numbers are the reciprocals of the cosines of the angles
+between the left and right eigenvectors; Large values indicate that the
+matrix has multiple distinct eigenvalues.
+</p>
+<p>The input <var class="var">a</var> must be a square numeric matrix.
+</p>
+<p>The outputs are:
+</p>
+<ul class="itemize mark-bullet">
+<li><var class="var">c</var> is a vector of condition numbers for the eigenvalues of
+<var class="var">a</var>.
+
+</li><li><var class="var">v</var> is the matrix of right eigenvectors of <var class="var">a</var>.  The result is
+equivalent to calling <code class="code">[<var class="var">v</var>, <var class="var">lambda</var>] = eig (<var class="var">a</var>)</code>.
+
+</li><li><var class="var">lambda</var> is the diagonal matrix of eigenvalues of <var class="var">a</var>.  The
+result is equivalent to calling
+<code class="code">[<var class="var">v</var>, <var class="var">lambda</var>] = eig (<var class="var">a</var>)</code>.
+</li></ul>
+
+<p>Example
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">a = [1, 2; 3, 4];
+c = condeig (a)
+  &rArr;  c =
+       1.0150
+       1.0150
+</pre></div></div>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFeig">eig</a>, <a class="ref" href="#XREFcond">cond</a>, <a class="ref" href="#XREFbalance">balance</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFdet"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-det"><span><code class="def-type"><var class="var">d</var> =</code> <strong class="def-name">det</strong> <code class="def-code-arguments">(<var class="var">A</var>)</code><a class="copiable-link" href="#index-det"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-det-1"><span><code class="def-type">[<var class="var">d</var>, <var class="var">rcond</var>] =</code> <strong class="def-name">det</strong> <code class="def-code-arguments">(<var class="var">A</var>)</code><a class="copiable-link" href="#index-det-1"> &para;</a></span></dt>
+<dd><p>Compute the determinant of <var class="var">A</var>.
+</p>
+<p>Return an estimate of the reciprocal condition number if requested.
+</p>
+<p>Programming Notes: Routines from <small class="sc">LAPACK</small> are used for full matrices and
+code from <small class="sc">UMFPACK</small> is used for sparse matrices.
+</p>
+<p>The determinant should not be used to check a matrix for singularity.
+For that, use any of the condition number functions: <code class="code">cond</code>,
+<code class="code">condest</code>, <code class="code">rcond</code>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFcond">cond</a>, <a class="ref" href="Sparse-Linear-Algebra.html#XREFcondest">condest</a>, <a class="ref" href="#XREFrcond">rcond</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFeig"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-eig"><span><code class="def-type"><var class="var">lambda</var> =</code> <strong class="def-name">eig</strong> <code class="def-code-arguments">(<var class="var">A</var>)</code><a class="copiable-link" href="#index-eig"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-eig-1"><span><code class="def-type"><var class="var">lambda</var> =</code> <strong class="def-name">eig</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">B</var>)</code><a class="copiable-link" href="#index-eig-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-eig-2"><span><code class="def-type">[<var class="var">V</var>, <var class="var">lambda</var>] =</code> <strong class="def-name">eig</strong> <code class="def-code-arguments">(<var class="var">A</var>)</code><a class="copiable-link" href="#index-eig-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-eig-3"><span><code class="def-type">[<var class="var">V</var>, <var class="var">lambda</var>] =</code> <strong class="def-name">eig</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">B</var>)</code><a class="copiable-link" href="#index-eig-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-eig-4"><span><code class="def-type">[<var class="var">V</var>, <var class="var">lambda</var>, <var class="var">W</var>] =</code> <strong class="def-name">eig</strong> <code class="def-code-arguments">(<var class="var">A</var>)</code><a class="copiable-link" href="#index-eig-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-eig-5"><span><code class="def-type">[<var class="var">V</var>, <var class="var">lambda</var>, <var class="var">W</var>] =</code> <strong class="def-name">eig</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">B</var>)</code><a class="copiable-link" href="#index-eig-5"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-eig-6"><span><code class="def-type">[&hellip;] =</code> <strong class="def-name">eig</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">balanceOption</var>)</code><a class="copiable-link" href="#index-eig-6"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-eig-7"><span><code class="def-type">[&hellip;] =</code> <strong class="def-name">eig</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">B</var>, <var class="var">algorithm</var>)</code><a class="copiable-link" href="#index-eig-7"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-eig-8"><span><code class="def-type">[&hellip;] =</code> <strong class="def-name">eig</strong> <code class="def-code-arguments">(&hellip;, <var class="var">eigvalOption</var>)</code><a class="copiable-link" href="#index-eig-8"> &para;</a></span></dt>
+<dd><p>Compute the eigenvalues (<var class="var">lambda</var>) and optionally the right eigenvectors
+(<var class="var">V</var>) and the left eigenvectors (<var class="var">W</var>) of a matrix or pair of matrices.
+</p>
+<p>The flag <var class="var">balanceOption</var> can be one of:
+</p>
+<dl class="table">
+<dt><code class="code">&quot;balance&quot;</code> (default)</dt>
+<dd><p>Preliminary balancing is on.
+</p>
+</dd>
+<dt><code class="code">&quot;nobalance&quot;</code></dt>
+<dd><p>Disables preliminary balancing.
+</p></dd>
+</dl>
+
+<p>The flag <var class="var">eigvalOption</var> can be one of:
+</p>
+<dl class="table">
+<dt><code class="code">&quot;matrix&quot;</code></dt>
+<dd><p>Return the eigenvalues in a diagonal matrix.  (default if 2 or 3 outputs
+are requested)
+</p>
+</dd>
+<dt><code class="code">&quot;vector&quot;</code></dt>
+<dd><p>Return the eigenvalues in a column vector.  (default if only 1 output is
+requested, e.g., <code class="code"><var class="var">lambda</var> = eig (<var class="var">A</var>)</code>)
+</p></dd>
+</dl>
+
+<p>The flag <var class="var">algorithm</var> can be one of:
+</p>
+<dl class="table">
+<dt><code class="code">&quot;chol&quot;</code></dt>
+<dd><p>Use the Cholesky factorization of B.  (default if <var class="var">A</var> is symmetric
+(Hermitian) and <var class="var">B</var> is symmetric (Hermitian) positive definite)
+</p>
+</dd>
+<dt><code class="code">&quot;qz&quot;</code></dt>
+<dd><p>Use the QZ algorithm.  (used whenever <var class="var">A</var> or <var class="var">B</var> are not symmetric)
+</p></dd>
+</dl>
+
+<table class="multitable">
+<thead><tr><th width="44%">A and B</th><th width="14%">no flag</th><th width="14%">chol</th><th width="10%">qz</th></tr></thead>
+<tbody><tr><td width="44%">both are symmetric</td><td width="14%"><code class="code">&quot;chol&quot;</code></td><td width="14%"><code class="code">&quot;chol&quot;</code></td><td width="10%"><code class="code">&quot;qz&quot;</code></td></tr>
+<tr><td width="44%">at least one is not symmetric</td><td width="14%"><code class="code">&quot;qz&quot;</code></td><td width="14%"><code class="code">&quot;qz&quot;</code></td><td width="10%"><code class="code">&quot;qz&quot;</code></td></tr>
+</tbody>
+</table>
+
+<p>The eigenvalues returned by <code class="code">eig</code> are not ordered.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Sparse-Linear-Algebra.html#XREFeigs">eigs</a>, <a class="ref" href="Matrix-Factorizations.html#XREFsvd">svd</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFgivens"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-givens"><span><code class="def-type"><var class="var">G</var> =</code> <strong class="def-name">givens</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>)</code><a class="copiable-link" href="#index-givens"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-givens-1"><span><code class="def-type">[<var class="var">c</var>, <var class="var">s</var>] =</code> <strong class="def-name">givens</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>)</code><a class="copiable-link" href="#index-givens-1"> &para;</a></span></dt>
+<dd><p>Compute the Givens rotation matrix <var class="var">G</var>.
+The Givens matrix is a 2-by-2 orthogonal matrix
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted"><var class="var">G</var> = [ <var class="var">c</var> , <var class="var">s</var>
+     -<var class="var">s</var>', <var class="var">c</var>]
+</pre></div></div>
+
+<p>such that
+</p>
+<div class="example">
+<pre class="example-preformatted"><var class="var">G</var> * [<var class="var">x</var>; <var class="var">y</var>] = [*; 0]
+</pre></div>
+
+<p>with <var class="var">x</var> and <var class="var">y</var> scalars.
+</p>
+<p>If two output arguments are requested, return the factors <var class="var">c</var> and <var class="var">s</var>
+rather than the Givens rotation matrix.
+</p>
+<p>For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">givens (1, 1)
+   &rArr;    0.70711   0.70711
+       -0.70711   0.70711
+</pre></div></div>
+
+<p>Note: The Givens matrix represents a counterclockwise rotation of a 2-D
+plane and can be used to introduce zeros into a matrix prior to complete
+factorization.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFplanerot">planerot</a>, <a class="ref" href="Matrix-Factorizations.html#XREFqr">qr</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFgsvd"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gsvd"><span><code class="def-type"><var class="var">S</var> =</code> <strong class="def-name">gsvd</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">B</var>)</code><a class="copiable-link" href="#index-gsvd"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gsvd-1"><span><code class="def-type">[<var class="var">U</var>, <var class="var">V</var>, <var class="var">X</var>, <var class="var">C</var>, <var class="var">S</var>] =</code> <strong class="def-name">gsvd</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">B</var>)</code><a class="copiable-link" href="#index-gsvd-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gsvd-2"><span><code class="def-type">[<var class="var">U</var>, <var class="var">V</var>, <var class="var">X</var>, <var class="var">C</var>, <var class="var">S</var>] =</code> <strong class="def-name">gsvd</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">B</var>, 0)</code><a class="copiable-link" href="#index-gsvd-2"> &para;</a></span></dt>
+<dd><p>Compute the generalized singular value decomposition of (<var class="var">A</var>, <var class="var">B</var>).
+</p>
+<p>The generalized singular value decomposition is defined by the following
+relations:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">A = U*C*X'
+B = V*S*X'
+C'*C + S'*S = eye (columns (A))
+</pre></div></div>
+
+
+<p>The function <code class="code">gsvd</code> normally returns just the vector of generalized
+singular values
+<code class="code">sqrt (diag (C'*C) ./ diag (S'*S))</code>.
+If asked for five return values, it also computes
+U, V, X, and C.
+</p>
+<p>If the optional third input is present, <code class="code">gsvd</code> constructs the
+&quot;economy-sized&quot; decomposition where the number of columns of <var class="var">U</var>, <var class="var">V</var>
+and the number of rows of <var class="var">C</var>, <var class="var">S</var> is less than or equal to the number
+of columns of <var class="var">A</var>.  This option is not yet implemented.
+</p>
+<p>Programming Note: the code is a wrapper to the corresponding <small class="sc">LAPACK</small> dggsvd
+and zggsvd routines.  If matrices <var class="var">A</var> and <var class="var">B</var> are <em class="emph">both</em> rank
+deficient then <small class="sc">LAPACK</small> will return an incorrect factorization.  Programmers
+should avoid this combination.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Matrix-Factorizations.html#XREFsvd">svd</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFplanerot"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-planerot"><span><code class="def-type">[<var class="var">G</var>, <var class="var">y</var>] =</code> <strong class="def-name">planerot</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-planerot"> &para;</a></span></dt>
+<dd><p>Compute the Givens rotation matrix for the two-element column vector
+<var class="var">x</var>.
+The Givens matrix is a 2-by-2 orthogonal matrix
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted"><var class="var">G</var> = [ <var class="var">c</var> , <var class="var">s</var>
+     -<var class="var">s</var>', <var class="var">c</var>]
+</pre></div></div>
+
+<p>such that
+</p>
+<div class="example">
+<pre class="example-preformatted"><var class="var">y</var> = <var class="var">G</var> * [<var class="var">x</var>(1); <var class="var">x</var>(2)] &equiv; [*; 0]
+</pre></div>
+
+
+<p>Note: The Givens matrix represents a counterclockwise rotation of a 2-D
+plane and can be used to introduce zeros into a matrix prior to complete
+factorization.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFgivens">givens</a>, <a class="ref" href="Matrix-Factorizations.html#XREFqr">qr</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFinv"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-inv"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">inv</strong> <code class="def-code-arguments">(<var class="var">A</var>)</code><a class="copiable-link" href="#index-inv"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-inv-1"><span><code class="def-type">[<var class="var">x</var>, <var class="var">rcond</var>] =</code> <strong class="def-name">inv</strong> <code class="def-code-arguments">(<var class="var">A</var>)</code><a class="copiable-link" href="#index-inv-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-inverse"><span><code class="def-type">[&hellip;] =</code> <strong class="def-name">inverse</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-inverse"> &para;</a></span></dt>
+<dd><p>Compute the inverse of the square matrix <var class="var">A</var>.
+</p>
+<p>Return an estimate of the reciprocal condition number if requested,
+otherwise warn of an ill-conditioned matrix if the reciprocal condition
+number is small.
+</p>
+<p>In general it is best to avoid calculating the inverse of a matrix directly.
+For example, it is both faster and more accurate to solve systems of
+equations (<var class="var">A</var>*<em class="math">x</em> = <em class="math">b</em>) with
+<code class="code"><var class="var">y</var> = <var class="var">A</var> \ <em class="math">b</em></code>, rather than
+<code class="code"><var class="var">y</var> = inv (<var class="var">A</var>) * <em class="math">b</em></code>.
+</p>
+<p>If called with a sparse matrix, then in general <var class="var">x</var> will be a full
+matrix requiring significantly more storage.  Avoid forming the inverse of a
+sparse matrix if possible.
+</p>
+<p>Programming Note: <code class="code">inverse</code> is an alias for <code class="code">inv</code> and can be used
+interchangeably.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Arithmetic-Ops.html#XREFldivide">ldivide</a>, <a class="ref" href="Arithmetic-Ops.html#XREFrdivide">rdivide</a>, <a class="ref" href="#XREFpinv">pinv</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFlinsolve"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-linsolve"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">linsolve</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">b</var>)</code><a class="copiable-link" href="#index-linsolve"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-linsolve-1"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">linsolve</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">b</var>, <var class="var">opts</var>)</code><a class="copiable-link" href="#index-linsolve-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-linsolve-2"><span><code class="def-type">[<var class="var">x</var>, <var class="var">R</var>] =</code> <strong class="def-name">linsolve</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-linsolve-2"> &para;</a></span></dt>
+<dd><p>Solve the linear system <code class="code">A*x = b</code>.
+</p>
+<p>With no options, this function is equivalent to the left division operator
+(<code class="code">x&nbsp;=&nbsp;A&nbsp;\&nbsp;b</code>)<!-- /@w -->&nbsp;or the matrix-left-divide function
+(<code class="code">x&nbsp;=&nbsp;mldivide&nbsp;(A,&nbsp;b)</code>)<!-- /@w -->.
+</p>
+<p>Octave ordinarily examines the properties of the matrix <var class="var">A</var> and chooses
+a solver that best matches the matrix.  By passing a structure <var class="var">opts</var>
+to <code class="code">linsolve</code> you can inform Octave directly about the matrix <var class="var">A</var>.
+In this case Octave will skip the matrix examination and proceed directly
+to solving the linear system producing a small speedup.
+</p>
+<p><strong class="strong">Warning:</strong> If the matrix <var class="var">A</var> does not have the properties listed
+in the <var class="var">opts</var> structure then the result will not be accurate AND no
+warning will be given.  When in doubt, let Octave examine the matrix and
+choose the appropriate solver as this step takes little time and the result
+is cached so that it is done just once per linear system.  Benchmarking
+with Octave&nbsp;12<!-- /@w --> and square matrices of 10,000 rows shows just 300
+milliseconds for this step.
+</p>
+<p>Possible <var class="var">opts</var> fields (set value to <code class="code">true</code>/<code class="code">false</code>):
+</p>
+<dl class="table">
+<dt><code class="code">LT</code></dt>
+<dd><p><var class="var">A</var> is lower triangular
+</p>
+</dd>
+<dt><code class="code">UT</code></dt>
+<dd><p><var class="var">A</var> is upper triangular
+</p>
+</dd>
+<dt><code class="code">UHESS</code></dt>
+<dd><p><var class="var">A</var> is upper Hessenberg (currently makes no difference)
+</p>
+</dd>
+<dt><code class="code">SYM</code></dt>
+<dd><p><var class="var">A</var> is symmetric or complex Hermitian (currently makes no difference)
+</p>
+</dd>
+<dt><code class="code">POSDEF</code></dt>
+<dd><p><var class="var">A</var> is positive definite
+</p>
+</dd>
+<dt><code class="code">RECT</code></dt>
+<dd><p><var class="var">A</var> is general rectangular (currently makes no difference)
+</p>
+</dd>
+<dt><code class="code">TRANSA</code></dt>
+<dd><p>Solve <code class="code">A'*x = b</code> if true rather than <code class="code">A*x = b</code>
+</p></dd>
+</dl>
+
+<p>The optional second output <var class="var">R</var> is the reciprocal condition number of
+<var class="var">A</var> for square matrices or <code class="code">0</code> for rectangular matrices.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Arithmetic-Ops.html#XREFmldivide">mldivide</a>, <a class="ref" href="#XREFmatrix_005ftype">matrix_type</a>, <a class="ref" href="#XREFrcond">rcond</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFmatrix_005ftype"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-matrix_005ftype"><span><code class="def-type"><var class="var">type</var> =</code> <strong class="def-name">matrix_type</strong> <code class="def-code-arguments">(<var class="var">A</var>)</code><a class="copiable-link" href="#index-matrix_005ftype"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-matrix_005ftype-1"><span><code class="def-type"><var class="var">type</var> =</code> <strong class="def-name">matrix_type</strong> <code class="def-code-arguments">(<var class="var">A</var>, &quot;nocompute&quot;)</code><a class="copiable-link" href="#index-matrix_005ftype-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-matrix_005ftype-2"><span><code class="def-type"><var class="var">A</var> =</code> <strong class="def-name">matrix_type</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">type</var>)</code><a class="copiable-link" href="#index-matrix_005ftype-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-matrix_005ftype-3"><span><code class="def-type"><var class="var">A</var> =</code> <strong class="def-name">matrix_type</strong> <code class="def-code-arguments">(<var class="var">A</var>, &quot;upper&quot;, <var class="var">perm</var>)</code><a class="copiable-link" href="#index-matrix_005ftype-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-matrix_005ftype-4"><span><code class="def-type"><var class="var">A</var> =</code> <strong class="def-name">matrix_type</strong> <code class="def-code-arguments">(<var class="var">A</var>, &quot;lower&quot;, <var class="var">perm</var>)</code><a class="copiable-link" href="#index-matrix_005ftype-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-matrix_005ftype-5"><span><code class="def-type"><var class="var">A</var> =</code> <strong class="def-name">matrix_type</strong> <code class="def-code-arguments">(<var class="var">A</var>, &quot;banded&quot;, <var class="var">nl</var>, <var class="var">nu</var>)</code><a class="copiable-link" href="#index-matrix_005ftype-5"> &para;</a></span></dt>
+<dd><p>Identify the matrix type or mark a matrix as a particular type.
+</p>
+<p>This allows more rapid solutions of linear equations involving <var class="var">A</var> to be
+performed.
+</p>
+<p>Called with a single argument, <code class="code">matrix_type</code> returns the type of the
+matrix and caches it for future use.
+</p>
+<p>Called with more than one argument, <code class="code">matrix_type</code> allows the type of
+the matrix to be defined.
+</p>
+<p>If the option <code class="code">&quot;nocompute&quot;</code> is given, the function will not attempt
+to guess the type if it is still unknown.  This is useful for debugging
+purposes.
+</p>
+<p>The possible matrix types depend on whether the matrix is full or sparse,
+and can be one of the following
+</p>
+<dl class="table">
+<dt><code class="code">&quot;unknown&quot;</code></dt>
+<dd><p>Remove any previously cached matrix type, and mark type as unknown.
+</p>
+</dd>
+<dt><code class="code">&quot;full&quot;</code></dt>
+<dd><p>Mark the matrix as full.
+</p>
+</dd>
+<dt><code class="code">&quot;positive definite&quot;</code></dt>
+<dd><p>Probable full positive definite matrix.
+</p>
+</dd>
+<dt><code class="code">&quot;diagonal&quot;</code></dt>
+<dd><p>Diagonal matrix.  (Sparse matrices only)
+</p>
+</dd>
+<dt><code class="code">&quot;permuted diagonal&quot;</code></dt>
+<dd><p>Permuted Diagonal matrix.  The permutation does not need to be specifically
+indicated, as the structure of the matrix explicitly gives this.  (Sparse
+matrices only)
+</p>
+</dd>
+<dt><code class="code">&quot;upper&quot;</code></dt>
+<dd><p>Upper triangular.  If the optional third argument <var class="var">perm</var> is given, the
+matrix is assumed to be a permuted upper triangular with the permutations
+defined by the vector <var class="var">perm</var>.
+</p>
+</dd>
+<dt><code class="code">&quot;lower&quot;</code></dt>
+<dd><p>Lower triangular.  If the optional third argument <var class="var">perm</var> is given, the
+matrix is assumed to be a permuted lower triangular with the permutations
+defined by the vector <var class="var">perm</var>.
+</p>
+</dd>
+<dt><code class="code">&quot;banded&quot;</code></dt>
+<dt><code class="code">&quot;banded positive definite&quot;</code></dt>
+<dd><p>Banded matrix with the band size of <var class="var">nl</var> below the diagonal and <var class="var">nu</var>
+above it.  If <var class="var">nl</var> and <var class="var">nu</var> are 1, then the matrix is tridiagonal
+and treated with specialized code.  In addition the matrix can be marked as
+probably a positive definite.  (Sparse matrices only)
+</p>
+</dd>
+<dt><code class="code">&quot;singular&quot;</code></dt>
+<dd><p>The matrix is assumed to be singular and will be treated with a minimum norm
+solution.
+</p>
+</dd>
+</dl>
+
+<p>Note that the matrix type will be discovered automatically on the first
+attempt to solve a linear equation involving <var class="var">A</var>.  Therefore
+<code class="code">matrix_type</code> is only useful to give Octave hints of the matrix type.
+Incorrectly defining the matrix type will result in incorrect results from
+solutions of linear equations; it is entirely <strong class="strong">the responsibility of
+the user</strong> to correctly identify the matrix type.
+</p>
+<p>Also, the test for positive definiteness is a low-cost test for a Hermitian
+matrix with a real positive diagonal.  This does not guarantee that the
+matrix is positive definite, but only that it is a probable candidate.  When
+such a matrix is factorized, a Cholesky&nbsp;factorization is first
+attempted, and if that fails the matrix is then treated with an
+LU&nbsp;factorization.  Once the matrix has been factorized,
+<code class="code">matrix_type</code> will return the correct classification of the matrix.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFnorm"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-norm"><span><code class="def-type"><var class="var">n</var> =</code> <strong class="def-name">norm</strong> <code class="def-code-arguments">(<var class="var">A</var>)</code><a class="copiable-link" href="#index-norm"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-norm-1"><span><code class="def-type"><var class="var">n</var> =</code> <strong class="def-name">norm</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">p</var>)</code><a class="copiable-link" href="#index-norm-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-norm-2"><span><code class="def-type"><var class="var">n</var> =</code> <strong class="def-name">norm</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">p</var>, <var class="var">opt</var>)</code><a class="copiable-link" href="#index-norm-2"> &para;</a></span></dt>
+<dd><p>Compute the p-norm of the matrix <var class="var">A</var>.
+</p>
+<p>If the second argument is not given, <code class="code">p&nbsp;=&nbsp;2</code><!-- /@w -->&nbsp;is used.
+</p>
+<p>If <var class="var">A</var> is a matrix (or sparse matrix):
+</p>
+<dl class="table">
+<dt><var class="var">p</var> = <code class="code">1</code></dt>
+<dd><p>1-norm, the largest column sum of the absolute values of <var class="var">A</var>.
+</p>
+</dd>
+<dt><var class="var">p</var> = <code class="code">2</code></dt>
+<dd><p>Largest singular value of <var class="var">A</var>.
+</p>
+</dd>
+<dt><a id="index-infinity-norm"></a><span><var class="var">p</var> = <code class="code">Inf</code> or <code class="code">&quot;inf&quot;</code><a class="copiable-link" href="#index-infinity-norm"> &para;</a></span></dt>
+<dd><p>Infinity norm, the largest row sum of the absolute values of <var class="var">A</var>.
+</p>
+</dd>
+<dt><a id="index-Frobenius-norm"></a><span><var class="var">p</var> = <code class="code">&quot;fro&quot;</code><a class="copiable-link" href="#index-Frobenius-norm"> &para;</a></span></dt>
+<dd><p>Frobenius norm of <var class="var">A</var>,
+<code class="code">sqrt (sum (diag (<var class="var">A</var>' * <var class="var">A</var>)))</code>.
+</p>
+</dd>
+<dt><a id="index-general-p_002dnorm"></a><span>other <var class="var">p</var>, <code class="code"><var class="var">p</var> &gt; 1</code><a class="copiable-link" href="#index-general-p_002dnorm"> &para;</a></span></dt>
+<dd><p>maximum <code class="code">norm (A*x, p)</code> such that <code class="code">norm (x, p) == 1</code>
+</p></dd>
+</dl>
+
+<p>If <var class="var">A</var> is a vector or a scalar:
+</p>
+<dl class="table">
+<dt><var class="var">p</var> = <code class="code">Inf</code> or <code class="code">&quot;inf&quot;</code></dt>
+<dd><p><code class="code">max (abs (<var class="var">A</var>))</code>.
+</p>
+</dd>
+<dt><var class="var">p</var> = <code class="code">-Inf</code></dt>
+<dd><p><code class="code">min (abs (<var class="var">A</var>))</code>.
+</p>
+</dd>
+<dt><var class="var">p</var> = <code class="code">&quot;fro&quot;</code></dt>
+<dd><p>Frobenius norm of <var class="var">A</var>, <code class="code">sqrt (sumsq (abs (A)))</code>.
+</p>
+</dd>
+<dt><var class="var">p</var> = 0</dt>
+<dd><p>Hamming norm&mdash;the number of nonzero elements.
+</p>
+</dd>
+<dt>other <var class="var">p</var>, <code class="code"><var class="var">p</var> &gt; 1</code></dt>
+<dd><p>p-norm of <var class="var">A</var>, <code class="code">(sum (abs (<var class="var">A</var>) .^ <var class="var">p</var>)) ^ (1/<var class="var">p</var>)</code>.
+</p>
+</dd>
+<dt>other <var class="var">p</var> <code class="code"><var class="var">p</var> &lt; 1</code></dt>
+<dd><p>the p-pseudonorm defined as above.
+</p></dd>
+</dl>
+
+<p>If <var class="var">opt</var> is the value <code class="code">&quot;rows&quot;</code>, treat each row as a vector and
+compute its norm.  The result is returned as a column vector.
+Similarly, if <var class="var">opt</var> is <code class="code">&quot;columns&quot;</code> or <code class="code">&quot;cols&quot;</code> then
+compute the norms of each column and return a row vector.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Sparse-Linear-Algebra.html#XREFnormest">normest</a>, <a class="ref" href="Sparse-Linear-Algebra.html#XREFnormest1">normest1</a>, <a class="ref" href="#XREFvecnorm">vecnorm</a>, <a class="ref" href="#XREFcond">cond</a>, <a class="ref" href="Matrix-Factorizations.html#XREFsvd">svd</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFnull"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-null"><span><code class="def-type"><var class="var">Z</var> =</code> <strong class="def-name">null</strong> <code class="def-code-arguments">(<var class="var">A</var>)</code><a class="copiable-link" href="#index-null"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-null-1"><span><code class="def-type"><var class="var">Z</var> =</code> <strong class="def-name">null</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">tol</var>)</code><a class="copiable-link" href="#index-null-1"> &para;</a></span></dt>
+<dd><p>Return an orthonormal basis <var class="var">Z</var> of the null space of <var class="var">A</var>.
+</p>
+<p>The dimension of the null space <var class="var">Z</var> is taken as the number of singular
+values of <var class="var">A</var> not greater than <var class="var">tol</var>.  If the argument <var class="var">tol</var>
+is missing, it is computed as
+</p>
+<div class="example">
+<pre class="example-preformatted">max (size (<var class="var">A</var>)) * max (svd (<var class="var">A</var>, 0)) * eps
+</pre></div>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREForth">orth</a>, <a class="ref" href="Matrix-Factorizations.html#XREFsvd">svd</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREForth"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-orth"><span><code class="def-type"><var class="var">B</var> =</code> <strong class="def-name">orth</strong> <code class="def-code-arguments">(<var class="var">A</var>)</code><a class="copiable-link" href="#index-orth"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-orth-1"><span><code class="def-type"><var class="var">B</var> =</code> <strong class="def-name">orth</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">tol</var>)</code><a class="copiable-link" href="#index-orth-1"> &para;</a></span></dt>
+<dd><p>Return an orthonormal basis of the range space of <var class="var">A</var>.
+</p>
+<p>The dimension of the range space is taken as the number of singular values
+of <var class="var">A</var> greater than <var class="var">tol</var>.  If the argument <var class="var">tol</var> is missing, it
+is computed as
+</p>
+<div class="example">
+<pre class="example-preformatted">max (size (<var class="var">A</var>)) * max (svd (<var class="var">A</var>)) * eps
+</pre></div>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFnull">null</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFmgorth"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-mgorth"><span><code class="def-type">[<var class="var">y</var>, <var class="var">h</var>] =</code> <strong class="def-name">mgorth</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">v</var>)</code><a class="copiable-link" href="#index-mgorth"> &para;</a></span></dt>
+<dd><p>Orthogonalize a given column vector <var class="var">x</var> with respect to a set of
+orthonormal vectors comprising the columns of <var class="var">v</var> using the modified
+Gram-Schmidt method.
+</p>
+<p>On exit, <var class="var">y</var> is a unit vector such that:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">  norm (<var class="var">y</var>) = 1
+  <var class="var">v</var>' * <var class="var">y</var> = 0
+  <var class="var">x</var> = [<var class="var">v</var>, <var class="var">y</var>]*<var class="var">h</var>'
+</pre></div></div>
+
+</dd></dl>
+
+
+<a class="anchor" id="XREFpinv"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-pinv"><span><code class="def-type"><var class="var">B</var> =</code> <strong class="def-name">pinv</strong> <code class="def-code-arguments">(<var class="var">A</var>)</code><a class="copiable-link" href="#index-pinv"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-pinv-1"><span><code class="def-type"><var class="var">B</var> =</code> <strong class="def-name">pinv</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">tol</var>)</code><a class="copiable-link" href="#index-pinv-1"> &para;</a></span></dt>
+<dd><p>Return the Moore-Penrose pseudoinverse of <var class="var">A</var>.
+</p>
+<p>Singular values less than <var class="var">tol</var> are ignored.
+</p>
+<p>If the second argument is omitted, it is taken to be
+</p>
+<div class="example">
+<pre class="example-preformatted">tol = max ([rows(<var class="var">x</var>), columns(<var class="var">x</var>)]) * norm (<var class="var">x</var>) * eps
+</pre></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFinv">inv</a>, <a class="ref" href="Arithmetic-Ops.html#XREFldivide">ldivide</a>.
+</p></dd></dl>
+
+<a class="index-entry-id" id="index-pseudoinverse"></a>
+
+<a class="anchor" id="XREFrank"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-rank"><span><code class="def-type"><var class="var">k</var> =</code> <strong class="def-name">rank</strong> <code class="def-code-arguments">(<var class="var">A</var>)</code><a class="copiable-link" href="#index-rank"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rank-1"><span><code class="def-type"><var class="var">k</var> =</code> <strong class="def-name">rank</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">tol</var>)</code><a class="copiable-link" href="#index-rank-1"> &para;</a></span></dt>
+<dd><p>Compute the rank of matrix <var class="var">A</var>, using the singular value decomposition.
+</p>
+<p>The rank is taken to be the number of singular values of <var class="var">A</var> that are
+greater than the specified tolerance <var class="var">tol</var>.  If the second argument is
+omitted, it is taken to be
+</p>
+<div class="example">
+<pre class="example-preformatted">tol = max (size (<var class="var">A</var>)) * sigma(1) * eps;
+</pre></div>
+
+<p>where <code class="code">eps</code> is machine precision and <code class="code">sigma(1)</code> is the largest
+singular value of <var class="var">A</var>.
+</p>
+<p>The rank of a matrix is the number of linearly independent rows or columns
+and equals the dimension of the row and column space.  The function
+<code class="code">orth</code> may be used to compute an orthonormal basis of the column space.
+</p>
+<p>For testing if a system <code class="code"><var class="var">A</var>*<var class="var">x</var> = <var class="var">b</var></code> of linear equations
+is solvable, one can use
+</p>
+<div class="example">
+<pre class="example-preformatted">rank (<var class="var">A</var>) == rank ([<var class="var">A</var> <var class="var">b</var>])
+</pre></div>
+
+<p>In this case, <code class="code"><var class="var">x</var> = <var class="var">A</var> \ <var class="var">b</var></code> finds a particular solution
+<var class="var">x</var>.  The general solution is <var class="var">x</var> plus the null space of matrix
+<var class="var">A</var>.  The function <code class="code">null</code> may be used to compute a basis of the
+null space.
+</p>
+<p>Example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">A = [1 2 3
+     4 5 6
+     7 8 9];
+rank (A)
+  &rArr;  2
+</pre></div></div>
+
+<p>In this example, the number of linearly independent rows is only 2 because
+the final row is a linear combination of the first two rows:
+</p>
+<div class="example">
+<pre class="example-preformatted">A(3,:) == -A(1,:) + 2 * A(2,:)
+</pre></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFnull">null</a>, <a class="ref" href="#XREForth">orth</a>, <a class="ref" href="Sparse-Linear-Algebra.html#XREFsprank">sprank</a>, <a class="ref" href="Matrix-Factorizations.html#XREFsvd">svd</a>, <a class="ref" href="Mathematical-Constants.html#XREFeps">eps</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFrcond"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-rcond"><span><code class="def-type"><var class="var">c</var> =</code> <strong class="def-name">rcond</strong> <code class="def-code-arguments">(<var class="var">A</var>)</code><a class="copiable-link" href="#index-rcond"> &para;</a></span></dt>
+<dd><p>Compute the 1-norm estimate of the reciprocal condition number as returned
+by <small class="sc">LAPACK</small>.
+</p>
+<p>If the matrix is well-conditioned then <var class="var">c</var> will be near 1 and if the
+matrix is poorly conditioned it will be close to 0.
+</p>
+<p>The matrix <var class="var">A</var> must not be sparse.  If the matrix is sparse then
+<code class="code">condest (<var class="var">A</var>)</code> or <code class="code">rcond (full (<var class="var">A</var>))</code> should be used
+instead.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFcond">cond</a>, <a class="ref" href="Sparse-Linear-Algebra.html#XREFcondest">condest</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFtrace"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-trace"><span><code class="def-type"><var class="var">t</var> =</code> <strong class="def-name">trace</strong> <code class="def-code-arguments">(<var class="var">A</var>)</code><a class="copiable-link" href="#index-trace"> &para;</a></span></dt>
+<dd><p>Compute the trace of <var class="var">A</var>, the sum of the elements along the main
+diagonal.
+</p>
+<p>The implementation is straightforward: <code class="code">sum (diag (<var class="var">A</var>))</code>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFeig">eig</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFrref"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-rref"><span><code class="def-type"><var class="var">r</var> =</code> <strong class="def-name">rref</strong> <code class="def-code-arguments">(<var class="var">A</var>)</code><a class="copiable-link" href="#index-rref"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rref-1"><span><code class="def-type"><var class="var">r</var> =</code> <strong class="def-name">rref</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">tol</var>)</code><a class="copiable-link" href="#index-rref-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rref-2"><span><code class="def-type">[<var class="var">r</var>, <var class="var">k</var>] =</code> <strong class="def-name">rref</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-rref-2"> &para;</a></span></dt>
+<dd><p>Return the reduced row echelon form of <var class="var">A</var>.
+</p>
+<p><var class="var">tol</var> defaults to
+<code class="code">eps * max (size (<var class="var">A</var>)) * norm (<var class="var">A</var>, inf)</code>.
+</p>
+<p>The optional return argument <var class="var">k</var> contains the vector of
+&quot;bound variables&quot;, which are those columns on which elimination has been
+performed.
+</p>
+</dd></dl>
+
+
+<a class="anchor" id="XREFvecnorm"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-vecnorm"><span><code class="def-type"><var class="var">n</var> =</code> <strong class="def-name">vecnorm</strong> <code class="def-code-arguments">(<var class="var">A</var>)</code><a class="copiable-link" href="#index-vecnorm"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-vecnorm-1"><span><code class="def-type"><var class="var">n</var> =</code> <strong class="def-name">vecnorm</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">p</var>)</code><a class="copiable-link" href="#index-vecnorm-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-vecnorm-2"><span><code class="def-type"><var class="var">n</var> =</code> <strong class="def-name">vecnorm</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">p</var>, <var class="var">dim</var>)</code><a class="copiable-link" href="#index-vecnorm-2"> &para;</a></span></dt>
+<dd><p>Return the vector p-norm of the elements of array <var class="var">A</var> along dimension
+<var class="var">dim</var>.
+</p>
+<p>The p-norm of a vector is defined as
+</p>
+<div class="example">
+<pre class="example-preformatted"><var class="var">p-norm</var> (<var class="var">A</var>, <var class="var">p</var>) = (sum (abs (<var class="var">A</var>) .^ <var class="var">p</var>)) ^ (1/<var class="var">p</var>)
+</pre></div>
+
+<p>The input <var class="var">p</var> must be a positive scalar.  If omitted it defaults to 2
+(Euclidean norm or distance).  Other special values of <var class="var">p</var> are 1
+(Manhattan norm, sum of absolute values) and <code class="code">Inf</code> (absolute value of
+largest element).
+</p>
+<p>The input <var class="var">dim</var> specifies the dimension of the array on which the
+function operates and must be a positive integer.  If omitted the first
+non-singleton dimension is used.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFnorm">norm</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Matrix-Factorizations.html">Matrix Factorizations</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Techniques-Used-for-Linear-Algebra.html">Techniques Used for Linear Algebra</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Linear-Algebra.html">Linear Algebra</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

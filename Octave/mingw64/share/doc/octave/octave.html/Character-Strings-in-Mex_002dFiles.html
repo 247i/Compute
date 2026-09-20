@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Character Strings in Mex-Files (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Character Strings in Mex-Files (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Character Strings in Mex-Files (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Mex_002dFiles.html" rel="up" title="Mex-Files">
+<link href="Cell-Arrays-with-Mex_002dFiles.html" rel="next" title="Cell Arrays with Mex-Files">
+<link href="Working-with-Matrices-and-Arrays-in-Mex_002dFiles.html" rel="prev" title="Working with Matrices and Arrays in Mex-Files">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Character-Strings-in-Mex_002dFiles">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Cell-Arrays-with-Mex_002dFiles.html" accesskey="n" rel="next">Cell Arrays with Mex-Files</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Working-with-Matrices-and-Arrays-in-Mex_002dFiles.html" accesskey="p" rel="prev">Working with Matrices and Arrays in Mex-Files</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Mex_002dFiles.html" accesskey="u" rel="up">Mex-Files</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Character-Strings-in-Mex_002dFiles-1"><span>A.2.3 Character Strings in Mex-Files<a class="copiable-link" href="#Character-Strings-in-Mex_002dFiles-1"> &para;</a></span></h4>
+
+<p>As mex-files do not make the distinction between single and double quoted
+strings that Octave does, there is perhaps less complexity in the use of
+strings and character matrices.  An example of their use that parallels the
+demo in <samp class="file">stringdemo.cc</samp> is given in the file <samp class="file">mystring.c</samp>, as shown
+below.
+</p>
+<div class="example smallexample">
+<pre class="verbatim">#include &lt;string.h&gt;
+#include &quot;mex.h&quot;
+
+void
+mexFunction (int nlhs, mxArray *plhs[],
+             int nrhs, const mxArray *prhs[])
+{
+  mwSize m, n;
+  mwIndex i, j;
+  mxChar *pi, *po;
+
+  if (nrhs != 1 || ! mxIsChar (prhs[0])
+      || mxGetNumberOfDimensions (prhs[0]) &gt; 2)
+    mexErrMsgTxt (&quot;ARG1 must be a char matrix&quot;);
+
+  m = mxGetM (prhs[0]);
+  n = mxGetN (prhs[0]);
+  pi = mxGetChars (prhs[0]);
+  plhs[0] = mxCreateNumericMatrix (m, n, mxCHAR_CLASS, mxREAL);
+  po = mxGetChars (plhs[0]);
+
+  for (j = 0; j &lt; n; j++)
+    for (i = 0; i &lt; m; i++)
+      po[j*m + m - 1 - i] = pi[j*m + i];
+}
+</pre></div>
+
+<p>An example of its expected output is
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">mystring ([&quot;First String&quot;; &quot;Second String&quot;])
+&rArr;  Second String
+   First String
+</pre></div></div>
+
+<p>Other functions in the mex interface for handling character strings are
+<code class="code">mxCreateString</code>, <code class="code">mxArrayToString</code>, and
+<code class="code">mxCreateCharMatrixFromStrings</code>.  In a mex-file, a character string is
+considered to be a vector rather than a matrix.  This is perhaps an arbitrary
+distinction as the data in the <code class="code">mxArray</code> for the matrix is consecutive in
+any case.
+</p>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Cell-Arrays-with-Mex_002dFiles.html">Cell Arrays with Mex-Files</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Working-with-Matrices-and-Arrays-in-Mex_002dFiles.html">Working with Matrices and Arrays in Mex-Files</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Mex_002dFiles.html">Mex-Files</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

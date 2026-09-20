@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- Additional documentation for the optim package for Octave.
+
+Copyright © Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<title>siman (optim_doc)</title>
+
+<meta name="description" content="siman (optim_doc)">
+<meta name="keywords" content="siman (optim_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Scalar-optimization.html" rel="up" title="Scalar optimization">
+<link href="samin.html" rel="next" title="samin">
+<link href="octave_005fsqp.html" rel="prev" title="octave_sqp">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section-level-extent" id="siman">
+<div class="nav-panel">
+<p>
+Next: <a href="samin.html" accesskey="n" rel="next">Simulated annealing backend samin of scalar optimization</a>, Previous: <a href="octave_005fsqp.html" accesskey="p" rel="prev">Backend wrapping core Octaves sqp function</a>, Up: <a href="Scalar-optimization.html" accesskey="u" rel="up">Functions for optimization of a scalar objective function</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h3 class="section" id="Simulated-annealing-backend-siman-of-scalar-optimization"><span>1.4 Simulated annealing backend siman of scalar optimization<a class="copiable-link" href="#Simulated-annealing-backend-siman-of-scalar-optimization"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-siman"></a>
+
+<p>A simulated annealing (stochastic) optimizer, changing all parameters at
+once in a single step, so being suitable for non-bound constraints.
+</p>
+<p>No gradient or hessian of the objective function is used. The settings
+<code class="code">MaxIter</code>, <code class="code">fract_prec</code>, <code class="code">TolFun</code>, <code class="code">TolX</code>, and
+<code class="code">max_fract_change</code> are not honoured.
+</p>
+<p>Accepts the additional settings <code class="code">T_init</code> (initial temperature,
+default 0.01), <code class="code">T_min</code> (final temperature, default 1.0e-5),
+<code class="code">mu_T</code> (factor of temperature decrease, default 1.005),
+<code class="code">iters_fixed_T</code> (iterations within one temperature step, default
+10), <code class="code">max_rand_step</code> (column vector or structure-based
+configuration of maximum random steps for each parameter, default 0.005
+* <var class="var">pin</var>), <code class="code">stoch_regain_constr</code> (if <code class="code">true</code>, regain
+constraints after a random step, otherwise take new random value until
+constraints are met, default <code class="code">false</code>), <code class="code">trace_steps</code> (set
+field <code class="code">trace</code> of <var class="var">outp</var> with a matrix with a row for each step,
+first column iteration number, second column repeat number within
+iteration, third column value of objective function, rest columns
+parameter values, default <code class="code">false</code>), and <code class="code">siman_log</code> (set field
+<code class="code">log</code> of <var class="var">outp</var> with a matrix with a row for each iteration,
+first column temperature, second column value of objective function,
+rest columns numbers of tries with decrease, no decrease but accepted,
+and no decrease and rejected.
+</p>
+<p>Steps with increase <code class="code">diff</code> of objective function are accepted if
+<code class="code">rand (1) &lt; exp (- diff / T)</code>, where <code class="code">T</code> is the temperature of
+the current iteration.
+</p>
+<p>If regaining of constraints failed, optimization will be aborted and
+returned value of <var class="var">cvg</var> will be <code class="code">0</code>. Otherwise, <var class="var">cvg</var> will
+be <code class="code">1</code>. Returned structure <var class="var">outp</var>, additionally to the possible
+fields <code class="code">trace</code> and <code class="code">log</code> described above, will have the fields
+<code class="code">niter</code> and <code class="code">user_interaction</code>.
+</p>
+<p>Interpretation of <code class="code">Display</code>: if set to <code class="code">&quot;iter&quot;</code>, an
+informational line is printed after each iteration.
+</p>
+<p>If <code class="code">parallel_local</code> is equivalent to <code class="code">true</code>, the objective
+function is evaluated for several parameter combinations in parallel. If
+<code class="code">parallel_local</code> is set to an integer <code class="code">&gt; 1</code>, this is the
+maximal number of parallel processes; if it is <code class="code">&lt;= 1</code>, the maximal
+number will be the number of available processor cores.  The course of
+optimization won&rsquo;t be changed by parallelization, provided the random
+number generator starts with the same state.  To achieve this, some of
+the parallel results are discarded, causing the speedup to be smaller if
+the rate of acceptance of results is high.  Also, due to overhead, there
+won&rsquo;t be any speedup, but even a slowdown, if the objective function is
+not computationally extensive enough.
+</p>
+<p>Honours options <code class="code">save_state</code> and <code class="code">recover_state</code>, described
+for the frontend.
+</p>
+
+</div>
+<hr>
+<div class="nav-panel">
+<p>
+Next: <a href="samin.html">Simulated annealing backend samin of scalar optimization</a>, Previous: <a href="octave_005fsqp.html">Backend wrapping core Octaves sqp function</a>, Up: <a href="Scalar-optimization.html">Functions for optimization of a scalar objective function</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

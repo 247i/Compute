@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Output Conversion for Matrices (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Output Conversion for Matrices (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Output Conversion for Matrices (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="C_002dStyle-I_002fO-Functions.html" rel="up" title="C-Style I/O Functions">
+<link href="Output-Conversion-Syntax.html" rel="next" title="Output Conversion Syntax">
+<link href="Formatted-Output.html" rel="prev" title="Formatted Output">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Output-Conversion-for-Matrices">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Output-Conversion-Syntax.html" accesskey="n" rel="next">Output Conversion Syntax</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Formatted-Output.html" accesskey="p" rel="prev">Formatted Output</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="C_002dStyle-I_002fO-Functions.html" accesskey="u" rel="up">C-Style I/O Functions</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Output-Conversion-for-Matrices-1"><span>14.2.5 Output Conversion for Matrices<a class="copiable-link" href="#Output-Conversion-for-Matrices-1"> &para;</a></span></h4>
+
+<p>When given a matrix value, Octave&rsquo;s formatted output functions cycle
+through the format template until all the values in the matrix have been
+printed.  For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">printf (&quot;%4.2f %10.2e %8.4g\n&quot;, hilb (3));
+
+     &#8867; 1.00   5.00e-01   0.3333
+     &#8867; 0.50   3.33e-01     0.25
+     &#8867; 0.33   2.50e-01      0.2
+</pre></div></div>
+
+<p>If more than one value is to be printed in a single call, the output
+functions do not return to the beginning of the format template when
+moving on from one value to the next.  This can lead to confusing output
+if the number of elements in the matrices are not exact multiples of the
+number of conversions in the format template.  For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">printf (&quot;%4.2f %10.2e %8.4g\n&quot;, [1, 2], [3, 4]);
+
+     &#8867; 1.00   2.00e+00        3
+     &#8867; 4.00
+</pre></div></div>
+
+<p>If this is not what you want, use a series of calls instead of just one.
+</p>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Output-Conversion-Syntax.html">Output Conversion Syntax</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Formatted-Output.html">Formatted Output</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="C_002dStyle-I_002fO-Functions.html">C-Style I/O Functions</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

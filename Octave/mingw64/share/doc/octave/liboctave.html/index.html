@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Top (Octave C++ Classes)</title>
+
+<meta name="description" content="Top (Octave C++ Classes)">
+<meta name="keywords" content="Top (Octave C++ Classes)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="#Top" rel="start" title="Top">
+<link href="Function-Index.html" rel="index" title="Function Index">
+<link href="#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Acknowledgements.html" rel="next" title="Acknowledgements">
+<style type="text/css">
+ul.toc-numbered-mark {list-style: none}
+</style>
+
+
+</head>
+
+<body>
+
+
+
+
+
+
+
+
+
+<p>Copyright (C) 1996-2026 The Octave Project Developers
+</p>
+<p>Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+</p>
+<p>Permission is granted to copy and distribute modified versions of
+this manual under the conditions for verbatim copying, provided that
+the entire resulting derived work is distributed under the terms of
+a permission notice identical to this one.
+</p>
+<p>Permission is granted to copy and distribute translations of this
+manual into another language, under the above conditions for
+modified versions.
+</p>
+
+
+<div class="top-level-extent" id="Top">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Acknowledgements.html" accesskey="n" rel="next">Acknowledgements</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Function-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<a class="top" id="SEC_Top"></a>
+<p>This manual documents how to use, install and port Octave&rsquo;s C++ class
+library, and how to report bugs.  It corresponds to Octave version
+11.3.0.
+</p>
+
+
+
+
+<div class="region-contents" id="SEC_Contents">
+<h2 class="contents-heading">Table of Contents</h2>
+
+<div class="contents">
+
+<ul class="toc-numbered-mark">
+  <li><a id="toc-Acknowledgements" href="Acknowledgements.html">1 Acknowledgements</a>
+  <ul class="toc-numbered-mark">
+    <li><a id="toc-Contributors-to-Octave" href="Contributors.html">Contributors to Octave</a></li>
+  </ul></li>
+  <li><a id="toc-GNU-GENERAL-PUBLIC-LICENSE" href="Copying.html">GNU GENERAL PUBLIC LICENSE</a></li>
+  <li><a id="toc-A-Brief-Introduction-to-Octave" href="Introduction.html">2 A Brief Introduction to Octave</a></li>
+  <li><a id="toc-Arrays" href="Arrays.html">3 Arrays</a>
+  <ul class="toc-numbered-mark">
+    <li><a id="toc-Constructors-and-Assignment" href="Constructors-and-Assignment.html">3.1 Constructors and Assignment</a></li>
+  </ul></li>
+  <li><a id="toc-Matrix-and-Vector-Operations" href="Matrix-and-Vector-Operations.html">4 Matrix and Vector Operations</a></li>
+  <li><a id="toc-Matrix-Factorizations" href="Matrix-Factorizations.html">5 Matrix Factorizations</a></li>
+  <li><a id="toc-Ranges" href="Ranges.html">6 Ranges</a></li>
+  <li><a id="toc-Nonlinear-Functions" href="Nonlinear-Functions.html">7 Nonlinear Functions</a></li>
+  <li><a id="toc-Nonlinear-Equations" href="Nonlinear-Equations.html">8 Nonlinear Equations</a></li>
+  <li><a id="toc-Optimization" href="Optimization.html">9 Optimization</a>
+  <ul class="toc-numbered-mark">
+    <li><a id="toc-Objective-Functions" href="Objective-Functions.html">9.1 Objective Functions</a></li>
+    <li><a id="toc-Bounds" href="Bounds.html">9.2 Bounds</a></li>
+    <li><a id="toc-Linear-Constraints" href="Linear-Constraints.html">9.3 Linear Constraints</a></li>
+    <li><a id="toc-Nonlinear-Constraints" href="Nonlinear-Constraints.html">9.4 Nonlinear Constraints</a></li>
+    <li><a id="toc-Quadratic-Programming" href="Quadratic-Programming.html">9.5 Quadratic Programming</a></li>
+    <li><a id="toc-Nonlinear-Programming" href="Nonlinear-Programming.html">9.6 Nonlinear Programming</a></li>
+  </ul></li>
+  <li><a id="toc-Quadrature" href="Quadrature.html">10 Quadrature</a>
+  <ul class="toc-numbered-mark">
+    <li><a id="toc-Collocation-Weights" href="Collocation-Weights.html">10.1 Collocation Weights</a></li>
+  </ul></li>
+  <li><a id="toc-Ordinary-Differential-Equations" href="Ordinary-Differential-Equations.html">11 Ordinary Differential Equations</a></li>
+  <li><a id="toc-Differential-Algebraic-Equations" href="Differential-Algebraic-Equations.html">12 Differential Algebraic Equations</a></li>
+  <li><a id="toc-Error-Handling" href="Error-Handling.html">13 Error Handling</a></li>
+  <li><a id="toc-Installation" href="Installation.html">14 Installation</a></li>
+  <li><a id="toc-Bugs" href="Bugs.html">15 Bugs</a></li>
+  <li><a id="toc-Concept-Index" href="Concept-Index.html" rel="index">Concept Index</a></li>
+  <li><a id="toc-Function-Index" href="Function-Index.html" rel="index">Function Index</a></li>
+</ul>
+</div>
+</div>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Acknowledgements.html" accesskey="n" rel="next">Acknowledgements</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Function-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Permutation Matrix Functions (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Permutation Matrix Functions (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Permutation Matrix Functions (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Function-Support.html" rel="up" title="Function Support">
+<link href="Diagonal-Matrix-Functions.html" rel="prev" title="Diagonal Matrix Functions">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Permutation-Matrix-Functions">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Diagonal-Matrix-Functions.html" accesskey="p" rel="prev">Diagonal Matrix Functions</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Function-Support.html" accesskey="u" rel="up">Functions That Are Aware of These Matrices</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Permutation-Matrix-Functions-1"><span>21.3.2 Permutation Matrix Functions<a class="copiable-link" href="#Permutation-Matrix-Functions-1"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-matrix_002c-permutation-functions"></a>
+<a class="index-entry-id" id="index-permutation-matrix-functions"></a>
+
+<p><em class="dfn">inv</em> and <em class="dfn">pinv</em> will invert a permutation matrix, preserving its
+specialness.  <em class="dfn">det</em> can be applied to a permutation matrix, efficiently
+calculating the sign of the permutation (which is equal to the determinant).
+</p>
+<p>A permutation matrix can also be returned from the built-in functions
+<em class="dfn">lu</em> and <em class="dfn">qr</em>, if a pivoted factorization is requested.
+</p>
+<p>The <em class="dfn">sparse</em> function will convert a permutation matrix efficiently to a
+sparse matrix.
+The <em class="dfn">find</em> function will also work efficiently with a permutation matrix,
+making it possible to conveniently obtain the permutation indices.
+</p>
+</div>
+
+
+
+</body>
+</html>

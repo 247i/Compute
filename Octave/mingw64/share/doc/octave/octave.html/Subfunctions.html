@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Subfunctions (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Subfunctions (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Subfunctions (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Function-Files.html" rel="up" title="Function Files">
+<link href="Private-Functions.html" rel="next" title="Private Functions">
+<link href="Manipulating-the-Load-Path.html" rel="prev" title="Manipulating the Load Path">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Subfunctions">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Private-Functions.html" accesskey="n" rel="next">Private Functions</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Manipulating-the-Load-Path.html" accesskey="p" rel="prev">Manipulating the Load Path</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Function-Files.html" accesskey="u" rel="up">Function Files</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Subfunctions-1"><span>11.10.2 Subfunctions<a class="copiable-link" href="#Subfunctions-1"> &para;</a></span></h4>
+
+<p>A function file may contain secondary functions called
+<em class="dfn">subfunctions</em>.  These secondary functions are only visible to the
+other functions in the same function file.  For example, a file
+<samp class="file">f.m</samp> containing
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">function f ()
+  printf (&quot;in f, calling g\n&quot;);
+  g ()
+endfunction
+function g ()
+  printf (&quot;in g, calling h\n&quot;);
+  h ()
+endfunction
+function h ()
+  printf (&quot;in h\n&quot;)
+endfunction
+</pre></div></div>
+
+<p>defines a main function <code class="code">f</code> and two subfunctions.  The
+subfunctions <code class="code">g</code> and <code class="code">h</code> may only be called from the main
+function <code class="code">f</code> or from the other subfunctions, but not from outside
+the file <samp class="file">f.m</samp>.
+</p>
+<a class="anchor" id="XREFlocalfunctions"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-localfunctions"><span><code class="def-type"><var class="var">subfcn_list</var> =</code> <strong class="def-name">localfunctions</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-localfunctions"> &para;</a></span></dt>
+<dd><p>Return a list of all local functions, i.e., subfunctions, within the current
+file.
+</p>
+<p>The return value is a column cell array of function handles to all local
+functions accessible from the function from which <code class="code">localfunctions</code> is
+called.  Nested functions are <em class="emph">not</em> included in the list.
+</p>
+<p>If the call is from the command line, an anonymous function, or a script,
+the return value is an empty cell array.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Function-Handles.html#XREFfunctions">functions</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Private-Functions.html">Private Functions</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Manipulating-the-Load-Path.html">Manipulating the Load Path</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Function-Files.html">Function Files</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

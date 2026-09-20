@@ -1,0 +1,14 @@
+## DO NOT EDIT! Generated from __dicom_decodeuid__.cpp
+%!fail("__dicom_decodeuid__")
+%!fail("__dicom_decodeuid__(1)")
+%!test
+%! s = __dicom_decodeuid__("1.0");
+%! assert(isstruct(s))
+%! assert(s.Value, "")
+%! assert(s.Name, "")
+%!test
+%! s = __dicom_decodeuid__("1.2.840.10008.1.1");
+%! assert(isstruct(s))
+%! assert(s.Value, "1.2.840.10008.1.1")
+%! assert(s.Name, "Verification SOP Class")
+%! assert(s.Type, "SOP Class")

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Hashing Functions (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Hashing Functions (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Hashing Functions (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="System-Utilities.html" rel="up" title="System Utilities">
+<link href="System-Information.html" rel="prev" title="System Information">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Hashing-Functions">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="System-Information.html" accesskey="p" rel="prev">System Information</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="System-Utilities.html" accesskey="u" rel="up">System Utilities</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Hashing-Functions-1"><span>36.12 Hashing Functions<a class="copiable-link" href="#Hashing-Functions-1"> &para;</a></span></h3>
+
+<p>It is often necessary to find if two strings or files are identical.
+This might be done by comparing them character by character and looking
+for differences.  However, this can be slow, and so comparing a hash of
+the string or file can be a rapid way of finding if the files differ.
+</p>
+<p>Another use of the hashing function is to check for file integrity.  The
+user can check the hash of the file against a known value and find if
+the file they have is the same as the one that the original hash was
+produced with.
+</p>
+<p>Octave supplies the <code class="code">hash</code> function to calculate hash values of
+strings and files, the latter in combination with the <code class="code">fileread</code>
+function.  The <code class="code">hash</code> function supports many commonly used hash
+methods.
+</p>
+<a class="anchor" id="XREFhash"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-hash"><span><code class="def-type"><var class="var">hashval</var> =</code> <strong class="def-name">hash</strong> <code class="def-code-arguments">(&quot;<var class="var">hashfcn</var>&quot;, <var class="var">str</var>)</code><a class="copiable-link" href="#index-hash"> &para;</a></span></dt>
+<dd><p>Calculate the hash value of the string <var class="var">str</var> using the hash function
+<var class="var">hashfcn</var>.
+</p>
+<p>The available hash functions are given in the table below.
+</p>
+<dl class="table">
+<dt>&lsquo;<samp class="samp">MD2</samp>&rsquo;</dt>
+<dd><p>Message-Digest Algorithm 2 (RFC 1319).
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">MD4</samp>&rsquo;</dt>
+<dd><p>Message-Digest Algorithm 4 (RFC 1320).
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">MD5</samp>&rsquo;</dt>
+<dd><p>Message-Digest Algorithm 5 (RFC 1321).
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">SHA1</samp>&rsquo;</dt>
+<dd><p>Secure Hash Algorithm 1 (RFC 3174)
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">SHA224</samp>&rsquo;</dt>
+<dd><p>Secure Hash Algorithm 2 (224 Bits, RFC 3874)
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">SHA256</samp>&rsquo;</dt>
+<dd><p>Secure Hash Algorithm 2 (256 Bits, RFC 6234)
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">SHA384</samp>&rsquo;</dt>
+<dd><p>Secure Hash Algorithm 2 (384 Bits, RFC 6234)
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">SHA512</samp>&rsquo;</dt>
+<dd><p>Secure Hash Algorithm 2 (512 Bits, RFC 6234)
+</p></dd>
+</dl>
+
+<p>To calculate for example the MD5 hash value of the string
+<code class="code">&quot;abc&quot;</code> the <code class="code">hash</code> function is called as follows:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">hash (&quot;md5&quot;, &quot;abc&quot;)
+     &#8867; ans = 900150983cd24fb0d6963f7d28e17f72
+</pre></div></div>
+
+<p>For the same string, the SHA-1 hash value is calculated with:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">hash (&quot;sha1&quot;, &quot;abc&quot;)
+     &#8867; ans = a9993e364706816aba3e25717850c26c9cd0d89d
+</pre></div></div>
+
+<p>And to compute the hash value of a file, e.g., <code class="code">file = &quot;file.txt&quot;</code>,
+call <code class="code">hash</code> in combination with the <code class="code">fileread</code>:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">hash (&quot;md5&quot;, fileread (file));
+</pre></div></div>
+
+</dd></dl>
+
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="System-Information.html">System Information</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="System-Utilities.html">System Utilities</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

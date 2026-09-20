@@ -1,0 +1,4 @@
+autoload ("iptcheckconn", which ("conndef"));
+autoload ("bwareaopen", which ("bwconncomp"));
+autoload ("bwlabel", which ("bwlabeln"));
+autoload ("imdilate", which ("imerode"));

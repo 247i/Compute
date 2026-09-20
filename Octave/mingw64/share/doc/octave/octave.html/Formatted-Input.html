@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Formatted Input (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Formatted Input (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Formatted Input (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="C_002dStyle-I_002fO-Functions.html" rel="up" title="C-Style I/O Functions">
+<link href="Input-Conversion-Syntax.html" rel="next" title="Input Conversion Syntax">
+<link href="Other-Output-Conversions.html" rel="prev" title="Other Output Conversions">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Formatted-Input">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Input-Conversion-Syntax.html" accesskey="n" rel="next">Input Conversion Syntax</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Other-Output-Conversions.html" accesskey="p" rel="prev">Other Output Conversions</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="C_002dStyle-I_002fO-Functions.html" accesskey="u" rel="up">C-Style I/O Functions</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Formatted-Input-1"><span>14.2.11 Formatted Input<a class="copiable-link" href="#Formatted-Input-1"> &para;</a></span></h4>
+
+<p>Octave provides the <code class="code">scanf</code>, <code class="code">fscanf</code>, and <code class="code">sscanf</code>
+functions to read formatted input.  There are two forms of each of these
+functions.  One can be used to extract vectors of data from a file, and
+the other is more &lsquo;C-like&rsquo;.
+</p>
+<a class="anchor" id="XREFfscanf"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-fscanf"><span><code class="def-type">[<var class="var">val</var>, <var class="var">count</var>, <var class="var">errmsg</var>] =</code> <strong class="def-name">fscanf</strong> <code class="def-code-arguments">(<var class="var">fid</var>, <var class="var">template</var>, <var class="var">size</var>)</code><a class="copiable-link" href="#index-fscanf"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-fscanf-1"><span><code class="def-type">[<var class="var">v1</var>, <var class="var">v2</var>, &hellip;, <var class="var">count</var>, <var class="var">errmsg</var>] =</code> <strong class="def-name">fscanf</strong> <code class="def-code-arguments">(<var class="var">fid</var>, <var class="var">template</var>, &quot;C&quot;)</code><a class="copiable-link" href="#index-fscanf-1"> &para;</a></span></dt>
+<dd><p>In the first form, read from <var class="var">fid</var> according to <var class="var">template</var>,
+returning the result in the matrix <var class="var">val</var>.
+</p>
+<p>The optional argument <var class="var">size</var> specifies the amount of data to read
+and may be one of
+</p>
+<dl class="table">
+<dt><code class="code">Inf</code></dt>
+<dd><p>Read as much as possible, returning a column vector.
+</p>
+</dd>
+<dt><code class="code"><var class="var">nr</var></code></dt>
+<dd><p>Read up to <var class="var">nr</var> elements, returning a column vector.
+</p>
+</dd>
+<dt><code class="code">[<var class="var">nr</var>, Inf]</code></dt>
+<dd><p>Read as much as possible, returning a matrix with <var class="var">nr</var> rows.  If the
+number of elements read is not an exact multiple of <var class="var">nr</var>, the last
+column is padded with zeros.
+</p>
+</dd>
+<dt><code class="code">[<var class="var">nr</var>, <var class="var">nc</var>]</code></dt>
+<dd><p>Read up to <code class="code"><var class="var">nr</var> * <var class="var">nc</var></code> elements, returning a matrix with
+<var class="var">nr</var> rows.  If the number of elements read is not an exact multiple
+of <var class="var">nr</var>, the last column is padded with zeros.
+</p></dd>
+</dl>
+
+<p>If <var class="var">size</var> is omitted, a value of <code class="code">Inf</code> is assumed.
+</p>
+<p>A string is returned if <var class="var">template</var> specifies only character conversions.
+</p>
+<p>The number of items successfully read is returned in <var class="var">count</var>.
+</p>
+<p>If an error occurs, <var class="var">errmsg</var> contains a system-dependent error message.
+</p>
+<p>In the second form, read from <var class="var">fid</var> according to <var class="var">template</var>,
+with each conversion specifier in <var class="var">template</var> corresponding to a
+single scalar return value.  This form is more &ldquo;C-like&rdquo;, and also
+compatible with previous versions of Octave.  The number of successful
+conversions is returned in <var class="var">count</var>
+</p>
+<p>See the Formatted Input section of the GNU Octave manual for a
+complete description of the syntax of the template string.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Line_002dOriented-Input.html#XREFfgets">fgets</a>, <a class="ref" href="Line_002dOriented-Input.html#XREFfgetl">fgetl</a>, <a class="ref" href="Binary-I_002fO.html#XREFfread">fread</a>, <a class="ref" href="#XREFscanf">scanf</a>, <a class="ref" href="#XREFsscanf">sscanf</a>, <a class="ref" href="Opening-and-Closing-Files.html#XREFfopen">fopen</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFscanf"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-scanf"><span><code class="def-type">[<var class="var">val</var>, <var class="var">count</var>, <var class="var">errmsg</var>] =</code> <strong class="def-name">scanf</strong> <code class="def-code-arguments">(<var class="var">template</var>, <var class="var">size</var>)</code><a class="copiable-link" href="#index-scanf"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-scanf-1"><span><code class="def-type">[<var class="var">v1</var>, <var class="var">v2</var>, &hellip;, <var class="var">count</var>, <var class="var">errmsg</var>] =</code> <strong class="def-name">scanf</strong> <code class="def-code-arguments">(<var class="var">template</var>, &quot;C&quot;)</code><a class="copiable-link" href="#index-scanf-1"> &para;</a></span></dt>
+<dd><p>This is equivalent to calling <code class="code">fscanf</code> with <var class="var">fid</var> = <code class="code">stdin</code>.
+</p>
+<p>It is currently not useful to call <code class="code">scanf</code> in interactive programs.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFfscanf">fscanf</a>, <a class="ref" href="#XREFsscanf">sscanf</a>, <a class="ref" href="Formatted-Output.html#XREFprintf">printf</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFsscanf"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-sscanf"><span><code class="def-type">[<var class="var">val</var>, <var class="var">count</var>, <var class="var">errmsg</var>, <var class="var">pos</var>] =</code> <strong class="def-name">sscanf</strong> <code class="def-code-arguments">(<var class="var">string</var>, <var class="var">template</var>, <var class="var">size</var>)</code><a class="copiable-link" href="#index-sscanf"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-sscanf-1"><span><code class="def-type">[<var class="var">v1</var>, <var class="var">v2</var>, &hellip;, <var class="var">count</var>, <var class="var">errmsg</var>] =</code> <strong class="def-name">sscanf</strong> <code class="def-code-arguments">(<var class="var">string</var>, <var class="var">template</var>, &quot;C&quot;)</code><a class="copiable-link" href="#index-sscanf-1"> &para;</a></span></dt>
+<dd><p>This is like <code class="code">fscanf</code>, except that the characters are taken from the
+string <var class="var">string</var> instead of from a stream.
+</p>
+<p>Reaching the end of the string is treated as an end-of-file condition.  In
+addition to the values returned by <code class="code">fscanf</code>, the index of the next
+character to be read is returned in <var class="var">pos</var>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFfscanf">fscanf</a>, <a class="ref" href="#XREFscanf">scanf</a>, <a class="ref" href="Formatted-Output.html#XREFsprintf">sprintf</a>.
+</p></dd></dl>
+
+
+<p>Calls to <code class="code">scanf</code> are superficially similar to calls to
+<code class="code">printf</code> in that arbitrary arguments are read under the control of
+a template string.  While the syntax of the conversion specifications in
+the template is very similar to that for <code class="code">printf</code>, the
+interpretation of the template is oriented more towards free-format
+input and simple pattern matching, rather than fixed-field formatting.
+For example, most <code class="code">scanf</code> conversions skip over any amount of
+&ldquo;white space&rdquo; (including spaces, tabs, and newlines) in the input
+file, and there is no concept of precision for the numeric input
+conversions as there is for the corresponding output conversions.
+Ordinarily, non-whitespace characters in the template are expected to
+match characters in the input stream exactly.  For example, note that
+<code class="code">sscanf</code> parses the string and whitespace differently when using
+mixed numeric and string output types:
+<a class="index-entry-id" id="index-conversion-specifications-_0028scanf_0029"></a>
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">teststr = &quot;1 is a lonely number&quot;;
+sscanf (teststr, &quot;%s is a %s&quot;)
+&rArr;  1lonelynumber
+
+sscanf (teststr, &quot;%g is a %s&quot;)
+&rArr; 
+     1
+   108
+   111
+   110
+   101
+   108
+   121
+
+[a, b, c] = sscanf (&quot;1 is a lonely number&quot;, &quot;%g is a %s %s&quot;, &quot;C&quot;)
+&rArr;  a =  1
+&rArr;  b = lonely
+&rArr;  c = number
+</pre></div></div>
+
+<p>When a <em class="dfn">matching failure</em> occurs, <code class="code">scanf</code> returns immediately,
+leaving the first non-matching character as the next character to be
+read from the stream, and <code class="code">scanf</code> returns all the items that were
+successfully converted.
+<a class="index-entry-id" id="index-matching-failure_002c-in-scanf"></a>
+</p>
+<p>The formatted input functions are not used as frequently as the
+formatted output functions.  Partly, this is because it takes some care
+to use them properly.  Another reason is that it is difficult to recover
+from a matching error.
+</p>
+<p>The specific flags and modifiers that are permitted in the template string
+and their interpretation are all described in more detail in the following
+sections.
+</p>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Input-Conversion-Syntax.html">Input Conversion Syntax</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Other-Output-Conversions.html">Other Output Conversions</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="C_002dStyle-I_002fO-Functions.html">C-Style I/O Functions</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

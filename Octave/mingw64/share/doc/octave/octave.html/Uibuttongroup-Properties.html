@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Uibuttongroup Properties (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Uibuttongroup Properties (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Uibuttongroup Properties (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Graphics-Object-Properties.html" rel="up" title="Graphics Object Properties">
+<link href="Uicontextmenu-Properties.html" rel="next" title="Uicontextmenu Properties">
+<link href="Uimenu-Properties.html" rel="prev" title="Uimenu Properties">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsubsection-level-extent" id="Uibuttongroup-Properties">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Uicontextmenu-Properties.html" accesskey="n" rel="next">Uicontextmenu Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Uimenu-Properties.html" accesskey="p" rel="prev">Uimenu Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Graphics-Object-Properties.html" accesskey="u" rel="up">Graphics Object Properties</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsubsection" id="Uibuttongroup-Properties-1"><span>15.3.3.13 Uibuttongroup Properties<a class="copiable-link" href="#Uibuttongroup-Properties-1"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-Uibuttongroup-Properties"></a>
+
+
+
+<p>Properties of <code class="code">uibuttongroup</code> objects (see <a class="pxref" href="UI-Elements.html#XREFuibuttongroup">uibuttongroup</a>):
+</p>
+<h4 class="subsubheading" id="Categories_003a-12"><span>Categories:<a class="copiable-link" href="#Categories_003a-12"> &para;</a></span></h4>
+
+<p><a class="ref" href="#XREFuibuttongroupcategoryAppearance">Appearance<!-- /@w --></a> | <a class="ref" href="#XREFuibuttongroupcategoryButtonGroupOperation">Button&nbsp;Group&nbsp;Operation<!-- /@w --></a> | <a class="ref" href="#XREFuibuttongroupcategoryCallbackExecution">Callback&nbsp;Execution<!-- /@w --></a> | <a class="ref" href="#XREFuibuttongroupcategoryCreation_002fDeletion">Creation/Deletion<!-- /@w --></a> | <a class="ref" href="#XREFuibuttongroupcategoryDisplay">Display<!-- /@w --></a> | <a class="ref" href="#XREFuibuttongroupcategoryMouseInteraction">Mouse&nbsp;Interaction<!-- /@w --></a> | <a class="ref" href="#XREFuibuttongroupcategoryObjectIdentification">Object&nbsp;Identification<!-- /@w --></a> | <a class="ref" href="#XREFuibuttongroupcategoryObjectPosition">Object&nbsp;Position<!-- /@w --></a> | <a class="ref" href="#XREFuibuttongroupcategoryParent_002fChildren">Parent/Children<!-- /@w --></a> | <a class="ref" href="#XREFuibuttongroupcategoryTextAppearance">Text&nbsp;Appearance<!-- /@w --></a> 
+</p>
+<a class="anchor" id="XREFuibuttongroupcategoryAppearance"></a><h4 class="subsubheading" id="Appearance-2"><span>Appearance<a class="copiable-link" href="#Appearance-2"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFuibuttongroupbackgroundcolor"></a></dd>
+<dt><a id="index-uibuttongroup-backgroundcolor"></a><span><code class="code">backgroundcolor</code>: colorspec, def. <code class="code">[0.9400   0.9400   0.9400]</code><a class="copiable-link" href="#index-uibuttongroup-backgroundcolor"> &para;</a></span></dt>
+<dd><p>The color value of the background of this buttongroup.
+</p>
+
+<a class="anchor" id="XREFuibuttongroupbordertype"></a></dd>
+<dt><a id="index-uibuttongroup-bordertype"></a><span><code class="code">bordertype</code>: <code class="code">&quot;beveledin&quot;</code> | <code class="code">&quot;beveledout&quot;</code> | {<code class="code">&quot;etchedin&quot;</code>} | <code class="code">&quot;etchedout&quot;</code> | <code class="code">&quot;line&quot;</code> | <code class="code">&quot;none&quot;</code><a class="copiable-link" href="#index-uibuttongroup-bordertype"> &para;</a></span></dt>
+<dd><p>Sets whether or not a line border will surround the buttongroup.
+</p>
+
+<a class="anchor" id="XREFuibuttongroupborderwidth"></a></dd>
+<dt><a id="index-uibuttongroup-borderwidth"></a><span><code class="code">borderwidth</code>: whole number scalar, def. <code class="code">1</code><a class="copiable-link" href="#index-uibuttongroup-borderwidth"> &para;</a></span></dt>
+<dd><p>The width of the line border in pixels.
+</p>
+
+<a class="anchor" id="XREFuibuttongroupforegroundcolor"></a></dd>
+<dt><a id="index-uibuttongroup-foregroundcolor"></a><span><code class="code">foregroundcolor</code>: colorspec, def. <code class="code">[0   0   0]</code><a class="copiable-link" href="#index-uibuttongroup-foregroundcolor"> &para;</a></span></dt>
+<dd><p>The color value of the title text for this buttongroup.
+</p>
+
+<a class="anchor" id="XREFuibuttongrouphighlightcolor"></a></dd>
+<dt><a id="index-uibuttongroup-highlightcolor"></a><span><code class="code">highlightcolor</code>: colorspec, def. <code class="code">[1   1   1]</code><a class="copiable-link" href="#index-uibuttongroup-highlightcolor"> &para;</a></span></dt>
+<dd><p>The color value of the line bordering this buttongroup.
+</p>
+
+<a class="anchor" id="XREFuibuttongroupshadowcolor"></a></dd>
+<dt><a id="index-uibuttongroup-shadowcolor"></a><span><code class="code">shadowcolor</code>: colorspec, def. <code class="code">[0.7000   0.7000   0.7000]</code><a class="copiable-link" href="#index-uibuttongroup-shadowcolor"> &para;</a></span></dt>
+<dd><p>The color value of the line surrounding the border line around this buttongroup.
+</p>
+
+<a class="anchor" id="XREFuibuttongroupsizechangedfcn"></a></dd>
+<dt><a id="index-uibuttongroup-sizechangedfcn"></a><span><code class="code">sizechangedfcn</code>: string | function handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-uibuttongroup-sizechangedfcn"> &para;</a></span></dt>
+<dd><p>Callback triggered when the buttongroup size is changed.
+</p>
+<p>For information on how to write graphics listener functions, see <a class="pxref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFuibuttongroupcategoryButtonGroupOperation"></a><h4 class="subsubheading" id="Button-Group-Operation"><span>Button Group Operation<a class="copiable-link" href="#Button-Group-Operation"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFuibuttongroupselectedobject"></a></dd>
+<dt><a id="index-uibuttongroup-selectedobject"></a><span><code class="code">selectedobject</code>: def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-uibuttongroup-selectedobject"> &para;</a></span></dt>
+<dd><p>Graphic handle of the currently selected item in the buttongroup.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFuibuttongroupcategoryCallbackExecution"></a><h4 class="subsubheading" id="Callback-Execution-12"><span>Callback Execution<a class="copiable-link" href="#Callback-Execution-12"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFuibuttongroupbusyaction"></a></dd>
+<dt><a id="index-uibuttongroup-busyaction"></a><span><code class="code">busyaction</code>: <code class="code">&quot;cancel&quot;</code> | {<code class="code">&quot;queue&quot;</code>}<a class="copiable-link" href="#index-uibuttongroup-busyaction"> &para;</a></span></dt>
+<dd><p>Define how Octave handles the execution of this object&rsquo;s callback properties when it is unable to interrupt another object&rsquo;s executing callback.  This is only relevant when the currently executing callback object has its <code class="code">interruptible</code> property set to <code class="code">&quot;off&quot;</code>.  The <code class="code">busyaction</code> property of the interrupting callback object indicates whether the interrupting callback is queued (<code class="code">&quot;queue&quot;</code> (default)) or discarded (<code class="code">&quot;cancel&quot;</code>).
+See <a class="xref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFuibuttongroupinterruptible"></a></dd>
+<dt><a id="index-uibuttongroup-interruptible"></a><span><code class="code">interruptible</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-uibuttongroup-interruptible"> &para;</a></span></dt>
+<dd><p>Specify whether this object&rsquo;s callback functions may be interrupted by other callbacks.  By default <code class="code">interruptible</code> is <code class="code">&quot;on&quot;</code> and callbacks that make use of <code class="code">drawnow</code>, <code class="code">figure</code>, <code class="code">waitfor</code>, <code class="code">getframe</code> or <code class="code">pause</code> functions are eventually interrupted.
+See <a class="xref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFuibuttongroupresizefcn"></a></dd>
+<dt><a id="index-uibuttongroup-resizefcn"></a><span><code class="code">resizefcn</code>: string | function handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-uibuttongroup-resizefcn"> &para;</a></span></dt>
+<dd><p><code class="code">resizefcn</code> is deprecated.  Use <code class="code">sizechangedfcn</code> instead.
+</p>
+
+<a class="anchor" id="XREFuibuttongroupselectionchangedfcn"></a></dd>
+<dt><a id="index-uibuttongroup-selectionchangedfcn"></a><span><code class="code">selectionchangedfcn</code>: string | function handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-uibuttongroup-selectionchangedfcn"> &para;</a></span></dt>
+<dd><p>Callback triggered when the selected item within the buttongroup is changed.
+</p>
+<p>For information on how to write graphics listener functions, see <a class="pxref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFuibuttongroupcategoryCreation_002fDeletion"></a><h4 class="subsubheading" id="Creation_002fDeletion-10"><span>Creation/Deletion<a class="copiable-link" href="#Creation_002fDeletion-10"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFuibuttongroupbeingdeleted"></a></dd>
+<dt><a id="index-uibuttongroup-beingdeleted"></a><span><code class="code">beingdeleted</code>: {<code class="code">&quot;off&quot;</code>} | <code class="code">&quot;on&quot;</code><a class="copiable-link" href="#index-uibuttongroup-beingdeleted"> &para;</a></span></dt>
+<dd><p>Property indicating that a function has initiated deletion of the object.  <code class="code">beingdeleted</code> is set to true until the object no longer exists.
+</p>
+
+<a class="anchor" id="XREFuibuttongroupcreatefcn"></a></dd>
+<dt><a id="index-uibuttongroup-createfcn"></a><span><code class="code">createfcn</code>: string | function handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-uibuttongroup-createfcn"> &para;</a></span></dt>
+<dd><p>Callback function executed immediately after uibuttongroup has been created.  Function is set by using default property on root object, e.g., <code class="code">set (groot, &quot;defaultuibuttongroupcreatefcn&quot;, 'disp (&quot;uibuttongroup created!&quot;)')</code>.
+</p>
+<p>For information on how to write graphics listener functions, see <a class="pxref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFuibuttongroupdeletefcn"></a></dd>
+<dt><a id="index-uibuttongroup-deletefcn"></a><span><code class="code">deletefcn</code>: string | function handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-uibuttongroup-deletefcn"> &para;</a></span></dt>
+<dd><p>Callback function executed immediately before uibuttongroup is deleted.
+</p>
+<p>For information on how to write graphics listener functions, see <a class="pxref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFuibuttongroupcategoryDisplay"></a><h4 class="subsubheading" id="Display-10"><span>Display<a class="copiable-link" href="#Display-10"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFuibuttongroupclipping"></a></dd>
+<dt><a id="index-uibuttongroup-clipping"></a><span><code class="code">clipping</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-uibuttongroup-clipping"> &para;</a></span></dt>
+<dd><p>If <code class="code">clipping</code> is <code class="code">&quot;on&quot;</code>, the uibuttongroup is clipped in its parent axes limits.
+</p>
+
+<a class="anchor" id="XREFuibuttongroupvisible"></a></dd>
+<dt><a id="index-uibuttongroup-visible"></a><span><code class="code">visible</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-uibuttongroup-visible"> &para;</a></span></dt>
+<dd><p>If <code class="code">visible</code> is <code class="code">&quot;off&quot;</code>, the uibuttongroup is not rendered on screen.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFuibuttongroupcategoryMouseInteraction"></a><h4 class="subsubheading" id="Mouse-Interaction-11"><span>Mouse Interaction<a class="copiable-link" href="#Mouse-Interaction-11"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFuibuttongroupbuttondownfcn"></a></dd>
+<dt><a id="index-uibuttongroup-buttondownfcn"></a><span><code class="code">buttondownfcn</code>: string | function handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-uibuttongroup-buttondownfcn"> &para;</a></span></dt>
+<dd><p>For information on how to write graphics listener functions, see <a class="pxref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFuibuttongroupcontextmenu"></a></dd>
+<dt><a id="index-uibuttongroup-contextmenu"></a><span><code class="code">contextmenu</code>: graphics handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-uibuttongroup-contextmenu"> &para;</a></span></dt>
+<dd><p>Graphics handle of the uicontextmenu object that is currently associated to this uibuttongroup object.
+</p>
+
+<a class="anchor" id="XREFuibuttongrouphittest"></a></dd>
+<dt><a id="index-uibuttongroup-hittest"></a><span><code class="code">hittest</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-uibuttongroup-hittest"> &para;</a></span></dt>
+<dd><p>Specify whether uibuttongroup processes mouse events or passes them to ancestors of the object.  When enabled, the object may respond to mouse clicks by evaluating the <code class="code">&quot;buttondownfcn&quot;</code>, showing the uicontextmenu, and eventually becoming the root <code class="code">&quot;currentobject&quot;</code>.  This property is only relevant when the object can accept mouse clicks which is determined by the <code class="code">&quot;pickableparts&quot;</code> property.  See <a class="xref" href="#XREFuibuttongrouppickableparts">pickableparts&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFuibuttongrouppickableparts"></a></dd>
+<dt><a id="index-uibuttongroup-pickableparts"></a><span><code class="code">pickableparts</code>: <code class="code">&quot;all&quot;</code> | <code class="code">&quot;none&quot;</code> | {<code class="code">&quot;visible&quot;</code>}<a class="copiable-link" href="#index-uibuttongroup-pickableparts"> &para;</a></span></dt>
+<dd><p>Specify whether uibuttongroup will accept mouse clicks.  By default, <code class="code">pickableparts</code> is <code class="code">&quot;visible&quot;</code> and only visible parts of the uibuttongroup or its children may react to mouse clicks.  When <code class="code">pickableparts</code> is <code class="code">&quot;all&quot;</code> both visible and invisible parts (or children) may react to mouse clicks.  When <code class="code">pickableparts</code> is <code class="code">&quot;none&quot;</code> mouse clicks on the object are ignored and transmitted to any objects underneath this one.  When an object is configured to accept mouse clicks the <code class="code">&quot;hittest&quot;</code> property will determine how they are processed.  See <a class="xref" href="#XREFuibuttongrouphittest">hittest&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFuibuttongroupselected"></a></dd>
+<dt><a id="index-uibuttongroup-selected"></a><span><code class="code">selected</code>: {<code class="code">&quot;off&quot;</code>} | <code class="code">&quot;on&quot;</code><a class="copiable-link" href="#index-uibuttongroup-selected"> &para;</a></span></dt>
+<dd><p>Property indicates whether this uibuttongroup is selected.
+</p>
+
+<a class="anchor" id="XREFuibuttongroupselectionhighlight"></a></dd>
+<dt><a id="index-uibuttongroup-selectionhighlight"></a><span><code class="code">selectionhighlight</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-uibuttongroup-selectionhighlight"> &para;</a></span></dt>
+<dd><p>If <code class="code">selectionhighlight</code> is <code class="code">&quot;on&quot;</code>, then the uibuttongroup&rsquo;s selection state is visually highlighted.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFuibuttongroupcategoryObjectIdentification"></a><h4 class="subsubheading" id="Object-Identification-12"><span>Object Identification<a class="copiable-link" href="#Object-Identification-12"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFuibuttongrouptag"></a></dd>
+<dt><a id="index-uibuttongroup-tag"></a><span><code class="code">tag</code>: string, def. <code class="code">&quot;&quot;</code><a class="copiable-link" href="#index-uibuttongroup-tag"> &para;</a></span></dt>
+<dd><p>A user-defined string to label the graphics object.
+</p>
+
+<a class="anchor" id="XREFuibuttongrouptype"></a></dd>
+<dt><a id="index-uibuttongroup-type"></a><span><code class="code">type</code> (read-only): string<a class="copiable-link" href="#index-uibuttongroup-type"> &para;</a></span></dt>
+<dd><p>Class name of the graphics object.  <code class="code">type</code> is always <code class="code">&quot;uibuttongroup&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFuibuttongroupuserdata"></a></dd>
+<dt><a id="index-uibuttongroup-userdata"></a><span><code class="code">userdata</code>: Any Octave data, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-uibuttongroup-userdata"> &para;</a></span></dt>
+<dd><p>User-defined data to associate with the graphics object.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFuibuttongroupcategoryObjectPosition"></a><h4 class="subsubheading" id="Object-Position-5"><span>Object Position<a class="copiable-link" href="#Object-Position-5"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFuibuttongroupposition"></a></dd>
+<dt><a id="index-uibuttongroup-position"></a><span><code class="code">position</code>: four-element vector, def. <code class="code">[0   0   1   1]</code><a class="copiable-link" href="#index-uibuttongroup-position"> &para;</a></span></dt>
+<dd><p>Size of the buttongroup represented as the four-element vector [left, bottom, width, height].
+</p>
+
+<a class="anchor" id="XREFuibuttongroupunits"></a></dd>
+<dt><a id="index-uibuttongroup-units"></a><span><code class="code">units</code>: <code class="code">&quot;centimeters&quot;</code> | <code class="code">&quot;characters&quot;</code> | <code class="code">&quot;inches&quot;</code> | {<code class="code">&quot;normalized&quot;</code>} | <code class="code">&quot;pixels&quot;</code> | <code class="code">&quot;points&quot;</code><a class="copiable-link" href="#index-uibuttongroup-units"> &para;</a></span></dt>
+<dd><p>Unit of measurement used to interpret the <code class="code">&quot;position&quot;</code> property.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFuibuttongroupcategoryParent_002fChildren"></a><h4 class="subsubheading" id="Parent_002fChildren-11"><span>Parent/Children<a class="copiable-link" href="#Parent_002fChildren-11"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFuibuttongroupchildren"></a></dd>
+<dt><a id="index-uibuttongroup-children"></a><span><code class="code">children</code> (read-only): vector of graphics handles, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-uibuttongroup-children"> &para;</a></span></dt>
+<dd><p>Graphics handles of the uibuttongroup&rsquo;s children.
+</p>
+
+<a class="anchor" id="XREFuibuttongrouphandlevisibility"></a></dd>
+<dt><a id="index-uibuttongroup-handlevisibility"></a><span><code class="code">handlevisibility</code>: <code class="code">&quot;callback&quot;</code> | <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-uibuttongroup-handlevisibility"> &para;</a></span></dt>
+<dd><p>If <code class="code">handlevisibility</code> is <code class="code">&quot;off&quot;</code>, the uibuttongroup&rsquo;s handle is not visible in its parent&rsquo;s <code class="code">&quot;children&quot;</code> property.
+</p>
+
+<a class="anchor" id="XREFuibuttongroupparent"></a></dd>
+<dt><a id="index-uibuttongroup-parent"></a><span><code class="code">parent</code>: graphics handle<a class="copiable-link" href="#index-uibuttongroup-parent"> &para;</a></span></dt>
+<dd><p>Handle of the parent graphics object.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFuibuttongroupcategoryTextAppearance"></a><h4 class="subsubheading" id="Text-Appearance-3"><span>Text Appearance<a class="copiable-link" href="#Text-Appearance-3"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFuibuttongroupfontangle"></a></dd>
+<dt><a id="index-uibuttongroup-fontangle"></a><span><code class="code">fontangle</code>: <code class="code">&quot;italic&quot;</code> | {<code class="code">&quot;normal&quot;</code>}<a class="copiable-link" href="#index-uibuttongroup-fontangle"> &para;</a></span></dt>
+<dd><p>Control whether the font is italic or normal.
+</p>
+
+<a class="anchor" id="XREFuibuttongroupfontname"></a></dd>
+<dt><a id="index-uibuttongroup-fontname"></a><span><code class="code">fontname</code>: string, def. <code class="code">&quot;*&quot;</code><a class="copiable-link" href="#index-uibuttongroup-fontname"> &para;</a></span></dt>
+<dd><p>Name of font used for text rendering.  When setting this property, the text rendering engine will search for a matching font in your system.  If none is found then text is rendered using a default sans serif font (same as the default <code class="code">&quot;*&quot;</code> value).
+</p>
+<p>Programming Note: On systems that don’t use FontConfig natively (all but Linux), the font cache is built when Octave is installed.  You will need to run <code class="code">system (&quot;fc-cache -fv&quot;)</code> manually after installing new fonts.
+</p>
+
+<a class="anchor" id="XREFuibuttongroupfontsize"></a></dd>
+<dt><a id="index-uibuttongroup-fontsize"></a><span><code class="code">fontsize</code>: scalar, def. <code class="code">10</code><a class="copiable-link" href="#index-uibuttongroup-fontsize"> &para;</a></span></dt>
+<dd><p>Size of the font used for text rendering.  See <a class="xref" href="#XREFuibuttongroupfontunits">fontunits property</a>.
+</p>
+
+<a class="anchor" id="XREFuibuttongroupfontunits"></a></dd>
+<dt><a id="index-uibuttongroup-fontunits"></a><span><code class="code">fontunits</code>: <code class="code">&quot;centimeters&quot;</code> | <code class="code">&quot;inches&quot;</code> | <code class="code">&quot;normalized&quot;</code> | <code class="code">&quot;pixels&quot;</code> | {<code class="code">&quot;points&quot;</code>}<a class="copiable-link" href="#index-uibuttongroup-fontunits"> &para;</a></span></dt>
+<dd><p>Units used to interpret the <code class="code">&quot;fontsize&quot;</code> property.
+</p>
+
+<a class="anchor" id="XREFuibuttongroupfontweight"></a></dd>
+<dt><a id="index-uibuttongroup-fontweight"></a><span><code class="code">fontweight</code>: <code class="code">&quot;bold&quot;</code> | {<code class="code">&quot;normal&quot;</code>}<a class="copiable-link" href="#index-uibuttongroup-fontweight"> &para;</a></span></dt>
+<dd><p>Control the variant of the base font used for text rendering.
+</p>
+
+<a class="anchor" id="XREFuibuttongrouptitle"></a></dd>
+<dt><a id="index-uibuttongroup-title"></a><span><code class="code">title</code>: string, def. <code class="code">&quot;&quot;</code><a class="copiable-link" href="#index-uibuttongroup-title"> &para;</a></span></dt>
+<dd><p>The text for the buttongroup title.
+</p>
+
+<a class="anchor" id="XREFuibuttongrouptitleposition"></a></dd>
+<dt><a id="index-uibuttongroup-titleposition"></a><span><code class="code">titleposition</code>: <code class="code">&quot;centerbottom&quot;</code> | <code class="code">&quot;centertop&quot;</code> | <code class="code">&quot;leftbottom&quot;</code> | {<code class="code">&quot;lefttop&quot;</code>} | <code class="code">&quot;rightbottom&quot;</code> | <code class="code">&quot;righttop&quot;</code><a class="copiable-link" href="#index-uibuttongroup-titleposition"> &para;</a></span></dt>
+<dd><p>Relative position of the title within the buttongroup.
+</p>
+</dd>
+</dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Uicontextmenu-Properties.html">Uicontextmenu Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Uimenu-Properties.html">Uimenu Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Graphics-Object-Properties.html">Graphics Object Properties</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

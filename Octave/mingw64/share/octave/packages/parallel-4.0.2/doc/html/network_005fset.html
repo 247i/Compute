@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- General documentation for the parallel package for Octave.
+
+Copyright (C) 2016-2023 Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>network_set (parallel_doc)</title>
+
+<meta name="description" content="network_set (parallel_doc)">
+<meta name="keywords" content="network_set (parallel_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Cluster-execution.html" rel="up" title="Cluster execution">
+<link href="netcellfun.html" rel="next" title="netcellfun">
+<link href="network_005fget_005finfo.html" rel="prev" title="network_get_info">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<span id="network_005fset"></span><div class="header">
+<p>
+Next: <a href="netcellfun.html" accesskey="n" rel="next">netcellfun</a>, Previous: <a href="network_005fget_005finfo.html" accesskey="p" rel="prev">network_get_info</a>, Up: <a href="Cluster-execution.html" accesskey="u" rel="up">Cluster execution</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Set-network-properties"></span><h3 class="section">3.7 Set network properties</h3>
+<span id="index-network_005fset-1"></span>
+
+<span id="XREFnetwork_005fset"></span><dl>
+<dt id="index-network_005fset">Loadable Function: <em></em> <strong>network_set</strong> <em>(<var>connections</var>, <var>key</var>, <var>val</var>)</em></dt>
+<dd><p>Set the property named by <var>key</var> to the value <var>val</var> for each machine specified by <var>connections</var>.
+</p>
+<p>This function can only be successfully called at the client
+machine. See <code>pconnect</code> for a description of the
+<var>connections</var> variable. <var>connections</var> can contain all
+connections of the network, a subset of them, or a single
+connection.
+</p>
+<p>Possible values of <var>key</var>: <code>'nlocaljobs'</code>: configured number
+of local processes on the machine (usable by functions for parallel
+execution); needs a non-negative integer in <var>val</var>, <code>0</code> means
+not specified.
+</p>
+
+<p><strong>See also:</strong> <a href="pconnect.html#XREFpconnect">pconnect</a>, <a href="pserver.html#XREFpserver">pserver</a>, <a href="reval.html#XREFreval">reval</a>, <a href="psend.html#XREFpsend">psend</a>, <a href="precv.html#XREFprecv">precv</a>, <a href="sclose.html#XREFsclose">sclose</a>, <a href="Authentication.html#XREFparallel_005fgenerate_005fsrp_005fdata">parallel_generate_srp_data</a>, <a href="select_005fsockets.html#XREFselect_005fsockets">select_sockets</a>.
+</p></dd></dl>
+
+
+
+
+
+
+
+</body>
+</html>

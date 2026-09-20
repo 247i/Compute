@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Return Types of Operators and Functions (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Return Types of Operators and Functions (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Return Types of Operators and Functions (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Operators-and-Functions.html" rel="up" title="Operators and Functions">
+<link href="Mathematical-Considerations.html" rel="next" title="Mathematical Considerations">
+<link href="Sparse-Functions.html" rel="prev" title="Sparse Functions">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsubsection-level-extent" id="Return-Types-of-Operators-and-Functions">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Mathematical-Considerations.html" accesskey="n" rel="next">Mathematical Considerations</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Sparse-Functions.html" accesskey="p" rel="prev">Sparse Functions</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Operators-and-Functions.html" accesskey="u" rel="up">Basic Operators and Functions on Sparse Matrices</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsubsection" id="Return-Types-of-Operators-and-Functions-1"><span>22.1.4.2 Return Types of Operators and Functions<a class="copiable-link" href="#Return-Types-of-Operators-and-Functions-1"> &para;</a></span></h4>
+
+<p>The two basic reasons to use sparse matrices are to reduce the memory
+usage and to not have to do calculations on zero elements.  The two are
+closely related in that the computation time on a sparse matrix operator
+or function is roughly linear with the number of nonzero elements.
+</p>
+<p>Therefore, there is a certain density of nonzero elements of a matrix
+where it no longer makes sense to store it as a sparse matrix, but rather
+as a full matrix.  For this reason operators and functions that have a
+high probability of returning a full matrix will always return one.  For
+example adding a scalar constant to a sparse matrix will almost always
+make it a full matrix, and so the example,
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">speye (3) + 0
+&rArr;    1  0  0
+  0  1  0
+  0  0  1
+</pre></div></div>
+
+<p>returns a full matrix as can be seen.
+</p>
+<p>As all of the mixed operators and functions between full and sparse
+matrices exist, in general this does not cause any problems.  However,
+one area where it does cause a problem is where a sparse matrix is
+promoted to a full matrix, where subsequent operations would resparsify
+the matrix.  Such cases are rare, but can be artificially created, for
+example <code class="code">(fliplr (speye (3)) + speye (3)) - speye (3)</code> gives a full
+matrix when it should give a sparse one.  In general, where such cases
+occur, they impose only a small memory penalty.
+</p>
+<p>There is however one known case where this behavior of Octave&rsquo;s
+sparse matrices will cause a problem.  That is in the handling of the
+<em class="dfn">diag</em> function.  Whether <em class="dfn">diag</em> returns a sparse or full matrix
+depending on the type of its input arguments.  So
+</p>
+<div class="example">
+<pre class="example-preformatted"> a = diag (sparse ([1,2,3]), -1);
+</pre></div>
+
+<p>should return a sparse matrix.  To ensure this actually happens, the
+<em class="dfn">sparse</em> function, and other functions based on it like <em class="dfn">speye</em>,
+always returns a sparse matrix, even if the memory used will be larger
+than its full representation.
+</p>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Mathematical-Considerations.html">Mathematical Considerations</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Sparse-Functions.html">Sparse Functions</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Operators-and-Functions.html">Basic Operators and Functions on Sparse Matrices</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

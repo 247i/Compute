@@ -1,0 +1,13 @@
+prefix=/usr
+exec_prefix=/usr
+libdir=/usr/lib
+includedir=/usr/include
+ccompiler=/usr/bin/x86_64-w64-mingw32-gcc
+
+Name: netCDF
+Description: NetCDF Client Library for C
+URL: https://www.unidata.ucar.edu/netcdf
+Version: 4.9.3
+Libs: -L${libdir} -lnetcdf
+Libs.private: -lHDF5::HDF5 -lhdf5::hdf5_hl -lz -ldebug -lzstd -loptimized -lbz2 -lCURL::libcurl -lxml2
+Cflags: -I${includedir}

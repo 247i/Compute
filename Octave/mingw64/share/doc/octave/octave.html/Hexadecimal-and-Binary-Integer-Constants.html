@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Hexadecimal and Binary Integer Constants (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Hexadecimal and Binary Integer Constants (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Hexadecimal and Binary Integer Constants (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Integer-Data-Types.html" rel="up" title="Integer Data Types">
+<link href="Integer-Arithmetic.html" rel="next" title="Integer Arithmetic">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Hexadecimal-and-Binary-Integer-Constants">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Integer-Arithmetic.html" accesskey="n" rel="next">Integer Arithmetic</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Integer-Data-Types.html" accesskey="u" rel="up">Integer Data Types</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Hexadecimal-and-Binary-Integer-Constants-1"><span>4.4.1 Hexadecimal and Binary Integer Constants<a class="copiable-link" href="#Hexadecimal-and-Binary-Integer-Constants-1"> &para;</a></span></h4>
+
+<p>The use of hexadecimal or binary notation to define a number will automatically
+create an unsigned integer using a representation that is just large enough to
+hold the specified value.  For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">0b101        # uint8
+0x100        # uint16
+0xDEADBEEF   # uint32
+0x1DEADBEEF  # uint64
+</pre></div></div>
+
+<p>The storage class can be specified by adding a suffix.  Use &lsquo;<samp class="samp">s</samp>&rsquo; for signed
+integers and &lsquo;<samp class="samp">u</samp>&rsquo; for unsigned integers along with a size (&lsquo;<samp class="samp">8</samp>&rsquo;,
+&lsquo;<samp class="samp">16</samp>&rsquo;, &lsquo;<samp class="samp">32</samp>&rsquo;, &lsquo;<samp class="samp">64</samp>&rsquo;).  The use of the underscore separator &lsquo;<samp class="samp">_</samp>&rsquo;
+can improve readability.  For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">0b101s16        # int16
+0b101_s16       # int16, value and representation separated
+0xDEADBEEFs32   # int32
+0xDEADBEEF_u64  # uint64
+</pre></div></div>
+
+<p>Note that when defining matrices of integer constants the overall matrix will
+have the storage class of its first element.  The matrix
+<code class="code">[0x1; 0x100; 0x10000]</code> will be of type <code class="code">uint8</code> and the larger values
+will be truncated because of the saturation semantics of integer values.  To
+avoid this issue either: 1) declare the first integer to be of the desired size
+such as <code class="code">0x1u32; 0x100; 0x10000]</code>, or 2) pad constants in array
+expressions with leading zeros so that they use the same number of digits for
+each value such as <code class="code">[0x00_00_01; 0x00_01_00; 0x01_00_00]</code>.
+</p>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Integer-Arithmetic.html">Integer Arithmetic</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Integer-Data-Types.html">Integer Data Types</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

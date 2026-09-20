@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- Additional documentation for the optim package for Octave.
+
+Copyright © Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<title>mdsmax (optim_doc)</title>
+
+<meta name="description" content="mdsmax (optim_doc)">
+<meta name="keywords" content="mdsmax (optim_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Scalar-optimization.html" rel="up" title="Scalar optimization">
+<link href="adsmax.html" rel="next" title="adsmax">
+<link href="d2_005fmin.html" rel="prev" title="d2_min">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section-level-extent" id="mdsmax">
+<div class="nav-panel">
+<p>
+Next: <a href="adsmax.html" accesskey="n" rel="next">An alternating directions algorithm</a>, Previous: <a href="d2_005fmin.html" accesskey="p" rel="prev">Unconstrained Newton-like optimization</a>, Up: <a href="Scalar-optimization.html" accesskey="u" rel="up">Functions for optimization of a scalar objective function</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h3 class="section" id="A-multidirectional-search-algorithm"><span>1.7 A multidirectional search algorithm<a class="copiable-link" href="#A-multidirectional-search-algorithm"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-mdsmax"></a>
+
+<h4 class="subheading" id="Helptext_003a"><span>Helptext:<a class="copiable-link" href="#Helptext_003a"> &para;</a></span></h4>
+
+<a class="anchor" id="XREFmdsmax"></a><pre class="verbatim">MDSMAX  Multidirectional search method for direct search optimization.
+       [x, fmax, nf] = MDSMAX(FUN, x0, STOPIT, SAVIT) attempts to
+       maximize the function FUN, using the starting vector x0.
+       The method of multidirectional search is used.
+       Output arguments:
+              x    = vector yielding largest function value found,
+              fmax = function value at x,
+              nf   = number of function evaluations.
+       The iteration is terminated when either
+              - the relative size of the simplex is &lt;= STOPIT(1)
+                (default 1e-3),
+              - STOPIT(2) function evaluations have been performed
+                (default inf, i.e., no limit), or
+              - a function value equals or exceeds STOPIT(3)
+                (default inf, i.e., no test on function values).
+       The form of the initial simplex is determined by STOPIT(4):
+         STOPIT(4) = 0: regular simplex (sides of equal length, the default),
+         STOPIT(4) = 1: right-angled simplex.
+       Progress of the iteration is not shown if STOPIT(5) = 0 (default 1).
+       If a non-empty fourth parameter string SAVIT is present, then
+       `SAVE SAVIT x fmax nf' is executed after each inner iteration.
+       NB: x0 can be a matrix.  In the output argument, in SAVIT saves,
+           and in function calls, x has the same shape as x0.
+       MDSMAX(fun, x0, STOPIT, SAVIT, P1, P2,...) allows additional
+       arguments to be passed to fun, via feval(fun,x,P1,P2,...).
+
+This implementation uses 2n^2 elements of storage (two simplices), where x0
+is an n-vector.  It is based on the algorithm statement in [2, sec.3],
+modified so as to halve the storage (with a slight loss in readability).
+
+References:
+[1] V. J. Torczon, Multi-directional search: A direct search algorithm for
+    parallel machines, Ph.D. Thesis, Rice University, Houston, Texas, 1989.
+[2] V. J. Torczon, On the convergence of the multidirectional search
+    algorithm, SIAM J. Optimization, 1 (1991), pp. 123-145.
+[3] N. J. Higham, Optimization by direct search in matrix computations,
+    SIAM J. Matrix Anal. Appl, 14(2): 317-333, 1993.
+[4] N. J. Higham, Accuracy and Stability of Numerical Algorithms,
+       Second edition, Society for Industrial and Applied Mathematics,
+       Philadelphia, PA, 2002; sec. 20.5.
+
+</pre>
+
+</div>
+<hr>
+<div class="nav-panel">
+<p>
+Next: <a href="adsmax.html">An alternating directions algorithm</a>, Previous: <a href="d2_005fmin.html">Unconstrained Newton-like optimization</a>, Up: <a href="Scalar-optimization.html">Functions for optimization of a scalar objective function</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

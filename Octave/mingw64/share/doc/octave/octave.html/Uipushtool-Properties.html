@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Uipushtool Properties (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Uipushtool Properties (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Uipushtool Properties (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Graphics-Object-Properties.html" rel="up" title="Graphics Object Properties">
+<link href="Uitoggletool-Properties.html" rel="next" title="Uitoggletool Properties">
+<link href="Uitoolbar-Properties.html" rel="prev" title="Uitoolbar Properties">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsubsection-level-extent" id="Uipushtool-Properties">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Uitoggletool-Properties.html" accesskey="n" rel="next">Uitoggletool Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Uitoolbar-Properties.html" accesskey="p" rel="prev">Uitoolbar Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Graphics-Object-Properties.html" accesskey="u" rel="up">Graphics Object Properties</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsubsection" id="Uipushtool-Properties-1"><span>15.3.3.19 Uipushtool Properties<a class="copiable-link" href="#Uipushtool-Properties-1"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-Uipushtool-Properties"></a>
+
+
+
+<p>Properties of <code class="code">uipushtool</code> objects (see <a class="pxref" href="UI-Elements.html#XREFuipushtool">uipushtool</a>):
+</p>
+<h4 class="subsubheading" id="Categories_003a-18"><span>Categories:<a class="copiable-link" href="#Categories_003a-18"> &para;</a></span></h4>
+
+<p><a class="ref" href="#XREFuipushtoolcategoryAppearance">Appearance<!-- /@w --></a> | <a class="ref" href="#XREFuipushtoolcategoryCallbackExecution">Callback&nbsp;Execution<!-- /@w --></a> | <a class="ref" href="#XREFuipushtoolcategoryCreation_002fDeletion">Creation/Deletion<!-- /@w --></a> | <a class="ref" href="#XREFuipushtoolcategoryDisplay">Display<!-- /@w --></a> | <a class="ref" href="#XREFuipushtoolcategoryMouseInteraction">Mouse&nbsp;Interaction<!-- /@w --></a> | <a class="ref" href="#XREFuipushtoolcategoryObjectIdentification">Object&nbsp;Identification<!-- /@w --></a> | <a class="ref" href="#XREFuipushtoolcategoryParent_002fChildren">Parent/Children<!-- /@w --></a> | <a class="ref" href="#XREFuipushtoolcategoryPushtoolOperation">Pushtool&nbsp;Operation<!-- /@w --></a> 
+</p>
+<a class="anchor" id="XREFuipushtoolcategoryAppearance"></a><h4 class="subsubheading" id="Appearance-6"><span>Appearance<a class="copiable-link" href="#Appearance-6"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFuipushtool_005f_005fnamed_005ficon_005f_005f"></a></dd>
+<dt><a id="index-uipushtool-_005f_005fnamed_005ficon_005f_005f"></a><span><code class="code">__named_icon__</code>: string, def. <code class="code">&quot;&quot;</code><a class="copiable-link" href="#index-uipushtool-_005f_005fnamed_005ficon_005f_005f"> &para;</a></span></dt>
+<dd><p>The name of an bundled icon file to use as the image for the pushtool object.
+</p>
+
+<a class="anchor" id="XREFuipushtoolcdata"></a></dd>
+<dt><a id="index-uipushtool-cdata"></a><span><code class="code">cdata</code>: array, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-uipushtool-cdata"> &para;</a></span></dt>
+<dd><p>Image data used to represent the pushtool object, stored as a M x N x 3 RGB array.
+</p>
+
+<a class="anchor" id="XREFuipushtoolseparator"></a></dd>
+<dt><a id="index-uipushtool-separator"></a><span><code class="code">separator</code>: {<code class="code">&quot;off&quot;</code>} | <code class="code">&quot;on&quot;</code><a class="copiable-link" href="#index-uipushtool-separator"> &para;</a></span></dt>
+<dd><p>State indicating whether a separator line will be drawn next to the current pushtool position.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFuipushtoolcategoryCallbackExecution"></a><h4 class="subsubheading" id="Callback-Execution-18"><span>Callback Execution<a class="copiable-link" href="#Callback-Execution-18"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFuipushtoolbusyaction"></a></dd>
+<dt><a id="index-uipushtool-busyaction"></a><span><code class="code">busyaction</code>: <code class="code">&quot;cancel&quot;</code> | {<code class="code">&quot;queue&quot;</code>}<a class="copiable-link" href="#index-uipushtool-busyaction"> &para;</a></span></dt>
+<dd><p>Define how Octave handles the execution of this object&rsquo;s callback properties when it is unable to interrupt another object&rsquo;s executing callback.  This is only relevant when the currently executing callback object has its <code class="code">interruptible</code> property set to <code class="code">&quot;off&quot;</code>.  The <code class="code">busyaction</code> property of the interrupting callback object indicates whether the interrupting callback is queued (<code class="code">&quot;queue&quot;</code> (default)) or discarded (<code class="code">&quot;cancel&quot;</code>).
+See <a class="xref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFuipushtoolclickedcallback"></a></dd>
+<dt><a id="index-uipushtool-clickedcallback"></a><span><code class="code">clickedcallback</code>: string, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-uipushtool-clickedcallback"> &para;</a></span></dt>
+<dd><p>A string consisting of a valid Octave expression that will be executed whenever this control object is clicked.
+</p>
+
+<a class="anchor" id="XREFuipushtoolinterruptible"></a></dd>
+<dt><a id="index-uipushtool-interruptible"></a><span><code class="code">interruptible</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-uipushtool-interruptible"> &para;</a></span></dt>
+<dd><p>Specify whether this object&rsquo;s callback functions may be interrupted by other callbacks.  By default <code class="code">interruptible</code> is <code class="code">&quot;on&quot;</code> and callbacks that make use of <code class="code">drawnow</code>, <code class="code">figure</code>, <code class="code">waitfor</code>, <code class="code">getframe</code> or <code class="code">pause</code> functions are eventually interrupted.
+See <a class="xref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFuipushtoolcategoryCreation_002fDeletion"></a><h4 class="subsubheading" id="Creation_002fDeletion-16"><span>Creation/Deletion<a class="copiable-link" href="#Creation_002fDeletion-16"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFuipushtoolbeingdeleted"></a></dd>
+<dt><a id="index-uipushtool-beingdeleted"></a><span><code class="code">beingdeleted</code>: {<code class="code">&quot;off&quot;</code>} | <code class="code">&quot;on&quot;</code><a class="copiable-link" href="#index-uipushtool-beingdeleted"> &para;</a></span></dt>
+<dd><p>Property indicating that a function has initiated deletion of the object.  <code class="code">beingdeleted</code> is set to true until the object no longer exists.
+</p>
+
+<a class="anchor" id="XREFuipushtoolcreatefcn"></a></dd>
+<dt><a id="index-uipushtool-createfcn"></a><span><code class="code">createfcn</code>: string | function handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-uipushtool-createfcn"> &para;</a></span></dt>
+<dd><p>Callback function executed immediately after uipushtool has been created.  Function is set by using default property on root object, e.g., <code class="code">set (groot, &quot;defaultuipushtoolcreatefcn&quot;, 'disp (&quot;uipushtool created!&quot;)')</code>.
+</p>
+<p>For information on how to write graphics listener functions, see <a class="pxref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFuipushtooldeletefcn"></a></dd>
+<dt><a id="index-uipushtool-deletefcn"></a><span><code class="code">deletefcn</code>: string | function handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-uipushtool-deletefcn"> &para;</a></span></dt>
+<dd><p>Callback function executed immediately before uipushtool is deleted.
+</p>
+<p>For information on how to write graphics listener functions, see <a class="pxref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFuipushtoolcategoryDisplay"></a><h4 class="subsubheading" id="Display-16"><span>Display<a class="copiable-link" href="#Display-16"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFuipushtoolclipping"></a></dd>
+<dt><a id="index-uipushtool-clipping"></a><span><code class="code">clipping</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-uipushtool-clipping"> &para;</a></span></dt>
+<dd><p>If <code class="code">clipping</code> is <code class="code">&quot;on&quot;</code>, the uipushtool is clipped in its parent axes limits.
+</p>
+
+<a class="anchor" id="XREFuipushtoolvisible"></a></dd>
+<dt><a id="index-uipushtool-visible"></a><span><code class="code">visible</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-uipushtool-visible"> &para;</a></span></dt>
+<dd><p>If <code class="code">visible</code> is <code class="code">&quot;off&quot;</code>, the uipushtool is not rendered on screen.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFuipushtoolcategoryMouseInteraction"></a><h4 class="subsubheading" id="Mouse-Interaction-17"><span>Mouse Interaction<a class="copiable-link" href="#Mouse-Interaction-17"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFuipushtoolbuttondownfcn"></a></dd>
+<dt><a id="index-uipushtool-buttondownfcn"></a><span><code class="code">buttondownfcn</code>: string | function handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-uipushtool-buttondownfcn"> &para;</a></span></dt>
+<dd><p><code class="code">buttondownfcn</code> is unused.
+</p>
+
+<a class="anchor" id="XREFuipushtoolcontextmenu"></a></dd>
+<dt><a id="index-uipushtool-contextmenu"></a><span><code class="code">contextmenu</code>: graphics handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-uipushtool-contextmenu"> &para;</a></span></dt>
+<dd><p>Graphics handle of the uicontextmenu object that is currently associated to this uipushtool object.
+</p>
+
+<a class="anchor" id="XREFuipushtoolhittest"></a></dd>
+<dt><a id="index-uipushtool-hittest"></a><span><code class="code">hittest</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-uipushtool-hittest"> &para;</a></span></dt>
+<dd><p>Specify whether uipushtool processes mouse events or passes them to ancestors of the object.  When enabled, the object may respond to mouse clicks by evaluating the <code class="code">&quot;buttondownfcn&quot;</code>, showing the uicontextmenu, and eventually becoming the root <code class="code">&quot;currentobject&quot;</code>.  This property is only relevant when the object can accept mouse clicks which is determined by the <code class="code">&quot;pickableparts&quot;</code> property.  See <a class="xref" href="#XREFuipushtoolpickableparts">pickableparts&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFuipushtoolpickableparts"></a></dd>
+<dt><a id="index-uipushtool-pickableparts"></a><span><code class="code">pickableparts</code>: <code class="code">&quot;all&quot;</code> | <code class="code">&quot;none&quot;</code> | {<code class="code">&quot;visible&quot;</code>}<a class="copiable-link" href="#index-uipushtool-pickableparts"> &para;</a></span></dt>
+<dd><p>Specify whether uipushtool will accept mouse clicks.  By default, <code class="code">pickableparts</code> is <code class="code">&quot;visible&quot;</code> and only visible parts of the uipushtool or its children may react to mouse clicks.  When <code class="code">pickableparts</code> is <code class="code">&quot;all&quot;</code> both visible and invisible parts (or children) may react to mouse clicks.  When <code class="code">pickableparts</code> is <code class="code">&quot;none&quot;</code> mouse clicks on the object are ignored and transmitted to any objects underneath this one.  When an object is configured to accept mouse clicks the <code class="code">&quot;hittest&quot;</code> property will determine how they are processed.  See <a class="xref" href="#XREFuipushtoolhittest">hittest&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFuipushtoolselected"></a></dd>
+<dt><a id="index-uipushtool-selected"></a><span><code class="code">selected</code>: {<code class="code">&quot;off&quot;</code>} | <code class="code">&quot;on&quot;</code><a class="copiable-link" href="#index-uipushtool-selected"> &para;</a></span></dt>
+<dd><p>Property indicates whether this uipushtool is selected.
+</p>
+
+<a class="anchor" id="XREFuipushtoolselectionhighlight"></a></dd>
+<dt><a id="index-uipushtool-selectionhighlight"></a><span><code class="code">selectionhighlight</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-uipushtool-selectionhighlight"> &para;</a></span></dt>
+<dd><p>If <code class="code">selectionhighlight</code> is <code class="code">&quot;on&quot;</code>, then the uipushtool&rsquo;s selection state is visually highlighted.
+</p>
+
+<a class="anchor" id="XREFuipushtooltooltipstring"></a></dd>
+<dt><a id="index-uipushtool-tooltipstring"></a><span><code class="code">tooltipstring</code>: string, def. <code class="code">&quot;&quot;</code><a class="copiable-link" href="#index-uipushtool-tooltipstring"> &para;</a></span></dt>
+<dd><p>A text string that appears in a tooltip when the mouse pointer hovers over the pushtool object.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFuipushtoolcategoryObjectIdentification"></a><h4 class="subsubheading" id="Object-Identification-18"><span>Object Identification<a class="copiable-link" href="#Object-Identification-18"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFuipushtooltag"></a></dd>
+<dt><a id="index-uipushtool-tag"></a><span><code class="code">tag</code>: string, def. <code class="code">&quot;&quot;</code><a class="copiable-link" href="#index-uipushtool-tag"> &para;</a></span></dt>
+<dd><p>A user-defined string to label the graphics object.
+</p>
+
+<a class="anchor" id="XREFuipushtooltype"></a></dd>
+<dt><a id="index-uipushtool-type"></a><span><code class="code">type</code> (read-only): string<a class="copiable-link" href="#index-uipushtool-type"> &para;</a></span></dt>
+<dd><p>Class name of the graphics object.  <code class="code">type</code> is always <code class="code">&quot;uipushtool&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFuipushtooluserdata"></a></dd>
+<dt><a id="index-uipushtool-userdata"></a><span><code class="code">userdata</code>: Any Octave data, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-uipushtool-userdata"> &para;</a></span></dt>
+<dd><p>User-defined data to associate with the graphics object.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFuipushtoolcategoryParent_002fChildren"></a><h4 class="subsubheading" id="Parent_002fChildren-17"><span>Parent/Children<a class="copiable-link" href="#Parent_002fChildren-17"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFuipushtoolchildren"></a></dd>
+<dt><a id="index-uipushtool-children"></a><span><code class="code">children</code> (read-only): vector of graphics handles, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-uipushtool-children"> &para;</a></span></dt>
+<dd><p>Graphics handles of the uipushtool&rsquo;s children.
+</p>
+
+<a class="anchor" id="XREFuipushtoolhandlevisibility"></a></dd>
+<dt><a id="index-uipushtool-handlevisibility"></a><span><code class="code">handlevisibility</code>: <code class="code">&quot;callback&quot;</code> | <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-uipushtool-handlevisibility"> &para;</a></span></dt>
+<dd><p>If <code class="code">handlevisibility</code> is <code class="code">&quot;off&quot;</code>, the uipushtool&rsquo;s handle is not visible in its parent&rsquo;s <code class="code">&quot;children&quot;</code> property.
+</p>
+
+<a class="anchor" id="XREFuipushtoolparent"></a></dd>
+<dt><a id="index-uipushtool-parent"></a><span><code class="code">parent</code>: graphics handle<a class="copiable-link" href="#index-uipushtool-parent"> &para;</a></span></dt>
+<dd><p>Handle of the parent graphics object.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFuipushtoolcategoryPushtoolOperation"></a><h4 class="subsubheading" id="Pushtool-Operation"><span>Pushtool Operation<a class="copiable-link" href="#Pushtool-Operation"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFuipushtoolenable"></a></dd>
+<dt><a id="index-uipushtool-enable"></a><span><code class="code">enable</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-uipushtool-enable"> &para;</a></span></dt>
+<dd><p>Sets whether this pushtool object is active or is grayed out.
+</p>
+</dd>
+</dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Uitoggletool-Properties.html">Uitoggletool Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Uitoolbar-Properties.html">Uitoolbar Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Graphics-Object-Properties.html">Graphics Object Properties</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

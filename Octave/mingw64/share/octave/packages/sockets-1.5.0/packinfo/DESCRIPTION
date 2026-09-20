@@ -1,0 +1,13 @@
+Name: sockets
+Version: 1.5.0
+Date: 2025-12-26
+Author: John Swensen <jpswensen@comcast.net>
+Maintainer: Octave-Forge community <maintainers@octave.org>
+Title: Sockets
+Description: Socket functions for networking from within octave.
+Categories: Sockets
+Depends: octave (>= 3.6.0)
+License: GPLv3+
+Url: https://gnu-octave.github.io/octave-sockets/
+Repository: https://github.com/gnu-octave/octave-sockets/
+Tracker: https://github.com/gnu-octave/octave-sockets/issues

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- Additional documentation for the optim package for Octave.
+
+Copyright © Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<title>lm_feasible (optim_doc)</title>
+
+<meta name="description" content="lm_feasible (optim_doc)">
+<meta name="keywords" content="lm_feasible (optim_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Scalar-optimization.html" rel="up" title="Scalar optimization">
+<link href="octave_005fsqp.html" rel="next" title="octave_sqp">
+<link href="nonlin_005fmin.html" rel="prev" title="nonlin_min">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section-level-extent" id="lm_005ffeasible">
+<div class="nav-panel">
+<p>
+Next: <a href="octave_005fsqp.html" accesskey="n" rel="next">Backend wrapping core Octaves sqp function</a>, Previous: <a href="nonlin_005fmin.html" accesskey="p" rel="prev">Frontend nonlin_min for scalar non-linear optimization</a>, Up: <a href="Scalar-optimization.html" accesskey="u" rel="up">Functions for optimization of a scalar objective function</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h3 class="section" id="Default-backend-lm_005ffeasible-of-scalar-optimization"><span>1.2 Default backend lm_feasible of scalar optimization<a class="copiable-link" href="#Default-backend-lm_005ffeasible-of-scalar-optimization"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-lm_005ffeasible"></a>
+
+<p>A Levenberg/Marquardt-like algorithm, attempting to honour constraints
+throughout the course of optimization.  This means that the initial
+parameters must not violate constraints (to find an initial feasible set
+of parameters, e.g. core Octaves <code class="code">sqp</code> can be used
+(
+see
+<a class="ref" href="octave_005fsqp.html">Backend wrapping core Octaves sqp function</a>), by specifying an objective function which is
+constant or which returns a norm of the distances to the initial
+values).  The Hessian is either supplied by the user or is approximated
+by the BFGS algorithm.  Core Octaves <code class="code">sqp</code> performed better in some
+tests with <em class="emph">unconstrained</em> problems.
+</p>
+<p>Returned value <var class="var">cvg</var> will be <code class="code">2</code> or <code class="code">3</code> for success and
+<code class="code">0</code> or <code class="code">-4</code> for failure (
+see
+<a class="ref" href="nonlin_005fmin.html">Frontend nonlin_min for scalar non-linear optimization</a> for
+meaning). Returned structure <var class="var">outp</var> will have the fields
+<code class="code">niter</code>, <code class="code">nobjf</code>, and <code class="code">user_interaction</code>.
+</p>
+<p>Backend-specific defaults are: <code class="code">MaxIter</code>: 20, <code class="code">fract_prec</code>:
+<code class="code">zeros (size (parameters))</code>, <code class="code">max_fract_change</code>: <code class="code">Inf</code>
+for all parameters. The setting <code class="code">TolX</code> is not honoured.
+</p>
+<p>Interpretation of <code class="code">Display</code>: if set to <code class="code">&quot;iter&quot;</code>, currently
+only information on applying <code class="code">max_fract_change</code> is printed.
+</p>
+
+</div>
+
+
+
+</body>
+</html>

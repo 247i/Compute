@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Bug Criteria (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Bug Criteria (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Bug Criteria (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Reporting-Bugs.html" rel="up" title="Reporting Bugs">
+<link href="Bug-Tracker.html" rel="next" title="Bug Tracker">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+ul.mark-bullet {list-style-type: disc}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="appendixsubsec-level-extent" id="Bug-Criteria">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Bug-Tracker.html" accesskey="n" rel="next">Where to Report Bugs</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Reporting-Bugs.html" accesskey="u" rel="up">Reporting Bugs</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="appendixsubsec" id="Have-You-Found-a-Bug_003f"><span>D.2.1 Have You Found a Bug?<a class="copiable-link" href="#Have-You-Found-a-Bug_003f"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-bug-criteria"></a>
+
+<p>If you are not sure whether you have found a bug, here are some guidelines:
+</p>
+<ul class="itemize mark-bullet">
+<li><a class="index-entry-id" id="index-fatal-signal"></a>
+<a class="index-entry-id" id="index-core-dump"></a>
+If Octave gets a fatal signal, for any input whatever, that is
+a bug.  Reliable interpreters never crash.
+
+</li><li><a class="index-entry-id" id="index-incorrect-output"></a>
+<a class="index-entry-id" id="index-incorrect-results"></a>
+<a class="index-entry-id" id="index-results_002c-incorrect"></a>
+<a class="index-entry-id" id="index-answers_002c-incorrect"></a>
+<a class="index-entry-id" id="index-erroneous-results"></a>
+<a class="index-entry-id" id="index-wrong-answers"></a>
+If Octave produces incorrect results, for any input whatever,
+that is a bug.
+
+</li><li><a class="index-entry-id" id="index-undefined-behavior"></a>
+<a class="index-entry-id" id="index-undefined-function-value"></a>
+Some output may appear to be incorrect when it is in fact due to a
+program whose behavior is undefined, which happened by chance to give
+the desired results on another system.  For example, the range operator
+may produce different results because of differences in the way floating
+point arithmetic is handled on various systems.
+
+</li><li><a class="index-entry-id" id="index-erroneous-messages"></a>
+<a class="index-entry-id" id="index-incorrect-error-messages"></a>
+<a class="index-entry-id" id="index-error-messages_002c-incorrect"></a>
+If Octave produces an error message for valid input, that is a bug.
+
+</li><li><a class="index-entry-id" id="index-invalid-input"></a>
+If Octave does not produce an error message for invalid input, that is
+a bug.  However, you should note that your idea of &ldquo;invalid input&rdquo;
+might be my idea of &ldquo;an extension&rdquo; or &ldquo;support for traditional
+practice&rdquo;.
+
+</li><li><a class="index-entry-id" id="index-improving-Octave"></a>
+<a class="index-entry-id" id="index-suggestions"></a>
+If you are an experienced user of programs like Octave, your suggestions
+for improvement are welcome in any case.
+</li></ul>
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Bug-Tracker.html">Where to Report Bugs</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Reporting-Bugs.html">Reporting Bugs</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

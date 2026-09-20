@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Evaluation (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Evaluation (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Evaluation (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html" rel="up" title="Top">
+<link href="Statements.html" rel="next" title="Statements">
+<link href="Expressions.html" rel="prev" title="Expressions">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="chapter-level-extent" id="Evaluation">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Statements.html" accesskey="n" rel="next">Statements</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Expressions.html" accesskey="p" rel="prev">Expressions</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h2 class="chapter" id="Evaluation-1"><span>9 Evaluation<a class="copiable-link" href="#Evaluation-1"> &para;</a></span></h2>
+
+<p>Normally, you evaluate expressions simply by typing them at the Octave
+prompt, or by asking Octave to interpret commands that you have saved in
+a file.
+</p>
+<p>Sometimes, you may find it necessary to evaluate an expression that has
+been computed and stored in a string, which is exactly what the
+<code class="code">eval</code> function lets you do.
+</p>
+<a class="anchor" id="XREFeval"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-eval"><span><strong class="def-name">eval</strong> <code class="def-code-arguments">(<var class="var">try</var>)</code><a class="copiable-link" href="#index-eval"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-eval-1"><span><strong class="def-name">eval</strong> <code class="def-code-arguments">(<var class="var">try</var>, <var class="var">catch</var>)</code><a class="copiable-link" href="#index-eval-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-eval-2"><span><code class="def-type">[<var class="var">var1</var>, &hellip;] =</code> <strong class="def-name">eval</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-eval-2"> &para;</a></span></dt>
+<dd><p>Parse the string <var class="var">try</var> and evaluate it as if it were an Octave program.
+</p>
+<p>If execution fails, evaluate the optional string <var class="var">catch</var>.
+</p>
+<p>The string <var class="var">try</var> is evaluated in the current context, so any results remain
+available after <code class="code">eval</code> returns.
+</p>
+<p>The following example creates the variable <var class="var">A</var> with the approximate value
+of pi (3.1416) in the current workspace.
+</p>
+<div class="example">
+<pre class="example-preformatted">eval ('A = acos (-1);');
+</pre></div>
+
+<p>If an error occurs during the evaluation of <var class="var">try</var> then the <var class="var">catch</var>
+string is evaluated, as the following example shows:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">eval ('error (&quot;This is a bad example&quot;);',
+      'printf (&quot;This error occurred:\n%s\n&quot;, lasterr ());');
+     &#8867; This error occurred:
+        This is a bad example
+</pre></div></div>
+
+<p>Rather than create variables as part of the code string <var class="var">try</var>, it is
+clearer and slightly faster to assign the results of evaluation to an output
+variable(s).  The first example can be re-written as
+</p>
+<div class="example">
+<pre class="example-preformatted">A = eval ('acos (-1);');
+</pre></div>
+
+<p>Programming Note: if you are only using <code class="code">eval</code> as an error-capturing
+mechanism, rather than for the execution of arbitrary code strings, consider
+using <code class="code">try</code>/<code class="code">catch</code> blocks or
+<code class="code">unwind_protect</code>/<code class="code">unwind_protect_cleanup</code> blocks instead.  These
+techniques have higher performance and don&rsquo;t introduce the security
+considerations that the evaluation of arbitrary code does.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Evaluation-in-a-Different-Context.html#XREFevalin">evalin</a>, <a class="ref" href="#XREFevalc">evalc</a>, <a class="ref" href="Evaluation-in-a-Different-Context.html#XREFassignin">assignin</a>, <a class="ref" href="Calling-a-Function-by-its-Name.html#XREFfeval">feval</a>, <a class="ref" href="Keywords.html#XREFtry">try</a>, <a class="ref" href="Keywords.html#XREFunwind_005fprotect">unwind_protect</a>.
+</p></dd></dl>
+
+
+<p>The <code class="code">evalc</code> function additionally captures any console output
+produced by the evaluated expression.
+</p>
+<a class="anchor" id="XREFevalc"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-evalc"><span><code class="def-type"><var class="var">s</var> =</code> <strong class="def-name">evalc</strong> <code class="def-code-arguments">(<var class="var">try</var>)</code><a class="copiable-link" href="#index-evalc"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-evalc-1"><span><code class="def-type"><var class="var">s</var> =</code> <strong class="def-name">evalc</strong> <code class="def-code-arguments">(<var class="var">try</var>, <var class="var">catch</var>)</code><a class="copiable-link" href="#index-evalc-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-evalc-2"><span><code class="def-type">[~, <var class="var">var1</var>, &hellip;] =</code> <strong class="def-name">evalc</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-evalc-2"> &para;</a></span></dt>
+<dd><p>Parse and evaluate the string <var class="var">try</var> as if it were an Octave program,
+while capturing the output into the return variable <var class="var">s</var>.
+</p>
+<p>If execution fails, evaluate the optional string <var class="var">catch</var>.
+</p>
+<p>This function behaves like <code class="code">eval</code>, but any output or warning messages
+which would normally be written to the console are captured and returned in
+the string <var class="var">s</var>.
+</p>
+<p>If the first output <var class="var">s</var> is ignored with <code class="code">~</code> then the actual results
+of the code evaluation (not the string capture) will be assigned to output
+variables <var class="var">var1</var>, <var class="var">var2</var>, etc.
+</p>
+<p>Example 1:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">s = evalc (&quot;t = 42&quot;), t
+  &rArr;  s = t =  42
+
+  &rArr;  t =  42
+</pre></div></div>
+
+<p>Example 2:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">[~, p] = evalc (&quot;pi&quot;)
+  &rArr;  p = 3.1416
+</pre></div></div>
+
+<p>Programming Note: The <code class="code">diary</code> is disabled during the execution of this
+function.  When <code class="code">system</code> is used, any output produced by external programs
+is <em class="emph">not</em> captured, unless their output is captured by the <code class="code">system</code>
+function itself.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFeval">eval</a>, <a class="ref" href="Diary-and-Echo-Commands.html#XREFdiary">diary</a>.
+</p></dd></dl>
+
+
+
+<ul class="mini-toc">
+<li><a href="Calling-a-Function-by-its-Name.html" accesskey="1">Calling a Function by its Name</a></li>
+<li><a href="Evaluation-in-a-Different-Context.html" accesskey="2">Evaluation in a Different Context</a></li>
+</ul>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Statements.html">Statements</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Expressions.html">Expressions</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

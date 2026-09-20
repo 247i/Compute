@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Legend Properties (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Legend Properties (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Legend Properties (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Graphics-Object-Properties.html" rel="up" title="Graphics Object Properties">
+<link href="Line-Properties.html" rel="next" title="Line Properties">
+<link href="Axes-Properties.html" rel="prev" title="Axes Properties">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsubsection-level-extent" id="Legend-Properties">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Line-Properties.html" accesskey="n" rel="next">Line Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Axes-Properties.html" accesskey="p" rel="prev">Axes Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Graphics-Object-Properties.html" accesskey="u" rel="up">Graphics Object Properties</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsubsection" id="Legend-Properties-1"><span>15.3.3.4 Legend Properties<a class="copiable-link" href="#Legend-Properties-1"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-Legend-Properties"></a>
+
+
+
+<p>Properties of <code class="code">legend</code> objects (see <a class="pxref" href="Plot-Annotations.html#XREFlegend">legend</a>):
+</p>
+<h4 class="subsubheading" id="Categories_003a-3"><span>Categories:<a class="copiable-link" href="#Categories_003a-3"> &para;</a></span></h4>
+
+<p><a class="ref" href="#XREFlegendcategoryCallbackExecution">Callback&nbsp;Execution<!-- /@w --></a> | <a class="ref" href="#XREFlegendcategoryLayout">Layout<!-- /@w --></a> | <a class="ref" href="#XREFlegendcategoryLegendAppearance">Legend&nbsp;Appearance<!-- /@w --></a> | <a class="ref" href="#XREFlegendcategoryObjectIdentification">Object&nbsp;Identification<!-- /@w --></a> | <a class="ref" href="#XREFlegendcategoryObjectPosition">Object&nbsp;Position<!-- /@w --></a> | <a class="ref" href="#XREFlegendcategoryTextAppearance">Text&nbsp;Appearance<!-- /@w --></a> 
+</p>
+<a class="anchor" id="XREFlegendcategoryCallbackExecution"></a><h4 class="subsubheading" id="Callback-Execution-3"><span>Callback Execution<a class="copiable-link" href="#Callback-Execution-3"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFlegenditemhitfcn"></a></dd>
+<dt><a id="index-legend-itemhitfcn"></a><span><code class="code">itemhitfcn</code>: def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-legend-itemhitfcn"> &para;</a></span></dt>
+<dd><p>Callback function which is executed when a legend item is clicked.  See <a class="xref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+<p>The callback function must have the following prototype <code class="code">fcn (hlegend, evnt)</code>, where <code class="code">hlegend</code> is the legend object handle and <code class="code">evnt</code> is a structure with the following fields:
+</p><dl class="table">
+<dt><code class="code">Peer</code></dt>
+<dd><p>Handle of the plot object to which the clicked item is associated.
+</p></dd>
+<dt><code class="code">Region</code></dt>
+<dd><p>May be <code class="code">&quot;icon&quot;</code> or <code class="code">&quot;label&quot;</code> depending on which part of the item is clicked.
+</p></dd>
+<dt><code class="code">SelectionType</code></dt>
+<dd><p>One of <code class="code">&quot;normal&quot;</code>, <code class="code">&quot;extend&quot;</code>, <code class="code">&quot;open&quot;</code>, or <code class="code">&quot;alt&quot;</code>.  See <a class="xref" href="Figure-Properties.html#XREFfigureselectiontype">Figure&nbsp;<code class="code">&quot;selectiontype&quot;</code><!-- /@w --></a>.
+</p></dd>
+<dt><code class="code">Source</code></dt>
+<dd><p>Handle of the legend object.
+</p></dd>
+<dt><code class="code">EventName</code></dt>
+<dd><p>Name is <code class="code">&quot;ItemHit&quot;</code>.
+</p></dd>
+</dl>
+
+</dd>
+</dl>
+
+<a class="anchor" id="XREFlegendcategoryLayout"></a><h4 class="subsubheading" id="Layout"><span>Layout<a class="copiable-link" href="#Layout"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFlegendautoupdate"></a></dd>
+<dt><a id="index-legend-autoupdate"></a><span><code class="code">autoupdate</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-legend-autoupdate"> &para;</a></span></dt>
+<dd><p>Control whether the number of legend items is updated automatically when objects are added to (or deleted from) the peer axes.
+For example:
+</p><div class="example">
+<div class="group"><pre class="example-preformatted">## Create a single plot with its legend.
+figure ();
+plot (1:10);
+legend (&quot;Slope 1&quot;);
+## Add another plot and specify its displayname so that
+## the legend is correctly updated.
+hold on;
+plot ((1:10) * 2, &quot;displayname&quot;, &quot;Slope 2&quot;);
+## Stop automatic updates for further plots.
+legend (&quot;autoupdate&quot;, &quot;off&quot;);
+plot ((1:10) * 3);
+</pre></div></div>
+
+
+<a class="anchor" id="XREFlegendnumcolumns"></a></dd>
+<dt><a id="index-legend-numcolumns"></a><span><code class="code">numcolumns</code>: scalar integer, def. <code class="code">1</code><a class="copiable-link" href="#index-legend-numcolumns"> &para;</a></span></dt>
+<dd><p>Control the number of columns used in the layout of the legend items.  For example:
+</p><div class="example">
+<div class="group"><pre class="example-preformatted">figure ();
+plot (rand (30));
+legend (&quot;numcolumns&quot;, 3);
+</pre></div></div>
+<p>Setting <code class="code">numcolumns</code> also forces the <code class="code">numcolumnsmode</code> property to be set to <code class="code">&quot;manual&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFlegendorientation"></a></dd>
+<dt><a id="index-legend-orientation"></a><span><code class="code">orientation</code>: <code class="code">&quot;horizontal&quot;</code> | {<code class="code">&quot;vertical&quot;</code>}<a class="copiable-link" href="#index-legend-orientation"> &para;</a></span></dt>
+<dd><p>Control whether the legend items are arranged vertically (column-wise) or horizontally (row-wise).
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFlegendcategoryLegendAppearance"></a><h4 class="subsubheading" id="Legend-Appearance"><span>Legend Appearance<a class="copiable-link" href="#Legend-Appearance"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFlegendbox"></a></dd>
+<dt><a id="index-legend-box"></a><span><code class="code">box</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-legend-box"> &para;</a></span></dt>
+<dd><p>Control whether the legend has a surrounding box.
+</p>
+
+<a class="anchor" id="XREFlegendcolor"></a></dd>
+<dt><a id="index-legend-color"></a><span><code class="code">color</code>: colorspec, def. <code class="code">[1   1   1]</code><a class="copiable-link" href="#index-legend-color"> &para;</a></span></dt>
+<dd><p>Color of the legend background.  See <a class="xref" href="Colors.html">colorspec</a>.
+</p>
+
+<a class="anchor" id="XREFlegendedgecolor"></a></dd>
+<dt><a id="index-legend-edgecolor"></a><span><code class="code">edgecolor</code>: colorspec, def. <code class="code">[0.1500   0.1500   0.1500]</code><a class="copiable-link" href="#index-legend-edgecolor"> &para;</a></span></dt>
+<dd><p>Control the color of the legend outline.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFlegendcategoryObjectIdentification"></a><h4 class="subsubheading" id="Object-Identification-3"><span>Object Identification<a class="copiable-link" href="#Object-Identification-3"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFlegendtitle"></a></dd>
+<dt><a id="index-legend-title"></a><span><code class="code">title</code>: graphics handle<a class="copiable-link" href="#index-legend-title"> &para;</a></span></dt>
+<dd><p>Graphics handle of the title text object.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFlegendcategoryObjectPosition"></a><h4 class="subsubheading" id="Object-Position-2"><span>Object Position<a class="copiable-link" href="#Object-Position-2"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFlegendlocation"></a></dd>
+<dt><a id="index-legend-location"></a><span><code class="code">location</code>: <code class="code">&quot;best&quot;</code> | <code class="code">&quot;bestoutside&quot;</code> | <code class="code">&quot;east&quot;</code> | <code class="code">&quot;eastoutside&quot;</code> | <code class="code">&quot;none&quot;</code> | <code class="code">&quot;north&quot;</code> | {<code class="code">&quot;northeast&quot;</code>} | <code class="code">&quot;northeastoutside&quot;</code> | <code class="code">&quot;northoutside&quot;</code> | <code class="code">&quot;northwest&quot;</code> | <code class="code">&quot;northwestoutside&quot;</code> | <code class="code">&quot;south&quot;</code> | <code class="code">&quot;southeast&quot;</code> | <code class="code">&quot;southeastoutside&quot;</code> | <code class="code">&quot;southoutside&quot;</code> | <code class="code">&quot;southwest&quot;</code> | <code class="code">&quot;southwestoutside&quot;</code> | <code class="code">&quot;west&quot;</code> | <code class="code">&quot;westoutside&quot;</code><a class="copiable-link" href="#index-legend-location"> &para;</a></span></dt>
+<dd><p>Control the location of the legend.
+</p>
+
+<a class="anchor" id="XREFlegendposition"></a></dd>
+<dt><a id="index-legend-position"></a><span><code class="code">position</code>: four-element vector<a class="copiable-link" href="#index-legend-position"> &para;</a></span></dt>
+<dd><p>Specify the position of the legend excluding its title.  The four elements of the vector are the coordinates of the lower left corner and width and height of the legend.  Changing this property also switches the <code class="code">&quot;location&quot;</code> to <code class="code">&quot;none&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFlegendunits"></a></dd>
+<dt><a id="index-legend-units"></a><span><code class="code">units</code>: <code class="code">&quot;centimeters&quot;</code> | <code class="code">&quot;characters&quot;</code> | <code class="code">&quot;inches&quot;</code> | {<code class="code">&quot;normalized&quot;</code>} | <code class="code">&quot;pixels&quot;</code> | <code class="code">&quot;points&quot;</code><a class="copiable-link" href="#index-legend-units"> &para;</a></span></dt>
+<dd><p>Units used to interpret the <code class="code">&quot;position&quot;</code> property.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFlegendcategoryTextAppearance"></a><h4 class="subsubheading" id="Text-Appearance-1"><span>Text Appearance<a class="copiable-link" href="#Text-Appearance-1"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFlegendfontangle"></a></dd>
+<dt><a id="index-legend-fontangle"></a><span><code class="code">fontangle</code>: <code class="code">&quot;italic&quot;</code> | {<code class="code">&quot;normal&quot;</code>}<a class="copiable-link" href="#index-legend-fontangle"> &para;</a></span></dt>
+<dd><p>Control whether the font is italic or normal.
+</p>
+
+<a class="anchor" id="XREFlegendfontname"></a></dd>
+<dt><a id="index-legend-fontname"></a><span><code class="code">fontname</code>: string, def. <code class="code">&quot;*&quot;</code><a class="copiable-link" href="#index-legend-fontname"> &para;</a></span></dt>
+<dd><p>Name of font used for text rendering.  When setting this property, the text rendering engine will search for a matching font in your system.  If none is found then text is rendered using a default sans serif font (same as the default <code class="code">&quot;*&quot;</code> value).
+</p>
+<p>Programming Note: On systems that don’t use FontConfig natively (all but Linux), the font cache is built when Octave is installed.  You will need to run <code class="code">system (&quot;fc-cache -fv&quot;)</code> manually after installing new fonts.
+</p>
+
+<a class="anchor" id="XREFlegendfontsize"></a></dd>
+<dt><a id="index-legend-fontsize"></a><span><code class="code">fontsize</code>: scalar, def. <code class="code">9</code><a class="copiable-link" href="#index-legend-fontsize"> &para;</a></span></dt>
+<dd><p>Size of the font used for text rendering.  See <a class="xref" href="#XREFlegendfontunits">fontunits property</a>.  Setting <code class="code">fontsize</code> also forces the <code class="code">fontsizemode</code> property to be set to <code class="code">&quot;manual&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFlegendfontunits"></a></dd>
+<dt><a id="index-legend-fontunits"></a><span><code class="code">fontunits</code>: <code class="code">&quot;centimeters&quot;</code> | <code class="code">&quot;inches&quot;</code> | <code class="code">&quot;normalized&quot;</code> | <code class="code">&quot;pixels&quot;</code> | {<code class="code">&quot;points&quot;</code>}<a class="copiable-link" href="#index-legend-fontunits"> &para;</a></span></dt>
+<dd><p>Units used to interpret the <code class="code">&quot;fontsize&quot;</code> property.
+</p>
+
+<a class="anchor" id="XREFlegendfontweight"></a></dd>
+<dt><a id="index-legend-fontweight"></a><span><code class="code">fontweight</code>: <code class="code">&quot;bold&quot;</code> | {<code class="code">&quot;normal&quot;</code>}<a class="copiable-link" href="#index-legend-fontweight"> &para;</a></span></dt>
+<dd><p>Control the variant of the base font used for text rendering.
+</p>
+
+<a class="anchor" id="XREFlegendstring"></a></dd>
+<dt><a id="index-legend-string"></a><span><code class="code">string</code>: string | cell array of strings<a class="copiable-link" href="#index-legend-string"> &para;</a></span></dt>
+<dd><p>List of labels for the legend items.  For example:
+</p><div class="example">
+<div class="group"><pre class="example-preformatted">figure ();
+plot (rand (20));
+## Let legend choose names automatically
+hl = legend ();
+## Selectively change some names
+str = get (hl, &quot;string&quot;);
+str(1:5:end) = &quot;Garbage&quot;;
+set (hl, &quot;string&quot;, str);
+</pre></div></div>
+
+
+<a class="anchor" id="XREFlegendtextcolor"></a></dd>
+<dt><a id="index-legend-textcolor"></a><span><code class="code">textcolor</code>: colorspec, def. <code class="code">[0   0   0]</code><a class="copiable-link" href="#index-legend-textcolor"> &para;</a></span></dt>
+<dd><p>Control the color of the text strings for legend items.
+</p>
+</dd>
+</dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Line-Properties.html">Line Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Axes-Properties.html">Axes Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Graphics-Object-Properties.html">Graphics Object Properties</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

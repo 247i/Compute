@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Creating a Class (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Creating a Class (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Creating a Class (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Object-Oriented-Programming.html" rel="up" title="Object Oriented Programming">
+<link href="Class-Methods.html" rel="next" title="Class Methods">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Creating-a-Class">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Class-Methods.html" accesskey="n" rel="next">Class Methods</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Object-Oriented-Programming.html" accesskey="u" rel="up">Object Oriented Programming</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Creating-a-Class-1"><span>34.1 Creating a Class<a class="copiable-link" href="#Creating-a-Class-1"> &para;</a></span></h3>
+
+<p>This chapter illustrates user-defined classes and object oriented programming
+through a custom class designed for polynomials.  This class was chosen for
+its simplicity which does not distract unnecessarily from the discussion of
+the programming features of Octave.  Even so, a bit of background on the goals
+of the polynomial class is necessary before the syntax and techniques of Octave
+object oriented programming are introduced.
+</p>
+<p>The polynomial class is used to represent polynomials of the form
+</p>
+<div class="example">
+<pre class="example-preformatted">a0 + a1 * x + a2 * x^2 + ... + an * x^n
+</pre></div>
+
+<p>where
+a0, a1, etc. are real scalars.
+Thus the polynomial can be represented by a vector
+</p>
+<div class="example">
+<pre class="example-preformatted">a = [a0, a1, a2, ..., an];
+</pre></div>
+
+<a class="index-entry-id" id="index-_0040-class-methods"></a>
+<p>This is a sufficient specification to begin writing the constructor for the
+polynomial class.  All object oriented classes in Octave must be located in a
+directory that is the name of the class prepended with the &lsquo;<samp class="samp">@</samp>&rsquo; symbol.
+For example, the polynomial class will have all of its methods defined in the
+<samp class="file">@polynomial</samp> directory.
+</p>
+<p>The constructor for the class must be the name of the class itself; in this
+example the constructor resides in the file <samp class="file">@polynomial/polynomial.m</samp>.
+Ideally, even when the constructor is called with no arguments it should return
+a valid object.  A constructor for the polynomial class might look like
+</p>
+<div class="example">
+<pre class="verbatim">## -*- texinfo -*-
+## @deftypefn  {} {} polynomial ()
+## @deftypefnx {} {} polynomial (@var{a})
+## Create a polynomial object representing the polynomial
+##
+## @example
+## a0 + a1 * x + a2 * x^2 + @dots{} + an * x^n
+## @end example
+##
+## @noindent
+## from a vector of coefficients [a0 a1 a2 @dots{} an].
+## @end deftypefn
+
+function p = polynomial (a)
+
+  if (nargin == 0)
+    p.poly = 0;
+    p = class (p, &quot;polynomial&quot;);
+  else
+    if (isa (a, &quot;polynomial&quot;))
+      p = a;
+    elseif (isreal (a) &amp;&amp; isvector (a))
+      p.poly = a(:).';  # force row vector
+      p = class (p, &quot;polynomial&quot;);
+    else
+      error (&quot;@polynomial: A must be a real vector&quot;);
+    endif
+  endif
+
+endfunction
+</pre></div>
+
+<p>Note that the return value of the constructor must be the output of the
+<code class="code">class</code> function.  The first argument to the <code class="code">class</code> function is a
+structure and the second is the name of the class itself.  An example of
+calling the class constructor to create an instance is
+</p>
+<div class="example">
+<pre class="example-preformatted">p = polynomial ([1, 0, 1]);
+</pre></div>
+
+<p>Methods are defined by m-files in the class directory and can have embedded
+documentation the same as any other m-file.  The help for the constructor can
+be obtained by using the constructor name alone, that is, for the polynomial
+constructor <code class="code">help polynomial</code> will return the help string.  Help can be
+restricted to a particular class by using the class directory name followed
+by the method.  For example, <code class="code">help @polynomial/polynomial</code> is another
+way of displaying the help string for the polynomial constructor.  This second
+means is the only way to obtain help for the overloaded methods and functions
+of a class.
+</p>
+<p>The same specification mechanism can be used wherever Octave expects a function
+name.  For example <code class="code">type @polynomial/disp</code> will print the code of the
+<code class="code">disp</code> method of the polynomial class to the screen, and
+<code class="code">dbstop @polynomial/disp</code> will set a breakpoint at the first executable
+line of the <code class="code">disp</code> method of the polynomial class.
+</p>
+<p>To check whether a variable belongs to a user class, the <code class="code">isobject</code> and
+<code class="code">isa</code> functions can be used.  For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">p = polynomial ([1, 0, 1]);
+isobject (p)
+  &rArr;  1
+isa (p, &quot;polynomial&quot;)
+  &rArr;  1
+</pre></div></div>
+
+<a class="anchor" id="XREFisobject"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-isobject"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">isobject</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-isobject"> &para;</a></span></dt>
+<dd><p>Return true if <var class="var">x</var> is a class object.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Built_002din-Data-Types.html#XREFclass">class</a>, <a class="ref" href="Data-Types.html#XREFtypeinfo">typeinfo</a>, <a class="ref" href="Built_002din-Data-Types.html#XREFisa">isa</a>, <a class="ref" href="#XREFismethod">ismethod</a>, <a class="ref" href="Introduction-to-Graphics-Structures.html#XREFisprop">isprop</a>.
+</p></dd></dl>
+
+
+<p>The available methods of a class can be displayed with the <code class="code">methods</code>
+function.
+</p>
+<a class="anchor" id="XREFmethods"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-methods"><span><strong class="def-name">methods</strong> <code class="def-code-arguments">(<var class="var">obj</var>)</code><a class="copiable-link" href="#index-methods"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-methods-1"><span><strong class="def-name">methods</strong> <code class="def-code-arguments">(&quot;<var class="var">classname</var>&quot;)</code><a class="copiable-link" href="#index-methods-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-methods-2"><span><strong class="def-name">methods</strong> <code class="def-code-arguments">(&hellip;, &quot;-full&quot;)</code><a class="copiable-link" href="#index-methods-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-methods-3"><span><code class="def-type"><var class="var">mtds</var> =</code> <strong class="def-name">methods</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-methods-3"> &para;</a></span></dt>
+<dd><p>List the names of the public methods for the object <var class="var">obj</var> or the
+named class <var class="var">classname</var>.
+</p>
+<p><var class="var">obj</var> may be an Octave class object or a Java object.
+<var class="var">classname</var> may be the name of an Octave class or a Java class.
+</p>
+<p>If the optional argument <code class="code">&quot;-full&quot;</code> is given then Octave returns
+full method signatures which include output type, name of method,
+and the number and type of inputs.
+</p>
+<p>When called with no output arguments, <code class="code">methods</code> prints the list of
+method names to the screen.  Otherwise, the output argument <var class="var">mtds</var>
+contains the list in a cell array of strings.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFismethod">ismethod</a>, <a class="ref" href="Properties.html#XREFproperties">properties</a>, <a class="ref" href="Manipulating-Structures.html#XREFfieldnames">fieldnames</a>.
+</p></dd></dl>
+
+
+<p>To inquire whether a particular method exists for a user class, the
+<code class="code">ismethod</code> function can be used.
+</p>
+<a class="anchor" id="XREFismethod"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-ismethod"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">ismethod</strong> <code class="def-code-arguments">(<var class="var">obj</var>, <var class="var">method</var>)</code><a class="copiable-link" href="#index-ismethod"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ismethod-1"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">ismethod</strong> <code class="def-code-arguments">(<var class="var">class_name</var>, <var class="var">method</var>)</code><a class="copiable-link" href="#index-ismethod-1"> &para;</a></span></dt>
+<dd><p>Return true if the string <var class="var">method</var> is a valid method of the object
+<var class="var">obj</var> or of the class <var class="var">clsname</var>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Introduction-to-Graphics-Structures.html#XREFisprop">isprop</a>, <a class="ref" href="#XREFisobject">isobject</a>, <a class="ref" href="Java-Interface-Functions.html#XREFisjava">isjava</a>, <a class="ref" href="#XREFmethods">methods</a>.
+</p></dd></dl>
+
+
+<p>For a polynomial class it makes sense to have a method to compute its roots.
+</p>
+<div class="example">
+<div class="group"><pre class="verbatim">function r = roots (p)
+  r = roots (fliplr (p.poly));
+endfunction
+</pre></div></div>
+
+<p>We can check for the existence of the <code class="code">roots</code>-method by calling:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">p = polynomial ([1, 0, 1]);
+ismethod (p, &quot;roots&quot;)
+  &rArr;  1
+</pre></div></div>
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Class-Methods.html">Class Methods</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Object-Oriented-Programming.html">Object Oriented Programming</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

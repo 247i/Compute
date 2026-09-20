@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Basic Statistical Functions (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Basic Statistical Functions (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Basic Statistical Functions (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Statistics.html" rel="up" title="Statistics">
+<link href="Forecasting-Metrics.html" rel="next" title="Forecasting Metrics">
+<link href="Statistics-on-Sliding-Windows-of-Data.html" rel="prev" title="Statistics on Sliding Windows of Data">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Basic-Statistical-Functions">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Forecasting-Metrics.html" accesskey="n" rel="next">Forecasting Metrics</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Statistics-on-Sliding-Windows-of-Data.html" accesskey="p" rel="prev">Statistics on Sliding Windows of Data</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Statistics.html" accesskey="u" rel="up">Statistics</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Basic-Statistical-Functions-1"><span>26.3 Basic Statistical Functions<a class="copiable-link" href="#Basic-Statistical-Functions-1"> &para;</a></span></h3>
+
+<p>Octave supports various helpful statistical functions.  Many are useful as
+initial steps to prepare a data set for further analysis.  Others provide
+different measures from those of the basic descriptive statistics.
+</p>
+<a class="anchor" id="XREFcenter"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-center"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">center</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-center"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-center-1"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">center</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">dim</var>)</code><a class="copiable-link" href="#index-center-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-center-2"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">center</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">vecdim</var>)</code><a class="copiable-link" href="#index-center-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-center-3"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">center</strong> <code class="def-code-arguments">(<var class="var">x</var>, &quot;all&quot;)</code><a class="copiable-link" href="#index-center-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-center-4"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">center</strong> <code class="def-code-arguments">(&hellip;, <var class="var">nanflag</var>)</code><a class="copiable-link" href="#index-center-4"> &para;</a></span></dt>
+<dd><p>Center data by subtracting its mean.
+</p>
+<p>If <var class="var">x</var> is a vector, then <code class="code">center (<var class="var">x</var>)</code> computes the centered
+data by subtracting the mean of <var class="var">x</var> from each element of <var class="var">x</var>.
+</p>
+<p>If <var class="var">x</var> is a matrix, then <code class="code">center (<var class="var">x</var>)</code> returns a row vector
+with each element containing the centered data for each column of <var class="var">x</var>.
+</p>
+<p>If <var class="var">x</var> is an array, then <code class="code">center (<var class="var">x</var>)</code> centers the data alonng
+the first non-singleton dimension of <var class="var">x</var>.
+</p>
+<p>The data in <var class="var">x</var> must be numeric.  The size of <var class="var">y</var> is equal to the
+size of <var class="var">x</var>.
+</p>
+<p>The optional input <var class="var">dim</var> specifies the dimension to operate on and must
+be a positive integer.  Specifying any singleton dimension of <var class="var">x</var>,
+including any dimension exceeding <code class="code">ndims (<var class="var">x</var>)</code>, will return
+<code class="code"><var class="var">x</var></code>.
+</p>
+<p>Specifying multiple dimensions with input <var class="var">vecdim</var>, a vector of
+non-repeating dimensions, will operate along the array slice defined by
+<var class="var">vecdim</var>.  If <var class="var">vecdim</var> indexes all dimensions of <var class="var">x</var>, then it is
+equivalent to the option <code class="code">&quot;all&quot;</code>.  Any dimension in <var class="var">vecdim</var>
+greater than <code class="code">ndims (<var class="var">x</var>)</code> is ignored.
+</p>
+<p>Specifying the dimension as <code class="code">&quot;all&quot;</code> will cause <code class="code">center</code> to
+compute the center of all elements of <var class="var">x</var>, and is equivalent to
+<code class="code">center (<var class="var">x</var>(:))</code>.
+</p>
+<p>The optional variable <var class="var">nanflag</var> specifies whether to include or exclude
+NaN values from the calculation of the mean using any of the previously
+specified input argument combinations.  The default value for <var class="var">nanflag</var>
+is <code class="code">&quot;includenan&quot;</code> which keeps NaN values in the calculation.  To
+exclude NaN values set the value of <var class="var">nanflag</var> to <code class="code">&quot;omitnan&quot;</code>.  Any
+NaN value along the operating dimensions will result in all corresponding
+element in <var class="var">y</var> being NaN.
+</p>
+<p>Programming Note: <code class="code">center</code> has obvious application for normalizing
+statistical data.  It is also useful for improving the precision of general
+numerical calculations.  Whenever there is a large value that is common
+to a batch of data, the mean can be subtracted off, the calculation
+performed, and then the mean added back to obtain the final answer.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFzscore">zscore</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFzscore"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-zscore"><span><code class="def-type"><var class="var">z</var> =</code> <strong class="def-name">zscore</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-zscore"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-zscore-1"><span><code class="def-type"><var class="var">z</var> =</code> <strong class="def-name">zscore</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">opt</var>)</code><a class="copiable-link" href="#index-zscore-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-zscore-2"><span><code class="def-type"><var class="var">z</var> =</code> <strong class="def-name">zscore</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">opt</var>, <var class="var">dim</var>)</code><a class="copiable-link" href="#index-zscore-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-zscore-3"><span><code class="def-type"><var class="var">z</var> =</code> <strong class="def-name">zscore</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">opt</var>, <var class="var">vecdim</var>)</code><a class="copiable-link" href="#index-zscore-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-zscore-4"><span><code class="def-type"><var class="var">z</var> =</code> <strong class="def-name">zscore</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">opt</var>, &quot;all&quot;)</code><a class="copiable-link" href="#index-zscore-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-zscore-5"><span><code class="def-type"><var class="var">z</var> =</code> <strong class="def-name">zscore</strong> <code class="def-code-arguments">(&hellip;, <var class="var">nanflag</var>)</code><a class="copiable-link" href="#index-zscore-5"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-zscore-6"><span><code class="def-type">[<var class="var">z</var>, <var class="var">mu</var>, <var class="var">sigma</var>] =</code> <strong class="def-name">zscore</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-zscore-6"> &para;</a></span></dt>
+<dd><p>Compute the z-score of <var class="var">x</var>.
+</p>
+<p>For a vector <var class="var">x</var>, the z-score is calculated by subtracting the mean
+and dividing by its standard deviation.  If the standard deviation is zero,
+then divide by 1 instead.
+</p>
+<p>If <var class="var">x</var> is a vector, then <code class="code">zscore (<var class="var">x</var>)</code> returns the z-score
+of the elements in <var class="var">x</var>.
+</p>
+<p>If <var class="var">x</var> is a matrix, then <code class="code">zscore (<var class="var">x</var>)</code> returns a row vector
+with each element containing the z-score of the corresponding column in
+<var class="var">x</var>.
+</p>
+<p>If <var class="var">x</var> is an array, then <code class="code">zscore (<var class="var">x</var>)</code> computes the z-score
+along the first non-singleton dimension of <var class="var">x</var>.
+</p>
+<p>The optional parameter <var class="var">opt</var> determines the normalization to use when
+computing the standard deviation and has the same definition as the
+corresponding parameter for <code class="code">std</code>.
+</p>
+<p>The optional input <var class="var">dim</var> specifies the dimension to operate on and must
+be a positive integer.  Specifying any singleton dimension of <var class="var">x</var>,
+including any dimension exceeding <code class="code">ndims (<var class="var">x</var>)</code>, will return
+<code class="code">zeros (size (<var class="var">x</var>))</code>.
+</p>
+<p>Specifying multiple dimensions with input <var class="var">vecdim</var>, a vector of
+non-repeating dimensions, will operate along the array slice defined by
+<var class="var">vecdim</var>.  If <var class="var">vecdim</var> indexes all dimensions of <var class="var">x</var>, then it is
+equivalent to the option <code class="code">&quot;all&quot;</code>.  Any dimension in <var class="var">vecdim</var>
+greater than <code class="code">ndims (<var class="var">x</var>)</code> is ignored.
+</p>
+<p>Specifying the dimension as <code class="code">&quot;all&quot;</code> will cause <code class="code">zscore</code> to
+operate on all elements of <var class="var">x</var>, and is equivalent to
+<code class="code">zscore (<var class="var">x</var>(:))</code>.
+</p>
+<p>The optional variable <var class="var">nanflag</var> specifies whether to include or exclude
+<code class="code">NaN</code> values from the calculation using any of the previously specified
+input argument combinations.  The default value for <var class="var">nanflag</var> is
+<code class="code">&quot;includenan&quot;</code> which keeps <code class="code">NaN</code> values in the calculation.  To
+exclude <code class="code">NaN</code> values, set the value of <var class="var">nanflag</var> to
+<code class="code">&quot;omitnan&quot;</code>.  The output will still contain <code class="code">NaN</code> values at the
+same locations as in <var class="var">x</var>.
+</p>
+<p>The optional outputs <var class="var">mu</var> and <var class="var">sigma</var> contain the mean and standard
+deviation.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Descriptive-Statistics.html#XREFmean">mean</a>, <a class="ref" href="Descriptive-Statistics.html#XREFstd">std</a>, <a class="ref" href="#XREFcenter">center</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFnormalize"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-normalize"><span><code class="def-type"><var class="var">z</var> =</code> <strong class="def-name">normalize</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-normalize"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-normalize-1"><span><code class="def-type"><var class="var">z</var> =</code> <strong class="def-name">normalize</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">dim</var>)</code><a class="copiable-link" href="#index-normalize-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-normalize-2"><span><code class="def-type"><var class="var">z</var> =</code> <strong class="def-name">normalize</strong> <code class="def-code-arguments">(&hellip;, <var class="var">method</var>)</code><a class="copiable-link" href="#index-normalize-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-normalize-3"><span><code class="def-type"><var class="var">z</var> =</code> <strong class="def-name">normalize</strong> <code class="def-code-arguments">(&hellip;, <var class="var">method</var>, <var class="var">option</var>)</code><a class="copiable-link" href="#index-normalize-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-normalize-4"><span><code class="def-type"><var class="var">z</var> =</code> <strong class="def-name">normalize</strong> <code class="def-code-arguments">(&hellip;, <var class="var">scale</var>, <var class="var">scaleoption</var>, <var class="var">center</var>, <var class="var">centeroption</var>)</code><a class="copiable-link" href="#index-normalize-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-normalize-5"><span><code class="def-type">[<var class="var">z</var>, <var class="var">c</var>, <var class="var">s</var>] =</code> <strong class="def-name">normalize</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-normalize-5"> &para;</a></span></dt>
+<dd><p>Return a normalization of the data in <var class="var">x</var> using one of several available
+scaling and centering methods.
+</p>
+<p><code class="code">normalize</code> by default will return the <code class="code">zscore</code> of <var class="var">x</var>,
+defined as the number of standard deviations each element is from the mean
+of <var class="var">x</var>.  This is equivalent to centering at the mean of the data and
+scaling by the standard deviation.  <var class="var">x</var> must be a numeric array of
+double or single floating point numbers.
+</p>
+<p>The returned value <var class="var">z</var> will have the same size as <var class="var">x</var>.  The optional
+return variables <var class="var">c</var> and <var class="var">s</var> are the centering and scaling factors
+used in the normalization such that:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">  <code class="code"><var class="var">z</var> = (<var class="var">x</var> - <var class="var">c</var>) ./ <var class="var">s</var></code>
+</pre></div></div>
+
+<p>If <var class="var">x</var> is a vector, <code class="code">normalize</code> will operate on the data in
+<var class="var">x</var>.
+</p>
+<p>If <var class="var">x</var> is a matrix, <code class="code">normalize</code> will operate independently on
+each column in <var class="var">x</var>.
+</p>
+<p>If <var class="var">x</var> is an N-dimensional array, <code class="code">normalize</code> will operate
+independently on the first non-singleton dimension in <var class="var">x</var>.
+</p>
+<p>If the optional second argument <var class="var">dim</var> is given, operate along this
+dimension.
+</p>
+<p><code class="code">normalize</code> ignores NaN values is <var class="var">x</var> similar to the behavior of
+the omitnan option in <code class="code">std</code>, <code class="code">mean</code>, and <code class="code">median</code>.
+</p>
+<p>The optional inputs <var class="var">method</var> and <var class="var">option</var> can be used to specify the
+type of normalization performed on <var class="var">x</var>.  Note that only the
+<samp class="option">scale</samp> and <samp class="option">center</samp> options may be specified together using
+any of the methods defined below.  Valid normalization methods are:
+</p>
+<dl class="table">
+<dt><code class="code">zscore</code></dt>
+<dd><p>(Default) Normalizes the elements in <var class="var">x</var> to the scaled distance from a
+ central value.  Valid Options:
+</p>
+<dl class="table">
+<dt><code class="code">std</code></dt>
+<dd><p>(Default) Data is centered at <code class="code">mean (<var class="var">x</var>)</code> and scaled by the
+     standard deviation.
+</p>
+</dd>
+<dt><code class="code">robust</code></dt>
+<dd><p>Data is centered at <code class="code">median (<var class="var">x</var>)</code> and scaled by the median
+   absolute deviation.
+</p></dd>
+</dl>
+
+</dd>
+<dt><code class="code">norm</code></dt>
+<dd><p><var class="var">z</var> is the general vector norm of <var class="var">x</var>, with <var class="var">option</var> being the
+normalization factor <var class="var">p</var> that determines the vector norm type according
+to:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">  <code class="code"><var class="var">z</var> = [sum (abs (<var class="var">x</var>) .^ <var class="var">p</var>)] ^ (1/<var class="var">p</var>)</code>
+</pre></div></div>
+
+<p><var class="var">p</var> can be any positive scalar, specific values being:
+</p>
+<dl class="table">
+<dt><code class="code"><var class="var">p</var> = 1</code></dt>
+<dd><p><var class="var">x</var> is normalized by <code class="code">sum (abs (<var class="var">x</var>))</code>.
+</p>
+</dd>
+<dt><code class="code"><var class="var">p</var> = 2</code></dt>
+<dd><p>(Default) <var class="var">x</var> is normalized by the Euclidian norm, or vector
+   magnitude, of the elements.
+</p>
+</dd>
+<dt><code class="code"><var class="var">P</var> = Inf</code></dt>
+<dd><p><var class="var">x</var> is normalized by <code class="code">max (abs (<var class="var">x</var>))</code>.
+</p></dd>
+</dl>
+
+</dd>
+<dt><code class="code">scale</code></dt>
+<dd><p><var class="var">x</var> is scaled by a factor determined by <var class="var">option</var>, which can be a
+numeric scalar or one of the following:
+</p>
+<dl class="table">
+<dt><code class="code">std</code></dt>
+<dd><p>(Default) <var class="var">x</var> is scaled by its standard deviation.
+</p>
+</dd>
+<dt><code class="code">mad</code></dt>
+<dd><p><var class="var">x</var> is scaled by its median absolute deviation.
+</p>
+</dd>
+<dt><code class="code">first</code></dt>
+<dd><p><var class="var">x</var> is scaled by its first element.
+</p>
+</dd>
+<dt><code class="code">iqr</code></dt>
+<dd><p><var class="var">x</var> is scaled by its interquartile range.
+</p></dd>
+</dl>
+
+</dd>
+<dt><code class="code">range</code></dt>
+<dd><p><var class="var">x</var> is scaled to fit the range specified by <var class="var">option</var> as a two
+element scalar row vector.  The default range is [0, 1].
+</p>
+</dd>
+<dt><code class="code">center</code></dt>
+<dd><p><var class="var">x</var> is shifted by an amount determined by <var class="var">option</var>, which can be a
+numeric scalar or one of the following:
+</p>
+<dl class="table">
+<dt><code class="code">mean</code></dt>
+<dd><p>(Default) <var class="var">x</var> is shifted by <code class="code">mean (<var class="var">x</var>)</code>.
+</p>
+</dd>
+<dt><code class="code">median</code></dt>
+<dd><p><var class="var">x</var> is shifted by <code class="code">median (<var class="var">x</var>)</code>.
+</p></dd>
+</dl>
+
+</dd>
+<dt><code class="code">medianiqr</code></dt>
+<dd><p><var class="var">x</var> is shifted by <code class="code">median (<var class="var">x</var>)</code> and scaled by the
+interquartile range.
+</p></dd>
+</dl>
+
+<p>Known <small class="sc">MATLAB</small> incompatibilities:
+</p>
+<ol class="enumerate">
+<li> The option <samp class="option">DataVariables</samp> is only available when input <var class="var">x</var> is a
+table class, which is not yet implemented in core Octave.  See the
+datatypes and tablicious Octave Packages for an
+available overloaded method.
+</li></ol>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFzscore">zscore</a>, <a class="ref" href="Descriptive-Statistics.html#XREFiqr">iqr</a>, <a class="ref" href="Basic-Matrix-Functions.html#XREFnorm">norm</a>, <a class="ref" href="Simple-File-I_002fO.html#XREFrescale">rescale</a>, <a class="ref" href="Descriptive-Statistics.html#XREFstd">std</a>, <a class="ref" href="Descriptive-Statistics.html#XREFmedian">median</a>, <a class="ref" href="Descriptive-Statistics.html#XREFmean">mean</a>, <a class="ref" href="Descriptive-Statistics.html#XREFmad">mad</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFhistc"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-histc"><span><code class="def-type"><var class="var">n</var> =</code> <strong class="def-name">histc</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">edges</var>)</code><a class="copiable-link" href="#index-histc"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-histc-1"><span><code class="def-type"><var class="var">n</var> =</code> <strong class="def-name">histc</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">edges</var>, <var class="var">dim</var>)</code><a class="copiable-link" href="#index-histc-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-histc-2"><span><code class="def-type">[<var class="var">n</var>, <var class="var">idx</var>] =</code> <strong class="def-name">histc</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-histc-2"> &para;</a></span></dt>
+<dd><p>Compute histogram counts.
+</p>
+<p>When <var class="var">x</var> is a vector, the function counts the number of elements of
+<var class="var">x</var> that fall in the histogram bins defined by <var class="var">edges</var>.  This
+must be a vector of monotonically increasing values that define the edges
+of the histogram bins.
+<code class="code"><var class="var">n</var>(k)</code>
+contains the number of elements in <var class="var">x</var> for which
+<code class="code"><var class="var">edges</var>(k) &lt;= <var class="var">x</var> &lt; <var class="var">edges</var>(k+1)</code>.
+The final element of <var class="var">n</var> contains the number of elements of <var class="var">x</var>
+exactly equal to the last element of <var class="var">edges</var>.
+</p>
+<p>When <var class="var">x</var> is an <em class="math">N</em>-dimensional array, the computation is carried
+out along dimension <var class="var">dim</var>.  If not specified <var class="var">dim</var> defaults to the
+first non-singleton dimension.
+</p>
+<p>When a second output argument is requested an index matrix is also returned.
+The <var class="var">idx</var> matrix has the same size as <var class="var">x</var>.  Each element of
+<var class="var">idx</var> contains the index of the histogram bin in which the
+corresponding element of <var class="var">x</var> was counted.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Two_002dDimensional-Plots.html#XREFhist">hist</a>.
+</p></dd></dl>
+
+
+<p><code class="code">unique</code> function documented at <a class="ref" href="Sets.html#XREFunique">unique</a> is often
+useful for statistics.
+</p>
+<a class="anchor" id="XREFnchoosek"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-nchoosek"><span><code class="def-type"><var class="var">c</var> =</code> <strong class="def-name">nchoosek</strong> <code class="def-code-arguments">(<var class="var">n</var>, <var class="var">k</var>)</code><a class="copiable-link" href="#index-nchoosek"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-nchoosek-1"><span><code class="def-type"><var class="var">c</var> =</code> <strong class="def-name">nchoosek</strong> <code class="def-code-arguments">(<var class="var">set</var>, <var class="var">k</var>)</code><a class="copiable-link" href="#index-nchoosek-1"> &para;</a></span></dt>
+<dd>
+<p>Compute the binomial coefficient of <var class="var">n</var> or list all possible
+combinations of a <var class="var">set</var> of items.
+</p>
+<p>If <var class="var">n</var> is a scalar then calculate the binomial coefficient
+of <var class="var">n</var> and <var class="var">k</var> which is defined as
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted"> /   \
+ | n |    n (n-1) (n-2) ... (n-k+1)       n!
+ |   |  = ------------------------- =  ---------
+ | k |               k!                k! (n-k)!
+ \   /
+</pre></div></div>
+
+<p>This is the number of combinations of <var class="var">n</var> items taken in groups of
+size <var class="var">k</var>.
+</p>
+<p>If the first argument is a vector, <var class="var">set</var>, then generate all
+combinations of the elements of <var class="var">set</var>, taken <var class="var">k</var> at a time, with
+one row per combination.  The result <var class="var">c</var> has <var class="var">k</var> columns and
+<code class="code">nchoosek&nbsp;(length&nbsp;(<var class="var">set</var>),&nbsp;<var class="var">k</var>)</code><!-- /@w -->&nbsp;rows.
+</p>
+<p>For example:
+</p>
+<p>How many ways can three items be grouped into pairs?
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">nchoosek (3, 2)
+   &rArr;  3
+</pre></div></div>
+
+<p>What are the possible pairs?
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">nchoosek (1:3, 2)
+   &rArr;   1   2
+       1   3
+       2   3
+</pre></div></div>
+
+<p>Programming Note: When calculating the binomial coefficient <code class="code">nchoosek</code>
+works only for non-negative, integer arguments.  Use <code class="code">bincoeff</code> for
+non-integer and negative scalar arguments, or for computing many binomial
+coefficients at once with vector inputs for <var class="var">n</var> or <var class="var">k</var>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Special-Functions.html#XREFbincoeff">bincoeff</a>, <a class="ref" href="#XREFperms">perms</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFperms"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-perms"><span><code class="def-type"><var class="var">P</var> =</code> <strong class="def-name">perms</strong> <code class="def-code-arguments">(<var class="var">v</var>)</code><a class="copiable-link" href="#index-perms"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-perms-1"><span><code class="def-type"><var class="var">P</var> =</code> <strong class="def-name">perms</strong> <code class="def-code-arguments">(<var class="var">v</var>, &quot;unique&quot;)</code><a class="copiable-link" href="#index-perms-1"> &para;</a></span></dt>
+<dd><p>Generate all permutations of vector <var class="var">v</var> with one row per permutation.
+</p>
+<p>Results are returned in reverse lexicographic order if <var class="var">v</var> is in ascending
+order.  If <var class="var">v</var> is in a different permutation, then the result is permuted
+that way too.  Consequently, an input in descending order yields a result in
+normal lexicographic order.  The result has size
+<code class="code">factorial (<var class="var">n</var>) * <var class="var">n</var></code>, where <var class="var">n</var> is the length of <var class="var">v</var>.
+Any repeated elements are included in the output.
+</p>
+<p>If the optional argument <code class="code">&quot;unique&quot;</code> is given then only unique
+permutations are returned, using less memory and taking less time than calling
+<code class="code">unique (perms (<var class="var">v</var>), &quot;rows&quot;)</code>.
+</p>
+<p>Example 1
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">perms ([1, 2, 3])
+&rArr; 
+3   2   1
+3   1   2
+2   3   1
+2   1   3
+1   3   2
+1   2   3
+</pre></div></div>
+
+<p>Example 2
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">perms ([1, 1, 2, 2], &quot;unique&quot;)
+&rArr; 
+2   2   1   1
+2   1   2   1
+2   1   1   2
+1   2   2   1
+1   2   1   2
+1   1   2   2
+</pre></div></div>
+
+<p>Programming Note: If the <code class="code">&quot;unique&quot;</code> option is not used, the length of
+<var class="var">v</var> should be no more than 10-12 to limit memory consumption.  Even with
+<code class="code">&quot;unique&quot;</code>, there should be no more than 10-12 unique elements in
+<var class="var">v</var>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Rearranging-Matrices.html#XREFpermute">permute</a>, <a class="ref" href="Special-Utility-Matrices.html#XREFrandperm">randperm</a>, <a class="ref" href="#XREFnchoosek">nchoosek</a>.
+</p>
+</dd></dl>
+
+
+<a class="anchor" id="XREFranks"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-ranks"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">ranks</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-ranks"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ranks-1"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">ranks</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">dim</var>)</code><a class="copiable-link" href="#index-ranks-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ranks-2"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">ranks</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">dim</var>, <var class="var">rtype</var>)</code><a class="copiable-link" href="#index-ranks-2"> &para;</a></span></dt>
+<dd><p>Return the ranks (in the sense of order statistics) of <var class="var">x</var> along the
+first non-singleton dimension adjusted for ties.
+</p>
+<p>If the optional <var class="var">dim</var> argument is given, operate along this dimension.
+</p>
+<p>The optional parameter <var class="var">rtype</var> determines how ties are handled.  All
+examples below assume an input of <code class="code">[ 1, 2, 2, 4 ]</code>.
+</p>
+<dl class="table">
+<dt>0 or <code class="code">&quot;fractional&quot;</code> (default) for fractional ranking (1, 2.5,</dt>
+<dd><p>2.5, 4);
+</p>
+</dd>
+<dt>1 or <code class="code">&quot;competition&quot;</code> for competition ranking (1, 2, 2, 4);</dt>
+<dt>2 or <code class="code">&quot;modified&quot;</code> for modified competition ranking (1, 3, 3, 4);</dt>
+<dt>3 or <code class="code">&quot;ordinal&quot;</code> for ordinal ranking (1, 2, 3, 4);</dt>
+<dt>4 or <code class="code">&quot;dense&quot;</code> for dense ranking (1, 2, 2, 3).</dt>
+</dl>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Correlation-and-Regression-Analysis.html#XREFspearman">spearman</a>, <a class="ref" href="Correlation-and-Regression-Analysis.html#XREFkendall">kendall</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFrun_005fcount"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-run_005fcount"><span><code class="def-type"><var class="var">cnt</var> =</code> <strong class="def-name">run_count</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">n</var>)</code><a class="copiable-link" href="#index-run_005fcount"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-run_005fcount-1"><span><code class="def-type"><var class="var">cnt</var> =</code> <strong class="def-name">run_count</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">n</var>, <var class="var">dim</var>)</code><a class="copiable-link" href="#index-run_005fcount-1"> &para;</a></span></dt>
+<dd><p>Count the upward runs along the first non-singleton dimension of <var class="var">x</var>
+of length 1, 2, &hellip;, <var class="var">n</var>-1 and greater than or equal to <var class="var">n</var>.
+</p>
+<p>If the optional argument <var class="var">dim</var> is given then operate along this
+dimension.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFrunlength">runlength</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFrunlength"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-runlength"><span><code class="def-type">count =</code> <strong class="def-name">runlength</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-runlength"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-runlength-1"><span><code class="def-type">[count, value] =</code> <strong class="def-name">runlength</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-runlength-1"> &para;</a></span></dt>
+<dd><p>Find the lengths of all sequences of common values.
+</p>
+<p><var class="var">count</var> is a vector with the lengths of each repeated value.
+</p>
+<p>The optional output <var class="var">value</var> contains the value that was repeated in
+the sequence.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">runlength ([2, 2, 0, 4, 4, 4, 0, 1, 1, 1, 1])
+&rArr;    2   1   3   1   4
+</pre></div></div>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFrun_005fcount">run_count</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Forecasting-Metrics.html">Forecasting Metrics</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Statistics-on-Sliding-Windows-of-Data.html">Statistics on Sliding Windows of Data</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Statistics.html">Statistics</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

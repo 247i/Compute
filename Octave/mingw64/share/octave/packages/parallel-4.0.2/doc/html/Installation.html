@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- General documentation for the parallel package for Octave.
+
+Copyright (C) 2016-2023 Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Installation (parallel_doc)</title>
+
+<meta name="description" content="Installation (parallel_doc)">
+<meta name="keywords" content="Installation (parallel_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="index.html" rel="up" title="Top">
+<link href="Local-execution.html" rel="next" title="Local execution">
+<link href="index.html" rel="prev" title="Top">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<span id="Installation"></span><div class="header">
+<p>
+Next: <a href="Local-execution.html" accesskey="n" rel="next">Local execution</a>, Previous: <a href="index.html" accesskey="p" rel="prev">Top</a>, Up: <a href="index.html" accesskey="u" rel="up">Top</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Installation-hints"></span><h2 class="chapter">1 Installation hints</h2>
+<span id="index-installation"></span>
+
+<p><em>Note:</em> For using a cluster of machines, identical versions of the
+package are required to be installed at each machine.
+</p>
+<p>Maybe your distribution provides the parallel package.
+</p>
+<p>If not, or if you want a newer version, Octaves <code>pkg</code> command
+allows building the package from source and installing it. Note that you
+have to <code>load</code> any Octave package before you can use it. See
+Octaves documentation of <code>pkg</code>.
+</p>
+<p>Parallel execution over a cluster by default is protected by encryption
+with authentication. This needs a version of the gnutls library in which
+TLS-SRP is not disabled. For building the parallel package from source,
+this library must be present during the build; some operating systems
+provide development files of libraries in exta <code>...-dev</code> packages,
+which are also needed during the build.
+</p>
+<p>Building or using the package for cluster execution without gnutls will
+work, but encryption and authentication are not available in this case.
+</p>
+
+
+
+
+</body>
+</html>

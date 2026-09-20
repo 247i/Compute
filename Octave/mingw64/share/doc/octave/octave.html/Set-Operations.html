@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Set Operations (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Set Operations (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Set Operations (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Sets.html" rel="up" title="Sets">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Set-Operations">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Sets.html" accesskey="u" rel="up">Sets</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Set-Operations-1"><span>27.1 Set Operations<a class="copiable-link" href="#Set-Operations-1"> &para;</a></span></h3>
+
+<p>Octave supports several basic set operations.  Octave can compute the union,
+intersection, and difference of two sets.  Octave also supports the
+<em class="emph">Exclusive Or</em> set operation.
+</p>
+<p>The functions for set operations all work in the same way by accepting two
+input sets and returning a third set.  As an example, assume that <code class="code">a</code> and
+<code class="code">b</code> contains two sets, then
+</p>
+<div class="example">
+<pre class="example-preformatted">union (a, b)
+</pre></div>
+
+<p>computes the union of the two sets.
+</p>
+<p>Finally, determining whether elements belong to a set can be done with the
+<code class="code">ismember</code> function.  Because sets are ordered this operation is very
+efficient and is of order O(log2(n)) which is preferable to the <code class="code">find</code>
+function which is of order O(n).
+</p>
+<a class="anchor" id="XREFintersect"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-intersect"><span><code class="def-type"><var class="var">c</var> =</code> <strong class="def-name">intersect</strong> <code class="def-code-arguments">(<var class="var">a</var>, <var class="var">b</var>)</code><a class="copiable-link" href="#index-intersect"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-intersect-1"><span><code class="def-type"><var class="var">c</var> =</code> <strong class="def-name">intersect</strong> <code class="def-code-arguments">(<var class="var">a</var>, <var class="var">b</var>, &quot;rows&quot;)</code><a class="copiable-link" href="#index-intersect-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-intersect-2"><span><code class="def-type"><var class="var">c</var> =</code> <strong class="def-name">intersect</strong> <code class="def-code-arguments">(&hellip;, &quot;sorted&quot;)</code><a class="copiable-link" href="#index-intersect-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-intersect-3"><span><code class="def-type"><var class="var">c</var> =</code> <strong class="def-name">intersect</strong> <code class="def-code-arguments">(&hellip;, &quot;stable&quot;)</code><a class="copiable-link" href="#index-intersect-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-intersect-4"><span><code class="def-type"><var class="var">c</var> =</code> <strong class="def-name">intersect</strong> <code class="def-code-arguments">(&hellip;, &quot;legacy&quot;)</code><a class="copiable-link" href="#index-intersect-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-intersect-5"><span><code class="def-type">[<var class="var">c</var>, <var class="var">ia</var>, <var class="var">ib</var>] =</code> <strong class="def-name">intersect</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-intersect-5"> &para;</a></span></dt>
+<dd>
+<p>Return the unique elements common to both <var class="var">a</var> and <var class="var">b</var>.
+</p>
+<p>If <var class="var">a</var> and <var class="var">b</var> are both row vectors then return a row vector;
+Otherwise, return a column vector.  The inputs may also be cell arrays of
+strings.
+</p>
+<p>If the optional input <code class="code">&quot;rows&quot;</code> is given then return the common rows of
+<var class="var">a</var> and <var class="var">b</var>.  The inputs must be 2-D numeric matrices to use this
+option.
+</p>
+<p>The optional argument <code class="code">&quot;sorted&quot;</code>/<code class="code">&quot;stable&quot;</code> controls the order
+in which unique values appear in the output.  The default is
+<code class="code">&quot;sorted&quot;</code> and values in the output are placed in ascending order.
+The alternative <code class="code">&quot;stable&quot;</code> preserves the order found in the input.
+</p>
+<p>If requested, return column index vectors <var class="var">ia</var> and <var class="var">ib</var> such that
+<code class="code"><var class="var">c</var> = <var class="var">a</var>(<var class="var">ia</var>)</code> and <code class="code"><var class="var">c</var> = <var class="var">b</var>(<var class="var">ib</var>)</code>.
+</p>
+<p>Programming Note: The input flag <code class="code">&quot;legacy&quot;</code> changes the algorithm
+to be compatible with <small class="sc">MATLAB</small> releases prior to R2012b.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Sets.html#XREFunique">unique</a>, <a class="ref" href="#XREFunion">union</a>, <a class="ref" href="#XREFsetdiff">setdiff</a>, <a class="ref" href="#XREFsetxor">setxor</a>, <a class="ref" href="#XREFismember">ismember</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFunion"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-union"><span><code class="def-type"><var class="var">c</var> =</code> <strong class="def-name">union</strong> <code class="def-code-arguments">(<var class="var">a</var>, <var class="var">b</var>)</code><a class="copiable-link" href="#index-union"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-union-1"><span><code class="def-type"><var class="var">c</var> =</code> <strong class="def-name">union</strong> <code class="def-code-arguments">(<var class="var">a</var>, <var class="var">b</var>, &quot;rows&quot;)</code><a class="copiable-link" href="#index-union-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-union-2"><span><code class="def-type"><var class="var">c</var> =</code> <strong class="def-name">union</strong> <code class="def-code-arguments">(&hellip;, &quot;sorted&quot;)</code><a class="copiable-link" href="#index-union-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-union-3"><span><code class="def-type"><var class="var">c</var> =</code> <strong class="def-name">union</strong> <code class="def-code-arguments">(&hellip;, &quot;stable&quot;)</code><a class="copiable-link" href="#index-union-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-union-4"><span><code class="def-type"><var class="var">c</var> =</code> <strong class="def-name">union</strong> <code class="def-code-arguments">(&hellip;, &quot;legacy&quot;)</code><a class="copiable-link" href="#index-union-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-union-5"><span><code class="def-type">[<var class="var">c</var>, <var class="var">ia</var>, <var class="var">ib</var>] =</code> <strong class="def-name">union</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-union-5"> &para;</a></span></dt>
+<dd>
+<p>Return the unique elements that are in either <var class="var">a</var> or <var class="var">b</var>.
+</p>
+<p>If <var class="var">a</var> and <var class="var">b</var> are both row vectors then return a row vector;
+Otherwise, return a column vector.  The inputs may also be cell arrays of
+strings.
+</p>
+<p>If the optional input <code class="code">&quot;rows&quot;</code> is given then return rows that are in
+either <var class="var">a</var> or <var class="var">b</var>.  The inputs must be 2-D numeric matrices to use
+this option.
+</p>
+<p>The optional argument <code class="code">&quot;sorted&quot;</code>/<code class="code">&quot;stable&quot;</code> controls the order
+in which unique values appear in the output.  The default is
+<code class="code">&quot;sorted&quot;</code> and values in the output are placed in ascending order.
+The alternative <code class="code">&quot;stable&quot;</code> preserves the order found in the input.
+</p>
+<p>The optional outputs <var class="var">ia</var> and <var class="var">ib</var> are column index vectors such
+that <code class="code"><var class="var">a</var>(<var class="var">ia</var>)</code> and <code class="code"><var class="var">b</var>(<var class="var">ib</var>)</code> are disjoint sets
+whose union is <var class="var">c</var>.
+</p>
+<p>Programming Note: The input flag <code class="code">&quot;legacy&quot;</code> changes the algorithm
+to be compatible with <small class="sc">MATLAB</small> releases prior to R2012b.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Sets.html#XREFunique">unique</a>, <a class="ref" href="#XREFintersect">intersect</a>, <a class="ref" href="#XREFsetdiff">setdiff</a>, <a class="ref" href="#XREFsetxor">setxor</a>, <a class="ref" href="#XREFismember">ismember</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFsetdiff"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-setdiff"><span><code class="def-type"><var class="var">c</var> =</code> <strong class="def-name">setdiff</strong> <code class="def-code-arguments">(<var class="var">a</var>, <var class="var">b</var>)</code><a class="copiable-link" href="#index-setdiff"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-setdiff-1"><span><code class="def-type"><var class="var">c</var> =</code> <strong class="def-name">setdiff</strong> <code class="def-code-arguments">(<var class="var">a</var>, <var class="var">b</var>, &quot;rows&quot;)</code><a class="copiable-link" href="#index-setdiff-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-setdiff-2"><span><code class="def-type"><var class="var">c</var> =</code> <strong class="def-name">setdiff</strong> <code class="def-code-arguments">(&hellip;, &quot;sorted&quot;)</code><a class="copiable-link" href="#index-setdiff-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-setdiff-3"><span><code class="def-type"><var class="var">c</var> =</code> <strong class="def-name">setdiff</strong> <code class="def-code-arguments">(&hellip;, &quot;stable&quot;)</code><a class="copiable-link" href="#index-setdiff-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-setdiff-4"><span><code class="def-type"><var class="var">c</var> =</code> <strong class="def-name">setdiff</strong> <code class="def-code-arguments">(&hellip;, &quot;legacy&quot;)</code><a class="copiable-link" href="#index-setdiff-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-setdiff-5"><span><code class="def-type">[<var class="var">c</var>, <var class="var">ia</var>] =</code> <strong class="def-name">setdiff</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-setdiff-5"> &para;</a></span></dt>
+<dd><p>Return the unique elements in <var class="var">a</var> that are not in <var class="var">b</var>.
+</p>
+<p>If <var class="var">a</var> is a row vector return a row vector; Otherwise, return a
+column vector.  The inputs may also be cell arrays of strings.
+</p>
+<p>If the optional input <code class="code">&quot;rows&quot;</code> is given then return the rows in
+<var class="var">a</var> that are not in <var class="var">b</var>.  The inputs must be 2-D numeric matrices to
+use this option.
+</p>
+<p>The optional argument <code class="code">&quot;sorted&quot;</code>/<code class="code">&quot;stable&quot;</code> controls the order
+in which unique values appear in the output.  The default is
+<code class="code">&quot;sorted&quot;</code> and values in the output are placed in ascending order.
+The alternative <code class="code">&quot;stable&quot;</code> preserves the order found in the input.
+</p>
+<p>If requested, return the index vector <var class="var">ia</var> such that
+<code class="code"><var class="var">c</var> = <var class="var">a</var>(<var class="var">ia</var>)</code>.
+</p>
+<p>Programming Note: The input flag <code class="code">&quot;legacy&quot;</code> changes the algorithm
+to be compatible with <small class="sc">MATLAB</small> releases prior to R2012b.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Sets.html#XREFunique">unique</a>, <a class="ref" href="#XREFunion">union</a>, <a class="ref" href="#XREFintersect">intersect</a>, <a class="ref" href="#XREFsetxor">setxor</a>, <a class="ref" href="#XREFismember">ismember</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFsetxor"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-setxor"><span><code class="def-type"><var class="var">c</var> =</code> <strong class="def-name">setxor</strong> <code class="def-code-arguments">(<var class="var">a</var>, <var class="var">b</var>)</code><a class="copiable-link" href="#index-setxor"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-setxor-1"><span><code class="def-type"><var class="var">c</var> =</code> <strong class="def-name">setxor</strong> <code class="def-code-arguments">(<var class="var">a</var>, <var class="var">b</var>, &quot;rows&quot;)</code><a class="copiable-link" href="#index-setxor-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-setxor-2"><span><code class="def-type"><var class="var">c</var> =</code> <strong class="def-name">setxor</strong> <code class="def-code-arguments">(&hellip;, &quot;sorted&quot;)</code><a class="copiable-link" href="#index-setxor-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-setxor-3"><span><code class="def-type"><var class="var">c</var> =</code> <strong class="def-name">setxor</strong> <code class="def-code-arguments">(&hellip;, &quot;stable&quot;)</code><a class="copiable-link" href="#index-setxor-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-setxor-4"><span><code class="def-type"><var class="var">c</var> =</code> <strong class="def-name">setxor</strong> <code class="def-code-arguments">(&hellip;, &quot;legacy&quot;)</code><a class="copiable-link" href="#index-setxor-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-setxor-5"><span><code class="def-type">[<var class="var">c</var>, <var class="var">ia</var>, <var class="var">ib</var>] =</code> <strong class="def-name">setxor</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-setxor-5"> &para;</a></span></dt>
+<dd>
+<p>Return the unique elements exclusive to sets <var class="var">a</var> or <var class="var">b</var>.
+</p>
+<p>If <var class="var">a</var> and <var class="var">b</var> are both row vectors then return a row vector;
+Otherwise, return a column vector.  The inputs may also be cell arrays of
+strings.
+</p>
+<p>If the optional input <code class="code">&quot;rows&quot;</code> is given then return the rows exclusive
+to sets <var class="var">a</var> and <var class="var">b</var>.  The inputs must be 2-D numeric matrices to use
+this option.
+</p>
+<p>The optional argument <code class="code">&quot;sorted&quot;</code>/<code class="code">&quot;stable&quot;</code> controls the order
+in which unique values appear in the output.  The default is
+<code class="code">&quot;sorted&quot;</code> and values in the output are placed in ascending order.
+The alternative <code class="code">&quot;stable&quot;</code> preserves the order found in the input.
+</p>
+<p>The optional outputs <var class="var">ia</var> and <var class="var">ib</var> are column index vectors such
+that <code class="code"><var class="var">a</var>(<var class="var">ia</var>)</code> and <code class="code"><var class="var">b</var>(<var class="var">ib</var>)</code> are disjoint sets
+whose union is <var class="var">c</var>.
+</p>
+<p>Programming Note: The input flag <code class="code">&quot;legacy&quot;</code> changes the algorithm
+to be compatible with <small class="sc">MATLAB</small> releases prior to R2012b.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Sets.html#XREFunique">unique</a>, <a class="ref" href="#XREFunion">union</a>, <a class="ref" href="#XREFintersect">intersect</a>, <a class="ref" href="#XREFsetdiff">setdiff</a>, <a class="ref" href="#XREFismember">ismember</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFismember"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-ismember"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">ismember</strong> <code class="def-code-arguments">(<var class="var">a</var>, <var class="var">s</var>)</code><a class="copiable-link" href="#index-ismember"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ismember-1"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">ismember</strong> <code class="def-code-arguments">(<var class="var">a</var>, <var class="var">s</var>, &quot;rows&quot;)</code><a class="copiable-link" href="#index-ismember-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ismember-2"><span><code class="def-type">[<var class="var">tf</var>, <var class="var">s_idx</var>] =</code> <strong class="def-name">ismember</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-ismember-2"> &para;</a></span></dt>
+<dd>
+<p>Return a logical matrix <var class="var">tf</var> with the same shape as <var class="var">a</var> which is
+true (1) if the element in <var class="var">a</var> is found in <var class="var">s</var> and false (0) if it
+is not.
+</p>
+<p>If a second output argument is requested then the index into <var class="var">s</var> of each
+matching element is also returned.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">a = [3, 10, 1];
+s = [0:9];
+[tf, s_idx] = ismember (a, s)
+     &rArr;  tf = [1, 0, 1]
+     &rArr;  s_idx = [4, 0, 2]
+</pre></div></div>
+
+<p>The inputs <var class="var">a</var> and <var class="var">s</var> may also be cell arrays.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">a = {&quot;abc&quot;};
+s = {&quot;abc&quot;, &quot;def&quot;};
+[tf, s_idx] = ismember (a, s)
+     &rArr;  tf = 1
+     &rArr;  s_idx = 1
+</pre></div></div>
+
+<p>If the optional third argument <code class="code">&quot;rows&quot;</code> is given then compare rows
+in <var class="var">a</var> with rows in <var class="var">s</var>.  The inputs must be 2-D matrices with the
+same number of columns to use this option.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">a = [1:3; 5:7; 4:6];
+s = [0:2; 1:3; 2:4; 3:5; 4:6];
+[tf, s_idx] = ismember (a, s, &quot;rows&quot;)
+     &rArr;  tf = logical ([1; 0; 1])
+     &rArr;  s_idx = [2; 0; 5];
+</pre></div></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Finding-Elements-and-Checking-Conditions.html#XREFlookup">lookup</a>, <a class="ref" href="Sets.html#XREFunique">unique</a>, <a class="ref" href="#XREFunion">union</a>, <a class="ref" href="#XREFintersect">intersect</a>, <a class="ref" href="#XREFsetdiff">setdiff</a>, <a class="ref" href="#XREFsetxor">setxor</a>, <a class="ref" href="#XREFismembertol">ismembertol</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFismembertol"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-ismembertol"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">ismembertol</strong> <code class="def-code-arguments">(<var class="var">a</var>, <var class="var">s</var>)</code><a class="copiable-link" href="#index-ismembertol"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ismembertol-1"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">ismembertol</strong> <code class="def-code-arguments">(<var class="var">a</var>, <var class="var">s</var>, <var class="var">tol</var>)</code><a class="copiable-link" href="#index-ismembertol-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ismembertol-2"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">ismembertol</strong> <code class="def-code-arguments">(<var class="var">a</var>, <var class="var">s</var>, <var class="var">name</var>, <var class="var">value</var>)</code><a class="copiable-link" href="#index-ismembertol-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ismembertol-3"><span><code class="def-type">[<var class="var">tf</var>, <var class="var">s_idx</var>] =</code> <strong class="def-name">ismembertol</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-ismembertol-3"> &para;</a></span></dt>
+<dd><p>Check if values are members of a set within a tolerance.
+</p>
+<p>This functions returns a logical matrix <var class="var">tf</var> with the same shape as
+<var class="var">a</var> which is true (1) where the element in <var class="var">a</var> is close to <var class="var">s</var>
+within a tolerance <var class="var">tol</var> and false (0) if it is not.  If <var class="var">tol</var> is
+not specified, a default tolerance of <code class="code">1e-6</code> is used.
+</p>
+<p>If a second output argument is requested then the index into <var class="var">s</var> of each
+matching element is also returned.
+</p>
+<p>The inputs <var class="var">a</var> and <var class="var">s</var> must be numeric values.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">a = [3, 10, 1];
+s = [0:9];
+[tf, s_idx] = ismembertol (a, s)
+     &rArr;  tf = [1, 0, 1]
+     &rArr;  s_idx = [4, 0, 2]
+</pre></div></div>
+
+<p>Optional property/value pairs may be given to change the function&rsquo;s
+behavior.  The property may be one of following strings:
+</p>
+<dl class="table">
+<dt><code class="code">&quot;ByRows&quot;</code></dt>
+<dd><p>If set to <code class="code">false</code> (default), all elements in <var class="var">a</var> and <var class="var">s</var> are
+treated separately.  If set to <code class="code">true</code>, <var class="var">tf</var> will be <code class="code">true</code>
+for each row in <var class="var">a</var> that matches a row in <var class="var">s</var> within the given
+tolerance.  Two rows, <var class="var">u</var> and <var class="var">v</var>, are within tolerance if they
+fulfill the condition <code class="code">all (abs (u-v) &lt;= tol*max (abs ([a;s])))</code>.
+</p>
+</dd>
+<dt><code class="code">&quot;OutputAllIndices&quot;</code></dt>
+<dd><p>If set to <code class="code">false</code> (default), <var class="var">s_idx</var> contains indices for one
+of the matches.  If set to <code class="code">true</code>, <var class="var">s_idx</var> is a cell array
+containing the indices for all elements in <var class="var">s</var> that are within tolerance
+of the corresponding value in <var class="var">a</var>.
+</p>
+</dd>
+<dt><code class="code">&quot;DataScale&quot;</code></dt>
+<dd><p>The provided value <var class="var">DS</var> is used to change the scale factor in the
+tolerance test to <code class="code">abs (u-v) &lt;= tol*<var class="var">DS</var></code>.  By default, the maximum
+absolute value in <var class="var">a</var> and <var class="var">s</var> is used as the scale factor.
+</p></dd>
+</dl>
+
+<p>Example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">s = [1:6].' * pi;
+a = 10.^log10 (x);
+[tf, s_idx] = ismembertol (a, s);
+</pre></div></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFismember">ismember</a>, <a class="ref" href="Finding-Elements-and-Checking-Conditions.html#XREFlookup">lookup</a>, <a class="ref" href="Sets.html#XREFunique">unique</a>, <a class="ref" href="#XREFunion">union</a>, <a class="ref" href="#XREFintersect">intersect</a>, <a class="ref" href="#XREFsetdiff">setdiff</a>, <a class="ref" href="#XREFsetxor">setxor</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFpowerset"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-powerset"><span><code class="def-type"><var class="var">p</var> =</code> <strong class="def-name">powerset</strong> <code class="def-code-arguments">(<var class="var">a</var>)</code><a class="copiable-link" href="#index-powerset"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-powerset-1"><span><code class="def-type"><var class="var">p</var> =</code> <strong class="def-name">powerset</strong> <code class="def-code-arguments">(<var class="var">a</var>, &quot;rows&quot;)</code><a class="copiable-link" href="#index-powerset-1"> &para;</a></span></dt>
+<dd><p>Compute the powerset (all subsets) of the set <var class="var">a</var>.
+</p>
+<p>The set <var class="var">a</var> must be a numerical matrix or a cell array of strings.  The
+output will always be a cell array of either vectors or strings.
+</p>
+<p>With the optional argument <code class="code">&quot;rows&quot;</code>, each row of the set <var class="var">a</var> is
+considered one element of the set.  The input must be a 2-D numeric matrix
+to use this argument.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Sets.html#XREFunique">unique</a>, <a class="ref" href="#XREFunion">union</a>, <a class="ref" href="#XREFintersect">intersect</a>, <a class="ref" href="#XREFsetdiff">setdiff</a>, <a class="ref" href="#XREFsetxor">setxor</a>, <a class="ref" href="#XREFismember">ismember</a>.
+</p></dd></dl>
+
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Sets.html">Sets</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

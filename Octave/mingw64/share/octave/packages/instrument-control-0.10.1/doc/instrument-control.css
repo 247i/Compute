@@ -1,0 +1,34 @@
+pre.example, .header, .float-caption, hr {
+  /* base00 ~ body text in light solarized theme */
+  color: #657b83;
+  border-color: #657b83; }
+
+pre.example {
+  /* base3 ~ background color in light solarized theme */
+  background-color: #fdf6e3;
+  padding: 0.5em; }
+
+a { color: #268bd2; /* blue */ }
+
+a:visited { color: #d33682; /* magenta */ }
+
+table.cartouche1 {
+  border: 1px solid #948473;
+  background-color: #FFE3C6;
+  width: 100%;
+}
+table.cartouche1 td, table.cartouche1 th {
+  border: 1px solid #948473;
+  padding: 4px 4px;
+}
+
+/* newer texinfo generation styles */
+div.example {
+  /* base00 ~ body text in light solarized theme */
+  color: #657b83;
+  border-color: #657b83; }
+
+pre.example-preformatted {
+  /* base3 ~ background color in light solarized theme */
+  background-color: #fdf6e3;
+  padding: 0.5em; }

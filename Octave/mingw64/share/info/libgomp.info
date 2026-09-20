@@ -1,0 +1,286 @@
+This is libgomp.info, produced by makeinfo version 7.1.1 from
+libgomp.texi.
+
+Copyright © 2006-2025 Free Software Foundation, Inc.
+
+   Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with the
+Invariant Sections being "Funding Free Software", the Front-Cover texts
+being (a) (see below), and with the Back-Cover Texts being (b) (see
+below).  A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+   (a) The FSF's Front-Cover Text is:
+
+   A GNU Manual
+
+   (b) The FSF's Back-Cover Text is:
+
+   You have freedom to copy and modify this GNU Manual, like GNU
+software.  Copies published by the Free Software Foundation raise funds
+for GNU development.
+INFO-DIR-SECTION GNU Libraries
+START-INFO-DIR-ENTRY
+* libgomp: (libgomp).          GNU Offloading and Multi Processing Runtime Library.
+END-INFO-DIR-ENTRY
+
+   This manual documents libgomp, the GNU Offloading and Multi
+Processing Runtime library.  This is the GNU implementation of the
+OpenMP and OpenACC APIs for parallel and accelerator programming in
+C/C++ and Fortran.
+
+   Published by the Free Software Foundation 51 Franklin Street, Fifth
+Floor Boston, MA 02110-1301 USA
+
+   Copyright © 2006-2025 Free Software Foundation, Inc.
+
+   Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with the
+Invariant Sections being "Funding Free Software", the Front-Cover texts
+being (a) (see below), and with the Back-Cover Texts being (b) (see
+below).  A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+   (a) The FSF's Front-Cover Text is:
+
+   A GNU Manual
+
+   (b) The FSF's Back-Cover Text is:
+
+   You have freedom to copy and modify this GNU Manual, like GNU
+software.  Copies published by the Free Software Foundation raise funds
+for GNU development.
+
+
+Indirect:
+libgomp.info-1: 2083
+libgomp.info-2: 332585
+
+Tag Table:
+(Indirect)
+Node: Top2083
+Node: Enabling OpenMP4912
+Node: OpenMP Implementation Status6149
+Node: OpenMP 4.56848
+Node: OpenMP 5.07024
+Node: OpenMP 5.112333
+Node: OpenMP 5.217832
+Ref: OpenMP 5.2-Footnote-121575
+Node: OpenMP 6.022004
+Node: Runtime Library Routines31411
+Node: Thread Team Routines32074
+Node: omp_set_num_threads33661
+Node: omp_get_num_threads34531
+Node: omp_get_max_threads35654
+Node: omp_get_thread_num36425
+Node: omp_in_parallel37314
+Node: omp_set_dynamic37992
+Node: omp_get_dynamic38891
+Node: omp_get_cancellation39802
+Node: omp_set_nested40628
+Node: omp_get_nested41987
+Node: omp_set_schedule43789
+Node: omp_get_schedule44912
+Node: omp_get_teams_thread_limit45896
+Node: omp_get_supported_active_levels46676
+Node: omp_set_max_active_levels47493
+Node: omp_get_max_active_levels48462
+Node: omp_get_level49197
+Node: omp_get_ancestor_thread_num49843
+Node: omp_get_team_size50793
+Node: omp_get_active_level51792
+Node: Thread Affinity Routines52496
+Node: omp_get_proc_bind52896
+Node: Teams Region Routines53916
+Node: omp_get_num_teams54628
+Node: omp_get_team_num55126
+Node: omp_set_num_teams55637
+Node: omp_get_max_teams56533
+Node: omp_set_teams_thread_limit57241
+Node: omp_get_thread_limit58270
+Node: Tasking Routines58882
+Node: omp_get_max_task_priority59393
+Node: omp_in_explicit_task59988
+Node: omp_in_final60910
+Node: Resource Relinquishing Routines61581
+Node: omp_pause_resource62053
+Node: omp_pause_resource_all63166
+Node: Device Information Routines64169
+Node: omp_get_num_procs65124
+Node: omp_set_default_device65657
+Node: omp_get_default_device66665
+Node: omp_get_num_devices67841
+Node: omp_get_device_num68487
+Node: omp_get_device_from_uid69329
+Node: omp_get_uid_from_device70529
+Node: omp_is_initial_device71744
+Node: omp_get_initial_device72671
+Node: Device Memory Routines73586
+Node: omp_target_alloc74626
+Node: omp_target_free76233
+Node: omp_target_is_present77461
+Node: omp_target_is_accessible79185
+Node: omp_target_memcpy81043
+Node: omp_target_memcpy_async82921
+Node: omp_target_memcpy_rect85465
+Node: omp_target_memcpy_rect_async88800
+Node: omp_target_associate_ptr92807
+Node: omp_target_disassociate_ptr95872
+Node: omp_get_mapped_ptr97681
+Node: Lock Routines99268
+Node: omp_init_lock100116
+Node: omp_init_nest_lock100757
+Node: omp_destroy_lock101495
+Node: omp_destroy_nest_lock102186
+Node: omp_set_lock102940
+Node: omp_set_nest_lock103818
+Node: omp_unset_lock104734
+Node: omp_unset_nest_lock105691
+Node: omp_test_lock106713
+Node: omp_test_nest_lock107735
+Node: Timing Routines108751
+Node: omp_get_wtick109128
+Node: omp_get_wtime109695
+Node: Event Routine110476
+Node: omp_fulfill_event110808
+Node: Interoperability Routines111820
+Node: omp_get_num_interop_properties112696
+Node: omp_get_interop_int114033
+Node: omp_get_interop_ptr115850
+Node: omp_get_interop_str117636
+Node: omp_get_interop_name119412
+Node: omp_get_interop_type_desc120754
+Node: omp_get_interop_rc_desc122521
+Node: Memory Management Routines123726
+Node: omp_init_allocator124654
+Node: omp_destroy_allocator126351
+Node: omp_set_default_allocator127355
+Node: omp_get_default_allocator128417
+Node: omp_alloc129386
+Node: omp_aligned_alloc131565
+Node: omp_free134183
+Node: omp_calloc135890
+Node: omp_aligned_calloc138185
+Node: omp_realloc140817
+Node: Environment Display Routine144307
+Node: omp_display_env144683
+Node: Environment Variables147594
+Node: OMP_ALLOCATOR150403
+Node: OMP_AFFINITY_FORMAT152030
+Node: OMP_CANCELLATION154706
+Node: OMP_DISPLAY_AFFINITY155322
+Node: OMP_DISPLAY_ENV156029
+Node: OMP_DEFAULT_DEVICE156911
+Node: OMP_DYNAMIC157947
+Node: OMP_MAX_ACTIVE_LEVELS158586
+Node: OMP_MAX_TASK_PRIORITY159627
+Node: OMP_NESTED160334
+Node: OMP_NUM_TEAMS161619
+Node: OMP_NUM_THREADS162336
+Node: OMP_PROC_BIND163356
+Node: OMP_PLACES164941
+Node: OMP_STACKSIZE167757
+Node: OMP_SCHEDULE168683
+Node: OMP_TARGET_OFFLOAD169470
+Node: OMP_TEAMS_THREAD_LIMIT171001
+Node: OMP_THREAD_LIMIT171862
+Node: OMP_WAIT_POLICY172526
+Node: GOMP_CPU_AFFINITY173230
+Node: GOMP_DEBUG174996
+Node: GOMP_STACKSIZE175510
+Node: GOMP_SPINCOUNT176349
+Node: GOMP_RTEMS_THREAD_POOLS177621
+Node: Enabling OpenACC179870
+Node: OpenACC Runtime Library Routines180716
+Node: acc_get_num_devices185001
+Node: acc_set_device_type185743
+Node: acc_get_device_type186523
+Node: acc_set_device_num187568
+Node: acc_get_device_num188405
+Node: acc_get_property189224
+Node: acc_async_test191516
+Node: acc_async_test_all192515
+Node: acc_wait193422
+Node: acc_wait_all194313
+Node: acc_wait_all_async195094
+Node: acc_wait_async195862
+Node: acc_init196586
+Node: acc_shutdown197247
+Node: acc_on_device197930
+Node: acc_malloc199152
+Node: acc_free199876
+Node: acc_copyin200540
+Node: acc_present_or_copyin202187
+Node: acc_create204015
+Node: acc_present_or_create205707
+Node: acc_copyout207543
+Node: acc_delete209963
+Node: acc_update_device212326
+Node: acc_update_self213960
+Node: acc_map_data215610
+Node: acc_unmap_data216706
+Node: acc_deviceptr217464
+Node: acc_hostptr218275
+Node: acc_is_present219075
+Node: acc_memcpy_to_device220646
+Node: acc_memcpy_from_device222133
+Node: acc_attach223670
+Node: acc_detach224349
+Node: acc_get_current_cuda_device225208
+Node: acc_get_current_cuda_context225801
+Node: acc_get_cuda_stream226409
+Node: acc_set_cuda_stream227008
+Node: acc_prof_register227691
+Node: acc_prof_unregister228258
+Node: acc_prof_lookup228833
+Node: acc_register_library229362
+Node: OpenACC Environment Variables229936
+Node: ACC_DEVICE_TYPE230437
+Node: ACC_DEVICE_NUM230986
+Node: ACC_PROFLIB231461
+Node: CUDA Streams Usage232079
+Ref: CUDA Streams Usage-Footnote-1234043
+Node: OpenACC Library Interoperability234152
+Ref: OpenACC Library Interoperability-Footnote-1240593
+Ref: OpenACC Library Interoperability-Footnote-2240845
+Node: OpenACC Profiling Interface241061
+Node: OpenMP-Implementation Specifics251817
+Node: Implementation-defined ICV Initialization252136
+Node: OpenMP Context Selectors253307
+Node: Memory allocation254702
+Node: Offload-Target Specifics264685
+Node: AMD Radeon264976
+Node: Foreign-runtime support for AMD GPUs269180
+Node: nvptx272339
+Ref: nvptx-Footnote-1276962
+Node: Foreign-runtime support for Nvidia GPUs277054
+Node: The libgomp ABI281088
+Node: Implementing MASTER construct281938
+Node: Implementing CRITICAL construct282355
+Node: Implementing ATOMIC construct283096
+Node: Implementing FLUSH construct283583
+Node: Implementing BARRIER construct283860
+Node: Implementing THREADPRIVATE construct284131
+Node: Implementing PRIVATE clause284790
+Node: Implementing FIRSTPRIVATE LASTPRIVATE COPYIN and COPYPRIVATE clauses285373
+Node: Implementing REDUCTION clause286699
+Node: Implementing PARALLEL construct287259
+Node: Implementing FOR construct288522
+Node: Implementing ORDERED construct290522
+Node: Implementing SECTIONS construct290830
+Node: Implementing SINGLE construct291598
+Node: Implementing OpenACC's PARALLEL construct292312
+Node: Reporting Bugs292572
+Node: Copying292935
+Node: GNU Free Documentation License332585
+Node: Funding357716
+Node: Library Index360241
+
+End Tag Table
+
+
+Local Variables:
+coding: utf-8
+End:

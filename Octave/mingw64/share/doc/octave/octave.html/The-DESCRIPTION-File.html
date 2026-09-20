@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>The DESCRIPTION File (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="The DESCRIPTION File (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="The DESCRIPTION File (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Creating-Packages.html" rel="up" title="Creating Packages">
+<link href="The-INDEX-File.html" rel="next" title="The INDEX File">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+ul.mark-bullet {list-style-type: disc}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="The-DESCRIPTION-File">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="The-INDEX-File.html" accesskey="n" rel="next">The INDEX File</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Creating-Packages.html" accesskey="u" rel="up">Creating Packages</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="The-DESCRIPTION-File-1"><span>37.5.1 The DESCRIPTION File<a class="copiable-link" href="#The-DESCRIPTION-File-1"> &para;</a></span></h4>
+
+<p>The <samp class="file">DESCRIPTION</samp> file contains various information about the
+package, such as its name, author, and version.  This file has a very
+simple format
+</p>
+<ul class="itemize mark-bullet">
+<li>Lines starting with &lsquo;<samp class="samp">#</samp>&rsquo; are comments.
+
+</li><li>Lines starting with a blank character are continuations from the
+previous line.
+
+</li><li>Everything else is of the form <code class="code">NameOfOption: ValueOfOption</code>.
+</li></ul>
+
+<p>The following is a simple example of a <samp class="file">DESCRIPTION</samp> file
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">Name: The name of my package
+Version: 1.0.0
+Date: 2007-18-04
+Author: The name (and possibly email) of the package author.
+Maintainer: The name (and possibly email) of the current
+ package maintainer.
+Title: The title of the package
+Description: A short description of the package.  If this
+ description gets too long for one line it can continue
+ on the next by adding a space to the beginning of the
+ following lines.
+License: GPLv3+
+</pre></div></div>
+
+<p>The package manager currently recognizes the following keywords
+</p>
+<dl class="table">
+<dt><code class="code">Name</code></dt>
+<dd><p>Name of the package.
+</p>
+</dd>
+<dt><code class="code">Version</code></dt>
+<dd><p>Version of the package.  A package version is typically digits separated by
+dots but may also contain &lsquo;<samp class="samp">+</samp>&rsquo;, &lsquo;<samp class="samp">-</samp>&rsquo;, &lsquo;<samp class="samp">~</samp>&rsquo;, and alphanumeric
+characters (in the &quot;C&quot; locale).  For example, <code class="code">&quot;2.1.0+&quot;</code> could indicate
+a development version of a package.
+Versions are compared using <a class="ref" href="System-Information.html#XREFcompare_005fversions">compare_versions</a>.
+</p>
+</dd>
+<dt><code class="code">Date</code></dt>
+<dd><p>Date of last update.
+</p>
+</dd>
+<dt><code class="code">Author</code></dt>
+<dd><p>Original author of the package.
+</p>
+</dd>
+<dt><code class="code">Maintainer</code></dt>
+<dd><p>Maintainer of the package.
+</p>
+</dd>
+<dt><code class="code">Title</code></dt>
+<dd><p>A one line description of the package.
+</p>
+</dd>
+<dt><code class="code">Description</code></dt>
+<dd><p>A one paragraph description of the package.
+</p>
+</dd>
+<dt><code class="code">Categories</code></dt>
+<dd><p>Optional keyword describing the package (if no <samp class="file">INDEX</samp> file is
+given this is mandatory).
+</p>
+</dd>
+<dt><code class="code">Problems</code></dt>
+<dd><p>Optional list of known problems.
+</p>
+</dd>
+<dt><code class="code">Url</code></dt>
+<dd><p>Optional URL to the homepage or repository related to the package.
+</p>
+</dd>
+<dt><code class="code">Tracker</code></dt>
+<dd><p>Optional URL to the bug tracker related to the package.  It is highly
+encouraged that maintainers utilize a dedicated tracker for reporting issues
+related to the package&rsquo;s functionality in order to keep Octave&rsquo;s bug tracker at
+Savannah.org less bloated and solely for core Octave bug reports.
+</p>
+</dd>
+<dt><code class="code">Depends</code></dt>
+<dd><p>A list of other Octave packages that this package depends on.  This can include
+dependencies on particular versions, with the following format:
+</p>
+<div class="example">
+<pre class="example-preformatted">Depends: package (&gt;= 1.0.0)
+</pre></div>
+
+<p>Possible operators are <code class="code">&lt;</code>, <code class="code">&lt;=</code>, <code class="code">==</code>, <code class="code">&gt;=</code> or <code class="code">&gt;</code>.
+If the part of the dependency in <code class="code">()</code> is missing, any version of the
+package is acceptable.  Multiple dependencies can be defined as a comma
+separated list.  This can be used to define a range of versions of a particular
+package:
+</p>
+<div class="example">
+<pre class="example-preformatted">Depends: package (&gt;= 1.0.0), package (&lt; 1.5.0)
+</pre></div>
+
+<p>It is also possible to depend on particular versions of Octave core:
+</p>
+<div class="example">
+<pre class="example-preformatted">Depends: octave (&gt;= 3.8.0)
+</pre></div>
+
+</dd>
+<dt><code class="code">License</code></dt>
+<dd><p>An optional short description of the used license (e.g., GPL version 3
+or newer).  This is optional since the file <samp class="file">COPYING</samp> is mandatory.
+</p>
+</dd>
+<dt><code class="code">SystemRequirements</code></dt>
+<dd><p>These are the external install dependencies of the package and are not
+checked by the package manager.  This is here as a hint to the
+distribution packager.  They follow the same conventions as the
+<code class="code">Depends</code> keyword.
+</p>
+</dd>
+<dt><code class="code">BuildRequires</code></dt>
+<dd><p>These are the external build dependencies of the package and are not checked by
+the package manager.  This is here as a hint to the distribution packager.
+They follow the same conventions as the <code class="code">Depends</code> keyword.  Note that in
+general, packaging systems such as <code class="code">rpm</code> or <code class="code">deb</code> autoprobe the
+install dependencies from the build dependencies, and therefore a
+<code class="code">BuildRequires</code> dependency usually removes the need for a
+<code class="code">SystemRequirements</code> dependency.
+</p>
+</dd>
+</dl>
+
+<p>The developer is free to add additional arguments to the
+<samp class="file">DESCRIPTION</samp> file for their own purposes.  One further detail to
+aid the packager is that the <code class="code">SystemRequirements</code> and
+<code class="code">BuildRequires</code> keywords can have a distribution dependent section,
+and the automatic build process will use these.  An example of the
+format of this is
+</p>
+<div class="example">
+<pre class="example-preformatted">BuildRequires: libtermcap-devel [Mandriva] libtermcap2-devel
+</pre></div>
+
+<p>where the first package name will be used as a default and if the
+RPMs are built on a Mandriva distribution, then the second package
+name will be used instead.
+</p>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="The-INDEX-File.html">The INDEX File</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Creating-Packages.html">Creating Packages</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

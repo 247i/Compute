@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Random Number Generation (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Random Number Generation (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Random Number Generation (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Statistics.html" rel="up" title="Statistics">
+<link href="Distributions.html" rel="prev" title="Distributions">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Random-Number-Generation">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Distributions.html" accesskey="p" rel="prev">Distributions</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Statistics.html" accesskey="u" rel="up">Statistics</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Random-Number-Generation-1"><span>26.7 Random Number Generation<a class="copiable-link" href="#Random-Number-Generation-1"> &para;</a></span></h3>
+
+<p>Octave can generate random numbers from a large number of distributions.  The
+random number generators are based on the random number generators described in
+<a class="ref" href="Special-Utility-Matrices.html">Special Utility Matrices</a>.
+</p>
+<p>The following table summarizes the available random number generators (in
+alphabetical order).
+</p>
+<table class="multitable">
+<thead><tr><th width="40%">Distribution</th><th width="30%">Function</th></tr></thead>
+<tbody><tr><td width="40%">Univariate Discrete Distribution</td><td width="30%"><code class="code">discrete_rnd</code></td></tr>
+<tr><td width="40%">Empirical Distribution</td><td width="30%"><code class="code">empirical_rnd</code></td></tr>
+<tr><td width="40%">Exponential Distribution</td><td width="30%"><code class="code">rande</code></td></tr>
+<tr><td width="40%">Gamma Distribution</td><td width="30%"><code class="code">randg</code></td></tr>
+<tr><td width="40%">Poisson Distribution</td><td width="30%"><code class="code">randp</code></td></tr>
+<tr><td width="40%">Standard Normal Distribution</td><td width="30%"><code class="code">randn</code></td></tr>
+<tr><td width="40%">Uniform Distribution</td><td width="30%"><code class="code">rand</code></td></tr>
+<tr><td width="40%">Uniform Distribution (integers)</td><td width="30%"><code class="code">randi</code></td></tr>
+</tbody>
+</table>
+
+<a class="anchor" id="XREFdiscrete_005frnd"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-discrete_005frnd"><span><code class="def-type"><var class="var">rnd</var> =</code> <strong class="def-name">discrete_rnd</strong> <code class="def-code-arguments">(<var class="var">v</var>, <var class="var">p</var>)</code><a class="copiable-link" href="#index-discrete_005frnd"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-discrete_005frnd-1"><span><code class="def-type"><var class="var">rnd</var> =</code> <strong class="def-name">discrete_rnd</strong> <code class="def-code-arguments">(<var class="var">v</var>, <var class="var">p</var>, <var class="var">r</var>)</code><a class="copiable-link" href="#index-discrete_005frnd-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-discrete_005frnd-2"><span><code class="def-type"><var class="var">rnd</var> =</code> <strong class="def-name">discrete_rnd</strong> <code class="def-code-arguments">(<var class="var">v</var>, <var class="var">p</var>, <var class="var">r</var>, <var class="var">c</var>, &hellip;)</code><a class="copiable-link" href="#index-discrete_005frnd-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-discrete_005frnd-3"><span><code class="def-type"><var class="var">rnd</var> =</code> <strong class="def-name">discrete_rnd</strong> <code class="def-code-arguments">(<var class="var">v</var>, <var class="var">p</var>, [<var class="var">sz</var>])</code><a class="copiable-link" href="#index-discrete_005frnd-3"> &para;</a></span></dt>
+<dd><p>Return a matrix of random samples from the univariate distribution which
+assumes the values in <var class="var">v</var> with probabilities <var class="var">p</var>.
+</p>
+<p>When called with a single size argument, return a square matrix with
+the dimension specified.  When called with more than one scalar argument the
+first two arguments are taken as the number of rows and columns and any
+further arguments specify additional matrix dimensions.  The size may also
+be specified with a vector of dimensions <var class="var">sz</var>.
+</p>
+<p>If no size arguments are given then the result matrix is the common size of
+<var class="var">v</var> and <var class="var">p</var>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFempirical_005frnd"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-empirical_005frnd"><span><code class="def-type"><var class="var">rnd</var> =</code> <strong class="def-name">empirical_rnd</strong> <code class="def-code-arguments">(<var class="var">data</var>)</code><a class="copiable-link" href="#index-empirical_005frnd"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-empirical_005frnd-1"><span><code class="def-type"><var class="var">rnd</var> =</code> <strong class="def-name">empirical_rnd</strong> <code class="def-code-arguments">(<var class="var">data</var>, <var class="var">r</var>)</code><a class="copiable-link" href="#index-empirical_005frnd-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-empirical_005frnd-2"><span><code class="def-type"><var class="var">rnd</var> =</code> <strong class="def-name">empirical_rnd</strong> <code class="def-code-arguments">(<var class="var">data</var>, <var class="var">r</var>, <var class="var">c</var>, &hellip;)</code><a class="copiable-link" href="#index-empirical_005frnd-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-empirical_005frnd-3"><span><code class="def-type"><var class="var">rnd</var> =</code> <strong class="def-name">empirical_rnd</strong> <code class="def-code-arguments">(<var class="var">data</var>, [<var class="var">sz</var>])</code><a class="copiable-link" href="#index-empirical_005frnd-3"> &para;</a></span></dt>
+<dd><p>Return a matrix of random samples from the empirical distribution obtained
+from the univariate sample <var class="var">data</var>.
+</p>
+<p>When called with a single size argument, return a square matrix with
+the dimension specified.  When called with more than one scalar argument the
+first two arguments are taken as the number of rows and columns and any
+further arguments specify additional matrix dimensions.  The size may also
+be specified with a vector of dimensions <var class="var">sz</var>.
+</p>
+<p>If no size arguments are given then the result matrix is a random ordering
+of the sample <var class="var">data</var>.
+</p></dd></dl>
+
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Distributions.html">Distributions</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Statistics.html">Statistics</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

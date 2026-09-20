@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Anonymous Functions (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Anonymous Functions (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Anonymous Functions (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Function-Handles-and-Anonymous-Functions.html" rel="up" title="Function Handles and Anonymous Functions">
+<link href="Function-Handles.html" rel="prev" title="Function Handles">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Anonymous-Functions">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Function-Handles.html" accesskey="p" rel="prev">Function Handles</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Function-Handles-and-Anonymous-Functions.html" accesskey="u" rel="up">Function Handles and Anonymous Functions</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Anonymous-Functions-1"><span>11.12.2 Anonymous Functions<a class="copiable-link" href="#Anonymous-Functions-1"> &para;</a></span></h4>
+
+<p>Anonymous functions are defined using the syntax
+</p>
+<div class="example">
+<pre class="example-preformatted">@(<var class="var">argument-list</var>) <var class="var">expression</var>
+</pre></div>
+
+<p>Any variables that are not found in the argument list are inherited from
+the enclosing scope.  Anonymous functions are useful for creating simple
+unnamed functions from expressions or for wrapping calls to other
+functions to adapt them for use by functions like <code class="code">quad</code>.  For
+example,
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">f = @(x) x.^2;
+quad (f, 0, 10)
+    &rArr;  333.33
+</pre></div></div>
+
+<p>creates a simple unnamed function from the expression <code class="code">x.^2</code> and
+passes it to <code class="code">quad</code>,
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">quad (@(x) sin (x), 0, pi)
+    &rArr;  2
+</pre></div></div>
+
+<p>wraps another function, and
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">a = 1;
+b = 2;
+quad (@(x) betainc (x, a, b), 0, 0.4)
+    &rArr;  0.13867
+</pre></div></div>
+
+<p>adapts a function with several parameters to the form required by
+<code class="code">quad</code>.  In this example, the values of <var class="var">a</var> and <var class="var">b</var> that
+are passed to <code class="code">betainc</code> are inherited from the current
+environment.
+</p>
+<p>Note that for performance reasons it is better to use handles to existing
+Octave functions, rather than to define anonymous functions which wrap an
+existing function.  The integration of <code class="code">sin (x)</code> is 5X faster if the code
+is written as
+</p>
+<div class="example">
+<pre class="example-preformatted">quad (@sin, 0, pi)
+</pre></div>
+
+<p>rather than using the anonymous function <code class="code">@(x) sin (x)</code>.  There are many
+operators which have functional equivalents that may be better choices than an
+anonymous function.  Instead of writing
+</p>
+<div class="example">
+<pre class="example-preformatted">f = @(x, y) x + y
+</pre></div>
+
+<p>this should be coded as
+</p>
+<div class="example">
+<pre class="example-preformatted">f = @plus
+</pre></div>
+
+<p>See <a class="xref" href="Operator-Overloading.html">Operator Overloading</a>, for a list of operators which also have a
+functional form.
+</p>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Function-Handles.html">Function Handles</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Function-Handles-and-Anonymous-Functions.html">Function Handles and Anonymous Functions</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

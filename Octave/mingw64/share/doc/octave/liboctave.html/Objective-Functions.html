@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Objective Functions (Octave C++ Classes)</title>
+
+<meta name="description" content="Objective Functions (Octave C++ Classes)">
+<meta name="keywords" content="Objective Functions (Octave C++ Classes)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-Index.html" rel="index" title="Function Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Optimization.html" rel="up" title="Optimization">
+<link href="Bounds.html" rel="next" title="Bounds">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Objective-Functions">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Bounds.html" accesskey="n" rel="next">Bounds</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Optimization.html" accesskey="u" rel="up">Optimization</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Function-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Objective-Functions-1"><span>9.1 Objective Functions<a class="copiable-link" href="#Objective-Functions-1"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-objective-functions"></a>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-Objective"><span class="category-def">: </span><span><strong class="def-name">Objective</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-Objective"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-Objective-1"><span class="category-def">: </span><span><strong class="def-name">Objective</strong> <code class="def-code-arguments">(const <var class="var">objective_fcn</var>)</code><a class="copiable-link" href="#index-Objective-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-Objective-2"><span class="category-def">: </span><span><strong class="def-name">Objective</strong> <code class="def-code-arguments">(const <var class="var">objective_fcn</var>, const <var class="var">gradient_fcn</var>)</code><a class="copiable-link" href="#index-Objective-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-Objective-3"><span class="category-def">: </span><span><strong class="def-name">Objective</strong> <code class="def-code-arguments">(const Objective &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-Objective-3"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003d-29"><span class="category-def">: </span><span><code class="def-type">Objective&amp;</code> <strong class="def-name">operator =</strong> <code class="def-code-arguments">(const Objective &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003d-29"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-objective_005ffunction"><span class="category-def">: </span><span><code class="def-type">objective_fcn</code> <strong class="def-name">objective_function</strong> <code class="def-code-arguments">(void) const;</code><a class="copiable-link" href="#index-objective_005ffunction"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-set_005fobjective_005ffunction"><span class="category-def">: </span><span><code class="def-type">Objective&amp;</code> <strong class="def-name">set_objective_function</strong> <code class="def-code-arguments">(const <var class="var">objective_fcn</var>)</code><a class="copiable-link" href="#index-set_005fobjective_005ffunction"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gradient_005ffunction"><span class="category-def">: </span><span><code class="def-type">gradient_fcn</code> <strong class="def-name">gradient_function</strong> <code class="def-code-arguments">(void) const;</code><a class="copiable-link" href="#index-gradient_005ffunction"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-set_005fgradient_005ffunction"><span class="category-def">: </span><span><code class="def-type">Objective&amp;</code> <strong class="def-name">set_gradient_function</strong> <code class="def-code-arguments">(const <var class="var">gradient_fcn</var>)</code><a class="copiable-link" href="#index-set_005fgradient_005ffunction"> &para;</a></span></dt>
+</dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Bounds.html">Bounds</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Optimization.html">Optimization</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Function-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

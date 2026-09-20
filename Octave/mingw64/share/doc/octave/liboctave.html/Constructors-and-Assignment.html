@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Constructors and Assignment (Octave C++ Classes)</title>
+
+<meta name="description" content="Constructors and Assignment (Octave C++ Classes)">
+<meta name="keywords" content="Constructors and Assignment (Octave C++ Classes)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-Index.html" rel="index" title="Function Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Arrays.html" rel="up" title="Arrays">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Constructors-and-Assignment">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Arrays.html" accesskey="u" rel="up">Arrays</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Function-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Constructors-and-Assignment-1"><span>3.1 Constructors and Assignment<a class="copiable-link" href="#Constructors-and-Assignment-1"> &para;</a></span></h3>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-Array_003cT_003e"><span class="category-def">Constructor: </span><span><strong class="def-name">Array&lt;T&gt;</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-Array_003cT_003e"> &para;</a></span></dt>
+<dd><p>Create an array with no elements.
+</p></dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-Array_003cT_003e-1"><span class="category-def">Constructor: </span><span><strong class="def-name">Array&lt;T&gt;</strong> <code class="def-code-arguments">(int <var class="var">n</var> [, const T &amp;<var class="var">val</var>])</code><a class="copiable-link" href="#index-Array_003cT_003e-1"> &para;</a></span></dt>
+<dd><p>Create an array with <var class="var">n</var> elements.  If the optional argument
+<var class="var">val</var> is supplied, the elements are initialized to <var class="var">val</var>;
+otherwise, they are left uninitialized.  If <var class="var">n</var> is less than zero,
+the current error handler is invoked (see <a class="pxref" href="Error-Handling.html">Error Handling</a>).
+</p></dd></dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-Array_003cT_003e-2"><span class="category-def">Constructor: </span><span><strong class="def-name">Array&lt;T&gt;</strong> <code class="def-code-arguments">(const Array&lt;T&gt; &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-Array_003cT_003e-2"> &para;</a></span></dt>
+<dd><p>Create a copy of the <var class="var">Array&lt;T&gt;</var> object <var class="var">a</var>.  Memory for the
+<var class="var">Array&lt;T&gt;</var> class is managed using a reference counting scheme, so
+the cost of this operation is independent of the size of the array.
+</p></dd></dl>
+
+<dl class="first-deftypeop def-block">
+<dt class="deftypeop def-line" id="index-operator-_003d-on-Array_003cT_003e"><span class="category-def">Assignment on <code class="code">Array&lt;T&gt;</code>: </span><span><code class="def-type">Array&lt;T&gt;&amp;</code> <strong class="def-name">operator =</strong> <code class="def-code-arguments">(const Array&lt;T&gt; &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003d-on-Array_003cT_003e"> &para;</a></span></dt>
+<dd><p>Assignment operator.  Memory for the <var class="var">Array&lt;T&gt;</var> class is managed
+using a reference counting scheme, so the cost of this operation is
+independent of the size of the array.
+</p></dd></dl>
+
+<dl class="first-deftypeop first-deftypemethod-alias-first-deftypeop def-block">
+<dt class="deftypeop deftypemethod-alias-deftypeop def-line" id="index-capacity-on-Array_003cT_003e"><span class="category-def">Method on <code class="code">Array&lt;T&gt;</code>: </span><span><code class="def-type">int</code> <strong class="def-name">capacity</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-capacity-on-Array_003cT_003e"> &para;</a></span></dt>
+<dt class="deftypeopx deftypemethodx-alias-deftypeopx def-cmd-deftypeop def-line" id="index-length-on-Array_003cT_003e"><span class="category-def">Method on <code class="code">Array&lt;T&gt;</code>: </span><span><code class="def-type">int</code> <strong class="def-name">length</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-length-on-Array_003cT_003e"> &para;</a></span></dt>
+<dd><p>Return the length of the array.
+</p></dd></dl>
+
+<dl class="first-deftypeop first-deftypemethod-alias-first-deftypeop def-block">
+<dt class="deftypeop deftypemethod-alias-deftypeop def-line" id="index-elem-on-Array_003cT_003e"><span class="category-def">Method on <code class="code">Array&lt;T&gt;</code>: </span><span><code class="def-type">T&amp;</code> <strong class="def-name">elem</strong> <code class="def-code-arguments">(int <var class="var">n</var>)</code><a class="copiable-link" href="#index-elem-on-Array_003cT_003e"> &para;</a></span></dt>
+<dt class="deftypeopx deftypemethodx-alias-deftypeopx def-cmd-deftypeop def-line" id="index-checkelem-on-Array_003cT_003e"><span class="category-def">Method on <code class="code">Array&lt;T&gt;</code>: </span><span><code class="def-type">T&amp;</code> <strong class="def-name">checkelem</strong> <code class="def-code-arguments">(int <var class="var">n</var>)</code><a class="copiable-link" href="#index-checkelem-on-Array_003cT_003e"> &para;</a></span></dt>
+<dd><p>If <var class="var">n</var> is within the bounds of the array, return a reference to the
+element indexed by <var class="var">n</var>; otherwise, the current error handler is
+invoked (see <a class="pxref" href="Error-Handling.html">Error Handling</a>).
+</p></dd></dl>
+
+<dl class="first-deftypeop def-block">
+<dt class="deftypeop def-line" id="index-operator-_0028_0029-on-Array_003cT_003e"><span class="category-def">Indexing on <code class="code">Array&lt;T&gt;</code>: </span><span><code class="def-type">T&amp;</code> <strong class="def-name">operator ()</strong> <code class="def-code-arguments">(int <var class="var">n</var>)</code><a class="copiable-link" href="#index-operator-_0028_0029-on-Array_003cT_003e"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypeop first-deftypemethod-alias-first-deftypeop def-block">
+<dt class="deftypeop deftypemethod-alias-deftypeop def-line" id="index-elem-on-Array_003cT_003e-1"><span class="category-def">Method on <code class="code">Array&lt;T&gt;</code>: </span><span><code class="def-type">T</code> <strong class="def-name">elem</strong> <code class="def-code-arguments">(int <var class="var">n</var>) const</code><a class="copiable-link" href="#index-elem-on-Array_003cT_003e-1"> &para;</a></span></dt>
+<dt class="deftypeopx deftypemethodx-alias-deftypeopx def-cmd-deftypeop def-line" id="index-checkelem-on-Array_003cT_003e-1"><span class="category-def">Method on <code class="code">Array&lt;T&gt;</code>: </span><span><code class="def-type">T</code> <strong class="def-name">checkelem</strong> <code class="def-code-arguments">(int <var class="var">n</var>) const</code><a class="copiable-link" href="#index-checkelem-on-Array_003cT_003e-1"> &para;</a></span></dt>
+<dd><p>If <var class="var">n</var> is within the bounds of the array, return the value indexed
+by <var class="var">n</var>; otherwise, call the current error handler.
+See <a class="xref" href="Error-Handling.html">Error Handling</a>.
+</p></dd></dl>
+
+<dl class="first-deftypeop def-block">
+<dt class="deftypeop def-line" id="index-operator-_0028_0029-on-Array_003cT_003e-1"><span class="category-def">Indexing on <code class="code">Array&lt;T&gt;</code>: </span><span><code class="def-type">T</code> <strong class="def-name">operator ()</strong> <code class="def-code-arguments">(int <var class="var">n</var>) const</code><a class="copiable-link" href="#index-operator-_0028_0029-on-Array_003cT_003e-1"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypeop first-deftypemethod-alias-first-deftypeop def-block">
+<dt class="deftypeop deftypemethod-alias-deftypeop def-line" id="index-xelem-on-Array_003cT_003e"><span class="category-def">Method on <code class="code">Array&lt;T&gt;</code>: </span><span><code class="def-type">T&amp;</code> <strong class="def-name">xelem</strong> <code class="def-code-arguments">(int <var class="var">n</var>)</code><a class="copiable-link" href="#index-xelem-on-Array_003cT_003e"> &para;</a></span></dt>
+<dt class="deftypeopx deftypemethodx-alias-deftypeopx def-cmd-deftypeop def-line" id="index-xelem-on-Array_003cT_003e-1"><span class="category-def">Method on <code class="code">Array&lt;T&gt;</code>: </span><span><code class="def-type">T</code> <strong class="def-name">xelem</strong> <code class="def-code-arguments">(int <var class="var">n</var>) const</code><a class="copiable-link" href="#index-xelem-on-Array_003cT_003e-1"> &para;</a></span></dt>
+<dd><p>Return a reference to, or the value of, the element indexed by <var class="var">n</var>.
+These methods never perform bounds checking.
+</p></dd></dl>
+
+<dl class="first-deftypeop first-deftypemethod-alias-first-deftypeop def-block">
+<dt class="deftypeop deftypemethod-alias-deftypeop def-line" id="index-resize-on-Array_003cT_003e"><span class="category-def">Method on <code class="code">Array&lt;T&gt;</code>: </span><span><code class="def-type">void</code> <strong class="def-name">resize</strong> <code class="def-code-arguments">(int <var class="var">n</var> [, const T &amp;<var class="var">val</var>])</code><a class="copiable-link" href="#index-resize-on-Array_003cT_003e"> &para;</a></span></dt>
+<dd><p>Change the size of the array to be <var class="var">n</var> elements.  All elements are
+unchanged, except that if <var class="var">n</var> is greater than the current size and
+the optional argument <var class="var">val</var> is provided, the additional elements are
+initialized to <var class="var">val</var>; otherwise, any additional elements are left
+uninitialized.  In the current implementation, if <var class="var">n</var> is less than
+the current size, the length is updated but no memory is released.
+</p></dd></dl>
+
+<dl class="first-deftypeop first-deftypemethod-alias-first-deftypeop def-block">
+<dt class="deftypeop deftypemethod-alias-deftypeop def-line" id="index-data-on-Array_003cT_003e"><span class="category-def">Method on <code class="code">Array&lt;T&gt;</code>: </span><span><code class="def-type">const T*</code> <strong class="def-name">data</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-data-on-Array_003cT_003e"> &para;</a></span></dt>
+</dl>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-Array2_003cT_003e"><span class="category-def">Constructor: </span><span><strong class="def-name">Array2&lt;T&gt;</strong> <code class="def-code-arguments">Array2&lt;T&gt; Array2 (void)</code><a class="copiable-link" href="#index-Array2_003cT_003e"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-Array2_003cT_003e-1"><span class="category-def">Constructor: </span><span><strong class="def-name">Array2&lt;T&gt;</strong> <code class="def-code-arguments">(int <var class="var">n</var>, int <var class="var">m</var>)</code><a class="copiable-link" href="#index-Array2_003cT_003e-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-Array2_003cT_003e-2"><span class="category-def">Constructor: </span><span><strong class="def-name">Array2&lt;T&gt;</strong> <code class="def-code-arguments">(int <var class="var">n</var>, int <var class="var">m</var>, const T &amp;<var class="var">val</var>)</code><a class="copiable-link" href="#index-Array2_003cT_003e-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-Array2_003cT_003e-3"><span class="category-def">Constructor: </span><span><strong class="def-name">Array2&lt;T&gt;</strong> <code class="def-code-arguments">(const Array2&lt;T&gt; &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-Array2_003cT_003e-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-Array2_003cT_003e-4"><span class="category-def">Constructor: </span><span><strong class="def-name">Array2&lt;T&gt;</strong> <code class="def-code-arguments">(const DiagArray&lt;T&gt; &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-Array2_003cT_003e-4"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypeop def-block">
+<dt class="deftypeop def-line" id="index-operator-_003d-on-Array2_003cT_003e"><span class="category-def">Assignment on <code class="code">Array2&lt;T&gt;</code>: </span><span><code class="def-type">Array2&lt;T&gt;&amp;</code> <strong class="def-name">operator =</strong> <code class="def-code-arguments">(const Array2&lt;T&gt; &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003d-on-Array2_003cT_003e"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypeop first-deftypemethod-alias-first-deftypeop def-block">
+<dt class="deftypeop deftypemethod-alias-deftypeop def-line" id="index-dim1-on-Array2_003cT_003e"><span class="category-def">Method on <code class="code">Array2&lt;T&gt;</code>: </span><span><code class="def-type">int</code> <strong class="def-name">dim1</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-dim1-on-Array2_003cT_003e"> &para;</a></span></dt>
+<dt class="deftypeopx deftypemethodx-alias-deftypeopx def-cmd-deftypeop def-line" id="index-rows-on-Array2_003cT_003e"><span class="category-def">Method on <code class="code">Array2&lt;T&gt;</code>: </span><span><code class="def-type">int</code> <strong class="def-name">rows</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-rows-on-Array2_003cT_003e"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypeop first-deftypemethod-alias-first-deftypeop def-block">
+<dt class="deftypeop deftypemethod-alias-deftypeop def-line" id="index-dim2-on-Array2_003cT_003e"><span class="category-def">Method on <code class="code">Array2&lt;T&gt;</code>: </span><span><code class="def-type">int</code> <strong class="def-name">dim2</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-dim2-on-Array2_003cT_003e"> &para;</a></span></dt>
+<dt class="deftypeopx deftypemethodx-alias-deftypeopx def-cmd-deftypeop def-line" id="index-cols-on-Array2_003cT_003e"><span class="category-def">Method on <code class="code">Array2&lt;T&gt;</code>: </span><span><code class="def-type">int</code> <strong class="def-name">cols</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-cols-on-Array2_003cT_003e"> &para;</a></span></dt>
+<dt class="deftypeopx deftypemethodx-alias-deftypeopx def-cmd-deftypeop def-line" id="index-columns-on-Array2_003cT_003e"><span class="category-def">Method on <code class="code">Array2&lt;T&gt;</code>: </span><span><code class="def-type">int</code> <strong class="def-name">columns</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-columns-on-Array2_003cT_003e"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypeop first-deftypemethod-alias-first-deftypeop def-block">
+<dt class="deftypeop deftypemethod-alias-deftypeop def-line" id="index-elem-on-Array2_003cT_003e"><span class="category-def">Method on <code class="code">Array2&lt;T&gt;</code>: </span><span><code class="def-type">T&amp;</code> <strong class="def-name">elem</strong> <code class="def-code-arguments">(int <var class="var">i</var>, int <var class="var">j</var>)</code><a class="copiable-link" href="#index-elem-on-Array2_003cT_003e"> &para;</a></span></dt>
+<dt class="deftypeopx deftypemethodx-alias-deftypeopx def-cmd-deftypeop def-line" id="index-checkelem-on-Array2_003cT_003e"><span class="category-def">Method on <code class="code">Array2&lt;T&gt;</code>: </span><span><code class="def-type">T&amp;</code> <strong class="def-name">checkelem</strong> <code class="def-code-arguments">(int <var class="var">i</var>, int <var class="var">j</var>)</code><a class="copiable-link" href="#index-checkelem-on-Array2_003cT_003e"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypeop def-block">
+<dt class="deftypeop def-line" id="index-operator-_0028_0029-on-Array2_003cT_003e"><span class="category-def">Indexing on <code class="code">Array2&lt;T&gt;</code>: </span><span><code class="def-type">T&amp;</code> <strong class="def-name">operator ()</strong> <code class="def-code-arguments">(int <var class="var">i</var>, int <var class="var">j</var>)</code><a class="copiable-link" href="#index-operator-_0028_0029-on-Array2_003cT_003e"> &para;</a></span></dt>
+</dl>
+
+
+<dl class="first-deftypeop first-deftypemethod-alias-first-deftypeop def-block">
+<dt class="deftypeop deftypemethod-alias-deftypeop def-line" id="index-resize-on-Array2_003cT_003e"><span class="category-def">Method on <code class="code">Array2&lt;T&gt;</code>: </span><span><code class="def-type">void</code> <strong class="def-name">resize</strong> <code class="def-code-arguments">(int <var class="var">n</var>, int <var class="var">m</var>)</code><a class="copiable-link" href="#index-resize-on-Array2_003cT_003e"> &para;</a></span></dt>
+<dt class="deftypeopx deftypemethodx-alias-deftypeopx def-cmd-deftypeop def-line" id="index-resize-on-Array2_003cT_003e-1"><span class="category-def">Method on <code class="code">Array2&lt;T&gt;</code>: </span><span><code class="def-type">void</code> <strong class="def-name">resize</strong> <code class="def-code-arguments">(int <var class="var">n</var>, int <var class="var">m</var>, const T &amp;<var class="var">val</var>)</code><a class="copiable-link" href="#index-resize-on-Array2_003cT_003e-1"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-Array3_003cT_003e"><span class="category-def">Constructor: </span><span><strong class="def-name">Array3&lt;T&gt;</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-Array3_003cT_003e"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-Array3_003cT_003e-1"><span class="category-def">Constructor: </span><span><strong class="def-name">Array3&lt;T&gt;</strong> <code class="def-code-arguments">(int <var class="var">n</var>, int <var class="var">m</var>, int <var class="var">k</var>)</code><a class="copiable-link" href="#index-Array3_003cT_003e-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-Array3_003cT_003e-2"><span class="category-def">Constructor: </span><span><strong class="def-name">Array3&lt;T&gt;</strong> <code class="def-code-arguments">(int <var class="var">n</var>, int <var class="var">m</var>, int <var class="var">k</var>, const T &amp;<var class="var">val</var>)</code><a class="copiable-link" href="#index-Array3_003cT_003e-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-Array3_003cT_003e-3"><span class="category-def">Constructor: </span><span><strong class="def-name">Array3&lt;T&gt;</strong> <code class="def-code-arguments">(const Array3&lt;T&gt; &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-Array3_003cT_003e-3"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypeop def-block">
+<dt class="deftypeop def-line" id="index-operator-_003d-on-Array3_003cT_003e"><span class="category-def">Assignment on <code class="code">Array3&lt;T&gt;</code>: </span><span><code class="def-type">Array3&lt;T&gt;&amp;</code> <strong class="def-name">operator =</strong> <code class="def-code-arguments">(const Array3&lt;T&gt; &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003d-on-Array3_003cT_003e"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypeop first-deftypemethod-alias-first-deftypeop def-block">
+<dt class="deftypeop deftypemethod-alias-deftypeop def-line" id="index-dim1-on-Array3_003cT_003e"><span class="category-def">Method on <code class="code">Array3&lt;T&gt;</code>: </span><span><code class="def-type">int</code> <strong class="def-name">dim1</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-dim1-on-Array3_003cT_003e"> &para;</a></span></dt>
+<dt class="deftypeopx deftypemethodx-alias-deftypeopx def-cmd-deftypeop def-line" id="index-dim2-on-Array3_003cT_003e"><span class="category-def">Method on <code class="code">Array3&lt;T&gt;</code>: </span><span><code class="def-type">int</code> <strong class="def-name">dim2</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-dim2-on-Array3_003cT_003e"> &para;</a></span></dt>
+<dt class="deftypeopx deftypemethodx-alias-deftypeopx def-cmd-deftypeop def-line" id="index-dim3-on-Array3_003cT_003e"><span class="category-def">Method on <code class="code">Array3&lt;T&gt;</code>: </span><span><code class="def-type">int</code> <strong class="def-name">dim3</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-dim3-on-Array3_003cT_003e"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypeop first-deftypemethod-alias-first-deftypeop def-block">
+<dt class="deftypeop deftypemethod-alias-deftypeop def-line" id="index-elem-on-Array3_003cT_003e"><span class="category-def">Method on <code class="code">Array3&lt;T&gt;</code>: </span><span><code class="def-type">T&amp;</code> <strong class="def-name">elem</strong> <code class="def-code-arguments">(int <var class="var">i</var>, int <var class="var">j</var>, int <var class="var">k</var>)</code><a class="copiable-link" href="#index-elem-on-Array3_003cT_003e"> &para;</a></span></dt>
+<dt class="deftypeopx deftypemethodx-alias-deftypeopx def-cmd-deftypeop def-line" id="index-checkelem-on-Array3_003cT_003e"><span class="category-def">Method on <code class="code">Array3&lt;T&gt;</code>: </span><span><code class="def-type">T&amp;</code> <strong class="def-name">checkelem</strong> <code class="def-code-arguments">(int <var class="var">i</var>, int <var class="var">j</var>, int <var class="var">k</var>)</code><a class="copiable-link" href="#index-checkelem-on-Array3_003cT_003e"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypeop def-block">
+<dt class="deftypeop def-line" id="index-operator-_0028_0029-on-Array3_003cT_003e"><span class="category-def">Indexing on <code class="code">Array3&lt;T&gt;</code>: </span><span><code class="def-type">T&amp;</code> <strong class="def-name">operator ()</strong> <code class="def-code-arguments">(int <var class="var">i</var>, int <var class="var">j</var>, int <var class="var">k</var>)</code><a class="copiable-link" href="#index-operator-_0028_0029-on-Array3_003cT_003e"> &para;</a></span></dt>
+</dl>
+
+
+<dl class="first-deftypeop first-deftypemethod-alias-first-deftypeop def-block">
+<dt class="deftypeop deftypemethod-alias-deftypeop def-line" id="index-resize-on-Array3_003cT_003e"><span class="category-def">Method on <code class="code">Array3&lt;T&gt;</code>: </span><span><code class="def-type">void</code> <strong class="def-name">resize</strong> <code class="def-code-arguments">(int <var class="var">n</var>, int <var class="var">m</var>, int <var class="var">k</var>)</code><a class="copiable-link" href="#index-resize-on-Array3_003cT_003e"> &para;</a></span></dt>
+<dt class="deftypeopx deftypemethodx-alias-deftypeopx def-cmd-deftypeop def-line" id="index-resize-on-Array3_003cT_003e-1"><span class="category-def">Method on <code class="code">Array3&lt;T&gt;</code>: </span><span><code class="def-type">void</code> <strong class="def-name">resize</strong> <code class="def-code-arguments">(int <var class="var">n</var>, int <var class="var">m</var>, int <var class="var">k</var>, const T &amp;<var class="var">val</var>)</code><a class="copiable-link" href="#index-resize-on-Array3_003cT_003e-1"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-DiagArray_003cT_003e"><span class="category-def">Constructor: </span><span><strong class="def-name">DiagArray&lt;T&gt;</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-DiagArray_003cT_003e"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-DiagArray_003cT_003e-1"><span class="category-def">Constructor: </span><span><strong class="def-name">DiagArray&lt;T&gt;</strong> <code class="def-code-arguments">(int <var class="var">n</var>)</code><a class="copiable-link" href="#index-DiagArray_003cT_003e-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-DiagArray_003cT_003e-2"><span class="category-def">Constructor: </span><span><strong class="def-name">DiagArray&lt;T&gt;</strong> <code class="def-code-arguments">(int <var class="var">n</var>, const T &amp;<var class="var">val</var>)</code><a class="copiable-link" href="#index-DiagArray_003cT_003e-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-DiagArray_003cT_003e-3"><span class="category-def">Constructor: </span><span><strong class="def-name">DiagArray&lt;T&gt;</strong> <code class="def-code-arguments">(int <var class="var">r</var>, int <var class="var">c</var>)</code><a class="copiable-link" href="#index-DiagArray_003cT_003e-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-DiagArray_003cT_003e-4"><span class="category-def">Constructor: </span><span><strong class="def-name">DiagArray&lt;T&gt;</strong> <code class="def-code-arguments">(int <var class="var">r</var>, int <var class="var">c</var>, const T &amp;<var class="var">val</var>)</code><a class="copiable-link" href="#index-DiagArray_003cT_003e-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-DiagArray_003cT_003e-5"><span class="category-def">Constructor: </span><span><strong class="def-name">DiagArray&lt;T&gt;</strong> <code class="def-code-arguments">(const Array&lt;T&gt; &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-DiagArray_003cT_003e-5"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-DiagArray_003cT_003e-6"><span class="category-def">Constructor: </span><span><strong class="def-name">DiagArray&lt;T&gt;</strong> <code class="def-code-arguments">(const DiagArray&lt;T&gt; &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-DiagArray_003cT_003e-6"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypeop def-block">
+<dt class="deftypeop def-line" id="index-operator-_003d-on-DiagArray_003cT_003e_0026"><span class="category-def">Assignment on <code class="code">DiagArray&lt;T&gt;&amp;</code>: </span><span><strong class="def-name">operator =</strong> <code class="def-code-arguments">(const DiagArray&lt;T&gt; &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003d-on-DiagArray_003cT_003e_0026"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypeop first-deftypemethod-alias-first-deftypeop def-block">
+<dt class="deftypeop deftypemethod-alias-deftypeop def-line" id="index-dim1-on-DiagArray_003cT_003e"><span class="category-def">Method on <code class="code">DiagArray&lt;T&gt;</code>: </span><span><code class="def-type">int</code> <strong class="def-name">dim1</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-dim1-on-DiagArray_003cT_003e"> &para;</a></span></dt>
+<dt class="deftypeopx deftypemethodx-alias-deftypeopx def-cmd-deftypeop def-line" id="index-rows-on-DiagArray_003cT_003e"><span class="category-def">Method on <code class="code">DiagArray&lt;T&gt;</code>: </span><span><code class="def-type">int</code> <strong class="def-name">rows</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-rows-on-DiagArray_003cT_003e"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypeop first-deftypemethod-alias-first-deftypeop def-block">
+<dt class="deftypeop deftypemethod-alias-deftypeop def-line" id="index-dim2-on-DiagArray_003cT_003e"><span class="category-def">Method on <code class="code">DiagArray&lt;T&gt;</code>: </span><span><code class="def-type">int</code> <strong class="def-name">dim2</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-dim2-on-DiagArray_003cT_003e"> &para;</a></span></dt>
+<dt class="deftypeopx deftypemethodx-alias-deftypeopx def-cmd-deftypeop def-line" id="index-cols-on-DiagArray_003cT_003e"><span class="category-def">Method on <code class="code">DiagArray&lt;T&gt;</code>: </span><span><code class="def-type">int</code> <strong class="def-name">cols</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-cols-on-DiagArray_003cT_003e"> &para;</a></span></dt>
+<dt class="deftypeopx deftypemethodx-alias-deftypeopx def-cmd-deftypeop def-line" id="index-columns-on-DiagArray_003cT_003e"><span class="category-def">Method on <code class="code">DiagArray&lt;T&gt;</code>: </span><span><code class="def-type">int</code> <strong class="def-name">columns</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-columns-on-DiagArray_003cT_003e"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypeop first-deftypemethod-alias-first-deftypeop def-block">
+<dt class="deftypeop deftypemethod-alias-deftypeop def-line" id="index-elem-on-DiagArray_003cT_003e"><span class="category-def">Method on <code class="code">DiagArray&lt;T&gt;</code>: </span><span><code class="def-type">T&amp;</code> <strong class="def-name">elem</strong> <code class="def-code-arguments">(int <var class="var">r</var>, int <var class="var">c</var>)</code><a class="copiable-link" href="#index-elem-on-DiagArray_003cT_003e"> &para;</a></span></dt>
+<dt class="deftypeopx deftypemethodx-alias-deftypeopx def-cmd-deftypeop def-line" id="index-checkelem-on-DiagArray_003cT_003e"><span class="category-def">Method on <code class="code">DiagArray&lt;T&gt;</code>: </span><span><code class="def-type">T&amp;</code> <strong class="def-name">checkelem</strong> <code class="def-code-arguments">(int <var class="var">r</var>, int <var class="var">c</var>)</code><a class="copiable-link" href="#index-checkelem-on-DiagArray_003cT_003e"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypeop def-block">
+<dt class="deftypeop def-line" id="index-operator-_0028_0029-on-DiagArray_003cT_003e"><span class="category-def">Indexing on <code class="code">DiagArray&lt;T&gt;</code>: </span><span><code class="def-type">T&amp;</code> <strong class="def-name">operator ()</strong> <code class="def-code-arguments">(int <var class="var">r</var>, int <var class="var">c</var>)</code><a class="copiable-link" href="#index-operator-_0028_0029-on-DiagArray_003cT_003e"> &para;</a></span></dt>
+</dl>
+
+
+<dl class="first-deftypeop first-deftypemethod-alias-first-deftypeop def-block">
+<dt class="deftypeop deftypemethod-alias-deftypeop def-line" id="index-resize-on-DiagArray_003cT_003e"><span class="category-def">Method on <code class="code">DiagArray&lt;T&gt;</code>: </span><span><code class="def-type">void</code> <strong class="def-name">resize</strong> <code class="def-code-arguments">(int <var class="var">n</var>, int <var class="var">m</var>)</code><a class="copiable-link" href="#index-resize-on-DiagArray_003cT_003e"> &para;</a></span></dt>
+<dt class="deftypeopx deftypemethodx-alias-deftypeopx def-cmd-deftypeop def-line" id="index-resize-on-DiagArray_003cT_003e-1"><span class="category-def">Method on <code class="code">DiagArray&lt;T&gt;</code>: </span><span><code class="def-type">void</code> <strong class="def-name">resize</strong> <code class="def-code-arguments">(int <var class="var">n</var>, int <var class="var">m</var>, const T &amp;<var class="var">val</var>)</code><a class="copiable-link" href="#index-resize-on-DiagArray_003cT_003e-1"> &para;</a></span></dt>
+</dl>
+
+<p>The real and complex <code class="code">ColumnVector</code> and <code class="code">RowVector</code> classes
+all have the following functions.  These will eventually be part of an
+<code class="code">MArray&lt;T&gt;</code> class, derived from the <code class="code">Array&lt;T&gt;</code> class.  Then
+the <code class="code">ColumnVector</code> and <code class="code">RowVector</code> classes will be derived
+from the <code class="code">MArray&lt;T&gt;</code> class.
+</p>
+<p>Element by element vector by scalar ops.
+</p>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_002b"><span class="category-def">: </span><span><code class="def-type">RowVector</code> <strong class="def-name">operator +</strong> <code class="def-code-arguments">(const RowVector &amp;<var class="var">a</var>, const double &amp;<var class="var">s</var>)</code><a class="copiable-link" href="#index-operator-_002b"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-operator-_002d"><span class="category-def">: </span><span><code class="def-type">RowVector</code> <strong class="def-name">operator -</strong> <code class="def-code-arguments">(const RowVector &amp;<var class="var">a</var>, const double &amp;<var class="var">s</var>)</code><a class="copiable-link" href="#index-operator-_002d"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-operator-_002a"><span class="category-def">: </span><span><code class="def-type">RowVector</code> <strong class="def-name">operator *</strong> <code class="def-code-arguments">(const RowVector &amp;<var class="var">a</var>, const double &amp;<var class="var">s</var>)</code><a class="copiable-link" href="#index-operator-_002a"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-operator-_002f"><span class="category-def">: </span><span><code class="def-type">RowVector</code> <strong class="def-name">operator /</strong> <code class="def-code-arguments">(const RowVector &amp;<var class="var">a</var>, const double &amp;<var class="var">s</var>)</code><a class="copiable-link" href="#index-operator-_002f"> &para;</a></span></dt>
+</dl>
+
+<p>Element by element scalar by vector ops.
+</p>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_002b-1"><span class="category-def">: </span><span><code class="def-type">RowVector</code> <strong class="def-name">operator +</strong> <code class="def-code-arguments">(const double &amp;<var class="var">s</var>, const RowVector &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_002b-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-operator-_002d-1"><span class="category-def">: </span><span><code class="def-type">RowVector</code> <strong class="def-name">operator -</strong> <code class="def-code-arguments">(const double &amp;<var class="var">s</var>, const RowVector &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_002d-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-operator-_002a-1"><span class="category-def">: </span><span><code class="def-type">RowVector</code> <strong class="def-name">operator *</strong> <code class="def-code-arguments">(const double &amp;<var class="var">s</var>, const RowVector &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_002a-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-operator-_002f-1"><span class="category-def">: </span><span><code class="def-type">RowVector</code> <strong class="def-name">operator /</strong> <code class="def-code-arguments">(const double &amp;<var class="var">s</var>, const RowVector &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_002f-1"> &para;</a></span></dt>
+</dl>
+
+<p>Element by element vector by vector ops.
+</p>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_002b-2"><span class="category-def">: </span><span><code class="def-type">RowVector</code> <strong class="def-name">operator +</strong> <code class="def-code-arguments">(const RowVector &amp;<var class="var">a</var>, const RowVector &amp;<var class="var">b</var>)</code><a class="copiable-link" href="#index-operator-_002b-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-operator-_002d-2"><span class="category-def">: </span><span><code class="def-type">RowVector</code> <strong class="def-name">operator -</strong> <code class="def-code-arguments">(const RowVector &amp;<var class="var">a</var>, const RowVector &amp;<var class="var">b</var>)</code><a class="copiable-link" href="#index-operator-_002d-2"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-product"><span class="category-def">: </span><span><code class="def-type">RowVector</code> <strong class="def-name">product</strong> <code class="def-code-arguments">(const RowVector &amp;<var class="var">a</var>, const RowVector &amp;<var class="var">b</var>)</code><a class="copiable-link" href="#index-product"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-quotient"><span class="category-def">: </span><span><code class="def-type">RowVector</code> <strong class="def-name">quotient</strong> <code class="def-code-arguments">(const RowVector &amp;<var class="var">a</var>, const RowVector &amp;<var class="var">b</var>)</code><a class="copiable-link" href="#index-quotient"> &para;</a></span></dt>
+</dl>
+
+<p>Unary MArray ops.
+</p>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_002d-3"><span class="category-def">: </span><span><code class="def-type">RowVector</code> <strong class="def-name">operator -</strong> <code class="def-code-arguments">(const RowVector &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_002d-3"> &para;</a></span></dt>
+</dl>
+
+
+<p>The <code class="code">Matrix</code> classes share the following functions.  These will
+eventually be part of an <code class="code">MArray2&lt;T&gt;</code> class, derived from the
+<code class="code">Array2&lt;T&gt;</code> class.  Then the <code class="code">Matrix</code> class will be derived
+from the <code class="code">MArray&lt;T&gt;</code> class.
+</p>
+<p>Element by element matrix by scalar ops.
+</p>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_002b-3"><span class="category-def">: </span><span><code class="def-type">Matrix</code> <strong class="def-name">operator +</strong> <code class="def-code-arguments">(const Matrix &amp;<var class="var">a</var>, const double &amp;<var class="var">s</var>)</code><a class="copiable-link" href="#index-operator-_002b-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-operator-_002d-4"><span class="category-def">: </span><span><code class="def-type">Matrix</code> <strong class="def-name">operator -</strong> <code class="def-code-arguments">(const Matrix &amp;<var class="var">a</var>, const double &amp;<var class="var">s</var>)</code><a class="copiable-link" href="#index-operator-_002d-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-operator-_002a-2"><span class="category-def">: </span><span><code class="def-type">Matrix</code> <strong class="def-name">operator *</strong> <code class="def-code-arguments">(const Matrix &amp;<var class="var">a</var>, const double &amp;<var class="var">s</var>)</code><a class="copiable-link" href="#index-operator-_002a-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-operator-_002f-2"><span class="category-def">: </span><span><code class="def-type">Matrix</code> <strong class="def-name">operator /</strong> <code class="def-code-arguments">(const Matrix &amp;<var class="var">a</var>, const double &amp;<var class="var">s</var>)</code><a class="copiable-link" href="#index-operator-_002f-2"> &para;</a></span></dt>
+</dl>
+
+<p>Element by element scalar by matrix ops.
+</p>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_002b-4"><span class="category-def">: </span><span><code class="def-type">Matrix</code> <strong class="def-name">operator +</strong> <code class="def-code-arguments">(const double &amp;<var class="var">s</var>, const Matrix &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_002b-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-operator-_002d-5"><span class="category-def">: </span><span><code class="def-type">Matrix</code> <strong class="def-name">operator -</strong> <code class="def-code-arguments">(const double &amp;<var class="var">s</var>, const Matrix &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_002d-5"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-operator-_002a-3"><span class="category-def">: </span><span><code class="def-type">Matrix</code> <strong class="def-name">operator *</strong> <code class="def-code-arguments">(const double &amp;<var class="var">s</var>, const Matrix &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_002a-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-operator-_002f-3"><span class="category-def">: </span><span><code class="def-type">Matrix</code> <strong class="def-name">operator /</strong> <code class="def-code-arguments">(const double &amp;<var class="var">s</var>, const Matrix &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_002f-3"> &para;</a></span></dt>
+</dl>
+
+<p>Element by element matrix by matrix ops.
+</p>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_002b-5"><span class="category-def">: </span><span><code class="def-type">Matrix</code> <strong class="def-name">operator +</strong> <code class="def-code-arguments">(const Matrix &amp;<var class="var">a</var>, const Matrix &amp;<var class="var">b</var>)</code><a class="copiable-link" href="#index-operator-_002b-5"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-operator-_002d-6"><span class="category-def">: </span><span><code class="def-type">Matrix</code> <strong class="def-name">operator -</strong> <code class="def-code-arguments">(const Matrix &amp;<var class="var">a</var>, const Matrix &amp;<var class="var">b</var>)</code><a class="copiable-link" href="#index-operator-_002d-6"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-product-1"><span class="category-def">: </span><span><code class="def-type">Matrix</code> <strong class="def-name">product</strong> <code class="def-code-arguments">(const Matrix &amp;<var class="var">a</var>, const Matrix &amp;<var class="var">b</var>)</code><a class="copiable-link" href="#index-product-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-quotient-1"><span class="category-def">: </span><span><code class="def-type">Matrix</code> <strong class="def-name">quotient</strong> <code class="def-code-arguments">(const Matrix &amp;<var class="var">a</var>, const Matrix &amp;<var class="var">b</var>)</code><a class="copiable-link" href="#index-quotient-1"> &para;</a></span></dt>
+</dl>
+
+<p>Unary matrix ops.
+</p>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_002d-7"><span class="category-def">: </span><span><code class="def-type">Matrix</code> <strong class="def-name">operator -</strong> <code class="def-code-arguments">(const Matrix &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_002d-7"> &para;</a></span></dt>
+</dl>
+
+
+<p>The <code class="code">DiagMatrix</code> classes share the following functions.  These will
+eventually be part of an <code class="code">MDiagArray&lt;T&gt;</code> class, derived from the
+<code class="code">DiagArray&lt;T&gt;</code> class.  Then the <code class="code">DiagMatrix</code> class will be
+derived from the <code class="code">MDiagArray&lt;T&gt;</code> class.
+</p>
+<p>Element by element MDiagArray by scalar ops.
+</p>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_002a-4"><span class="category-def">: </span><span><code class="def-type">DiagMatrix</code> <strong class="def-name">operator *</strong> <code class="def-code-arguments">(const DiagMatrix &amp;<var class="var">a</var>, const double &amp;<var class="var">s</var>)</code><a class="copiable-link" href="#index-operator-_002a-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-operator-_002f-4"><span class="category-def">: </span><span><code class="def-type">DiagMatrix</code> <strong class="def-name">operator /</strong> <code class="def-code-arguments">(const DiagMatrix &amp;<var class="var">a</var>, const double &amp;<var class="var">s</var>)</code><a class="copiable-link" href="#index-operator-_002f-4"> &para;</a></span></dt>
+</dl>
+
+<p>Element by element scalar by MDiagArray ops.
+</p>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_002a-5"><span class="category-def">: </span><span><code class="def-type">DiagMatrix</code> <strong class="def-name">operator *</strong> <code class="def-code-arguments">(const double &amp;<var class="var">s</var>, const DiagMatrix &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_002a-5"> &para;</a></span></dt>
+</dl>
+
+<p>Element by element MDiagArray by MDiagArray ops.
+</p>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_002b-6"><span class="category-def">: </span><span><code class="def-type">DiagMatrix</code> <strong class="def-name">operator +</strong> <code class="def-code-arguments">(const DiagMatrix &amp;<var class="var">a</var>, const DiagMatrix &amp;<var class="var">b</var>)</code><a class="copiable-link" href="#index-operator-_002b-6"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-operator-_002d-8"><span class="category-def">: </span><span><code class="def-type">DiagMatrix</code> <strong class="def-name">operator -</strong> <code class="def-code-arguments">(const DiagMatrix &amp;<var class="var">a</var>, const DiagMatrix &amp;<var class="var">b</var>)</code><a class="copiable-link" href="#index-operator-_002d-8"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-product-2"><span class="category-def">: </span><span><code class="def-type">DiagMatrix</code> <strong class="def-name">product</strong> <code class="def-code-arguments">(const DiagMatrix &amp;<var class="var">a</var>, const DiagMatrix &amp;<var class="var">b</var>)</code><a class="copiable-link" href="#index-product-2"> &para;</a></span></dt>
+</dl>
+
+<p>Unary MDiagArray ops.
+</p>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_002d-9"><span class="category-def">: </span><span><code class="def-type">DiagMatrix</code> <strong class="def-name">operator -</strong> <code class="def-code-arguments">(const DiagMatrix &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_002d-9"> &para;</a></span></dt>
+</dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Arrays.html">Arrays</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Function-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

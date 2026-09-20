@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>The unwind_protect Statement (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="The unwind_protect Statement (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="The unwind_protect Statement (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Statements.html" rel="up" title="Statements">
+<link href="The-try-Statement.html" rel="next" title="The try Statement">
+<link href="The-continue-Statement.html" rel="prev" title="The continue Statement">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="The-unwind_005fprotect-Statement">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="The-try-Statement.html" accesskey="n" rel="next">The try Statement</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="The-continue-Statement.html" accesskey="p" rel="prev">The continue Statement</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Statements.html" accesskey="u" rel="up">Statements</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="The-unwind_005fprotect-Statement-1"><span>10.8 The unwind_protect Statement<a class="copiable-link" href="#The-unwind_005fprotect-Statement-1"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-unwind_005fprotect-statement"></a>
+<a class="index-entry-id" id="index-unwind_005fprotect_005fcleanup"></a>
+<a class="index-entry-id" id="index-end_005funwind_005fprotect"></a>
+
+<p>Octave supports a limited form of exception handling modeled after the
+unwind-protect form of Lisp.
+</p>
+<p>The general form of an <code class="code">unwind_protect</code> block looks like this:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">unwind_protect
+  <var class="var">body</var>
+unwind_protect_cleanup
+  <var class="var">cleanup</var>
+end_unwind_protect
+</pre></div></div>
+
+<p>where <var class="var">body</var> and <var class="var">cleanup</var> are both optional and may contain any
+Octave expressions or commands.  The statements in <var class="var">cleanup</var> are
+guaranteed to be executed regardless of how control exits <var class="var">body</var>.
+</p>
+<p>This is useful to protect temporary changes to global variables from
+possible errors.  For example, the following code will always restore
+the original value of the global variable <code class="code">frobnosticate</code>
+even if an error occurs in the first part of the <code class="code">unwind_protect</code>
+block.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">save_frobnosticate = frobnosticate;
+unwind_protect
+  frobnosticate = true;
+  ...
+unwind_protect_cleanup
+  frobnosticate = save_frobnosticate;
+end_unwind_protect
+</pre></div></div>
+
+<p>Without <code class="code">unwind_protect</code>, the value of <var class="var">frobnosticate</var>
+would not be restored if an error occurs while evaluating the first part
+of the <code class="code">unwind_protect</code> block because evaluation would stop at the
+point of the error and the statement to restore the value would not be
+executed.
+</p>
+<p>In addition to unwind_protect, Octave supports another form of
+exception handling, the <code class="code">try</code> block.
+</p>
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="The-try-Statement.html">The try Statement</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="The-continue-Statement.html">The continue Statement</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Statements.html">Statements</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

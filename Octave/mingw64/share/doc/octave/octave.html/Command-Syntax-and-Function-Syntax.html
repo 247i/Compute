@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Command Syntax and Function Syntax (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Command Syntax and Function Syntax (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Command Syntax and Function Syntax (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Functions-and-Scripts.html" rel="up" title="Functions and Scripts">
+<link href="Organization-of-Functions.html" rel="next" title="Organization of Functions">
+<link href="Function-Handles-and-Anonymous-Functions.html" rel="prev" title="Function Handles and Anonymous Functions">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+ul.mark-bullet {list-style-type: disc}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Command-Syntax-and-Function-Syntax">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Organization-of-Functions.html" accesskey="n" rel="next">Organization of Functions Distributed with Octave</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Function-Handles-and-Anonymous-Functions.html" accesskey="p" rel="prev">Function Handles and Anonymous Functions</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Functions-and-Scripts.html" accesskey="u" rel="up">Functions and Scripts</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Command-Syntax-and-Function-Syntax-1"><span>11.13 Command Syntax and Function Syntax<a class="copiable-link" href="#Command-Syntax-and-Function-Syntax-1"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-commands-functions"></a>
+
+<p>In addition to the function syntax described above (i.e., calling a function
+like <code class="code">fun (arg1, arg2, &hellip;)</code>), a function can be called using command
+syntax (for example, calling a function like <code class="code">fun arg1 arg2 &hellip;</code>).  In
+that case, all arguments are passed to the function as strings.  For example,
+</p>
+<div class="example">
+<pre class="example-preformatted">my_command hello world
+</pre></div>
+
+<p>is equivalent to
+</p>
+<div class="example">
+<pre class="example-preformatted">my_command (&quot;hello&quot;, &quot;world&quot;)
+</pre></div>
+
+<p>The general form of a command call is
+</p>
+<div class="example">
+<pre class="example-preformatted">cmdname arg1 arg2 ...
+</pre></div>
+
+<p>which translates directly to
+</p>
+<div class="example">
+<pre class="example-preformatted">cmdname (&quot;arg1&quot;, &quot;arg2&quot;, ...)
+</pre></div>
+
+<p>If an argument including spaces should be passed to a function in command
+syntax, (double-)quotes can be used.  For example,
+</p>
+<div class="example">
+<pre class="example-preformatted">my_command &quot;first argument&quot; &quot;second argument&quot;
+</pre></div>
+
+<p>is equivalent to
+</p>
+<div class="example">
+<pre class="example-preformatted">my_command (&quot;first argument&quot;, &quot;second argument&quot;)
+</pre></div>
+
+<p>Any function can be used as a command if it accepts string input arguments.
+For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">upper lower_case_arg
+   &rArr;  ans = LOWER_CASE_ARG
+</pre></div></div>
+
+<p>Since the arguments are passed as strings to the corresponding function, it is
+not possible to pass input arguments that are stored in variables.  In that
+case, a command must be called using the function syntax.  For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">strvar = &quot;hello world&quot;;
+upper strvar
+   &rArr;  ans = STRVAR
+upper (strvar)
+   &rArr;  ans = HELLO WORLD
+</pre></div></div>
+
+<p>Additionally, the return values of functions cannot be assigned to variables
+using the command syntax.  Only the first return argument is assigned to the
+built-in variable <code class="code">ans</code>.  If the output argument of a command should be
+assigned to a variable, or multiple output arguments of a function should be
+returned, the function syntax must be used.
+</p>
+<p>It should be noted that mixing command syntax and binary operators can
+create apparent ambiguities with mathematical and logical expressions that
+use function syntax.  For example, all three of the statements
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">arg1 - arg2
+arg1 -arg2
+arg1-arg2
+</pre></div></div>
+
+<p>could be intended by a user to be subtraction operations between
+<code class="code">arg1</code> and <code class="code">arg2</code>.  The first two, however, could also have been
+meant as a command syntax call to function <code class="code">arg1</code>, in the first case
+with options <code class="code">-</code> and <code class="code">arg2</code>, and in the second case with option
+<samp class="option">-arg2</samp>.
+</p>
+<p>Octave uses whitespace to interpret such expressions according to the
+following rules:
+</p>
+<ul class="itemize mark-bullet">
+<li>Statements consisting of plain symbols without any operators that are
+separated only by whitespace are always treated as command syntax:
+
+<div class="example">
+<pre class="example-preformatted">arg1 arg2 arg3 ... argn
+</pre></div>
+
+</li><li>Statements without any whitespace are always treated as function syntax:
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">arg1+arg2
+arg1&amp;&amp;arg2||arg3
+arg1+=arg2*arg3
+</pre></div></div>
+
+</li><li>If the first symbol is a constant (or special-valued named constant pi, i,
+I, j, J, e, NaN, or Inf) followed by a binary operator, the statement is
+treated as function syntax regardless of any whitespace or what follows the
+second symbol:
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">7 -arg2
+pi+ arg2
+j * arg2 -arg3
+</pre></div></div>
+
+</li><li>If the first symbol is a function or variable and there is no whitespace
+separating the operator and the second symbol, the statement is treated
+as command syntax:
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">arg1 -arg2
+arg1 &amp;&amp;arg2 ||arg3
+arg1 +=arg2*arg3
+</pre></div></div>
+
+</li><li>Any other whitespace combination will result in the statement being treated
+as function syntax.
+</li></ul>
+
+<p>Note 1: If a special-valued named constant has been redefined as a
+variable, the interpreter will still process the statement with function
+syntax.
+</p>
+<p>Note 2: Attempting to use a variable as <code class="code">arg1</code> in a command being
+processed as command syntax will result in an error.
+</p>
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Organization-of-Functions.html">Organization of Functions Distributed with Octave</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Function-Handles-and-Anonymous-Functions.html">Function Handles and Anonymous Functions</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Functions-and-Scripts.html">Functions and Scripts</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

@@ -1,0 +1,277 @@
+% Copyright (C) 1996-2026 The Octave Project Developers
+%
+% This file is part of Octave.
+%
+% Octave is free software: you can redistribute it and/or modify it
+% under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+%
+% Octave is distributed in the hope that it will be useful, but
+% WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+%
+% You should have received a copy of the GNU General Public License
+% along with Octave; see the file COPYING.  If not, see
+% <https://www.gnu.org/licenses/>.
+
+\input texinfo
+@c Octave io - io package for GNU octave.
+
+@c For manually generating the documentation use
+@c   LANGUAGE=en makeinfo --html --no-split io.texi
+
+@c %*** Start of HEADER
+@documentencoding UTF-8
+@setfilename io.info
+@settitle Octave io - io package for GNU octave
+@afourpaper
+@paragraphindent 0
+@finalout
+@c @afourwide
+@c %*** End of the HEADER
+
+@dircategory Math
+@direntry
+* Octave io: (io).          io package for Octave
+@end direntry
+
+@include version.texi
+@include macros.texi
+
+@c -------------------------------------------------------------------------
+@c @contents
+@c -------------------------------------------------------------------------
+@ifnottex
+@node Top
+@top Octave io package
+Copyright © The Octave Project Developers 
+
+Permission is granted to make and distribute verbatim copies of this manual provided the copyright notice
+and this permission notice are preserved on all copies. 
+
+Permission is granted to copy and distribute modified versions of this manual under the conditions for
+verbatim copying, provided that the entire resulting derived work is distributed under the terms of a
+permission notice identical to this one. 
+
+Permission is granted to copy and distribute translations of this manual into another language, under the
+above conditions for modified versions. 
+@end ifnottex
+@c -------------------------------------------------------------------------
+@node Overview
+@chapter Overview
+@cindex Overview
+
+The io package contains functions for reading and writing various type of data files
+and some additional file utilities.  The main data file categories are:
+
+@itemize
+@item
+.csv and other delimited text files.  The funcions csv2cell and cell2csv in the io
+package can process mixed numeric / text data.  Octave's dlmread/dlmwrite and csvread
+/csvwrite can only process numeric data.
+
+@item
+Spreadsheet files.  Out of the box, functions are provided for reading / writing data
+and exploring contents from/to .xlsx (MS-Excel), .ods (LibreOffice Calc) and
+.gnm / .gnumeric (Gnumeric) spreadsheet files.  For other file formats and sometimes
+faster I/O, external software can be invoked through 'interfaces'.  Note that the
+spreadsheet I/O functions are meant for transferring data; formatting etc. is ignored.
+
+@item JSON  Although Octave provides jsonencode and jsondecode functions, the io
+package contains the (contributed) functions fromJSON and toJSON that support e.g.,
+complex numeric data and some other constructs.  Support for fromJSON and toJSON is
+limited.
+
+@item Various other, less used formats, often for dedicated software.  Most of the
+related functions were kindly provided by external contributors.  Support for these
+functions is also limited, if only because the io package maintainers have no access
+to the pertinent SW.
+@end itemize
+
+@c -------------------------------------------------------------------------
+@node Installing and loading
+@chapter Installing and loading
+@cindex Installing and loading
+
+The io package must be installed and then loaded to be used.
+
+It can be installed in @acronym{GNU} Octave directly from octave-forge,
+
+@section Windows install
+@cindex Windows install
+If running in Windows, the package may already be installed, to check run:
+
+@example
+pkg list io
+@end example
+
+@section Installing
+@cindex Installing
+With an internet connection available, the io package can be installed from
+packages.octave.org using the following command within @acronym{GNU} Octave:
+
+@example
+pkg install io
+@end example
+
+The latest released version of the package will be downloaded and installed.
+
+Otherwise, if the package file has already been downloaded it can be installed
+using the following command in @acronym{GNU} Octave:
+
+@example
+pkg install io-@value{VERSION}.tar.gz
+@end example
+
+@section Loading
+@cindex Loading
+Regardless of the method of installing the package, in order to use its functions,
+the package must be loaded using the pkg load command:
+
+@example
+pkg load io
+@end example
+
+The package must be loaded on each @acronym{GNU} Octave session.
+
+@c -------------------------------------------------------------------------
+@node Spreadsheet I/O Usage
+@chapter Spreadsheet I/O Usage
+@cindex Spreadsheet I/O Usage
+For spreadsheet I/O use is made of "interfaces"; an interface is just terminology
+for a connection to software installed on the computer.  An exception is the (default)
+@code{'OCT'} interface which comprises just Octave language and functions and as such needs
+no external SW.  @xref{XREFextsw, ,Invoking external spreadsheet I/O SW}, below for more
+details.  For an extensive overview of supported interfaces, see the help for the
+@code{xlsopen} function.
+
+@section Efficient Spreadsheet I/O
+@cindex Efficient Spreadsheet I/O
+The functions @code{xlsread} and @code{xlswrite} are provided in the io package.  Note that
+for every individual read/write operation these functions must read the entire spreadsheet
+file from disk and, in case of writing, write it back as well.  Therefore including these
+functions in a for loop will be unduly time-consuming, and so they are mostly useful for
+occasionally reading/writing data from a spreadsheet. @*
+When repetitively reading data from or writing to optionally multiple different sheets and/or
+different cell ranges in one spreadsheet file, the io package provides functions for
+(1) opening a spreadsheet file, (2) extracting and adding data, and (3) closing the
+spreadsheet and possibly writing a changed spreadsheet back to disk.  These functions are:
+
+@itemize
+@item @code{xlsopen} - opens a spreadsheet file and returns a pointer that contains a
+connection to the spreadsheet file contents.
+
+@item @code{xls2oct} - using the pointer, extracts raw data from a specific sheet and/or a
+specific cell range. @*
+The function @code{parsecell} can be used to separate numeric and text data into separate
+double and cellstr arrays, resp.
+
+@item @code{oct2xls} - using the pointer, adds data to a specific cell range and/or specific
+sheet.
+
+@item @code{xlsclose} - closes the connection to the file contents and if these have changed,
+writes it all back to disk.
+@end itemize
+
+Once a speadsheet file has been 'opened' and a pointer is returned, operations for extracting
+and adding can be mixed at will.  When used this way the spreadsheet @emph{file} is read just
+once (and written just once) for possibly multiple data extraction and adding operations.  In
+fact, @code{xlsread} and @code{xlswrite} in the io package are mere wrappers around these
+functions. @*
+It is even possible to have multiple spreadsheet files open simultaneously, e.g., for
+transferring data, optionally after processing, from one spreadsheet to another.
+
+@strong{Caution}: do not forget to invoke @code{xlsclose} after finishing spreadsheet I/O
+operations to avoid stale pointers, data and maybe even external SW needlessly keeping RAM
+and scratch disk space occupied. 
+
+@section Exploring spreadsheet files
+@cindex Exploring spreadsheet files
+The function @code{xlsfinfo} can be used for exploring the contents of spreadsheet files, i.e.,
+the names and types of individual sheets in the file and occupied cell ranges in all sheets.
+
+@section Invoking external spreadsheet I/O SW
+@cindex Invoking external spreadsheet I/O SW
+@anchor{XREFextsw}
+Most external SW interfaces for spreadsheet I/O are Java based.  The required Java .jar
+files (collections of Java methods) must be added to the javaclasspath.  On Windows, this 
+will happen automatically if these files are put in a subdirectory 'Java\' in the user's
+profile. @*
+The windows package contains an interface to the Windows ActiveX system library, which
+can be used to connect to various installed SW.  In the io package only an interface to
+MS-Excel is provided ('@code{COM}'); a similar interface to LibreOffice Calc was contributed
+to the Octave project but hasn't been integrated in the io package. @*
+The io package provides the function @code{chk_spreadsheet_support} that automatically runs
+various checks for required external SW for the interfaces supported by the io package and
+optionally can find and connect the required SW (adding to the javaclasspath).  On Windows
+systems, this function is run when the io package is loaded.  When unloading the io package,
+this function will remove the connections to external SW that it set up when loading the io
+package.  On *nix systems (including MacOS) this is disabled because the location of the
+various required Java SW is not sufficiently standardized.
+
+@section Extra options, Compatibility and Gotchas
+@cindex Extra options, Compatibility and Gotchas
+Below some features of spreadsheet I/O with the io package functions are highlighted.
+@itemize
+@item Occupied cell ranges. @*
+@code{xlsfinfo} in the io package will also return the ranges of occupied cells in each sheet
+in the spreadsheet file.  For the COM interface that may be less reliable because Visual
+Basic often includes empty but formatted cells as well in the tally.  For some spreadsheet
+file types, @code{xlsfinfo} can also return the types of sheets (data, graphics, ...).
+
+The numeric and string arrays (and the raw arrays) returned by xlsread (as 1st, 2nd and 3rd
+output argument, resp.) will be stripped from empty outer rows and columns, even if an explicit
+cell range to read from was specified.  However this behavior can be changed by a dedicated
+field in an option structure that can be given as input argument to @code{xlsread}.
+@code{xlsread} can return occupied cell ranges within the user specified cell range as the last
+output argument.
+
+@item Returning formulas rather than formula results. @*
+@code{xlsread} and @code{xls2oct} allow returning formulas (i.e., their text) rather than
+computed values in a cell.  That is controlled by a dedicated field in an option structure that
+can be given as input argument to these functions.  See @code{xls2oct} for more details.
+
+@item Dates. @*
+Spreadsheet programs usually store dates (or date-times) as a specially formatted text string.
+However, in .xls files (Excel 97 / BIFF8 and Excel 95 / BIFF5) dates are stored as as the number
+of days passed since Dec. 31, 1899 ("epoch"); dates from before that epoch are stored as text
+strings.  @code{xlsread} and @code{xls2oct} infer from the filename extension what to do to and
+will return dates as number of days passed since AD.  To that end, the number 693960 will be
+added to dates read from .xls spreadsheets, and subtracted from datenums before writing them to
+.xls.  But this is something to be aware of when reading data from .xls files and writing them
+to .ods or .xlsx, or vice versa.
+
+@item Active sheet. @*
+When reading from or writing to a spreadsheet file, @code{xlsread} (@code{xlsopen}) and
+@code{xlswrite} (@code{xlsclose}) ignore the "active" sheet.  That implies that @code{xlsread}
+(@code{xls2oct}) by default reads from the first (leftmost) sheet in the stack
+rather than from the active sheet.  Similarly, @code{xlswrite} (@code{xlsclose}) write by
+default to the first / leftmost sheet.  Specify the required sheet number or -better- sheet
+name to overwrite that automatic sheet selection.
+
+@item Cells with errors. @*
+Spreadsheet cells containing errors (e.g., due to wrong formulas or references in the spreadsheet)
+that spreadsheet programs show as e.g., @code{#Value} are usually returned as blank cells.  But
+not all such errors can be catched.  Spreadsheets often contain cached values; when cells pointed
+to by formulas or references contain invalid info, the cached values from previous evaluations by
+the spreadsheet can still be present, and these may be returned by @code{xlsread} and
+@code{xls2oct}.
+
+@item Retaining formatting of cells in when writing to file. @*
+When adding or changing data in a worksheet and writing to file, cell formatting will be retained
+as much as possible.  The one exception is with the OCT interface; that will wipe all cell
+formatting in changed worksheets.  This is a known limitation of the OCT interface.
+@end itemize
+
+@c -------------------------------------------------------------------------
+@node Function Reference
+@chapter Function Reference
+@cindex Function Reference
+
+@include functions.texi
+
+@c -------------------------------------------------------------------------
+
+@bye

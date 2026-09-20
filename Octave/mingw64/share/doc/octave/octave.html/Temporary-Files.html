@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Temporary Files (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Temporary Files (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Temporary Files (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="C_002dStyle-I_002fO-Functions.html" rel="up" title="C-Style I/O Functions">
+<link href="EOF-_0028End-of-File_0029-and-Errors.html" rel="next" title="EOF (End of File) and Errors">
+<link href="Binary-I_002fO.html" rel="prev" title="Binary I/O">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Temporary-Files">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="EOF-_0028End-of-File_0029-and-Errors.html" accesskey="n" rel="next">EOF (End of File) and Errors</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Binary-I_002fO.html" accesskey="p" rel="prev">Binary I/O</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="C_002dStyle-I_002fO-Functions.html" accesskey="u" rel="up">C-Style I/O Functions</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Temporary-Files-1"><span>14.2.17 Temporary Files<a class="copiable-link" href="#Temporary-Files-1"> &para;</a></span></h4>
+
+<p>Sometimes one needs to write data to a file that is only temporary.
+This is most commonly used when an external program launched from
+within Octave needs to access data.  When Octave exits all temporary
+files will be deleted, so this step need not be executed manually.
+</p>
+<a class="anchor" id="XREFmkstemp"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-mkstemp"><span><code class="def-type">[<var class="var">fid</var>, <var class="var">name</var>, <var class="var">msg</var>] =</code> <strong class="def-name">mkstemp</strong> <code class="def-code-arguments">(&quot;<var class="var">template</var>&quot;)</code><a class="copiable-link" href="#index-mkstemp"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-mkstemp-1"><span><code class="def-type">[<var class="var">fid</var>, <var class="var">name</var>, <var class="var">msg</var>] =</code> <strong class="def-name">mkstemp</strong> <code class="def-code-arguments">(&quot;<var class="var">template</var>&quot;, <var class="var">delete</var>)</code><a class="copiable-link" href="#index-mkstemp-1"> &para;</a></span></dt>
+<dd><p>Return the file descriptor <var class="var">fid</var> corresponding to a new temporary file
+with a unique name created from <var class="var">template</var>.
+</p>
+<p>The last six characters of <var class="var">template</var> must be <code class="code">&quot;XXXXXX&quot;</code> and
+these are replaced with a string that makes the filename unique.  The file
+is then created with mode read/write and permissions that are system
+dependent (on GNU/Linux systems, the permissions will be 0600 for versions
+of glibc 2.0.7 and later).  The file is opened in binary mode and with the
+<code class="code">O_EXCL</code><!-- /@w -->&nbsp;flag.
+</p>
+<p>If the optional argument <var class="var">delete</var> is supplied and is true, the file will
+be deleted automatically when Octave exits.
+</p>
+<p>If successful, <var class="var">fid</var> is a valid file ID, <var class="var">name</var> is the name of the
+file, and <var class="var">msg</var> is an empty string.  Otherwise, <var class="var">fid</var> is -1,
+<var class="var">name</var> is empty, and <var class="var">msg</var> contains a system-dependent error
+message.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFtempname">tempname</a>, <a class="ref" href="#XREFtempdir">tempdir</a>, <a class="ref" href="#XREFP_005ftmpdir">P_tmpdir</a>, <a class="ref" href="#XREFtmpfile">tmpfile</a>, <a class="ref" href="Opening-and-Closing-Files.html#XREFfopen">fopen</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFtmpfile"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-tmpfile"><span><code class="def-type">[<var class="var">fid</var>, <var class="var">msg</var>] =</code> <strong class="def-name">tmpfile</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-tmpfile"> &para;</a></span></dt>
+<dd><p>Return the file ID corresponding to a new temporary file with a unique
+name.
+</p>
+<p>The file is opened in binary read/write (<code class="code">&quot;w+b&quot;</code>) mode and will be
+deleted automatically when it is closed or when Octave exits.
+</p>
+<p>If successful, <var class="var">fid</var> is a valid file ID and <var class="var">msg</var> is an empty
+string.  Otherwise, <var class="var">fid</var> is -1 and <var class="var">msg</var> contains a
+system-dependent error message.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFtempname">tempname</a>, <a class="ref" href="#XREFmkstemp">mkstemp</a>, <a class="ref" href="#XREFtempdir">tempdir</a>, <a class="ref" href="#XREFP_005ftmpdir">P_tmpdir</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFtempname"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-tempname"><span><code class="def-type"><var class="var">fname</var> =</code> <strong class="def-name">tempname</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-tempname"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-tempname-1"><span><code class="def-type"><var class="var">fname</var> =</code> <strong class="def-name">tempname</strong> <code class="def-code-arguments">(<var class="var">dir</var>)</code><a class="copiable-link" href="#index-tempname-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-tempname-2"><span><code class="def-type"><var class="var">fname</var> =</code> <strong class="def-name">tempname</strong> <code class="def-code-arguments">(<var class="var">dir</var>, <var class="var">prefix</var>)</code><a class="copiable-link" href="#index-tempname-2"> &para;</a></span></dt>
+<dd><p>Return a unique temporary filename as a string.
+</p>
+<p>If <var class="var">prefix</var> is omitted, a value of <code class="code">&quot;oct-&quot;</code> is used.
+</p>
+<p>If <var class="var">dir</var> is also omitted, the default directory for temporary files
+(<code class="code">P_tmpdir</code>) is used.  If <var class="var">dir</var> is provided, it must exist,
+otherwise the default directory for temporary files is used.
+</p>
+<p>Programming Note: Because the named file is not opened by <code class="code">tempname</code>,
+it is possible, though relatively unlikely, that it will not be available
+by the time your program attempts to open it.  If this is a concern,
+see <a class="pxref" href="#XREFtmpfile"><code class="code">tmpfile</code></a>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFmkstemp">mkstemp</a>, <a class="ref" href="#XREFtempdir">tempdir</a>, <a class="ref" href="#XREFP_005ftmpdir">P_tmpdir</a>, <a class="ref" href="#XREFtmpfile">tmpfile</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFtempdir"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-tempdir"><span><code class="def-type"><var class="var">dir</var> =</code> <strong class="def-name">tempdir</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-tempdir"> &para;</a></span></dt>
+<dd><p>Return the name of the host system&rsquo;s directory for temporary files.
+</p>
+<p>The directory name is taken first from the environment variable <code class="env">TMPDIR</code>.
+If that does not exist, the environment variable <code class="env">TMP</code> (and on Windows
+platforms also with higher priority the environment variable <code class="env">TEMP</code>) is
+checked.  If none of those are set, the system default returned by
+<code class="code">P_tmpdir</code> is used.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFP_005ftmpdir">P_tmpdir</a>, <a class="ref" href="#XREFtempname">tempname</a>, <a class="ref" href="#XREFmkstemp">mkstemp</a>, <a class="ref" href="#XREFtmpfile">tmpfile</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFP_005ftmpdir"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-P_005ftmpdir"><span><code class="def-type"><var class="var">sys_tmpdir</var> =</code> <strong class="def-name">P_tmpdir</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-P_005ftmpdir"> &para;</a></span></dt>
+<dd><p>Return the name of the host system&rsquo;s <strong class="strong">default</strong> directory for
+temporary files.
+</p>
+<p>Programming Note: The value returned by <code class="code">P_tmpdir</code> is always the
+default location.  This value may not agree with that returned from
+<code class="code">tempdir</code> if the user has overridden the default with the <code class="env">TMPDIR</code>
+environment variable.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFtempdir">tempdir</a>, <a class="ref" href="#XREFtempname">tempname</a>, <a class="ref" href="#XREFmkstemp">mkstemp</a>, <a class="ref" href="#XREFtmpfile">tmpfile</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="EOF-_0028End-of-File_0029-and-Errors.html">EOF (End of File) and Errors</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Binary-I_002fO.html">Binary I/O</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="C_002dStyle-I_002fO-Functions.html">C-Style I/O Functions</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

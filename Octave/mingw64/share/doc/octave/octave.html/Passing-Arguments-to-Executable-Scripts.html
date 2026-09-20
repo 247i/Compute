@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Passing Arguments to Executable Scripts (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Passing Arguments to Executable Scripts (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Passing Arguments to Executable Scripts (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Executable-Octave-Programs.html" rel="up" title="Executable Octave Programs">
+<link href="Dual_002dPurpose-Executable-Scripts-and-Octave-Functions.html" rel="next" title="Dual-Purpose Executable Scripts and Octave Functions">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Passing-Arguments-to-Executable-Scripts">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Dual_002dPurpose-Executable-Scripts-and-Octave-Functions.html" accesskey="n" rel="next">Dual-Purpose Executable Scripts and Octave Functions</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Executable-Octave-Programs.html" accesskey="u" rel="up">Executable Octave Programs</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Passing-Arguments-to-Executable-Scripts-1"><span>2.6.1 Passing Arguments to Executable Scripts<a class="copiable-link" href="#Passing-Arguments-to-Executable-Scripts-1"> &para;</a></span></h4>
+
+<p>Note that when Octave is started from an executable script, the built-in
+function <code class="code">argv</code> returns a cell array containing the command line
+arguments passed to the executable Octave script, not the arguments
+passed to the Octave interpreter on the &lsquo;<samp class="samp">#!</samp>&rsquo; line of the script.
+For example, the following program will reproduce the command line that
+was used to execute the script, not &lsquo;<samp class="samp">-qf</samp>&rsquo;.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">#! /bin/octave -qf
+printf (&quot;%s&quot;, program_name ());
+arg_list = argv ();
+for i = 1:nargin
+  printf (&quot; %s&quot;, arg_list{i});
+endfor
+printf (&quot;\n&quot;);
+</pre></div></div>
+
+</div>
+
+
+
+</body>
+</html>

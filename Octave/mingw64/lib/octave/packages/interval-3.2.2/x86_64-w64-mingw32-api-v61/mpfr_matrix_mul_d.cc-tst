@@ -1,0 +1,19 @@
+## DO NOT EDIT! Generated from mpfr_matrix_mul_d.cc
+%!test;
+%!  [l, u] = mpfr_matrix_mul_d (magic (3), magic (3)', magic (3) + 1, magic (3)' + 1);
+%!  assert (l, [101, 71, 53; 71, 83, 71; 53, 71, 101]);
+%!  assert (u, [134, 104, 86; 104, 116, 104; 86, 104, 134]);
+%!demo
+%!  processors = nproc ('overridable');
+%!
+%!  A = vec (magic (2000));
+%!  tic;
+%!  for i = 1:processors
+%!    mpfr_matrix_mul_d (A', A, A', A);
+%!  endfor
+%!  printf ('Time for %d vector dot products: %d seconds\n', processors, toc)
+%!
+%!  B = repmat (A, 1, processors);
+%!  tic;
+%!  mpfr_matrix_mul_d (B', A, B', A);
+%!  printf ('Time for %d vector dot products running in parallel: %d seconds\n', processors, toc)

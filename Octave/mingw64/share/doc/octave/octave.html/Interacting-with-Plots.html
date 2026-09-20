@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Interacting with Plots (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Interacting with Plots (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Interacting with Plots (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="High_002dLevel-Plotting.html" rel="up" title="High-Level Plotting">
+<link href="Test-Plotting-Functions.html" rel="next" title="Test Plotting Functions">
+<link href="Printing-and-Saving-Plots.html" rel="prev" title="Printing and Saving Plots">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+kbd.key {font-style: normal}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Interacting-with-Plots">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Test-Plotting-Functions.html" accesskey="n" rel="next">Test Plotting Functions</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Printing-and-Saving-Plots.html" accesskey="p" rel="prev">Printing and Saving Plots</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="High_002dLevel-Plotting.html" accesskey="u" rel="up">High-Level Plotting</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Interacting-with-Plots-1"><span>15.2.10 Interacting with Plots<a class="copiable-link" href="#Interacting-with-Plots-1"> &para;</a></span></h4>
+
+<p>The user can select points on a plot with the <code class="code">ginput</code> function or
+select the position at which to place text on the plot with the
+<code class="code">gtext</code> function using the mouse.
+</p>
+<a class="anchor" id="XREFginput"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-ginput"><span><code class="def-type">[<var class="var">x</var>, <var class="var">y</var>, <var class="var">buttons</var>] =</code> <strong class="def-name">ginput</strong> <code class="def-code-arguments">(<var class="var">n</var>)</code><a class="copiable-link" href="#index-ginput"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ginput-1"><span><code class="def-type">[<var class="var">x</var>, <var class="var">y</var>, <var class="var">buttons</var>] =</code> <strong class="def-name">ginput</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-ginput-1"> &para;</a></span></dt>
+<dd><p>Return the position and type of mouse button clicks and/or key strokes
+in the current figure window.
+</p>
+<p>If <var class="var">n</var> is defined, then capture <var class="var">n</var> events before returning.
+When <var class="var">n</var> is not defined <code class="code">ginput</code> will loop until the return key
+<kbd class="key">RET</kbd> is pressed.
+</p>
+<p>The return values <var class="var">x</var>, <var class="var">y</var> are the coordinates where the mouse
+was clicked in the units of the current axes.  The return value <var class="var">button</var>
+is 1, 2, or 3 for the left, middle, or right button.  If a key is pressed
+the ASCII value is returned in <var class="var">button</var>.
+</p>
+<p>Implementation Note: <code class="code">ginput</code> is intenteded for 2-D plots.  For 3-D
+plots see the <var class="var">currentpoint</var> property of the current axes which can be
+transformed with knowledge of the current <code class="code">view</code> into data units.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFgtext">gtext</a>, <a class="ref" href="#XREFwaitforbuttonpress">waitforbuttonpress</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFwaitforbuttonpress"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-waitforbuttonpress"><span><code class="def-type"><var class="var">b</var> =</code> <strong class="def-name">waitforbuttonpress</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-waitforbuttonpress"> &para;</a></span></dt>
+<dd><p>Wait for mouse click or key press over the current figure window.
+</p>
+<p>The return value of <var class="var">b</var> is 0 if a mouse button was pressed or 1 if a
+key was pressed.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="GUI-Utility-Functions.html#XREFwaitfor">waitfor</a>, <a class="ref" href="#XREFginput">ginput</a>, <a class="ref" href="Terminal-Input.html#XREFkbhit">kbhit</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFgtext"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-gtext"><span><strong class="def-name">gtext</strong> <code class="def-code-arguments">(<var class="var">s</var>)</code><a class="copiable-link" href="#index-gtext"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gtext-1"><span><strong class="def-name">gtext</strong> <code class="def-code-arguments">({<var class="var">s1</var>, <var class="var">s2</var>, &hellip;})</code><a class="copiable-link" href="#index-gtext-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gtext-2"><span><strong class="def-name">gtext</strong> <code class="def-code-arguments">({<var class="var">s1</var>; <var class="var">s2</var>; &hellip;})</code><a class="copiable-link" href="#index-gtext-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gtext-3"><span><strong class="def-name">gtext</strong> <code class="def-code-arguments">(&hellip;, <var class="var">prop</var>, <var class="var">val</var>, &hellip;)</code><a class="copiable-link" href="#index-gtext-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-gtext-4"><span><code class="def-type"><var class="var">h</var> =</code> <strong class="def-name">gtext</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-gtext-4"> &para;</a></span></dt>
+<dd><p>Place text on the current figure using the mouse.
+</p>
+<p>The string argument <var class="var">s</var> may be a character array or a cell array
+of strings.  If <var class="var">s</var> has more than one row, each row is used
+to create a separate text object after a mouse click.  For example:
+</p>
+<p>Place a single string after one mouse click
+</p>
+<div class="example">
+<pre class="example-preformatted">gtext (&quot;I clicked here&quot;)
+</pre></div>
+
+<p>Place two strings after two mouse clicks
+</p>
+<div class="example">
+<pre class="example-preformatted">gtext ({&quot;I clicked here&quot;; &quot;and there&quot;})
+</pre></div>
+
+<p>Place two strings, each with two lines, after two mouse clicks
+</p>
+<div class="example">
+<pre class="example-preformatted">gtext ({&quot;I clicked&quot;, &quot;here&quot;; &quot;and&quot;, &quot;there&quot;})
+</pre></div>
+
+<p>Optional <var class="var">property</var>/<var class="var">value</var> pairs are passed directly to the
+underlying text objects.
+</p>
+<p>The full list of text object properties is documented at
+<a class="ref" href="Text-Properties.html">Text Properties</a>.
+</p>
+<p>The optional return value <var class="var">h</var> holds the graphics handle(s) to the
+created text object(s).
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFginput">ginput</a>, <a class="ref" href="Plot-Annotations.html#XREFtext">text</a>.
+</p></dd></dl>
+
+
+<p>More sophisticated user interaction mechanisms can be obtained using the
+ui* family of functions, see <a class="pxref" href="UI-Elements.html">UI Elements</a>.
+</p>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Test-Plotting-Functions.html">Test Plotting Functions</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Printing-and-Saving-Plots.html">Printing and Saving Plots</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="High_002dLevel-Plotting.html">High-Level Plotting</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

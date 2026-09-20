@@ -1,0 +1,24 @@
+EXPORTS
+    _idn2_punycode_decode @1
+    _idn2_punycode_encode @2
+    idn2_check_version @3
+    idn2_free @4
+    idn2_lookup_u8 @5
+    idn2_lookup_ul @6
+    idn2_punycode_decode @7
+    idn2_punycode_encode @8
+    idn2_register_u8 @9
+    idn2_register_ul @10
+    idn2_strerror @11
+    idn2_strerror_name @12
+    idn2_to_ascii_4i @13
+    idn2_to_ascii_4i2 @14
+    idn2_to_ascii_4z @15
+    idn2_to_ascii_8z @16
+    idn2_to_ascii_lz @17
+    idn2_to_unicode_44i @18
+    idn2_to_unicode_4z4z @19
+    idn2_to_unicode_8z4z @20
+    idn2_to_unicode_8z8z @21
+    idn2_to_unicode_8zlz @22
+    idn2_to_unicode_lzlz @23

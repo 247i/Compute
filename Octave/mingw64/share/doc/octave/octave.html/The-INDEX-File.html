@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>The INDEX File (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="The INDEX File (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="The INDEX File (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Creating-Packages.html" rel="up" title="Creating Packages">
+<link href="PKG_005fADD-and-PKG_005fDEL-Directives.html" rel="next" title="PKG_ADD and PKG_DEL Directives">
+<link href="The-DESCRIPTION-File.html" rel="prev" title="The DESCRIPTION File">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+ul.mark-bullet {list-style-type: disc}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="The-INDEX-File">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="PKG_005fADD-and-PKG_005fDEL-Directives.html" accesskey="n" rel="next">PKG_ADD and PKG_DEL Directives</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="The-DESCRIPTION-File.html" accesskey="p" rel="prev">The DESCRIPTION File</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Creating-Packages.html" accesskey="u" rel="up">Creating Packages</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="The-INDEX-File-1"><span>37.5.2 The INDEX File<a class="copiable-link" href="#The-INDEX-File-1"> &para;</a></span></h4>
+
+<p>The optional <samp class="file">INDEX</samp> file provides a categorical view of the
+functions in the package.  This file has a very simple format
+</p>
+<ul class="itemize mark-bullet">
+<li>Lines beginning with &lsquo;<samp class="samp">#</samp>&rsquo; are comments.
+
+</li><li>The first non-comment line should look like this
+
+<div class="example">
+<pre class="example-preformatted">toolbox &gt;&gt; Toolbox name
+</pre></div>
+
+</li><li>Lines beginning with an alphabetical character indicates a new
+category of functions.
+
+</li><li>Lines starting with a white space character indicate that the
+function names on the line belong to the last mentioned category.
+</li></ul>
+
+<p>The format can be summarized with the following example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted"># A comment
+toolbox &gt;&gt; Toolbox name
+Category Name 1
+ function1 function2 function3
+ function4
+Category Name 2
+ function2 function5
+</pre></div></div>
+
+<p>If you wish to refer to a function that users might expect
+to find in your package but is not there, providing a work around or
+pointing out that the function is available elsewhere, you can use:
+</p>
+<div class="example">
+<pre class="example-preformatted">fn = workaround description
+</pre></div>
+
+<p>This workaround description will not appear when listing functions in the
+package with <code class="code">pkg describe</code> but they will be published
+in the HTML documentation online.
+Workaround descriptions can use any HTML markup, but
+keep in mind that it will be enclosed in a bold-italic environment.
+For the special case of:
+</p>
+<div class="example">
+<pre class="example-preformatted">fn = use &lt;code&gt;alternate expression&lt;/code&gt;
+</pre></div>
+
+<p>the bold-italic is automatically suppressed.  You will need
+to use <code class="code">&lt;code&gt;</code> even in references:
+</p>
+<div class="example">
+<pre class="example-preformatted">fn = use &lt;a href=&quot;someothersite.html&quot;&gt;&lt;code&gt;fn&lt;/code&gt;&lt;/a&gt;
+</pre></div>
+
+<p>Sometimes functions are only partially compatible, in which
+case you can list the non-compatible cases separately.  To
+refer to another function in the package, use <code class="code">&lt;f&gt;fn&lt;/f&gt;</code>.
+For example:
+</p>
+<div class="example">
+<pre class="example-preformatted">eig (a, b) = use &lt;f&gt;qz&lt;/f&gt;
+</pre></div>
+
+<p>Since sites may have many missing functions, you can define
+a macro rather than typing the same link over and again.
+</p>
+<div class="example">
+<pre class="example-preformatted">$id = expansion
+</pre></div>
+
+<p>defines the macro id.  You can use <code class="code">$id</code> anywhere in the
+description and it will be expanded.  For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">$TSA = see &lt;a href=&quot;link_to_spctools&quot;&gt;SPC Tools&lt;/a&gt;
+arcov = $TSA &lt;code&gt;armcv&lt;/code&gt;
+</pre></div></div>
+
+<p>id is any string of letters, numbers and <code class="code">_</code>.
+</p>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="PKG_005fADD-and-PKG_005fDEL-Directives.html">PKG_ADD and PKG_DEL Directives</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="The-DESCRIPTION-File.html">The DESCRIPTION File</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Creating-Packages.html">Creating Packages</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

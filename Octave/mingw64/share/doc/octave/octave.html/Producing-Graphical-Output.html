@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Producing Graphical Output (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Producing Graphical Output (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Producing Graphical Output (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Simple-Examples.html" rel="up" title="Simple Examples">
+<link href="Help-and-Documentation.html" rel="next" title="Help and Documentation">
+<link href="Integrating-Differential-Equations.html" rel="prev" title="Integrating Differential Equations">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Producing-Graphical-Output">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Help-and-Documentation.html" accesskey="n" rel="next">Help and Documentation</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Integrating-Differential-Equations.html" accesskey="p" rel="prev">Integrating Differential Equations</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Simple-Examples.html" accesskey="u" rel="up">Simple Examples</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Producing-Graphical-Output-1"><span>1.2.6 Producing Graphical Output<a class="copiable-link" href="#Producing-Graphical-Output-1"> &para;</a></span></h4>
+
+<p>To display the solution of the previous example graphically, use the
+command
+</p>
+<div class="example">
+<pre class="example-preformatted">octave:1&gt; plot (t, x)
+</pre></div>
+
+<p>Octave will automatically create a separate window to display the plot.
+</p>
+<p>To save a plot once it has been displayed on the screen, use the print
+command.  For example,
+</p>
+<div class="example">
+<pre class="example-preformatted">print foo.pdf
+</pre></div>
+
+<p>will create a file called <samp class="file">foo.pdf</samp> that contains a rendering of
+the current plot in Portable Document Format.  The command
+</p>
+<div class="example">
+<pre class="example-preformatted">help print
+</pre></div>
+
+<p>explains more options for the <code class="code">print</code> command and provides a list
+of additional output file formats.
+</p>
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- Additional documentation for the optim package for Octave.
+
+Copyright © Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<title>quadprog (optim_doc)</title>
+
+<meta name="description" content="quadprog (optim_doc)">
+<meta name="keywords" content="quadprog (optim_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Compatibility-functions.html" rel="up" title="Compatibility functions">
+<link href="lsqnonlin.html" rel="next" title="lsqnonlin">
+<link href="linprog.html" rel="prev" title="linprog">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section-level-extent" id="quadprog">
+<div class="nav-panel">
+<p>
+Next: <a href="lsqnonlin.html" accesskey="n" rel="next">Non-linear residual minimization</a>, Previous: <a href="linprog.html" accesskey="p" rel="prev">Linear programming</a>, Up: <a href="Compatibility-functions.html" accesskey="u" rel="up">Traditional functions</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h3 class="section" id="Quadratic-programming"><span>7.2 Quadratic programming<a class="copiable-link" href="#Quadratic-programming"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-quadprog-7"></a>
+
+<p>This function is similar to <code class="code">qp</code> of core Octave.
+</p>
+<a class="anchor" id="XREFquadprog"></a><dl class="first-deftypefn">
+<dt class="deftypefn" id="index-quadprog"><span class="category-def">Function File: </span><span><strong class="def-name">quadprog</strong> <code class="def-code-arguments">(<var class="var">H</var>, <var class="var">f</var>)</code><a class="copiable-link" href="#index-quadprog"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn" id="index-quadprog-1"><span class="category-def">Function File: </span><span><strong class="def-name">quadprog</strong> <code class="def-code-arguments">(<var class="var">H</var>, <var class="var">f</var>, <var class="var">A</var>, <var class="var">b</var>)</code><a class="copiable-link" href="#index-quadprog-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn" id="index-quadprog-2"><span class="category-def">Function File: </span><span><strong class="def-name">quadprog</strong> <code class="def-code-arguments">(<var class="var">H</var>, <var class="var">f</var>, <var class="var">A</var>, <var class="var">b</var>, <var class="var">Aeq</var>, <var class="var">beq</var>)</code><a class="copiable-link" href="#index-quadprog-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn" id="index-quadprog-3"><span class="category-def">Function File: </span><span><strong class="def-name">quadprog</strong> <code class="def-code-arguments">(<var class="var">H</var>, <var class="var">f</var>, <var class="var">A</var>, <var class="var">b</var>, <var class="var">Aeq</var>, <var class="var">beq</var>, <var class="var">lb</var>, <var class="var">ub</var>)</code><a class="copiable-link" href="#index-quadprog-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn" id="index-quadprog-4"><span class="category-def">Function File: </span><span><strong class="def-name">quadprog</strong> <code class="def-code-arguments">(<var class="var">H</var>, <var class="var">f</var>, <var class="var">A</var>, <var class="var">b</var>, <var class="var">Aeq</var>, <var class="var">beq</var>, <var class="var">lb</var>, <var class="var">ub</var>, <var class="var">x0</var>)</code><a class="copiable-link" href="#index-quadprog-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn" id="index-quadprog-5"><span class="category-def">Function File: </span><span><strong class="def-name">quadprog</strong> <code class="def-code-arguments">(<var class="var">H</var>, <var class="var">f</var>, <var class="var">A</var>, <var class="var">b</var>, <var class="var">Aeq</var>, <var class="var">beq</var>, <var class="var">lb</var>, <var class="var">ub</var>, <var class="var">x0</var>, <var class="var">options</var>)</code><a class="copiable-link" href="#index-quadprog-5"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn" id="index-quadprog-6"><span class="category-def">Function File: </span><span><code class="def-type">[<var class="var">x</var>, <var class="var">fval</var>, <var class="var">exitflag</var>, <var class="var">output</var>, <var class="var">lambda</var>] =</code> <strong class="def-name">quadprog</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-quadprog-6"> &para;</a></span></dt>
+<dd><p>Solve the quadratic program
+</p><div class="example">
+<div class="group"><pre class="example-preformatted">min 0.5 x'*H*x + x'*f
+ x
+</pre></div></div>
+<p>subject to
+</p><div class="example">
+<div class="group"><pre class="example-preformatted"><var class="var">A</var>*<var class="var">x</var> &lt;= <var class="var">b</var>,
+<var class="var">Aeq</var>*<var class="var">x</var> = <var class="var">beq</var>,
+<var class="var">lb</var> &lt;= <var class="var">x</var> &lt;= <var class="var">ub</var>.
+</pre></div></div>
+
+<p>The initial guess <var class="var">x0</var> and the constraint arguments (<var class="var">A</var> and
+<var class="var">b</var>, <var class="var">Aeq</var> and <var class="var">beq</var>, <var class="var">lb</var> and <var class="var">ub</var>) can be set to
+the empty matrix (<code class="code">[]</code>) if not given.  If the initial guess
+<var class="var">x0</var> is feasible the algorithm is faster.
+</p>
+<p><var class="var">options</var> can be set with <code class="code">optimset</code>, currently the only
+option is <code class="code">MaxIter</code>, the maximum number of iterations (default:
+200).
+</p>
+<p>Returned values:
+</p>
+<dl class="table">
+<dt><var class="var">x</var></dt>
+<dd><p>Position of minimum.
+</p>
+</dd>
+<dt><var class="var">fval</var></dt>
+<dd><p>Value at the minimum.
+</p>
+</dd>
+<dt><var class="var">exitflag</var></dt>
+<dd><p>Status of solution:
+</p>
+<dl class="table">
+<dt><code class="code">0</code></dt>
+<dd><p>Maximum number of iterations reached.
+</p>
+</dd>
+<dt><code class="code">-2</code></dt>
+<dd><p>The problem is infeasible.
+</p>
+</dd>
+<dt><code class="code">-3</code></dt>
+<dd><p>The problem is not convex and unbounded
+</p>
+</dd>
+<dt><code class="code">1</code></dt>
+<dd><p>Global solution found.
+</p>
+</dd>
+<dt><code class="code">4</code></dt>
+<dd><p>Local solution found.
+</p></dd>
+</dl>
+
+</dd>
+<dt><var class="var">output</var></dt>
+<dd><p>Structure with additional information, currently the only field is
+<code class="code">iterations</code>, the number of used iterations.
+</p>
+</dd>
+<dt><var class="var">lambda</var></dt>
+<dd><p>Structure containing Lagrange multipliers corresponding to the
+constraints. For equality constraints, the sign of the multipliers
+is chosen to satisfy the equation
+</p><div class="example">
+<pre class="example-preformatted">0.5 H * x + f + A' * lambda_inequ + Aeq' * lambda_equ = 0 .
+</pre></div>
+<p>If lower and upper bounds are equal, or so close to each other that
+they are considered equal by the algorithm, only one of these
+bounds is considered active when computing the solution, and a
+positive lambda will be placed only at this bound.
+</p>
+</dd>
+</dl>
+
+<p>This function calls Octave&rsquo;s <code class="code">__qp__</code> back-end algorithm internally.
+</p></dd></dl>
+
+
+
+</div>
+<hr>
+<div class="nav-panel">
+<p>
+Next: <a href="lsqnonlin.html">Non-linear residual minimization</a>, Previous: <a href="linprog.html">Linear programming</a>, Up: <a href="Compatibility-functions.html">Traditional functions</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

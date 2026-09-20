@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Bounds (Octave C++ Classes)</title>
+
+<meta name="description" content="Bounds (Octave C++ Classes)">
+<meta name="keywords" content="Bounds (Octave C++ Classes)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-Index.html" rel="index" title="Function Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Optimization.html" rel="up" title="Optimization">
+<link href="Linear-Constraints.html" rel="next" title="Linear Constraints">
+<link href="Objective-Functions.html" rel="prev" title="Objective Functions">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Bounds">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Linear-Constraints.html" accesskey="n" rel="next">Linear Constraints</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Objective-Functions.html" accesskey="p" rel="prev">Objective Functions</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Optimization.html" accesskey="u" rel="up">Optimization</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Function-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Bounds-1"><span>9.2 Bounds<a class="copiable-link" href="#Bounds-1"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-bounds"></a>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-Bounds"><span class="category-def">: </span><span><strong class="def-name">Bounds</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-Bounds"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-Bounds-1"><span class="category-def">: </span><span><strong class="def-name">Bounds</strong> <code class="def-code-arguments">(int <var class="var">n</var>)</code><a class="copiable-link" href="#index-Bounds-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-Bounds-2"><span class="category-def">: </span><span><strong class="def-name">Bounds</strong> <code class="def-code-arguments">(const ColumnVector <var class="var">lb</var>, const ColumnVector <var class="var">ub</var>)</code><a class="copiable-link" href="#index-Bounds-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-Bounds-3"><span class="category-def">: </span><span><strong class="def-name">Bounds</strong> <code class="def-code-arguments">(const Bounds &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-Bounds-3"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003d-30"><span class="category-def">: </span><span><code class="def-type">Bounds&amp;</code> <strong class="def-name">operator =</strong> <code class="def-code-arguments">(const Bounds &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003d-30"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-resize-1"><span class="category-def">: </span><span><code class="def-type">Bounds&amp;</code> <strong class="def-name">resize</strong> <code class="def-code-arguments">(int <var class="var">n</var>)</code><a class="copiable-link" href="#index-resize-1"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-lower_005fbound"><span class="category-def">: </span><span><code class="def-type">double</code> <strong class="def-name">lower_bound</strong> <code class="def-code-arguments">(int <var class="var">index</var>) const;</code><a class="copiable-link" href="#index-lower_005fbound"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-upper_005fbound"><span class="category-def">: </span><span><code class="def-type">double</code> <strong class="def-name">upper_bound</strong> <code class="def-code-arguments">(int <var class="var">index</var>) const;</code><a class="copiable-link" href="#index-upper_005fbound"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-lower_005fbounds"><span class="category-def">: </span><span><code class="def-type">ColumnVector</code> <strong class="def-name">lower_bounds</strong> <code class="def-code-arguments">(void) const;</code><a class="copiable-link" href="#index-lower_005fbounds"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-upper_005fbounds"><span class="category-def">: </span><span><code class="def-type">ColumnVector</code> <strong class="def-name">upper_bounds</strong> <code class="def-code-arguments">(void) const;</code><a class="copiable-link" href="#index-upper_005fbounds"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-size-1"><span class="category-def">: </span><span><code class="def-type">int</code> <strong class="def-name">size</strong> <code class="def-code-arguments">(void) const;</code><a class="copiable-link" href="#index-size-1"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-set_005fbound"><span class="category-def">: </span><span><code class="def-type">Bounds&amp;</code> <strong class="def-name">set_bound</strong> <code class="def-code-arguments">(int <var class="var">index</var>, double <var class="var">low</var>, double <var class="var">high</var>)</code><a class="copiable-link" href="#index-set_005fbound"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-set_005fbounds"><span class="category-def">: </span><span><code class="def-type">Bounds&amp;</code> <strong class="def-name">set_bounds</strong> <code class="def-code-arguments">(double <var class="var">low</var>, double <var class="var">high</var>)</code><a class="copiable-link" href="#index-set_005fbounds"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-set_005fbounds-1"><span class="category-def">: </span><span><code class="def-type">Bounds&amp;</code> <strong class="def-name">set_bounds</strong> <code class="def-code-arguments">(const ColumnVector <var class="var">lb</var>, const ColumnVector <var class="var">ub</var>)</code><a class="copiable-link" href="#index-set_005fbounds-1"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-set_005flower_005fbound"><span class="category-def">: </span><span><code class="def-type">Bounds&amp;</code> <strong class="def-name">set_lower_bound</strong> <code class="def-code-arguments">(int <var class="var">index</var>, double <var class="var">low</var>)</code><a class="copiable-link" href="#index-set_005flower_005fbound"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-set_005fupper_005fbound"><span class="category-def">: </span><span><code class="def-type">Bounds&amp;</code> <strong class="def-name">set_upper_bound</strong> <code class="def-code-arguments">(int <var class="var">index</var>, double <var class="var">high</var>)</code><a class="copiable-link" href="#index-set_005fupper_005fbound"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-set_005flower_005fbounds"><span class="category-def">: </span><span><code class="def-type">Bounds&amp;</code> <strong class="def-name">set_lower_bounds</strong> <code class="def-code-arguments">(double <var class="var">low</var>)</code><a class="copiable-link" href="#index-set_005flower_005fbounds"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-set_005fupper_005fbounds"><span class="category-def">: </span><span><code class="def-type">Bounds&amp;</code> <strong class="def-name">set_upper_bounds</strong> <code class="def-code-arguments">(double <var class="var">high</var>)</code><a class="copiable-link" href="#index-set_005fupper_005fbounds"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-set_005flower_005fbounds-1"><span class="category-def">: </span><span><code class="def-type">Bounds&amp;</code> <strong class="def-name">set_lower_bounds</strong> <code class="def-code-arguments">(const ColumnVector <var class="var">lb</var>)</code><a class="copiable-link" href="#index-set_005flower_005fbounds-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-set_005fupper_005fbounds-1"><span class="category-def">: </span><span><code class="def-type">Bounds&amp;</code> <strong class="def-name">set_upper_bounds</strong> <code class="def-code-arguments">(const ColumnVector <var class="var">ub</var>)</code><a class="copiable-link" href="#index-set_005fupper_005fbounds-1"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003c_003c-26"><span class="category-def">: </span><span><code class="def-type">ostream&amp;</code> <strong class="def-name">operator &lt;&lt;</strong> <code class="def-code-arguments">(ostream &amp;<var class="var">os</var>, const Bounds &amp;<var class="var">b</var>)</code><a class="copiable-link" href="#index-operator-_003c_003c-26"> &para;</a></span></dt>
+</dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Linear-Constraints.html">Linear Constraints</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Objective-Functions.html">Objective Functions</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Optimization.html">Optimization</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Function-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

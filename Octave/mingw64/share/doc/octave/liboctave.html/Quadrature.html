@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Quadrature (Octave C++ Classes)</title>
+
+<meta name="description" content="Quadrature (Octave C++ Classes)">
+<meta name="keywords" content="Quadrature (Octave C++ Classes)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-Index.html" rel="index" title="Function Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html" rel="up" title="Top">
+<link href="Ordinary-Differential-Equations.html" rel="next" title="Ordinary Differential Equations">
+<link href="Optimization.html" rel="prev" title="Optimization">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+
+
+</head>
+
+<body>
+<div class="chapter-level-extent" id="Quadrature">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Ordinary-Differential-Equations.html" accesskey="n" rel="next">Ordinary Differential Equations</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Optimization.html" accesskey="p" rel="prev">Optimization</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Function-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h2 class="chapter" id="Quadrature-1"><span>10 Quadrature<a class="copiable-link" href="#Quadrature-1"> &para;</a></span></h2>
+<a class="index-entry-id" id="index-quadrature"></a>
+<a class="index-entry-id" id="index-numerical-integration"></a>
+<a class="index-entry-id" id="index-integration"></a>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-Quad"><span class="category-def">: </span><span><strong class="def-name">Quad</strong> <code class="def-code-arguments">(integrand_fcn <var class="var">fcn</var>)</code><a class="copiable-link" href="#index-Quad"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-Quad-1"><span class="category-def">: </span><span><strong class="def-name">Quad</strong> <code class="def-code-arguments">(integrand_fcn <var class="var">fcn</var>, double <var class="var">abs</var>, double <var class="var">rel</var>)</code><a class="copiable-link" href="#index-Quad-1"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-integrate"><span class="category-def">: </span><span><code class="def-type">virtual double</code> <strong class="def-name">integrate</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-integrate"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-integrate-1"><span class="category-def">: </span><span><code class="def-type">virtual double</code> <strong class="def-name">integrate</strong> <code class="def-code-arguments">(int &amp;<var class="var">ier</var>)</code><a class="copiable-link" href="#index-integrate-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-integrate-2"><span class="category-def">: </span><span><code class="def-type">virtual double</code> <strong class="def-name">integrate</strong> <code class="def-code-arguments">(int &amp;<var class="var">ier</var>, int &amp;<var class="var">neval</var>)</code><a class="copiable-link" href="#index-integrate-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-integrate-3"><span class="category-def">: </span><span><code class="def-type">virtual double</code> <strong class="def-name">integrate</strong> <code class="def-code-arguments">(int &amp;<var class="var">ier</var>, int &amp;<var class="var">neval</var>, double &amp;<var class="var">abserr</var>) = 0</code><a class="copiable-link" href="#index-integrate-3"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-Quad_005foptions"><span class="category-def">: </span><span><strong class="def-name">Quad_options</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-Quad_005foptions"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-Quad_005foptions-1"><span class="category-def">: </span><span><strong class="def-name">Quad_options</strong> <code class="def-code-arguments">(const Quad_options &amp;<var class="var">opt</var>)</code><a class="copiable-link" href="#index-Quad_005foptions-1"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003d-34"><span class="category-def">: </span><span><code class="def-type">Quad_options&amp;</code> <strong class="def-name">operator =</strong> <code class="def-code-arguments">(const Quad_options &amp;<var class="var">opt</var>)</code><a class="copiable-link" href="#index-operator-_003d-34"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-init-1"><span class="category-def">: </span><span><code class="def-type">void</code> <strong class="def-name">init</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-init-1"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-copy-1"><span class="category-def">: </span><span><code class="def-type">void</code> <strong class="def-name">copy</strong> <code class="def-code-arguments">(const Quad_options &amp;<var class="var">opt</var>)</code><a class="copiable-link" href="#index-copy-1"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-set_005fdefault_005foptions-1"><span class="category-def">: </span><span><code class="def-type">void</code> <strong class="def-name">set_default_options</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-set_005fdefault_005foptions-1"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-set_005fabsolute_005ftolerance"><span class="category-def">: </span><span><code class="def-type">void</code> <strong class="def-name">set_absolute_tolerance</strong> <code class="def-code-arguments">(double <var class="var">val</var>)</code><a class="copiable-link" href="#index-set_005fabsolute_005ftolerance"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-set_005frelative_005ftolerance"><span class="category-def">: </span><span><code class="def-type">void</code> <strong class="def-name">set_relative_tolerance</strong> <code class="def-code-arguments">(double <var class="var">val</var>)</code><a class="copiable-link" href="#index-set_005frelative_005ftolerance"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-absolute_005ftolerance"><span class="category-def">: </span><span><code class="def-type">double</code> <strong class="def-name">absolute_tolerance</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-absolute_005ftolerance"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-relative_005ftolerance"><span class="category-def">: </span><span><code class="def-type">double</code> <strong class="def-name">relative_tolerance</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-relative_005ftolerance"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-DefQuad"><span class="category-def">: </span><span><strong class="def-name">DefQuad</strong> <code class="def-code-arguments">(integrand_fcn <var class="var">fcn</var>)</code><a class="copiable-link" href="#index-DefQuad"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-DefQuad-1"><span class="category-def">: </span><span><strong class="def-name">DefQuad</strong> <code class="def-code-arguments">(integrand_fcn <var class="var">fcn</var>, double <var class="var">ll</var>, double <var class="var">ul</var>)</code><a class="copiable-link" href="#index-DefQuad-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-DefQuad-2"><span class="category-def">: </span><span><strong class="def-name">DefQuad</strong> <code class="def-code-arguments">(integrand_fcn <var class="var">fcn</var>, double <var class="var">ll</var>, double <var class="var">ul</var>, double <var class="var">abs</var>, double <var class="var">rel</var>)</code><a class="copiable-link" href="#index-DefQuad-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-DefQuad-3"><span class="category-def">: </span><span><strong class="def-name">DefQuad</strong> <code class="def-code-arguments">(integrand_fcn <var class="var">fcn</var>, double <var class="var">ll</var>, double <var class="var">ul</var>, const ColumnVector &amp;<var class="var">sing</var>)</code><a class="copiable-link" href="#index-DefQuad-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-DefQuad-4"><span class="category-def">: </span><span><strong class="def-name">DefQuad</strong> <code class="def-code-arguments">(integrand_fcn <var class="var">fcn</var>, const ColumnVector &amp;<var class="var">sing</var>, double <var class="var">abs</var>, double <var class="var">rel</var>)</code><a class="copiable-link" href="#index-DefQuad-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-DefQuad-5"><span class="category-def">: </span><span><strong class="def-name">DefQuad</strong> <code class="def-code-arguments">(integrand_fcn <var class="var">fcn</var>, const ColumnVector &amp;<var class="var">sing</var>)</code><a class="copiable-link" href="#index-DefQuad-5"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-DefQuad-6"><span class="category-def">: </span><span><strong class="def-name">DefQuad</strong> <code class="def-code-arguments">(integrand_fcn <var class="var">fcn</var>, double <var class="var">ll</var>, double <var class="var">ul</var>, const ColumnVector &amp;<var class="var">sing</var>, double <var class="var">abs</var>, double <var class="var">rel</var>)</code><a class="copiable-link" href="#index-DefQuad-6"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-IndefQuad"><span class="category-def">: </span><span><strong class="def-name">IndefQuad</strong> <code class="def-code-arguments">(integrand_fcn <var class="var">fcn</var>)</code><a class="copiable-link" href="#index-IndefQuad"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-IndefQuad-1"><span class="category-def">: </span><span><strong class="def-name">IndefQuad</strong> <code class="def-code-arguments">(integrand_fcn <var class="var">fcn</var>, double <var class="var">b</var>, IntegralType <var class="var">t</var>)</code><a class="copiable-link" href="#index-IndefQuad-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-IndefQuad-2"><span class="category-def">: </span><span><strong class="def-name">IndefQuad</strong> <code class="def-code-arguments">(integrand_fcn <var class="var">fcn</var>, double <var class="var">b</var>, IntegralType <var class="var">t</var>, double <var class="var">abs</var>, double <var class="var">rel</var>)</code><a class="copiable-link" href="#index-IndefQuad-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-IndefQuad-3"><span class="category-def">: </span><span><strong class="def-name">IndefQuad</strong> <code class="def-code-arguments">(integrand_fcn <var class="var">fcn</var>, double <var class="var">abs</var>, double <var class="var">rel</var>)</code><a class="copiable-link" href="#index-IndefQuad-3"> &para;</a></span></dt>
+</dl>
+
+
+<ul class="mini-toc">
+<li><a href="Collocation-Weights.html" accesskey="1">Collocation Weights</a></li>
+</ul>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Ordinary-Differential-Equations.html">Ordinary Differential Equations</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Optimization.html">Optimization</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Function-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

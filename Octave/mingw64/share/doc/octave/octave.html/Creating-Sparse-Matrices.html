@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Creating Sparse Matrices (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Creating Sparse Matrices (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Creating Sparse Matrices (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Basics.html" rel="up" title="Basics">
+<link href="Information.html" rel="next" title="Information">
+<link href="Storage-of-Sparse-Matrices.html" rel="prev" title="Storage of Sparse Matrices">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+ul.mark-bullet {list-style-type: disc}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Creating-Sparse-Matrices">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Information.html" accesskey="n" rel="next">Finding Information about Sparse Matrices</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Storage-of-Sparse-Matrices.html" accesskey="p" rel="prev">Storage of Sparse Matrices</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Basics.html" accesskey="u" rel="up">Creation and Manipulation of Sparse Matrices</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Creating-Sparse-Matrices-1"><span>22.1.2 Creating Sparse Matrices<a class="copiable-link" href="#Creating-Sparse-Matrices-1"> &para;</a></span></h4>
+
+<p>There are several means to create sparse matrix.
+</p>
+<dl class="table">
+<dt>Returned from a function</dt>
+<dd><p>There are many functions that directly return sparse matrices.  These include
+<em class="dfn">speye</em>, <em class="dfn">sprand</em>, <em class="dfn">diag</em>, etc.
+</p>
+</dd>
+<dt>Constructed from matrices or vectors</dt>
+<dd><p>The function <em class="dfn">sparse</em> allows a sparse matrix to be constructed from
+three vectors representing the row, column and data.  Alternatively, the
+function <em class="dfn">spconvert</em> uses a three column matrix format to allow easy
+importation of data from elsewhere.
+</p>
+</dd>
+<dt>Created and then filled</dt>
+<dd><p>The function <em class="dfn">sparse</em> or <em class="dfn">spalloc</em> can be used to create an empty
+matrix that is then filled by the user
+</p>
+</dd>
+<dt>From a user binary program</dt>
+<dd><p>The user can directly create the sparse matrix within an oct-file.
+</p></dd>
+</dl>
+
+<p>There are several basic functions to return specific sparse
+matrices.  For example the sparse identity matrix, is a matrix that is
+often needed.  It therefore has its own function to create it as
+<code class="code">speye (<var class="var">n</var>)</code> or <code class="code">speye (<var class="var">r</var>, <var class="var">c</var>)</code>, which
+creates an <var class="var">n</var>-by-<var class="var">n</var> or <var class="var">r</var>-by-<var class="var">c</var> sparse identity
+matrix.
+</p>
+<p>Another typical sparse matrix that is often needed is a random distribution
+of random elements.  The functions <em class="dfn">sprand</em> and <em class="dfn">sprandn</em> perform
+this for uniform and normal random distributions of elements.  They have
+exactly the same calling convention, where <code class="code">sprand (<var class="var">r</var>, <var class="var">c</var>,
+<var class="var">d</var>)</code>, creates an <var class="var">r</var>-by-<var class="var">c</var> sparse matrix with a density of
+filled elements of <var class="var">d</var>.
+</p>
+<p>Other functions of interest that directly create sparse matrices, are
+<em class="dfn">diag</em> or its generalization <em class="dfn">spdiags</em>, that can take the
+definition of the diagonals of the matrix and create the sparse matrix
+that corresponds to this.  For example,
+</p>
+<div class="example">
+<pre class="example-preformatted">s = diag (sparse (randn (1,n)), -1);
+</pre></div>
+
+<p>creates a sparse (<var class="var">n</var>+1)-by-(<var class="var">n</var>+1) sparse matrix with a single
+diagonal defined.
+</p>
+<a class="anchor" id="XREFspdiags"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-spdiags"><span><code class="def-type"><var class="var">B</var> =</code> <strong class="def-name">spdiags</strong> <code class="def-code-arguments">(<var class="var">A</var>)</code><a class="copiable-link" href="#index-spdiags"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-spdiags-1"><span><code class="def-type">[<var class="var">B</var>, <var class="var">d</var>] =</code> <strong class="def-name">spdiags</strong> <code class="def-code-arguments">(<var class="var">A</var>)</code><a class="copiable-link" href="#index-spdiags-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-spdiags-2"><span><code class="def-type"><var class="var">B</var> =</code> <strong class="def-name">spdiags</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">d</var>)</code><a class="copiable-link" href="#index-spdiags-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-spdiags-3"><span><code class="def-type"><var class="var">A</var> =</code> <strong class="def-name">spdiags</strong> <code class="def-code-arguments">(<var class="var">v</var>, <var class="var">d</var>, <var class="var">A</var>)</code><a class="copiable-link" href="#index-spdiags-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-spdiags-4"><span><code class="def-type"><var class="var">A</var> =</code> <strong class="def-name">spdiags</strong> <code class="def-code-arguments">(<var class="var">v</var>, <var class="var">d</var>, <var class="var">m</var>, <var class="var">n</var>)</code><a class="copiable-link" href="#index-spdiags-4"> &para;</a></span></dt>
+<dd><p>A generalization of the function <code class="code">diag</code>.
+</p>
+<p>Called with a single input argument, the nonzero diagonals <var class="var">d</var> of
+<var class="var">A</var> are extracted.
+</p>
+<p>With two arguments the diagonals to extract are given by the vector <var class="var">d</var>.
+</p>
+<p>The other two forms of <code class="code">spdiags</code> modify the input matrix by replacing
+the diagonals.  They use the columns of <var class="var">v</var> to replace the diagonals
+represented by the vector <var class="var">d</var>.  If the sparse matrix <var class="var">A</var> is
+defined then the diagonals of this matrix are replaced.  Otherwise a
+matrix of <var class="var">m</var> by <var class="var">n</var> is created with the diagonals given by the
+columns of <var class="var">v</var>.
+</p>
+<p>Negative values of <var class="var">d</var> represent diagonals below the main diagonal, and
+positive values of <var class="var">d</var> diagonals above the main diagonal.
+</p>
+<p>For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">spdiags (reshape (1:12, 4, 3), [-1 0 1], 5, 4)
+   &rArr;  5 10  0  0
+      1  6 11  0
+      0  2  7 12
+      0  0  3  8
+      0  0  0  4
+</pre></div></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Rearranging-Matrices.html#XREFdiag">diag</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFspeye"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-speye"><span><code class="def-type"><var class="var">s</var> =</code> <strong class="def-name">speye</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-speye"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-speye-1"><span><code class="def-type"><var class="var">s</var> =</code> <strong class="def-name">speye</strong> <code class="def-code-arguments">(<var class="var">n</var>)</code><a class="copiable-link" href="#index-speye-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-speye-2"><span><code class="def-type"><var class="var">s</var> =</code> <strong class="def-name">speye</strong> <code class="def-code-arguments">(<var class="var">m</var>, <var class="var">n</var>)</code><a class="copiable-link" href="#index-speye-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-speye-3"><span><code class="def-type"><var class="var">s</var> =</code> <strong class="def-name">speye</strong> <code class="def-code-arguments">([<var class="var">m</var>, <var class="var">n</var>])</code><a class="copiable-link" href="#index-speye-3"> &para;</a></span></dt>
+<dd><p>Return a sparse identity matrix of size <var class="var">m</var>x<var class="var">n</var>.
+</p>
+<p>If called with no arguments, return the sparse scalar value <code class="code">1</code>.
+</p>
+<p>If invoked with a single scalar argument <var class="var">n</var>, return a sparse square
+NxN identity matrix.
+</p>
+<p>If supplied two scalar arguments (<var class="var">m</var>, <var class="var">n</var>), or a 2-element vector
+<code class="code">[<var class="var">m</var>,&nbsp;<var class="var">n</var>]</code><!-- /@w -->, return a sparse MxN identity matrix
+with <var class="var">m</var> rows and <var class="var">n</var> columns.
+</p>
+<p>Programming Note: The implementation is significantly more efficient than
+<code class="code">sparse&nbsp;(eye&nbsp;(&hellip;))</code><!-- /@w -->&nbsp;as the full matrix is not constructed.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFsparse">sparse</a>, <a class="ref" href="#XREFspdiags">spdiags</a>, <a class="ref" href="Special-Utility-Matrices.html#XREFeye">eye</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFspones"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-spones"><span><code class="def-type"><var class="var">r</var> =</code> <strong class="def-name">spones</strong> <code class="def-code-arguments">(<var class="var">S</var>)</code><a class="copiable-link" href="#index-spones"> &para;</a></span></dt>
+<dd><p>Replace the nonzero entries of <var class="var">S</var> with ones.
+</p>
+<p>This creates a sparse matrix with the same structure as <var class="var">S</var>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFsparse">sparse</a>, <a class="ref" href="#XREFsprand">sprand</a>, <a class="ref" href="#XREFsprandn">sprandn</a>, <a class="ref" href="#XREFsprandsym">sprandsym</a>, <a class="ref" href="Function-Application.html#XREFspfun">spfun</a>, <a class="ref" href="Information.html#XREFspy">spy</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFsprand"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-sprand"><span><code class="def-type"><var class="var">s</var> =</code> <strong class="def-name">sprand</strong> <code class="def-code-arguments">(<var class="var">m</var>, <var class="var">n</var>, <var class="var">d</var>)</code><a class="copiable-link" href="#index-sprand"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-sprand-1"><span><code class="def-type"><var class="var">s</var> =</code> <strong class="def-name">sprand</strong> <code class="def-code-arguments">(<var class="var">m</var>, <var class="var">n</var>, <var class="var">d</var>, <var class="var">rc</var>)</code><a class="copiable-link" href="#index-sprand-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-sprand-2"><span><code class="def-type"><var class="var">s</var> =</code> <strong class="def-name">sprand</strong> <code class="def-code-arguments">(<var class="var">s</var>)</code><a class="copiable-link" href="#index-sprand-2"> &para;</a></span></dt>
+<dd><p>Generate a sparse matrix with uniformly distributed random values.
+</p>
+<p>The size of the matrix is <var class="var">m</var>x<var class="var">n</var> with a density of values <var class="var">d</var>.
+<var class="var">d</var> must be between 0 and 1.  Values will be uniformly distributed on
+the interval (0, 1).
+</p>
+<p>If called with a single matrix argument, a sparse matrix is generated with
+random values wherever the matrix <var class="var">s</var> is nonzero.
+</p>
+<p>If called with a scalar fourth argument <var class="var">rc</var>, a random sparse matrix
+with reciprocal condition number <var class="var">rc</var> is generated.  If <var class="var">rc</var> is
+a vector, then it specifies the first singular values of the generated
+matrix (<code class="code">length (<var class="var">rc</var>) &lt;= min (<var class="var">m</var>, <var class="var">n</var>)</code>).
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFsprandn">sprandn</a>, <a class="ref" href="#XREFsprandsym">sprandsym</a>, <a class="ref" href="Special-Utility-Matrices.html#XREFrand">rand</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFsprandn"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-sprandn"><span><code class="def-type"><var class="var">s</var> =</code> <strong class="def-name">sprandn</strong> <code class="def-code-arguments">(<var class="var">m</var>, <var class="var">n</var>, <var class="var">d</var>)</code><a class="copiable-link" href="#index-sprandn"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-sprandn-1"><span><code class="def-type"><var class="var">s</var> =</code> <strong class="def-name">sprandn</strong> <code class="def-code-arguments">(<var class="var">m</var>, <var class="var">n</var>, <var class="var">d</var>, <var class="var">rc</var>)</code><a class="copiable-link" href="#index-sprandn-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-sprandn-2"><span><code class="def-type"><var class="var">s</var> =</code> <strong class="def-name">sprandn</strong> <code class="def-code-arguments">(<var class="var">s</var>)</code><a class="copiable-link" href="#index-sprandn-2"> &para;</a></span></dt>
+<dd><p>Generate a sparse matrix with normally distributed random values.
+</p>
+<p>The size of the matrix is <var class="var">m</var>x<var class="var">n</var> with a density of values <var class="var">d</var>.
+<var class="var">d</var> must be between 0 and 1.  Values will be normally distributed with a
+mean of 0 and a variance of 1.
+</p>
+<p>If called with a single matrix argument, a sparse matrix is generated with
+random values wherever the matrix <var class="var">s</var> is nonzero.
+</p>
+<p>If called with a scalar fourth argument <var class="var">rc</var>, a random sparse matrix
+with reciprocal condition number <var class="var">rc</var> is generated.  If <var class="var">rc</var> is
+a vector, then it specifies the first singular values of the generated
+matrix (<code class="code">length (<var class="var">rc</var>) &lt;= min (<var class="var">m</var>, <var class="var">n</var>)</code>).
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFsprand">sprand</a>, <a class="ref" href="#XREFsprandsym">sprandsym</a>, <a class="ref" href="Special-Utility-Matrices.html#XREFrandn">randn</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFsprandsym"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-sprandsym"><span><code class="def-type"><var class="var">S</var> =</code> <strong class="def-name">sprandsym</strong> <code class="def-code-arguments">(<var class="var">n</var>, <var class="var">d</var>)</code><a class="copiable-link" href="#index-sprandsym"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-sprandsym-1"><span><code class="def-type"><var class="var">S</var> =</code> <strong class="def-name">sprandsym</strong> <code class="def-code-arguments">(<var class="var">s</var>)</code><a class="copiable-link" href="#index-sprandsym-1"> &para;</a></span></dt>
+<dd><p>Generate a symmetric random sparse matrix.
+</p>
+<p>The size of the matrix will be <var class="var">n</var>x<var class="var">n</var>, with a density of values
+given by <var class="var">d</var>.  <var class="var">d</var> must be between 0 and 1 inclusive.  Values will
+be normally distributed with a mean of zero and a variance of 1.
+</p>
+<p>If called with a single matrix argument, a random sparse matrix is generated
+wherever the matrix <var class="var">s</var> is nonzero in its lower triangular part.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFsprand">sprand</a>, <a class="ref" href="#XREFsprandn">sprandn</a>, <a class="ref" href="#XREFspones">spones</a>, <a class="ref" href="#XREFsparse">sparse</a>.
+</p></dd></dl>
+
+
+<p>The recommended way for the user to create a sparse matrix, is to create
+two vectors containing the row and column index of the data and a third
+vector of the same size containing the data to be stored.  For example,
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">  ri = ci = d = [];
+  for j = 1:c
+    ri = [ri; randperm(r,n)'];
+    ci = [ci; j*ones(n,1)];
+    d = [d; rand(n,1)];
+  endfor
+  s = sparse (ri, ci, d, r, c);
+</pre></div></div>
+
+<p>creates an <var class="var">r</var>-by-<var class="var">c</var> sparse matrix with a random distribution
+of <var class="var">n</var> (&lt;<var class="var">r</var>) elements per column.  The elements of the vectors
+do not need to be sorted in any particular order as Octave will sort
+them prior to storing the data.  However, pre-sorting the data will
+make the creation of the sparse matrix faster.
+</p>
+<p>The function <em class="dfn">spconvert</em> takes a three or four column real matrix.
+The first two columns represent the row and column index respectively and
+the third and four columns, the real and imaginary parts of the sparse
+matrix.  The matrix can contain zero elements and the elements can be
+sorted in any order.  Adding zero elements is a convenient way to define
+the size of the sparse matrix.  For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">s = spconvert ([1 2 3 4; 1 3 4 4; 1 2 3 0]')
+&rArr;  Compressed Column Sparse (rows=4, cols=4, nnz=3)
+      (1 , 1) -&gt; 1
+      (2 , 3) -&gt; 2
+      (3 , 4) -&gt; 3
+</pre></div></div>
+
+<p>An example of creating and filling a matrix might be
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">k = 5;
+nz = r * k;
+s = spalloc (r, c, nz)
+for j = 1:c
+  idx = randperm (r);
+  s (:, j) = [zeros(r - k, 1); ...
+        rand(k, 1)] (idx);
+endfor
+</pre></div></div>
+
+<p>It should be noted, that due to the way that the Octave
+assignment functions are written that the assignment will reallocate
+the memory used by the sparse matrix at each iteration of the above loop.
+Therefore the <em class="dfn">spalloc</em> function ignores the <var class="var">nz</var> argument and
+does not pre-assign the memory for the matrix.  Therefore, it is vitally
+important that code using to above structure should be vectorized
+as much as possible to minimize the number of assignments and reduce the
+number of memory allocations.
+</p>
+<a class="anchor" id="XREFfull"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-full"><span><code class="def-type"><var class="var">FM</var> =</code> <strong class="def-name">full</strong> <code class="def-code-arguments">(<var class="var">SM</var>)</code><a class="copiable-link" href="#index-full"> &para;</a></span></dt>
+<dd><p>Return a full storage matrix from a sparse, diagonal, or permutation matrix,
+or from a range.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFsparse">sparse</a>, <a class="ref" href="Information.html#XREFissparse">issparse</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFspalloc"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-spalloc"><span><code class="def-type"><var class="var">s</var> =</code> <strong class="def-name">spalloc</strong> <code class="def-code-arguments">(<var class="var">m</var>, <var class="var">n</var>, <var class="var">nz</var>)</code><a class="copiable-link" href="#index-spalloc"> &para;</a></span></dt>
+<dd><p>Create an <var class="var">m</var>-by-<var class="var">n</var> sparse matrix with pre-allocated space for at
+most <var class="var">nz</var> nonzero elements.
+</p>
+<p>This is useful for building a matrix incrementally by a sequence of indexed
+assignments.  Subsequent indexed assignments after <code class="code">spalloc</code> will reuse
+the pre-allocated memory, provided they are of one of the simple forms
+</p>
+<ul class="itemize mark-bullet">
+<li><code class="code"><var class="var">s</var>(I:J) = <var class="var">x</var></code>
+
+</li><li><code class="code"><var class="var">s</var>(:,I:J) = <var class="var">x</var></code>
+
+</li><li><code class="code"><var class="var">s</var>(K:L,I:J) = <var class="var">x</var></code>
+</li></ul>
+
+<p><b class="b">and</b> that the following conditions are met:
+</p>
+<ul class="itemize mark-bullet">
+<li>the assignment does not decrease <code class="code">nnz (<var class="var">S</var>)</code>.
+
+</li><li>after the assignment, <code class="code">nnz (<var class="var">S</var>)</code> does not exceed <var class="var">nz</var>.
+
+</li><li>no index is out of bounds.
+</li></ul>
+
+<p>Partial movement of data may still occur, but in general the assignment will
+be more memory and time efficient under these circumstances.  In particular,
+it is possible to efficiently build a pre-allocated sparse matrix from a
+contiguous block of columns.
+</p>
+<p>The amount of pre-allocated memory for a given matrix may be queried using
+the function <code class="code">nzmax</code>.
+</p>
+<p>Programming Note: Octave always reserves memory for at least one value,
+even if <var class="var">nz</var> is 0.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Information.html#XREFnzmax">nzmax</a>, <a class="ref" href="#XREFsparse">sparse</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFsparse"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-sparse"><span><code class="def-type"><var class="var">S</var> =</code> <strong class="def-name">sparse</strong> <code class="def-code-arguments">(<var class="var">A</var>)</code><a class="copiable-link" href="#index-sparse"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-sparse-1"><span><code class="def-type"><var class="var">S</var> =</code> <strong class="def-name">sparse</strong> <code class="def-code-arguments">(<var class="var">m</var>, <var class="var">n</var>)</code><a class="copiable-link" href="#index-sparse-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-sparse-2"><span><code class="def-type"><var class="var">S</var> =</code> <strong class="def-name">sparse</strong> <code class="def-code-arguments">(<var class="var">i</var>, <var class="var">j</var>, <var class="var">sv</var>)</code><a class="copiable-link" href="#index-sparse-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-sparse-3"><span><code class="def-type"><var class="var">S</var> =</code> <strong class="def-name">sparse</strong> <code class="def-code-arguments">(<var class="var">i</var>, <var class="var">j</var>, <var class="var">sv</var>, <var class="var">m</var>, <var class="var">n</var>)</code><a class="copiable-link" href="#index-sparse-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-sparse-4"><span><code class="def-type"><var class="var">S</var> =</code> <strong class="def-name">sparse</strong> <code class="def-code-arguments">(<var class="var">i</var>, <var class="var">j</var>, <var class="var">sv</var>, <var class="var">m</var>, <var class="var">n</var>, &quot;unique&quot;)</code><a class="copiable-link" href="#index-sparse-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-sparse-5"><span><code class="def-type"><var class="var">S</var> =</code> <strong class="def-name">sparse</strong> <code class="def-code-arguments">(<var class="var">i</var>, <var class="var">j</var>, <var class="var">sv</var>, <var class="var">m</var>, <var class="var">n</var>, <var class="var">nzmax</var>)</code><a class="copiable-link" href="#index-sparse-5"> &para;</a></span></dt>
+<dd><p>Create a sparse matrix from a full matrix <var class="var">A</var> or row, column, value
+triplets.
+</p>
+<p>If <var class="var">A</var> is a full matrix, convert it to a sparse matrix representation,
+removing all zero values in the process.  The matrix <var class="var">A</var> should be of type
+logical or double.
+</p>
+<p>If two inputs <var class="var">m</var> (rows) and <var class="var">n</var> (columns) are specified then create
+an empty sparse matrix with the specified dimensions.
+</p>
+<p>Given the integer index vectors <var class="var">i</var> and <var class="var">j</var>, and a 1-by-<code class="code">nnz</code>
+vector of real or complex values <var class="var">sv</var>, construct the sparse matrix
+<code class="code">S(<var class="var">i</var>(<var class="var">k</var>),<var class="var">j</var>(<var class="var">k</var>)) = <var class="var">sv</var>(<var class="var">k</var>)</code> with overall
+dimensions <var class="var">m</var> and <var class="var">n</var>.  If any of <var class="var">i</var>, <var class="var">j</var>, or <var class="var">sv</var> are
+scalars, they are expanded to have a common size.
+</p>
+<p>If <var class="var">m</var> or <var class="var">n</var> are not specified then their values are derived from the
+maximum index in the vectors <var class="var">i</var> and <var class="var">j</var> as given by
+<code class="code"><var class="var">m</var>&nbsp;=&nbsp;max&nbsp;(<var class="var">i</var>)</code><!-- /@w -->, <code class="code"><var class="var">n</var>&nbsp;=&nbsp;max&nbsp;(<var class="var">j</var>)</code><!-- /@w -->.
+</p>
+<p><strong class="strong">Note</strong>: If multiple values are specified with the same <var class="var">i</var>, <var class="var">j</var>
+indices, the corresponding value in <var class="var">S</var> will be the sum of the values at
+the repeated location.  See <a class="xref" href="Accumulation.html#XREFaccumarray">accumarray</a>, for an example of
+how to produce different behavior such as taking the minimum instead.
+</p>
+<p>If the option <code class="code">&quot;unique&quot;</code> is given, and more than one value is specified
+at the same <var class="var">i</var>, <var class="var">j</var> indices, then only the last specified value will
+be used.  For completeness, the option <code class="code">&quot;sum&quot;</code> can be given and will
+be ignored as the default behavior is to sum values at repeated locations.
+</p>
+<p><code class="code">sparse (<var class="var">m</var>, <var class="var">n</var>)</code> will create an empty <var class="var">m</var>x<var class="var">n</var> sparse
+matrix and is equivalent to <code class="code">sparse ([], [], [], <var class="var">m</var>, <var class="var">n</var>)</code>
+</p>
+<p>The optional final argument reserves space for <var class="var">nzmax</var> values in the sparse
+array and is useful if the eventual number of nonzero values will be greater
+than the number of values in <var class="var">sv</var> used during the initial construction of
+the array.  See <a class="xref" href="#XREFspalloc">spalloc</a>, for more information and usage
+instructions.
+</p>
+<p>Example 1 (convert full matrix to sparse to save memory):
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">x = full (diag (1:1000));
+sizeof (x)
+&rArr;   8000000
+s = sparse (x);
+sizeof (xs)
+&rArr;   24008
+</pre></div></div>
+
+<p>Example 2 (sum at repeated indices):
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted"><var class="var">i</var> = [1 1 2]; <var class="var">j</var> = [1 1 2]; <var class="var">sv</var> = [3 4 5];
+sparse (<var class="var">i</var>, <var class="var">j</var>, <var class="var">sv</var>, 3, 4)
+&rArr; 
+   Compressed Column Sparse (rows = 3, cols = 4, nnz = 2 [17%])
+
+     (1, 1) -&gt;  7
+     (2, 2) -&gt;  5
+</pre></div></div>
+
+<p>Example 3 (&quot;unique&quot; option):
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted"><var class="var">i</var> = [1 1 2]; <var class="var">j</var> = [1 1 2]; <var class="var">sv</var> = [3 4 5];
+sparse (<var class="var">i</var>, <var class="var">j</var>, <var class="var">sv</var>, 3, 4, &quot;unique&quot;)
+&rArr; 
+   Compressed Column Sparse (rows = 3, cols = 4, nnz = 2 [17%])
+
+     (1, 1) -&gt;  4
+     (2, 2) -&gt;  5
+</pre></div></div>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFfull">full</a>, <a class="ref" href="Accumulation.html#XREFaccumarray">accumarray</a>, <a class="ref" href="#XREFspalloc">spalloc</a>, <a class="ref" href="#XREFspdiags">spdiags</a>, <a class="ref" href="#XREFspeye">speye</a>, <a class="ref" href="#XREFspones">spones</a>, <a class="ref" href="#XREFsprand">sprand</a>, <a class="ref" href="#XREFsprandn">sprandn</a>, <a class="ref" href="#XREFsprandsym">sprandsym</a>, <a class="ref" href="#XREFspconvert">spconvert</a>, <a class="ref" href="Function-Application.html#XREFspfun">spfun</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFspconvert"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-spconvert"><span><code class="def-type"><var class="var">x</var> =</code> <strong class="def-name">spconvert</strong> <code class="def-code-arguments">(<var class="var">m</var>)</code><a class="copiable-link" href="#index-spconvert"> &para;</a></span></dt>
+<dd><p>Convert a simple sparse matrix format easily generated by other programs
+into Octave&rsquo;s internal sparse format.
+</p>
+<p>The input <var class="var">m</var> is either a 3 or 4 column real matrix, containing the
+row, column, real, and imaginary parts of the elements of the sparse
+matrix.  An element with a zero real and imaginary part can be used to
+force a particular matrix size.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFsparse">sparse</a>.
+</p></dd></dl>
+
+
+<p>The above problem of memory reallocation can be avoided in
+oct-files.  However, the construction of a sparse matrix from an oct-file
+is more complex than can be discussed here.  See <a class="xref" href="External-Code-Interface.html">External Code Interface</a>,
+for a full description of the techniques involved.
+</p>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Information.html">Finding Information about Sparse Matrices</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Storage-of-Sparse-Matrices.html">Storage of Sparse Matrices</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Basics.html">Creation and Manipulation of Sparse Matrices</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

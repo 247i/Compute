@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- General documentation for the parallel package for Octave.
+
+Copyright (C) 2016-2023 Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>pararrayfun (parallel_doc)</title>
+
+<meta name="description" content="pararrayfun (parallel_doc)">
+<meta name="keywords" content="pararrayfun (parallel_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Local-execution.html" rel="up" title="Local execution">
+<link href="parcellfun_005fset_005fnproc.html" rel="next" title="parcellfun_set_nproc">
+<link href="parcellfun.html" rel="prev" title="parcellfun">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<span id="pararrayfun"></span><div class="header">
+<p>
+Next: <a href="parcellfun_005fset_005fnproc.html" accesskey="n" rel="next">parcellfun_set_nproc</a>, Previous: <a href="parcellfun.html" accesskey="p" rel="prev">parcellfun</a>, Up: <a href="Local-execution.html" accesskey="u" rel="up">Local execution</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Function-pararrayfun"></span><h3 class="section">2.2 Function pararrayfun</h3>
+<span id="index-pararrayfun-3"></span>
+
+<span id="XREFpararrayfun"></span><dl>
+<dt id="index-pararrayfun">Function File: <em>[<var>o1</var>, <var>o2</var>, &hellip;] =</em> <strong>pararrayfun</strong> <em>(<var>nproc</var>, <var>fun</var>, <var>a1</var>, <var>a2</var>, &hellip;)</em></dt>
+<dt id="index-pararrayfun-1">Function File: <em></em> <strong>pararrayfun</strong> <em>(nproc, fun, &hellip;, &quot;UniformOutput&quot;, <var>val</var>)</em></dt>
+<dt id="index-pararrayfun-2">Function File: <em></em> <strong>pararrayfun</strong> <em>(nproc, fun, &hellip;, &quot;ErrorHandler&quot;, <var>errfunc</var>)</em></dt>
+<dd><p>Evaluates a function for corresponding elements of an array. 
+Argument and options handling is analogical to <code>parcellfun</code>, except that
+arguments are arrays rather than cells. If cells occur as arguments, they are treated
+as arrays of singleton cells.
+Arrayfun supports one extra option compared to parcellfun: &quot;Vectorized&quot;.
+This option must be given together with &quot;ChunksPerProc&quot; and it indicates
+that <var>fun</var> is able to operate on vectors rather than just scalars, and returns
+a vector. The same must be true for <var>errfunc</var>, if given.
+In this case, the array is split into chunks which are then directly served to <var>func</var>
+for evaluation, and the results are concatenated to output arrays.
+If &quot;CumFunc&quot; is also specified (see <code>parcellfun</code>), <var>fun</var> is
+expected to return the result of the same cumulative operation
+instead of vectors.
+</p></dd></dl>
+
+
+<p>See also <a href="parcellfun.html#XREFparcellfun">parcellfun</a>,
+<a href="../octave/XREFarrayfun.html#XREFarrayfun">(octave)arrayfun</a>.
+</p>
+
+
+
+
+</body>
+</html>

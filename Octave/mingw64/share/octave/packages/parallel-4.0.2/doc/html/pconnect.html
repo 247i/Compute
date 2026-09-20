@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- General documentation for the parallel package for Octave.
+
+Copyright (C) 2016-2023 Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>pconnect (parallel_doc)</title>
+
+<meta name="description" content="pconnect (parallel_doc)">
+<meta name="keywords" content="pconnect (parallel_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Cluster-execution.html" rel="up" title="Cluster execution">
+<link href="sclose.html" rel="next" title="sclose">
+<link href="pserver.html" rel="prev" title="pserver">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<span id="pconnect"></span><div class="header">
+<p>
+Next: <a href="sclose.html" accesskey="n" rel="next">sclose</a>, Previous: <a href="pserver.html" accesskey="p" rel="prev">pserver</a>, Up: <a href="Cluster-execution.html" accesskey="u" rel="up">Cluster execution</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Establishing-cluster-connections"></span><h3 class="section">3.4 Establishing cluster connections</h3>
+<span id="index-pconnect-2"></span>
+
+<span id="XREFpconnect"></span><dl>
+<dt id="index-pconnect">Loadable Function: <em><var>connections</var> =</em> <strong>pconnect</strong> <em>(<var>hosts</var>)</em></dt>
+<dt id="index-pconnect-1">Loadable Function: <em><var>connections</var> =</em> <strong>pconnect</strong> <em>(<var>hosts</var>, <var>options</var>)</em></dt>
+<dd><p>Connects to a network of parallel cluster servers.
+</p>
+<p>As a precondition, a server must have been started at each machine of
+the cluster, see <code>pserver</code>. Connections are not guaranteed to
+work if client and server are from <code>parallel</code> packages of
+different versions, so versions should be kept equal.
+</p>
+<p><var>hosts</var> is a cell-array of strings, holding the names of all
+server machines. The machines must be unique, and their names must be
+resolvable to the correct addresses also at each server machine, not
+only at the client. This means e.g. that the name <code>localhost</code> is
+not acceptable (exception: <code>localhost</code> is acceptable as the first
+of all names).
+</p>
+<p>Alternatively, but deprecated, <var>hosts</var> can be given as previously,
+as a character array with a machine name in each row. If it is given
+in this way, the first row must contain the name of the client machine
+(for backwards compatibility), so that there is one row more than the
+now preferred cell-array <var>hosts</var> would have entries.
+</p>
+<p><code>pconnect</code> returns an opaque variable holding the network
+connections. This variable can be indexed to obtain a subset of
+connections or even a single connection. (For backwards compatibility,
+a second index of <code>:</code> is allowed, which has no effect). At the
+first index position is the client machine, so this position does not
+correspond to a real connection. At the following index positions are
+the server machines in the same order as specified in the cell-array
+<var>hosts</var>. So in the whole the variable of network connections has
+one position more than the number of servers given in <var>hosts</var>
+(except if <var>hosts</var> was given in the above mentioned deprecated
+way). You can display the variable of network connections to see what
+is in it. The variable of network connections, or subsets of it, is
+passed to the other functions for parallel cluster execution
+(<code>reval</code>, <code>psend</code>, <code>precv</code>, <code>sclose</code>,
+<code>select_sockets</code> among others &ndash; see documentation of these
+functions).
+</p>
+<p><var>options</var>: structure of options; field <code>use_tls</code> is
+<code>true</code> by default (TLS with SRP authentication); if set to
+<code>false</code>, there will be no encryption or authentication. Field
+<code>password_file</code> can be set to an alternative path to the file
+with authentication information (see below). Field <code>user</code> can
+specify the username for authentication; if the username is so
+specified, no file with authentication information will be used at the
+client, but the password will be queried from the user.
+</p>
+<p>The client and the server must both use or both not use TLS. If TLS is
+switched off, different measures must be taken to protect ports 12501
+and 12502 at the servers and the client against unauthorized access;
+e.g. by a firewall or by physical isolation of the network.
+</p>
+<p>For using TLS, authorization data must be present at the server
+machine. These data can conveniently be generated by
+<code>parallel_generate_srp_data</code>. By default, the client
+authentication file is created in the same run. The helptext of
+<code>parallel_generate_srp_data</code> documents the expected locations of
+the authentication data.
+</p>
+<p>The SRP password will be sent over the encrypted TLS channel from the
+client to each server, to avoid permanently storing passwords at the
+server for server-to-server data connections. Due to inevitable usage
+of external libraries, memory with sensitive data can, however, be on
+the swap device even after shutdown of the application, both at the
+client and at the server machines.
+</p>
+<p>Example (let data travel through all machines), assuming
+<code>pserver</code> was called on each remote machine and authentication
+data is present (e.g. generated with
+<code>parallel_generate_srp_data</code>):
+</p>
+<div class="example">
+<pre class="example">sockets = pconnect ({'remote.machine.1', 'remote.machine.2'});
+reval ('psend (precv (sockets(2)), sockets(1))', sockets(3));
+reval ('psend (precv (sockets(1)), sockets(3))', sockets(2));
+psend ('some data', sockets(2));
+precv (sockets(3))
+--&gt; ans = some data
+sclose (sockets);
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="pserver.html#XREFpserver">pserver</a>, <a href="reval.html#XREFreval">reval</a>, <a href="psend.html#XREFpsend">psend</a>, <a href="precv.html#XREFprecv">precv</a>, <a href="sclose.html#XREFsclose">sclose</a>, <a href="Authentication.html#XREFparallel_005fgenerate_005fsrp_005fdata">parallel_generate_srp_data</a>, <a href="select_005fsockets.html#XREFselect_005fsockets">select_sockets</a>, <a href="rfeval.html#XREFrfeval">rfeval</a>.
+</p></dd></dl>
+
+
+
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="sclose.html" accesskey="n" rel="next">sclose</a>, Previous: <a href="pserver.html" accesskey="p" rel="prev">pserver</a>, Up: <a href="Cluster-execution.html" accesskey="u" rel="up">Cluster execution</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

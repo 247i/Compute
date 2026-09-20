@@ -1,0 +1,108 @@
+Summary of important user-visible changes for fuzzy-logic-toolkit 0.6.2:
+------------------------------------------------------------------------
+
+ ** Redefined the defuzz option "centroid" using a more efficient method
+    (weighted average), and renamed the previous "centroid" implementation
+    "centroid_integral" (because it is an integral-based calculation) in
+    order to continue to provide the integral-based option. Most previously
+    written code using the old "centroid" definition will continue to work
+    without alteration, but in case of error, replace DefuzzMethod='centroid'
+    with DefuzzMethod='centroid_integral' in the .fis file. For an example,
+    see investment_portfolio.fis and investment_portfolio_demo.m.
+
+Summary of important user-visible changes for fuzzy-logic-toolkit 0.6.1:
+------------------------------------------------------------------------
+
+ ** Improved many comments and updated the html documentation.
+
+Summary of important user-visible changes for fuzzy-logic-toolkit 0.6.0:
+------------------------------------------------------------------------
+
+ ** Added many built-in self tests, simplified error messages, and
+    made minor improvements to comments.
+
+ ** Reimplemented two private functions: square_distance_matrix.m
+    and update_cluster_membership.m.  Tested for identical results
+    with previous implementation using an embedded test in each file.
+
+ ** Added new docs directory containing html documentation for each
+    top-level function.
+
+Summary of important user-visible changes for fuzzy-logic-toolkit 0.5.1:
+------------------------------------------------------------------------
+
+ ** Updated several top-level text files (ChangeLog, DESCRIPTION, and
+    NEWS). No change to any code.
+
+Summary of important user-visible changes for fuzzy-logic-toolkit 0.5.0:
+------------------------------------------------------------------------
+
+ ** Replaced several occurrences of the deprecated '.+' and '.-'
+    operators with '+' and '-', respectively.
+
+Summary of important user-visible changes for fuzzy-logic-toolkit 0.4.6:
+------------------------------------------------------------------------
+
+ ** Bug #53549 was fixed (parse error in function defuzz.m --
+    anonymous function body requires only a single expression).
+
+Summary of important user-visible changes for fuzzy-logic-toolkit 0.4.5:
+------------------------------------------------------------------------
+
+ ** Bug #38018 was fixed (typo in function setfis.m -- wrong function name).
+
+Summary of important user-visible changes for fuzzy-logic-toolkit 0.4.4:
+------------------------------------------------------------------------
+
+ ** The function readfis was modified to workaround the change to
+    strsplit beginning in Octave 3.8.0. Without the modification,
+    readfis will not work with Octave versions >= 3.8.0. The new
+    version of readfis works with all versions of Octave >= 3.2.4
+    by first checking for the version number of Octave and then
+    selecting either ostrsplit (for Octave >= 3.8.0) or strsplit
+    (for Octave < 3.8.0).
+
+ ** The files writefis.m and evalmf.m were edited to maintain
+    compatibility with future versions of Octave. Two occurrences of
+    the continuation "..." within double quoted strings in writefis.m
+    were changed to "\". One occurrence of "..." in evalmf.m was
+    removed by writing the instruction on a single line.
+
+Summary of important user-visible changes for fuzzy-logic-toolkit 0.4.2:
+------------------------------------------------------------------------
+
+ ** The demos embedded in partition_coeff.m, partition_entropy.m,
+    and xie_beni_index.m were merged with the embedded demos in
+    fcm.m and gustafson_kessel.m.
+
+Summary of important user-visible changes for fuzzy-logic-toolkit 0.4.1:
+------------------------------------------------------------------------
+
+ ** The package is no longer automatically loaded.
+
+ ** The following demo scripts were rewritten and embedded in fcm.m,
+    gustafson_kessel.m, partition_coeff.m, partition_entropy.m, and
+    xie_beni_index.m:
+
+      fcm_demo_1
+      fcm_demo_2
+      gustafson_kessel_demo_1
+      gustafson_kessel_demo_2
+
+    (The separate demo script files have been removed.)
+
+Summary of important user-visible changes for fuzzy-logic-toolkit 0.4.0:
+------------------------------------------------------------------------
+
+ ** The following functions are new:
+      fcm
+      gustafson_kessel
+      partition_coeff
+      partition_entropy
+      xie_beni_index
+
+ ** The following demo scripts are new:
+      fcm_demo_1
+      fcm_demo_2
+      gustafson_kessel_demo_1
+      gustafson_kessel_demo_2

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Explicit and Implicit Conversions (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Explicit and Implicit Conversions (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Explicit and Implicit Conversions (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Basic-Usage.html" rel="up" title="Basic Usage">
+<link href="Creating-Permutation-Matrices.html" rel="prev" title="Creating Permutation Matrices">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Explicit-and-Implicit-Conversions">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Creating-Permutation-Matrices.html" accesskey="p" rel="prev">Creating Permutation Matrices</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Basic-Usage.html" accesskey="u" rel="up">Creating and Manipulating Diagonal/Permutation Matrices</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Explicit-and-Implicit-Conversions-1"><span>21.1.3 Explicit and Implicit Conversions<a class="copiable-link" href="#Explicit-and-Implicit-Conversions-1"> &para;</a></span></h4>
+
+<p>The diagonal and permutation matrices are special objects in their own right.
+A number of operations and built-in functions are defined for these matrices
+to use special, more efficient code than would be used for a full matrix in
+the same place.  Examples are given in further sections.
+</p>
+<p>To facilitate smooth mixing with full matrices, backward compatibility, and
+compatibility with <small class="sc">MATLAB</small>, the diagonal and permutation matrices should
+allow any operation that works on full matrices, and will either treat it
+specially, or implicitly convert themselves to full matrices.
+</p>
+<p>Instances include matrix indexing, except for extracting a single element or
+a leading submatrix, indexed assignment, or applying most mapper functions,
+such as <em class="dfn">exp</em>.
+</p>
+<p>An explicit conversion to a full matrix can be requested using the built-in
+function <em class="dfn">full</em>.  It should also be noted that the diagonal and permutation
+matrix objects will cache the result of the conversion after it is first
+requested (explicitly or implicitly), so that subsequent conversions will
+be very cheap.
+</p>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Creating-Permutation-Matrices.html">Creating Permutation Matrices</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Basic-Usage.html">Creating and Manipulating Diagonal/Permutation Matrices</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

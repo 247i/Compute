@@ -1,0 +1,62 @@
+# NetCDF C Configuration Summary
+==============================
+
+# General
+-------
+NetCDF Version:		4.9.3
+Dispatch Version:       5
+Configured On:		Tue Jun  2 02:11:35 PM EDT 2026
+Host System:		x86_64-Linux-6.19.8+deb14-amd64
+Build Directory: 	
+Install Prefix:         /scratch/build/mxe-octave-w64/usr/x86_64-w64-mingw32
+
+# Compiling Options
+-----------------
+C Compiler:		/scratch/build/mxe-octave-w64/usr/bin/x86_64-w64-mingw32-gcc
+CFLAGS:			 -fmacro-prefix-map='/scratch/build/mxe-octave-w64/tmp-netcdf/netcdf-c-4.9.3'=. -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -O3 -DNDEBUG
+CPPFLAGS:		 
+LDFLAGS:		 
+AM_CFLAGS:		
+AM_CPPFLAGS:		
+AM_LDFLAGS:		
+Shared Library:		yes
+Static Library:		no
+Extra libraries:	-lHDF5::HDF5 -lhdf5::hdf5_hl -lz -ldebug -lzstd -loptimized -lbz2 -lCURL::libcurl -lxml2
+XML Parser:             libxml2
+Legacy Macros:          yes
+
+# Features
+--------
+Benchmarks:		no
+NetCDF-2 API:		yes
+HDF4 Support:		no
+HDF5 Support:		yes
+CDF5 Support:		yes
+NC-4 Parallel Support:	no
+PnetCDF Support:	no
+
+DAP2 Support:		yes
+DAP4 Support:		yes
+Byte-Range Support:	yes
+
+S3 Support:	        no
+S3 SDK:  	        none
+
+NCZarr Support:		yes
+NCZarr Zip Support:     no
+
+Diskless Support:	yes
+MMap Support:		no
+ERANGE Fill Support:	yes
+Relaxed Boundary Check:	yes
+
+Plugins Enabled:        yes
+Plugin Install Dir:     /scratch/build/mxe-octave-w64/usr/x86_64-w64-mingw32/hdf5/lib/plugin
+Plugin Search Path:     /scratch/build/mxe-octave-w64/usr/x86_64-w64-mingw32/hdf5/lib/plugin:/usr/local/hdf5/lib/plugin
+
+Quantization:		yes
+Logging:     		yes
+SZIP Write Support:     no
+Standard Filters:       deflate zstd bz2
+ZSTD Support:           yes
+Parallel Filters:       yes

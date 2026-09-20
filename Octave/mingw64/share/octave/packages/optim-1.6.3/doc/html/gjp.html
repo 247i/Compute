@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- Additional documentation for the optim package for Octave.
+
+Copyright © Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<title>gjp (optim_doc)</title>
+
+<meta name="description" content="gjp (optim_doc)">
+<meta name="keywords" content="gjp (optim_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Helper-functions.html" rel="up" title="Helper functions">
+<link href="cpiv_005fbard.html" rel="prev" title="cpiv_bard">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section-level-extent" id="gjp">
+<div class="nav-panel">
+<p>
+Previous: <a href="cpiv_005fbard.html" accesskey="p" rel="prev">A complementary pivoting algorithm</a>, Up: <a href="Helper-functions.html" accesskey="u" rel="up">Functions for algebraic tasks common to optimization problems</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h3 class="section" id="Gauss_002dJordan-pivoting"><span>5.2 Gauss-Jordan pivoting<a class="copiable-link" href="#Gauss_002dJordan-pivoting"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-gjp"></a>
+
+<h4 class="subheading" id="Helptext_003a-16"><span>Helptext:<a class="copiable-link" href="#Helptext_003a-16"> &para;</a></span></h4>
+
+<a class="anchor" id="XREFgjp"></a><pre class="verbatim">m = gjp (m, k[, l])
+
+m: matrix; k, l: row- and column-index of pivot, l defaults to k.
+
+Gauss-Jordon pivot as defined in Bard, Y.: Nonlinear Parameter
+Estimation, p. 296, Academic Press, New York and London 1974. In
+the pivot column, this seems not quite the same as the usual
+Gauss-Jordan(-Clasen) pivot. Bard gives Beaton, A. E., 'The use of
+special matrix operators in statistical calculus' Research Bulletin
+RB-64-51 (1964), Educational Testing Service, Princeton, New Jersey
+as a reference, but this article is not easily accessible. Another
+reference, whose definition of gjp differs from Bards by some
+signs, is Clarke, R. B., 'Algorithm AS 178: The Gauss-Jordan sweep
+operator with detection of collinearity', Journal of the Royal
+Statistical Society, Series C (Applied Statistics) (1982), 31(2),
+166--168.
+
+</pre>
+
+</div>
+
+
+
+</body>
+</html>

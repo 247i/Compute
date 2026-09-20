@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- Additional documentation for the optim package for Octave.
+
+Copyright © Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<title>deriv (optim_doc)</title>
+
+<meta name="description" content="deriv (optim_doc)">
+<meta name="keywords" content="deriv (optim_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Gradient-functions.html" rel="up" title="Gradient functions">
+<link href="numgradient.html" rel="next" title="numgradient">
+<link href="dfpdp.html" rel="prev" title="dfpdp">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section-level-extent" id="deriv">
+<div class="nav-panel">
+<p>
+Next: <a href="numgradient.html" accesskey="n" rel="next">Another numerical gradient function</a>, Previous: <a href="dfpdp.html" accesskey="p" rel="prev">Direct user interface to default numerical gradient method of new frontends</a>, Up: <a href="Gradient-functions.html" accesskey="u" rel="up">Functions for numerical approximation of gradients and Hessians</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h3 class="section" id="Higher-order-numerical-derivatives"><span>4.2 Higher order numerical derivatives<a class="copiable-link" href="#Higher-order-numerical-derivatives"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-deriv-4"></a>
+
+<a class="anchor" id="XREFderiv"></a><dl class="first-deftypefn">
+<dt class="deftypefn" id="index-deriv"><span class="category-def">Function File: </span><span><code class="def-type"><var class="var">dx</var> =</code> <strong class="def-name">deriv</strong> <code class="def-code-arguments">(<var class="var">f</var>, <var class="var">x0</var>)</code><a class="copiable-link" href="#index-deriv"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn" id="index-deriv-1"><span class="category-def">Function File: </span><span><code class="def-type"><var class="var">dx</var> =</code> <strong class="def-name">deriv</strong> <code class="def-code-arguments">(<var class="var">f</var>, <var class="var">x0</var>, <var class="var">h</var>)</code><a class="copiable-link" href="#index-deriv-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn" id="index-deriv-2"><span class="category-def">Function File: </span><span><code class="def-type"><var class="var">dx</var> =</code> <strong class="def-name">deriv</strong> <code class="def-code-arguments">(<var class="var">f</var>, <var class="var">x0</var>, <var class="var">h</var>, <var class="var">O</var>)</code><a class="copiable-link" href="#index-deriv-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn" id="index-deriv-3"><span class="category-def">Function File: </span><span><code class="def-type"><var class="var">dx</var> =</code> <strong class="def-name">deriv</strong> <code class="def-code-arguments">(<var class="var">f</var>, <var class="var">x0</var>, <var class="var">h</var>, <var class="var">O</var>, <var class="var">N</var>)</code><a class="copiable-link" href="#index-deriv-3"> &para;</a></span></dt>
+<dd><p>Calculate derivate of function <var class="var">f</var>.
+</p>
+<p><var class="var">f</var> must be a function handle or the name of a function that takes <var class="var">x0</var>
+and returns a variable of equal length and orientation. <var class="var">x0</var> must be a
+numeric vector or scalar.
+</p>
+<p><var class="var">h</var> defines the step taken for the derivative calculation. Defaults to 1e-7.
+</p>
+<p><var class="var">O</var> defines the order of the calculation. Supported values are 2 (h^2 order)
+or 4 (h^4 order). Defaults to 2.
+</p>
+<p><var class="var">N</var> defines the derivative order. Defaults to the 1st derivative of the
+function. Can be up to the 4th derivative.
+</p>
+<p>Reference: Numerical Methods for Mathematics, Science, and Engineering by
+John H. Mathews.
+</p></dd></dl>
+
+
+
+</div>
+
+
+
+</body>
+</html>

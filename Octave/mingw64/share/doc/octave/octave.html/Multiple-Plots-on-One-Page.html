@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Multiple Plots on One Page (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Multiple Plots on One Page (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Multiple Plots on One Page (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="High_002dLevel-Plotting.html" rel="up" title="High-Level Plotting">
+<link href="Multiple-Plot-Windows.html" rel="next" title="Multiple Plot Windows">
+<link href="Plot-Annotations.html" rel="prev" title="Plot Annotations">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Multiple-Plots-on-One-Page">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Multiple-Plot-Windows.html" accesskey="n" rel="next">Multiple Plot Windows</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Plot-Annotations.html" accesskey="p" rel="prev">Plot Annotations</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="High_002dLevel-Plotting.html" accesskey="u" rel="up">High-Level Plotting</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Multiple-Plots-on-One-Page-1"><span>15.2.4 Multiple Plots on One Page<a class="copiable-link" href="#Multiple-Plots-on-One-Page-1"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-plotting_002c-multiple-plots-per-figure"></a>
+
+<p>Octave can display more than one plot in a single figure.  The simplest
+way to do this is to use the <code class="code">subplot</code> function to divide the plot
+area into a series of subplot windows that are indexed by an integer.
+For example,
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">subplot (2, 1, 1)
+fplot (@sin, [-10, 10]);
+subplot (2, 1, 2)
+fplot (@cos, [-10, 10]);
+</pre></div></div>
+
+<p>creates a figure with two separate axes, one displaying a sine wave and the
+other a cosine wave.  The first call to subplot divides the figure into two
+plotting areas (two rows and one column) and makes the first plot area active.
+The grid of plot areas created by <code class="code">subplot</code> is numbered in row-major order
+(left to right, top to bottom).  After plotting a sine wave, the next call to
+subplot activates the second subplot area, but does not re-partition the
+figure.
+</p>
+<a class="anchor" id="XREFsubplot"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-subplot"><span><strong class="def-name">subplot</strong> <code class="def-code-arguments">(<var class="var">rows</var>, <var class="var">cols</var>, <var class="var">index</var>)</code><a class="copiable-link" href="#index-subplot"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-subplot-1"><span><strong class="def-name">subplot</strong> <code class="def-code-arguments">(<var class="var">rows</var>, <var class="var">cols</var>, <var class="var">index</var>, <var class="var">hax</var>)</code><a class="copiable-link" href="#index-subplot-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-subplot-2"><span><strong class="def-name">subplot</strong> <code class="def-code-arguments">(<var class="var">rcn</var>)</code><a class="copiable-link" href="#index-subplot-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-subplot-3"><span><strong class="def-name">subplot</strong> <code class="def-code-arguments">(<var class="var">hax</var>)</code><a class="copiable-link" href="#index-subplot-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-subplot-4"><span><strong class="def-name">subplot</strong> <code class="def-code-arguments">(&hellip;, &quot;align&quot;)</code><a class="copiable-link" href="#index-subplot-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-subplot-5"><span><strong class="def-name">subplot</strong> <code class="def-code-arguments">(&hellip;, &quot;replace&quot;)</code><a class="copiable-link" href="#index-subplot-5"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-subplot-6"><span><strong class="def-name">subplot</strong> <code class="def-code-arguments">(&quot;position&quot;, <var class="var">pos</var>)</code><a class="copiable-link" href="#index-subplot-6"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-subplot-7"><span><strong class="def-name">subplot</strong> <code class="def-code-arguments">(&hellip;, <var class="var">prop</var>, <var class="var">val</var>, &hellip;)</code><a class="copiable-link" href="#index-subplot-7"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-subplot-8"><span><code class="def-type"><var class="var">hax</var> =</code> <strong class="def-name">subplot</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-subplot-8"> &para;</a></span></dt>
+<dd><p>Set up a plot grid with <var class="var">rows</var> by <var class="var">cols</var> subwindows and set the
+current axes for plotting (<code class="code">gca</code>) to the location given by <var class="var">index</var>.
+</p>
+<p>If an axes handle <var class="var">hax</var> is provided after the (<var class="var">rows</var>, <var class="var">cols</var>,
+<var class="var">index</var>) arguments, the corresponding axes is turned into a
+subplot.
+</p>
+<p>If only one numeric argument is supplied, then it must be a three digit
+value specifying the number of rows in digit 1, the number of columns in
+digit 2, and the plot index in digit 3.
+</p>
+<p>The plot index runs row-wise; First, all columns in a row are numbered
+and then the next row is filled.
+</p>
+<p>For example, a plot with 2x3 grid will have plot indices running as follows:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">+-----+-----+-----+
+|  1  |  2  |  3  |
++-----+-----+-----+
+|  4  |  5  |  6  |
++-----+-----+-----+
+</pre></div></div>
+
+
+<p><var class="var">index</var> may also be a vector.  In this case, the new axes will enclose
+the grid locations specified.  The first demo illustrates this:
+</p>
+<div class="example">
+<pre class="example-preformatted">demo (&quot;subplot&quot;, 1)
+</pre></div>
+
+<p>The index of the subplot to make active may also be specified by its axes
+handle, <var class="var">hax</var>, returned from a previous <code class="code">subplot</code> command.
+</p>
+<p>If the option <code class="code">&quot;align&quot;</code> is given then the plot boxes of the subwindows
+will align, but this may leave no room for axes tick marks or labels.
+</p>
+<p>If the option <code class="code">&quot;replace&quot;</code> is given then the subplot axes will be
+reset, rather than just switching the current axes for plotting to the
+requested subplot.
+</p>
+<p>The <code class="code">&quot;position&quot;</code> property can be used to exactly position the subplot
+axes within the current figure.  The option <var class="var">pos</var> is a 4-element vector
+[x, y, width, height] that determines the location and size of the axes.
+The values in <var class="var">pos</var> are normalized in the range [0,1].
+</p>
+<p>Any property/value pairs are passed directly to the underlying axes object.
+The full list of properties is documented at <a class="ref" href="Axes-Properties.html">Axes Properties</a>.
+</p>
+<p>Any previously existing axes that would be (partly) covered by the newly
+created axes are deleted.
+</p>
+<p>If the output <var class="var">hax</var> is requested, subplot returns the axes handle for
+the subplot.  This is useful for modifying the properties of a subplot
+using <code class="code">set</code>.
+</p>
+<p>Under some circumstances, <code class="code">subplot</code> might not be able to identify axes
+that it could re-use and might replace them.  If <code class="code">subplot</code> axes
+should be referenced repeatedly, consider creating and storing their axes
+handles beforehand instead of calling <code class="code">subplot</code> repeatedly for the same
+position.
+</p>
+<p>Example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">x = 1:10;
+y = rand (16, 10);
+for i_plot = 1:4
+  hax(i_plot) = subplot (2, 2, i_plot);
+  hold (hax(i_plot), &quot;on&quot;);
+  grid (hax(i_plot), &quot;on&quot;);
+endfor
+for i_loop = 1:2
+  for i_plot = 1:4
+    iy = (i_loop - 1)*4 + i_plot;
+    plotyy (hax(i_plot), x,y(iy,:), x,y(iy+1,:));
+  endfor
+ endfor
+</pre></div></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Creating-Graphics-Objects.html#XREFaxes">axes</a>, <a class="ref" href="Two_002dDimensional-Plots.html#XREFplot">plot</a>, <a class="ref" href="Handle-Functions.html#XREFgca">gca</a>, <a class="ref" href="Handle-Functions.html#XREFset">set</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Multiple-Plot-Windows.html">Multiple Plot Windows</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Plot-Annotations.html">Plot Annotations</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="High_002dLevel-Plotting.html">High-Level Plotting</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

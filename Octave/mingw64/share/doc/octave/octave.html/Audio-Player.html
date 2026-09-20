@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Audio Player (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Audio Player (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Audio Player (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Audio-Processing.html" rel="up" title="Audio Processing">
+<link href="Audio-Recorder.html" rel="next" title="Audio Recorder">
+<link href="Audio-Device-Information.html" rel="prev" title="Audio Device Information">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Audio-Player">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Audio-Recorder.html" accesskey="n" rel="next">Audio Recorder</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Audio-Device-Information.html" accesskey="p" rel="prev">Audio Device Information</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Audio-Processing.html" accesskey="u" rel="up">Audio Processing</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Audio-Player-1"><span>33.3 Audio Player<a class="copiable-link" href="#Audio-Player-1"> &para;</a></span></h3>
+
+<p>The following methods are used to create and use audioplayer
+objects.  These objects can be used to play back audio data stored in
+Octave matrices and arrays.  The audioplayer object supports playback
+from various devices available to the system, blocking and non-blocking
+playback, convenient pausing and resuming and much more.
+</p>
+<a class="anchor" id="XREF_0040audioplayer_002faudioplayer"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-audioplayer"><span><code class="def-type"><var class="var">player</var> =</code> <strong class="def-name">audioplayer</strong> <code class="def-code-arguments">(<var class="var">y</var>, <var class="var">fs</var>)</code><a class="copiable-link" href="#index-audioplayer"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-audioplayer-1"><span><code class="def-type"><var class="var">player</var> =</code> <strong class="def-name">audioplayer</strong> <code class="def-code-arguments">(<var class="var">y</var>, <var class="var">fs</var>, <var class="var">nbits</var>)</code><a class="copiable-link" href="#index-audioplayer-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-audioplayer-2"><span><code class="def-type"><var class="var">player</var> =</code> <strong class="def-name">audioplayer</strong> <code class="def-code-arguments">(<var class="var">y</var>, <var class="var">fs</var>, <var class="var">nbits</var>, <var class="var">id</var>)</code><a class="copiable-link" href="#index-audioplayer-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-audioplayer-3"><span><code class="def-type"><var class="var">player</var> =</code> <strong class="def-name">audioplayer</strong> <code class="def-code-arguments">(<var class="var">recorder</var>)</code><a class="copiable-link" href="#index-audioplayer-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-audioplayer-4"><span><code class="def-type"><var class="var">player</var> =</code> <strong class="def-name">audioplayer</strong> <code class="def-code-arguments">(<var class="var">recorder</var>, <var class="var">id</var>)</code><a class="copiable-link" href="#index-audioplayer-4"> &para;</a></span></dt>
+<dd><p>Create an audioplayer object that will play back data <var class="var">y</var> at sample
+rate <var class="var">fs</var>.
+</p>
+<p>The signal <var class="var">y</var> can be a vector (mono audio) or a two-dimensional array
+(multi-channel audio).
+</p>
+<p>The optional arguments <var class="var">nbits</var> and <var class="var">id</var> specify the number of bits
+per sample and player device ID, respectively.  Device IDs may be found
+using the <code class="code">audiodevinfo</code> function.
+</p>
+<p>Given an audiorecorder object <var class="var">recorder</var>, use the data from the object
+to initialize the player.
+</p>
+<p>The list of actions for an audioplayer object are shown below.  All
+methods require an audioplayer object as the first argument.
+</p>
+<table class="multitable">
+<thead><tr><th width="20%">Method</th><th width="75%">Description</th></tr></thead>
+<tbody><tr><td width="20%">get</td><td width="75%">Read audioplayer property values</td></tr>
+<tr><td width="20%">isplaying</td><td width="75%">Return true if audioplayer is playing</td></tr>
+<tr><td width="20%">pause</td><td width="75%">Pause audioplayer playback</td></tr>
+<tr><td width="20%">play</td><td width="75%">Play audio stored in audioplayer object w/o blocking</td></tr>
+<tr><td width="20%">playblocking</td><td width="75%">Play audio stored in audioplayer object</td></tr>
+<tr><td width="20%">resume</td><td width="75%">Resume playback after pause</td></tr>
+<tr><td width="20%">set</td><td width="75%">Write audioplayer property values</td></tr>
+<tr><td width="20%">stop</td><td width="75%">Stop playback</td></tr>
+</tbody>
+</table>
+
+<p>Example
+</p>
+<p>Create an audioplayer object that will play back one second of white noise
+at 44100 sample rate using 8 bits per sample.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">y = 0.25 * randn (2, 44100);
+player = audioplayer (y, 44100, 8);
+play (player);
+</pre></div></div>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Player-Properties.html#XREF_0040audioplayer_002fget">@audioplayer/get</a>, <a class="ref" href="Playback.html#XREF_0040audioplayer_002fisplaying">@audioplayer/isplaying</a>, <a class="ref" href="Playback.html#XREF_0040audioplayer_002fpause">@audioplayer/pause</a>, <a class="ref" href="Playback.html#XREF_0040audioplayer_002fplay">@audioplayer/play</a>, <a class="ref" href="Playback.html#XREF_0040audioplayer_002fplayblocking">@audioplayer/playblocking</a>, <a class="ref" href="Playback.html#XREF_0040audioplayer_002fresume">@audioplayer/resume</a>, <a class="ref" href="Player-Properties.html#XREF_0040audioplayer_002fset">@audioplayer/set</a>, <a class="ref" href="Playback.html#XREF_0040audioplayer_002fstop">@audioplayer/stop</a>, <a class="ref" href="Audio-Device-Information.html#XREFaudiodevinfo">audiodevinfo</a>, <a class="ref" href="Audio-Recorder.html#XREF_0040audiorecorder_002faudiorecorder">@audiorecorder/audiorecorder</a>, <a class="ref" href="Audio-Data-Processing.html#XREFsound">sound</a>, <a class="ref" href="Audio-Data-Processing.html#XREFsoundsc">soundsc</a>.
+</p></dd></dl>
+
+
+
+<ul class="mini-toc">
+<li><a href="Playback.html" accesskey="1">Playback</a></li>
+<li><a href="Player-Properties.html" accesskey="2">Player Properties</a></li>
+</ul>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Audio-Recorder.html">Audio Recorder</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Audio-Device-Information.html">Audio Device Information</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Audio-Processing.html">Audio Processing</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

@@ -1,0 +1,125 @@
+coder 1.11.1 - 2026-02-15
+---------------------
+
+* Creation of oct files now is much faster in dynamic and static (cached) build modes as Octave related large headers are precompiled
+* Support of Octave scripts
+* Fix code generation when numbers aren't printed in some systems
+* Fix segfault when capturing global variables by anon function
+* Fix regressions to preserve compatibility with older Octave versions
+
+coder 1.10.1- 2025-03-30
+---------------------
+
+* Supporting old style (legacy) classes through the interpreter
+* Enable range loop for non double types
+* Fix compatibility with Octave 10. The fix is mostly related to the new "visibility" flag that Octave
+   in version 10 is compiled with that hides the exported symbols of the core Octave shared libraries
+   except symbols that are tagged as API. That change possibly ends the lifetime of the packages [the only package?] like Coder
+   that use non API functions.
+   This version of Coder as a workaround contains parts of the Octave source code that fortunately solves the problem in Windows.
+   Other systems aren't tested. If this version of the package doesn't work on those systems
+   the best option is recompiling Octave using this flag :
+    "--disable-visibility-flags".
+
+coder 1.9.2- 2024-03-24
+---------------------
+
+* Fix segfault when calling a function with empty comma separated list
+
+coder 1.9.1- 2024-03-22
+---------------------
+
+* Compatibility with Octave 9.1.0
+* Fix bug related to finding private functions
+* Fix bug when creating multiple .oct files at the same time
+* Support method dispatch for function handles
+* Update readme explaining how method dispatch works in coder
+* Disabling mlock and munlock
+* Fix error due to  assigning to a variable having the same name as a function
+* Setting the name property of function handles to partially support some functions of statistics package
+
+coder 1.8.4- 2023-11-13
+---------------------
+
+* Major refactoring to support nested functions
+* Support for classdef method dispatch call using the interpreter
+* Support for isargout
+* Making feval faster on calling coder functions
+* Fix segfault when dqstring contains 0
+* Fix segfault when calling function handles
+
+coder 1.8.0- 2023-02-13
+---------------------
+
+* Compatibility with Octave 8
+* Fix bugs related to memory leak in nested functions
+
+coder 1.7.0- 2022-03-26
+---------------------
+
+* Compatibility with Octave 7
+* Fix bug when a loop variable is written to
+* Speeding up for loop
+* Speeding up analysing dependencies and  compilation of .oct files
+* Fix bug related to empty if statement  body
+
+coder 1.6.8- 2021-12-07
+---------------------
+
+* Fix crash due to unwind_protect bug
+
+coder 1.6.7 - 2021-11-25
+---------------------
+
+* Nearly 2X speed-up in the compilation of .oct files
+
+coder 1.6.6 - 2021-10-03
+---------------------
+
+* Fix manipulation of ref-counted object
+* Fix abort because of problem in unwind_protect
+* Support tilde in parameters of function
+* Fix problems related to resolving function names
+
+coder 1.6.5 - 2021-09-25
+---------------------
+
+* Fix segfault related to invalidation of deque iterators
+
+coder 1.6.4 - 2021-09-22
+---------------------
+
+* Fix error related to initialization of coder_value_list
+* Fix init_qt and shutdown_qt errors in octave-gui pre 6 releases
+
+coder 1.6.3 - 2021-07-15
+---------------------
+
+* More correct and complete implementation of handle to nested function
+* Handle to function can be taken from within the function body
+* Fix error in presence of global variables in dynamic mode
+* Fix unresolved variables due to problems in is_system_fcn_file of octave 6.1
+* More correct handling of undefined and unassigned function return values
+* Fix error when providing cell array of function names in single mode
+* Fix code generation of subfunctions of private functions
+
+coder 1.5.0 - 2020-12-11
+---------------------
+
+* Instead of creating branches per Octave versions conditional inclusion is used to differentiate Octave versions
+* Fixed multiple bugs that is also fixed in Octave  6.1.0
+* refactored returning arguments and Fixed leak in the argument list pool
+
+coder 1.0.1 - 2020-11-18
+---------------------
+
+* Fix segfault related to capturing variables
+* Fix errors when printing anonymous function handles
+
+coder 1.0.0 - 2020-06-08
+---------------------
+
+* Initial version
+* Improved compilation time
+* Improved parameter passing and returning
+* Fixed compiler warnings mainly related to clang

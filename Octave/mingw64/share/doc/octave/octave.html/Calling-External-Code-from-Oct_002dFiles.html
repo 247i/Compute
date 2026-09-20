@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Calling External Code from Oct-Files (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Calling External Code from Oct-Files (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Calling External Code from Oct-Files (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Oct_002dFiles.html" rel="up" title="Oct-Files">
+<link href="Allocating-Local-Memory-in-Oct_002dFiles.html" rel="next" title="Allocating Local Memory in Oct-Files">
+<link href="Calling-Octave-Functions-from-Oct_002dFiles.html" rel="prev" title="Calling Octave Functions from Oct-Files">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Calling-External-Code-from-Oct_002dFiles">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Allocating-Local-Memory-in-Oct_002dFiles.html" accesskey="n" rel="next">Allocating Local Memory in Oct-Files</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Calling-Octave-Functions-from-Oct_002dFiles.html" accesskey="p" rel="prev">Calling Octave Functions from Oct-Files</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Oct_002dFiles.html" accesskey="u" rel="up">Oct-Files</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Calling-External-Code-from-Oct_002dFiles-1"><span>A.1.9 Calling External Code from Oct-Files<a class="copiable-link" href="#Calling-External-Code-from-Oct_002dFiles-1"> &para;</a></span></h4>
+
+<p>Linking external C code to Octave is relatively simple, as the C functions can
+easily be called directly from C++.  One possible issue is that the
+declarations of the external C functions may need to be explicitly defined as C
+functions to the compiler.  If the declarations of the external C functions are
+in the header <samp class="file">foo.h</samp>, then the tactic to ensure that the C++ compiler
+treats these declarations as C code is
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">#ifdef __cplusplus
+extern &quot;C&quot;
+{
+#endif
+#include &quot;foo.h&quot;
+#ifdef __cplusplus
+}  /* end extern &quot;C&quot; */
+#endif
+</pre></div></div>
+
+<p>When calling functions that are implemented in Fortran code, some peculiarities
+have to be taken into account.  Symbol names in Fortran are case-insensitive,
+and depending on the used Fortran compiler, function names are either exported
+with all lowercase or with all uppercase characters.  Additionally, some
+compilers append none, one or two underscores &quot;<code class="code">_</code>&quot; at the end of
+exported function names.  This is called &quot;name-mangling&quot;.
+</p>
+<p>Octave supplies macros that allow writing code that automatically handles the
+name-mangling for a number of different Fortran compilers.  These macros are
+<code class="env">F77_FUNC</code><!-- /@w --> and <code class="env">F77_FUNC_</code><!-- /@w -->.  The former should be used for
+Fortran functions that do not contain any underscores in their name.  The
+latter should be used for Fortran functions with underscores in their names.
+Both macros take two arguments: The first is the Fortran function name in all
+lowercase characters.  The second is the same Fortran function name in all
+uppercase characters.
+</p>
+<p>Additionally to the name-mangling, different compilers are using different
+calling conventions for some types.  Octave defines the following preprocessor
+macros to allow writing code that can be used with different Fortran calling
+conventions.
+</p>
+<p>Note that we don&rsquo;t attempt to handle Fortran functions, we always use
+subroutine wrappers for them and pass the return value as an extra argument.
+</p>
+<p>Use the following macros to pass character strings from C to Fortran:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">  F77_CHAR_ARG(x)
+  F77_CONST_CHAR_ARG(x)
+  F77_CXX_STRING_ARG(x)
+  F77_CHAR_ARG_LEN(l)
+  F77_CHAR_ARG_DECL
+  F77_CONST_CHAR_ARG_DECL
+  F77_CHAR_ARG_LEN_DECL
+</pre></div></div>
+
+<p>Use the following macros to write C-language functions that accept
+Fortran-style character strings:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">  F77_CHAR_ARG_DEF(s, len)
+  F77_CONST_CHAR_ARG_DEF(s, len)
+  F77_CHAR_ARG_LEN_DEF(len)
+  F77_CHAR_ARG_USE(s)
+  F77_CHAR_ARG_LEN_USE(s, len)
+</pre></div></div>
+
+<p>Use the following macros for Fortran types in C++ code:
+</p>
+<dl class="table">
+<dt><code class="code">F77_INT4</code></dt>
+<dd><p>Equivalent to Fortran <code class="code">INTEGER*4</code> type
+</p>
+</dd>
+<dt><code class="code">F77_DBLE</code></dt>
+<dd><p>Equivalent to Fortran <code class="code">DOUBLE PRECISION</code> type
+</p>
+</dd>
+<dt><code class="code">F77_REAL</code></dt>
+<dd><p>Equivalent to Fortran <code class="code">REAL</code> type
+</p>
+</dd>
+<dt><code class="code">F77_CMPLX</code></dt>
+<dd><p>Equivalent to Fortran <code class="code">COMPLEX</code> type
+</p>
+</dd>
+<dt><code class="code">F77_DBLE_CMPLX</code></dt>
+<dd><p>Equivalent to Fortran <code class="code">DOUBLE COMPLEX</code> type
+</p>
+</dd>
+<dt><code class="code">F77_LOGICAL</code></dt>
+<dd><p>Equivalent to Fortran <code class="code">LOGICAL</code> type
+</p>
+</dd>
+<dt><code class="code">F77_RET_T</code></dt>
+<dd><p>Return type of a C++ function that acts like a Fortran subroutine.
+</p></dd>
+</dl>
+
+<p>Use the following macros to return from C-language functions that are supposed
+to act like Fortran subroutines.  <code class="env">F77_NORETURN</code><!-- /@w --> is intended to be used
+as the last statement of such a function that has been tagged with a
+<code class="code">&quot;noreturn&quot;</code> attribute.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">  F77_RETURN(retval)
+  F77_NORETURN(retval)
+</pre></div></div>
+
+<p>The underlying Fortran code should use the <code class="code">XSTOPX</code> function to replace
+the Fortran <code class="code">STOP</code> function.  <code class="code">XSTOPX</code> uses the Octave exception
+handler to treat failing cases in the Fortran code explicitly.  Note that
+Octave supplies its own replacement <small class="sc">BLAS</small> <code class="code">XERBLA</code> function, which
+uses <code class="code">XSTOPX</code>.
+</p>
+<p>The following example shows the inclusion of a Fortran function in an oct-file,
+where the C++ wrapper is
+</p>
+<div class="example">
+<pre class="verbatim">#include &lt;octave/oct.h&gt;
+#include &lt;octave/f77-fcn.h&gt;
+
+extern &quot;C&quot;
+{
+  F77_RET_T
+  F77_FUNC (fortransub, FORTRANSUB)
+    (const F77_INT&amp;, F77_DBLE*, F77_CHAR_ARG_DECL F77_CHAR_ARG_LEN_DECL);
+}
+
+DEFUN_DLD (fortrandemo, args, , &quot;Fortran Demo&quot;)
+{
+  if (args.length () != 1)
+    print_usage ();
+
+  NDArray a = args(0).array_value ();
+
+  double *av = a.rwdata ();
+  octave_idx_type na = a.numel ();
+
+  OCTAVE_LOCAL_BUFFER (char, ctmp, 128);
+
+  F77_FUNC (fortransub, FORTRANSUB)
+            (na, av, ctmp F77_CHAR_ARG_LEN (128));
+
+  return ovl (a, std::string (ctmp));
+}
+</pre></div>
+
+<p>and the Fortran function is
+</p>
+<div class="example">
+<pre class="verbatim">      subroutine fortransub (n, a, s)
+      implicit none
+      character*(*) s
+      real*8 a(*)
+      integer*4 i, n, ioerr
+      do i = 1, n
+        if (a(i) .eq. 0d0) then
+          call xstopx ('fortransub: divide by zero')
+        else
+          a(i) = 1d0 / a(i)
+        endif
+      enddo
+      write (unit = s, fmt = '(a,i3,a,a)', iostat = ioerr)
+     $       'There are ', n,
+     $       ' values in the input vector', char(0)
+      if (ioerr .ne. 0) then
+        call xstopx ('fortransub: error writing string')
+      endif
+      return
+      end
+</pre></div>
+
+<p>This example demonstrates most of the features needed to link to an external
+Fortran function, including passing arrays and strings, as well as exception
+handling.  Both the Fortran and C++ files need to be compiled in order for the
+example to work.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">mkoctfile fortrandemo.cc fortransub.f
+[b, s] = fortrandemo (1:3)
+&rArr; 
+  b = 1.00000   0.50000   0.33333
+  s = There are   3 values in the input vector
+[b, s] = fortrandemo (0:3)
+error: fortrandemo: fortransub: divide by zero
+</pre></div></div>
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Allocating-Local-Memory-in-Oct_002dFiles.html">Allocating Local Memory in Oct-Files</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Calling-Octave-Functions-from-Oct_002dFiles.html">Calling Octave Functions from Oct-Files</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Oct_002dFiles.html">Oct-Files</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

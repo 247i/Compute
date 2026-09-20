@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- General documentation for the parallel package for Octave.
+
+Copyright (C) 2016-2023 Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>parcellfun (parallel_doc)</title>
+
+<meta name="description" content="parcellfun (parallel_doc)">
+<meta name="keywords" content="parcellfun (parallel_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Local-execution.html" rel="up" title="Local execution">
+<link href="pararrayfun.html" rel="next" title="pararrayfun">
+<link href="Local-execution.html" rel="prev" title="Local execution">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<span id="parcellfun"></span><div class="header">
+<p>
+Next: <a href="pararrayfun.html" accesskey="n" rel="next">pararrayfun</a>, Up: <a href="Local-execution.html" accesskey="u" rel="up">Local execution</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Function-parcellfun"></span><h3 class="section">2.1 Function parcellfun</h3>
+<span id="index-parcellfun-6"></span>
+
+<span id="XREFparcellfun"></span><dl>
+<dt id="index-parcellfun">Function File: <em>[<var>o1</var>, <var>o2</var>, &hellip;] =</em> <strong>parcellfun</strong> <em>(<var>nproc</var>, <var>fun</var>, <var>a1</var>, <var>a2</var>, &hellip;)</em></dt>
+<dt id="index-parcellfun-1">Function File: <em></em> <strong>parcellfun</strong> <em>(nproc, fun, &hellip;, &quot;UniformOutput&quot;, <var>val</var>)</em></dt>
+<dt id="index-parcellfun-2">Function File: <em></em> <strong>parcellfun</strong> <em>(nproc, fun, &hellip;, &quot;ErrorHandler&quot;, <var>errfunc</var>)</em></dt>
+<dt id="index-parcellfun-3">Function File: <em></em> <strong>parcellfun</strong> <em>(nproc, fun, &hellip;, &quot;VerboseLevel&quot;, <var>val</var>)</em></dt>
+<dt id="index-parcellfun-4">Function File: <em></em> <strong>parcellfun</strong> <em>(nproc, fun, &hellip;, &quot;ChunksPerProc&quot;, <var>val</var>)</em></dt>
+<dt id="index-parcellfun-5">Function File: <em></em> <strong>parcellfun</strong> <em>(nproc, fun, &hellip;, &quot;CumFunc&quot;, <var>cumfunc</var>)</em></dt>
+<dd><p>Evaluates a function for multiple argument sets using multiple
+processes in parallel.
+</p>
+<p><var>nproc</var> specifies the number of processes and must be at least
+1. It will be cut to the number of available CPU cores or the size
+of the input argument(s), whichever is lower. <var>fun</var> is a
+function handle pointing to the requested evaluating
+function. <var>a1</var>, <var>a2</var> etc. should be cell arrays of equal
+size. <var>o1</var>, <var>o2</var> etc. will be set to corresponding output
+arguments.
+</p>
+<p>The UniformOutput and ErrorHandler options are supported with
+meaning identical to <em>cellfun</em>. If option VerboseLevel is set
+to 1 (default is 0), progress messages are printed to stderr. The
+ChunksPerProc option controls the number of chunks which contains
+elementary jobs. This option is particularly useful when time
+execution of function is small. Setting this option to 100 is a
+good choice in most cases.
+</p>
+<p>Instead of returning a result for each argument, parcellfun returns
+only one cumulative result if &quot;CumFunc&quot; is non-empty. <var>cumfunc</var>
+must be a function which performs an operation on two sets of
+outputs of <var>fun</var> and returnes as many outputs as <var>fun</var>. If
+<var>nout</var> is the number of outputs of <var>fun</var>, <var>cumfunc</var>
+gets a previous output set of <var>fun</var> or of <var>cumfunc</var> as
+first <var>nout</var> arguments and the current output of <var>fun</var> as
+last <var>nout</var> arguments. The performed operation must be
+mathematically commutative and associative. If the operation is
+e.g. addition, the result will be the sum(s) of the outputs of
+<var>fun</var> over all calls of <var>fun</var>. Since floating point
+addition and multiplication are only approximately associative, the
+cumulative result will not be exactly reproducible.
+</p>
+<p>Each process has its own pseudo random number generator, so when
+using this function for example to perform Monte-Carlo simulations
+one generally cannot expect results to be exactly
+reproducible. Exact reproducibility may be achievable by generating
+the random number sequence before calling parcellfun and providing
+the random numbers as arguments to <var>fun</var>.
+</p>
+<p>See <code>parallel_doc (&quot;limitations&quot;)</code> for possible limitations on
+how <var>fun</var> can be defined.
+</p>
+
+<p><strong>See also:</strong> <a href="parcellfun_005fset_005fnproc.html#XREFparcellfun_005fset_005fnproc">parcellfun_set_nproc</a>.
+</p></dd></dl>
+
+
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="pararrayfun.html" accesskey="n" rel="next">pararrayfun</a>, Up: <a href="Local-execution.html" accesskey="u" rel="up">Local execution</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

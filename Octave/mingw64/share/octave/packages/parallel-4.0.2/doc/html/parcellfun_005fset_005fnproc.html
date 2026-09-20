@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- General documentation for the parallel package for Octave.
+
+Copyright (C) 2016-2023 Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>parcellfun_set_nproc (parallel_doc)</title>
+
+<meta name="description" content="parcellfun_set_nproc (parallel_doc)">
+<meta name="keywords" content="parcellfun_set_nproc (parallel_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Local-execution.html" rel="up" title="Local execution">
+<link href="Cluster-execution.html" rel="next" title="Cluster execution">
+<link href="pararrayfun.html" rel="prev" title="pararrayfun">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<span id="parcellfun_005fset_005fnproc"></span><div class="header">
+<p>
+Previous: <a href="pararrayfun.html" accesskey="p" rel="prev">pararrayfun</a>, Up: <a href="Local-execution.html" accesskey="u" rel="up">Local execution</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Function-parcellfun_005fset_005fnproc"></span><h3 class="section">2.3 Function parcellfun_set_nproc</h3>
+<span id="index-parcellfun_005fset_005fnproc-1"></span>
+
+<span id="XREFparcellfun_005fset_005fnproc"></span><dl>
+<dt id="index-parcellfun_005fset_005fnproc">Loadable Function: <em><var>nproc</var> =</em> <strong>parcellfun_set_nproc</strong> <em>(<var>nproc_arg</var>)</em></dt>
+<dd><p>Set current number of background processes for parcellfun.
+</p>
+<p>The number of used background processes is determined by the first argument
+to <code>parcellfun</code>. If necessary, <code>parcellfun</code> will spawn new
+background processes, but it will never remove any of them, even if it
+does not use all of them.
+<code>parcellfun_set_nproc</code> can be used to set the number of currently spawned
+processes to <var>nproc_arg</var>. This may be used to remove all background
+processes between calls to <code>parcellfun</code> by specifying an <var>nproc_arg</var>
+of zero.
+</p>
+<p>The real number of spawned processes will be limited to the available
+processor cores and is returned.
+</p>
+
+<p><strong>See also:</strong> <a href="parcellfun.html#XREFparcellfun">parcellfun</a>.
+</p></dd></dl>
+
+
+
+
+
+
+
+</body>
+</html>

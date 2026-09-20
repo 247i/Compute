@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Creating a Matrix (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Creating a Matrix (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Creating a Matrix (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Simple-Examples.html" rel="up" title="Simple Examples">
+<link href="Matrix-Arithmetic.html" rel="next" title="Matrix Arithmetic">
+<link href="Elementary-Calculations.html" rel="prev" title="Elementary Calculations">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Creating-a-Matrix">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Matrix-Arithmetic.html" accesskey="n" rel="next">Matrix Arithmetic</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Elementary-Calculations.html" accesskey="p" rel="prev">Elementary Calculations</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Simple-Examples.html" accesskey="u" rel="up">Simple Examples</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Creating-a-Matrix-1"><span>1.2.2 Creating a Matrix<a class="copiable-link" href="#Creating-a-Matrix-1"> &para;</a></span></h4>
+
+<p>Vectors and matrices are the basic building blocks for numerical
+analysis.  To create a new matrix and store it in a variable so that you
+can refer to it later, type the command
+</p>
+<div class="example">
+<pre class="example-preformatted">octave:1&gt; A = [ 1, 1, 2; 3, 5, 8; 13, 21, 34 ]
+</pre></div>
+
+<p>Octave will respond by printing the matrix in neatly aligned columns.
+Octave uses a comma or space to separate entries in a row, and a
+semicolon or carriage return to separate one row from the next.
+Ending a command with a semicolon tells Octave not to print the result
+of the command.  For example,
+</p>
+<div class="example">
+<pre class="example-preformatted">octave:2&gt; B = rand (3, 2);
+</pre></div>
+
+<p>will create a 3 row, 2 column matrix with each element set to a random
+value between zero and one.
+</p>
+<p>To display the value of a variable, simply type the name of the
+variable at the prompt.  For example, to display the value stored in the
+matrix <code class="code">B</code>, type the command
+</p>
+<div class="example">
+<pre class="example-preformatted">octave:3&gt; B
+</pre></div>
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Matrix-Arithmetic.html">Matrix Arithmetic</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Elementary-Calculations.html">Elementary Calculations</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Simple-Examples.html">Simple Examples</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

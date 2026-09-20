@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Examples (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Examples (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Examples (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Vectorization-and-Faster-Code-Execution.html" rel="up" title="Vectorization and Faster Code Execution">
+<link href="Miscellaneous-Techniques.html" rel="prev" title="Miscellaneous Techniques">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+ul.mark-bullet {list-style-type: disc}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Examples">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Miscellaneous-Techniques.html" accesskey="p" rel="prev">Miscellaneous Techniques</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Vectorization-and-Faster-Code-Execution.html" accesskey="u" rel="up">Vectorization and Faster Code Execution</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Examples-1"><span>19.7 Examples<a class="copiable-link" href="#Examples-1"> &para;</a></span></h3>
+
+<p>The following are examples of vectorization questions asked by actual
+users of Octave and their solutions.
+</p>
+
+<ul class="itemize mark-bullet">
+<li>For a vector <code class="code">A</code>, the following loop
+
+<div class="example">
+<div class="group"><pre class="example-preformatted">n = length (A) - 1;
+B = zeros (n, 2);
+for i = 1:n
+  ## this will be two columns, the first is the difference and
+  ## the second the mean of the two elements used for the diff.
+  B(i,:) = [A(i+1)-A(i), (A(i+1) + A(i))/2];
+endfor
+</pre></div></div>
+
+<p>can be turned into the following one-liner:
+</p>
+<div class="example">
+<pre class="example-preformatted">B = [diff(A)(:), 0.5*(A(1:end-1)+A(2:end))(:)]
+</pre></div>
+
+<p>Note the usage of colon indexing to flatten an intermediate result into
+a column vector.  This is a common vectorization trick.
+</p>
+</li></ul>
+
+
+</div>
+
+
+
+</body>
+</html>

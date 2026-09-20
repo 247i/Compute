@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- Additional documentation for the optim package for Octave.
+
+Copyright © Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<title>nonlin_curvefit (optim_doc)</title>
+
+<meta name="description" content="nonlin_curvefit (optim_doc)">
+<meta name="keywords" content="nonlin_curvefit (optim_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Residual-optimization.html" rel="up" title="Residual optimization">
+<link href="lm_005fsvd_005ffeasible.html" rel="next" title="lm_svd_feasible">
+<link href="nonlin_005fresidmin.html" rel="prev" title="nonlin_residmin">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section-level-extent" id="nonlin_005fcurvefit">
+<div class="nav-panel">
+<p>
+Next: <a href="lm_005fsvd_005ffeasible.html" accesskey="n" rel="next">Default backend lm_svd_feasible of residual minimization</a>, Previous: <a href="nonlin_005fresidmin.html" accesskey="p" rel="prev">Frontend nonlin_residmin for non-linear residual minimization</a>, Up: <a href="Residual-optimization.html" accesskey="u" rel="up">Functions for optimization of a model function returning an array</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h3 class="section" id="Function-nonlin_005fcurvefit_0028_0029-for-curve-fitting"><span>2.2 Function nonlin_curvefit() for curve fitting<a class="copiable-link" href="#Function-nonlin_005fcurvefit_0028_0029-for-curve-fitting"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-nonlin_005fcurvefit-2"></a>
+
+<p>In curve fitting, the model function computes values from a constant set
+of &lsquo;independents&rsquo;, and the intention is to minimize the differences of
+these computed values to a constant set of &lsquo;observations&rsquo;. This can be
+done with <code class="code">nonlin_residmin</code>, but it is more convenient to use
+<code class="code">nonlin_curvefit</code>, which cares for passing the constant
+&lsquo;independents&rsquo; to the model function and for calculating the differences
+to the constant &lsquo;observations&rsquo;.
+</p>
+<p>However, if in some optimization problem you notice that you end up with
+passing dummy-values for the &lsquo;independents&rsquo; and zeros for the
+&lsquo;observations&rsquo;, you can more naturally use <code class="code">nonlin_residmin</code>
+instead of <code class="code">nonlin_curvefit</code>.
+</p>
+<a class="anchor" id="XREFnonlin_005fcurvefit"></a><dl class="first-deftypefn">
+<dt class="deftypefn" id="index-nonlin_005fcurvefit"><span class="category-def">Function File: </span><span><code class="def-type">[<var class="var">p</var>, <var class="var">fy</var>, <var class="var">cvg</var>, <var class="var">outp</var>] =</code> <strong class="def-name">nonlin_curvefit</strong> <code class="def-code-arguments">(<var class="var">f</var>, <var class="var">pin</var>, <var class="var">x</var>, <var class="var">y</var>)</code><a class="copiable-link" href="#index-nonlin_005fcurvefit"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn" id="index-nonlin_005fcurvefit-1"><span class="category-def">Function File: </span><span><code class="def-type">[<var class="var">p</var>, <var class="var">fy</var>, <var class="var">cvg</var>, <var class="var">outp</var>] =</code> <strong class="def-name">nonlin_curvefit</strong> <code class="def-code-arguments">(<var class="var">f</var>, <var class="var">pin</var>, <var class="var">x</var>, <var class="var">y</var>, <var class="var">settings</var>)</code><a class="copiable-link" href="#index-nonlin_005fcurvefit-1"> &para;</a></span></dt>
+<dd><p>Frontend for nonlinear fitting of values, computed by a model
+function, to observed values.
+</p>
+<p>Please refer to the description of <code class="code">nonlin_residmin</code>. The
+differences to <code class="code">nonlin_residmin</code> are the additional arguments
+<var class="var">x</var> (independent values, mostly, but not necessarily, an array of
+the same dimensions or the same number of rows as <var class="var">y</var>) and
+<var class="var">y</var> (array of observations), the returned value <var class="var">fy</var> (final
+guess for observed values) instead of <var class="var">resid</var>, that the model
+function has a second obligatory argument which will be set to
+<var class="var">x</var> and is supposed to return guesses for the observations (with
+the same dimensions), and that the possibly user-supplied function
+for the jacobian of the model function has also a second obligatory
+argument which will be set to <var class="var">x</var>.
+</p>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="nonlin_005fresidmin.html#XREFnonlin_005fresidmin">nonlin_residmin</a>.
+</p></dd></dl>
+
+
+<p>Also, if the setting <code class="code">user_interaction</code> is given, additional
+information is passed to these functions,
+see
+<a class="ref" href="Common-optimization-options.html">Options common to all optimization frontends</a>.
+</p>
+
+</div>
+<hr>
+<div class="nav-panel">
+<p>
+Next: <a href="lm_005fsvd_005ffeasible.html">Default backend lm_svd_feasible of residual minimization</a>, Previous: <a href="nonlin_005fresidmin.html">Frontend nonlin_residmin for non-linear residual minimization</a>, Up: <a href="Residual-optimization.html">Functions for optimization of a model function returning an array</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

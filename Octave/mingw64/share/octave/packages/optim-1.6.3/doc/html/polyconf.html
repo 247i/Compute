@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- Additional documentation for the optim package for Octave.
+
+Copyright © Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<title>polyconf (optim_doc)</title>
+
+<meta name="description" content="polyconf (optim_doc)">
+<meta name="keywords" content="polyconf (optim_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Residual-optimization.html" rel="up" title="Residual optimization">
+<link href="LinearRegression.html" rel="next" title="LinearRegression">
+<link href="wpolyfit.html" rel="prev" title="wpolyfit">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section-level-extent" id="polyconf">
+<div class="nav-panel">
+<p>
+Next: <a href="LinearRegression.html" accesskey="n" rel="next">Function LinearRegression</a>, Previous: <a href="wpolyfit.html" accesskey="p" rel="prev">Polynomial fitting suitable for polyconf</a>, Up: <a href="Residual-optimization.html" accesskey="u" rel="up">Functions for optimization of a model function returning an array</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h3 class="section" id="Confidence-and-prediction-intervals-for-polynomial-fitting"><span>2.12 Confidence and prediction intervals for polynomial fitting<a class="copiable-link" href="#Confidence-and-prediction-intervals-for-polynomial-fitting"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-polyconf"></a>
+
+<h4 class="subheading" id="Helptext_003a-9"><span>Helptext:<a class="copiable-link" href="#Helptext_003a-9"> &para;</a></span></h4>
+
+<a class="anchor" id="XREFpolyconf"></a><pre class="verbatim">[y,dy] = polyconf(p,x,s)
+
+  Produce prediction intervals for the fitted y. The vector p 
+  and structure s are returned from polyfit or wpolyfit. The 
+  x values are where you want to compute the prediction interval.
+
+polyconf(...,['ci'|'pi'])
+
+  Produce a confidence interval (range of likely values for the
+  mean at x) or a prediction interval (range of likely values 
+  seen when measuring at x).  The prediction interval tells
+  you the width of the distribution at x.  This should be the same
+  regardless of the number of measurements you have for the value
+  at x.  The confidence interval tells you how well you know the
+  mean at x.  It should get smaller as you increase the number of
+  measurements.  Error bars in the physical sciences usually show 
+  a 1-alpha confidence value of erfc(1/sqrt(2)), representing
+  one standandard deviation of uncertainty in the mean.
+
+polyconf(...,1-alpha)
+
+  Control the width of the interval. If asking for the prediction
+  interval 'pi', the default is .05 for the 95% prediction interval.
+  If asking for the confidence interval 'ci', the default is
+  erfc(1/sqrt(2)) for a one standard deviation confidence interval.
+
+Example:
+ [p,s] = polyfit(x,y,1);
+ xf = linspace(x(1),x(end),150);
+ [yf,dyf] = polyconf(p,xf,s,'ci');
+ plot(xf,yf,'g-;fit;',xf,yf+dyf,'g.;;',xf,yf-dyf,'g.;;',x,y,'xr;data;');
+ plot(x,y-polyval(p,x),';residuals;',xf,dyf,'g-;;',xf,-dyf,'g-;;');
+
+</pre>
+
+</div>
+
+
+
+</body>
+</html>

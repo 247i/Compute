@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Parser (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Parser (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Parser (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Grammar-and-Parser.html" rel="up" title="Grammar and Parser">
+<link href="Keywords.html" rel="prev" title="Keywords">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Parser">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Keywords.html" accesskey="p" rel="prev">Keywords</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Grammar-and-Parser.html" accesskey="u" rel="up">Grammar and Parser</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Parser-1"><span>F.2 Parser<a class="copiable-link" href="#Parser-1"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-parser"></a>
+
+<p>The parser has a number of variables that affect its internal operation.
+These variables are generally documented in the manual alongside the code that
+they affect.
+</p>
+<p>In addition, there are three non-specific parser customization functions.
+<code class="code">add_input_event_hook</code><!-- /@w --> can be used to schedule a user function for
+periodic evaluation.  <code class="code">remove_input_event_hook</code><!-- /@w --> will stop a user
+function from being evaluated periodically.
+</p>
+<a class="anchor" id="XREFadd_005finput_005fevent_005fhook"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-add_005finput_005fevent_005fhook"><span><code class="def-type"><var class="var">id</var> =</code> <strong class="def-name">add_input_event_hook</strong> <code class="def-code-arguments">(<var class="var">fcn</var>)</code><a class="copiable-link" href="#index-add_005finput_005fevent_005fhook"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-add_005finput_005fevent_005fhook-1"><span><code class="def-type"><var class="var">id</var> =</code> <strong class="def-name">add_input_event_hook</strong> <code class="def-code-arguments">(<var class="var">fcn</var>, <var class="var">data</var>)</code><a class="copiable-link" href="#index-add_005finput_005fevent_005fhook-1"> &para;</a></span></dt>
+<dd><p>Add the named function or function handle <var class="var">fcn</var> to the list of functions
+to call periodically when Octave is waiting for input.
+</p>
+<p>The function should have the form
+</p>
+<div class="example">
+<pre class="example-preformatted"><var class="var">fcn</var> (<var class="var">data</var>)
+</pre></div>
+
+<p>If <var class="var">data</var> is omitted, Octave calls the function without any arguments.
+</p>
+<p>The returned identifier may be used to remove the function handle from the
+list of input hook functions.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFremove_005finput_005fevent_005fhook">remove_input_event_hook</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFremove_005finput_005fevent_005fhook"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-remove_005finput_005fevent_005fhook"><span><strong class="def-name">remove_input_event_hook</strong> <code class="def-code-arguments">(<var class="var">name</var>)</code><a class="copiable-link" href="#index-remove_005finput_005fevent_005fhook"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-remove_005finput_005fevent_005fhook-1"><span><strong class="def-name">remove_input_event_hook</strong> <code class="def-code-arguments">(<var class="var">fcn_id</var>)</code><a class="copiable-link" href="#index-remove_005finput_005fevent_005fhook-1"> &para;</a></span></dt>
+<dd><p>Remove the named function or function handle with the given identifier
+from the list of functions to call periodically when Octave is waiting
+for input.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFadd_005finput_005fevent_005fhook">add_input_event_hook</a>.
+</p></dd></dl>
+
+
+<p>Finally, when the parser cannot identify an input token it calls a particular
+function to handle this.  By default, this is the internal function
+<code class="code">&quot;__unimplemented__&quot;</code> which makes suggestions about possible Octave
+substitutes for <small class="sc">MATLAB</small> functions.
+</p>
+<a class="anchor" id="XREFmissing_005ffunction_005fhook"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-missing_005ffunction_005fhook"><span><code class="def-type"><var class="var">val</var> =</code> <strong class="def-name">missing_function_hook</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-missing_005ffunction_005fhook"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-missing_005ffunction_005fhook-1"><span><code class="def-type"><var class="var">old_val</var> =</code> <strong class="def-name">missing_function_hook</strong> <code class="def-code-arguments">(<var class="var">new_val</var>)</code><a class="copiable-link" href="#index-missing_005ffunction_005fhook-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-missing_005ffunction_005fhook-2"><span><code class="def-type"><var class="var">old_val</var> =</code> <strong class="def-name">missing_function_hook</strong> <code class="def-code-arguments">(<var class="var">new_val</var>, &quot;local&quot;)</code><a class="copiable-link" href="#index-missing_005ffunction_005fhook-2"> &para;</a></span></dt>
+<dd><p>Query or set the internal variable that specifies the function to call
+to provide extra information when an unknown identifier is referenced.
+</p>
+<p>When called from inside a function with the <code class="code">&quot;local&quot;</code> option, the
+variable is changed locally for the function and any subroutines it calls.
+The original variable value is restored when exiting the function.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Missing-Components.html#XREFmissing_005fcomponent_005fhook">missing_component_hook</a>.
+</p></dd></dl>
+
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Keywords.html">Keywords</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Grammar-and-Parser.html">Grammar and Parser</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>How to Distinguish Between Octave and Matlab (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="How to Distinguish Between Octave and Matlab (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="How to Distinguish Between Octave and Matlab (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Trouble.html" rel="up" title="Trouble">
+<link href="How-To-Get-Help-with-Octave.html" rel="prev" title="How To Get Help with Octave">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="appendixsec-level-extent" id="How-to-Distinguish-Between-Octave-and-Matlab">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="How-To-Get-Help-with-Octave.html" accesskey="p" rel="prev">How To Get Help with Octave</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Trouble.html" accesskey="u" rel="up">Known Causes of Trouble</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="appendixsec" id="How-to-Distinguish-Between-Octave-and-Matlab-1"><span>D.4 How to Distinguish Between Octave and Matlab<a class="copiable-link" href="#How-to-Distinguish-Between-Octave-and-Matlab-1"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-Octave-and-matlab_002c-how-to-distinguish-between"></a>
+
+<p>Octave and <small class="sc">MATLAB</small> are very similar, but handle Java slightly different.
+Therefore it may be necessary to detect the environment and use the appropriate
+functions.  The following function can be used to detect the environment.  Due
+to the persistent variable it can be called repeatedly without a heavy
+performance hit.
+</p>
+<p>Example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">%%
+%% Return: true if the environment is Octave.
+%%
+function retval = isOctave
+  persistent cacheval;  % speeds up repeated calls
+
+  if isempty (cacheval)
+    cacheval = (exist (&quot;OCTAVE_VERSION&quot;, &quot;builtin&quot;) &gt; 0);
+  end
+
+  retval = cacheval;
+end
+</pre></div></div>
+
+
+
+</div>
+
+
+
+</body>
+</html>

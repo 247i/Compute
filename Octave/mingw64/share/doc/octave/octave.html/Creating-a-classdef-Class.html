@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Creating a classdef Class (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Creating a classdef Class (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Creating a classdef Class (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="classdef-Classes.html" rel="up" title="classdef Classes">
+<link href="Properties.html" rel="next" title="Properties">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Creating-a-classdef-Class">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Properties.html" accesskey="n" rel="next">Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="classdef-Classes.html" accesskey="u" rel="up"><code class="code">classdef</code> Classes</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Creating-a-classdef-Class-1"><span>34.6.1 Creating a <code class="code">classdef</code> Class<a class="copiable-link" href="#Creating-a-classdef-Class-1"> &para;</a></span></h4>
+
+<p>A very basic <code class="code">classdef</code> value class
+(see <a class="pxref" href="Value-Classes-vs_002e-Handle-Classes.html">Value Classes vs. Handle Classes</a>) is defined by:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">classdef some_class
+  properties
+  endproperties
+
+  methods
+  endmethods
+endclassdef
+</pre></div></div>
+
+<p>In contrast to old style classes, the <code class="code">properties</code>-<code class="code">endproperties</code>
+block as well as the <code class="code">methods</code>-<code class="code">endmethods</code> block can be used to
+define properties and methods of the class.  Because both blocks are empty,
+they can be omitted in this particular case.
+</p>
+<p>For simplicity, a more advanced implementation of a <code class="code">classdef</code> class is
+shown using the <code class="code">polynomial</code> example again (see <a class="pxref" href="Creating-a-Class.html">Creating a Class</a>):
+</p>
+<div class="example">
+<pre class="verbatim">classdef polynomial2
+  properties
+    poly = 0;
+  endproperties
+
+  methods
+    function p = polynomial2 (a)
+      if (nargin == 1)
+        if (isa (a, &quot;polynomial2&quot;))
+          p.poly = a.poly;
+        elseif (isreal (a) &amp;&amp; isvector (a))
+          p.poly = a(:).';  # force row vector
+        else
+          error (&quot;polynomial2: A must be a real vector&quot;);
+        endif
+      endif
+    endfunction
+
+    function disp (p)
+      a = p.poly;
+      first = true;
+      for i = 1 : length (a);
+        if (a(i) != 0)
+          if (first)
+            first = false;
+          elseif (a(i) &gt; 0 || isnan (a(i)))
+            printf (&quot; +&quot;);
+          endif
+          if (a(i) &lt; 0)
+            printf (&quot; -&quot;);
+          endif
+          if (i == 1)
+            printf (&quot; %.5g&quot;, abs (a(i)));
+          elseif (abs (a(i)) != 1)
+            printf (&quot; %.5g *&quot;, abs (a(i)));
+          endif
+          if (i &gt; 1)
+            printf (&quot; X&quot;);
+          endif
+          if (i &gt; 2)
+            printf (&quot; ^ %d&quot;, i - 1);
+          endif
+        endif
+      endfor
+
+      if (first)
+        printf (&quot; 0&quot;);
+      endif
+      printf (&quot;\n&quot;);
+    endfunction
+  endmethods
+endclassdef
+</pre></div>
+
+<p>An object of class <code class="code">polynomial2</code> is created by calling the class
+constructor:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">&gt;&gt; p = polynomial2 ([1, 0, 1])
+&rArr;  p =
+
+ 1 + X ^ 2
+</pre></div></div>
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Properties.html">Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="classdef-Classes.html"><code class="code">classdef</code> Classes</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

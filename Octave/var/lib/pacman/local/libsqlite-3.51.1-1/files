@@ -1,0 +1,8 @@
+%FILES%
+usr/
+usr/share/
+usr/bin/
+usr/share/licenses/
+usr/share/licenses/libsqlite/
+usr/share/licenses/libsqlite/LICENSE
+usr/bin/msys-sqlite3-0.dll

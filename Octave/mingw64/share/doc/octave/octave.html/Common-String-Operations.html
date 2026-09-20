@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Common String Operations (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Common String Operations (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Common String Operations (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="String-Operations.html" rel="up" title="String Operations">
+<link href="Concatenating-Strings.html" rel="next" title="Concatenating Strings">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Common-String-Operations">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Concatenating-Strings.html" accesskey="n" rel="next">Concatenating Strings</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="String-Operations.html" accesskey="u" rel="up">String Operations</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Common-String-Operations-1"><span>5.3.1 Common String Operations<a class="copiable-link" href="#Common-String-Operations-1"> &para;</a></span></h4>
+
+<p>The following functions are useful to perform common String operations.
+</p>
+<a class="anchor" id="XREFlower"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-lower"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">lower</strong> <code class="def-code-arguments">(<var class="var">s</var>)</code><a class="copiable-link" href="#index-lower"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-tolower"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">tolower</strong> <code class="def-code-arguments">(<var class="var">s</var>)</code><a class="copiable-link" href="#index-tolower"> &para;</a></span></dt>
+<dd><p>Return a copy of the string or cell string <var class="var">s</var>, with each uppercase
+character replaced by the corresponding lowercase one; non-alphabetic
+characters are left unchanged.
+</p>
+<p>For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">lower (&quot;MiXeD cAsE 123&quot;)
+    &rArr;  &quot;mixed case 123&quot;
+</pre></div></div>
+
+<p>Programming Note: <code class="code">tolower</code> is an alias for <code class="code">lower</code> and either name
+can be used in Octave.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFupper">upper</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFupper"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-upper"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">upper</strong> <code class="def-code-arguments">(<var class="var">s</var>)</code><a class="copiable-link" href="#index-upper"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-toupper"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">toupper</strong> <code class="def-code-arguments">(<var class="var">s</var>)</code><a class="copiable-link" href="#index-toupper"> &para;</a></span></dt>
+<dd><p>Return a copy of the string or cell string <var class="var">s</var>, with each lowercase
+character replaced by the corresponding uppercase one; non-alphabetic
+characters are left unchanged.
+</p>
+<p>For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">upper (&quot;MiXeD cAsE 123&quot;)
+    &rArr;  &quot;MIXED CASE 123&quot;
+</pre></div></div>
+
+<p>Programming Note: <code class="code">toupper</code> is an alias for <code class="code">upper</code> and either name
+can be used in Octave.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFlower">lower</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFdeblank"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-deblank"><span><code class="def-type"><var class="var">s</var> =</code> <strong class="def-name">deblank</strong> <code class="def-code-arguments">(<var class="var">s</var>)</code><a class="copiable-link" href="#index-deblank"> &para;</a></span></dt>
+<dd><p>Remove trailing whitespace and nulls from <var class="var">s</var>.
+</p>
+<p>If <var class="var">s</var> is a matrix, <var class="var">deblank</var> trims each row to the length of
+the longest string.  If <var class="var">s</var> is a cell array of strings, operate
+recursively on each string element.
+</p>
+<p>Examples:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">deblank (&quot;    abc  &quot;)
+     &rArr;   &quot;    abc&quot;
+
+deblank ([&quot; abc   &quot;; &quot;   def   &quot;])
+     &rArr;   [&quot; abc  &quot; ; &quot;   def&quot;]
+</pre></div></div>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFstrtrim">strtrim</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFstrtrim"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-strtrim"><span><code class="def-type"><var class="var">s</var> =</code> <strong class="def-name">strtrim</strong> <code class="def-code-arguments">(<var class="var">s</var>)</code><a class="copiable-link" href="#index-strtrim"> &para;</a></span></dt>
+<dd><p>Remove leading and trailing whitespace from <var class="var">s</var>.
+</p>
+<p>If <var class="var">s</var> is a matrix, <var class="var">strtrim</var> trims each row to the length of
+longest string.  If <var class="var">s</var> is a cell array of strings, operate recursively
+on each string element.
+</p>
+<p>For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">strtrim (&quot;    abc  &quot;)
+     &rArr;   &quot;abc&quot;
+
+strtrim ([&quot; abc   &quot;; &quot;   def   &quot;])
+     &rArr;   [&quot;abc  &quot;  ; &quot;  def&quot;]
+</pre></div></div>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFdeblank">deblank</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFstrtrunc"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-strtrunc"><span><code class="def-type"><var class="var">s</var> =</code> <strong class="def-name">strtrunc</strong> <code class="def-code-arguments">(<var class="var">s</var>, <var class="var">n</var>)</code><a class="copiable-link" href="#index-strtrunc"> &para;</a></span></dt>
+<dd><p>Truncate the character string <var class="var">s</var> to length <var class="var">n</var>.
+</p>
+<p>If <var class="var">s</var> is a character matrix, then the number of columns is adjusted.
+</p>
+<p>If <var class="var">s</var> is a cell array of strings, then the operation is performed
+on each cell element and the new cell array is returned.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFuntabify"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-untabify"><span><code class="def-type"><var class="var">str</var> =</code> <strong class="def-name">untabify</strong> <code class="def-code-arguments">(<var class="var">t</var>)</code><a class="copiable-link" href="#index-untabify"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-untabify-1"><span><code class="def-type"><var class="var">str</var> =</code> <strong class="def-name">untabify</strong> <code class="def-code-arguments">(<var class="var">t</var>, <var class="var">tw</var>)</code><a class="copiable-link" href="#index-untabify-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-untabify-2"><span><code class="def-type"><var class="var">str</var> =</code> <strong class="def-name">untabify</strong> <code class="def-code-arguments">(<var class="var">t</var>, <var class="var">tw</var>, <var class="var">deblank</var>)</code><a class="copiable-link" href="#index-untabify-2"> &para;</a></span></dt>
+<dd><p>Replace TAB characters in <var class="var">t</var> with spaces.
+</p>
+<p>The input, <var class="var">t</var>, may be either a 2-D character array, or a cell array of
+character strings.  The output is the same class as the input.
+</p>
+<p>The tab width is specified by <var class="var">tw</var>, and defaults to eight.
+</p>
+<p>If the optional argument <var class="var">deblank</var> is true, then the spaces will be
+removed from the end of the character data.
+</p>
+<p>The following example reads a file and writes an untabified version of the
+same file with trailing spaces stripped.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">fid = fopen (&quot;tabbed_script.m&quot;);
+text = char (fread (fid, &quot;uchar&quot;)');
+fclose (fid);
+fid = fopen (&quot;untabified_script.m&quot;, &quot;w&quot;);
+text = untabify (strsplit (text, &quot;\n&quot;), 8, true);
+fprintf (fid, &quot;%s\n&quot;, text{:});
+fclose (fid);
+</pre></div></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Character-Arrays.html#XREFstrjust">strjust</a>, <a class="ref" href="Splitting-and-Joining-Strings.html#XREFstrsplit">strsplit</a>, <a class="ref" href="#XREFdeblank">deblank</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFdo_005fstring_005fescapes"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-do_005fstring_005fescapes"><span><code class="def-type"><var class="var">newstr</var> =</code> <strong class="def-name">do_string_escapes</strong> <code class="def-code-arguments">(<var class="var">string</var>)</code><a class="copiable-link" href="#index-do_005fstring_005fescapes"> &para;</a></span></dt>
+<dd><p>Convert escape sequences in <var class="var">string</var> to the characters they represent.
+</p>
+<p>Escape sequences begin with a leading backslash
+(<code class="code">'\'</code>) followed by 1&ndash;3 characters
+(.e.g., <code class="code">&quot;\n&quot;</code> =&gt; newline).
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFundo_005fstring_005fescapes">undo_string_escapes</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFundo_005fstring_005fescapes"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-undo_005fstring_005fescapes"><span><code class="def-type"><var class="var">newstr</var> =</code> <strong class="def-name">undo_string_escapes</strong> <code class="def-code-arguments">(<var class="var">string</var>)</code><a class="copiable-link" href="#index-undo_005fstring_005fescapes"> &para;</a></span></dt>
+<dd><p>Convert special characters in <var class="var">string</var> back to their escaped forms.
+</p>
+<p>For example, the expression
+</p>
+<div class="example">
+<pre class="example-preformatted"><var class="var">bell</var> = &quot;\a&quot;;
+</pre></div>
+
+<p>assigns the value of the alert character (control-g, ASCII code 7) to the
+string variable <code class="code">bell</code>.  If this string is printed, the system will
+ring the terminal bell (if it is possible).  This is normally the desired
+outcome.  However, sometimes it is useful to be able to print the original
+representation of the string, with the special characters replaced by their
+escape sequences.  For example,
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">octave:13&gt; undo_string_escapes (bell)
+ans = \a
+</pre></div></div>
+
+<p>replaces the unprintable alert character with its printable representation.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFdo_005fstring_005fescapes">do_string_escapes</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Concatenating-Strings.html">Concatenating Strings</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="String-Operations.html">String Operations</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Scatter Properties (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Scatter Properties (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Scatter Properties (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Graphics-Object-Properties.html" rel="up" title="Graphics Object Properties">
+<link href="Surface-Properties.html" rel="next" title="Surface Properties">
+<link href="Patch-Properties.html" rel="prev" title="Patch Properties">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsubsection-level-extent" id="Scatter-Properties">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Surface-Properties.html" accesskey="n" rel="next">Surface Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Patch-Properties.html" accesskey="p" rel="prev">Patch Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Graphics-Object-Properties.html" accesskey="u" rel="up">Graphics Object Properties</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsubsection" id="Scatter-Properties-1"><span>15.3.3.9 Scatter Properties<a class="copiable-link" href="#Scatter-Properties-1"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-Scatter-Properties"></a>
+
+
+
+<p>Properties of <code class="code">scatter</code> objects (see <a class="pxref" href="Two_002dDimensional-Plots.html#XREFscatter">scatter</a>):
+</p>
+<h4 class="subsubheading" id="Categories_003a-8"><span>Categories:<a class="copiable-link" href="#Categories_003a-8"> &para;</a></span></h4>
+
+<p><a class="ref" href="#XREFscattercategoryCallbackExecution">Callback&nbsp;Execution<!-- /@w --></a> | <a class="ref" href="#XREFscattercategoryColorData">Color&nbsp;Data<!-- /@w --></a> | <a class="ref" href="#XREFscattercategoryCoordinateData">Coordinate&nbsp;Data<!-- /@w --></a> | <a class="ref" href="#XREFscattercategoryCreation_002fDeletion">Creation/Deletion<!-- /@w --></a> | <a class="ref" href="#XREFscattercategoryDisplay">Display<!-- /@w --></a> | <a class="ref" href="#XREFscattercategoryLegendOptions">Legend&nbsp;Options<!-- /@w --></a> | <a class="ref" href="#XREFscattercategoryMarkerAppearance">Marker&nbsp;Appearance<!-- /@w --></a> | <a class="ref" href="#XREFscattercategoryMouseInteraction">Mouse&nbsp;Interaction<!-- /@w --></a> | <a class="ref" href="#XREFscattercategoryObjectIdentification">Object&nbsp;Identification<!-- /@w --></a> | <a class="ref" href="#XREFscattercategoryParent_002fChildren">Parent/Children<!-- /@w --></a> 
+</p>
+<a class="anchor" id="XREFscattercategoryCallbackExecution"></a><h4 class="subsubheading" id="Callback-Execution-8"><span>Callback Execution<a class="copiable-link" href="#Callback-Execution-8"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFscatterbusyaction"></a></dd>
+<dt><a id="index-scatter-busyaction"></a><span><code class="code">busyaction</code>: <code class="code">&quot;cancel&quot;</code> | {<code class="code">&quot;queue&quot;</code>}<a class="copiable-link" href="#index-scatter-busyaction"> &para;</a></span></dt>
+<dd><p>Define how Octave handles the execution of this object&rsquo;s callback properties when it is unable to interrupt another object&rsquo;s executing callback.  This is only relevant when the currently executing callback object has its <code class="code">interruptible</code> property set to <code class="code">&quot;off&quot;</code>.  The <code class="code">busyaction</code> property of the interrupting callback object indicates whether the interrupting callback is queued (<code class="code">&quot;queue&quot;</code> (default)) or discarded (<code class="code">&quot;cancel&quot;</code>).
+See <a class="xref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFscatterinterruptible"></a></dd>
+<dt><a id="index-scatter-interruptible"></a><span><code class="code">interruptible</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-scatter-interruptible"> &para;</a></span></dt>
+<dd><p>Specify whether this object&rsquo;s callback functions may be interrupted by other callbacks.  By default <code class="code">interruptible</code> is <code class="code">&quot;on&quot;</code> and callbacks that make use of <code class="code">drawnow</code>, <code class="code">figure</code>, <code class="code">waitfor</code>, <code class="code">getframe</code> or <code class="code">pause</code> functions are eventually interrupted.
+See <a class="xref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFscattercategoryColorData"></a><h4 class="subsubheading" id="Color-Data"><span>Color Data<a class="copiable-link" href="#Color-Data"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFscattercdata"></a></dd>
+<dt><a id="index-scatter-cdata"></a><span><code class="code">cdata</code>: scalar | matrix, def. <code class="code">[0   0.4470   0.7410]</code><a class="copiable-link" href="#index-scatter-cdata"> &para;</a></span></dt>
+<dd><p>Data defining the scatter object color.
+</p>
+<p>If <code class="code">cdata</code> is a scalar index into the current colormap or a RGB triplet, it defines the color of all scatter markers.
+</p>
+<p>If <code class="code">cdata</code> is an N-by-1 vector of indices or an N-by-3 (RGB) matrix, it defines the color of each one of the N scatter markers.
+</p>
+
+<a class="anchor" id="XREFscattercdatamode"></a></dd>
+<dt><a id="index-scatter-cdatamode"></a><span><code class="code">cdatamode</code>: {<code class="code">&quot;auto&quot;</code>} | <code class="code">&quot;manual&quot;</code><a class="copiable-link" href="#index-scatter-cdatamode"> &para;</a></span></dt>
+<dd><p>If <code class="code">cdatamode</code> is <code class="code">&quot;auto&quot;</code>, <code class="code">cdata</code> is set to the color from the <code class="code">colororder</code> of the ancestor axes corresponding to the <code class="code">seriesindex</code>.
+</p>
+
+<a class="anchor" id="XREFscattercdatasource"></a></dd>
+<dt><a id="index-scatter-cdatasource"></a><span><code class="code">cdatasource</code>: string, def. <code class="code">&quot;&quot;</code><a class="copiable-link" href="#index-scatter-cdatasource"> &para;</a></span></dt>
+<dd><p>The name of a workspace variable that contains data that will be used for the <a class="ref" href="Patch-Properties.html#XREFpatchcdata"><code class="code">&quot;cdata&quot;</code>&nbsp;property<!-- /@w --></a>.  Data is transferred into <code class="code">&quot;cdata&quot;</code> using the <a class="ref" href="Data-Sources-in-Object-Groups.html#XREFrefreshdata">refreshdata&nbsp;function<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFscatterseriesindex"></a></dd>
+<dt><a id="index-scatter-seriesindex"></a><span><code class="code">seriesindex</code>: def. <code class="code">1</code><a class="copiable-link" href="#index-scatter-seriesindex"> &para;</a></span></dt>
+<dd><p>Each scatter object in the same axes is assigned an incrementing integer.  This corresponds to the index into the <code class="code">colororder</code> of the ancestor axes that is used if <code class="code">cdatamode</code> is set to <code class="code">&quot;auto&quot;</code>.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFscattercategoryCoordinateData"></a><h4 class="subsubheading" id="Coordinate-Data-2"><span>Coordinate Data<a class="copiable-link" href="#Coordinate-Data-2"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFscatterlatitudedata"></a></dd>
+<dt><a id="index-scatter-latitudedata"></a><span><code class="code">latitudedata</code>: def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-scatter-latitudedata"> &para;</a></span></dt>
+<dd><p>Geographic coordinate scatter plotting is not yet implemented for scatter objects.  <code class="code">latitudedata</code> is unused.
+</p>
+
+<a class="anchor" id="XREFscatterlatitudedatasource"></a></dd>
+<dt><a id="index-scatter-latitudedatasource"></a><span><code class="code">latitudedatasource</code>: def. <code class="code">&quot;&quot;</code><a class="copiable-link" href="#index-scatter-latitudedatasource"> &para;</a></span></dt>
+<dd><p>Geographic coordinate scatter plotting is not yet implemented for scatter objects.  <code class="code">latitudedatasource</code> is unused.
+</p>
+
+<a class="anchor" id="XREFscatterlongitudedata"></a></dd>
+<dt><a id="index-scatter-longitudedata"></a><span><code class="code">longitudedata</code>: def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-scatter-longitudedata"> &para;</a></span></dt>
+<dd><p>Geographic coordinate scatter plotting is not yet implemented for scatter objects.  <code class="code">longitudedata</code> is unused.
+</p>
+
+<a class="anchor" id="XREFscatterlongitudedatasource"></a></dd>
+<dt><a id="index-scatter-longitudedatasource"></a><span><code class="code">longitudedatasource</code>: def. <code class="code">&quot;&quot;</code><a class="copiable-link" href="#index-scatter-longitudedatasource"> &para;</a></span></dt>
+<dd><p>Geographic coordinate scatter plotting is not yet implemented for scatter objects.  <code class="code">longitudedatasource</code> is unused.
+</p>
+
+<a class="anchor" id="XREFscatterrdata"></a></dd>
+<dt><a id="index-scatter-rdata"></a><span><code class="code">rdata</code>: def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-scatter-rdata"> &para;</a></span></dt>
+<dd><p>Polar coordinates for scatter plotting is not yet implemented for scatter objects.  <code class="code">rdata</code> is unused.
+</p>
+
+<a class="anchor" id="XREFscatterrdatasource"></a></dd>
+<dt><a id="index-scatter-rdatasource"></a><span><code class="code">rdatasource</code>: def. <code class="code">&quot;&quot;</code><a class="copiable-link" href="#index-scatter-rdatasource"> &para;</a></span></dt>
+<dd><p>Polar coordinates for scatter plotting is not yet implemented for scatter objects.  <code class="code">rdatasource</code> is unused.
+</p>
+
+<a class="anchor" id="XREFscatterthetadata"></a></dd>
+<dt><a id="index-scatter-thetadata"></a><span><code class="code">thetadata</code>: def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-scatter-thetadata"> &para;</a></span></dt>
+<dd><p>Polar coordinates for scatter plotting is not yet implemented for scatter objects.  <code class="code">thetadata</code> is unused.
+</p>
+
+<a class="anchor" id="XREFscatterthetadatasource"></a></dd>
+<dt><a id="index-scatter-thetadatasource"></a><span><code class="code">thetadatasource</code>: def. <code class="code">&quot;&quot;</code><a class="copiable-link" href="#index-scatter-thetadatasource"> &para;</a></span></dt>
+<dd><p>Polar coordinates for scatter plotting is not yet implemented for scatter objects.  <code class="code">thetadatasource</code> is unused.
+</p>
+
+<a class="anchor" id="XREFscatterxdata"></a></dd>
+<dt><a id="index-scatter-xdata"></a><span><code class="code">xdata</code>: vector, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-scatter-xdata"> &para;</a></span></dt>
+<dd><p>Vector with the x coordinates of the scatter object.
+</p>
+
+<a class="anchor" id="XREFscatterxdatasource"></a></dd>
+<dt><a id="index-scatter-xdatasource"></a><span><code class="code">xdatasource</code>: string, def. <code class="code">&quot;&quot;</code><a class="copiable-link" href="#index-scatter-xdatasource"> &para;</a></span></dt>
+<dd><p>The name of a workspace variable that contains data that will be used for the <a class="ref" href="#XREFscatterxdata"><code class="code">&quot;xdata&quot;</code>&nbsp;property<!-- /@w --></a>.  Data is transferred into <code class="code">&quot;xdata&quot;</code> using the <a class="ref" href="Data-Sources-in-Object-Groups.html#XREFrefreshdata">refreshdata&nbsp;function<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFscatterydata"></a></dd>
+<dt><a id="index-scatter-ydata"></a><span><code class="code">ydata</code>: vector, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-scatter-ydata"> &para;</a></span></dt>
+<dd><p>Vector with the y coordinates of the scatter object.
+</p>
+
+<a class="anchor" id="XREFscatterydatasource"></a></dd>
+<dt><a id="index-scatter-ydatasource"></a><span><code class="code">ydatasource</code>: string, def. <code class="code">&quot;&quot;</code><a class="copiable-link" href="#index-scatter-ydatasource"> &para;</a></span></dt>
+<dd><p>The name of a workspace variable that contains data that will be used for the <a class="ref" href="#XREFscatterydata"><code class="code">&quot;ydata&quot;</code>&nbsp;property<!-- /@w --></a>.  Data is transferred into <code class="code">&quot;ydata&quot;</code> using the <a class="ref" href="Data-Sources-in-Object-Groups.html#XREFrefreshdata">refreshdata&nbsp;function<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFscatterzdata"></a></dd>
+<dt><a id="index-scatter-zdata"></a><span><code class="code">zdata</code>: [] | vector, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-scatter-zdata"> &para;</a></span></dt>
+<dd><p>For 3-D data, vector with the y coordinates of the scatter object.
+</p>
+
+<a class="anchor" id="XREFscatterzdatasource"></a></dd>
+<dt><a id="index-scatter-zdatasource"></a><span><code class="code">zdatasource</code>: string, def. <code class="code">&quot;&quot;</code><a class="copiable-link" href="#index-scatter-zdatasource"> &para;</a></span></dt>
+<dd><p>The name of a workspace variable that contains data that will be used for the <a class="ref" href="#XREFscatterzdata"><code class="code">&quot;zdata&quot;</code>&nbsp;property<!-- /@w --></a>.  Data is transferred into <code class="code">&quot;zdata&quot;</code> using the <a class="ref" href="Data-Sources-in-Object-Groups.html#XREFrefreshdata">refreshdata&nbsp;function<!-- /@w --></a>.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFscattercategoryCreation_002fDeletion"></a><h4 class="subsubheading" id="Creation_002fDeletion-6"><span>Creation/Deletion<a class="copiable-link" href="#Creation_002fDeletion-6"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFscatterbeingdeleted"></a></dd>
+<dt><a id="index-scatter-beingdeleted"></a><span><code class="code">beingdeleted</code>: {<code class="code">&quot;off&quot;</code>} | <code class="code">&quot;on&quot;</code><a class="copiable-link" href="#index-scatter-beingdeleted"> &para;</a></span></dt>
+<dd><p>Property indicating that a function has initiated deletion of the object.  <code class="code">beingdeleted</code> is set to true until the object no longer exists.
+</p>
+
+<a class="anchor" id="XREFscattercreatefcn"></a></dd>
+<dt><a id="index-scatter-createfcn"></a><span><code class="code">createfcn</code>: string | function handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-scatter-createfcn"> &para;</a></span></dt>
+<dd><p>Callback function executed immediately after scatter has been created.  Function is set by using default property on root object, e.g., <code class="code">set (groot, &quot;defaultscattercreatefcn&quot;, 'disp (&quot;scatter created!&quot;)')</code>.
+</p>
+<p>For information on how to write graphics listener functions, see <a class="pxref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFscatterdeletefcn"></a></dd>
+<dt><a id="index-scatter-deletefcn"></a><span><code class="code">deletefcn</code>: string | function handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-scatter-deletefcn"> &para;</a></span></dt>
+<dd><p>Callback function executed immediately before scatter is deleted.
+</p>
+<p>For information on how to write graphics listener functions, see <a class="pxref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFscattercategoryDisplay"></a><h4 class="subsubheading" id="Display-6"><span>Display<a class="copiable-link" href="#Display-6"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFscatterclipping"></a></dd>
+<dt><a id="index-scatter-clipping"></a><span><code class="code">clipping</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-scatter-clipping"> &para;</a></span></dt>
+<dd><p>If <code class="code">clipping</code> is <code class="code">&quot;on&quot;</code>, the scatter is clipped in its parent axes limits.
+</p>
+
+<a class="anchor" id="XREFscattervisible"></a></dd>
+<dt><a id="index-scatter-visible"></a><span><code class="code">visible</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-scatter-visible"> &para;</a></span></dt>
+<dd><p>If <code class="code">visible</code> is <code class="code">&quot;off&quot;</code>, the scatter is not rendered on screen.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFscattercategoryLegendOptions"></a><h4 class="subsubheading" id="Legend-Options-2"><span>Legend Options<a class="copiable-link" href="#Legend-Options-2"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFscatterannotation"></a></dd>
+<dt><a id="index-scatter-annotation"></a><span><code class="code">annotation</code>: def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-scatter-annotation"> &para;</a></span></dt>
+<dd><p>Legend appearance toggling from within         the scatter object is not yet implemented for scatter objects.  <code class="code">annotation</code> is unused.
+</p>
+
+<a class="anchor" id="XREFscatterdisplayname"></a></dd>
+<dt><a id="index-scatter-displayname"></a><span><code class="code">displayname</code>: def. <code class="code">&quot;&quot;</code><a class="copiable-link" href="#index-scatter-displayname"> &para;</a></span></dt>
+<dd><p>Text of the legend entry corresponding to this scatter object.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFscattercategoryMarkerAppearance"></a><h4 class="subsubheading" id="Marker-Appearance-2"><span>Marker Appearance<a class="copiable-link" href="#Marker-Appearance-2"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFscatterlinewidth"></a></dd>
+<dt><a id="index-scatter-linewidth"></a><span><code class="code">linewidth</code>: scalar, def. <code class="code">0.5000</code><a class="copiable-link" href="#index-scatter-linewidth"> &para;</a></span></dt>
+<dd><p>Line width of the edge of the markers.
+</p>
+
+<a class="anchor" id="XREFscattermarker"></a></dd>
+<dt><a id="index-scatter-marker"></a><span><code class="code">marker</code>: <code class="code">&quot;*&quot;</code> | <code class="code">&quot;+&quot;</code> | <code class="code">&quot;.&quot;</code> | <code class="code">&quot;&lt;&quot;</code> | <code class="code">&quot;&gt;&quot;</code> | <code class="code">&quot;^&quot;</code> | <code class="code">&quot;_&quot;</code> | <code class="code">&quot;d&quot;</code> | <code class="code">&quot;diamond&quot;</code> | <code class="code">&quot;h&quot;</code> | <code class="code">&quot;hexagram&quot;</code> | <code class="code">&quot;none&quot;</code> | {<code class="code">&quot;o&quot;</code>} | <code class="code">&quot;p&quot;</code> | <code class="code">&quot;pentagram&quot;</code> | <code class="code">&quot;s&quot;</code> | <code class="code">&quot;square&quot;</code> | <code class="code">&quot;v&quot;</code> | <code class="code">&quot;x&quot;</code> | <code class="code">&quot;|&quot;</code><a class="copiable-link" href="#index-scatter-marker"> &para;</a></span></dt>
+<dd><p>See <a class="xref" href="Line-Properties.html#XREFlinemarker">line&nbsp;marker&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFscattermarkeredgealpha"></a></dd>
+<dt><a id="index-scatter-markeredgealpha"></a><span><code class="code">markeredgealpha</code>: scalar, def. <code class="code">1</code><a class="copiable-link" href="#index-scatter-markeredgealpha"> &para;</a></span></dt>
+<dd><p>Transparency level of the faces of the markers where a value of 0 means complete transparency and a value of 1 means solid faces without transparency.  Note that the markers are not sorted from back to front which might lead to unexpected results when rendering layered transparent markers or in combination with other transparent objects.
+</p>
+
+<a class="anchor" id="XREFscattermarkeredgecolor"></a></dd>
+<dt><a id="index-scatter-markeredgecolor"></a><span><code class="code">markeredgecolor</code>: {<code class="code">&quot;none&quot;</code>} | {<code class="code">&quot;flat&quot;</code>} | colorspec<a class="copiable-link" href="#index-scatter-markeredgecolor"> &para;</a></span></dt>
+<dd><p>Color of the edge of the markers.  <code class="code">&quot;none&quot;</code> means that the edges are transparent and <code class="code">&quot;flat&quot;</code> means that the value from <code class="code">cdata</code> is used.  See <a class="xref" href="Line-Properties.html#XREFlinemarkeredgecolor">line&nbsp;markeredgecolor&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFscattermarkerfacealpha"></a></dd>
+<dt><a id="index-scatter-markerfacealpha"></a><span><code class="code">markerfacealpha</code>: scalar, def. <code class="code">1</code><a class="copiable-link" href="#index-scatter-markerfacealpha"> &para;</a></span></dt>
+<dd><p>Transparency level of the faces of the markers where a value of 0 means complete transparency and a value of 1 means solid faces without transparency.  Note that the markers are not sorted from back to front which might lead to unexpected results when rendering layered transparent markers or in combination with other transparent objects.
+</p>
+
+<a class="anchor" id="XREFscattermarkerfacecolor"></a></dd>
+<dt><a id="index-scatter-markerfacecolor"></a><span><code class="code">markerfacecolor</code>: {{<code class="code">&quot;none&quot;</code>}} | <code class="code">&quot;flat&quot;</code> | <code class="code">&quot;auto&quot;</code> | colorspec<a class="copiable-link" href="#index-scatter-markerfacecolor"> &para;</a></span></dt>
+<dd><p>Color of the face of the markers.  <code class="code">&quot;none&quot;</code> means that the faces are transparent, <code class="code">&quot;flat&quot;</code> means that the value from <code class="code">cdata</code> is used, and <code class="code">&quot;auto&quot;</code> uses the <code class="code">color</code> property of the ancestor axes.  See <a class="xref" href="Line-Properties.html#XREFlinemarkerfacecolor">line&nbsp;markerfacecolor&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFscattersizedata"></a></dd>
+<dt><a id="index-scatter-sizedata"></a><span><code class="code">sizedata</code>: [] | scalar | vector, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-scatter-sizedata"> &para;</a></span></dt>
+<dd><p>Size of the area of the marker.  A scalar value applies to all markers.  If <code class="code">cdata</code> is an N-by-1 vector, it defines the color of each one of the N scatter markers.
+</p>
+
+<a class="anchor" id="XREFscattersizedatasource"></a></dd>
+<dt><a id="index-scatter-sizedatasource"></a><span><code class="code">sizedatasource</code>: def. <code class="code">&quot;&quot;</code><a class="copiable-link" href="#index-scatter-sizedatasource"> &para;</a></span></dt>
+<dd><p>Data from workspace variables is not yet implemented for scatter objects.  <code class="code">sizedatasource</code> is unused.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFscattercategoryMouseInteraction"></a><h4 class="subsubheading" id="Mouse-Interaction-7"><span>Mouse Interaction<a class="copiable-link" href="#Mouse-Interaction-7"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFscatterbuttondownfcn"></a></dd>
+<dt><a id="index-scatter-buttondownfcn"></a><span><code class="code">buttondownfcn</code>: string | function handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-scatter-buttondownfcn"> &para;</a></span></dt>
+<dd><p>For information on how to write graphics listener functions, see <a class="pxref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFscattercontextmenu"></a></dd>
+<dt><a id="index-scatter-contextmenu"></a><span><code class="code">contextmenu</code>: graphics handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-scatter-contextmenu"> &para;</a></span></dt>
+<dd><p>Graphics handle of the uicontextmenu object that is currently associated to this scatter object.
+</p>
+
+<a class="anchor" id="XREFscatterdatatiptemplate"></a></dd>
+<dt><a id="index-scatter-datatiptemplate"></a><span><code class="code">datatiptemplate</code>: def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-scatter-datatiptemplate"> &para;</a></span></dt>
+<dd><p>Data tip objects is not yet implemented for scatter objects.  <code class="code">datatiptemplate</code> is unused.
+</p>
+
+<a class="anchor" id="XREFscatterhittest"></a></dd>
+<dt><a id="index-scatter-hittest"></a><span><code class="code">hittest</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-scatter-hittest"> &para;</a></span></dt>
+<dd><p>Specify whether scatter processes mouse events or passes them to ancestors of the object.  When enabled, the object may respond to mouse clicks by evaluating the <code class="code">&quot;buttondownfcn&quot;</code>, showing the uicontextmenu, and eventually becoming the root <code class="code">&quot;currentobject&quot;</code>.  This property is only relevant when the object can accept mouse clicks which is determined by the <code class="code">&quot;pickableparts&quot;</code> property.  See <a class="xref" href="#XREFscatterpickableparts">pickableparts&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFscatterpickableparts"></a></dd>
+<dt><a id="index-scatter-pickableparts"></a><span><code class="code">pickableparts</code>: <code class="code">&quot;all&quot;</code> | <code class="code">&quot;none&quot;</code> | {<code class="code">&quot;visible&quot;</code>}<a class="copiable-link" href="#index-scatter-pickableparts"> &para;</a></span></dt>
+<dd><p>Specify whether scatter will accept mouse clicks.  By default, <code class="code">pickableparts</code> is <code class="code">&quot;visible&quot;</code> and only visible parts of the scatter or its children may react to mouse clicks.  When <code class="code">pickableparts</code> is <code class="code">&quot;all&quot;</code> both visible and invisible parts (or children) may react to mouse clicks.  When <code class="code">pickableparts</code> is <code class="code">&quot;none&quot;</code> mouse clicks on the object are ignored and transmitted to any objects underneath this one.  When an object is configured to accept mouse clicks the <code class="code">&quot;hittest&quot;</code> property will determine how they are processed.  See <a class="xref" href="#XREFscatterhittest">hittest&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFscatterselected"></a></dd>
+<dt><a id="index-scatter-selected"></a><span><code class="code">selected</code>: {<code class="code">&quot;off&quot;</code>} | <code class="code">&quot;on&quot;</code><a class="copiable-link" href="#index-scatter-selected"> &para;</a></span></dt>
+<dd><p>Property indicates whether this scatter is selected.
+</p>
+
+<a class="anchor" id="XREFscatterselectionhighlight"></a></dd>
+<dt><a id="index-scatter-selectionhighlight"></a><span><code class="code">selectionhighlight</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-scatter-selectionhighlight"> &para;</a></span></dt>
+<dd><p>If <code class="code">selectionhighlight</code> is <code class="code">&quot;on&quot;</code>, then the scatter&rsquo;s selection state is visually highlighted.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFscattercategoryObjectIdentification"></a><h4 class="subsubheading" id="Object-Identification-8"><span>Object Identification<a class="copiable-link" href="#Object-Identification-8"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFscattertag"></a></dd>
+<dt><a id="index-scatter-tag"></a><span><code class="code">tag</code>: string, def. <code class="code">&quot;&quot;</code><a class="copiable-link" href="#index-scatter-tag"> &para;</a></span></dt>
+<dd><p>A user-defined string to label the graphics object.
+</p>
+
+<a class="anchor" id="XREFscattertype"></a></dd>
+<dt><a id="index-scatter-type"></a><span><code class="code">type</code> (read-only): string<a class="copiable-link" href="#index-scatter-type"> &para;</a></span></dt>
+<dd><p>Class name of the graphics object.  <code class="code">type</code> is always <code class="code">&quot;scatter&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFscatteruserdata"></a></dd>
+<dt><a id="index-scatter-userdata"></a><span><code class="code">userdata</code>: Any Octave data, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-scatter-userdata"> &para;</a></span></dt>
+<dd><p>User-defined data to associate with the graphics object.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFscattercategoryParent_002fChildren"></a><h4 class="subsubheading" id="Parent_002fChildren-7"><span>Parent/Children<a class="copiable-link" href="#Parent_002fChildren-7"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFscatterchildren"></a></dd>
+<dt><a id="index-scatter-children"></a><span><code class="code">children</code> (read-only): vector of graphics handles, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-scatter-children"> &para;</a></span></dt>
+<dd><p>Child objects for Scatter plots is not yet implemented for scatter objects.  <code class="code">children</code> is unused.
+</p>
+
+<a class="anchor" id="XREFscatterhandlevisibility"></a></dd>
+<dt><a id="index-scatter-handlevisibility"></a><span><code class="code">handlevisibility</code>: <code class="code">&quot;callback&quot;</code> | <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-scatter-handlevisibility"> &para;</a></span></dt>
+<dd><p>If <code class="code">handlevisibility</code> is <code class="code">&quot;off&quot;</code>, the scatter&rsquo;s handle is not visible in its parent&rsquo;s <code class="code">&quot;children&quot;</code> property.
+</p>
+
+<a class="anchor" id="XREFscatterparent"></a></dd>
+<dt><a id="index-scatter-parent"></a><span><code class="code">parent</code>: graphics handle<a class="copiable-link" href="#index-scatter-parent"> &para;</a></span></dt>
+<dd><p>Handle of the parent graphics object.
+</p>
+</dd>
+</dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Surface-Properties.html">Surface Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Patch-Properties.html">Patch Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Graphics-Object-Properties.html">Graphics Object Properties</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

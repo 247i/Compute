@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Manipulation of Plot Objects (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Manipulation of Plot Objects (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Manipulation of Plot Objects (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="High_002dLevel-Plotting.html" rel="up" title="High-Level Plotting">
+<link href="Manipulation-of-Plot-Windows.html" rel="next" title="Manipulation of Plot Windows">
+<link href="Multiple-Plot-Windows.html" rel="prev" title="Multiple Plot Windows">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Manipulation-of-Plot-Objects">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Manipulation-of-Plot-Windows.html" accesskey="n" rel="next">Manipulation of Plot Windows</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Multiple-Plot-Windows.html" accesskey="p" rel="prev">Multiple Plot Windows</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="High_002dLevel-Plotting.html" accesskey="u" rel="up">High-Level Plotting</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Manipulation-of-Plot-Objects-1"><span>15.2.6 Manipulation of Plot Objects<a class="copiable-link" href="#Manipulation-of-Plot-Objects-1"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-plotting_002c-object-manipulation"></a>
+
+<a class="anchor" id="XREFpan"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-pan"><span><strong class="def-name">pan</strong><a class="copiable-link" href="#index-pan"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-pan-1"><span><strong class="def-name">pan</strong> <code class="def-code-arguments">on</code><a class="copiable-link" href="#index-pan-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-pan-2"><span><strong class="def-name">pan</strong> <code class="def-code-arguments">off</code><a class="copiable-link" href="#index-pan-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-pan-3"><span><strong class="def-name">pan</strong> <code class="def-code-arguments">xon</code><a class="copiable-link" href="#index-pan-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-pan-4"><span><strong class="def-name">pan</strong> <code class="def-code-arguments">yon</code><a class="copiable-link" href="#index-pan-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-pan-5"><span><strong class="def-name">pan</strong> <code class="def-code-arguments">(<var class="var">hfig</var>, <var class="var">option</var>)</code><a class="copiable-link" href="#index-pan-5"> &para;</a></span></dt>
+<dd><p>Control the interactive panning mode of a figure in the GUI.
+</p>
+<p>Given the option <code class="code">&quot;on&quot;</code> or <code class="code">&quot;off&quot;</code>, set the interactive
+pan mode on or off.
+</p>
+<p>With no arguments, toggle the current pan mode on or off.
+</p>
+<p>Given the option <code class="code">&quot;xon&quot;</code> or <code class="code">&quot;yon&quot;</code>, enable pan mode
+for the x or y axis only.
+</p>
+<p>If the first argument <var class="var">hfig</var> is a figure, then operate on the given
+figure rather than the current figure as returned by <code class="code">gcf</code>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFrotate3d">rotate3d</a>, <a class="ref" href="#XREFzoom">zoom</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFrotate"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-rotate"><span><strong class="def-name">rotate</strong> <code class="def-code-arguments">(<var class="var">h</var>, <var class="var">direction</var>, <var class="var">alpha</var>)</code><a class="copiable-link" href="#index-rotate"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rotate-1"><span><strong class="def-name">rotate</strong> <code class="def-code-arguments">(&hellip;, <var class="var">origin</var>)</code><a class="copiable-link" href="#index-rotate-1"> &para;</a></span></dt>
+<dd><p>Rotate the plot object <var class="var">h</var> through <var class="var">alpha</var> degrees around the line
+with direction <var class="var">direction</var> and origin <var class="var">origin</var>.
+</p>
+<p>The default value of <var class="var">origin</var> is the center of the axes object that is
+the parent of <var class="var">h</var>.
+</p>
+<p>If <var class="var">h</var> is a vector of handles, they must all have the same parent axes
+object.
+</p>
+<p>Graphics objects that may be rotated are lines, surfaces, patches, and
+images.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFrotate3d"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-rotate3d"><span><strong class="def-name">rotate3d</strong><a class="copiable-link" href="#index-rotate3d"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rotate3d-1"><span><strong class="def-name">rotate3d</strong> <code class="def-code-arguments">on</code><a class="copiable-link" href="#index-rotate3d-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rotate3d-2"><span><strong class="def-name">rotate3d</strong> <code class="def-code-arguments">off</code><a class="copiable-link" href="#index-rotate3d-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rotate3d-3"><span><strong class="def-name">rotate3d</strong> <code class="def-code-arguments">(<var class="var">hfig</var>, <var class="var">option</var>)</code><a class="copiable-link" href="#index-rotate3d-3"> &para;</a></span></dt>
+<dd><p>Control the interactive 3-D rotation mode of a figure in the GUI.
+</p>
+<p>Given the option <code class="code">&quot;on&quot;</code> or <code class="code">&quot;off&quot;</code>, set the interactive
+rotate mode on or off.
+</p>
+<p>With no arguments, toggle the current rotate mode on or off.
+</p>
+<p>If the first argument <var class="var">hfig</var> is a figure, then operate on the given
+figure rather than the current figure as returned by <code class="code">gcf</code>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFpan">pan</a>, <a class="ref" href="#XREFzoom">zoom</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFzoom"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-zoom"><span><strong class="def-name">zoom</strong><a class="copiable-link" href="#index-zoom"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-zoom-1"><span><strong class="def-name">zoom</strong> <code class="def-code-arguments">(<var class="var">factor</var>)</code><a class="copiable-link" href="#index-zoom-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-zoom-2"><span><strong class="def-name">zoom</strong> <code class="def-code-arguments">on</code><a class="copiable-link" href="#index-zoom-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-zoom-3"><span><strong class="def-name">zoom</strong> <code class="def-code-arguments">off</code><a class="copiable-link" href="#index-zoom-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-zoom-4"><span><strong class="def-name">zoom</strong> <code class="def-code-arguments">xon</code><a class="copiable-link" href="#index-zoom-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-zoom-5"><span><strong class="def-name">zoom</strong> <code class="def-code-arguments">yon</code><a class="copiable-link" href="#index-zoom-5"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-zoom-6"><span><strong class="def-name">zoom</strong> <code class="def-code-arguments">out</code><a class="copiable-link" href="#index-zoom-6"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-zoom-7"><span><strong class="def-name">zoom</strong> <code class="def-code-arguments">reset</code><a class="copiable-link" href="#index-zoom-7"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-zoom-8"><span><strong class="def-name">zoom</strong> <code class="def-code-arguments">(<var class="var">hfig</var>, <var class="var">option</var>)</code><a class="copiable-link" href="#index-zoom-8"> &para;</a></span></dt>
+<dd><p>Zoom the current axes object or control the interactive zoom mode of a
+figure in the GUI.
+</p>
+<p>Given a numeric argument greater than zero, zoom by the given factor.  If
+the zoom factor is greater than one, zoom in on the plot.  If the factor
+is less than one, zoom out.  If the zoom factor is a two- or three-element
+vector, then the elements specify the zoom factors for the x, y, and z
+axes respectively.
+</p>
+<p>Given the option <code class="code">&quot;on&quot;</code> or <code class="code">&quot;off&quot;</code>, set the interactive zoom
+mode on or off.
+</p>
+<p>With no arguments, toggle the current zoom mode on or off.
+</p>
+<p>Given the option <code class="code">&quot;xon&quot;</code> or <code class="code">&quot;yon&quot;</code>, enable zoom mode for the
+x or y-axis only.
+</p>
+<p>Given the option <code class="code">&quot;out&quot;</code>, zoom to the initial zoom setting.
+</p>
+<p>Given the option <code class="code">&quot;reset&quot;</code>, store the current zoom setting so that
+<code class="code">zoom out</code> will return to this zoom level.
+</p>
+<p>If the first argument <var class="var">hfig</var> is a figure, then operate on the given
+figure rather than the current figure as returned by <code class="code">gcf</code>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFpan">pan</a>, <a class="ref" href="#XREFrotate3d">rotate3d</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Manipulation-of-Plot-Windows.html">Manipulation of Plot Windows</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Multiple-Plot-Windows.html">Multiple Plot Windows</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="High_002dLevel-Plotting.html">High-Level Plotting</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

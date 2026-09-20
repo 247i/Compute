@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Executable Octave Programs (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Executable Octave Programs (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Executable Octave Programs (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Getting-Started.html" rel="up" title="Getting Started">
+<link href="Comments-in-Octave-Programs.html" rel="next" title="Comments in Octave Programs">
+<link href="How-Octave-Reports-Errors.html" rel="prev" title="How Octave Reports Errors">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Executable-Octave-Programs">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Comments-in-Octave-Programs.html" accesskey="n" rel="next">Comments in Octave Programs</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="How-Octave-Reports-Errors.html" accesskey="p" rel="prev">How Octave Reports Errors</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Getting-Started.html" accesskey="u" rel="up">Getting Started</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Executable-Octave-Programs-1"><span>2.6 Executable Octave Programs<a class="copiable-link" href="#Executable-Octave-Programs-1"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-executable-scripts"></a>
+<a class="index-entry-id" id="index-scripts"></a>
+<a class="index-entry-id" id="index-batch-processing"></a>
+<a class="index-entry-id" id="index-self-contained-programs"></a>
+<a class="index-entry-id" id="index-program_002c-self-contained"></a>
+
+<a class="index-entry-id" id="index-_0023_0021-self_002dcontained-script"></a>
+<p>Once you have learned Octave, you may want to write self-contained
+Octave scripts, using the &lsquo;<samp class="samp">#!</samp>&rsquo; script mechanism.  You can do this
+on GNU systems and on many Unix systems <a class="footnote" id="DOCF1" href="#FOOT1"><sup>1</sup></a>.
+</p>
+<p>Self-contained Octave scripts are useful when you want to write a
+program which users can invoke without knowing that the program is
+written in the Octave language.  Octave scripts are also used for batch
+processing of data files.  Once an algorithm has been developed and tested
+in the interactive portion of Octave, it can be committed to an executable
+script and used again and again on new data files.
+</p>
+<p>As a trivial example of an executable Octave script, you might create a
+text file named <samp class="file">hello</samp>, containing the following lines:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">#! <var class="var">octave-interpreter-name</var> -qf
+# a sample Octave program
+printf (&quot;Hello, world!\n&quot;);
+</pre></div></div>
+
+<p>(where <var class="var">octave-interpreter-name</var> should be replaced with the full
+path and name of your Octave binary).  Note that this will only work if
+&lsquo;<samp class="samp">#!</samp>&rsquo; appears at the very beginning of the file.  After making the
+file executable (with the <code class="code">chmod</code> command on Unix systems), you can
+simply type:
+</p>
+<div class="example">
+<pre class="example-preformatted">hello
+</pre></div>
+
+<p>at the shell, and the system will arrange to run Octave as if you had
+typed:
+</p>
+<div class="example">
+<pre class="example-preformatted">octave hello
+</pre></div>
+
+<p>The line beginning with &lsquo;<samp class="samp">#!</samp>&rsquo; lists the full path and filename of an
+interpreter to be run, and an optional initial command line argument to
+pass to that interpreter.  The operating system then runs the
+interpreter with the given argument and the full argument list of the
+executed program.  The first argument in the list is the full filename
+of the Octave executable.  The rest of the argument list will either be
+options to Octave, or data files, or both.  The &lsquo;<samp class="samp">-qf</samp>&rsquo; options are
+usually specified in stand-alone Octave programs to prevent them from
+printing the normal startup message, and to keep them from behaving
+differently depending on the contents of a particular user&rsquo;s
+<samp class="file">~/.octaverc</samp> file.  See <a class="xref" href="Invoking-Octave-from-the-Command-Line.html">Invoking Octave from the Command Line</a>.
+</p>
+<p>Note that some operating systems may place a limit on the number of
+characters that are recognized after &lsquo;<samp class="samp">#!</samp>&rsquo;.  Also, the arguments
+appearing in a &lsquo;<samp class="samp">#!</samp>&rsquo; line are parsed differently by various
+shells/systems.  The majority of them group all the arguments together in one
+string and pass it to the interpreter as a single argument.  In this case, the
+following script:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">#! <var class="var">octave-interpreter-name</var> -q -f # comment
+</pre></div></div>
+
+<p>is equivalent to typing at the command line:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">octave &quot;-q -f # comment&quot;
+</pre></div></div>
+
+<p>which will produce an error message.  Unfortunately, it is
+not possible for Octave to determine whether it has been called from the
+command line or from a &lsquo;<samp class="samp">#!</samp>&rsquo; script, so some care is needed when using the
+&lsquo;<samp class="samp">#!</samp>&rsquo; mechanism.
+</p>
+
+<ul class="mini-toc">
+<li><a href="Passing-Arguments-to-Executable-Scripts.html" accesskey="1">Passing Arguments to Executable Scripts</a></li>
+<li><a href="Dual_002dPurpose-Executable-Scripts-and-Octave-Functions.html" accesskey="2">Dual-Purpose Executable Scripts and Octave Functions</a></li>
+</ul>
+</div>
+<div class="footnotes-segment">
+<hr>
+<h4 class="footnotes-heading">Footnotes</h4>
+
+<h5 class="footnote-body-heading"><a id="FOOT1" href="#DOCF1">(1)</a></h5>
+<p>The &lsquo;<samp class="samp">#!</samp>&rsquo;
+mechanism works on Unix systems derived from Berkeley Unix, System V
+Release 4, and some System V Release 3 systems.</p>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Comments-in-Octave-Programs.html">Comments in Octave Programs</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="How-Octave-Reports-Errors.html">How Octave Reports Errors</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Getting-Started.html">Getting Started</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

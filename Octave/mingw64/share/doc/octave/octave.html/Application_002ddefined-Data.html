@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Application-defined Data (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Application-defined Data (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Application-defined Data (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Advanced-Plotting.html" rel="up" title="Advanced Plotting">
+<link href="Object-Groups.html" rel="next" title="Object Groups">
+<link href="Callbacks.html" rel="prev" title="Callbacks">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Application_002ddefined-Data">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Object-Groups.html" accesskey="n" rel="next">Object Groups</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Callbacks.html" accesskey="p" rel="prev">Callbacks</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Advanced-Plotting.html" accesskey="u" rel="up">Advanced Plotting</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Application_002ddefined-Data-1"><span>15.4.5 Application-defined Data<a class="copiable-link" href="#Application_002ddefined-Data-1"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-application_002ddefined-data"></a>
+
+<p>Octave has a provision for attaching application-defined data to a graphics
+handle.  The data can be anything which is meaningful to the application, and
+will be completely ignored by Octave.
+</p>
+<a class="anchor" id="XREFsetappdata"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-setappdata"><span><strong class="def-name">setappdata</strong> <code class="def-code-arguments">(<var class="var">h</var>, <var class="var">name</var>, <var class="var">value</var>)</code><a class="copiable-link" href="#index-setappdata"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-setappdata-1"><span><strong class="def-name">setappdata</strong> <code class="def-code-arguments">(<var class="var">h</var>, <var class="var">name1</var>, <var class="var">value1</var>, <var class="var">name2</var>, <var class="var">value2</var>, &hellip;)</code><a class="copiable-link" href="#index-setappdata-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-setappdata-2"><span><strong class="def-name">setappdata</strong> <code class="def-code-arguments">(<var class="var">h</var>, {<var class="var">name1</var>, <var class="var">name2</var>, &hellip;}, {<var class="var">value1</var>, <var class="var">value2</var>, &hellip;})</code><a class="copiable-link" href="#index-setappdata-2"> &para;</a></span></dt>
+<dd><p>Set the application data <var class="var">name</var> to <var class="var">value</var> for the graphics object
+with handle <var class="var">h</var>.
+</p>
+<p><var class="var">h</var> may also be a vector of graphics handles.  If the application data
+with the specified <var class="var">name</var> does not exist, it is created.
+</p>
+<p>Multiple <var class="var">name</var>/<var class="var">value</var> pairs can be specified.  Alternatively, a
+cell array of <var class="var">names</var> and a corresponding cell array of <var class="var">values</var> can
+be specified.  For details on obtaining a list of valid application data
+properties, see <a class="pxref" href="#XREFgetappdata"><code class="code">getappdata</code></a>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFgetappdata">getappdata</a>, <a class="ref" href="#XREFisappdata">isappdata</a>, <a class="ref" href="#XREFrmappdata">rmappdata</a>, <a class="ref" href="GUI-Utility-Functions.html#XREFguidata">guidata</a>, <a class="ref" href="Handle-Functions.html#XREFget">get</a>, <a class="ref" href="Handle-Functions.html#XREFset">set</a>, <a class="ref" href="User_002dDefined-Preferences.html#XREFgetpref">getpref</a>, <a class="ref" href="User_002dDefined-Preferences.html#XREFsetpref">setpref</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFgetappdata"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-getappdata"><span><code class="def-type"><var class="var">value</var> =</code> <strong class="def-name">getappdata</strong> <code class="def-code-arguments">(<var class="var">h</var>, <var class="var">name</var>)</code><a class="copiable-link" href="#index-getappdata"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-getappdata-1"><span><code class="def-type"><var class="var">appdata</var> =</code> <strong class="def-name">getappdata</strong> <code class="def-code-arguments">(<var class="var">h</var>)</code><a class="copiable-link" href="#index-getappdata-1"> &para;</a></span></dt>
+<dd><p>Return the <var class="var">value</var> of the application data <var class="var">name</var> for the graphics
+object with handle <var class="var">h</var>.
+</p>
+<p><var class="var">h</var> may also be a vector of graphics handles.  If no second argument
+<var class="var">name</var> is given then <code class="code">getappdata</code> returns a structure,
+<var class="var">appdata</var>, whose fields correspond to the appdata properties.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFsetappdata">setappdata</a>, <a class="ref" href="#XREFisappdata">isappdata</a>, <a class="ref" href="#XREFrmappdata">rmappdata</a>, <a class="ref" href="GUI-Utility-Functions.html#XREFguidata">guidata</a>, <a class="ref" href="Handle-Functions.html#XREFget">get</a>, <a class="ref" href="Handle-Functions.html#XREFset">set</a>, <a class="ref" href="User_002dDefined-Preferences.html#XREFgetpref">getpref</a>, <a class="ref" href="User_002dDefined-Preferences.html#XREFsetpref">setpref</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFrmappdata"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-rmappdata"><span><strong class="def-name">rmappdata</strong> <code class="def-code-arguments">(<var class="var">h</var>, <var class="var">name</var>)</code><a class="copiable-link" href="#index-rmappdata"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rmappdata-1"><span><strong class="def-name">rmappdata</strong> <code class="def-code-arguments">(<var class="var">h</var>, <var class="var">name1</var>, <var class="var">name2</var>, &hellip;)</code><a class="copiable-link" href="#index-rmappdata-1"> &para;</a></span></dt>
+<dd><p>Delete the application data <var class="var">name</var> from the graphics object with handle
+<var class="var">h</var>.
+</p>
+<p><var class="var">h</var> may also be a vector of graphics handles.  Multiple application data
+names may be supplied to delete several properties at once.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFsetappdata">setappdata</a>, <a class="ref" href="#XREFgetappdata">getappdata</a>, <a class="ref" href="#XREFisappdata">isappdata</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFisappdata"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-isappdata"><span><code class="def-type"><var class="var">valid</var> =</code> <strong class="def-name">isappdata</strong> <code class="def-code-arguments">(<var class="var">h</var>, <var class="var">name</var>)</code><a class="copiable-link" href="#index-isappdata"> &para;</a></span></dt>
+<dd><p>Return true if the named application data, <var class="var">name</var>, exists for the
+graphics object with handle <var class="var">h</var>.
+</p>
+<p><var class="var">h</var> may also be a vector of graphics handles.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFgetappdata">getappdata</a>, <a class="ref" href="#XREFsetappdata">setappdata</a>, <a class="ref" href="#XREFrmappdata">rmappdata</a>, <a class="ref" href="GUI-Utility-Functions.html#XREFguidata">guidata</a>, <a class="ref" href="Handle-Functions.html#XREFget">get</a>, <a class="ref" href="Handle-Functions.html#XREFset">set</a>, <a class="ref" href="User_002dDefined-Preferences.html#XREFgetpref">getpref</a>, <a class="ref" href="User_002dDefined-Preferences.html#XREFsetpref">setpref</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Object-Groups.html">Object Groups</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Callbacks.html">Callbacks</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Advanced-Plotting.html">Advanced Plotting</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

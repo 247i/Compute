@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Command Line Editing (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Command Line Editing (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Command Line Editing (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Getting-Started.html" rel="up" title="Getting Started">
+<link href="How-Octave-Reports-Errors.html" rel="next" title="How Octave Reports Errors">
+<link href="Getting-Help.html" rel="prev" title="Getting Help">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+kbd.kbd {font-style: oblique}
+kbd.key {font-style: normal}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Command-Line-Editing">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="How-Octave-Reports-Errors.html" accesskey="n" rel="next">How Octave Reports Errors</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Getting-Help.html" accesskey="p" rel="prev">Commands for Getting Help</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Getting-Started.html" accesskey="u" rel="up">Getting Started</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Command-Line-Editing-1"><span>2.4 Command Line Editing<a class="copiable-link" href="#Command-Line-Editing-1"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-command_002dline-editing"></a>
+<a class="index-entry-id" id="index-editing-the-command-line"></a>
+
+<p>Octave uses the GNU Readline library to provide an extensive set of
+command-line editing and history features.  Only the most common
+features are described in this manual.  In addition, all of the editing
+functions can be bound to different key strokes at the user&rsquo;s discretion.
+This manual assumes no changes from the default Emacs bindings.  See the GNU
+Readline Library manual for more information on customizing Readline and
+for a complete feature list.
+</p>
+<p>To insert printing characters (letters, digits, symbols, etc.), simply
+type the character.  Octave will insert the character at the cursor and
+advance the cursor forward.
+</p>
+<p>Many of the command-line editing functions operate using control
+characters.  For example, the character <kbd class="kbd">Control-a</kbd> moves the cursor
+to the beginning of the line.  To type <kbd class="kbd">C-a</kbd>, hold down <kbd class="key">CTRL</kbd>
+and then press <kbd class="key">a</kbd>.  In the following sections, control characters
+such as <kbd class="kbd">Control-a</kbd> are written as <kbd class="kbd">C-a</kbd>.
+</p>
+<p>Another set of command-line editing functions use Meta characters.  To
+type <kbd class="kbd">M-u</kbd>, hold down the <kbd class="key">META</kbd> key and press <kbd class="key">u</kbd>.  Depending
+on the keyboard, the <kbd class="key">META</kbd> key may be labeled <kbd class="key">ALT</kbd> or
+even <kbd class="key">WINDOWS</kbd>.  If your terminal does not have a <kbd class="key">META</kbd> key, you
+can still type Meta characters using two-character sequences starting
+with <kbd class="kbd">ESC</kbd>.  Thus, to enter <kbd class="kbd">M-u</kbd>, you would type
+<kbd class="key">ESC</kbd> <kbd class="key">u</kbd>.  The <kbd class="kbd">ESC</kbd> character sequences are also allowed on
+terminals with real Meta keys.  In the following sections, Meta
+characters such as <kbd class="kbd">Meta-u</kbd> are written as <kbd class="kbd">M-u</kbd>.
+</p>
+
+
+<ul class="mini-toc">
+<li><a href="Cursor-Motion.html" accesskey="1">Cursor Motion</a></li>
+<li><a href="Killing-and-Yanking.html" accesskey="2">Killing and Yanking</a></li>
+<li><a href="Commands-for-Changing-Text.html" accesskey="3">Commands for Changing Text</a></li>
+<li><a href="Commands-for-Completion.html" accesskey="4">Commands for Completion</a></li>
+<li><a href="Commands-for-Manipulating-the-History.html" accesskey="5">Commands for Manipulating the History</a></li>
+<li><a href="Customizing-readline.html" accesskey="6">Customizing <code class="code">readline</code></a></li>
+<li><a href="Customizing-the-Prompt.html" accesskey="7">Customizing the Prompt</a></li>
+<li><a href="Diary-and-Echo-Commands.html" accesskey="8">Diary and Echo Commands</a></li>
+</ul>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="How-Octave-Reports-Errors.html">How Octave Reports Errors</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Getting-Help.html">Commands for Getting Help</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Getting-Started.html">Getting Started</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

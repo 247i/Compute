@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- General documentation for the parallel package for Octave.
+
+Copyright (C) 2016-2023 Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>precv (parallel_doc)</title>
+
+<meta name="description" content="precv (parallel_doc)">
+<meta name="keywords" content="precv (parallel_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Cluster-execution.html" rel="up" title="Cluster execution">
+<link href="reval.html" rel="next" title="reval">
+<link href="psend.html" rel="prev" title="psend">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<span id="precv"></span><div class="header">
+<p>
+Next: <a href="reval.html" accesskey="n" rel="next">reval</a>, Previous: <a href="psend.html" accesskey="p" rel="prev">psend</a>, Up: <a href="Cluster-execution.html" accesskey="u" rel="up">Cluster execution</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Receiving-Octave-variables"></span><h3 class="section">3.13 Receiving Octave variables</h3>
+<span id="index-precv-1"></span>
+
+<span id="XREFprecv"></span><dl>
+<dt id="index-precv">Loadable Function: <em></em> <strong>precv</strong> <em>(<var>single_connection</var>)</em></dt>
+<dd><p>Receive a data value from the parallel cluster machine specified by <var>single_connection</var>.
+</p>
+<p>This function can be called both at the client machine and (with
+<code>reval</code>) at a server machine. <var>single_connection</var> must be a
+single connection obtained by indexing the <var>connections</var>
+variable. Please see <code>pconnect</code> for a description of the
+<var>connections</var> variable, and <code>pserver</code> for a description of
+this variable (named <code>sockets</code>) at the server side. If
+<var>single_connection</var> corresponds to the machine at which
+<code>precv</code> was called, an error is thrown.
+</p>
+<p>The value received with <code>precv</code> must be sent with <code>psend</code>
+from another machine of the cluster. Note that data can be transferred
+this way between each pair of machines, even sent by a server and
+received by a different server.
+</p>
+<p>If <code>precv</code> is called at the client machine, a corresponding
+<code>psend</code> should have been called before at the source machine,
+otherwise the client will hang.
+</p>
+
+<p><strong>See also:</strong> <a href="pconnect.html#XREFpconnect">pconnect</a>, <a href="pserver.html#XREFpserver">pserver</a>, <a href="reval.html#XREFreval">reval</a>, <a href="psend.html#XREFpsend">psend</a>, <a href="sclose.html#XREFsclose">sclose</a>, <a href="Authentication.html#XREFparallel_005fgenerate_005fsrp_005fdata">parallel_generate_srp_data</a>, <a href="select_005fsockets.html#XREFselect_005fsockets">select_sockets</a>.
+</p></dd></dl>
+
+
+
+
+
+
+
+</body>
+</html>

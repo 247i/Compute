@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Obtaining the Dependencies Automatically (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Obtaining the Dependencies Automatically (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Obtaining the Dependencies Automatically (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Build-Dependencies.html" rel="up" title="Build Dependencies">
+<link href="Build-Tools.html" rel="next" title="Build Tools">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Obtaining-the-Dependencies-Automatically">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Build-Tools.html" accesskey="n" rel="next">Build Tools</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Build-Dependencies.html" accesskey="u" rel="up">Build Dependencies</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Obtaining-the-Dependencies-Automatically-1"><span>E.1.1 Obtaining the Dependencies Automatically<a class="copiable-link" href="#Obtaining-the-Dependencies-Automatically-1"> &para;</a></span></h4>
+
+<p>On some systems you can obtain many of Octave&rsquo;s build dependencies
+automatically.  The commands for doing this vary by system.  Similarly, the
+names of pre-compiled packages vary by system and do not always match exactly
+the names listed in <a class="ref" href="Build-Tools.html">Build Tools</a> and <a class="ref" href="External-Packages.html">External Packages</a>.
+</p>
+<p>You will usually need the development version of an external dependency
+so that you get the libraries and header files for building software,
+not just for running already compiled programs.  These packages
+typically have names that end with the suffix <code class="code">-dev</code> or <code class="code">-devel</code>.
+</p>
+<p>On systems with <code class="code">apt-get</code> (Debian, Ubuntu, etc.), you may be able
+to install most of the tools and external packages using a command
+similar to
+</p>
+<div class="example">
+<pre class="example-preformatted">apt-get build-dep octave
+</pre></div>
+
+<p>The specific package name may be <code class="code">octave3.2</code> or <code class="code">octave3.4</code>.
+The set of required tools and external dependencies does not change
+frequently, so it is not important that the version match exactly, but
+you should use the most recent one available.
+</p>
+<p>On systems with <code class="code">yum</code> (Fedora, Red Hat, etc.), you may be able to
+install most of the tools and external packages using a command similar to
+</p>
+<div class="example">
+<pre class="example-preformatted">yum-builddep octave
+</pre></div>
+
+<p>The <code class="code">yum-builddep</code> utility is part of the <code class="code">yum-utils</code> package.
+</p>
+<p>For either type of system, the package name may include a version
+number.  The set of required tools and external dependencies does not
+change frequently, so it is not important that the version exactly match
+the version you are installing, but you should use the most recent one
+available.
+</p>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Build-Tools.html">Build Tools</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Build-Dependencies.html">Build Dependencies</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

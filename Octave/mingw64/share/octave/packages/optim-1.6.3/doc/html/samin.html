@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- Additional documentation for the optim package for Octave.
+
+Copyright © Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<title>samin (optim_doc)</title>
+
+<meta name="description" content="samin (optim_doc)">
+<meta name="keywords" content="samin (optim_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Scalar-optimization.html" rel="up" title="Scalar optimization">
+<link href="d2_005fmin.html" rel="next" title="d2_min">
+<link href="siman.html" rel="prev" title="siman">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section-level-extent" id="samin">
+<div class="nav-panel">
+<p>
+Next: <a href="d2_005fmin.html" accesskey="n" rel="next">Unconstrained Newton-like optimization</a>, Previous: <a href="siman.html" accesskey="p" rel="prev">Simulated annealing backend siman of scalar optimization</a>, Up: <a href="Scalar-optimization.html" accesskey="u" rel="up">Functions for optimization of a scalar objective function</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h3 class="section" id="Simulated-annealing-backend-samin-of-scalar-optimization"><span>1.5 Simulated annealing backend samin of scalar optimization<a class="copiable-link" href="#Simulated-annealing-backend-samin-of-scalar-optimization"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-samin"></a>
+
+<p>A simulated annealing (stochastic) optimizer, changing each parameter
+separately, so not suitable for non-bound constraints. Requires
+specification of lower and upper bounds for each parameter and attempts
+to scan the whole region so defined.
+</p>
+<p>No gradient or hessian of the objective function is used. The settings
+<code class="code">fract_prec</code> and <code class="code">max_fract_change</code> are not honoured.
+</p>
+<p>Maximal stepwidth is continuously adjusted according to the ratio of
+accepted steps. Temperature is increased at the start until accepted
+steps cover the whole parameter range, if this is not the case at the
+initial temperature.
+</p>
+<p>Accepts the additional settings <code class="code">T_init</code> (initial temperature,
+default 0.1), <code class="code">mu_T</code> (factor of temperature decrease, default 1.2),
+<code class="code">iters_fixed_T</code> (subiterations within one temperature step, default
+100), <code class="code">iters_adjust_step</code> (number of subiterations after which
+maximal stepwidth is adjusted, default 5), <code class="code">niter_check_tolfun</code>
+(number of iterations to compare with if checking the value of the
+objective function for convergence, default 5), <code class="code">trace_steps</code> (set
+field <code class="code">trace</code> of <var class="var">outp</var> with a matrix with a row for each step,
+first column iteration number, second column repeat number within
+iteration, third column value of objective function, fourth column
+temperature, rest columns parameter values, default <code class="code">false</code>), and
+<code class="code">siman_log</code> (set field <code class="code">log</code> of <var class="var">outp</var> with a matrix with
+a row for each iteration, first column temperature, second column value
+of objective function, rest columns numbers of tries with decrease, no
+decrease but accepted, no decrease and rejected, steps corrected back
+into bounds, and steps yielding a new best value of the objective
+function).
+</p>
+<p>Steps with increase <code class="code">diff</code> of objective function are accepted if
+<code class="code">rand (1) &lt; exp (- diff / T)</code>, where <code class="code">T</code> is the temperature of
+the current iteration.
+</p>
+<p>If converged, the returned value of <var class="var">cvg</var> will be <code class="code">1</code>, if
+<code class="code">MaxIters</code> is exceeded before convergence, <var class="var">cvg</var> will be
+<code class="code">0</code>. The returned structure <var class="var">outp</var>, additionally to the
+possible fields <code class="code">trace</code> and <code class="code">log</code> described above, will have
+the fields <code class="code">niter</code> and <code class="code">user_interaction</code>.
+</p>
+<p>Interpretation of <code class="code">Display</code>: if set to <code class="code">&quot;iter&quot;</code>, 
+informational text is printed after each iteration and at the end of
+optimization. If set to <code class="code">&quot;final&quot;</code>, informational text is printed
+only at the end of optimization.
+</p>
+<p>No parallel execution is performed in this backend.
+</p>
+<p>Options <code class="code">save_state</code> and <code class="code">recover_state</code> are not honoured.
+</p>
+
+</div>
+<hr>
+<div class="nav-panel">
+<p>
+Next: <a href="d2_005fmin.html">Unconstrained Newton-like optimization</a>, Previous: <a href="siman.html">Simulated annealing backend siman of scalar optimization</a>, Up: <a href="Scalar-optimization.html">Functions for optimization of a scalar objective function</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

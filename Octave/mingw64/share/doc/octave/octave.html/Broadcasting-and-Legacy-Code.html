@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Broadcasting and Legacy Code (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Broadcasting and Legacy Code (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Broadcasting and Legacy Code (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Broadcasting.html" rel="up" title="Broadcasting">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Broadcasting-and-Legacy-Code">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Broadcasting.html" accesskey="u" rel="up">Broadcasting</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Broadcasting-and-Legacy-Code-1"><span>19.2.1 Broadcasting and Legacy Code<a class="copiable-link" href="#Broadcasting-and-Legacy-Code-1"> &para;</a></span></h4>
+
+<p>The new broadcasting semantics almost never affect code that worked
+in previous versions of Octave.  Consequently, all code inherited from
+<small class="sc">MATLAB</small> that worked in previous versions of Octave should still work
+without change in Octave.  The only exception is code such as
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">try
+  c = a.*b;
+catch
+  c = a.*a;
+end_try_catch
+</pre></div></div>
+
+<p>that may have relied on matrices of different size producing an error.
+Because such operation is now valid Octave syntax, this will no longer
+produce an error.  Instead, the following code should be used:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">if (isequal (size (a), size (b)))
+  c = a .* b;
+else
+  c = a .* a;
+endif
+</pre></div></div>
+
+
+</div>
+
+
+
+</body>
+</html>

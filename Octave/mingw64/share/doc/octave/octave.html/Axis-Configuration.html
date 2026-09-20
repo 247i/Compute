@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Axis Configuration (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Axis Configuration (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Axis Configuration (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Two_002dDimensional-Plots.html" rel="up" title="Two-Dimensional Plots">
+<link href="Two_002ddimensional-Function-Plotting.html" rel="next" title="Two-dimensional Function Plotting">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsubsection-level-extent" id="Axis-Configuration">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Two_002ddimensional-Function-Plotting.html" accesskey="n" rel="next">Two-dimensional Function Plotting</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Two_002dDimensional-Plots.html" accesskey="u" rel="up">Two-Dimensional Plots</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsubsection" id="Axis-Configuration-1"><span>15.2.1.1 Axis Configuration<a class="copiable-link" href="#Axis-Configuration-1"> &para;</a></span></h4>
+
+<p>The axis function may be used to change the axis limits of an existing
+plot and various other axis properties, such as the aspect ratio and the
+appearance of tic marks.  By default, high level plotting functions such as
+<code class="code">plot</code> reset axes properties.  Any customization of properties, for
+example by calling <code class="code">axis</code>, <code class="code">xlim</code>, etc., should happen after the plot
+is done or, alternatively, after calling the <a class="ref" href="Manipulation-of-Plot-Windows.html#XREFhold">hold function</a>.
+</p>
+<a class="anchor" id="XREFaxis"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-axis"><span><strong class="def-name">axis</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-axis"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-axis-1"><span><strong class="def-name">axis</strong> <code class="def-code-arguments">([<var class="var">x_lo</var> <var class="var">x_hi</var>])</code><a class="copiable-link" href="#index-axis-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-axis-2"><span><strong class="def-name">axis</strong> <code class="def-code-arguments">([<var class="var">x_lo</var> <var class="var">x_hi</var> <var class="var">y_lo</var> <var class="var">y_hi</var>])</code><a class="copiable-link" href="#index-axis-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-axis-3"><span><strong class="def-name">axis</strong> <code class="def-code-arguments">([<var class="var">x_lo</var> <var class="var">x_hi</var> <var class="var">y_lo</var> <var class="var">y_hi</var> <var class="var">z_lo</var> <var class="var">z_hi</var>])</code><a class="copiable-link" href="#index-axis-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-axis-4"><span><strong class="def-name">axis</strong> <code class="def-code-arguments">([<var class="var">x_lo</var> <var class="var">x_hi</var> <var class="var">y_lo</var> <var class="var">y_hi</var> <var class="var">z_lo</var> <var class="var">z_hi</var> <var class="var">c_lo</var> <var class="var">c_hi</var>])</code><a class="copiable-link" href="#index-axis-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-axis-5"><span><strong class="def-name">axis</strong> <code class="def-code-arguments">(<var class="var">option</var>)</code><a class="copiable-link" href="#index-axis-5"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-axis-6"><span><strong class="def-name">axis</strong> <code class="def-code-arguments">(<var class="var">option1</var>, <var class="var">option2</var>, &hellip;)</code><a class="copiable-link" href="#index-axis-6"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-axis-7"><span><strong class="def-name">axis</strong> <code class="def-code-arguments">(<var class="var">hax</var>, &hellip;)</code><a class="copiable-link" href="#index-axis-7"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-axis-8"><span><code class="def-type"><var class="var">limits</var> =</code> <strong class="def-name">axis</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-axis-8"> &para;</a></span></dt>
+<dd><p>Set axis limits and appearance.
+</p>
+<p>The argument <var class="var">limits</var> should be a 2-, 4-, 6-, or 8-element vector.  The
+first and second elements specify the lower and upper limits for the
+x-axis.  The third and fourth specify the limits for the y-axis, the fifth
+and sixth specify the limits for the z-axis, and the seventh and eighth
+specify the limits for the color axis.  The special values <code class="code">-Inf</code> and
+<code class="code">Inf</code> may be used to indicate that the limit should be automatically
+computed based on the data in the axes.
+</p>
+<p>Without any arguments, <code class="code">axis</code> turns autoscaling on.
+</p>
+<p>With one output argument, <code class="code"><var class="var">limits</var> = axis</code> returns the current
+axis limits.
+</p>
+<p>The vector argument specifying limits is optional, and additional string
+arguments may be used to specify various axis properties.
+</p>
+<p>The following options control the aspect ratio of the axes.
+</p>
+<dl class="table">
+<dt><code class="code">&quot;equal&quot;</code></dt>
+<dd><p>Force x-axis unit distance to equal y-axis (and z-axis) unit distance.
+</p>
+</dd>
+<dt><code class="code">&quot;square&quot;</code></dt>
+<dd><p>Force a square axis aspect ratio.
+</p>
+</dd>
+<dt><code class="code">&quot;vis3d&quot;</code></dt>
+<dd><p>Set aspect ratio modes (<code class="code">&quot;DataAspectRatio&quot;</code>,
+<code class="code">&quot;PlotBoxAspectRatio&quot;</code>) to <code class="code">&quot;manual&quot;</code> for rotation without
+stretching.
+</p>
+</dd>
+<dt><code class="code">&quot;normal&quot;</code></dt>
+<dt><code class="code">&quot;fill&quot;</code></dt>
+<dd><p>Restore default automatically computed aspect ratios.
+</p></dd>
+</dl>
+
+<p>The following options control the way axis limits are interpreted.
+</p>
+<dl class="table">
+<dt><code class="code">&quot;auto&quot;</code></dt>
+<dt><code class="code">&quot;auto[xyz]&quot;</code></dt>
+<dt><code class="code">&quot;auto [xyz]&quot;</code></dt>
+<dd><p>Set nice auto-computed limits around the data for all axes, or only
+the specified axes.
+</p>
+</dd>
+<dt><code class="code">&quot;manual&quot;</code></dt>
+<dd><p>Fix the current axes limits.
+</p>
+</dd>
+<dt><code class="code">&quot;tickaligned&quot;</code></dt>
+<dd><p>Fix axes to the limits of the closest ticks.
+</p>
+</dd>
+<dt><code class="code">&quot;tight&quot;</code></dt>
+<dd><p>Fix axes to the limits of the data.
+</p>
+</dd>
+<dt><code class="code">&quot;padded&quot;</code></dt>
+<dd><p>Fix axes to the limits of the data plus margins of about 7% of the
+data extent.
+</p>
+</dd>
+<dt><code class="code">&quot;image&quot;</code></dt>
+<dd><p>Equivalent to <code class="code">&quot;tight&quot;</code> and <code class="code">&quot;equal&quot;</code>.
+</p>
+</dd>
+</dl>
+
+<p>The following options affect the appearance of tick marks.
+</p>
+<dl class="table">
+<dt><code class="code">&quot;tic&quot;</code></dt>
+<dt><code class="code">&quot;tic[xyz]&quot;</code></dt>
+<dt><code class="code">&quot;tic [xyz]&quot;</code></dt>
+<dd><p>Turn tick marks on for all axes, or turn them on for the specified axes and
+off for the remainder.
+</p>
+</dd>
+<dt><code class="code">&quot;label&quot;</code></dt>
+<dt><code class="code">&quot;label[xyz]&quot;</code></dt>
+<dt><code class="code">&quot;label [xyz]&quot;</code></dt>
+<dd><p>Turn tick labels on for all axes, or turn them on for the specified axes
+and off for the remainder.
+</p>
+</dd>
+<dt><code class="code">&quot;nolabel&quot;</code></dt>
+<dd><p>Turn tick labels off for all axes.
+</p></dd>
+</dl>
+
+<p>The following options affect the direction of increasing values on the axes.
+</p>
+<dl class="table">
+<dt><code class="code">&quot;xy&quot;</code></dt>
+<dd><p>Default y-axis, larger values are near the top.
+</p>
+</dd>
+<dt><code class="code">&quot;ij&quot;</code></dt>
+<dd><p>Reverse y-axis, smaller values are near the top.
+</p></dd>
+</dl>
+
+<p>The following options affects the visibility of the axes.
+</p>
+<dl class="table">
+<dt><code class="code">&quot;on&quot;</code></dt>
+<dd><p>Make the axes visible.
+</p>
+</dd>
+<dt><code class="code">&quot;off&quot;</code></dt>
+<dd><p>Hide the axes.
+</p></dd>
+</dl>
+
+<p>If the first argument <var class="var">hax</var> is an axes handle, then operate on this
+axes rather than the current axes returned by <code class="code">gca</code>.
+</p>
+<p>Example 1: set X/Y limits and force a square aspect ratio
+</p>
+<div class="example">
+<pre class="example-preformatted">axis ([1, 2, 3, 4], &quot;square&quot;);
+</pre></div>
+
+<p>Example 2: enable tick marks on all axes,
+           enable tick mark labels only on the y-axis
+</p>
+<div class="example">
+<pre class="example-preformatted">axis (&quot;tic&quot;, &quot;labely&quot;);
+</pre></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFxlim">xlim</a>, <a class="ref" href="#XREFylim">ylim</a>, <a class="ref" href="#XREFzlim">zlim</a>, <a class="ref" href="#XREFclim">clim</a>, <a class="ref" href="Aspect-Ratio.html#XREFdaspect">daspect</a>, <a class="ref" href="Aspect-Ratio.html#XREFpbaspect">pbaspect</a>, <a class="ref" href="Plot-Annotations.html#XREFbox">box</a>, <a class="ref" href="Plot-Annotations.html#XREFgrid">grid</a>.
+</p></dd></dl>
+
+
+<p>Similarly the axis limits of the colormap can be changed with the <code class="code">clim</code>
+function.
+</p>
+<a class="anchor" id="XREFclim"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-clim"><span><strong class="def-name">clim</strong> <code class="def-code-arguments">([cmin cmax])</code><a class="copiable-link" href="#index-clim"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-clim-1"><span><strong class="def-name">clim</strong> <code class="def-code-arguments">(&quot;auto&quot;)</code><a class="copiable-link" href="#index-clim-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-clim-2"><span><strong class="def-name">clim</strong> <code class="def-code-arguments">(&quot;manual&quot;)</code><a class="copiable-link" href="#index-clim-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-clim-3"><span><strong class="def-name">clim</strong> <code class="def-code-arguments">(<var class="var">hax</var>, &hellip;)</code><a class="copiable-link" href="#index-clim-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-clim-4"><span><code class="def-type"><var class="var">limits</var> =</code> <strong class="def-name">clim</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-clim-4"> &para;</a></span></dt>
+<dd><p>Query or set color axis limits for plots.
+</p>
+<p>The limits argument should be a 2-element vector specifying the lower and
+upper limits to assign to the first and last value in the colormap.  Data
+values outside this range are clamped to the first and last colormap
+entries.
+</p>
+<p>If the <code class="code">&quot;auto&quot;</code> option is given then automatic colormap limits are
+applied.  The automatic algorithm sets <var class="var">cmin</var> to the minimum data value
+and <var class="var">cmax</var> to the maximum data value.  If <code class="code">&quot;manual&quot;</code> is specified
+then the <code class="code">&quot;climmode&quot;</code> property is set to <code class="code">&quot;manual&quot;</code> and the
+numeric values in the <code class="code">&quot;clim&quot;</code> property are used for limits.
+</p>
+<p>If the first argument <var class="var">hax</var> is an axes handle, then operate on
+this axes rather than the current axes returned by <code class="code">gca</code>.
+</p>
+<p>Called without arguments the current color axis limits are returned.
+</p>
+<p>Programming Note: The color axis affects the display of image, patch, and
+surface graphics objects, but <strong class="strong">only</strong> if the <code class="code">&quot;cdata&quot;</code> property
+has indexed data and the <code class="code">&quot;cdatamapping&quot;</code> property is set to
+<code class="code">&quot;scaled&quot;</code>.  Graphic objects with true color <code class="code">cdata</code>, or
+<code class="code">&quot;direct&quot;</code> <code class="code">cdatamapping</code> are not affected.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Representing-Images.html#XREFcolormap">colormap</a>, <a class="ref" href="#XREFaxis">axis</a>.
+</p></dd></dl>
+
+
+<p>The <code class="code">xlim</code>, <code class="code">ylim</code>, and <code class="code">zlim</code> functions may be used to
+get or set individual axis limits.  Each has the same form.
+</p>
+<a class="anchor" id="XREFxlim"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-xlim"><span><code class="def-type"><var class="var">xlimits</var> =</code> <strong class="def-name">xlim</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-xlim"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-xlim-1"><span><code class="def-type"><var class="var">xmode</var> =</code> <strong class="def-name">xlim</strong> <code class="def-code-arguments">(&quot;mode&quot;)</code><a class="copiable-link" href="#index-xlim-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-xlim-2"><span><code class="def-type"><var class="var">xmethod</var> =</code> <strong class="def-name">xlim</strong> <code class="def-code-arguments">(&quot;method&quot;)</code><a class="copiable-link" href="#index-xlim-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-xlim-3"><span><strong class="def-name">xlim</strong> <code class="def-code-arguments">([<var class="var">x_lo</var> <var class="var">x_hi</var>])</code><a class="copiable-link" href="#index-xlim-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-xlim-4"><span><strong class="def-name">xlim</strong> <code class="def-code-arguments">(&quot;mode&quot;)</code><a class="copiable-link" href="#index-xlim-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-xlim-5"><span><strong class="def-name">xlim</strong> <code class="def-code-arguments">(&quot;method&quot;)</code><a class="copiable-link" href="#index-xlim-5"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-xlim-6"><span><strong class="def-name">xlim</strong> <code class="def-code-arguments">(<var class="var">hax</var>, &hellip;)</code><a class="copiable-link" href="#index-xlim-6"> &para;</a></span></dt>
+<dd><p>Query or set the limits of the x-axis for the current plot.
+</p>
+<p>Called without arguments <code class="code">xlim</code> returns the x-axis limits of the
+current plot.
+</p>
+<p>With the input query <code class="code">&quot;mode&quot;</code>, return the current x-limit calculation
+mode which is either <code class="code">&quot;auto&quot;</code> or <code class="code">&quot;manual&quot;</code>.
+</p>
+<p>With the input query <code class="code">&quot;method&quot;</code>, return the current x-limit
+calculation method which is either <code class="code">&quot;tickaligned&quot;</code>, <code class="code">&quot;tight&quot;</code>,
+or <code class="code">&quot;padded&quot;</code>.
+</p>
+<p>If passed a 2-element vector [<var class="var">x_lo</var> <var class="var">x_hi</var>], the limits of the
+x-axis are set to these values and the mode is set to <code class="code">&quot;manual&quot;</code>.
+The special values -Inf and Inf can be used to indicate that either
+the lower axis limit or upper axis limit should be automatically calculated.
+</p>
+<p>The current limit calculation <code class="code">&quot;mode&quot;</code> may be one of
+</p>
+<dl class="table">
+<dt><code class="code">&quot;auto&quot;</code> (default)</dt>
+<dd><p>Automatically calculate limits based on the plot data and the currently
+specified limit calculation method.
+</p>
+</dd>
+<dt><code class="code">&quot;manual&quot;</code></dt>
+<dd><p>Fix axis limits at current values.
+</p></dd>
+</dl>
+
+<p>The current limit calculation method may be one of
+</p>
+<dl class="table">
+<dt><code class="code">&quot;tickaligned&quot;</code> (default)</dt>
+<dd><p>Calculate limits that encompass all of the data and extend outwards to the
+nearest tick mark.
+</p>
+</dd>
+<dt><code class="code">&quot;tight&quot;</code></dt>
+<dd><p>Calculate limits that exactly fit the data range.
+</p>
+</dd>
+<dt><code class="code">&quot;padded&quot;</code></dt>
+<dd><p>Calculate limits that leave a margin around the data of approximately 7% of
+the data range.
+</p></dd>
+</dl>
+
+<p>If the first argument <var class="var">hax</var> is an axes handle, then operate on
+this axes rather than the current axes returned by <code class="code">gca</code>.
+</p>
+<p>Programming Note: The <code class="code">xlim</code> function operates by modifying the
+<code class="code">&quot;xlim&quot;</code>, <code class="code">&quot;xlimmode&quot;</code>, and <code class="code">&quot;xlimitmethod&quot;</code> properties of
+an axes object.  These properties can be directly inspected and altered with
+<code class="code">get</code>/<code class="code">set</code>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFylim">ylim</a>, <a class="ref" href="#XREFzlim">zlim</a>, <a class="ref" href="#XREFaxis">axis</a>, <a class="ref" href="Handle-Functions.html#XREFset">set</a>, <a class="ref" href="Handle-Functions.html#XREFget">get</a>, <a class="ref" href="Handle-Functions.html#XREFgca">gca</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFylim"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-ylim"><span><code class="def-type"><var class="var">ylimits</var> =</code> <strong class="def-name">ylim</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-ylim"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ylim-1"><span><code class="def-type"><var class="var">ymode</var> =</code> <strong class="def-name">ylim</strong> <code class="def-code-arguments">(&quot;mode&quot;)</code><a class="copiable-link" href="#index-ylim-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ylim-2"><span><code class="def-type"><var class="var">ymethod</var> =</code> <strong class="def-name">ylim</strong> <code class="def-code-arguments">(&quot;method&quot;)</code><a class="copiable-link" href="#index-ylim-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ylim-3"><span><strong class="def-name">ylim</strong> <code class="def-code-arguments">([<var class="var">y_lo</var> <var class="var">y_hi</var>])</code><a class="copiable-link" href="#index-ylim-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ylim-4"><span><strong class="def-name">ylim</strong> <code class="def-code-arguments">(&quot;mode&quot;)</code><a class="copiable-link" href="#index-ylim-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ylim-5"><span><strong class="def-name">ylim</strong> <code class="def-code-arguments">(&quot;method&quot;)</code><a class="copiable-link" href="#index-ylim-5"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ylim-6"><span><strong class="def-name">ylim</strong> <code class="def-code-arguments">(<var class="var">hax</var>, &hellip;)</code><a class="copiable-link" href="#index-ylim-6"> &para;</a></span></dt>
+<dd><p>Query or set the limits of the y-axis for the current plot.
+</p>
+<p>Called without arguments <code class="code">ylim</code> returns the y-axis limits of the
+current plot.
+</p>
+<p>With the input query <code class="code">&quot;mode&quot;</code>, return the current y-limit calculation
+mode which is either <code class="code">&quot;auto&quot;</code> or <code class="code">&quot;manual&quot;</code>.
+</p>
+<p>With the input query <code class="code">&quot;method&quot;</code>, return the current y-limit
+calculation method which is either <code class="code">&quot;tickaligned&quot;</code>, <code class="code">&quot;tight&quot;</code>,
+or <code class="code">&quot;padded&quot;</code>.
+</p>
+<p>If passed a 2-element vector [<var class="var">y_lo</var> <var class="var">y_hi</var>], the limits of the
+y-axis are set to these values and the mode is set to <code class="code">&quot;manual&quot;</code>.
+The special values -Inf and Inf can be used to indicate that either
+the lower axis limit or upper axis limit should be automatically calculated.
+</p>
+<p>The current limit calculation <code class="code">&quot;mode&quot;</code> may be one of
+</p>
+<dl class="table">
+<dt><code class="code">&quot;auto&quot;</code> (default)</dt>
+<dd><p>Automatically calculate limits based on the plot data and the currently
+specified limit calculation method.
+</p>
+</dd>
+<dt><code class="code">&quot;manual&quot;</code></dt>
+<dd><p>Fix axis limits at current values.
+</p></dd>
+</dl>
+
+<p>The current limit calculation method may be one of
+</p>
+<dl class="table">
+<dt><code class="code">&quot;tickaligned&quot;</code> (default)</dt>
+<dd><p>Calculate limits that encompass all of the data and extend outwards to the
+nearest tick mark.
+</p>
+</dd>
+<dt><code class="code">&quot;tight&quot;</code></dt>
+<dd><p>Calculate limits that exactly fit the data range.
+</p>
+</dd>
+<dt><code class="code">&quot;padded&quot;</code></dt>
+<dd><p>Calculate limits that leave a margin around the data of approximately 7% of
+the data range.
+</p></dd>
+</dl>
+
+<p>If the first argument <var class="var">hax</var> is an axes handle, then operate on
+this axes rather than the current axes returned by <code class="code">gca</code>.
+</p>
+<p>Programming Note: The <code class="code">ylim</code> function operates by modifying the
+<code class="code">&quot;ylim&quot;</code>, <code class="code">&quot;ylimmode&quot;</code>, and <code class="code">&quot;ylimitmethod&quot;</code> properties of
+an axes object.  These properties can be directly inspected and altered with
+<code class="code">get</code>/<code class="code">set</code>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFxlim">xlim</a>, <a class="ref" href="#XREFzlim">zlim</a>, <a class="ref" href="#XREFaxis">axis</a>, <a class="ref" href="Handle-Functions.html#XREFset">set</a>, <a class="ref" href="Handle-Functions.html#XREFget">get</a>, <a class="ref" href="Handle-Functions.html#XREFgca">gca</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFzlim"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-zlim"><span><code class="def-type"><var class="var">zlimits</var> =</code> <strong class="def-name">zlim</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-zlim"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-zlim-1"><span><code class="def-type"><var class="var">zmode</var> =</code> <strong class="def-name">zlim</strong> <code class="def-code-arguments">(&quot;mode&quot;)</code><a class="copiable-link" href="#index-zlim-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-zlim-2"><span><code class="def-type"><var class="var">zmethod</var> =</code> <strong class="def-name">zlim</strong> <code class="def-code-arguments">(&quot;method&quot;)</code><a class="copiable-link" href="#index-zlim-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-zlim-3"><span><strong class="def-name">zlim</strong> <code class="def-code-arguments">([<var class="var">z_lo</var> <var class="var">z_hi</var>])</code><a class="copiable-link" href="#index-zlim-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-zlim-4"><span><strong class="def-name">zlim</strong> <code class="def-code-arguments">(&quot;mode&quot;)</code><a class="copiable-link" href="#index-zlim-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-zlim-5"><span><strong class="def-name">zlim</strong> <code class="def-code-arguments">(&quot;method&quot;)</code><a class="copiable-link" href="#index-zlim-5"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-zlim-6"><span><strong class="def-name">zlim</strong> <code class="def-code-arguments">(<var class="var">hax</var>, &hellip;)</code><a class="copiable-link" href="#index-zlim-6"> &para;</a></span></dt>
+<dd><p>Query or set the limits of the z-axis for the current plot.
+</p>
+<p>Called without arguments <code class="code">zlim</code> returns the z-axis limits of the
+current plot.
+</p>
+<p>With the input query <code class="code">&quot;mode&quot;</code>, return the current z-limit calculation
+mode which is either <code class="code">&quot;auto&quot;</code> or <code class="code">&quot;manual&quot;</code>.
+</p>
+<p>With the input query <code class="code">&quot;method&quot;</code>, return the current z-limit
+calculation method which is either <code class="code">&quot;tickaligned&quot;</code>, <code class="code">&quot;tight&quot;</code>,
+or <code class="code">&quot;padded&quot;</code>.
+</p>
+<p>If passed a 2-element vector [<var class="var">z_lo</var> <var class="var">z_hi</var>], the limits of the
+z-axis are set to these values and the mode is set to <code class="code">&quot;manual&quot;</code>.
+The special values -Inf and Inf can be used to indicate that either
+the lower axis limit or upper axis limit should be automatically calculated.
+</p>
+<p>The current limit calculation <code class="code">&quot;mode&quot;</code> may be one of
+</p>
+<dl class="table">
+<dt><code class="code">&quot;auto&quot;</code> (default)</dt>
+<dd><p>Automatically calculate limits based on the plot data and the currently
+specified limit calculation method.
+</p>
+</dd>
+<dt><code class="code">&quot;manual&quot;</code></dt>
+<dd><p>Fix axis limits at current values.
+</p></dd>
+</dl>
+
+<p>The current limit calculation method may be one of
+</p>
+<dl class="table">
+<dt><code class="code">&quot;tickaligned&quot;</code> (default)</dt>
+<dd><p>Calculate limits that encompass all of the data and extend outwards to the
+nearest tick mark.
+</p>
+</dd>
+<dt><code class="code">&quot;tight&quot;</code></dt>
+<dd><p>Calculate limits that exactly fit the data range.
+</p>
+</dd>
+<dt><code class="code">&quot;padded&quot;</code></dt>
+<dd><p>Calculate limits that leave a margin around the data of approximately 7% of
+the data range.
+</p></dd>
+</dl>
+
+<p>If the first argument <var class="var">hax</var> is an axes handle, then operate on
+this axes rather than the current axes returned by <code class="code">gca</code>.
+</p>
+<p>Programming Note: The <code class="code">zlim</code> function operates by modifying the
+<code class="code">&quot;zlim&quot;</code>, <code class="code">&quot;zlimmode&quot;</code>, and <code class="code">&quot;zlimitmethod&quot;</code> properties of
+an axes object.  These properties can be directly inspected and altered with
+<code class="code">get</code>/<code class="code">set</code>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFxlim">xlim</a>, <a class="ref" href="#XREFylim">ylim</a>, <a class="ref" href="#XREFaxis">axis</a>, <a class="ref" href="Handle-Functions.html#XREFset">set</a>, <a class="ref" href="Handle-Functions.html#XREFget">get</a>, <a class="ref" href="Handle-Functions.html#XREFgca">gca</a>.
+</p></dd></dl>
+
+
+<p>The <code class="code">xticks</code>, <code class="code">yticks</code>, <code class="code">zticks</code>, <code class="code">rticks</code>, and
+<code class="code">thetaticks</code> functions may be used to get or set the tick mark locations
+and modes on the respective axis.  Each has the same form, although mode
+options are not currently available for <code class="code">rticks</code>, and <code class="code">thetaticks</code>.
+</p>
+<a class="anchor" id="XREFxticks"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-xticks"><span><code class="def-type"><var class="var">tickval</var> =</code> <strong class="def-name">xticks</strong><a class="copiable-link" href="#index-xticks"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-xticks-1"><span><code class="def-type"><var class="var">mode</var> =</code> <strong class="def-name">xticks</strong> <code class="def-code-arguments">(&quot;mode&quot;)</code><a class="copiable-link" href="#index-xticks-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-xticks-2"><span><strong class="def-name">xticks</strong> <code class="def-code-arguments">(<var class="var">tickval</var>)</code><a class="copiable-link" href="#index-xticks-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-xticks-3"><span><strong class="def-name">xticks</strong> <code class="def-code-arguments">(&quot;auto&quot;)</code><a class="copiable-link" href="#index-xticks-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-xticks-4"><span><strong class="def-name">xticks</strong> <code class="def-code-arguments">(&quot;manual&quot;)</code><a class="copiable-link" href="#index-xticks-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-xticks-5"><span><code class="def-type">&hellip; =</code> <strong class="def-name">xticks</strong> <code class="def-code-arguments">(<var class="var">hax</var>, &hellip;)</code><a class="copiable-link" href="#index-xticks-5"> &para;</a></span></dt>
+<dd><p>Query or set the tick values on the x-axis of the current axis.
+</p>
+<p>When called without an argument, return the current tick locations as
+specified in the <code class="code">&quot;xtick&quot;</code> axes property.  These locations can be
+changed by calling <code class="code">xticks</code> with a vector of tick values.  Note:
+ascending order is not required.
+</p>
+<p>When called with argument <code class="code">&quot;mode&quot;</code>, <code class="code">xticks</code> returns the current
+value of the axes property <code class="code">&quot;xtickmode&quot;</code>.  This property can be
+changed by calling <code class="code">xticks</code> with either <code class="code">&quot;auto&quot;</code> (algorithm
+determines tick positions) or <code class="code">&quot;manual&quot;</code> (tick values remain fixed
+regardless of axes resizing or rotation).  Note: Specifying xtick values
+will also set the property <code class="code">&quot;xtickmode&quot;</code> to <code class="code">&quot;manual&quot;</code>.
+</p>
+<p>If the first argument <var class="var">hax</var> is an axes handle, then operate on
+this axis rather than the current axes returned by <code class="code">gca</code>.
+</p>
+<p>Requesting a return value when calling <code class="code">xticks</code> to set a property value
+will result in an error.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFxticklabels">xticklabels</a>, <a class="ref" href="#XREFyticks">yticks</a>, <a class="ref" href="#XREFzticks">zticks</a>, <a class="ref" href="#XREFrticks">rticks</a>, <a class="ref" href="#XREFthetaticks">thetaticks</a>, <a class="ref" href="Handle-Functions.html#XREFget">get</a>, <a class="ref" href="Handle-Functions.html#XREFset">set</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFyticks"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-yticks"><span><code class="def-type"><var class="var">tickval</var> =</code> <strong class="def-name">yticks</strong><a class="copiable-link" href="#index-yticks"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-yticks-1"><span><code class="def-type"><var class="var">mode</var> =</code> <strong class="def-name">yticks</strong> <code class="def-code-arguments">(&quot;mode&quot;)</code><a class="copiable-link" href="#index-yticks-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-yticks-2"><span><strong class="def-name">yticks</strong> <code class="def-code-arguments">(<var class="var">tickval</var>)</code><a class="copiable-link" href="#index-yticks-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-yticks-3"><span><strong class="def-name">yticks</strong> <code class="def-code-arguments">(&quot;auto&quot;)</code><a class="copiable-link" href="#index-yticks-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-yticks-4"><span><strong class="def-name">yticks</strong> <code class="def-code-arguments">(&quot;manual&quot;)</code><a class="copiable-link" href="#index-yticks-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-yticks-5"><span><code class="def-type">&hellip; =</code> <strong class="def-name">yticks</strong> <code class="def-code-arguments">(<var class="var">hax</var>, &hellip;)</code><a class="copiable-link" href="#index-yticks-5"> &para;</a></span></dt>
+<dd><p>Query or set the tick values on the y-axis of the current axis.
+</p>
+<p>When called without an argument, return the current tick locations as
+specified in the <code class="code">&quot;ytick&quot;</code> axes property.  These locations can be
+changed by calling <code class="code">yticks</code> with a vector of tick values.  Note:
+ascending order is not required.
+</p>
+<p>When called with argument <code class="code">&quot;mode&quot;</code>, <code class="code">yticks</code> returns the current
+value of the axes property <code class="code">&quot;ytickmode&quot;</code>.  This property can be
+changed by calling <code class="code">yticks</code> with either <code class="code">&quot;auto&quot;</code> (algorithm
+determines tick positions) or <code class="code">&quot;manual&quot;</code> (tick values remain fixed
+regardless of axes resizing or rotation).  Note: Specifying ytick values
+will also set the property <code class="code">&quot;ytickmode&quot;</code> to <code class="code">&quot;manual&quot;</code>.
+</p>
+<p>If the first argument <var class="var">hax</var> is an axes handle, then operate on
+this axis rather than the current axes returned by <code class="code">gca</code>.
+</p>
+<p>Requesting a return value when calling <code class="code">yticks</code> to set a property value
+will result in an error.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFyticklabels">yticklabels</a>, <a class="ref" href="#XREFxticks">xticks</a>, <a class="ref" href="#XREFzticks">zticks</a>, <a class="ref" href="#XREFrticks">rticks</a>, <a class="ref" href="#XREFthetaticks">thetaticks</a>, <a class="ref" href="Handle-Functions.html#XREFget">get</a>, <a class="ref" href="Handle-Functions.html#XREFset">set</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFzticks"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-zticks"><span><code class="def-type"><var class="var">tickval</var> =</code> <strong class="def-name">zticks</strong><a class="copiable-link" href="#index-zticks"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-zticks-1"><span><code class="def-type"><var class="var">mode</var> =</code> <strong class="def-name">zticks</strong> <code class="def-code-arguments">(&quot;mode&quot;)</code><a class="copiable-link" href="#index-zticks-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-zticks-2"><span><strong class="def-name">zticks</strong> <code class="def-code-arguments">(<var class="var">tickval</var>)</code><a class="copiable-link" href="#index-zticks-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-zticks-3"><span><strong class="def-name">zticks</strong> <code class="def-code-arguments">(&quot;auto&quot;)</code><a class="copiable-link" href="#index-zticks-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-zticks-4"><span><strong class="def-name">zticks</strong> <code class="def-code-arguments">(&quot;manual&quot;)</code><a class="copiable-link" href="#index-zticks-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-zticks-5"><span><code class="def-type">&hellip; =</code> <strong class="def-name">zticks</strong> <code class="def-code-arguments">(<var class="var">hax</var>, &hellip;)</code><a class="copiable-link" href="#index-zticks-5"> &para;</a></span></dt>
+<dd><p>Query or set the tick values on the z-axis of the current axis.
+</p>
+<p>When called without an argument, return the current tick locations as
+specified in the <code class="code">&quot;ztick&quot;</code> axes property.  These locations can be
+changed by calling <code class="code">zticks</code> with a vector of tick values.  Note:
+ascending order is not required.
+</p>
+<p>When called with argument <code class="code">&quot;mode&quot;</code>, <code class="code">zticks</code> returns the current
+value of the axes property <code class="code">&quot;ztickmode&quot;</code>.  This property can be
+changed by calling <code class="code">zticks</code> with either <code class="code">&quot;auto&quot;</code> (algorithm
+determines tick positions) or <code class="code">&quot;manual&quot;</code> (tick values remain fixed
+regardless of axes resizing or rotation).  Note: Specifying ztick values
+will also set the property <code class="code">&quot;ztickmode&quot;</code> to <code class="code">&quot;manual&quot;</code>.
+</p>
+<p>If the first argument <var class="var">hax</var> is an axes handle, then operate on
+this axis rather than the current axes returned by <code class="code">gca</code>.
+</p>
+<p>Requesting a return value when calling <code class="code">zticks</code> to set a property value
+will result in an error.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFzticklabels">zticklabels</a>, <a class="ref" href="#XREFxticks">xticks</a>, <a class="ref" href="#XREFyticks">yticks</a>, <a class="ref" href="#XREFrticks">rticks</a>, <a class="ref" href="#XREFthetaticks">thetaticks</a>, <a class="ref" href="Handle-Functions.html#XREFget">get</a>, <a class="ref" href="Handle-Functions.html#XREFset">set</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFrticks"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-rticks"><span><code class="def-type"><var class="var">tickval</var> =</code> <strong class="def-name">rticks</strong><a class="copiable-link" href="#index-rticks"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rticks-1"><span><strong class="def-name">rticks</strong> <code class="def-code-arguments">(<var class="var">tickval</var>)</code><a class="copiable-link" href="#index-rticks-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rticks-2"><span><code class="def-type">&hellip; =</code> <strong class="def-name">rticks</strong> <code class="def-code-arguments">(<var class="var">hax</var>, &hellip;)</code><a class="copiable-link" href="#index-rticks-2"> &para;</a></span></dt>
+<dd><p>Query or set the tick values on the r-axis of the current axis.
+</p>
+<p>When called without argument, return the current tick locations as specified
+in the <code class="code">&quot;rtick&quot;</code> axes property.  These locations can be changed by
+calling <code class="code">rticks</code> with a vector of tick values.  Note: ascending order
+is not required.
+</p>
+<p>If the first argument <var class="var">hax</var> is an axes handle, then operate on
+this axis rather than the current axes returned by <code class="code">gca</code>.
+</p>
+<p>Requesting a return value when calling <code class="code">rticks</code> to set a property value
+will result in an error.
+</p>
+<p>NOTE: Octave does not currently implement polaraxes objects.  It is
+therefore not possible to query or set a <code class="code">&quot;mode&quot;</code> for the
+<code class="code">&quot;rtick&quot;</code> property as can be done with the equivalent functions for
+<var class="var">x</var>, <var class="var">y</var>, and <var class="var">z</var> axes.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFthetaticks">thetaticks</a>, <a class="ref" href="#XREFxticks">xticks</a>, <a class="ref" href="#XREFyticks">yticks</a>, <a class="ref" href="#XREFzticks">zticks</a>, <a class="ref" href="Two_002dDimensional-Plots.html#XREFpolar">polar</a>, <a class="ref" href="Handle-Functions.html#XREFget">get</a>, <a class="ref" href="Handle-Functions.html#XREFset">set</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFthetaticks"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-thetaticks"><span><code class="def-type"><var class="var">tickval</var> =</code> <strong class="def-name">thetaticks</strong><a class="copiable-link" href="#index-thetaticks"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-thetaticks-1"><span><strong class="def-name">thetaticks</strong> <code class="def-code-arguments">(<var class="var">tickval</var>)</code><a class="copiable-link" href="#index-thetaticks-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-thetaticks-2"><span><code class="def-type">&hellip; =</code> <strong class="def-name">thetaticks</strong> <code class="def-code-arguments">(<var class="var">hax</var>, &hellip;)</code><a class="copiable-link" href="#index-thetaticks-2"> &para;</a></span></dt>
+<dd><p>Query or set the tick values on the theta-axis of the current axis.
+</p>
+<p>When called without argument, return the current tick locations as specified
+in the <code class="code">&quot;ttick&quot;</code> axes property.  These locations can be changed by
+calling <code class="code">thetaticks</code> with a vector of tick values.  Note: ascending
+order is not required.
+</p>
+<p>If the first argument <var class="var">hax</var> is an axes handle, then operate on
+this axis rather than the current axes returned by <code class="code">gca</code>.
+</p>
+<p>Requesting a return value when calling <code class="code">thetaticks</code> to set a property
+value will result in an error.
+</p>
+<p>NOTE: Octave does not currently implement polaraxes objects.  It is
+therefore not possible to query or set a <code class="code">&quot;mode&quot;</code> for the
+<code class="code">&quot;thetatick&quot;</code> property as can be done with the equivalent functions
+for <var class="var">x</var>, <var class="var">y</var>, and <var class="var">z</var> axes.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFrticks">rticks</a>, <a class="ref" href="#XREFxticks">xticks</a>, <a class="ref" href="#XREFyticks">yticks</a>, <a class="ref" href="#XREFzticks">zticks</a>, <a class="ref" href="Two_002dDimensional-Plots.html#XREFpolar">polar</a>, <a class="ref" href="Handle-Functions.html#XREFget">get</a>, <a class="ref" href="Handle-Functions.html#XREFset">set</a>.
+</p></dd></dl>
+
+
+<p>The <code class="code">xticklabels</code>, <code class="code">yticklabels</code>, and <code class="code">zticklabels</code> functions
+may be used to get or set the label assigned to each tick location and the
+labeling mode on the respective axis.  Each has the same form.
+</p>
+<a class="anchor" id="XREFxticklabels"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-xticklabels"><span><code class="def-type"><var class="var">labels</var> =</code> <strong class="def-name">xticklabels</strong><a class="copiable-link" href="#index-xticklabels"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-xticklabels-1"><span><code class="def-type"><var class="var">mode</var> =</code> <strong class="def-name">xticklabels</strong> <code class="def-code-arguments">(&quot;mode&quot;)</code><a class="copiable-link" href="#index-xticklabels-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-xticklabels-2"><span><strong class="def-name">xticklabels</strong> <code class="def-code-arguments">(<var class="var">tickval</var>)</code><a class="copiable-link" href="#index-xticklabels-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-xticklabels-3"><span><strong class="def-name">xticklabels</strong> <code class="def-code-arguments">(&quot;auto&quot;)</code><a class="copiable-link" href="#index-xticklabels-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-xticklabels-4"><span><strong class="def-name">xticklabels</strong> <code class="def-code-arguments">(&quot;manual&quot;)</code><a class="copiable-link" href="#index-xticklabels-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-xticklabels-5"><span><code class="def-type">&hellip; =</code> <strong class="def-name">xticklabels</strong> <code class="def-code-arguments">(<var class="var">hax</var>, &hellip;)</code><a class="copiable-link" href="#index-xticklabels-5"> &para;</a></span></dt>
+<dd><p>Query or set the tick labels on the x-axis of the current axis.
+</p>
+<p>When called without an argument, return a cell array of strings of the
+current tick labels as specified in the <code class="code">&quot;xticklabel&quot;</code> axes property.
+These labels can be changed by calling <code class="code">xticklabels</code> with a cell array
+of strings.  Note: a vector of numbers will be mapped to a cell array of
+strings.  If fewer labels are specified than the current number of ticks,
+blank labels will be appended to the array.
+</p>
+<p>When called with argument <code class="code">&quot;mode&quot;</code>, <code class="code">xticklabels</code> returns the
+current value of the axes property <code class="code">&quot;xticklabelmode&quot;</code>.  This property
+can be changed by calling <code class="code">xticklabels</code> with either <code class="code">&quot;auto&quot;</code>
+(algorithm determines tick labels) or <code class="code">&quot;manual&quot;</code> (tick labels remain
+fixed).  Note: Specifying xticklabel values will also set the
+<code class="code">&quot;xticklabelmode&quot;</code> and <code class="code">&quot;xticks&quot;</code> properties to
+<code class="code">&quot;manual&quot;</code>.
+</p>
+<p>If the first argument <var class="var">hax</var> is an axes handle, then operate on
+this axis rather than the current axes returned by <code class="code">gca</code>.
+</p>
+<p>Requesting a return value when calling <code class="code">xticklabels</code> to set a property
+value will result in an error.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFxticks">xticks</a>, <a class="ref" href="#XREFyticklabels">yticklabels</a>, <a class="ref" href="#XREFzticklabels">zticklabels</a>, <a class="ref" href="Handle-Functions.html#XREFget">get</a>, <a class="ref" href="Handle-Functions.html#XREFset">set</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFyticklabels"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-yticklabels"><span><code class="def-type"><var class="var">labels</var> =</code> <strong class="def-name">yticklabels</strong><a class="copiable-link" href="#index-yticklabels"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-yticklabels-1"><span><code class="def-type"><var class="var">mode</var> =</code> <strong class="def-name">yticklabels</strong> <code class="def-code-arguments">(&quot;mode&quot;)</code><a class="copiable-link" href="#index-yticklabels-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-yticklabels-2"><span><strong class="def-name">yticklabels</strong> <code class="def-code-arguments">(<var class="var">tickval</var>)</code><a class="copiable-link" href="#index-yticklabels-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-yticklabels-3"><span><strong class="def-name">yticklabels</strong> <code class="def-code-arguments">(&quot;auto&quot;)</code><a class="copiable-link" href="#index-yticklabels-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-yticklabels-4"><span><strong class="def-name">yticklabels</strong> <code class="def-code-arguments">(&quot;manual&quot;)</code><a class="copiable-link" href="#index-yticklabels-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-yticklabels-5"><span><code class="def-type">&hellip; =</code> <strong class="def-name">yticklabels</strong> <code class="def-code-arguments">(<var class="var">hax</var>, &hellip;)</code><a class="copiable-link" href="#index-yticklabels-5"> &para;</a></span></dt>
+<dd><p>Query or set the tick labels on the x-axis of the current axis.
+</p>
+<p>When called without an argument, return a cell array of strings of the
+current tick labels as specified in the <code class="code">&quot;yticklabel&quot;</code> axes property.
+These labels can be changed by calling <code class="code">yticklabels</code> with a cell array
+of strings.  Note: a vector of numbers will be mapped to a cell array of
+strings.  If fewer labels are specified than the current number of ticks,
+blank labels will be appended to the array.
+</p>
+<p>When called with argument <code class="code">&quot;mode&quot;</code>, <code class="code">yticklabels</code> returns the
+current value of the axes property <code class="code">&quot;yticklabelmode&quot;</code>.  This property
+can be changed by calling <code class="code">yticklabels</code> with either <code class="code">&quot;auto&quot;</code>
+(algorithm determines tick labels) or <code class="code">&quot;manual&quot;</code> (tick labels remain
+fixed).  Note: Specifying yticklabel values will also set the
+<code class="code">&quot;yticklabelmode&quot;</code> and <code class="code">&quot;yticks&quot;</code> properties to
+<code class="code">&quot;manual&quot;</code>.
+</p>
+<p>If the first argument <var class="var">hax</var> is an axes handle, then operate on
+this axis rather than the current axes returned by <code class="code">gca</code>.
+</p>
+<p>Requesting a return value when calling <code class="code">xticklabels</code> to set a property
+value will result in an error.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFyticks">yticks</a>, <a class="ref" href="#XREFxticklabels">xticklabels</a>, <a class="ref" href="#XREFzticklabels">zticklabels</a>, <a class="ref" href="Handle-Functions.html#XREFget">get</a>, <a class="ref" href="Handle-Functions.html#XREFset">set</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFzticklabels"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-zticklabels"><span><code class="def-type"><var class="var">labels</var> =</code> <strong class="def-name">zticklabels</strong><a class="copiable-link" href="#index-zticklabels"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-zticklabels-1"><span><code class="def-type"><var class="var">mode</var> =</code> <strong class="def-name">zticklabels</strong> <code class="def-code-arguments">(&quot;mode&quot;)</code><a class="copiable-link" href="#index-zticklabels-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-zticklabels-2"><span><strong class="def-name">zticklabels</strong> <code class="def-code-arguments">(<var class="var">tickval</var>)</code><a class="copiable-link" href="#index-zticklabels-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-zticklabels-3"><span><strong class="def-name">zticklabels</strong> <code class="def-code-arguments">(&quot;auto&quot;)</code><a class="copiable-link" href="#index-zticklabels-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-zticklabels-4"><span><strong class="def-name">zticklabels</strong> <code class="def-code-arguments">(&quot;manual&quot;)</code><a class="copiable-link" href="#index-zticklabels-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-zticklabels-5"><span><code class="def-type">&hellip; =</code> <strong class="def-name">zticklabels</strong> <code class="def-code-arguments">(<var class="var">hax</var>, &hellip;)</code><a class="copiable-link" href="#index-zticklabels-5"> &para;</a></span></dt>
+<dd><p>Query or set the tick labels on the x-axis of the current axis.
+</p>
+<p>When called without an argument, return a cell array of strings of the
+current tick labels as specified in the <code class="code">&quot;zticklabel&quot;</code> axes property.
+These labels can be changed by calling <code class="code">zticklabels</code> with a cell array
+of strings.  Note: a vector of numbers will be mapped to a cell array of
+strings.  If fewer labels are specified than the current number of ticks,
+blank labels will be appended to the array.
+</p>
+<p>When called with argument <code class="code">&quot;mode&quot;</code>, <code class="code">zticklabels</code> returns the
+current value of the axes property <code class="code">&quot;zticklabelmode&quot;</code>.  This property
+can be changed by calling <code class="code">zticklabels</code> with either <code class="code">&quot;auto&quot;</code>
+(algorithm determines tick labels) or <code class="code">&quot;manual&quot;</code> (tick labels remain
+fixed).  Note: Specifying zticklabel values will also set the
+<code class="code">&quot;zticklabelmode&quot;</code> and <code class="code">&quot;zticks&quot;</code> properties to
+<code class="code">&quot;manual&quot;</code>.
+</p>
+<p>If the first argument <var class="var">hax</var> is an axes handle, then operate on
+this axis rather than the current axes returned by <code class="code">gca</code>.
+</p>
+<p>Requesting a return value when calling <code class="code">xticklabels</code> to set a property
+value will result in an error.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFzticks">zticks</a>, <a class="ref" href="#XREFxticklabels">xticklabels</a>, <a class="ref" href="#XREFzticklabels">zticklabels</a>, <a class="ref" href="Handle-Functions.html#XREFget">get</a>, <a class="ref" href="Handle-Functions.html#XREFset">set</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFrticklabels"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-rticklabels"><span><code class="def-type"><var class="var">labels</var> =</code> <strong class="def-name">rticklabels</strong><a class="copiable-link" href="#index-rticklabels"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rticklabels-1"><span><strong class="def-name">rticklabels</strong> <code class="def-code-arguments">(<var class="var">tickval</var>)</code><a class="copiable-link" href="#index-rticklabels-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-rticklabels-2"><span><code class="def-type">&hellip; =</code> <strong class="def-name">rticklabels</strong> <code class="def-code-arguments">(<var class="var">hax</var>, &hellip;)</code><a class="copiable-link" href="#index-rticklabels-2"> &para;</a></span></dt>
+<dd><p>Query or set the tick labels on the r-axis of a polar plot.
+</p>
+<p>When called without an argument, return a cell array of strings of the
+current rtick labels.
+</p>
+<p>When called with the argument <var class="var">tickval</var> being a vector of numbers or
+a cell array of strings and/or numbers, the labels will be changed to
+match these new values.  Note that the center point of the plots made by
+<code class="code">polar</code> are never labeled, so the first specified label will be
+applied to the second rtick location and subsequent labels will progress
+outward.
+</p>
+<p>If fewer labels are specified than the current number of tick marks, those
+labels will be applied starting with the innermost tick labels, and blank
+labels will be appended to the remainder.  If the specified label count
+exceeds the number of tick labels, the excess labels are ignored.
+</p>
+<p>If the first argument <var class="var">hax</var> is an axes handle, then operate on
+this axis rather than the current axes returned by <code class="code">gca</code>.
+</p>
+<p>Requesting a return value when calling <code class="code">rticklabels</code> to set a property
+value will result in an error.
+</p>
+<p>Compatibility Note: The <code class="code">'mode'</code> property for rticklabels has not yet
+been implemented.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Two_002dDimensional-Plots.html#XREFpolar">polar</a>, <a class="ref" href="#XREFrticks">rticks</a>, <a class="ref" href="#XREFthetaticklabels">thetaticklabels</a>, <a class="ref" href="#XREFxticklabels">xticklabels</a>, <a class="ref" href="#XREFyticklabels">yticklabels</a>, <a class="ref" href="#XREFzticklabels">zticklabels</a>, <a class="ref" href="Handle-Functions.html#XREFget">get</a>, <a class="ref" href="Handle-Functions.html#XREFset">set</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFthetaticklabels"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-thetaticklabels"><span><code class="def-type"><var class="var">labels</var> =</code> <strong class="def-name">thetaticklabels</strong><a class="copiable-link" href="#index-thetaticklabels"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-thetaticklabels-1"><span><strong class="def-name">thetaticklabels</strong> <code class="def-code-arguments">(<var class="var">tickval</var>)</code><a class="copiable-link" href="#index-thetaticklabels-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-thetaticklabels-2"><span><code class="def-type">&hellip; =</code> <strong class="def-name">thetaticklabels</strong> <code class="def-code-arguments">(<var class="var">hax</var>, &hellip;)</code><a class="copiable-link" href="#index-thetaticklabels-2"> &para;</a></span></dt>
+<dd><p>Query or set the tick labels on the theta-axis of a polar plot.
+</p>
+<p>When called without an argument, return a cell array of strings of the
+current ttick labels.
+</p>
+<p>When called with the argument <var class="var">tickval</var> being a vector of numbers or
+a cell array of strings and/or numbers, the labels will be changed to
+match these new values.  Values will be applied starting with the
+zero-degree tick mark and will progress counterclockwise.
+</p>
+<p>If fewer labels are specified than the current number of theta tick marks,
+those labels will be applied starting at the zero-degree tick mark and
+blank labels will be appended to the remainder.  If the specified label
+count exceeds the number of tick labels, the excess labels are ignored.
+</p>
+<p>If the first argument <var class="var">hax</var> is an axes handle, then operate on
+this axis rather than the current axes returned by <code class="code">gca</code>.
+</p>
+<p>Requesting a return value when calling <code class="code">thetaticklabels</code> to set a
+property value will result in an error.
+</p>
+<p>Compatibility Note: The <code class="code">'mode'</code> property for thetaticklabels has not
+yet been implemented.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Two_002dDimensional-Plots.html#XREFpolar">polar</a>, <a class="ref" href="#XREFthetaticks">thetaticks</a>, <a class="ref" href="#XREFrticklabels">rticklabels</a>, <a class="ref" href="#XREFxticklabels">xticklabels</a>, <a class="ref" href="#XREFyticklabels">yticklabels</a>, <a class="ref" href="#XREFzticklabels">zticklabels</a>, <a class="ref" href="Handle-Functions.html#XREFget">get</a>, <a class="ref" href="Handle-Functions.html#XREFset">set</a>.
+</p></dd></dl>
+
+
+<p>The <code class="code">xtickangle</code>, <code class="code">ytickangle</code>, and <code class="code">ztickangle</code> functions
+may be used to get or set the rotation angle of labels for the respective axis.
+Each has the same form.
+</p>
+<a class="anchor" id="XREFxtickangle"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-xtickangle"><span><code class="def-type"><var class="var">angle</var> =</code> <strong class="def-name">xtickangle</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-xtickangle"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-xtickangle-1"><span><code class="def-type"><var class="var">angle</var> =</code> <strong class="def-name">xtickangle</strong> <code class="def-code-arguments">(<var class="var">hax</var>)</code><a class="copiable-link" href="#index-xtickangle-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-xtickangle-2"><span><strong class="def-name">xtickangle</strong> <code class="def-code-arguments">(<var class="var">angle</var>)</code><a class="copiable-link" href="#index-xtickangle-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-xtickangle-3"><span><strong class="def-name">xtickangle</strong> <code class="def-code-arguments">(<var class="var">hax</var>, <var class="var">angle</var>)</code><a class="copiable-link" href="#index-xtickangle-3"> &para;</a></span></dt>
+<dd><p>Query or set the rotation angle of the tick labels on the x-axis of the
+current axes.
+</p>
+<p>When called without an argument, return the rotation angle in degrees of the
+tick labels as specified in the axes property <code class="code">&quot;XTickLabelRotation&quot;</code>.
+When called with a numeric scalar <var class="var">angle</var>, rotate the tick labels
+counterclockwise to <var class="var">angle</var> degrees.
+</p>
+<p>If the first argument <var class="var">hax</var> is an axes handle, then operate on this axes
+rather than the current axes returned by <code class="code">gca</code>.
+</p>
+<p>Programming Notes:
+</p><ol class="enumerate">
+<li> The <code class="code">&quot;XTickLabelRotation&quot;</code> property is <em class="emph">not</em> currently
+implemented in Octave.  The property can be set and queried, but has no
+effect on the plot.
+
+</li><li> Requesting a return value while also setting a specified rotation will
+result in an error.
+</li></ol>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFytickangle">ytickangle</a>, <a class="ref" href="#XREFztickangle">ztickangle</a>, <a class="ref" href="Handle-Functions.html#XREFget">get</a>, <a class="ref" href="Handle-Functions.html#XREFset">set</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFytickangle"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-ytickangle"><span><code class="def-type"><var class="var">angle</var> =</code> <strong class="def-name">ytickangle</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-ytickangle"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ytickangle-1"><span><code class="def-type"><var class="var">angle</var> =</code> <strong class="def-name">ytickangle</strong> <code class="def-code-arguments">(<var class="var">hax</var>)</code><a class="copiable-link" href="#index-ytickangle-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ytickangle-2"><span><strong class="def-name">ytickangle</strong> <code class="def-code-arguments">(<var class="var">angle</var>)</code><a class="copiable-link" href="#index-ytickangle-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ytickangle-3"><span><strong class="def-name">ytickangle</strong> <code class="def-code-arguments">(<var class="var">hax</var>, <var class="var">angle</var>)</code><a class="copiable-link" href="#index-ytickangle-3"> &para;</a></span></dt>
+<dd><p>Query or set the rotation angle of the tick labels on the y-axis of the
+current axes.
+</p>
+<p>When called without an argument, return the rotation angle in degrees of the
+tick labels as specified in the axes property <code class="code">&quot;YTickLabelRotation&quot;</code>.
+When called with a numeric scalar <var class="var">angle</var>, rotate the tick labels
+counterclockwise to <var class="var">angle</var> degrees.
+</p>
+<p>If the first argument <var class="var">hax</var> is an axes handle, then operate on this axes
+rather than the current axes returned by <code class="code">gca</code>.
+</p>
+<p>Programming Notes:
+</p><ol class="enumerate">
+<li> The <code class="code">&quot;YTickLabelRotation&quot;</code> property is <em class="emph">not</em> currently
+implemented in Octave.  The property can be set and queried, but has no
+effect on the plot.
+
+</li><li> Requesting a return value while also setting a specified rotation will
+result in an error.
+</li></ol>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFxtickangle">xtickangle</a>, <a class="ref" href="#XREFztickangle">ztickangle</a>, <a class="ref" href="Handle-Functions.html#XREFget">get</a>, <a class="ref" href="Handle-Functions.html#XREFset">set</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFztickangle"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-ztickangle"><span><code class="def-type"><var class="var">angle</var> =</code> <strong class="def-name">ztickangle</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-ztickangle"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ztickangle-1"><span><code class="def-type"><var class="var">angle</var> =</code> <strong class="def-name">ztickangle</strong> <code class="def-code-arguments">(<var class="var">hax</var>)</code><a class="copiable-link" href="#index-ztickangle-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ztickangle-2"><span><strong class="def-name">ztickangle</strong> <code class="def-code-arguments">(<var class="var">angle</var>)</code><a class="copiable-link" href="#index-ztickangle-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ztickangle-3"><span><strong class="def-name">ztickangle</strong> <code class="def-code-arguments">(<var class="var">hax</var>, <var class="var">angle</var>)</code><a class="copiable-link" href="#index-ztickangle-3"> &para;</a></span></dt>
+<dd><p>Query or set the rotation angle of the tick labels on the z-axis of the
+current axes.
+</p>
+<p>When called without an argument, return the rotation angle in degrees of the
+tick labels as specified in the axes property <code class="code">&quot;ZTickLabelRotation&quot;</code>.
+When called with a numeric scalar <var class="var">angle</var>, rotate the tick labels
+counterclockwise to <var class="var">angle</var> degrees.
+</p>
+<p>If the first argument <var class="var">hax</var> is an axes handle, then operate on this axes
+rather than the current axes returned by <code class="code">gca</code>.
+</p>
+<p>Programming Notes:
+</p><ol class="enumerate">
+<li> The <code class="code">&quot;ZTickLabelRotation&quot;</code> property is <em class="emph">not</em> currently
+implemented in Octave.  The property can be set and queried, but has no
+effect on the plot.
+
+</li><li> Requesting a return value while also setting a specified rotation will
+result in an error.
+</li></ol>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFxtickangle">xtickangle</a>, <a class="ref" href="#XREFytickangle">ytickangle</a>, <a class="ref" href="Handle-Functions.html#XREFget">get</a>, <a class="ref" href="Handle-Functions.html#XREFset">set</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Two_002ddimensional-Function-Plotting.html">Two-dimensional Function Plotting</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Two_002dDimensional-Plots.html">Two-Dimensional Plots</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Methods (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Methods (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Methods (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="classdef-Classes.html" rel="up" title="classdef Classes">
+<link href="Inheritance.html" rel="next" title="Inheritance">
+<link href="Properties.html" rel="prev" title="Properties">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Methods">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Inheritance.html" accesskey="n" rel="next">Inheritance</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Properties.html" accesskey="p" rel="prev">Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="classdef-Classes.html" accesskey="u" rel="up"><code class="code">classdef</code> Classes</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Methods-1"><span>34.6.3 Methods<a class="copiable-link" href="#Methods-1"> &para;</a></span></h4>
+
+<p>All class methods must be defined within <code class="code">methods</code> blocks.  An exception
+to this rule is described at the end of this subsection.  Those <code class="code">methods</code>
+blocks can have additional attributes specifying the access rights or whether
+the methods are static, i.e., methods that can be called without creating an
+object of that class.
+</p>
+<div class="example">
+<pre class="example-preformatted">classdef some_class
+  methods
+    function obj = some_class ()
+      disp (&quot;New instance created.&quot;);
+    endfunction
+
+    function disp (obj)
+      disp (&quot;Here is some_class.&quot;);
+    endfunction
+  endmethods
+
+  methods (Access = <var class="var">mode</var>)
+    function r = func (obj, r)
+      r = 2 * r;
+    endfunction
+  endmethods
+
+  methods (Static = true)
+    function c = circumference (radius)
+      c = 2 * pi () .* radius;
+    endfunction
+  endmethods
+endclassdef
+</pre></div>
+
+<p>The constructor of the class is declared in the <code class="code">methods</code> block and must
+have the same name as the class and exactly one output argument which is an
+object of its class.
+</p>
+<p>It is also possible to overload built-in or inherited methods, like the
+<code class="code">disp</code> function in the example above to tell Octave how objects of
+<code class="code">some_class</code> should be displayed (see <a class="pxref" href="Class-Methods.html">Class Methods</a>).
+</p>
+<p>In general, the first argument in a method definition is always the object that
+it is called from.  Class methods can either be called by passing the object as
+the first argument to that method or by calling the object followed by a dot
+(&quot;<code class="code">.</code>&quot;) and the method&rsquo;s name with subsequent arguments:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">&gt;&gt; obj = some_class ();
+New instance created.
+&gt;&gt; disp (obj);   # both are
+&gt;&gt; obj.disp ();  # equal
+</pre></div></div>
+
+<p>In <code class="code">some_class</code>, the method <code class="code">func</code> is defined within a <code class="code">methods</code>
+block setting the <code class="code">Access</code> attribute to <var class="var">mode</var>, which is one of:
+</p>
+<dl class="table">
+<dt><code class="code">public</code></dt>
+<dd><p>The methods can be accessed from everywhere.
+</p>
+</dd>
+<dt><code class="code">private</code></dt>
+<dd><p>The methods can only be accessed from other class methods.  Subclasses of that
+class cannot access them.
+</p>
+</dd>
+<dt><code class="code">protected</code></dt>
+<dd><p>The methods can only be accessed from other class methods and from subclasses
+of that class.
+</p></dd>
+</dl>
+
+<p>The default access for methods is <code class="code">public</code>.
+</p>
+<p>Finally, the method <code class="code">circumference</code> is defined in a static <code class="code">methods</code>
+block and can be used without creating an object of <code class="code">some_class</code>.  This is
+useful for methods, that do not depend on any class properties.  The class name
+and the name of the static method, separated by a dot (&quot;<code class="code">.</code>&quot;), call this
+static method.  In contrast to non-static methods, the object is not passed as
+first argument even if called using an object of <code class="code">some_class</code>.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">&gt;&gt; some_class.circumference (3)
+&rArr;  ans =  18.850
+&gt;&gt; obj = some_class ();
+New instance created.
+&gt;&gt; obj.circumference (3)
+&rArr;  ans =  18.850
+</pre></div></div>
+
+<p>Additionally, class methods can be defined as functions in a folder of the same
+name as the class prepended with the &lsquo;<samp class="samp">@</samp>&rsquo; symbol
+(see <a class="pxref" href="Creating-a-Class.html">Creating a Class</a>).  The main <code class="code">classdef</code> file has to be stored in
+this class folder as well.
+</p>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Inheritance.html">Inheritance</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Properties.html">Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="classdef-Classes.html"><code class="code">classdef</code> Classes</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

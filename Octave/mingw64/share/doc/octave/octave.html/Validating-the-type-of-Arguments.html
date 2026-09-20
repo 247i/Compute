@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Validating the type of Arguments (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Validating the type of Arguments (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Validating the type of Arguments (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Validating-Arguments.html" rel="up" title="Validating Arguments">
+<link href="Parsing-Arguments.html" rel="next" title="Parsing Arguments">
+<link href="Validating-the-number-of-Arguments.html" rel="prev" title="Validating the number of Arguments">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Validating-the-type-of-Arguments">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Parsing-Arguments.html" accesskey="n" rel="next">Parsing Arguments</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Validating-the-number-of-Arguments.html" accesskey="p" rel="prev">Validating the number of Arguments</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Validating-Arguments.html" accesskey="u" rel="up">Validating Arguments</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Validating-the-type-of-Arguments-1"><span>11.9.2 Validating the type of Arguments<a class="copiable-link" href="#Validating-the-type-of-Arguments-1"> &para;</a></span></h4>
+
+<p>Besides the number of arguments, inputs can be checked for various
+properties.  <code class="code">validatestring</code> is used for string arguments and
+<code class="code">validateattributes</code> for numeric arguments.
+</p>
+<a class="anchor" id="XREFvalidatestring"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-validatestring"><span><code class="def-type"><var class="var">validstr</var> =</code> <strong class="def-name">validatestring</strong> <code class="def-code-arguments">(<var class="var">str</var>, <var class="var">strarray</var>)</code><a class="copiable-link" href="#index-validatestring"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-validatestring-1"><span><code class="def-type"><var class="var">validstr</var> =</code> <strong class="def-name">validatestring</strong> <code class="def-code-arguments">(<var class="var">str</var>, <var class="var">strarray</var>, <var class="var">funcname</var>)</code><a class="copiable-link" href="#index-validatestring-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-validatestring-2"><span><code class="def-type"><var class="var">validstr</var> =</code> <strong class="def-name">validatestring</strong> <code class="def-code-arguments">(<var class="var">str</var>, <var class="var">strarray</var>, <var class="var">funcname</var>, <var class="var">varname</var>)</code><a class="copiable-link" href="#index-validatestring-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-validatestring-3"><span><code class="def-type"><var class="var">validstr</var> =</code> <strong class="def-name">validatestring</strong> <code class="def-code-arguments">(&hellip;, <var class="var">position</var>)</code><a class="copiable-link" href="#index-validatestring-3"> &para;</a></span></dt>
+<dd><p>Verify that <var class="var">str</var> is an element, or substring of an element, in
+<var class="var">strarray</var>.
+</p>
+<p>When <var class="var">str</var> is a character string to be tested, and <var class="var">strarray</var> is a
+cell array of strings of valid values, then <var class="var">validstr</var> will be the
+validated form of <var class="var">str</var> where validation is defined as <var class="var">str</var> being
+a member or substring of <var class="var">validstr</var>.  This is useful for both verifying
+and expanding short options, such as <code class="code">&quot;r&quot;</code>, to their longer forms,
+such as <code class="code">&quot;red&quot;</code>.  If <var class="var">str</var> is a substring of <var class="var">validstr</var>,
+and there are multiple matches, the shortest match will be returned if
+all matches are substrings of each other.  Otherwise, an error will be
+raised because the expansion of <var class="var">str</var> is ambiguous.  All comparisons
+are case insensitive.
+</p>
+<p>The additional inputs <var class="var">funcname</var>, <var class="var">varname</var>, and <var class="var">position</var>
+are optional and will make any generated validation error message more
+specific.
+</p>
+<p>Examples:
+</p>
+<div class="example smallexample">
+<div class="group"><pre class="example-preformatted">validatestring (&quot;r&quot;, {&quot;red&quot;, &quot;green&quot;, &quot;blue&quot;})
+&rArr;  &quot;red&quot;
+
+validatestring (&quot;b&quot;, {&quot;red&quot;, &quot;green&quot;, &quot;blue&quot;, &quot;black&quot;})
+&rArr;  error: validatestring: multiple unique matches were found for 'b':
+   blue, black
+</pre></div></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Searching-in-Strings.html#XREFstrcmp">strcmp</a>, <a class="ref" href="Searching-in-Strings.html#XREFstrcmpi">strcmpi</a>, <a class="ref" href="#XREFvalidateattributes">validateattributes</a>, <a class="ref" href="Parsing-Arguments.html#XREFinputParser">inputParser</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFvalidateattributes"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-validateattributes"><span><strong class="def-name">validateattributes</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">classes</var>, <var class="var">attributes</var>)</code><a class="copiable-link" href="#index-validateattributes"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-validateattributes-1"><span><strong class="def-name">validateattributes</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">classes</var>, <var class="var">attributes</var>, <var class="var">arg_idx</var>)</code><a class="copiable-link" href="#index-validateattributes-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-validateattributes-2"><span><strong class="def-name">validateattributes</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">classes</var>, <var class="var">attributes</var>, <var class="var">func_name</var>)</code><a class="copiable-link" href="#index-validateattributes-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-validateattributes-3"><span><strong class="def-name">validateattributes</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">classes</var>, <var class="var">attributes</var>, <var class="var">func_name</var>, <var class="var">arg_name</var>)</code><a class="copiable-link" href="#index-validateattributes-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-validateattributes-4"><span><strong class="def-name">validateattributes</strong> <code class="def-code-arguments">(<var class="var">A</var>, <var class="var">classes</var>, <var class="var">attributes</var>, <var class="var">func_name</var>, <var class="var">arg_name</var>, <var class="var">arg_idx</var>)</code><a class="copiable-link" href="#index-validateattributes-4"> &para;</a></span></dt>
+<dd><p>Check validity of input argument.
+</p>
+<p>Confirms that the argument <var class="var">A</var> is valid by belonging to one of
+<var class="var">classes</var>, and holding all of the <var class="var">attributes</var>.  If it does not,
+an error is thrown, with a message formatted accordingly.  The error
+message can be made further complete by the function name <var class="var">fun_name</var>,
+the argument name <var class="var">arg_name</var>, and its position in the input
+<var class="var">arg_idx</var>.
+</p>
+<p><var class="var">classes</var> must be a cell array of strings (an empty cell array is
+allowed) with the name of classes (remember that a class name is case
+sensitive).  In addition to the class name, the following categories
+names are also valid:
+</p>
+<dl class="table">
+<dt><code class="code">&quot;float&quot;</code></dt>
+<dd><p>Floating point value comprising classes <code class="code">&quot;double&quot;</code> and
+<code class="code">&quot;single&quot;</code>.
+</p>
+</dd>
+<dt><code class="code">&quot;integer&quot;</code></dt>
+<dd><p>Integer value comprising classes (u)int8, (u)int16, (u)int32, (u)int64.
+</p>
+</dd>
+<dt><code class="code">&quot;numeric&quot;</code></dt>
+<dd><p>Numeric value comprising either a floating point or integer value.
+</p>
+</dd>
+</dl>
+
+<p><var class="var">attributes</var> must be a cell array with names of checks for <var class="var">A</var>.
+Some of them require an additional value to be supplied right after the
+name (see details for each below).
+</p>
+<dl class="table">
+<dt><code class="code">&quot;&lt;=&quot;</code></dt>
+<dd><p>All values are less than or equal to the following value in
+<var class="var">attributes</var>.
+</p>
+</dd>
+<dt><code class="code">&quot;&lt;&quot;</code></dt>
+<dd><p>All values are less than the following value in <var class="var">attributes</var>.
+</p>
+</dd>
+<dt><code class="code">&quot;&gt;=&quot;</code></dt>
+<dd><p>All values are greater than or equal to the following value in
+<var class="var">attributes</var>.
+</p>
+</dd>
+<dt><code class="code">&quot;&gt;&quot;</code></dt>
+<dd><p>All values are greater than the following value in <var class="var">attributes</var>.
+</p>
+</dd>
+<dt><code class="code">&quot;2d&quot;</code></dt>
+<dd><p>A 2-dimensional matrix.  Note that vectors and empty matrices have
+2 dimensions, one of them being of length 1, or both length 0.
+</p>
+</dd>
+<dt><code class="code">&quot;3d&quot;</code></dt>
+<dd><p>Has no more than 3 dimensions.  A 2-dimensional matrix is a 3-D matrix
+whose 3rd dimension is of length 1.
+</p>
+</dd>
+<dt><code class="code">&quot;binary&quot;</code></dt>
+<dd><p>All values are either 1 or 0.
+</p>
+</dd>
+<dt><code class="code">&quot;column&quot;</code></dt>
+<dd><p>Values are arranged in a single column.
+</p>
+</dd>
+<dt><code class="code">&quot;decreasing&quot;</code></dt>
+<dd><p>No value is <var class="var">NaN</var>, and each is less than the preceding one.
+</p>
+</dd>
+<dt><code class="code">&quot;diag&quot;</code></dt>
+<dd><p>Value is a diagonal matrix.
+</p>
+</dd>
+<dt><code class="code">&quot;even&quot;</code></dt>
+<dd><p>All values are even numbers.
+</p>
+</dd>
+<dt><code class="code">&quot;finite&quot;</code></dt>
+<dd><p>All values are finite.
+</p>
+</dd>
+<dt><code class="code">&quot;increasing&quot;</code></dt>
+<dd><p>No value is <var class="var">NaN</var>, and each is greater than the preceding one.
+</p>
+</dd>
+<dt><code class="code">&quot;integer&quot;</code></dt>
+<dd><p>All values are integer.  This is different than using <code class="code">isinteger</code>
+which only checks its an integer type.  This checks that each value in
+<var class="var">A</var> is an integer value, i.e., it has no decimal part.
+</p>
+</dd>
+<dt><code class="code">&quot;ncols&quot;</code></dt>
+<dd><p>Has exactly as many columns as the next value in <var class="var">attributes</var>.
+</p>
+</dd>
+<dt><code class="code">&quot;ndims&quot;</code></dt>
+<dd><p>Has exactly as many dimensions as the next value in <var class="var">attributes</var>.
+</p>
+</dd>
+<dt><code class="code">&quot;nondecreasing&quot;</code></dt>
+<dd><p>No value is <var class="var">NaN</var>, and each is greater than or equal to the preceding
+one.
+</p>
+</dd>
+<dt><code class="code">&quot;nonempty&quot;</code></dt>
+<dd><p>It is not empty.
+</p>
+</dd>
+<dt><code class="code">&quot;nonincreasing&quot;</code></dt>
+<dd><p>No value is <var class="var">NaN</var>, and each is less than or equal to the preceding one.
+</p>
+</dd>
+<dt><code class="code">&quot;nonnan&quot;</code></dt>
+<dd><p>No value is a <code class="code">NaN</code>.
+</p>
+</dd>
+<dt><code class="code">&quot;nonnegative&quot;</code></dt>
+<dd><p>All values are non negative.
+</p>
+</dd>
+<dt><code class="code">&quot;nonsparse&quot;</code></dt>
+<dd><p>It is not a sparse matrix.
+</p>
+</dd>
+<dt><code class="code">&quot;nonzero&quot;</code></dt>
+<dd><p>No value is zero.
+</p>
+</dd>
+<dt><code class="code">&quot;nrows&quot;</code></dt>
+<dd><p>Has exactly as many rows as the next value in <var class="var">attributes</var>.
+</p>
+</dd>
+<dt><code class="code">&quot;numel&quot;</code></dt>
+<dd><p>Has exactly as many elements as the next value in <var class="var">attributes</var>.
+</p>
+</dd>
+<dt><code class="code">&quot;odd&quot;</code></dt>
+<dd><p>All values are odd numbers.
+</p>
+</dd>
+<dt><code class="code">&quot;positive&quot;</code></dt>
+<dd><p>All values are positive.
+</p>
+</dd>
+<dt><code class="code">&quot;real&quot;</code></dt>
+<dd><p>It is a non-complex matrix.
+</p>
+</dd>
+<dt><code class="code">&quot;row&quot;</code></dt>
+<dd><p>Values are arranged in a single row.
+</p>
+</dd>
+<dt><code class="code">&quot;scalar&quot;</code></dt>
+<dd><p>It is a scalar.
+</p>
+</dd>
+<dt><code class="code">&quot;size&quot;</code></dt>
+<dd><p>Its size has length equal to the values of the next in <var class="var">attributes</var>.
+The next value must is an array with the length for each dimension.  To
+ignore the check for a certain dimension, the value of <code class="code">NaN</code> can be
+used.
+</p>
+</dd>
+<dt><code class="code">&quot;square&quot;</code></dt>
+<dd><p>Is a square matrix.
+</p>
+</dd>
+<dt><code class="code">&quot;vector&quot;</code></dt>
+<dd><p>Values are arranged in a single vector (column or vector).
+</p>
+</dd>
+</dl>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Built_002din-Data-Types.html#XREFisa">isa</a>, <a class="ref" href="#XREFvalidatestring">validatestring</a>, <a class="ref" href="Parsing-Arguments.html#XREFinputParser">inputParser</a>.
+</p></dd></dl>
+
+
+<p>As alternatives to <code class="code">validateattributes</code> there are several shorter
+convenience functions to check for individual properties.
+</p>
+<a class="anchor" id="XREFmustBeFinite"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-mustBeFinite"><span><strong class="def-name">mustBeFinite</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-mustBeFinite"> &para;</a></span></dt>
+<dd>
+<p>Require that input <var class="var">x</var> is finite.
+</p>
+<p>Raise an error if any element of the input <var class="var">x</var> is not finite, as
+determined by <code class="code">isfinite (x)</code>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFmustBeNonNan">mustBeNonNan</a>, <a class="ref" href="Finding-Elements-and-Checking-Conditions.html#XREFisfinite">isfinite</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFmustBeGreaterThan"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-mustBeGreaterThan"><span><strong class="def-name">mustBeGreaterThan</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">c</var>)</code><a class="copiable-link" href="#index-mustBeGreaterThan"> &para;</a></span></dt>
+<dd>
+<p>Require that input <var class="var">x</var> is greater than <var class="var">c</var>.
+</p>
+<p>Raise an error if any element of the input <var class="var">x</var> is not greater than
+<var class="var">c</var>, as determined by <code class="code"><var class="var">x</var> &gt; <var class="var">c</var></code>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFmustBeGreaterThanOrEqual">mustBeGreaterThanOrEqual</a>, <a class="ref" href="#XREFmustBeLessThan">mustBeLessThan</a>, <a class="ref" href="Comparison-Ops.html#XREFgt">gt</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFmustBeGreaterThanOrEqual"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-mustBeGreaterThanOrEqual"><span><strong class="def-name">mustBeGreaterThanOrEqual</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">c</var>)</code><a class="copiable-link" href="#index-mustBeGreaterThanOrEqual"> &para;</a></span></dt>
+<dd>
+<p>Require that input <var class="var">x</var> is greater than or equal to <var class="var">c</var>.
+</p>
+<p>Raise an error if any element of the input <var class="var">x</var> is not greater than
+or equal to <var class="var">c</var>, as determined by <code class="code"><var class="var">x</var> &gt;= <var class="var">c</var></code>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFmustBeGreaterThan">mustBeGreaterThan</a>, <a class="ref" href="#XREFmustBeLessThanOrEqual">mustBeLessThanOrEqual</a>, <a class="ref" href="Comparison-Ops.html#XREFge">ge</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFmustBeInteger"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-mustBeInteger"><span><strong class="def-name">mustBeInteger</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-mustBeInteger"> &para;</a></span></dt>
+<dd>
+<p>Require that input <var class="var">x</var> is integer-valued (but not necessarily
+integer-typed).
+</p>
+<p>Raise an error if any element of the input <var class="var">x</var> is not a finite,
+real, integer-valued numeric value, as determined by various checks.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFmustBeNumeric">mustBeNumeric</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFmustBeLessThan"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-mustBeLessThan"><span><strong class="def-name">mustBeLessThan</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">c</var>)</code><a class="copiable-link" href="#index-mustBeLessThan"> &para;</a></span></dt>
+<dd>
+<p>Require that input <var class="var">x</var> is less than <var class="var">c</var>.
+</p>
+<p>Raise an error if any element of the input <var class="var">x</var> is not less than
+<var class="var">c</var>, as determined by <code class="code"><var class="var">x</var> &lt; <var class="var">c</var></code>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFmustBeLessThanOrEqual">mustBeLessThanOrEqual</a>, <a class="ref" href="#XREFmustBeGreaterThan">mustBeGreaterThan</a>, <a class="ref" href="Comparison-Ops.html#XREFlt">lt</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFmustBeLessThanOrEqual"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-mustBeLessThanOrEqual"><span><strong class="def-name">mustBeLessThanOrEqual</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">c</var>)</code><a class="copiable-link" href="#index-mustBeLessThanOrEqual"> &para;</a></span></dt>
+<dd>
+<p>Require that input is less than or equal to a given value.
+</p>
+<p>Raise an error if any element of the input <var class="var">x</var> is not less than
+or equal to <var class="var">c</var>, as determined by <code class="code"><var class="var">x</var> &lt;= <var class="var">c</var></code>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFmustBeLessThan">mustBeLessThan</a>, <a class="ref" href="#XREFmustBeGreaterThanOrEqual">mustBeGreaterThanOrEqual</a>, <a class="ref" href="Comparison-Ops.html#XREFle">le</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFmustBeMember"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-mustBeMember"><span><strong class="def-name">mustBeMember</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">valid</var>)</code><a class="copiable-link" href="#index-mustBeMember"> &para;</a></span></dt>
+<dd>
+<p>Require that input <var class="var">x</var> is a member of a set of given valid values.
+</p>
+<p>Raise an error if any element of the input <var class="var">x</var> is not a member
+of the set <var class="var">valid</var>, as determined by <code class="code">ismember (<var class="var">x</var>)</code>.
+</p>
+<p>Programming Note: char inputs may behave strangely because of the
+interaction between chars and cellstrings when calling <code class="code">ismember</code> on
+them.  But it will probably &quot;do what you mean&quot; if you just use it naturally.
+To guarantee operation, convert all char arrays to cellstrings with
+<code class="code">cellstr</code>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFmustBeNonempty">mustBeNonempty</a>, <a class="ref" href="Set-Operations.html#XREFismember">ismember</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFmustBeNegative"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-mustBeNegative"><span><strong class="def-name">mustBeNegative</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-mustBeNegative"> &para;</a></span></dt>
+<dd>
+<p>Require that input <var class="var">x</var> is negative.
+</p>
+<p>Raise an error if any element of the input <var class="var">x</var> is not negative, as
+determined by <code class="code"><var class="var">x</var> &lt; 0</code>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFmustBeNonnegative">mustBeNonnegative</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFmustBeNonempty"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-mustBeNonempty"><span><strong class="def-name">mustBeNonempty</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-mustBeNonempty"> &para;</a></span></dt>
+<dd>
+<p>Require that input <var class="var">x</var> is nonempty.
+</p>
+<p>Raise an error if the input <var class="var">x</var> is empty, as determined by
+<code class="code">isempty (<var class="var">x</var>)</code>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFmustBeMember">mustBeMember</a>, <a class="ref" href="#XREFmustBeNonzero">mustBeNonzero</a>, <a class="ref" href="Object-Sizes.html#XREFisempty">isempty</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFmustBeNonNan"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-mustBeNonNan"><span><strong class="def-name">mustBeNonNan</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-mustBeNonNan"> &para;</a></span></dt>
+<dd>
+<p>Require that input <var class="var">x</var> is non-<code class="code">NaN</code>.
+</p>
+<p>Raise an error if any element of the input <var class="var">x</var> is <code class="code">NaN</code>, as
+determined by <code class="code">isnan (<var class="var">x</var>)</code>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFmustBeFinite">mustBeFinite</a>, <a class="ref" href="#XREFmustBeNonempty">mustBeNonempty</a>, <a class="ref" href="Finding-Elements-and-Checking-Conditions.html#XREFisnan">isnan</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFmustBeNonnegative"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-mustBeNonnegative"><span><strong class="def-name">mustBeNonnegative</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-mustBeNonnegative"> &para;</a></span></dt>
+<dd>
+<p>Require that input <var class="var">x</var> is not negative.
+</p>
+<p>Raise an error if any element of the input <var class="var">x</var> is negative, as
+determined by <code class="code"><var class="var">x</var> &gt;= 0</code>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFmustBeNonzero">mustBeNonzero</a>, <a class="ref" href="#XREFmustBePositive">mustBePositive</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFmustBeNonpositive"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-mustBeNonpositive"><span><strong class="def-name">mustBeNonpositive</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-mustBeNonpositive"> &para;</a></span></dt>
+<dd>
+<p>Require that input <var class="var">x</var> is not positive.
+</p>
+<p>Raise an error if any element of the input <var class="var">x</var> is positive, as
+determined by <code class="code"><var class="var">x</var> &lt;= 0</code>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFmustBeNegative">mustBeNegative</a>, <a class="ref" href="#XREFmustBeNonzero">mustBeNonzero</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFmustBeNonsparse"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-mustBeNonsparse"><span><strong class="def-name">mustBeNonsparse</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-mustBeNonsparse"> &para;</a></span></dt>
+<dd>
+<p>Require that input <var class="var">x</var> is not sparse.
+</p>
+<p>Raise an error if the input <var class="var">x</var> is sparse, as determined by
+<code class="code">issparse (<var class="var">x</var>)</code>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Information.html#XREFissparse">issparse</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFmustBeNonzero"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-mustBeNonzero"><span><strong class="def-name">mustBeNonzero</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-mustBeNonzero"> &para;</a></span></dt>
+<dd>
+<p>Require that input <var class="var">x</var> is not zero.
+</p>
+<p>Raise an error if any element of the input <var class="var">x</var> is zero, as determined
+by <code class="code"><var class="var">x</var> == 0</code>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFmustBeNonnegative">mustBeNonnegative</a>, <a class="ref" href="#XREFmustBePositive">mustBePositive</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFmustBeNumeric"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-mustBeNumeric"><span><strong class="def-name">mustBeNumeric</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-mustBeNumeric"> &para;</a></span></dt>
+<dd>
+<p>Require that input <var class="var">x</var> is numeric.
+</p>
+<p>Raise an error if the input <var class="var">x</var> is not numeric, as determined by
+<code class="code">isnumeric (<var class="var">x</var>)</code>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFmustBeNumericOrLogical">mustBeNumericOrLogical</a>, <a class="ref" href="Predicates-for-Numeric-Objects.html#XREFisnumeric">isnumeric</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFmustBeNumericOrLogical"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-mustBeNumericOrLogical"><span><strong class="def-name">mustBeNumericOrLogical</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-mustBeNumericOrLogical"> &para;</a></span></dt>
+<dd>
+<p>Require that input <var class="var">x</var> is numeric or logical.
+</p>
+<p>Raise an error if the input <var class="var">x</var> is not numeric or logical, as
+determined by <code class="code">isnumeric (<var class="var">x</var>) || islogical (<var class="var">x</var>)</code>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFmustBeNumeric">mustBeNumeric</a>, <a class="ref" href="Predicates-for-Numeric-Objects.html#XREFisnumeric">isnumeric</a>, <a class="ref" href="Predicates-for-Numeric-Objects.html#XREFislogical">islogical</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFmustBePositive"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-mustBePositive"><span><strong class="def-name">mustBePositive</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-mustBePositive"> &para;</a></span></dt>
+<dd>
+<p>Require that input <var class="var">x</var> is positive.
+</p>
+<p>Raise an error if any element of the input <var class="var">x</var> is not positive, as
+determined by <code class="code"><var class="var">x</var> &gt; 0</code>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFmustBeNonnegative">mustBeNonnegative</a>, <a class="ref" href="#XREFmustBeNonzero">mustBeNonzero</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFmustBeReal"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-mustBeReal"><span><strong class="def-name">mustBeReal</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-mustBeReal"> &para;</a></span></dt>
+<dd>
+<p>Require that input <var class="var">x</var> is real.
+</p>
+<p>Raise an error if the input <var class="var">x</var> is not real, as determined by
+<code class="code">isreal (<var class="var">x</var>)</code>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFmustBeFinite">mustBeFinite</a>, <a class="ref" href="#XREFmustBeNonNan">mustBeNonNan</a>, <a class="ref" href="Predicates-for-Numeric-Objects.html#XREFisreal">isreal</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Parsing-Arguments.html">Parsing Arguments</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Validating-the-number-of-Arguments.html">Validating the number of Arguments</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Validating-Arguments.html">Validating Arguments</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

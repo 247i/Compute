@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- Additional documentation for the optim package for Octave.
+
+Copyright © Olaf Till <i7tiol@t-online.de>
+
+You can redistribute this documentation and/or modify it under the terms
+of the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This documentation is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this documentation; if not, see <http://www.gnu.org/licenses/>. -->
+<title>line_min (optim_doc)</title>
+
+<meta name="description" content="line_min (optim_doc)">
+<meta name="keywords" content="line_min (optim_doc)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-index.html" rel="index" title="Function index">
+<link href="Scalar-optimization.html" rel="up" title="Scalar optimization">
+<link href="de_005fmin.html" rel="next" title="de_min">
+<link href="brent_005fline_005fmin.html" rel="prev" title="brent_line_min">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section-level-extent" id="line_005fmin">
+<div class="nav-panel">
+<p>
+Next: <a href="de_005fmin.html" accesskey="n" rel="next">A differential evolution (stochastic) optimizer</a>, Previous: <a href="brent_005fline_005fmin.html" accesskey="p" rel="prev">Linesearch, Brent method</a>, Up: <a href="Scalar-optimization.html" accesskey="u" rel="up">Functions for optimization of a scalar objective function</a> &nbsp; [<a href="Function-index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h3 class="section" id="Linesearch_002c-minimize-a-function-along-dx"><span>1.15 Linesearch, minimize a function along dx<a class="copiable-link" href="#Linesearch_002c-minimize-a-function-along-dx"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-line_005fmin"></a>
+
+<h4 class="subheading" id="Helptext_003a-4"><span>Helptext:<a class="copiable-link" href="#Helptext_003a-4"> &para;</a></span></h4>
+
+<a class="anchor" id="XREFline_005fmin"></a><pre class="verbatim">[a,fx,nev] = line_min (f, dx, args, narg, h, nev_max) - Minimize f() along dx
+
+INPUT ----------
+f    : string  : Name of minimized function
+dx   : matrix  : Direction along which f() is minimized
+args : cell    : Arguments of f
+narg : integer : Position of minimized variable in args.  Default=1
+h    : scalar  : Step size to use for centered finite difference
+approximation of first and second derivatives. Default=1E-3.
+nev_max : integer : Maximum number of function evaluations.  Default=30
+
+OUTPUT ---------
+a    : scalar  : Value for which f(x+a*dx) is a minimum (*)
+fx   : scalar  : Value of f(x+a*dx) at minimum (*)
+nev  : integer : Number of function evaluations
+
+(*) The notation f(x+a*dx) assumes that args == {x}.
+
+Reference: David G Luenberger's Linear and Nonlinear Programming
+
+</pre>
+
+</div>
+
+
+
+</body>
+</html>

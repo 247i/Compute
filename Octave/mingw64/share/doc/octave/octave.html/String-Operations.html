@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>String Operations (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="String Operations (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="String Operations (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Strings.html" rel="up" title="Strings">
+<link href="Converting-Strings.html" rel="next" title="Converting Strings">
+<link href="Character-Arrays.html" rel="prev" title="Character Arrays">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="String-Operations">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Converting-Strings.html" accesskey="n" rel="next">Converting Strings</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Character-Arrays.html" accesskey="p" rel="prev">Character Arrays</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Strings.html" accesskey="u" rel="up">Strings</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="String-Operations-1"><span>5.3 String Operations<a class="copiable-link" href="#String-Operations-1"> &para;</a></span></h3>
+
+<p>Octave supports a wide range of functions for manipulating strings.
+Since a string is just a matrix, simple manipulations can be accomplished
+using standard operators.  The following example shows how to replace
+all blank characters with underscores.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">quote = ...
+  &quot;First things first, but not necessarily in that order&quot;;
+quote( quote == &quot; &quot; ) = &quot;_&quot;
+&rArr;  quote =
+    First_things_first,_but_not_necessarily_in_that_order
+</pre></div></div>
+
+<p>For more complex manipulations, such as searching, replacing, and
+general regular expressions, the following functions come with Octave.
+</p>
+
+<ul class="mini-toc">
+<li><a href="Common-String-Operations.html" accesskey="1">Common String Operations</a></li>
+<li><a href="Concatenating-Strings.html" accesskey="2">Concatenating Strings</a></li>
+<li><a href="Splitting-and-Joining-Strings.html" accesskey="3">Splitting and Joining Strings</a></li>
+<li><a href="Searching-in-Strings.html" accesskey="4">Searching in Strings</a></li>
+<li><a href="Searching-and-Replacing-in-Strings.html" accesskey="5">Searching and Replacing in Strings</a></li>
+</ul>
+</div>
+
+
+
+</body>
+</html>

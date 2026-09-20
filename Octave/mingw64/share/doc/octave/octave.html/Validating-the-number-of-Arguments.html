@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Validating the number of Arguments (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Validating the number of Arguments (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Validating the number of Arguments (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Validating-Arguments.html" rel="up" title="Validating Arguments">
+<link href="Validating-the-type-of-Arguments.html" rel="next" title="Validating the type of Arguments">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Validating-the-number-of-Arguments">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Validating-the-type-of-Arguments.html" accesskey="n" rel="next">Validating the type of Arguments</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Validating-Arguments.html" accesskey="u" rel="up">Validating Arguments</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Validating-the-number-of-Arguments-1"><span>11.9.1 Validating the number of Arguments<a class="copiable-link" href="#Validating-the-number-of-Arguments-1"> &para;</a></span></h4>
+
+<p>In Octave the following idiom is seen frequently at the beginning of a
+function definition:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">if (nargin &lt; min_#_inputs || nargin &gt; max_#_inputs)
+  print_usage ();
+endif
+</pre></div></div>
+
+<p>which stops the function execution and prints a message about the correct
+way to call the function whenever the number of inputs is wrong.
+</p>
+<p>Similar error checking is provided by <code class="code">narginchk</code> and
+<code class="code">nargoutchk</code>.
+</p>
+<a class="anchor" id="XREFnarginchk"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-narginchk"><span><strong class="def-name">narginchk</strong> <code class="def-code-arguments">(<var class="var">minargs</var>, <var class="var">maxargs</var>)</code><a class="copiable-link" href="#index-narginchk"> &para;</a></span></dt>
+<dd><p>Check for correct number of input arguments.
+</p>
+<p>Generate an error message if the number of arguments in the calling function
+is outside the range <var class="var">minargs</var> and <var class="var">maxargs</var>.  Otherwise, do
+nothing.
+</p>
+<p>Both <var class="var">minargs</var> and <var class="var">maxargs</var> must be scalar numeric values.  Zero,
+Inf, and negative values are all allowed, and <var class="var">minargs</var> and
+<var class="var">maxargs</var> may be equal.
+</p>
+<p>Note that this function evaluates <code class="code">nargin</code> on the caller.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFnargoutchk">nargoutchk</a>, <a class="ref" href="Raising-Errors.html#XREFerror">error</a>, <a class="ref" href="Multiple-Return-Values.html#XREFnargout">nargout</a>, <a class="ref" href="Defining-Functions.html#XREFnargin">nargin</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFnargoutchk"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-nargoutchk"><span><strong class="def-name">nargoutchk</strong> <code class="def-code-arguments">(<var class="var">minargs</var>, <var class="var">maxargs</var>)</code><a class="copiable-link" href="#index-nargoutchk"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-nargoutchk-1"><span><code class="def-type"><var class="var">msgstr</var> =</code> <strong class="def-name">nargoutchk</strong> <code class="def-code-arguments">(<var class="var">minargs</var>, <var class="var">maxargs</var>, <var class="var">nargs</var>)</code><a class="copiable-link" href="#index-nargoutchk-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-nargoutchk-2"><span><code class="def-type"><var class="var">msgstr</var> =</code> <strong class="def-name">nargoutchk</strong> <code class="def-code-arguments">(<var class="var">minargs</var>, <var class="var">maxargs</var>, <var class="var">nargs</var>, &quot;string&quot;)</code><a class="copiable-link" href="#index-nargoutchk-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-nargoutchk-3"><span><code class="def-type"><var class="var">msgstruct</var> =</code> <strong class="def-name">nargoutchk</strong> <code class="def-code-arguments">(<var class="var">minargs</var>, <var class="var">maxargs</var>, <var class="var">nargs</var>, &quot;struct&quot;)</code><a class="copiable-link" href="#index-nargoutchk-3"> &para;</a></span></dt>
+<dd><p>Check for correct number of output arguments.
+</p>
+<p>In the first form, return an error if the number of arguments is not between
+<var class="var">minargs</var> and <var class="var">maxargs</var>.  Otherwise, do nothing.  Note that this
+function evaluates the value of <code class="code">nargout</code> on the caller so its value
+must have not been tampered with.
+</p>
+<p>Both <var class="var">minargs</var> and <var class="var">maxargs</var> must be numeric scalars.  Zero, Inf,
+and negative are all valid, and they can have the same value.
+</p>
+<p>For backwards compatibility, the other forms return an appropriate error
+message string (or structure) if the number of outputs requested is
+invalid.
+</p>
+<p>This is useful for checking to that the number of output arguments supplied
+to a function is within an acceptable range.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFnarginchk">narginchk</a>, <a class="ref" href="Raising-Errors.html#XREFerror">error</a>, <a class="ref" href="Multiple-Return-Values.html#XREFnargout">nargout</a>, <a class="ref" href="Defining-Functions.html#XREFnargin">nargin</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Validating-the-type-of-Arguments.html">Validating the type of Arguments</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Validating-Arguments.html">Validating Arguments</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

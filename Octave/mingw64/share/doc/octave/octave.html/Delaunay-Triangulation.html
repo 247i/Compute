@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Delaunay Triangulation (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Delaunay Triangulation (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Delaunay Triangulation (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Geometry.html" rel="up" title="Geometry">
+<link href="Voronoi-Diagrams.html" rel="next" title="Voronoi Diagrams">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.center {text-align:center}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+ul.mark-bullet {list-style-type: disc}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Delaunay-Triangulation">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Voronoi-Diagrams.html" accesskey="n" rel="next">Voronoi Diagrams</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Geometry.html" accesskey="u" rel="up">Geometry</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Delaunay-Triangulation-1"><span>30.1 Delaunay Triangulation<a class="copiable-link" href="#Delaunay-Triangulation-1"> &para;</a></span></h3>
+
+<p>The Delaunay triangulation is constructed from a set of
+circum-circles.  These circum-circles are chosen so that there are at
+least three of the points in the set to triangulation on the
+circumference of the circum-circle.  None of the points in the set of
+points falls within any of the circum-circles.
+</p>
+<p>In general there are only three points on the circumference of any
+circum-circle.  However, in some cases, and in particular for the
+case of a regular grid, 4 or more points can be on a single
+circum-circle.  In this case the Delaunay triangulation is not unique.
+</p>
+<a class="anchor" id="XREFdelaunay"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-delaunay"><span><code class="def-type"><var class="var">tri</var> =</code> <strong class="def-name">delaunay</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>)</code><a class="copiable-link" href="#index-delaunay"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-delaunay-1"><span><code class="def-type"><var class="var">tetr</var> =</code> <strong class="def-name">delaunay</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>)</code><a class="copiable-link" href="#index-delaunay-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-delaunay-2"><span><code class="def-type"><var class="var">tri</var> =</code> <strong class="def-name">delaunay</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-delaunay-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-delaunay-3"><span><code class="def-type"><var class="var">tri</var> =</code> <strong class="def-name">delaunay</strong> <code class="def-code-arguments">(&hellip;, <var class="var">options</var>)</code><a class="copiable-link" href="#index-delaunay-3"> &para;</a></span></dt>
+<dd><p>Compute the Delaunay triangulation for a 2-D or 3-D set of points.
+</p>
+<p>For 2-D sets, the return value <var class="var">tri</var> is a set of triangles which
+satisfies the Delaunay circum-circle criterion, i.e., no data point from
+[<var class="var">x</var>, <var class="var">y</var>] is within the circum-circle of the defining triangle.
+The set of triangles <var class="var">tri</var> is a matrix of size [n, 3].  Each row defines
+a triangle and the three columns are the three vertices of the triangle.
+The value of <code class="code"><var class="var">tri</var>(i,j)</code> is an index into <var class="var">x</var> and <var class="var">y</var> for
+the location of the j-th vertex of the i-th triangle.
+</p>
+<p>For 3-D sets, the return value <var class="var">tetr</var> is a set of tetrahedrons which
+satisfies the Delaunay circum-circle criterion, i.e., no data point from
+[<var class="var">x</var>, <var class="var">y</var>, <var class="var">z</var>] is within the circum-circle of the defining
+tetrahedron.  The set of tetrahedrons is a matrix of size [n, 4].  Each row
+defines a tetrahedron and the four columns are the four vertices of the
+tetrahedron.  The value of <code class="code"><var class="var">tetr</var>(i,j)</code> is an index into <var class="var">x</var>,
+<var class="var">y</var>, <var class="var">z</var> for the location of the j-th vertex of the i-th
+tetrahedron.
+</p>
+<p>The input <var class="var">x</var> may also be a matrix with two or three columns where the
+first column contains x-data, the second y-data, and the optional third
+column contains z-data.
+</p>
+<p>An optional final argument, which must be a string or cell array of strings,
+contains options passed to the underlying qhull command.
+See the documentation for the Qhull library for details
+<a class="url" href="http://www.qhull.org/html/qh-quick.htm#options">http://www.qhull.org/html/qh-quick.htm#options</a>.
+The default options are <code class="code">{&quot;Qt&quot;, &quot;Qbb&quot;, &quot;Qc&quot;}</code>.
+If Qhull fails for 2-D input the triangulation is attempted again with
+the options <code class="code">{&quot;Qt&quot;, &quot;Qbb&quot;, &quot;Qc&quot;, &quot;Qz&quot;}</code> which may result in
+reduced accuracy.
+</p>
+<p>If <var class="var">options</var> is not present or <code class="code">[]</code> then the default arguments are
+used.  Otherwise, <var class="var">options</var> replaces the default argument list.
+To append user options to the defaults it is necessary to repeat the
+default arguments in <var class="var">options</var>.  Use a null string to pass no arguments.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">x = rand (1, 10);
+y = rand (1, 10);
+tri = delaunay (x, y);
+triplot (tri, x, y);
+hold on;
+plot (x, y, &quot;r*&quot;);
+axis ([0,1,0,1]);
+</pre></div></div>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFdelaunayn">delaunayn</a>, <a class="ref" href="Convex-Hull.html#XREFconvhull">convhull</a>, <a class="ref" href="Voronoi-Diagrams.html#XREFvoronoi">voronoi</a>, <a class="ref" href="Plotting-the-Triangulation.html#XREFtriplot">triplot</a>, <a class="ref" href="Plotting-the-Triangulation.html#XREFtrimesh">trimesh</a>, <a class="ref" href="Plotting-the-Triangulation.html#XREFtetramesh">tetramesh</a>, <a class="ref" href="Plotting-the-Triangulation.html#XREFtrisurf">trisurf</a>.
+</p></dd></dl>
+
+
+<p>For 3-D inputs <code class="code">delaunay</code> returns a set of tetrahedra that satisfy the
+Delaunay circum-circle criteria.  Similarly, <code class="code">delaunayn</code> returns the
+N-dimensional simplex satisfying the Delaunay circum-circle criteria.
+The N-dimensional extension of a triangulation is called a tessellation.
+</p>
+<a class="anchor" id="XREFdelaunayn"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-delaunayn"><span><code class="def-type"><var class="var">T</var> =</code> <strong class="def-name">delaunayn</strong> <code class="def-code-arguments">(<var class="var">pts</var>)</code><a class="copiable-link" href="#index-delaunayn"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-delaunayn-1"><span><code class="def-type"><var class="var">T</var> =</code> <strong class="def-name">delaunayn</strong> <code class="def-code-arguments">(<var class="var">pts</var>, <var class="var">options</var>)</code><a class="copiable-link" href="#index-delaunayn-1"> &para;</a></span></dt>
+<dd><p>Compute the Delaunay triangulation for an N-dimensional set of points.
+</p>
+<p>The Delaunay triangulation is a tessellation of the convex hull of a set of
+points such that no N-sphere defined by the N-triangles contains any other
+points from the set.
+</p>
+<p>The input matrix <var class="var">pts</var> of size [n, dim] contains n points in a space of
+dimension dim.  The return matrix <var class="var">T</var> has size [m, dim+1].  Each row of
+<var class="var">T</var> contains a set of indices back into the original set of points
+<var class="var">pts</var> which describes a simplex of dimension dim.  For example, a 2-D
+simplex is a triangle and 3-D simplex is a tetrahedron.
+</p>
+<p>An optional second argument, which must be a string or cell array of
+strings, contains options passed to the underlying qhull command.  See the
+documentation for the Qhull library for details
+<a class="url" href="http://www.qhull.org/html/qh-quick.htm#options">http://www.qhull.org/html/qh-quick.htm#options</a>.
+The default options depend on the dimension of the input:
+</p>
+<ul class="itemize mark-bullet">
+<li>2-D and 3-D: <var class="var">options</var> = <code class="code">{&quot;Qt&quot;, &quot;Qbb&quot;, &quot;Qc&quot;}</code>
+
+</li><li>4-D and higher: <var class="var">options</var> = <code class="code">{&quot;Qt&quot;, &quot;Qbb&quot;, &quot;Qc&quot;, &quot;Qx&quot;}</code>
+</li></ul>
+
+<p>If Qhull fails for 2-D input the triangulation is attempted again with
+the options <code class="code">{&quot;Qt&quot;, &quot;Qbb&quot;, &quot;Qc&quot;, &quot;Qz&quot;}</code> which may result in
+reduced accuracy.
+</p>
+<p>If <var class="var">options</var> is not present or <code class="code">[]</code> then the default arguments are
+used.  Otherwise, <var class="var">options</var> replaces the default argument list.
+To append user options to the defaults it is necessary to repeat the
+default arguments in <var class="var">options</var>.  Use a null string to pass no arguments.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFdelaunay">delaunay</a>, <a class="ref" href="Convex-Hull.html#XREFconvhulln">convhulln</a>, <a class="ref" href="Voronoi-Diagrams.html#XREFvoronoin">voronoin</a>, <a class="ref" href="Plotting-the-Triangulation.html#XREFtrimesh">trimesh</a>, <a class="ref" href="Plotting-the-Triangulation.html#XREFtetramesh">tetramesh</a>.
+</p></dd></dl>
+
+
+<p>An example of a Delaunay triangulation of a set of points is
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">rand (&quot;state&quot;, 1);
+x = rand (1, 10);
+y = rand (1, 10);
+T = delaunay (x, y);
+X = [ x(T(:,1)); x(T(:,2)); x(T(:,3)); x(T(:,1)) ];
+Y = [ y(T(:,1)); y(T(:,2)); y(T(:,3)); y(T(:,1)) ];
+axis ([0, 1, 0, 1]);
+plot (X, Y, &quot;b&quot;, x, y, &quot;r*&quot;);
+</pre></div></div>
+
+<p>The result of which can be seen in <a class="ref" href="#fig_003adelaunay">Figure 30.1</a>.
+</p>
+<div class="float" id="fig_003adelaunay">
+<div class="center"><img class="image" src="delaunay.png" alt="delaunay">
+</div><div class="caption"><p><strong class="strong">Figure 30.1: </strong>Delaunay triangulation of a random set of points</p></div></div>
+
+<ul class="mini-toc">
+<li><a href="Plotting-the-Triangulation.html" accesskey="1">Plotting the Triangulation</a></li>
+<li><a href="Identifying-Points-in-Triangulation.html" accesskey="2">Identifying Points in Triangulation</a></li>
+</ul>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Voronoi-Diagrams.html">Voronoi Diagrams</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Geometry.html">Geometry</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

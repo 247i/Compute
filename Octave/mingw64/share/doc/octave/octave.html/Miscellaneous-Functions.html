@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Miscellaneous Functions (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Miscellaneous Functions (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Miscellaneous Functions (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Polynomial-Manipulations.html" rel="up" title="Polynomial Manipulations">
+<link href="Polynomial-Interpolation.html" rel="prev" title="Polynomial Interpolation">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Miscellaneous-Functions">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Polynomial-Interpolation.html" accesskey="p" rel="prev">Polynomial Interpolation</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Polynomial-Manipulations.html" accesskey="u" rel="up">Polynomial Manipulations</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Miscellaneous-Functions-1"><span>28.6 Miscellaneous Functions<a class="copiable-link" href="#Miscellaneous-Functions-1"> &para;</a></span></h3>
+
+<a class="anchor" id="XREFpoly"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-poly"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">poly</strong> <code class="def-code-arguments">(<var class="var">A</var>)</code><a class="copiable-link" href="#index-poly"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-poly-1"><span><code class="def-type"><var class="var">y</var> =</code> <strong class="def-name">poly</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-poly-1"> &para;</a></span></dt>
+<dd><p>If <var class="var">A</var> is a square <em class="math">N</em>-by-<em class="math">N</em> matrix, <code class="code">poly (<var class="var">A</var>)</code>
+is the row vector of the coefficients of <code class="code">det (z * eye (N) - A)</code>,
+the characteristic polynomial of <var class="var">A</var>.
+</p>
+<p>For example, the following code finds the eigenvalues of <var class="var">A</var> which are
+the roots of <code class="code">poly (<var class="var">A</var>)</code>.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">roots (poly (eye (3)))
+    &rArr;  1.00001 + 0.00001i
+       1.00001 - 0.00001i
+       0.99999 + 0.00000i
+</pre></div></div>
+
+<p>In fact, all three eigenvalues are exactly 1 which emphasizes that for
+numerical performance the <code class="code">eig</code> function should be used to compute
+eigenvalues.
+</p>
+<p>If <var class="var">x</var> is a vector, <code class="code">poly (<var class="var">x</var>)</code> is a vector of the
+coefficients of the polynomial whose roots are the elements of <var class="var">x</var>.
+That is, if <var class="var">c</var> is a polynomial, then the elements of
+<code class="code"><var class="var">d</var> = roots (poly (<var class="var">c</var>))</code> are contained in <var class="var">c</var>.  The
+vectors <var class="var">c</var> and <var class="var">d</var> are not identical, however, due to sorting and
+numerical errors.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Finding-Roots.html#XREFroots">roots</a>, <a class="ref" href="Basic-Matrix-Functions.html#XREFeig">eig</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFpolyout"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-polyout"><span><strong class="def-name">polyout</strong> <code class="def-code-arguments">(<var class="var">c</var>)</code><a class="copiable-link" href="#index-polyout"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-polyout-1"><span><strong class="def-name">polyout</strong> <code class="def-code-arguments">(<var class="var">c</var>, <var class="var">x</var>)</code><a class="copiable-link" href="#index-polyout-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-polyout-2"><span><code class="def-type"><var class="var">str</var> =</code> <strong class="def-name">polyout</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-polyout-2"> &para;</a></span></dt>
+<dd><p>Display a formatted version of the polynomial <var class="var">c</var>.
+</p>
+<p>The formatted polynomial
+</p>
+<div class="example">
+<pre class="example-preformatted">c(x) = c(1) * x^n + ... + c(n) x + c(n+1)
+</pre></div>
+
+<p>is returned as a string or written to the screen if <code class="code">nargout</code> is zero.
+</p>
+<p>The second argument <var class="var">x</var> specifies the variable name to use for each term
+and defaults to the string <code class="code">&quot;s&quot;</code>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFpolyreduce">polyreduce</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFpolyreduce"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-polyreduce"><span><code class="def-type"><var class="var">p</var> =</code> <strong class="def-name">polyreduce</strong> <code class="def-code-arguments">(<var class="var">c</var>)</code><a class="copiable-link" href="#index-polyreduce"> &para;</a></span></dt>
+<dd><p>Reduce a polynomial coefficient vector to a minimum number of terms by
+stripping off any leading zeros.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFpolyout">polyout</a>.
+</p></dd></dl>
+
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Polynomial-Interpolation.html">Polynomial Interpolation</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Polynomial-Manipulations.html">Polynomial Manipulations</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

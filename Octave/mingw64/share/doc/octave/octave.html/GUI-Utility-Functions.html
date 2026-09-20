@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>GUI Utility Functions (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="GUI Utility Functions (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="GUI Utility Functions (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="GUI-Development.html" rel="up" title="GUI Development">
+<link href="User_002dDefined-Preferences.html" rel="next" title="User-Defined Preferences">
+<link href="UI-Elements.html" rel="prev" title="UI Elements">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="GUI-Utility-Functions">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="User_002dDefined-Preferences.html" accesskey="n" rel="next">User-Defined Preferences</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="UI-Elements.html" accesskey="p" rel="prev">UI Elements</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="GUI-Development.html" accesskey="u" rel="up">GUI Development</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="GUI-Utility-Functions-1"><span>35.4 GUI Utility Functions<a class="copiable-link" href="#GUI-Utility-Functions-1"> &para;</a></span></h3>
+
+<p>These functions do not implement a GUI element but are useful when developing
+programs that do.  The functions <code class="code">uiwait</code>, <code class="code">uiresume</code>, and
+<code class="code">waitfor</code> are only available with the <code class="code">qt</code> or <code class="code">fltk</code> toolkits.
+</p>
+<a class="anchor" id="XREFguidata"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-guidata"><span><code class="def-type"><var class="var">data</var> =</code> <strong class="def-name">guidata</strong> <code class="def-code-arguments">(<var class="var">h</var>)</code><a class="copiable-link" href="#index-guidata"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-guidata-1"><span><strong class="def-name">guidata</strong> <code class="def-code-arguments">(<var class="var">h</var>, <var class="var">data</var>)</code><a class="copiable-link" href="#index-guidata-1"> &para;</a></span></dt>
+<dd><p>Query or set user-custom GUI data.
+</p>
+<p>The GUI data is stored in the figure handle <var class="var">h</var>.  If <var class="var">h</var> is not a
+figure handle then it&rsquo;s parent figure will be used for storage.
+</p>
+<p><var class="var">data</var> must be a single object which means it is usually preferable
+for it to be a data container such as a cell array or struct so that
+additional data items can be added easily.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Application_002ddefined-Data.html#XREFgetappdata">getappdata</a>, <a class="ref" href="Application_002ddefined-Data.html#XREFsetappdata">setappdata</a>, <a class="ref" href="Handle-Functions.html#XREFget">get</a>, <a class="ref" href="Handle-Functions.html#XREFset">set</a>, <a class="ref" href="User_002dDefined-Preferences.html#XREFgetpref">getpref</a>, <a class="ref" href="User_002dDefined-Preferences.html#XREFsetpref">setpref</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFguihandles"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-guihandles"><span><code class="def-type"><var class="var">hdata</var> =</code> <strong class="def-name">guihandles</strong> <code class="def-code-arguments">(<var class="var">h</var>)</code><a class="copiable-link" href="#index-guihandles"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-guihandles-1"><span><code class="def-type"><var class="var">hdata</var> =</code> <strong class="def-name">guihandles</strong><a class="copiable-link" href="#index-guihandles-1"> &para;</a></span></dt>
+<dd><p>Return a structure of object handles for the figure associated with
+handle <var class="var">h</var>.
+</p>
+<p>If no handle is specified the current figure returned by <code class="code">gcf</code> is used.
+</p>
+<p>The fieldname for each entry of <var class="var">hdata</var> is taken from the <code class="code">&quot;tag&quot;</code>
+property of the graphic object.  If the tag is empty then the handle is not
+returned.  If there are multiple graphic objects with the same tag then
+the entry in <var class="var">hdata</var> will be a vector of handles.  <code class="code">guihandles</code>
+includes all possible handles, including those for
+which <code class="code">&quot;HandleVisibility&quot;</code> is <code class="code">&quot;off&quot;</code>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFguidata">guidata</a>, <a class="ref" href="Searching-Properties.html#XREFfindobj">findobj</a>, <a class="ref" href="Searching-Properties.html#XREFfindall">findall</a>, <a class="ref" href="Handle-Functions.html#XREFallchild">allchild</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFhave_005fwindow_005fsystem"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-have_005fwindow_005fsystem"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">have_window_system</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-have_005fwindow_005fsystem"> &para;</a></span></dt>
+<dd><p>Return true if a window system is available (X11, Windows, or Apple OS X)
+and false otherwise.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFisguirunning">isguirunning</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFisguirunning"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-isguirunning"><span><code class="def-type"><var class="var">tf</var> =</code> <strong class="def-name">isguirunning</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-isguirunning"> &para;</a></span></dt>
+<dd><p>Return true if Octave is running in GUI mode and false otherwise.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFhave_005fwindow_005fsystem">have_window_system</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFgetpixelposition"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-getpixelposition"><span><code class="def-type"><var class="var">pos</var> =</code> <strong class="def-name">getpixelposition</strong> <code class="def-code-arguments">(<var class="var">h</var>)</code><a class="copiable-link" href="#index-getpixelposition"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-getpixelposition-1"><span><code class="def-type"><var class="var">pos</var> =</code> <strong class="def-name">getpixelposition</strong> <code class="def-code-arguments">(<var class="var">h</var>, <var class="var">rel_to_fig</var>)</code><a class="copiable-link" href="#index-getpixelposition-1"> &para;</a></span></dt>
+<dd><p>Return the position of a user interface component in pixel units.
+</p>
+<p>The first argument <var class="var">h</var> must be a handle to a valid graphics object of
+type uibuttongroup, uicontrol, uipanel, uitable, axes, or figure.  For other
+object types, the function returns zeros.
+</p>
+<p>By default, the position is returned relative to the object&rsquo;s parent.
+If the second argument <var class="var">rel_to_fig</var> is logically true, the position
+is computed relative to the enclosing figure object.
+</p>
+<p>The return value <var class="var">pos</var> is a 4-element vector with values
+<code class="code">[lower_left_X, lower_left_Y, width, height]</code>.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="Handle-Functions.html#XREFget">get</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFlistfonts"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-listfonts"><span><code class="def-type">fonts =</code> <strong class="def-name">listfonts</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-listfonts"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-listfonts-1"><span><code class="def-type">fonts =</code> <strong class="def-name">listfonts</strong> <code class="def-code-arguments">(<var class="var">h</var>)</code><a class="copiable-link" href="#index-listfonts-1"> &para;</a></span></dt>
+<dd><p>List system fonts.
+</p>
+<p>If a handle to a graphics object <var class="var">h</var> is provided, also include the
+font from the object&rsquo;s <code class="code">&quot;FontName&quot;</code> property in the list.
+</p>
+<p>Programming Note: On systems that don&rsquo;t use FontConfig natively (all but
+Linux), the font cache is built when Octave is installed.  You will need to
+run <code class="code">system (&quot;fc-cache -fv&quot;)</code> manually after installing new fonts.
+</p>
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="I_002fO-Dialogs.html#XREFuisetfont">uisetfont</a>, <a class="ref" href="Plot-Annotations.html#XREFtext">text</a>, <a class="ref" href="Creating-Graphics-Objects.html#XREFaxes">axes</a>, <a class="ref" href="UI-Elements.html#XREFuicontrol">uicontrol</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFmovegui"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-movegui"><span><strong class="def-name">movegui</strong><a class="copiable-link" href="#index-movegui"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movegui-1"><span><strong class="def-name">movegui</strong> <code class="def-code-arguments">(<var class="var">h</var>)</code><a class="copiable-link" href="#index-movegui-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movegui-2"><span><strong class="def-name">movegui</strong> <code class="def-code-arguments">(<var class="var">pos</var>)</code><a class="copiable-link" href="#index-movegui-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movegui-3"><span><strong class="def-name">movegui</strong> <code class="def-code-arguments">(<var class="var">h</var>, <var class="var">pos</var>)</code><a class="copiable-link" href="#index-movegui-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movegui-4"><span><strong class="def-name">movegui</strong> <code class="def-code-arguments">(<var class="var">h</var>, <var class="var">event</var>)</code><a class="copiable-link" href="#index-movegui-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-movegui-5"><span><strong class="def-name">movegui</strong> <code class="def-code-arguments">(<var class="var">h</var>, <var class="var">event</var>, <var class="var">pos</var>)</code><a class="copiable-link" href="#index-movegui-5"> &para;</a></span></dt>
+<dd><p>Move a figure specified by figure handle <var class="var">h</var> to a position on the screen
+defined by <var class="var">pos</var>.
+</p>
+<p><var class="var">h</var> is a figure handle, or a handle to a graphics object.  In the latter
+case, its parent figure will be used.  If unspecified, <var class="var">h</var> will be
+set to the handle of the relevant figure if a callback is being executed
+(<code class="code">gcbf</code>), otherwise it will be set to the handle of the current figure
+(<code class="code">gcf</code>).
+</p>
+<p><var class="var">pos</var> is either a two-value numeric vector or a string.  If <var class="var">pos</var> is
+numeric then it must be of the form <code class="code">[h, v]</code> specifying the horizontal
+and vertical offsets of the figure with respect to the screen.  A positive
+value indicates the offset between the left (or bottom for the vertical
+component) of the screen, and the left (or bottom) of the figure.  A
+negative value indicates the offset between the right (or top) of the screen
+and the right (or top) of the figure.
+</p>
+<p>Possible values for <var class="var">pos</var> as a string are
+</p>
+<dl class="table">
+<dt><code class="code">north</code></dt>
+<dd><p>Top center of the screen.
+</p>
+</dd>
+<dt><code class="code">south</code></dt>
+<dd><p>Bottom center of the screen.
+</p>
+</dd>
+<dt><code class="code">east</code></dt>
+<dd><p>Right center of the screen.
+</p>
+</dd>
+<dt><code class="code">west</code></dt>
+<dd><p>Left center of the screen.
+</p>
+</dd>
+<dt><code class="code">northeast</code></dt>
+<dd><p>Top right of the screen.
+</p>
+</dd>
+<dt><code class="code">northwest</code></dt>
+<dd><p>Top left of the screen.
+</p>
+</dd>
+<dt><code class="code">southeast</code></dt>
+<dd><p>Bottom right of the screen.
+</p>
+</dd>
+<dt><code class="code">southwest</code></dt>
+<dd><p>Bottom left of the screen.
+</p>
+</dd>
+<dt><code class="code">center</code></dt>
+<dd><p>Center of the screen.
+</p>
+</dd>
+<dt><code class="code">onscreen (default)</code></dt>
+<dd><p>The figure will be minimally moved to be entirely visible on the screen,
+with a 30 pixel extra padding from the sides of the screen.  This is the
+default value if none is provided.
+</p></dd>
+</dl>
+
+<p><var class="var">event</var> contains event data that will be ignored.  This construct
+facilitates a call to movegui from a callback.
+</p>
+</dd></dl>
+
+
+<a class="anchor" id="XREFopenvar"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-openvar"><span><strong class="def-name">openvar</strong> <code class="def-code-arguments">(<var class="var">name</var>)</code><a class="copiable-link" href="#index-openvar"> &para;</a></span></dt>
+<dd><p>Open the variable <var class="var">name</var> in the graphical Variable Editor.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFuiwait"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-uiwait"><span><strong class="def-name">uiwait</strong><a class="copiable-link" href="#index-uiwait"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-uiwait-1"><span><strong class="def-name">uiwait</strong> <code class="def-code-arguments">(<var class="var">h</var>)</code><a class="copiable-link" href="#index-uiwait-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-uiwait-2"><span><strong class="def-name">uiwait</strong> <code class="def-code-arguments">(<var class="var">h</var>, <var class="var">timeout</var>)</code><a class="copiable-link" href="#index-uiwait-2"> &para;</a></span></dt>
+<dd><p>Suspend program execution until the figure with handle <var class="var">h</var> is deleted
+or <code class="code">uiresume</code> is called.
+</p>
+<p>When no figure handle is specified this function uses the current figure.
+If the figure handle is invalid or there is no current figure, this
+functions returns immediately.
+</p>
+<p>When specified, <var class="var">timeout</var> defines the number of seconds to wait
+for the figure deletion or the <code class="code">uiresume</code> call.  The timeout value
+must be at least 1.  If a smaller value is specified, a warning is issued
+and a timeout value of 1 is used instead.  If a non-integer value is
+specified, it is truncated towards 0.  If <var class="var">timeout</var> is not specified,
+the program execution is suspended indefinitely.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFuiresume">uiresume</a>, <a class="ref" href="#XREFwaitfor">waitfor</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFuiresume"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-uiresume"><span><strong class="def-name">uiresume</strong> <code class="def-code-arguments">(<var class="var">h</var>)</code><a class="copiable-link" href="#index-uiresume"> &para;</a></span></dt>
+<dd><p>Resume program execution suspended with <code class="code">uiwait</code>.
+</p>
+<p>The handle <var class="var">h</var> must be the same as the on specified in <code class="code">uiwait</code>.
+If the handle is invalid or there is no <code class="code">uiwait</code> call pending for the
+figure with handle <var class="var">h</var>, this function does nothing.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFuiwait">uiwait</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFwaitfor"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-waitfor"><span><strong class="def-name">waitfor</strong> <code class="def-code-arguments">(<var class="var">h</var>)</code><a class="copiable-link" href="#index-waitfor"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-waitfor-1"><span><strong class="def-name">waitfor</strong> <code class="def-code-arguments">(<var class="var">h</var>, <var class="var">prop</var>)</code><a class="copiable-link" href="#index-waitfor-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-waitfor-2"><span><strong class="def-name">waitfor</strong> <code class="def-code-arguments">(<var class="var">h</var>, <var class="var">prop</var>, <var class="var">value</var>)</code><a class="copiable-link" href="#index-waitfor-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-waitfor-3"><span><strong class="def-name">waitfor</strong> <code class="def-code-arguments">(&hellip;, &quot;timeout&quot;, <var class="var">timeout</var>)</code><a class="copiable-link" href="#index-waitfor-3"> &para;</a></span></dt>
+<dd><p>Suspend the execution of the current program until a condition is
+satisfied on the graphics handle <var class="var">h</var>.
+</p>
+<p>While the program is suspended graphics events are still processed normally,
+allowing callbacks to modify the state of graphics objects.  This function
+is reentrant and can be called from a callback, while another <code class="code">waitfor</code>
+call is pending at the top-level.
+</p>
+<p>In the first form, program execution is suspended until the graphics object
+<var class="var">h</var> is destroyed.  If the graphics handle is invalid or if <var class="var">h</var> is
+the root graphics handle and no property <var class="var">prop</var> was provided, the function
+returns immediately.
+</p>
+<p>In the second form, execution is suspended until the graphics object is
+destroyed or the property named <var class="var">prop</var> is modified.  If the graphics
+handle is invalid or the property does not exist, the function returns
+immediately.
+</p>
+<p>In the third form, execution is suspended until the graphics object is
+destroyed or the property named <var class="var">prop</var> is set to <var class="var">value</var>.  The
+function <code class="code">isequal</code> is used to compare property values.  If the graphics
+handle is invalid, the property does not exist or the property is already
+set to <var class="var">value</var>, the function returns immediately.
+</p>
+<p>An optional timeout can be specified using the property <code class="code">&quot;timeout&quot;</code>.
+This timeout value is the number of seconds to wait for the condition to be
+true.  <var class="var">timeout</var> must be at least 1.  If a smaller value is specified, a
+warning is issued and a value of 1 is used instead.  If the timeout value is
+not an integer, it is truncated towards 0.
+</p>
+<p>To define a condition on a property named <code class="code">&quot;timeout&quot;</code>, use the string
+<code class="code">'\timeout'</code> instead.
+</p>
+<p>In all cases, typing CTRL-C stops program execution immediately.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Interacting-with-Plots.html#XREFwaitforbuttonpress">waitforbuttonpress</a>, <a class="ref" href="Comparison-Ops.html#XREFisequal">isequal</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="User_002dDefined-Preferences.html">User-Defined Preferences</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="UI-Elements.html">UI Elements</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="GUI-Development.html">GUI Development</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

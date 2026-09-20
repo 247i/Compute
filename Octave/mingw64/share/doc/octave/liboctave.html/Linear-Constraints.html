@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Linear Constraints (Octave C++ Classes)</title>
+
+<meta name="description" content="Linear Constraints (Octave C++ Classes)">
+<meta name="keywords" content="Linear Constraints (Octave C++ Classes)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-Index.html" rel="index" title="Function Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Optimization.html" rel="up" title="Optimization">
+<link href="Nonlinear-Constraints.html" rel="next" title="Nonlinear Constraints">
+<link href="Bounds.html" rel="prev" title="Bounds">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Linear-Constraints">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Nonlinear-Constraints.html" accesskey="n" rel="next">Nonlinear Constraints</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Bounds.html" accesskey="p" rel="prev">Bounds</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Optimization.html" accesskey="u" rel="up">Optimization</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Function-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Linear-Constraints-1"><span>9.3 Linear Constraints<a class="copiable-link" href="#Linear-Constraints-1"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-linear-Constraints"></a>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-LinConst"><span class="category-def">: </span><span><strong class="def-name">LinConst</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-LinConst"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-LinConst-1"><span class="category-def">: </span><span><strong class="def-name">LinConst</strong> <code class="def-code-arguments">(int <var class="var">nclin</var>, int <var class="var">nx</var>)</code><a class="copiable-link" href="#index-LinConst-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-LinConst-2"><span class="category-def">: </span><span><strong class="def-name">LinConst</strong> <code class="def-code-arguments">(int <var class="var">nclin_eq</var>, int <var class="var">nclin_ineq</var>, int <var class="var">nx</var>)</code><a class="copiable-link" href="#index-LinConst-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-LinConst-3"><span class="category-def">: </span><span><strong class="def-name">LinConst</strong> <code class="def-code-arguments">(const ColumnVector &amp;<var class="var">lb</var>, const Matrix &amp;<var class="var">A</var>, const ColumnVector &amp;<var class="var">ub</var>)</code><a class="copiable-link" href="#index-LinConst-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-LinConst-4"><span class="category-def">: </span><span><strong class="def-name">LinConst</strong> <code class="def-code-arguments">(const Matrix &amp;<var class="var">A_eq</var>, const ColumnVector &amp;<var class="var">b_eq</var>, const Matrix &amp;<var class="var">A_ineq</var>, const ColumnVector &amp;<var class="var">b_ineq</var>)</code><a class="copiable-link" href="#index-LinConst-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-LinConst-5"><span class="category-def">: </span><span><strong class="def-name">LinConst</strong> <code class="def-code-arguments">(const LinConst &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-LinConst-5"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003d-31"><span class="category-def">: </span><span><code class="def-type">LinConst&amp;</code> <strong class="def-name">operator =</strong> <code class="def-code-arguments">(const LinConst &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003d-31"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-resize-2"><span class="category-def">: </span><span><code class="def-type">LinConst&amp;</code> <strong class="def-name">resize</strong> <code class="def-code-arguments">(int <var class="var">nclin</var>, int <var class="var">n</var>)</code><a class="copiable-link" href="#index-resize-2"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-constraint_005fmatrix"><span class="category-def">: </span><span><code class="def-type">Matrix</code> <strong class="def-name">constraint_matrix</strong> <code class="def-code-arguments">(void) const;</code><a class="copiable-link" href="#index-constraint_005fmatrix"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-set_005fconstraint_005fmatrix"><span class="category-def">: </span><span><code class="def-type">LinConst&amp;</code> <strong class="def-name">set_constraint_matrix</strong> <code class="def-code-arguments">(const Matrix &amp;<var class="var">A</var>)</code><a class="copiable-link" href="#index-set_005fconstraint_005fmatrix"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-eq_005fconstraint_005fmatrix"><span class="category-def">: </span><span><code class="def-type">Matrix</code> <strong class="def-name">eq_constraint_matrix</strong> <code class="def-code-arguments">(void) const;</code><a class="copiable-link" href="#index-eq_005fconstraint_005fmatrix"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ineq_005fconstraint_005fmatrix"><span class="category-def">: </span><span><code class="def-type">Matrix</code> <strong class="def-name">ineq_constraint_matrix</strong> <code class="def-code-arguments">(void) const;</code><a class="copiable-link" href="#index-ineq_005fconstraint_005fmatrix"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-eq_005fconstraint_005fvector"><span class="category-def">: </span><span><code class="def-type">ColumnVector</code> <strong class="def-name">eq_constraint_vector</strong> <code class="def-code-arguments">(void) const;</code><a class="copiable-link" href="#index-eq_005fconstraint_005fvector"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ineq_005fconstraint_005fvector"><span class="category-def">: </span><span><code class="def-type">ColumnVector</code> <strong class="def-name">ineq_constraint_vector</strong> <code class="def-code-arguments">(void) const;</code><a class="copiable-link" href="#index-ineq_005fconstraint_005fvector"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003c_003c-27"><span class="category-def">: </span><span><code class="def-type">ostream&amp;</code> <strong class="def-name">operator &lt;&lt;</strong> <code class="def-code-arguments">(ostream &amp;<var class="var">os</var>, const LinConst &amp;<var class="var">b</var>)</code><a class="copiable-link" href="#index-operator-_003c_003c-27"> &para;</a></span></dt>
+</dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Nonlinear-Constraints.html">Nonlinear Constraints</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Bounds.html">Bounds</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Optimization.html">Optimization</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Function-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

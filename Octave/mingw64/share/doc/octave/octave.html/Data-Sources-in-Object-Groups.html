@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Data Sources in Object Groups (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Data Sources in Object Groups (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Data Sources in Object Groups (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Object-Groups.html" rel="up" title="Object Groups">
+<link href="Area-Series.html" rel="next" title="Area Series">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsubsection-level-extent" id="Data-Sources-in-Object-Groups">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Area-Series.html" accesskey="n" rel="next">Area Series</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Object-Groups.html" accesskey="u" rel="up">Object Groups</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsubsection" id="Data-Sources-in-Object-Groups-1"><span>15.4.6.1 Data Sources in Object Groups<a class="copiable-link" href="#Data-Sources-in-Object-Groups-1"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-data-sources-in-object-groups"></a>
+
+<p>All of the group objects contain data source parameters.  There are
+string parameters that contain an expression that is evaluated to update
+the relevant data property of the group when the <code class="code">refreshdata</code>
+function is called.
+</p>
+<a class="anchor" id="XREFrefreshdata"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-refreshdata"><span><strong class="def-name">refreshdata</strong> <code class="def-code-arguments">()</code><a class="copiable-link" href="#index-refreshdata"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-refreshdata-1"><span><strong class="def-name">refreshdata</strong> <code class="def-code-arguments">(<var class="var">h</var>)</code><a class="copiable-link" href="#index-refreshdata-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-refreshdata-2"><span><strong class="def-name">refreshdata</strong> <code class="def-code-arguments">(<var class="var">h</var>, <var class="var">workspace</var>)</code><a class="copiable-link" href="#index-refreshdata-2"> &para;</a></span></dt>
+<dd><p>Evaluate any &lsquo;<samp class="samp">datasource</samp>&rsquo; properties of the current figure and update
+the plot if the corresponding data has changed.
+</p>
+<p>If the first argument <var class="var">h</var> is a list of graphics handles to figure, axes,
+or graphic objects with a DataSource property, then operate on these objects
+rather than the current figure returned by <code class="code">gcf</code>.
+</p>
+<p>The optional second argument <var class="var">workspace</var> can take the following values:
+</p>
+<dl class="table">
+<dt><code class="code">&quot;base&quot;</code></dt>
+<dd><p>Evaluate the datasource properties in the base workspace.  (default).
+</p>
+</dd>
+<dt><code class="code">&quot;caller&quot;</code></dt>
+<dd><p>Evaluate the datasource properties in the workspace of the function
+that called <code class="code">refreshdata</code>.
+</p></dd>
+</dl>
+
+<p>An example of the use of <code class="code">refreshdata</code> is:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">x = 0:0.1:10;
+y = sin (x);
+plot (x, y, &quot;ydatasource&quot;, &quot;y&quot;);
+for i = 1 : 100
+  pause (0.1);
+  y = sin (x + 0.1*i);
+  refreshdata ();
+endfor
+</pre></div></div>
+
+<p>Programming Note: For performance, specify <var class="var">h</var> as the actual object(s)
+to be updated.  If no object is supplied then Octave must search through
+all graphic objects of the current figure and determine which ones have
+DataSource properties that are not empty.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFlinkdata"></a>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Area-Series.html">Area Series</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Object-Groups.html">Object Groups</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

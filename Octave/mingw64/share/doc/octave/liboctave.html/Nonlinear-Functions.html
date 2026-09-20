@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Nonlinear Functions (Octave C++ Classes)</title>
+
+<meta name="description" content="Nonlinear Functions (Octave C++ Classes)">
+<meta name="keywords" content="Nonlinear Functions (Octave C++ Classes)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-Index.html" rel="index" title="Function Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html" rel="up" title="Top">
+<link href="Nonlinear-Equations.html" rel="next" title="Nonlinear Equations">
+<link href="Ranges.html" rel="prev" title="Ranges">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+
+
+</head>
+
+<body>
+<div class="chapter-level-extent" id="Nonlinear-Functions">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Nonlinear-Equations.html" accesskey="n" rel="next">Nonlinear Equations</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Ranges.html" accesskey="p" rel="prev">Ranges</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Function-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h2 class="chapter" id="Nonlinear-Functions-1"><span>7 Nonlinear Functions<a class="copiable-link" href="#Nonlinear-Functions-1"> &para;</a></span></h2>
+<a class="index-entry-id" id="index-nonlinear-functions"></a>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-NLFunc"><span class="category-def">: </span><span><strong class="def-name">NLFunc</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-NLFunc"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-NLFunc-1"><span class="category-def">: </span><span><strong class="def-name">NLFunc</strong> <code class="def-code-arguments">(const <var class="var">nonlinear_fcn</var>)</code><a class="copiable-link" href="#index-NLFunc-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-NLFunc-2"><span class="category-def">: </span><span><strong class="def-name">NLFunc</strong> <code class="def-code-arguments">(const <var class="var">nonlinear_fcn</var>, const <var class="var">jacobian_fcn</var>)</code><a class="copiable-link" href="#index-NLFunc-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-NLFunc-3"><span class="category-def">: </span><span><strong class="def-name">NLFunc</strong> <code class="def-code-arguments">(const NLFunc &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-NLFunc-3"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003d-26"><span class="category-def">: </span><span><code class="def-type">NLFunc&amp;</code> <strong class="def-name">operator =</strong> <code class="def-code-arguments">(const NLFunc &amp;<var class="var">a</var>)</code><a class="copiable-link" href="#index-operator-_003d-26"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-function"><span class="category-def">: </span><span><code class="def-type">nonlinear_fcn</code> <strong class="def-name">function</strong> <code class="def-code-arguments">(void) const;</code><a class="copiable-link" href="#index-function"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-set_005ffunction"><span class="category-def">: </span><span><code class="def-type">NLFunc&amp;</code> <strong class="def-name">set_function</strong> <code class="def-code-arguments">(const nonlinear_fcn <var class="var">f</var>)</code><a class="copiable-link" href="#index-set_005ffunction"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-jacobian_005ffunction"><span class="category-def">: </span><span><code class="def-type">jacobian_fcn</code> <strong class="def-name">jacobian_function</strong> <code class="def-code-arguments">(void) const;</code><a class="copiable-link" href="#index-jacobian_005ffunction"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-set_005fjacobian_005ffunction"><span class="category-def">: </span><span><code class="def-type">NLFunc&amp;</code> <strong class="def-name">set_jacobian_function</strong> <code class="def-code-arguments">(const jacobian_fcn <var class="var">j</var>)</code><a class="copiable-link" href="#index-set_005fjacobian_005ffunction"> &para;</a></span></dt>
+</dl>
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Nonlinear-Equations.html">Nonlinear Equations</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Ranges.html">Ranges</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Function-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

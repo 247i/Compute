@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Collocation Weights (Octave C++ Classes)</title>
+
+<meta name="description" content="Collocation Weights (Octave C++ Classes)">
+<meta name="keywords" content="Collocation Weights (Octave C++ Classes)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Function-Index.html" rel="index" title="Function Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Quadrature.html" rel="up" title="Quadrature">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Collocation-Weights">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Quadrature.html" accesskey="u" rel="up">Quadrature</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Function-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Collocation-Weights-1"><span>10.1 Collocation Weights<a class="copiable-link" href="#Collocation-Weights-1"> &para;</a></span></h3>
+<a class="index-entry-id" id="index-orthogonal-collocation"></a>
+<a class="index-entry-id" id="index-collocation-weights"></a>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-CollocWt"><span class="category-def">: </span><span><strong class="def-name">CollocWt</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-CollocWt"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-CollocWt-1"><span class="category-def">: </span><span><strong class="def-name">CollocWt</strong> <code class="def-code-arguments">(int <var class="var">n</var>, int <var class="var">inc_l</var>, int <var class="var">inc_r</var>)</code><a class="copiable-link" href="#index-CollocWt-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-CollocWt-2"><span class="category-def">: </span><span><strong class="def-name">CollocWt</strong> <code class="def-code-arguments">(int <var class="var">n</var>, int <var class="var">inc_l</var>, int <var class="var">inc_r</var>, double <var class="var">l</var>, double <var class="var">r</var>)</code><a class="copiable-link" href="#index-CollocWt-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-CollocWt-3"><span class="category-def">: </span><span><strong class="def-name">CollocWt</strong> <code class="def-code-arguments">(int <var class="var">n</var>, double <var class="var">a</var>, double <var class="var">b</var>, int <var class="var">inc_l</var>, int <var class="var">inc_r</var>)</code><a class="copiable-link" href="#index-CollocWt-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-CollocWt-4"><span class="category-def">: </span><span><strong class="def-name">CollocWt</strong> <code class="def-code-arguments">(int <var class="var">n</var>, int <var class="var">inc_l</var>, int <var class="var">inc_r</var>, double <var class="var">l</var>, double <var class="var">r</var>)</code><a class="copiable-link" href="#index-CollocWt-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-CollocWt-5"><span class="category-def">: </span><span><strong class="def-name">CollocWt</strong> <code class="def-code-arguments">(const CollocWt&amp;)</code><a class="copiable-link" href="#index-CollocWt-5"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003d-35"><span class="category-def">: </span><span><code class="def-type">CollocWt&amp;</code> <strong class="def-name">operator =</strong> <code class="def-code-arguments">(const CollocWt&amp;)</code><a class="copiable-link" href="#index-operator-_003d-35"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-resize-3"><span class="category-def">: </span><span><code class="def-type">CollocWt&amp;</code> <strong class="def-name">resize</strong> <code class="def-code-arguments">(int <var class="var">ncol</var>)</code><a class="copiable-link" href="#index-resize-3"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-add_005fleft"><span class="category-def">: </span><span><code class="def-type">CollocWt&amp;</code> <strong class="def-name">add_left</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-add_005fleft"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-add_005fright"><span class="category-def">: </span><span><code class="def-type">CollocWt&amp;</code> <strong class="def-name">add_right</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-add_005fright"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-delete_005fleft"><span class="category-def">: </span><span><code class="def-type">CollocWt&amp;</code> <strong class="def-name">delete_left</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-delete_005fleft"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-delete_005fright"><span class="category-def">: </span><span><code class="def-type">CollocWt&amp;</code> <strong class="def-name">delete_right</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-delete_005fright"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-set_005fleft"><span class="category-def">: </span><span><code class="def-type">CollocWt&amp;</code> <strong class="def-name">set_left</strong> <code class="def-code-arguments">(double <var class="var">val</var>)</code><a class="copiable-link" href="#index-set_005fleft"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-set_005fright"><span class="category-def">: </span><span><code class="def-type">CollocWt&amp;</code> <strong class="def-name">set_right</strong> <code class="def-code-arguments">(double <var class="var">val</var>)</code><a class="copiable-link" href="#index-set_005fright"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-set_005falpha"><span class="category-def">: </span><span><code class="def-type">CollocWt&amp;</code> <strong class="def-name">set_alpha</strong> <code class="def-code-arguments">(double <var class="var">val</var>)</code><a class="copiable-link" href="#index-set_005falpha"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-set_005fbeta"><span class="category-def">: </span><span><code class="def-type">CollocWt&amp;</code> <strong class="def-name">set_beta</strong> <code class="def-code-arguments">(double <var class="var">val</var>)</code><a class="copiable-link" href="#index-set_005fbeta"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-ncol"><span class="category-def">: </span><span><code class="def-type">int</code> <strong class="def-name">ncol</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-ncol"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-left_005fincluded"><span class="category-def">: </span><span><code class="def-type">int</code> <strong class="def-name">left_included</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-left_005fincluded"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-right_005fincluded"><span class="category-def">: </span><span><code class="def-type">int</code> <strong class="def-name">right_included</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-right_005fincluded"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-left"><span class="category-def">: </span><span><code class="def-type">double</code> <strong class="def-name">left</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-left"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-right"><span class="category-def">: </span><span><code class="def-type">double</code> <strong class="def-name">right</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-right"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-width"><span class="category-def">: </span><span><code class="def-type">double</code> <strong class="def-name">width</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-width"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-alpha"><span class="category-def">: </span><span><code class="def-type">double</code> <strong class="def-name">alpha</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-alpha"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-beta"><span class="category-def">: </span><span><code class="def-type">double</code> <strong class="def-name">beta</strong> <code class="def-code-arguments">(void) const</code><a class="copiable-link" href="#index-beta"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-roots"><span class="category-def">: </span><span><code class="def-type">ColumnVector</code> <strong class="def-name">roots</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-roots"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-quad"><span class="category-def">: </span><span><code class="def-type">ColumnVector</code> <strong class="def-name">quad</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-quad"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-quad_005fweights"><span class="category-def">: </span><span><code class="def-type">ColumnVector</code> <strong class="def-name">quad_weights</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-quad_005fweights"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-first"><span class="category-def">: </span><span><code class="def-type">Matrix</code> <strong class="def-name">first</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-first"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-second"><span class="category-def">: </span><span><code class="def-type">Matrix</code> <strong class="def-name">second</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-second"> &para;</a></span></dt>
+</dl>
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-operator-_003c_003c-28"><span class="category-def">: </span><span><code class="def-type">ostream&amp;</code> <strong class="def-name">operator &lt;&lt;</strong> <code class="def-code-arguments">(ostream &amp;<var class="var">os</var>, const CollocWt &amp;<var class="var">c</var>)</code><a class="copiable-link" href="#index-operator-_003c_003c-28"> &para;</a></span></dt>
+</dl>
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Quadrature.html">Quadrature</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Function-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

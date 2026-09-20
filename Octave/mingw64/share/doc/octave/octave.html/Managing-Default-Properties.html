@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Managing Default Properties (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Managing Default Properties (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Managing Default Properties (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Graphics-Data-Structures.html" rel="up" title="Graphics Data Structures">
+<link href="Searching-Properties.html" rel="prev" title="Searching Properties">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Managing-Default-Properties">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Searching-Properties.html" accesskey="p" rel="prev">Searching Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Graphics-Data-Structures.html" accesskey="u" rel="up">Graphics Data Structures</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Managing-Default-Properties-1"><span>15.3.5 Managing Default Properties<a class="copiable-link" href="#Managing-Default-Properties-1"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-default-graphics-properties"></a>
+<a class="index-entry-id" id="index-graphics-properties_002c-default"></a>
+
+<p>Object properties have two classes of default values, <em class="dfn">factory
+defaults</em> (the initial values) and <em class="dfn">user-defined defaults</em>, which
+may override the factory defaults.
+</p>
+<p>Although default values may be set for any object, they are set in
+parent objects and apply to child objects, of the specified object type.
+For example, setting the default <code class="code">color</code> property of <code class="code">line</code>
+objects to <code class="code">&quot;green&quot;</code>, for the <code class="code">root</code> object, will result in all
+<code class="code">line</code> objects inheriting the <code class="code">color</code> <code class="code">&quot;green&quot;</code> as the default
+value.
+</p>
+<div class="example">
+<pre class="example-preformatted">set (groot, &quot;defaultlinecolor&quot;, &quot;green&quot;);
+</pre></div>
+
+<p>sets the default line color for all objects.  The rule for constructing
+the property name to set a default value is
+</p>
+<div class="example">
+<pre class="example-preformatted">default + <var class="var">object-type</var> + <var class="var">property-name</var>
+</pre></div>
+
+<p>This rule can lead to some strange looking names, for example
+<code class="code">defaultlinelinewidth&quot;</code> specifies the default <code class="code">linewidth</code>
+property for <code class="code">line</code> objects.
+</p>
+<p>The example above used the root object so the default property value will apply
+to all line objects.  However, default values are hierarchical, so defaults set
+in a figure objects override those set in the root object.  Likewise, defaults
+set in an axes object override those set in figure or root objects.  For
+example,
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">subplot (2, 1, 1);
+set (groot, &quot;defaultlinecolor&quot;, &quot;red&quot;);
+set (1, &quot;defaultlinecolor&quot;, &quot;green&quot;);
+set (gca (), &quot;defaultlinecolor&quot;, &quot;blue&quot;);
+line (1:10, rand (1, 10));
+subplot (2, 1, 2);
+line (1:10, rand (1, 10));
+figure (2)
+line (1:10, rand (1, 10));
+</pre></div></div>
+
+<p>produces two figures.  The line in first subplot window of the first
+figure is blue because it inherits its color from its parent axes
+object.  The line in the second subplot window of the first figure is
+green because it inherits its color from its parent figure object.  The
+line in the second figure window is red because it inherits its color
+from the global root object.
+</p>
+<p>To remove a user-defined default setting, set the default property to
+the value <code class="code">&quot;remove&quot;</code>.  For example,
+</p>
+<div class="example">
+<pre class="example-preformatted">set (gca (), &quot;defaultlinecolor&quot;, &quot;remove&quot;);
+</pre></div>
+
+<p>removes the user-defined default line color setting from the current axes
+object.  To quickly remove all user-defined defaults use the <code class="code">reset</code>
+function.
+</p>
+<p>By default, high level plotting functions such as <code class="code">plot</code> reset and
+redefine axes properties independently from the defaults.  An example of such
+property is the axes <code class="code">box</code> property: it is set <code class="code">on</code> by high level 2-D
+graphics functions regardless of the property <code class="code">&quot;defaultaxesbox&quot;</code>.  Use
+the <code class="code">hold</code> function to prevent this behavior:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">set (groot, &quot;defaultaxesbox&quot;, &quot;off&quot;);
+subplot (2, 1, 1);
+plot (1:10)
+title (&quot;Box is on anyway&quot;)
+subplot (2, 1, 2);
+hold on
+plot (1:10)
+title (&quot;Box is off&quot;)
+</pre></div></div>
+
+<a class="anchor" id="XREFreset"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-reset"><span><strong class="def-name">reset</strong> <code class="def-code-arguments">(<var class="var">h</var>)</code><a class="copiable-link" href="#index-reset"> &para;</a></span></dt>
+<dd><p>Reset the properties of the graphic object <var class="var">h</var> to their default values.
+</p>
+<p>For figures, the properties <code class="code">&quot;position&quot;</code>, <code class="code">&quot;units&quot;</code>,
+<code class="code">&quot;windowstyle&quot;</code>, and <code class="code">&quot;paperunits&quot;</code> are not affected.
+For axes, the properties <code class="code">&quot;position&quot;</code> and <code class="code">&quot;units&quot;</code> are
+not affected.
+</p>
+<p>The input <var class="var">h</var> may also be a vector of graphic handles in which case
+each individual object will be reset.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Manipulation-of-Plot-Windows.html#XREFcla">cla</a>, <a class="ref" href="Manipulation-of-Plot-Windows.html#XREFclf">clf</a>, <a class="ref" href="Manipulation-of-Plot-Windows.html#XREFnewplot">newplot</a>.
+</p></dd></dl>
+
+
+<p>Getting the <code class="code">&quot;default&quot;</code> property of an object returns a list of
+user-defined defaults set for the object.  For example,
+</p>
+<div class="example">
+<pre class="example-preformatted">get (gca (), &quot;default&quot;);
+</pre></div>
+
+<p>returns a list of user-defined default values for the current axes
+object.
+</p>
+<p>Factory default values are stored in the root object.  The command
+</p>
+<div class="example">
+<pre class="example-preformatted">get (groot, &quot;factory&quot;);
+</pre></div>
+
+<p>returns a list of factory defaults.
+</p>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Searching-Properties.html">Searching Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Graphics-Data-Structures.html">Graphics Data Structures</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

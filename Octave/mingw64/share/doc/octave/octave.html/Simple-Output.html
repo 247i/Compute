@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Simple Output (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Simple Output (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Simple Output (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="C_002dStyle-I_002fO-Functions.html" rel="up" title="C-Style I/O Functions">
+<link href="Line_002dOriented-Input.html" rel="next" title="Line-Oriented Input">
+<link href="Opening-and-Closing-Files.html" rel="prev" title="Opening and Closing Files">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsection-level-extent" id="Simple-Output">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Line_002dOriented-Input.html" accesskey="n" rel="next">Line-Oriented Input</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Opening-and-Closing-Files.html" accesskey="p" rel="prev">Opening and Closing Files</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="C_002dStyle-I_002fO-Functions.html" accesskey="u" rel="up">C-Style I/O Functions</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsection" id="Simple-Output-1"><span>14.2.2 Simple Output<a class="copiable-link" href="#Simple-Output-1"> &para;</a></span></h4>
+
+<p>Once a file has been opened for writing a string can be written to the
+file using the <code class="code">fputs</code> function.  The following example shows
+how to write the string &lsquo;<samp class="samp">Free Software is needed for Free Science</samp>&rsquo;
+to the file &lsquo;<samp class="samp">free.txt</samp>&rsquo;.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">filename = &quot;free.txt&quot;;
+fid = fopen (filename, &quot;w&quot;);
+fputs (fid, &quot;Free Software is needed for Free Science&quot;);
+fclose (fid);
+</pre></div></div>
+
+<a class="anchor" id="XREFfputs"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-fputs"><span><code class="def-type"><var class="var">status</var> =</code> <strong class="def-name">fputs</strong> <code class="def-code-arguments">(<var class="var">fid</var>, <var class="var">string</var>)</code><a class="copiable-link" href="#index-fputs"> &para;</a></span></dt>
+<dd><p>Write the string <var class="var">string</var> to the file with file descriptor <var class="var">fid</var>.
+</p>
+<p>The string is written to the file with no additional formatting.  Use
+<code class="code">fdisp</code> instead to automatically append a newline character appropriate
+for the local machine.
+</p>
+<p>The optional output <var class="var">status</var> is 0 for success, or -1 if an error was
+encountered.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Simple-File-I_002fO.html#XREFfdisp">fdisp</a>, <a class="ref" href="Formatted-Output.html#XREFfprintf">fprintf</a>, <a class="ref" href="Binary-I_002fO.html#XREFfwrite">fwrite</a>, <a class="ref" href="Opening-and-Closing-Files.html#XREFfopen">fopen</a>.
+</p></dd></dl>
+
+
+<p>A function much similar to <code class="code">fputs</code> is available for writing data
+to the screen.  The <code class="code">puts</code> function works just like <code class="code">fputs</code>
+except it doesn&rsquo;t take a file pointer as its input.
+</p>
+<a class="anchor" id="XREFputs"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-puts"><span><code class="def-type"><var class="var">status</var> =</code> <strong class="def-name">puts</strong> <code class="def-code-arguments">(<var class="var">string</var>)</code><a class="copiable-link" href="#index-puts"> &para;</a></span></dt>
+<dd><p>Write a string to the standard output with no formatting.
+</p>
+<p>The string is written verbatim to the standard output.  Use <code class="code">disp</code> to
+automatically append a newline character appropriate for the local machine.
+</p>
+<p>The optional output <var class="var">status</var> is 0 for success, or -1 if an error was
+encountered.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFfputs">fputs</a>, <a class="ref" href="Terminal-Output.html#XREFdisp">disp</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Line_002dOriented-Input.html">Line-Oriented Input</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Opening-and-Closing-Files.html">Opening and Closing Files</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="C_002dStyle-I_002fO-Functions.html">C-Style I/O Functions</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

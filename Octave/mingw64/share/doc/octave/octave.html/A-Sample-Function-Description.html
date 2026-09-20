@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>A Sample Function Description (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="A Sample Function Description (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="A Sample Function Description (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Format-of-Descriptions.html" rel="up" title="Format of Descriptions">
+<link href="A-Sample-Command-Description.html" rel="next" title="A Sample Command Description">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsubsection-level-extent" id="A-Sample-Function-Description">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="A-Sample-Command-Description.html" accesskey="n" rel="next">A Sample Command Description</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Format-of-Descriptions.html" accesskey="u" rel="up">Format of Descriptions</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsubsection" id="A-Sample-Function-Description-1"><span>1.3.5.1 A Sample Function Description<a class="copiable-link" href="#A-Sample-Function-Description-1"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-function-descriptions"></a>
+
+<p>In a function description, the name of the function being described
+appears first.  It is followed on the same line by a list of parameters.
+The names used for the parameters are also used in the body of the
+description.
+</p>
+<p>After all of the calling forms have been enumerated, the next line is a
+concise one-sentence summary of the function.
+</p>
+<p>After the summary there may be documentation on the inputs and outputs,
+examples of function usage, notes about the algorithm used, and references
+to related functions.
+</p>
+<p>Here is a description of an imaginary function <code class="code">foo</code>:
+</p>
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-foo"><span><strong class="def-name">foo</strong> <code class="def-code-arguments">(<var class="var">x</var>)</code><a class="copiable-link" href="#index-foo"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-foo-1"><span><strong class="def-name">foo</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>)</code><a class="copiable-link" href="#index-foo-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-foo-2"><span><strong class="def-name">foo</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>, &hellip;)</code><a class="copiable-link" href="#index-foo-2"> &para;</a></span></dt>
+<dd><p>Subtract <var class="var">x</var> from <var class="var">y</var>, then add any remaining arguments to the
+result.
+</p>
+<p>The input <var class="var">x</var> must be a numeric scalar, vector, or array.
+</p>
+<p>The optional input <var class="var">y</var> defaults to 19 if it is not supplied.
+</p>
+<p>Example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">foo (1, [3, 5], 3, 9)
+     &rArr;  [ 14, 16 ]
+foo (5)
+     &rArr;  14
+</pre></div></div>
+
+<p>More generally,
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">foo (<var class="var">w</var>, <var class="var">x</var>, <var class="var">y</var>, ...)
+&equiv;
+<var class="var">x</var> - <var class="var">w</var> + <var class="var">y</var> + ...
+</pre></div></div>
+
+<p><b class="b">See also:</b> bar
+</p></dd></dl>
+
+<p>Any parameter whose name contains the name of a type (e.g.,
+<var class="var">integer</var> or <var class="var">matrix</var>) is expected to be of that
+type.  Parameters named <var class="var">object</var> may be of any type.  Parameters
+with other sorts of names (e.g., <var class="var">new_file</var>) are discussed
+specifically in the description of the function.  In some sections,
+features common to parameters of several functions are described at the
+beginning.
+</p>
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="A-Sample-Command-Description.html">A Sample Command Description</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Format-of-Descriptions.html">Format of Descriptions</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

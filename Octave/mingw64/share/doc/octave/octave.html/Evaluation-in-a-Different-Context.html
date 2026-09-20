@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Evaluation in a Different Context (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Evaluation in a Different Context (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Evaluation in a Different Context (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Evaluation.html" rel="up" title="Evaluation">
+<link href="Calling-a-Function-by-its-Name.html" rel="prev" title="Calling a Function by its Name">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Evaluation-in-a-Different-Context">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Calling-a-Function-by-its-Name.html" accesskey="p" rel="prev">Calling a Function by its Name</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Evaluation.html" accesskey="u" rel="up">Evaluation</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Evaluation-in-a-Different-Context-1"><span>9.2 Evaluation in a Different Context<a class="copiable-link" href="#Evaluation-in-a-Different-Context-1"> &para;</a></span></h3>
+
+<p>Before you evaluate an expression you need to substitute
+the values of the variables used in the expression.  These
+are stored in the symbol table.  Whenever the interpreter
+starts a new function it saves the current symbol table
+and creates a new one, initializing it with the list of
+function parameters and a couple of predefined variables
+such as <code class="code">nargin</code>.  Expressions inside the function use the
+new symbol table.
+</p>
+<p>Sometimes you want to write a function so that when you
+call it, it modifies variables in your own context.  This
+allows you to use a pass-by-name style of function,
+which is similar to using a pointer in programming languages such
+as C.
+</p>
+<p>Consider how you might write <code class="code">save</code> and <code class="code">load</code> as
+m-files.  For example:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">function create_data
+  x = linspace (0, 10, 10);
+  y = sin (x);
+  save mydata x y
+endfunction
+</pre></div></div>
+
+<p>With <code class="code">evalin</code>, you could write <code class="code">save</code> as follows:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">function save (file, name1, name2)
+  f = open_save_file (file);
+  save_var (f, name1, evalin (&quot;caller&quot;, name1));
+  save_var (f, name2, evalin (&quot;caller&quot;, name2));
+endfunction
+</pre></div></div>
+
+<p>Here, &lsquo;<samp class="samp">caller</samp>&rsquo; is the <code class="code">create_data</code> function and <code class="code">name1</code>
+is the string <code class="code">&quot;x&quot;</code>, which evaluates simply as the value of <code class="code">x</code>.
+</p>
+<p>You later want to load the values back from <code class="code">mydata</code>
+in a different context:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">function process_data
+  load mydata
+  ... do work ...
+endfunction
+</pre></div></div>
+
+<p>With <code class="code">assignin</code>, you could write <code class="code">load</code> as follows:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">function load (file)
+  f = open_load_file (file);
+  [name, val] = load_var (f);
+  assignin (&quot;caller&quot;, name, val);
+  [name, val] = load_var (f);
+  assignin (&quot;caller&quot;, name, val);
+endfunction
+</pre></div></div>
+
+<p>Here, &lsquo;<samp class="samp">caller</samp>&rsquo; is the <code class="code">process_data</code> function.
+</p>
+<p>You can set and use variables at the command prompt
+using the context &lsquo;<samp class="samp">base</samp>&rsquo; rather than &lsquo;<samp class="samp">caller</samp>&rsquo;.
+</p>
+<p>These functions are rarely used in practice.  One
+example is the <code class="code">fail (&lsquo;<samp class="samp">code</samp>&rsquo;, &lsquo;<samp class="samp">pattern</samp>&rsquo;)</code> function
+which evaluates &lsquo;<samp class="samp">code</samp>&rsquo; in the caller&rsquo;s context and
+checks that the error message it produces matches
+the given pattern.  Other examples such as <code class="code">save</code> and <code class="code">load</code>
+are written in C++ where all Octave variables
+are in the &lsquo;<samp class="samp">caller</samp>&rsquo; context and <code class="code">evalin</code> is not needed.
+</p>
+<a class="anchor" id="XREFevalin"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-evalin"><span><strong class="def-name">evalin</strong> <code class="def-code-arguments">(<var class="var">context</var>, <var class="var">try</var>)</code><a class="copiable-link" href="#index-evalin"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-evalin-1"><span><strong class="def-name">evalin</strong> <code class="def-code-arguments">(<var class="var">context</var>, <var class="var">try</var>, <var class="var">catch</var>)</code><a class="copiable-link" href="#index-evalin-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-evalin-2"><span><code class="def-type">[<var class="var">var1</var>, &hellip;] =</code> <strong class="def-name">evalin</strong> <code class="def-code-arguments">(&hellip;)</code><a class="copiable-link" href="#index-evalin-2"> &para;</a></span></dt>
+<dd><p>Like <code class="code">eval</code>, except that the expressions are evaluated in the context
+<var class="var">context</var>, which may be either <code class="code">&quot;caller&quot;</code> or <code class="code">&quot;base&quot;</code>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Evaluation.html#XREFeval">eval</a>, <a class="ref" href="#XREFassignin">assignin</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFassignin"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-assignin"><span><strong class="def-name">assignin</strong> <code class="def-code-arguments">(<var class="var">context</var>, <var class="var">varname</var>, <var class="var">value</var>)</code><a class="copiable-link" href="#index-assignin"> &para;</a></span></dt>
+<dd><p>Assign <var class="var">value</var> to <var class="var">varname</var> in context <var class="var">context</var>, which
+may be either <code class="code">&quot;base&quot;</code> or <code class="code">&quot;caller&quot;</code>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFevalin">evalin</a>.
+</p></dd></dl>
+
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Calling-a-Function-by-its-Name.html">Calling a Function by its Name</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Evaluation.html">Evaluation</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Polynomial Interpolation (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Polynomial Interpolation (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Polynomial Interpolation (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Polynomial-Manipulations.html" rel="up" title="Polynomial Manipulations">
+<link href="Miscellaneous-Functions.html" rel="next" title="Miscellaneous Functions">
+<link href="Derivatives-_002f-Integrals-_002f-Transforms.html" rel="prev" title="Derivatives / Integrals / Transforms">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.center {text-align:center}
+div.example {margin-left: 3.2em}
+dt.def-line {font-size: 1rem}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="section-level-extent" id="Polynomial-Interpolation">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Miscellaneous-Functions.html" accesskey="n" rel="next">Miscellaneous Functions</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Derivatives-_002f-Integrals-_002f-Transforms.html" accesskey="p" rel="prev">Derivatives / Integrals / Transforms</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Polynomial-Manipulations.html" accesskey="u" rel="up">Polynomial Manipulations</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h3 class="section" id="Polynomial-Interpolation-1"><span>28.5 Polynomial Interpolation<a class="copiable-link" href="#Polynomial-Interpolation-1"> &para;</a></span></h3>
+
+<p>Octave comes with good support for various kinds of interpolation,
+most of which are described in <a class="ref" href="Interpolation.html">Interpolation</a>.  One simple alternative
+to the functions described in the aforementioned chapter, is to fit
+a single polynomial, or a piecewise polynomial (spline) to some given
+data points.  To avoid a highly fluctuating polynomial, one most often
+wants to fit a low-order polynomial to data.  This usually means that it
+is necessary to fit the polynomial in a least-squares sense, which just
+is what the <code class="code">polyfit</code> function does.
+</p>
+<a class="anchor" id="XREFpolyfit"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-polyfit"><span><code class="def-type"><var class="var">p</var> =</code> <strong class="def-name">polyfit</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>, <var class="var">n</var>)</code><a class="copiable-link" href="#index-polyfit"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-polyfit-1"><span><code class="def-type">[<var class="var">p</var>, <var class="var">s</var>] =</code> <strong class="def-name">polyfit</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>, <var class="var">n</var>)</code><a class="copiable-link" href="#index-polyfit-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-polyfit-2"><span><code class="def-type">[<var class="var">p</var>, <var class="var">s</var>, <var class="var">mu</var>] =</code> <strong class="def-name">polyfit</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>, <var class="var">n</var>)</code><a class="copiable-link" href="#index-polyfit-2"> &para;</a></span></dt>
+<dd><p>Return the coefficients of a polynomial <var class="var">p</var>(<var class="var">x</var>) of degree <var class="var">n</var>
+that minimizes the least-squares-error of the fit to the points
+<code class="code">[<var class="var">x</var>(:), <var class="var">y</var>(:)]</code>.
+</p>
+<p><var class="var">n</var> is typically an integer &ge; 0 specifying the degree of the
+approximating polynomial.  If <var class="var">n</var> is a logical vector, it is used as a
+mask to selectively force the corresponding polynomial coefficients to be
+used or ignored.
+</p>
+<p>The polynomial coefficients are returned in the row vector <var class="var">p</var>.  The
+output <var class="var">p</var> may be directly used with <code class="code">polyval</code> to estimate values
+using the fitted polynomial.
+</p>
+<p>The optional output <var class="var">s</var> is a structure containing the following fields:
+</p>
+<dl class="table">
+<dt>&lsquo;<samp class="samp">yf</samp>&rsquo;</dt>
+<dd><p>The values of the polynomial for each value of <var class="var">x</var>.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">V</samp>&rsquo;</dt>
+<dd><p>The Vandermonde matrix used to compute the polynomial
+coefficients.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">X (deprecated, will be removed in Octave 13)</samp>&rsquo;</dt>
+<dd><p>The Vandermonde matrix used to compute the polynomial
+coefficients.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">R</samp>&rsquo;</dt>
+<dd><p>Triangular factor R from the QR&nbsp;decomposition.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">C</samp>&rsquo;</dt>
+<dd><p>The unscaled covariance matrix, formally equal to the inverse of
+<var class="var">v&rsquo;</var>*<var class="var">v</var>, but computed in a way minimizing roundoff error
+propagation.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">df</samp>&rsquo;</dt>
+<dd><p>The degrees of freedom.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">normr</samp>&rsquo;</dt>
+<dd><p>The norm of the residuals.
+</p>
+</dd>
+<dt>&lsquo;<samp class="samp">rsquared</samp>&rsquo;</dt>
+<dd><p>Coefficient of determination, or R-squared.
+</p></dd>
+</dl>
+
+<p>The second output may be used by <code class="code">polyval</code> to calculate the statistical
+error limits of the predicted values.  In particular, the standard deviation
+of <var class="var">p</var> coefficients is given by
+</p>
+<p><code class="code">sqrt (diag (<var class="var">s.C</var>)/<var class="var">s.df</var>) * <var class="var">s.normr</var></code>.
+</p>
+<p>When the third output, <var class="var">mu</var>, is present the original data is centered
+and scaled which can improve the numerical stability of the fit.  The
+coefficients <var class="var">p</var> are associated with a polynomial in
+</p>
+<p><code class="code"><var class="var">xhat</var> = (<var class="var">x</var> - <var class="var">mu</var>(1)) / <var class="var">mu</var>(2)</code> <br>
+where <var class="var">mu</var>(1) = mean (<var class="var">x</var>), and <var class="var">mu</var>(2) = std (<var class="var">x</var>).
+</p>
+<p>Example 1 : logical <var class="var">n</var> and integer <var class="var">n</var>
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">f = @(x) x.^2 + 5;   # data-generating function
+x = 0:5;
+y = f (x);
+## Fit data to polynomial A*x^3 + B*x^1
+p = polyfit (x, y, logical ([1, 0, 1, 0]))
+&rArr;  p = [ 0.0680, 0, 4.2444, 0 ]
+## Fit data to polynomial using all terms up to x^3
+p = polyfit (x, y, 3)
+&rArr;  p = [ -4.9608e-17, 1.0000e+00, -1.6906e-15, 5.0000e+00 ]
+</pre></div></div>
+
+<p>Programming Note: If the desired polynomial degree <var class="var">n</var> &ge; number
+of data points, the solution is not unique.  Instead, the fitting calculates
+<code class="code"><var class="var">m</var> = numel (<var class="var">x</var>) - 1</code> terms.  The return polynomial has
+coefficients for <var class="var">x</var>^<var class="var">n</var>, <var class="var">x</var>^<var class="var">n</var>-1, &hellip;,
+<var class="var">x</var>^<var class="var">n</var>-<var class="var">m</var>, and the constant term <var class="var">x</var>^0, with all other
+coefficients set to 0.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="Evaluating-Polynomials.html#XREFpolyval">polyval</a>, <a class="ref" href="Derivatives-_002f-Integrals-_002f-Transforms.html#XREFpolyaffine">polyaffine</a>, <a class="ref" href="Finding-Roots.html#XREFroots">roots</a>, <a class="ref" href="Famous-Matrices.html#XREFvander">vander</a>, <a class="ref" href="Basic-Statistical-Functions.html#XREFzscore">zscore</a>.
+</p></dd></dl>
+
+
+<p>In situations where a single polynomial isn&rsquo;t good enough, a solution
+is to use several polynomials pieced together.  The function
+<code class="code">splinefit</code> fits a piecewise polynomial (spline) to a set of
+data.
+</p>
+<a class="anchor" id="XREFsplinefit"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-splinefit"><span><code class="def-type"><var class="var">pp</var> =</code> <strong class="def-name">splinefit</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>, <var class="var">breaks</var>)</code><a class="copiable-link" href="#index-splinefit"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-splinefit-1"><span><code class="def-type"><var class="var">pp</var> =</code> <strong class="def-name">splinefit</strong> <code class="def-code-arguments">(<var class="var">x</var>, <var class="var">y</var>, <var class="var">p</var>)</code><a class="copiable-link" href="#index-splinefit-1"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-splinefit-2"><span><code class="def-type"><var class="var">pp</var> =</code> <strong class="def-name">splinefit</strong> <code class="def-code-arguments">(&hellip;, &quot;periodic&quot;, <var class="var">periodic</var>)</code><a class="copiable-link" href="#index-splinefit-2"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-splinefit-3"><span><code class="def-type"><var class="var">pp</var> =</code> <strong class="def-name">splinefit</strong> <code class="def-code-arguments">(&hellip;, &quot;robust&quot;, <var class="var">robust</var>)</code><a class="copiable-link" href="#index-splinefit-3"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-splinefit-4"><span><code class="def-type"><var class="var">pp</var> =</code> <strong class="def-name">splinefit</strong> <code class="def-code-arguments">(&hellip;, &quot;beta&quot;, <var class="var">beta</var>)</code><a class="copiable-link" href="#index-splinefit-4"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-splinefit-5"><span><code class="def-type"><var class="var">pp</var> =</code> <strong class="def-name">splinefit</strong> <code class="def-code-arguments">(&hellip;, &quot;order&quot;, <var class="var">order</var>)</code><a class="copiable-link" href="#index-splinefit-5"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-splinefit-6"><span><code class="def-type"><var class="var">pp</var> =</code> <strong class="def-name">splinefit</strong> <code class="def-code-arguments">(&hellip;, &quot;constraints&quot;, <var class="var">constraints</var>)</code><a class="copiable-link" href="#index-splinefit-6"> &para;</a></span></dt>
+<dd>
+<p>Fit a piecewise cubic spline with breaks (knots) <var class="var">breaks</var> to the
+noisy data, <var class="var">x</var> and <var class="var">y</var>.
+</p>
+<p><var class="var">x</var> is a vector, and <var class="var">y</var> is a vector or N-D array.  If <var class="var">y</var> is an
+N-D array, then <var class="var">x</var>(j) is matched to <var class="var">y</var>(:,&hellip;,:,j).
+</p>
+<p><var class="var">p</var> is a positive integer defining the number of intervals along
+<var class="var">x</var>, and <var class="var">p</var>+1 is the number of breaks.  The number of points in
+each interval differ by no more than 1.
+</p>
+<p>The optional property <var class="var">periodic</var> is a logical value which specifies
+whether a periodic boundary condition is applied to the spline.  The
+length of the period is <code class="code">max (<var class="var">breaks</var>) - min (<var class="var">breaks</var>)</code>.
+The default value is <code class="code">false</code>.
+</p>
+<p>The optional property <var class="var">robust</var> is a logical value which specifies
+if robust fitting is to be applied to reduce the influence of outlying
+data points.  Three iterations of weighted least squares are performed.
+Weights are computed from previous residuals.  The sensitivity of outlier
+identification is controlled by the property <var class="var">beta</var>.  The value of
+<var class="var">beta</var> is restricted to the range, 0 &lt; <var class="var">beta</var> &lt; 1.  The default
+value is <var class="var">beta</var> = 1/2.  Values close to 0 give all data equal
+weighting.  Increasing values of <var class="var">beta</var> reduce the influence of
+outlying data.  Values close to unity may cause instability or rank
+deficiency.
+</p>
+<p>The fitted spline is returned as a piecewise polynomial, <var class="var">pp</var>, and
+may be evaluated using <code class="code">ppval</code>.
+</p>
+<p>The splines are constructed of polynomials with degree <var class="var">order</var>.
+The default is a cubic, <var class="var">order</var>=3.  A spline with P pieces has
+P+<var class="var">order</var> degrees of freedom.  With periodic boundary conditions
+the degrees of freedom are reduced to P.
+</p>
+<p>The optional property, <var class="var">constraints</var>, is a structure specifying linear
+constraints on the fit.  The structure has three fields, <code class="code">&quot;xc&quot;</code>,
+<code class="code">&quot;yc&quot;</code>, and <code class="code">&quot;cc&quot;</code>.
+</p>
+<dl class="table">
+<dt><code class="code">&quot;xc&quot;</code></dt>
+<dd><p>Vector of the x-locations of the constraints.
+</p>
+</dd>
+<dt><code class="code">&quot;yc&quot;</code></dt>
+<dd><p>Constraining values at the locations <var class="var">xc</var>.
+The default is an array of zeros.
+</p>
+</dd>
+<dt><code class="code">&quot;cc&quot;</code></dt>
+<dd><p>Coefficients (matrix).  The default is an array of ones.  The number of
+rows is limited to the order of the piecewise polynomials, <var class="var">order</var>.
+</p></dd>
+</dl>
+
+<p>Constraints are linear combinations of derivatives of order 0 to
+<var class="var">order</var>-1 according to
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">cc(1,j) * y(xc(j)) + cc(2,j) * y'(xc(j)) + ... = yc(:,...,:,j).
+</pre></div></div>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="One_002ddimensional-Interpolation.html#XREFinterp1">interp1</a>, <a class="ref" href="#XREFunmkpp">unmkpp</a>, <a class="ref" href="#XREFppval">ppval</a>, <a class="ref" href="One_002ddimensional-Interpolation.html#XREFspline">spline</a>, <a class="ref" href="Signal-Processing.html#XREFpchip">pchip</a>, <a class="ref" href="#XREFppder">ppder</a>, <a class="ref" href="#XREFppint">ppint</a>, <a class="ref" href="#XREFppjumps">ppjumps</a>.
+</p></dd></dl>
+
+
+<p>The number of <var class="var">breaks</var> (or knots) used to construct the piecewise
+polynomial is a significant factor in suppressing the noise present in
+the input data, <var class="var">x</var> and <var class="var">y</var>.  This is demonstrated by the example
+below.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">x = 2 * pi * rand (1, 200);
+y = sin (x) + sin (2 * x) + 0.2 * randn (size (x));
+## Uniform breaks
+breaks = linspace (0, 2 * pi, 41); % 41 breaks, 40 pieces
+pp1 = splinefit (x, y, breaks);
+## Breaks interpolated from data
+pp2 = splinefit (x, y, 10);  % 11 breaks, 10 pieces
+## Plot
+xx = linspace (0, 2 * pi, 400);
+y1 = ppval (pp1, xx);
+y2 = ppval (pp2, xx);
+plot (x, y, &quot;.&quot;, xx, [y1; y2])
+axis tight
+ylim auto
+legend ({&quot;data&quot;, &quot;41 breaks, 40 pieces&quot;, &quot;11 breaks, 10 pieces&quot;})
+</pre></div></div>
+
+<p>The result of which can be seen in <a class="ref" href="#fig_003asplinefit1">Figure 28.1</a>.
+</p>
+<div class="float" id="fig_003asplinefit1">
+<div class="center"><img class="image" src="splinefit1.png" alt="splinefit1">
+</div><div class="caption"><p><strong class="strong">Figure 28.1: </strong>Comparison of a fitting a piecewise polynomial with 41 breaks to one
+with 11 breaks.  The fit with the large number of breaks exhibits a fast ripple
+that is not present in the underlying function.</p></div></div>
+<p>The piecewise polynomial fit, provided by <code class="code">splinefit</code>, has
+continuous derivatives up to the <var class="var">order</var>-1.  For example, a cubic fit
+has continuous first and second derivatives.  This is demonstrated by
+the code
+</p>
+<div class="example">
+<pre class="example-preformatted">## Data (200 points)
+x = 2 * pi * rand (1, 200);
+y = sin (x) + sin (2 * x) + 0.1 * randn (size (x));
+## Piecewise constant
+pp1 = splinefit (x, y, 8, &quot;order&quot;, 0);
+## Piecewise linear
+pp2 = splinefit (x, y, 8, &quot;order&quot;, 1);
+## Piecewise quadratic
+pp3 = splinefit (x, y, 8, &quot;order&quot;, 2);
+## Piecewise cubic
+pp4 = splinefit (x, y, 8, &quot;order&quot;, 3);
+## Piecewise quartic
+pp5 = splinefit (x, y, 8, &quot;order&quot;, 4);
+## Plot
+xx = linspace (0, 2 * pi, 400);
+y1 = ppval (pp1, xx);
+y2 = ppval (pp2, xx);
+y3 = ppval (pp3, xx);
+y4 = ppval (pp4, xx);
+y5 = ppval (pp5, xx);
+plot (x, y, &quot;.&quot;, xx, [y1; y2; y3; y4; y5])
+axis tight
+ylim auto
+legend ({&quot;data&quot;, &quot;order 0&quot;, &quot;order 1&quot;, &quot;order 2&quot;, &quot;order 3&quot;, &quot;order 4&quot;})
+</pre></div>
+
+<p>The result of which can be seen in <a class="ref" href="#fig_003asplinefit2">Figure 28.2</a>.
+</p>
+<div class="float" id="fig_003asplinefit2">
+<div class="center"><img class="image" src="splinefit2.png" alt="splinefit2">
+</div><div class="caption"><p><strong class="strong">Figure 28.2: </strong>Comparison of a piecewise constant, linear, quadratic, cubic, and
+quartic polynomials with 8 breaks to noisy data.  The higher order solutions
+more accurately represent the underlying function, but come with the
+expense of computational complexity.</p></div></div>
+<p>When the underlying function to provide a fit to is periodic, <code class="code">splinefit</code>
+is able to apply the boundary conditions needed to manifest a periodic fit.
+This is demonstrated by the code below.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">## Data (100 points)
+x = 2 * pi * [0, (rand (1, 98)), 1];
+y = sin (x) - cos (2 * x) + 0.2 * randn (size (x));
+## No constraints
+pp1 = splinefit (x, y, 10, &quot;order&quot;, 5);
+## Periodic boundaries
+pp2 = splinefit (x, y, 10, &quot;order&quot;, 5, &quot;periodic&quot;, true);
+## Plot
+xx = linspace (0, 2 * pi, 400);
+y1 = ppval (pp1, xx);
+y2 = ppval (pp2, xx);
+plot (x, y, &quot;.&quot;, xx, [y1; y2])
+axis tight
+ylim auto
+legend ({&quot;data&quot;, &quot;no constraints&quot;, &quot;periodic&quot;})
+</pre></div></div>
+
+<p>The result of which can be seen in <a class="ref" href="#fig_003asplinefit3">Figure 28.3</a>.
+</p>
+<div class="float" id="fig_003asplinefit3">
+<div class="center"><img class="image" src="splinefit3.png" alt="splinefit3">
+</div><div class="caption"><p><strong class="strong">Figure 28.3: </strong>Comparison of piecewise polynomial fits to a noisy periodic
+function with, and without, periodic boundary conditions.</p></div></div>
+<p>More complex constraints may be added as well.  For example, the code below
+illustrates a periodic fit with values that have been clamped at the endpoints,
+and a second periodic fit which is hinged at the endpoints.
+</p>
+<div class="example">
+<pre class="example-preformatted">## Data (200 points)
+x = 2 * pi * rand (1, 200);
+y = sin (2 * x) + 0.1 * randn (size (x));
+## Breaks
+breaks = linspace (0, 2 * pi, 10);
+## Clamped endpoints, y = y' = 0
+xc = [0, 0, 2*pi, 2*pi];
+cc = [(eye (2)), (eye (2))];
+con = struct (&quot;xc&quot;, xc, &quot;cc&quot;, cc);
+pp1 = splinefit (x, y, breaks, &quot;constraints&quot;, con);
+## Hinged periodic endpoints, y = 0
+con = struct (&quot;xc&quot;, 0);
+pp2 = splinefit (x, y, breaks, &quot;constraints&quot;, con, &quot;periodic&quot;, true);
+## Plot
+xx = linspace (0, 2 * pi, 400);
+y1 = ppval (pp1, xx);
+y2 = ppval (pp2, xx);
+plot (x, y, &quot;.&quot;, xx, [y1; y2])
+axis tight
+ylim auto
+legend ({&quot;data&quot;, &quot;clamped&quot;, &quot;hinged periodic&quot;})
+</pre></div>
+
+<p>The result of which can be seen in <a class="ref" href="#fig_003asplinefit4">Figure 28.4</a>.
+</p>
+<div class="float" id="fig_003asplinefit4">
+<div class="center"><img class="image" src="splinefit4.png" alt="splinefit4">
+</div><div class="caption"><p><strong class="strong">Figure 28.4: </strong>Comparison of two periodic piecewise cubic fits to a noisy periodic
+signal.  One fit has its endpoints clamped and the second has its endpoints
+hinged.</p></div></div>
+<p>The <code class="code">splinefit</code> function also provides the convenience of a <var class="var">robust</var>
+fitting, where the effect of outlying data is reduced.  In the example below,
+three different fits are provided.  Two with differing levels of outlier
+suppression and a third illustrating the non-robust solution.
+</p>
+<div class="example">
+<pre class="example-preformatted">## Data
+x = linspace (0, 2*pi, 200);
+y = sin (x) + sin (2 * x) + 0.05 * randn (size (x));
+## Add outliers
+x = [x, linspace(0,2*pi,60)];
+y = [y, -ones(1,60)];
+## Fit splines with hinged conditions
+con = struct (&quot;xc&quot;, [0, 2*pi]);
+## Robust fitting, beta = 0.25
+pp1 = splinefit (x, y, 8, &quot;constraints&quot;, con, &quot;beta&quot;, 0.25);
+## Robust fitting, beta = 0.75
+pp2 = splinefit (x, y, 8, &quot;constraints&quot;, con, &quot;beta&quot;, 0.75);
+## No robust fitting
+pp3 = splinefit (x, y, 8, &quot;constraints&quot;, con);
+## Plot
+xx = linspace (0, 2*pi, 400);
+y1 = ppval (pp1, xx);
+y2 = ppval (pp2, xx);
+y3 = ppval (pp3, xx);
+plot (x, y, &quot;.&quot;, xx, [y1; y2; y3])
+legend ({&quot;data with outliers&quot;,&quot;robust, beta = 0.25&quot;, ...
+         &quot;robust, beta = 0.75&quot;, &quot;no robust fitting&quot;})
+axis tight
+ylim auto
+</pre></div>
+
+<p>The result of which can be seen in <a class="ref" href="#fig_003asplinefit6">Figure 28.5</a>.
+</p>
+<div class="float" id="fig_003asplinefit6">
+<div class="center"><img class="image" src="splinefit6.png" alt="splinefit6">
+</div><div class="caption"><p><strong class="strong">Figure 28.5: </strong>Comparison of two different levels of robust fitting (<var class="var">beta</var> = 0.25 and 0.75) to noisy data combined with outlying data.  A conventional fit, without
+robust fitting (<var class="var">beta</var> = 0) is also included.</p></div></div>
+<p>A very specific form of polynomial interpretation is the Pad&eacute; approximant.
+For control systems, a continuous-time delay can be modeled very simply with
+the approximant.
+</p>
+<a class="anchor" id="XREFpadecoef"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-padecoef"><span><code class="def-type">[<var class="var">num</var>, <var class="var">den</var>] =</code> <strong class="def-name">padecoef</strong> <code class="def-code-arguments">(<var class="var">T</var>)</code><a class="copiable-link" href="#index-padecoef"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-padecoef-1"><span><code class="def-type">[<var class="var">num</var>, <var class="var">den</var>] =</code> <strong class="def-name">padecoef</strong> <code class="def-code-arguments">(<var class="var">T</var>, <var class="var">N</var>)</code><a class="copiable-link" href="#index-padecoef-1"> &para;</a></span></dt>
+<dd><p>Compute the <var class="var">N</var>th-order Pad&eacute; approximant of the continuous-time
+delay <var class="var">T</var> in transfer function form.
+The Pad&eacute; approximant of <code class="code">exp (-sT)</code> is defined by the
+following equation
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">             Pn(s)
+exp (-sT) ~ -------
+             Qn(s)
+</pre></div></div>
+
+<p>Where both Pn(s) and Qn(s) are <var class="var">N</var>th-order rational functions
+defined by the following expressions
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">         N    (2N - k)!N!        k
+Pn(s) = SUM --------------- (-sT)
+        k=0 (2N)!k!(N - k)!
+
+Qn(s) = Pn(-s)
+</pre></div></div>
+
+
+<p>The inputs <var class="var">T</var> and <var class="var">N</var> must be non-negative numeric scalars.  If
+<var class="var">N</var> is unspecified it defaults to 1.
+</p>
+<p>The output row vectors <var class="var">num</var> and <var class="var">den</var> contain the numerator and
+denominator coefficients in descending powers of s.  Both are
+<var class="var">N</var>th-order polynomials.
+</p>
+<p>For example:
+</p>
+<div class="example smallexample">
+<div class="group"><pre class="example-preformatted">t = 0.1;
+n = 4;
+[num, den] = padecoef (t, n)
+&rArr;  num =
+
+      1.0000e-04  -2.0000e-02   1.8000e+00  -8.4000e+01   1.6800e+03
+
+&rArr;  den =
+
+      1.0000e-04   2.0000e-02   1.8000e+00   8.4000e+01   1.6800e+03
+</pre></div></div>
+</dd></dl>
+
+
+<p>The function, <code class="code">ppval</code>, evaluates the piecewise polynomials, created
+by <code class="code">mkpp</code> or other means, and <code class="code">unmkpp</code> returns detailed
+information about the piecewise polynomial.
+</p>
+<p>The following example shows how to combine two linear functions and a
+quadratic into one function.  Each of these functions is expressed
+on adjoined intervals.
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">x = [-2, -1, 1, 2];
+p = [ 0,  1, 0;
+      1, -2, 1;
+      0, -1, 1 ];
+pp = mkpp (x, p);
+xi = linspace (-2, 2, 50);
+yi = ppval (pp, xi);
+plot (xi, yi);
+</pre></div></div>
+
+<a class="anchor" id="XREFmkpp"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-mkpp"><span><code class="def-type"><var class="var">pp</var> =</code> <strong class="def-name">mkpp</strong> <code class="def-code-arguments">(<var class="var">breaks</var>, <var class="var">coefs</var>)</code><a class="copiable-link" href="#index-mkpp"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-mkpp-1"><span><code class="def-type"><var class="var">pp</var> =</code> <strong class="def-name">mkpp</strong> <code class="def-code-arguments">(<var class="var">breaks</var>, <var class="var">coefs</var>, <var class="var">d</var>)</code><a class="copiable-link" href="#index-mkpp-1"> &para;</a></span></dt>
+<dd>
+<p>Construct a piecewise polynomial (pp) structure from sample points
+<var class="var">breaks</var> and coefficients <var class="var">coefs</var>.
+</p>
+<p><var class="var">breaks</var> must be a vector of strictly increasing values.  The number of
+intervals is given by <code class="code"><var class="var">ni</var> = length (<var class="var">breaks</var>) - 1</code>.
+</p>
+<p>When <var class="var">m</var> is the polynomial order <var class="var">coefs</var> must be of size:
+<var class="var">ni</var>-by-(<var class="var">m</var>&nbsp;+&nbsp;1)<!-- /@w -->.
+</p>
+<p>The i-th row of <var class="var">coefs</var>, <code class="code"><var class="var">coefs</var>(<var class="var">i</var>,:)</code>, contains the
+coefficients for the polynomial over the <var class="var">i</var>-th interval, ordered from
+highest (<var class="var">m</var>) to lowest (<var class="var">0</var>) degree.
+</p>
+<p><var class="var">coefs</var> may also be a multi-dimensional array, specifying a
+vector-valued or array-valued polynomial.  In that case the polynomial
+order <var class="var">m</var> is defined by the length of the last dimension of <var class="var">coefs</var>.
+The size of first dimension(s) are given by the scalar or vector <var class="var">d</var>.
+If <var class="var">d</var> is not given it is set to <code class="code">1</code>.  In this case
+<code class="code"><var class="var">p</var>(<var class="var">r</var>, <var class="var">i</var>, :)</code> contains the coefficients for the
+<var class="var">r</var>-th polynomial defined on interval <var class="var">i</var>.  In any case <var class="var">coefs</var>
+is reshaped to a 2-D matrix of size <code class="code">[<var class="var">ni</var>*prod(<var class="var">d</var>) <var class="var">m</var>]</code>.
+</p>
+<p>Programming Note: <code class="code">ppval</code> evaluates polynomials at
+<code class="code"><var class="var">xi</var> - <var class="var">breaks</var>(i)</code>, i.e., it subtracts the lower endpoint of
+the current interval from <var class="var">xi</var>.  This must be taken into account when
+creating piecewise polynomials objects with <code class="code">mkpp</code>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFunmkpp">unmkpp</a>, <a class="ref" href="#XREFppval">ppval</a>, <a class="ref" href="One_002ddimensional-Interpolation.html#XREFspline">spline</a>, <a class="ref" href="Signal-Processing.html#XREFpchip">pchip</a>, <a class="ref" href="#XREFppder">ppder</a>, <a class="ref" href="#XREFppint">ppint</a>, <a class="ref" href="#XREFppjumps">ppjumps</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFunmkpp"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-unmkpp"><span><code class="def-type">[<var class="var">x</var>, <var class="var">p</var>, <var class="var">n</var>, <var class="var">k</var>, <var class="var">d</var>] =</code> <strong class="def-name">unmkpp</strong> <code class="def-code-arguments">(<var class="var">pp</var>)</code><a class="copiable-link" href="#index-unmkpp"> &para;</a></span></dt>
+<dd>
+<p>Extract the components of a piecewise polynomial structure <var class="var">pp</var>.
+</p>
+<p>This function is the inverse of <code class="code">mkpp</code>: it extracts the inputs to
+<code class="code">mkpp</code> needed to create the piecewise polynomial structure <var class="var">pp</var>.
+The code below makes this relation explicit:
+</p>
+<div class="example">
+<div class="group"><pre class="example-preformatted">[breaks, coefs, numinter, order, dim] = unmkpp (pp);
+pp2  = mkpp (breaks, coefs, dim);
+</pre></div></div>
+
+<p>The piecewise polynomial structure <code class="code">pp2</code> obtained in this way, is
+identical to the original <code class="code">pp</code>.  The same can be obtained by directly
+accessing the fields of the structure <code class="code">pp</code>.
+</p>
+<p>The components are:
+</p>
+<dl class="table">
+<dt><var class="var">x</var></dt>
+<dd><p>Sample points or breaks.
+</p>
+</dd>
+<dt><var class="var">p</var></dt>
+<dd><p>Polynomial coefficients for points in sample interval.
+<code class="code"><var class="var">p</var>(<var class="var">i</var>, :)</code> contains the coefficients for the polynomial
+over interval <var class="var">i</var> ordered from highest to lowest degree.
+If <code class="code"><var class="var">d</var> &gt; 1</code>, then <var class="var">p</var> is a matrix of size
+<code class="code">[<var class="var">n</var>*prod(<var class="var">d</var>) <var class="var">m</var>]</code>, where the
+<code class="code"><var class="var">i</var> + (1:<var class="var">d</var>)</code> rows are the coefficients of all the <var class="var">d</var>
+polynomials in the interval <var class="var">i</var>.
+</p>
+</dd>
+<dt><var class="var">n</var></dt>
+<dd><p>Number of polynomial pieces or intervals,
+<code class="code"><var class="var">n</var> = length (<var class="var">x</var>) - 1</code>.
+</p>
+</dd>
+<dt><var class="var">k</var></dt>
+<dd><p>Order of the polynomial plus 1.
+</p>
+</dd>
+<dt><var class="var">d</var></dt>
+<dd><p>Number of polynomials defined for each interval.
+</p></dd>
+</dl>
+
+
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFmkpp">mkpp</a>, <a class="ref" href="#XREFppval">ppval</a>, <a class="ref" href="One_002ddimensional-Interpolation.html#XREFspline">spline</a>, <a class="ref" href="Signal-Processing.html#XREFpchip">pchip</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFppval"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-ppval"><span><code class="def-type"><var class="var">yi</var> =</code> <strong class="def-name">ppval</strong> <code class="def-code-arguments">(<var class="var">pp</var>, <var class="var">xi</var>)</code><a class="copiable-link" href="#index-ppval"> &para;</a></span></dt>
+<dd><p>Evaluate the piecewise polynomial structure <var class="var">pp</var> at the points <var class="var">xi</var>.
+</p>
+<p>If <var class="var">pp</var> describes a scalar polynomial function, the result is an array
+of the same shape as <var class="var">xi</var>.  Otherwise, the size of the result is
+<code class="code">[pp.dim, length(<var class="var">xi</var>)]</code> if <var class="var">xi</var> is a vector, or
+<code class="code">[pp.dim, size(<var class="var">xi</var>)]</code> if it is a multi-dimensional array.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFmkpp">mkpp</a>, <a class="ref" href="#XREFunmkpp">unmkpp</a>, <a class="ref" href="One_002ddimensional-Interpolation.html#XREFspline">spline</a>, <a class="ref" href="Signal-Processing.html#XREFpchip">pchip</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFppder"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-ppder"><span><code class="def-type">ppd =</code> <strong class="def-name">ppder</strong> <code class="def-code-arguments">(pp)</code><a class="copiable-link" href="#index-ppder"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ppder-1"><span><code class="def-type">ppd =</code> <strong class="def-name">ppder</strong> <code class="def-code-arguments">(pp, m)</code><a class="copiable-link" href="#index-ppder-1"> &para;</a></span></dt>
+<dd><p>Compute the piecewise <var class="var">m</var>-th derivative of a piecewise polynomial
+struct <var class="var">pp</var>.
+</p>
+<p>If <var class="var">m</var> is omitted the first derivative is calculated.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFmkpp">mkpp</a>, <a class="ref" href="#XREFppval">ppval</a>, <a class="ref" href="#XREFppint">ppint</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFppint"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-ppint"><span><code class="def-type"><var class="var">ppi</var> =</code> <strong class="def-name">ppint</strong> <code class="def-code-arguments">(<var class="var">pp</var>)</code><a class="copiable-link" href="#index-ppint"> &para;</a></span></dt>
+<dt class="deftypefnx def-cmd-deftypefn def-line" id="index-ppint-1"><span><code class="def-type"><var class="var">ppi</var> =</code> <strong class="def-name">ppint</strong> <code class="def-code-arguments">(<var class="var">pp</var>, <var class="var">c</var>)</code><a class="copiable-link" href="#index-ppint-1"> &para;</a></span></dt>
+<dd><p>Compute the integral of the piecewise polynomial struct <var class="var">pp</var>.
+</p>
+<p><var class="var">c</var>, if given, is the constant of integration.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFmkpp">mkpp</a>, <a class="ref" href="#XREFppval">ppval</a>, <a class="ref" href="#XREFppder">ppder</a>.
+</p></dd></dl>
+
+
+<a class="anchor" id="XREFppjumps"></a><span style="display:block; margin-top:-4.5ex;">&nbsp;</span>
+
+
+<dl class="first-deftypefn def-block">
+<dt class="deftypefn def-line" id="index-ppjumps"><span><code class="def-type"><var class="var">jumps</var> =</code> <strong class="def-name">ppjumps</strong> <code class="def-code-arguments">(<var class="var">pp</var>)</code><a class="copiable-link" href="#index-ppjumps"> &para;</a></span></dt>
+<dd><p>Evaluate the boundary jumps of a piecewise polynomial.
+</p>
+<p>If there are <em class="math">n</em> intervals, and the dimensionality of <var class="var">pp</var> is
+<em class="math">d</em>, the resulting array has dimensions <code class="code">[d, n-1]</code>.
+</p>
+<p><strong class="strong">See also:</strong> <a class="ref" href="#XREFmkpp">mkpp</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Miscellaneous-Functions.html">Miscellaneous Functions</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Derivatives-_002f-Integrals-_002f-Transforms.html">Derivatives / Integrals / Transforms</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Polynomial-Manipulations.html">Polynomial Manipulations</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>

@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.3, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Axes Properties (GNU Octave (version 11.3.0))</title>
+
+<meta name="description" content="Axes Properties (GNU Octave (version 11.3.0))">
+<meta name="keywords" content="Axes Properties (GNU Octave (version 11.3.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Graphics-Properties-Index.html" rel="index" title="Graphics Properties Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Graphics-Object-Properties.html" rel="up" title="Graphics Object Properties">
+<link href="Legend-Properties.html" rel="next" title="Legend Properties">
+<link href="Figure-Properties.html" rel="prev" title="Figure Properties">
+<style type="text/css">
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body>
+<div class="subsubsection-level-extent" id="Axes-Properties">
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Legend-Properties.html" accesskey="n" rel="next">Legend Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Figure-Properties.html" accesskey="p" rel="prev">Figure Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Graphics-Object-Properties.html" accesskey="u" rel="up">Graphics Object Properties</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+<hr>
+<h4 class="subsubsection" id="Axes-Properties-1"><span>15.3.3.3 Axes Properties<a class="copiable-link" href="#Axes-Properties-1"> &para;</a></span></h4>
+<a class="index-entry-id" id="index-Axes-Properties"></a>
+
+
+
+<p>Properties of <code class="code">axes</code> objects (see <a class="pxref" href="Creating-Graphics-Objects.html#XREFaxes">axes</a>):
+</p>
+<h4 class="subsubheading" id="Categories_003a-2"><span>Categories:<a class="copiable-link" href="#Categories_003a-2"> &para;</a></span></h4>
+
+<p><a class="ref" href="#XREFaxescategoryAutomaticChildProperties">Automatic&nbsp;Child&nbsp;Properties<!-- /@w --></a> | <a class="ref" href="#XREFaxescategoryAxesBoxAppearance">Axes&nbsp;Box&nbsp;Appearance<!-- /@w --></a> | <a class="ref" href="#XREFaxescategoryAxesGridAppearance">Axes&nbsp;Grid&nbsp;Appearance<!-- /@w --></a> | <a class="ref" href="#XREFaxescategoryCallbackExecution">Callback&nbsp;Execution<!-- /@w --></a> | <a class="ref" href="#XREFaxescategoryCameraandViewControls">Camera&nbsp;and&nbsp;View&nbsp;Controls<!-- /@w --></a> | <a class="ref" href="#XREFaxescategoryColorandTransparency">Color&nbsp;and&nbsp;Transparency<!-- /@w --></a> | <a class="ref" href="#XREFaxescategoryCreation_002fDeletion">Creation/Deletion<!-- /@w --></a> | <a class="ref" href="#XREFaxescategoryDisplay">Display<!-- /@w --></a> | <a class="ref" href="#XREFaxescategoryMouseInteraction">Mouse&nbsp;Interaction<!-- /@w --></a> | <a class="ref" href="#XREFaxescategoryObjectIdentification">Object&nbsp;Identification<!-- /@w --></a> | <a class="ref" href="#XREFaxescategoryObjectPosition">Object&nbsp;Position<!-- /@w --></a> | <a class="ref" href="#XREFaxescategoryParent_002fChildren">Parent/Children<!-- /@w --></a> | <a class="ref" href="#XREFaxescategoryTextAppearance">Text&nbsp;Appearance<!-- /@w --></a> 
+</p>
+<a class="anchor" id="XREFaxescategoryAutomaticChildProperties"></a><h4 class="subsubheading" id="Automatic-Child-Properties"><span>Automatic Child Properties<a class="copiable-link" href="#Automatic-Child-Properties"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFaxescolororder"></a></dd>
+<dt><a id="index-axes-colororder"></a><span><code class="code">colororder</code>: N-by-3 RGB matrix, def. 7-by-3 double<a class="copiable-link" href="#index-axes-colororder"> &para;</a></span></dt>
+<dd><p>RGB values used by plot function for child object coloring.
+</p>
+
+<a class="anchor" id="XREFaxescolororderindex"></a></dd>
+<dt><a id="index-axes-colororderindex"></a><span><code class="code">colororderindex</code>: integer, def. <code class="code">1</code><a class="copiable-link" href="#index-axes-colororderindex"> &para;</a></span></dt>
+<dd><p>Index of the next color from the <a class="ref" href="#XREFaxescolororder"><code class="code">&quot;colororder&quot;</code>&nbsp;property<!-- /@w --></a> to be used by Axes-child objects.
+</p>
+
+<a class="anchor" id="XREFaxeslinestyleorder"></a></dd>
+<dt><a id="index-axes-linestyleorder"></a><span><code class="code">linestyleorder</code>: def. <code class="code">&quot;-&quot;</code><a class="copiable-link" href="#index-axes-linestyleorder"> &para;</a></span></dt>
+<dd><p>List of linestyles to be used in order by axes child objects, specified as a cell array of line specification strings.  Note that the linestyle is only incremented after cycling through the full <a class="ref" href="#XREFaxescolororder"><code class="code">&quot;colororder&quot;</code></a> list.  See <a class="xref" href="Line-Styles.html">Line Styles</a>.
+</p>
+
+<a class="anchor" id="XREFaxeslinestyleorderindex"></a></dd>
+<dt><a id="index-axes-linestyleorderindex"></a><span><code class="code">linestyleorderindex</code>: whole number scalar, def. <code class="code">1</code><a class="copiable-link" href="#index-axes-linestyleorderindex"> &para;</a></span></dt>
+<dd><p>Index of the next linestyle from the <a class="ref" href="#XREFaxeslinestyleorder"><code class="code">&quot;linestyleorder&quot;</code>&nbsp;property<!-- /@w --></a> to be used by Axes-child objects.
+</p>
+
+<a class="anchor" id="XREFaxesnextseriesindex"></a></dd>
+<dt><a id="index-axes-nextseriesindex"></a><span><code class="code">nextseriesindex</code> (read-only): whole number scalar, def. <code class="code">1</code><a class="copiable-link" href="#index-axes-nextseriesindex"> &para;</a></span></dt>
+<dd><p>Current index value into the <a class="ref" href="#XREFaxescolororder">&quot;colororder&quot;</a> and <a class="ref" href="#XREFaxeslinestyleorder">&quot;linestyleorder&quot;</a> properties, indicating the item that will be used by the next child object
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFaxescategoryAxesBoxAppearance"></a><h4 class="subsubheading" id="Axes-Box-Appearance"><span>Axes Box Appearance<a class="copiable-link" href="#Axes-Box-Appearance"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFaxesbox"></a></dd>
+<dt><a id="index-axes-box"></a><span><code class="code">box</code>: {<code class="code">&quot;off&quot;</code>} | <code class="code">&quot;on&quot;</code><a class="copiable-link" href="#index-axes-box"> &para;</a></span></dt>
+<dd><p>Control whether the axes has a surrounding box.
+</p>
+
+<a class="anchor" id="XREFaxesboxstyle"></a></dd>
+<dt><a id="index-axes-boxstyle"></a><span><code class="code">boxstyle</code>: {<code class="code">&quot;back&quot;</code>} | <code class="code">&quot;full&quot;</code><a class="copiable-link" href="#index-axes-boxstyle"> &para;</a></span></dt>
+<dd><p>For 3-D axes, control whether the <code class="code">&quot;full&quot;</code> box is drawn or only the 3 <code class="code">&quot;back&quot;</code> axes.
+</p>
+
+<a class="anchor" id="XREFaxescolor"></a></dd>
+<dt><a id="index-axes-color"></a><span><code class="code">color</code>: colorspec, def. <code class="code">[1   1   1]</code><a class="copiable-link" href="#index-axes-color"> &para;</a></span></dt>
+<dd><p>Color of the axes background.  See <a class="xref" href="Colors.html">colorspec</a>.
+</p>
+
+<a class="anchor" id="XREFaxesdataaspectratio"></a></dd>
+<dt><a id="index-axes-dataaspectratio"></a><span><code class="code">dataaspectratio</code>: three-element vector, def. <code class="code">[1   1   1]</code><a class="copiable-link" href="#index-axes-dataaspectratio"> &para;</a></span></dt>
+<dd><p>Specify the relative height and width of the data displayed in the axes.  Setting <code class="code">dataaspectratio</code> to <code class="code">[1,&nbsp;2]</code><!-- /@w --> causes the length of one unit as displayed on the x-axis to be the same as the length of 2 units on the y-axis.  See <a class="xref" href="Aspect-Ratio.html#XREFdaspect">daspect function</a>.  Setting <code class="code">dataaspectratio</code> also forces the <code class="code">dataaspectratiomode</code> property to be set to <code class="code">&quot;manual&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFaxesdataaspectratiomode"></a></dd>
+<dt><a id="index-axes-dataaspectratiomode"></a><span><code class="code">dataaspectratiomode</code>: {<code class="code">&quot;auto&quot;</code>} | <code class="code">&quot;manual&quot;</code><a class="copiable-link" href="#index-axes-dataaspectratiomode"> &para;</a></span></dt>
+<dd><p>Current state of the data aspect ratio mode, either manually set by the <a class="ref" href="#XREFaxesdataaspectratio"><code class="code">&quot;dataaspectratio&quot;</code>&nbsp;property<!-- /@w --></a> or automatically set by Octave in combination with other display properties to fit the data in the current view.
+</p>
+
+<a class="anchor" id="XREFaxeslayer"></a></dd>
+<dt><a id="index-axes-layer"></a><span><code class="code">layer</code>: {<code class="code">&quot;bottom&quot;</code>} | <code class="code">&quot;top&quot;</code><a class="copiable-link" href="#index-axes-layer"> &para;</a></span></dt>
+<dd><p>Control whether the axes is drawn below child graphics objects (ticks, labels, etc. covered by plotted objects) or above.
+</p>
+
+<a class="anchor" id="XREFaxeslayout"></a></dd>
+<dt><a id="index-axes-layout"></a><span><code class="code">layout</code> (read-only): def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-axes-layout"> &para;</a></span></dt>
+<dd><p>Tiled and gridded chart layout is not yet implemented for axes objects.  <code class="code">layout</code> is unused.
+</p>
+
+<a class="anchor" id="XREFaxeslinewidth"></a></dd>
+<dt><a id="index-axes-linewidth"></a><span><code class="code">linewidth</code>: scalar, def. <code class="code">0.5000</code><a class="copiable-link" href="#index-axes-linewidth"> &para;</a></span></dt>
+<dd><p>Width of the main axes lines.
+</p>
+
+<a class="anchor" id="XREFaxestickdir"></a></dd>
+<dt><a id="index-axes-tickdir"></a><span><code class="code">tickdir</code>: <code class="code">&quot;both&quot;</code> | {<code class="code">&quot;in&quot;</code>} | <code class="code">&quot;none&quot;</code> | <code class="code">&quot;out&quot;</code><a class="copiable-link" href="#index-axes-tickdir"> &para;</a></span></dt>
+<dd><p>Control whether axes tick marks project <code class="code">&quot;in&quot;</code> to the plot box or <code class="code">&quot;out&quot;</code>.  The value <code class="code">&quot;both&quot;</code> will draw tick marks both in and out.  The value <code class="code">&quot;none&quot;</code> means no tick marks will be drawn, although tick labels will still be rendered.  Setting <code class="code">tickdir</code> also forces the <code class="code">tickdirmode</code> property to be set to <code class="code">&quot;manual&quot;</code>.  Note that the default is <code class="code">&quot;in&quot;</code> for 2-D and <code class="code">&quot;out&quot;</code> for 3-D plots.
+</p>
+
+<a class="anchor" id="XREFaxestickdirmode"></a></dd>
+<dt><a id="index-axes-tickdirmode"></a><span><code class="code">tickdirmode</code>: {<code class="code">&quot;auto&quot;</code>} | <code class="code">&quot;manual&quot;</code><a class="copiable-link" href="#index-axes-tickdirmode"> &para;</a></span></dt>
+<dd><p>Current state of the tickdir mode, either manually set by the <a class="ref" href="#XREFaxestickdir"><code class="code">&quot;tickdir&quot;</code>&nbsp;property<!-- /@w --></a> or automatically set to the default for the current view.
+</p>
+
+<a class="anchor" id="XREFaxesticklength"></a></dd>
+<dt><a id="index-axes-ticklength"></a><span><code class="code">ticklength</code>: two-element vector, def. <code class="code">[0.010000   0.025000]</code><a class="copiable-link" href="#index-axes-ticklength"> &para;</a></span></dt>
+<dd><p>Two-element vector <code class="code">[2Dlen 3Dlen]</code> specifying the length of the tickmarks relative to the longest visible axis.
+</p>
+
+<a class="anchor" id="XREFaxestoolbar"></a></dd>
+<dt><a id="index-axes-toolbar"></a><span><code class="code">toolbar</code> (read-only): def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-axes-toolbar"> &para;</a></span></dt>
+<dd><p>AxesToolbar objects is not yet implemented for axes objects.  <code class="code">toolbar</code> is unused.
+</p>
+
+<a class="anchor" id="XREFaxesxaxis"></a></dd>
+<dt><a id="index-axes-xaxis"></a><span><code class="code">xaxis</code> (read-only): def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-axes-xaxis"> &para;</a></span></dt>
+<dd><p>Axes Ruler objects is not yet implemented for axes objects.  <code class="code">xaxis</code> is unused.
+</p>
+
+<a class="anchor" id="XREFaxesxaxislocation"></a></dd>
+<dt><a id="index-axes-xaxislocation"></a><span><code class="code">xaxislocation</code>: {<code class="code">&quot;bottom&quot;</code>} | <code class="code">&quot;origin&quot;</code> | <code class="code">&quot;top&quot;</code><a class="copiable-link" href="#index-axes-xaxislocation"> &para;</a></span></dt>
+<dd><p>Control the x-axis location.
+</p>
+
+<a class="anchor" id="XREFaxesxcolor"></a></dd>
+<dt><a id="index-axes-xcolor"></a><span><code class="code">xcolor</code>: {colorspec} | <code class="code">&quot;none&quot;</code>, def. <code class="code">[0.1500   0.1500   0.1500]</code><a class="copiable-link" href="#index-axes-xcolor"> &para;</a></span></dt>
+<dd><p>Color of the x-axis.  See <a class="xref" href="Colors.html">colorspec</a>.  Setting <code class="code">xcolor</code> also forces the <code class="code">xcolormode</code> property to be set to <code class="code">&quot;manual&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFaxesxcolormode"></a></dd>
+<dt><a id="index-axes-xcolormode"></a><span><code class="code">xcolormode</code>: {<code class="code">&quot;auto&quot;</code>} | <code class="code">&quot;manual&quot;</code><a class="copiable-link" href="#index-axes-xcolormode"> &para;</a></span></dt>
+<dd><p>Current state of the setting determining the color that is applied to the x-axis grid lines.  If set to <code class="code">&quot;auto&quot;</code> and/or the <a class="ref" href="#XREFaxesgridcolormode"><code class="code">&quot;gridcolormode&quot;</code>&nbsp;property<!-- /@w --></a> is set to <code class="code">&quot;manual&quot;</code>, the x-axis grid color will be defined by the <a class="ref" href="#XREFaxesgridcolor"><code class="code">&quot;gridcolor&quot;</code>&nbsp;property<!-- /@w --></a>.  Otherwise the x-axis grid color will be defined by the <a class="ref" href="#XREFaxesxcolor"><code class="code">&quot;xcolor&quot;</code>&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFaxesxdir"></a></dd>
+<dt><a id="index-axes-xdir"></a><span><code class="code">xdir</code>: {<code class="code">&quot;normal&quot;</code>} | <code class="code">&quot;reverse&quot;</code><a class="copiable-link" href="#index-axes-xdir"> &para;</a></span></dt>
+<dd><p>Direction of the x-axis: <code class="code">&quot;normal&quot;</code> is left to right in default 2-D and 3-D views.
+</p>
+
+<a class="anchor" id="XREFaxesxlim"></a></dd>
+<dt><a id="index-axes-xlim"></a><span><code class="code">xlim</code>: two-element vector, def. <code class="code">[0   1]</code><a class="copiable-link" href="#index-axes-xlim"> &para;</a></span></dt>
+<dd><p>Two-element vector <code class="code">[xmin xmax]</code> specifying the limits for the x-axis.  Setting <code class="code">xlim</code> also forces the <code class="code">xlimmode</code> property to be set to <code class="code">&quot;manual&quot;</code>.   See <a class="xref" href="Axis-Configuration.html#XREFxlim">xlim&nbsp;function<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFaxesxlimitmethod"></a></dd>
+<dt><a id="index-axes-xlimitmethod"></a><span><code class="code">xlimitmethod</code>: <code class="code">&quot;padded&quot;</code> | {<code class="code">&quot;tickaligned&quot;</code>} | <code class="code">&quot;tight&quot;</code><a class="copiable-link" href="#index-axes-xlimitmethod"> &para;</a></span></dt>
+<dd><p>Method used to determine the x-axis limits when the <code class="code">xlimmode</code> property is <code class="code">&quot;auto&quot;</code>.  The default value, <code class="code">&quot;tickaligned&quot;</code> makes limits align with the closest ticks.  With value <code class="code">&quot;tight&quot;</code> the limits are adjusted to enclose all the graphics objects in the axes, while with value <code class="code">&quot;padded&quot;</code>, an additional margin of about 7% of the data extent is added around the objects.  See <a class="xref" href="Axis-Configuration.html#XREFaxis">axis&nbsp;function<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFaxesxlimmode"></a></dd>
+<dt><a id="index-axes-xlimmode"></a><span><code class="code">xlimmode</code>: {<code class="code">&quot;auto&quot;</code>} | <code class="code">&quot;manual&quot;</code><a class="copiable-link" href="#index-axes-xlimmode"> &para;</a></span></dt>
+<dd><p>Current state of the x-axis limit selection method, either manually set with the <a class="ref" href="#XREFaxesxlim"><code class="code">&quot;xlim&quot;</code>&nbsp;property<!-- /@w --></a> or automatically set to span the plotted data according to the <a class="ref" href="#XREFaxesxlimitmethod"><code class="code">&quot;xlimitmethod&quot;</code>&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFaxesxminortick"></a></dd>
+<dt><a id="index-axes-xminortick"></a><span><code class="code">xminortick</code>: {<code class="code">&quot;off&quot;</code>} | <code class="code">&quot;on&quot;</code><a class="copiable-link" href="#index-axes-xminortick"> &para;</a></span></dt>
+<dd><p>Control whether minor x tick marks are displayed.
+</p>
+
+<a class="anchor" id="XREFaxesxminortickvalues"></a></dd>
+<dt><a id="index-axes-xminortickvalues"></a><span><code class="code">xminortickvalues</code>: def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-axes-xminortickvalues"> &para;</a></span></dt>
+<dd><p>Position of minor tick marks.  Setting <code class="code">xminortickvalues</code> also forces the <code class="code">xminortickvaluesmode</code> property to be set to <code class="code">&quot;manual&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFaxesxminortickvaluesmode"></a></dd>
+<dt><a id="index-axes-xminortickvaluesmode"></a><span><code class="code">xminortickvaluesmode</code>: {<code class="code">&quot;auto&quot;</code>} | <code class="code">&quot;manual&quot;</code><a class="copiable-link" href="#index-axes-xminortickvaluesmode"> &para;</a></span></dt>
+<dd><p>Setting to determine whether the xminortick locations and spacing are set automatically by Octave or manually using the <a class="ref" href="#XREFaxesxminortickvalues"><code class="code">&quot;xminortickvalues&quot;</code>&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFaxesxtick"></a></dd>
+<dt><a id="index-axes-xtick"></a><span><code class="code">xtick</code>: vector<a class="copiable-link" href="#index-axes-xtick"> &para;</a></span></dt>
+<dd><p>Position of x tick marks.  Setting <code class="code">xtick</code> also forces the <code class="code">xtickmode</code> property to be set to <code class="code">&quot;manual&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFaxesxtickmode"></a></dd>
+<dt><a id="index-axes-xtickmode"></a><span><code class="code">xtickmode</code>: {<code class="code">&quot;auto&quot;</code>} | <code class="code">&quot;manual&quot;</code><a class="copiable-link" href="#index-axes-xtickmode"> &para;</a></span></dt>
+<dd><p>Setting to determine whether the xtick locations and spacing are set automatically by Octave or manually using the <a class="ref" href="#XREFaxesxtick"><code class="code">&quot;xtick&quot;</code>&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFaxesyaxis"></a></dd>
+<dt><a id="index-axes-yaxis"></a><span><code class="code">yaxis</code> (read-only): def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-axes-yaxis"> &para;</a></span></dt>
+<dd><p>Axes Ruler objects is not yet implemented for axes objects.  <code class="code">yaxis</code> is unused.
+</p>
+
+<a class="anchor" id="XREFaxesyaxislocation"></a></dd>
+<dt><a id="index-axes-yaxislocation"></a><span><code class="code">yaxislocation</code>: {<code class="code">&quot;left&quot;</code>} | <code class="code">&quot;origin&quot;</code> | <code class="code">&quot;right&quot;</code><a class="copiable-link" href="#index-axes-yaxislocation"> &para;</a></span></dt>
+<dd><p>Control the y-axis location.
+</p>
+
+<a class="anchor" id="XREFaxesycolor"></a></dd>
+<dt><a id="index-axes-ycolor"></a><span><code class="code">ycolor</code>: {colorspec} | <code class="code">&quot;none&quot;</code>, def. <code class="code">[0.1500   0.1500   0.1500]</code><a class="copiable-link" href="#index-axes-ycolor"> &para;</a></span></dt>
+<dd><p>Color of the y-axis.  See <a class="xref" href="Colors.html">colorspec</a>.
+</p>
+
+<a class="anchor" id="XREFaxesycolormode"></a></dd>
+<dt><a id="index-axes-ycolormode"></a><span><code class="code">ycolormode</code>: {<code class="code">&quot;auto&quot;</code>} | <code class="code">&quot;manual&quot;</code><a class="copiable-link" href="#index-axes-ycolormode"> &para;</a></span></dt>
+<dd><p>Current state of the setting determining the color that is applied to the y-axis grid lines.  If set to <code class="code">&quot;auto&quot;</code> and/or the <a class="ref" href="#XREFaxesgridcolormode"><code class="code">&quot;gridcolormode&quot;</code>&nbsp;property<!-- /@w --></a> is set to <code class="code">&quot;manual&quot;</code>, the y-axis grid color will be defined by the <a class="ref" href="#XREFaxesgridcolor"><code class="code">&quot;gridcolor&quot;</code>&nbsp;property<!-- /@w --></a>.  Otherwise the y-axis grid color will be defined by the <a class="ref" href="#XREFaxesycolor"><code class="code">&quot;ycolor&quot;</code>&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFaxesydir"></a></dd>
+<dt><a id="index-axes-ydir"></a><span><code class="code">ydir</code>: {<code class="code">&quot;normal&quot;</code>} | <code class="code">&quot;reverse&quot;</code><a class="copiable-link" href="#index-axes-ydir"> &para;</a></span></dt>
+<dd><p>Direction of the y-axis: <code class="code">&quot;normal&quot;</code> is bottom to top in 2-D and front to back in 3-D default views.
+</p>
+
+<a class="anchor" id="XREFaxesylim"></a></dd>
+<dt><a id="index-axes-ylim"></a><span><code class="code">ylim</code>: two-element vector, def. <code class="code">[0   1]</code><a class="copiable-link" href="#index-axes-ylim"> &para;</a></span></dt>
+<dd><p>Two-element vector <code class="code">[ymin ymax]</code> specifying the limits for the y-axis.  Setting <code class="code">ylim</code> also forces the <code class="code">ylimmode</code> property to be set to <code class="code">&quot;manual&quot;</code>.  See <a class="xref" href="Axis-Configuration.html#XREFylim">ylim&nbsp;function<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFaxesylimitmethod"></a></dd>
+<dt><a id="index-axes-ylimitmethod"></a><span><code class="code">ylimitmethod</code>: <code class="code">&quot;padded&quot;</code> | {<code class="code">&quot;tickaligned&quot;</code>} | <code class="code">&quot;tight&quot;</code><a class="copiable-link" href="#index-axes-ylimitmethod"> &para;</a></span></dt>
+<dd><p>Method used to determine the y-axis limits when the <code class="code">xlimmode</code> property is <code class="code">&quot;auto&quot;</code>.  The default value, <code class="code">&quot;tickaligned&quot;</code> makes limits align with the closest ticks.  With value <code class="code">&quot;tight&quot;</code> the limits are adjusted to enclose all the graphics objects in the axes, while with value <code class="code">&quot;padded&quot;</code>, an additional margin of about 7% of the data extent is added around the objects.  See <a class="xref" href="Axis-Configuration.html#XREFaxis">axis&nbsp;function<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFaxesylimmode"></a></dd>
+<dt><a id="index-axes-ylimmode"></a><span><code class="code">ylimmode</code>: {<code class="code">&quot;auto&quot;</code>} | <code class="code">&quot;manual&quot;</code><a class="copiable-link" href="#index-axes-ylimmode"> &para;</a></span></dt>
+<dd><p>Current state of the y-axis limit selection method, either manually set with the <a class="ref" href="#XREFaxesylim"><code class="code">&quot;ylim&quot;</code>&nbsp;property<!-- /@w --></a> or automatically set to span the plotted data according to the <a class="ref" href="#XREFaxesylimitmethod"><code class="code">&quot;ylimitmethod&quot;</code>&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFaxesyminortickvalues"></a></dd>
+<dt><a id="index-axes-yminortickvalues"></a><span><code class="code">yminortickvalues</code>: def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-axes-yminortickvalues"> &para;</a></span></dt>
+<dd><p>Position of minor tick marks.  Setting <code class="code">yminortickvalues</code> also forces the <code class="code">yminortickvaluesmode</code> property to be set to <code class="code">&quot;manual&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFaxesyminortickvaluesmode"></a></dd>
+<dt><a id="index-axes-yminortickvaluesmode"></a><span><code class="code">yminortickvaluesmode</code>: {<code class="code">&quot;auto&quot;</code>} | <code class="code">&quot;manual&quot;</code><a class="copiable-link" href="#index-axes-yminortickvaluesmode"> &para;</a></span></dt>
+<dd><p>Setting to determine whether the yminortick locations and spacing are set automatically by Octave or manually using the <a class="ref" href="#XREFaxesyminortickvalues"><code class="code">&quot;yminortickvalues&quot;</code>&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFaxesytick"></a></dd>
+<dt><a id="index-axes-ytick"></a><span><code class="code">ytick</code>: vector<a class="copiable-link" href="#index-axes-ytick"> &para;</a></span></dt>
+<dd><p>Position of y tick marks.  Setting <code class="code">ytick</code> also forces the <code class="code">ytickmode</code> property to be set to <code class="code">&quot;manual&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFaxesytickmode"></a></dd>
+<dt><a id="index-axes-ytickmode"></a><span><code class="code">ytickmode</code>: {<code class="code">&quot;auto&quot;</code>} | <code class="code">&quot;manual&quot;</code><a class="copiable-link" href="#index-axes-ytickmode"> &para;</a></span></dt>
+<dd><p>Setting to determine whether the ytick locations and spacing are set automatically by Octave or manually using the <a class="ref" href="#XREFaxesytick"><code class="code">&quot;ytick&quot;</code>&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFaxeszaxis"></a></dd>
+<dt><a id="index-axes-zaxis"></a><span><code class="code">zaxis</code> (read-only): def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-axes-zaxis"> &para;</a></span></dt>
+<dd><p>Axes Ruler objects is not yet implemented for axes objects.  <code class="code">zaxis</code> is unused.
+</p>
+
+<a class="anchor" id="XREFaxeszcolor"></a></dd>
+<dt><a id="index-axes-zcolor"></a><span><code class="code">zcolor</code>: {colorspec} | <code class="code">&quot;none&quot;</code>, def. <code class="code">[0.1500   0.1500   0.1500]</code><a class="copiable-link" href="#index-axes-zcolor"> &para;</a></span></dt>
+<dd><p>Color of the z-axis.  See <a class="xref" href="Colors.html">colorspec</a>.
+</p>
+
+<a class="anchor" id="XREFaxeszcolormode"></a></dd>
+<dt><a id="index-axes-zcolormode"></a><span><code class="code">zcolormode</code>: {<code class="code">&quot;auto&quot;</code>} | <code class="code">&quot;manual&quot;</code><a class="copiable-link" href="#index-axes-zcolormode"> &para;</a></span></dt>
+<dd><p>Current state of the setting determining the color that is applied to the z-axis grid lines.  If set to <code class="code">&quot;auto&quot;</code> and/or the <a class="ref" href="#XREFaxesgridcolormode"><code class="code">&quot;gridcolormode&quot;</code>&nbsp;property<!-- /@w --></a> is set to <code class="code">&quot;manual&quot;</code>, the z-axis grid color will be defined by the <a class="ref" href="#XREFaxesgridcolor"><code class="code">&quot;gridcolor&quot;</code>&nbsp;property<!-- /@w --></a>.  Otherwise the z-axis grid color will be defined by the <a class="ref" href="#XREFaxeszcolor"><code class="code">&quot;zcolor&quot;</code>&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFaxeszdir"></a></dd>
+<dt><a id="index-axes-zdir"></a><span><code class="code">zdir</code>: {<code class="code">&quot;normal&quot;</code>} | <code class="code">&quot;reverse&quot;</code><a class="copiable-link" href="#index-axes-zdir"> &para;</a></span></dt>
+<dd><p>Direction of the z-axis: <code class="code">&quot;normal&quot;</code> is bottom to top in default 3-D views.
+</p>
+
+<a class="anchor" id="XREFaxeszlim"></a></dd>
+<dt><a id="index-axes-zlim"></a><span><code class="code">zlim</code>: two-element vector, def. <code class="code">[0   1]</code><a class="copiable-link" href="#index-axes-zlim"> &para;</a></span></dt>
+<dd><p>Two-element vector <code class="code">[zmin zmax]</code> specifying the limits for the z-axis.  Setting <code class="code">zlim</code> also forces the <code class="code">zlimmode</code> property to be set to <code class="code">&quot;manual&quot;</code>.  See <a class="xref" href="Axis-Configuration.html#XREFzlim">zlim&nbsp;function<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFaxeszlimitmethod"></a></dd>
+<dt><a id="index-axes-zlimitmethod"></a><span><code class="code">zlimitmethod</code>: <code class="code">&quot;padded&quot;</code> | {<code class="code">&quot;tickaligned&quot;</code>} | <code class="code">&quot;tight&quot;</code><a class="copiable-link" href="#index-axes-zlimitmethod"> &para;</a></span></dt>
+<dd><p>Method used to determine the z-axis limits when the <code class="code">xlimmode</code> property is <code class="code">&quot;auto&quot;</code>.  The default value, <code class="code">&quot;tickaligned&quot;</code> makes limits align with the closest ticks.  With value <code class="code">&quot;tight&quot;</code> the limits are adjusted to enclose all the graphics objects in the axes, while with value <code class="code">&quot;padded&quot;</code>, an additional margin of about 7% of the data extent is added around the objects.  See <a class="xref" href="Axis-Configuration.html#XREFaxis">axis&nbsp;function<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFaxeszlimmode"></a></dd>
+<dt><a id="index-axes-zlimmode"></a><span><code class="code">zlimmode</code>: {<code class="code">&quot;auto&quot;</code>} | <code class="code">&quot;manual&quot;</code><a class="copiable-link" href="#index-axes-zlimmode"> &para;</a></span></dt>
+<dd><p>Current state of the z-axis limit selection method, either manually set with the <a class="ref" href="#XREFaxeszlim"><code class="code">&quot;zlim&quot;</code>&nbsp;property<!-- /@w --></a> or automatically set to span the plotted data according to the <a class="ref" href="#XREFaxeszlimitmethod"><code class="code">&quot;zlimitmethod&quot;</code>&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFaxeszminortick"></a></dd>
+<dt><a id="index-axes-zminortick"></a><span><code class="code">zminortick</code>: {<code class="code">&quot;off&quot;</code>} | <code class="code">&quot;on&quot;</code><a class="copiable-link" href="#index-axes-zminortick"> &para;</a></span></dt>
+<dd><p>Control whether minor z tick marks are displayed.
+</p>
+
+<a class="anchor" id="XREFaxeszminortickvalues"></a></dd>
+<dt><a id="index-axes-zminortickvalues"></a><span><code class="code">zminortickvalues</code>: def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-axes-zminortickvalues"> &para;</a></span></dt>
+<dd><p>Position of minor tick marks.  Setting <code class="code">zminortickvalues</code> also forces the <code class="code">zminortickvaluesmode</code> property to be set to <code class="code">&quot;manual&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFaxeszminortickvaluesmode"></a></dd>
+<dt><a id="index-axes-zminortickvaluesmode"></a><span><code class="code">zminortickvaluesmode</code>: {<code class="code">&quot;auto&quot;</code>} | <code class="code">&quot;manual&quot;</code><a class="copiable-link" href="#index-axes-zminortickvaluesmode"> &para;</a></span></dt>
+<dd><p>Setting to determine whether the zminortick locations and spacing are set automatically by Octave or manually using the <a class="ref" href="#XREFaxeszminortickvalues"><code class="code">&quot;zminortickvalues&quot;</code>&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFaxesztick"></a></dd>
+<dt><a id="index-axes-ztick"></a><span><code class="code">ztick</code>: vector<a class="copiable-link" href="#index-axes-ztick"> &para;</a></span></dt>
+<dd><p>Position of z tick marks.  Setting <code class="code">ztick</code> also forces the <code class="code">ztickmode</code> property to be set to <code class="code">&quot;manual&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFaxesztickmode"></a></dd>
+<dt><a id="index-axes-ztickmode"></a><span><code class="code">ztickmode</code>: {<code class="code">&quot;auto&quot;</code>} | <code class="code">&quot;manual&quot;</code><a class="copiable-link" href="#index-axes-ztickmode"> &para;</a></span></dt>
+<dd><p>Setting to determine whether the ztick locations and spacing are set automatically by Octave or manually using the <a class="ref" href="#XREFaxesztick"><code class="code">&quot;ztick&quot;</code>&nbsp;property<!-- /@w --></a>.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFaxescategoryAxesGridAppearance"></a><h4 class="subsubheading" id="Axes-Grid-Appearance"><span>Axes Grid Appearance<a class="copiable-link" href="#Axes-Grid-Appearance"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFaxesgridalpha"></a></dd>
+<dt><a id="index-axes-gridalpha"></a><span><code class="code">gridalpha</code>: def. <code class="code">0.1500</code><a class="copiable-link" href="#index-axes-gridalpha"> &para;</a></span></dt>
+<dd><p>Transparency is not yet implemented for axes objects.  <code class="code">gridalpha</code> is unused.
+</p>
+
+<a class="anchor" id="XREFaxesgridalphamode"></a></dd>
+<dt><a id="index-axes-gridalphamode"></a><span><code class="code">gridalphamode</code>: {<code class="code">&quot;auto&quot;</code>} | <code class="code">&quot;manual&quot;</code><a class="copiable-link" href="#index-axes-gridalphamode"> &para;</a></span></dt>
+<dd><p>Transparency is not yet implemented for axes objects.  <code class="code">gridalphamode</code> is unused.
+</p>
+
+<a class="anchor" id="XREFaxesgridcolor"></a></dd>
+<dt><a id="index-axes-gridcolor"></a><span><code class="code">gridcolor</code>: {colorspec} | <code class="code">&quot;none&quot;</code>, def. <code class="code">[0.1500   0.1500   0.1500]</code><a class="copiable-link" href="#index-axes-gridcolor"> &para;</a></span></dt>
+<dd><p>Color of the major grid lines.  See <a class="xref" href="Colors.html">colorspec</a>.  Setting <code class="code">gridcolor</code> also forces the <code class="code">gridcolormode</code> property to be set to <code class="code">&quot;manual&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFaxesgridcolormode"></a></dd>
+<dt><a id="index-axes-gridcolormode"></a><span><code class="code">gridcolormode</code>: {<code class="code">&quot;auto&quot;</code>} | <code class="code">&quot;manual&quot;</code><a class="copiable-link" href="#index-axes-gridcolormode"> &para;</a></span></dt>
+<dd><p>Current state of the gridcolor mode, either manually set by the <a class="ref" href="#XREFaxesgridcolor"><code class="code">&quot;gridcolor&quot;</code>&nbsp;property<!-- /@w --></a> or automatically set by Octave to the default value.
+</p>
+
+<a class="anchor" id="XREFaxesgridlinestyle"></a></dd>
+<dt><a id="index-axes-gridlinestyle"></a><span><code class="code">gridlinestyle</code>: {<code class="code">&quot;-&quot;</code>} | <code class="code">&quot;--&quot;</code> | <code class="code">&quot;-.&quot;</code> | <code class="code">&quot;:&quot;</code> | <code class="code">&quot;none&quot;</code><a class="copiable-link" href="#index-axes-gridlinestyle"> &para;</a></span></dt>
+<dd><p>See <a class="xref" href="Line-Styles.html">Line Styles</a>.
+</p>
+
+<a class="anchor" id="XREFaxesinnerposition"></a></dd>
+<dt><a id="index-axes-innerposition"></a><span><code class="code">innerposition</code>: four-element vector, def. <code class="code">[0.1300   0.1100   0.7750   0.8150]</code><a class="copiable-link" href="#index-axes-innerposition"> &para;</a></span></dt>
+<dd><p>The <code class="code">&quot;innerposition&quot;</code> property is the same as the <a class="ref" href="#XREFaxesposition"><code class="code">&quot;position&quot;</code>&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFaxesminorgridalpha"></a></dd>
+<dt><a id="index-axes-minorgridalpha"></a><span><code class="code">minorgridalpha</code>: def. <code class="code">0.2500</code><a class="copiable-link" href="#index-axes-minorgridalpha"> &para;</a></span></dt>
+<dd><p>Transparency is not yet implemented for axes objects.  <code class="code">minorgridalpha</code> is unused.
+</p>
+
+<a class="anchor" id="XREFaxesminorgridalphamode"></a></dd>
+<dt><a id="index-axes-minorgridalphamode"></a><span><code class="code">minorgridalphamode</code>: {<code class="code">&quot;auto&quot;</code>} | <code class="code">&quot;manual&quot;</code><a class="copiable-link" href="#index-axes-minorgridalphamode"> &para;</a></span></dt>
+<dd><p>Transparency is not yet implemented for axes objects.  <code class="code">minorgridalphamode</code> is unused.
+</p>
+
+<a class="anchor" id="XREFaxesminorgridcolor"></a></dd>
+<dt><a id="index-axes-minorgridcolor"></a><span><code class="code">minorgridcolor</code>: {colorspec} | <code class="code">&quot;none&quot;</code>, def. <code class="code">[0.1000   0.1000   0.1000]</code><a class="copiable-link" href="#index-axes-minorgridcolor"> &para;</a></span></dt>
+<dd><p>Color of the minor grid lines.  See <a class="xref" href="Colors.html">colorspec</a>.  Setting <code class="code">minorgridcolor</code> also forces the <code class="code">minorgridcolormode</code> property to be set to <code class="code">&quot;manual&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFaxesminorgridcolormode"></a></dd>
+<dt><a id="index-axes-minorgridcolormode"></a><span><code class="code">minorgridcolormode</code>: {<code class="code">&quot;auto&quot;</code>} | <code class="code">&quot;manual&quot;</code><a class="copiable-link" href="#index-axes-minorgridcolormode"> &para;</a></span></dt>
+<dd><p>Current state of the minorgridcolor mode, either manually set by the <a class="ref" href="#XREFaxesminorgridcolor"><code class="code">&quot;minorgridcolor&quot;</code>&nbsp;property<!-- /@w --></a> or automatically set by Octave to the default value.
+</p>
+
+<a class="anchor" id="XREFaxesminorgridlinestyle"></a></dd>
+<dt><a id="index-axes-minorgridlinestyle"></a><span><code class="code">minorgridlinestyle</code>: <code class="code">&quot;-&quot;</code> | <code class="code">&quot;--&quot;</code> | <code class="code">&quot;-.&quot;</code> | {<code class="code">&quot;:&quot;</code>} | <code class="code">&quot;none&quot;</code><a class="copiable-link" href="#index-axes-minorgridlinestyle"> &para;</a></span></dt>
+<dd><p>See <a class="xref" href="Line-Styles.html">Line Styles</a>.
+</p>
+
+<a class="anchor" id="XREFaxesxgrid"></a></dd>
+<dt><a id="index-axes-xgrid"></a><span><code class="code">xgrid</code>: {<code class="code">&quot;off&quot;</code>} | <code class="code">&quot;on&quot;</code><a class="copiable-link" href="#index-axes-xgrid"> &para;</a></span></dt>
+<dd><p>Control whether major x grid lines are displayed.
+</p>
+
+<a class="anchor" id="XREFaxesxminorgrid"></a></dd>
+<dt><a id="index-axes-xminorgrid"></a><span><code class="code">xminorgrid</code>: {<code class="code">&quot;off&quot;</code>} | <code class="code">&quot;on&quot;</code><a class="copiable-link" href="#index-axes-xminorgrid"> &para;</a></span></dt>
+<dd><p>Control whether minor x grid lines are displayed.
+</p>
+
+<a class="anchor" id="XREFaxesxscale"></a></dd>
+<dt><a id="index-axes-xscale"></a><span><code class="code">xscale</code>: {<code class="code">&quot;linear&quot;</code>} | <code class="code">&quot;log&quot;</code><a class="copiable-link" href="#index-axes-xscale"> &para;</a></span></dt>
+<dd><p>Set the x-axis to a linear or logarithmic scale.
+</p>
+
+<a class="anchor" id="XREFaxesygrid"></a></dd>
+<dt><a id="index-axes-ygrid"></a><span><code class="code">ygrid</code>: {<code class="code">&quot;off&quot;</code>} | <code class="code">&quot;on&quot;</code><a class="copiable-link" href="#index-axes-ygrid"> &para;</a></span></dt>
+<dd><p>Control whether major y grid lines are displayed.
+</p>
+
+<a class="anchor" id="XREFaxesyminorgrid"></a></dd>
+<dt><a id="index-axes-yminorgrid"></a><span><code class="code">yminorgrid</code>: {<code class="code">&quot;off&quot;</code>} | <code class="code">&quot;on&quot;</code><a class="copiable-link" href="#index-axes-yminorgrid"> &para;</a></span></dt>
+<dd><p>Control whether minor y grid lines are displayed.
+</p>
+
+<a class="anchor" id="XREFaxesyminortick"></a></dd>
+<dt><a id="index-axes-yminortick"></a><span><code class="code">yminortick</code>: {<code class="code">&quot;off&quot;</code>} | <code class="code">&quot;on&quot;</code><a class="copiable-link" href="#index-axes-yminortick"> &para;</a></span></dt>
+<dd><p>Control whether minor y tick marks are displayed.
+</p>
+
+<a class="anchor" id="XREFaxesyscale"></a></dd>
+<dt><a id="index-axes-yscale"></a><span><code class="code">yscale</code>: {<code class="code">&quot;linear&quot;</code>} | <code class="code">&quot;log&quot;</code><a class="copiable-link" href="#index-axes-yscale"> &para;</a></span></dt>
+<dd><p>Set the y-axis to a linear or logarithmic scale.
+</p>
+
+<a class="anchor" id="XREFaxeszgrid"></a></dd>
+<dt><a id="index-axes-zgrid"></a><span><code class="code">zgrid</code>: {<code class="code">&quot;off&quot;</code>} | <code class="code">&quot;on&quot;</code><a class="copiable-link" href="#index-axes-zgrid"> &para;</a></span></dt>
+<dd><p>Control whether major z grid lines are displayed.
+</p>
+
+<a class="anchor" id="XREFaxeszminorgrid"></a></dd>
+<dt><a id="index-axes-zminorgrid"></a><span><code class="code">zminorgrid</code>: {<code class="code">&quot;off&quot;</code>} | <code class="code">&quot;on&quot;</code><a class="copiable-link" href="#index-axes-zminorgrid"> &para;</a></span></dt>
+<dd><p>Control whether minor z grid lines are displayed.
+</p>
+
+<a class="anchor" id="XREFaxeszscale"></a></dd>
+<dt><a id="index-axes-zscale"></a><span><code class="code">zscale</code>: {<code class="code">&quot;linear&quot;</code>} | <code class="code">&quot;log&quot;</code><a class="copiable-link" href="#index-axes-zscale"> &para;</a></span></dt>
+<dd><p>Set the z-axis to a linear or logarithmic scale.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFaxescategoryCallbackExecution"></a><h4 class="subsubheading" id="Callback-Execution-2"><span>Callback Execution<a class="copiable-link" href="#Callback-Execution-2"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFaxesbusyaction"></a></dd>
+<dt><a id="index-axes-busyaction"></a><span><code class="code">busyaction</code>: <code class="code">&quot;cancel&quot;</code> | {<code class="code">&quot;queue&quot;</code>}<a class="copiable-link" href="#index-axes-busyaction"> &para;</a></span></dt>
+<dd><p>Define how Octave handles the execution of this object&rsquo;s callback properties when it is unable to interrupt another object&rsquo;s executing callback.  This is only relevant when the currently executing callback object has its <code class="code">interruptible</code> property set to <code class="code">&quot;off&quot;</code>.  The <code class="code">busyaction</code> property of the interrupting callback object indicates whether the interrupting callback is queued (<code class="code">&quot;queue&quot;</code> (default)) or discarded (<code class="code">&quot;cancel&quot;</code>).
+See <a class="xref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFaxesinteractions"></a></dd>
+<dt><a id="index-axes-interactions"></a><span><code class="code">interactions</code> (read-only): def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-axes-interactions"> &para;</a></span></dt>
+<dd><p>Interaction objects is not yet implemented for axes objects.  <code class="code">interactions</code> is unused.
+</p>
+
+<a class="anchor" id="XREFaxesinterruptible"></a></dd>
+<dt><a id="index-axes-interruptible"></a><span><code class="code">interruptible</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-axes-interruptible"> &para;</a></span></dt>
+<dd><p>Specify whether this object&rsquo;s callback functions may be interrupted by other callbacks.  By default <code class="code">interruptible</code> is <code class="code">&quot;on&quot;</code> and callbacks that make use of <code class="code">drawnow</code>, <code class="code">figure</code>, <code class="code">waitfor</code>, <code class="code">getframe</code> or <code class="code">pause</code> functions are eventually interrupted.
+See <a class="xref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFaxescategoryCameraandViewControls"></a><h4 class="subsubheading" id="Camera-and-View-Controls"><span>Camera and View Controls<a class="copiable-link" href="#Camera-and-View-Controls"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFaxescameraposition"></a></dd>
+<dt><a id="index-axes-cameraposition"></a><span><code class="code">cameraposition</code>: three-element vector, def. <code class="code">[0.5000   0.5000   9.1603]</code><a class="copiable-link" href="#index-axes-cameraposition"> &para;</a></span></dt>
+<dd><p>Coordinates of the camera position viewing the axes.  Setting <code class="code">cameraposition</code> also forces the <code class="code">camerapositionmode</code> property to be set to <code class="code">&quot;manual&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFaxescamerapositionmode"></a></dd>
+<dt><a id="index-axes-camerapositionmode"></a><span><code class="code">camerapositionmode</code>: {<code class="code">&quot;auto&quot;</code>} | <code class="code">&quot;manual&quot;</code><a class="copiable-link" href="#index-axes-camerapositionmode"> &para;</a></span></dt>
+<dd><p>Current state of the camera position property, whether automatically set according to the <a class="ref" href="Three_002dDimensional-Plots.html#XREFview">view function</a>, or manually set with the <a class="ref" href="#XREFaxescameraposition"><code class="code">&quot;cameraposition&quot;</code>&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFaxescameratarget"></a></dd>
+<dt><a id="index-axes-cameratarget"></a><span><code class="code">cameratarget</code>: three-element vector, def. <code class="code">[0.5000   0.5000   0.5000]</code><a class="copiable-link" href="#index-axes-cameratarget"> &para;</a></span></dt>
+<dd><p>Coordinates of the point at which the viewing camera is aimed.  Setting <code class="code">cameratarget</code> also forces the <code class="code">cameratargetmode</code> property to be set to <code class="code">&quot;manual&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFaxescameratargetmode"></a></dd>
+<dt><a id="index-axes-cameratargetmode"></a><span><code class="code">cameratargetmode</code>: {<code class="code">&quot;auto&quot;</code>} | <code class="code">&quot;manual&quot;</code><a class="copiable-link" href="#index-axes-cameratargetmode"> &para;</a></span></dt>
+<dd><p>Current state of camera target property, either manually set with the <a class="ref" href="#XREFaxescameratarget"><code class="code">&quot;cameratarget&quot;</code>&nbsp;property<!-- /@w --></a> or automatically positioned at the center of the axes plot area.
+</p>
+
+<a class="anchor" id="XREFaxescameraupvector"></a></dd>
+<dt><a id="index-axes-cameraupvector"></a><span><code class="code">cameraupvector</code>: three-element vector, def. <code class="code">[0   1   0]</code><a class="copiable-link" href="#index-axes-cameraupvector"> &para;</a></span></dt>
+<dd><p>A 3-element vector defining the upward direction of the current view.  Note that the default is [0 1 0] for 2-D plots and [0 0 1] for 3-D plots.  Setting <code class="code">cameraupvector</code> also forces the <code class="code">cameraupvectormode</code> property to be set to <code class="code">&quot;manual&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFaxescameraupvectormode"></a></dd>
+<dt><a id="index-axes-cameraupvectormode"></a><span><code class="code">cameraupvectormode</code>: {<code class="code">&quot;auto&quot;</code>} | <code class="code">&quot;manual&quot;</code><a class="copiable-link" href="#index-axes-cameraupvectormode"> &para;</a></span></dt>
+<dd><p>Current state of camera up vector property, set to manual when the <a class="ref" href="#XREFaxescameraupvector"><code class="code">&quot;cameraupvector&quot;</code>&nbsp;property<!-- /@w --></a> is used to change the vector from the 2-D or 3-D default values.
+</p>
+
+<a class="anchor" id="XREFaxescameraviewangle"></a></dd>
+<dt><a id="index-axes-cameraviewangle"></a><span><code class="code">cameraviewangle</code>: scalar, def. <code class="code">6.6086</code><a class="copiable-link" href="#index-axes-cameraviewangle"> &para;</a></span></dt>
+<dd><p>The camera&rsquo;s field of view defined as an angle between 0 and 180 degrees.  Setting <code class="code">cameraviewangle</code> also forces the <code class="code">cameraviewanglemode</code> property to be set to <code class="code">&quot;manual&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFaxescameraviewanglemode"></a></dd>
+<dt><a id="index-axes-cameraviewanglemode"></a><span><code class="code">cameraviewanglemode</code>: {<code class="code">&quot;auto&quot;</code>} | <code class="code">&quot;manual&quot;</code><a class="copiable-link" href="#index-axes-cameraviewanglemode"> &para;</a></span></dt>
+<dd><p>Current state of the camera view angle property, either manually set with the <a class="ref" href="#XREFaxescameraviewangle"><code class="code">&quot;cameraviewangle&quot;</code>&nbsp;property<!-- /@w --></a> or automatically set by Octave to include all visible objects.
+</p>
+
+<a class="anchor" id="XREFaxesprojection"></a></dd>
+<dt><a id="index-axes-projection"></a><span><code class="code">projection</code>: {<code class="code">&quot;orthographic&quot;</code>} | <code class="code">&quot;perspective&quot;</code><a class="copiable-link" href="#index-axes-projection"> &para;</a></span></dt>
+<dd><p>Orthographic/perspective projection adjustment is not yet implemented for axes objects.  <code class="code">projection</code> is unused.
+</p>
+
+<a class="anchor" id="XREFaxesview"></a></dd>
+<dt><a id="index-axes-view"></a><span><code class="code">view</code>: two-element vector, def. <code class="code">[0   90]</code><a class="copiable-link" href="#index-axes-view"> &para;</a></span></dt>
+<dd><p>Two-element vector <code class="code">[azimuth elevation]</code> specifying the viewpoint for three-dimensional plots.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFaxescategoryColorandTransparency"></a><h4 class="subsubheading" id="Color-and-Transparency"><span>Color and Transparency<a class="copiable-link" href="#Color-and-Transparency"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFaxesalim"></a></dd>
+<dt><a id="index-axes-alim"></a><span><code class="code">alim</code>: def. <code class="code">[0   1]</code><a class="copiable-link" href="#index-axes-alim"> &para;</a></span></dt>
+<dd><p>Transparency is not yet implemented for axes objects.  <code class="code">alim</code> is unused.
+</p>
+
+<a class="anchor" id="XREFaxesalimmode"></a></dd>
+<dt><a id="index-axes-alimmode"></a><span><code class="code">alimmode</code>: {<code class="code">&quot;auto&quot;</code>} | <code class="code">&quot;manual&quot;</code><a class="copiable-link" href="#index-axes-alimmode"> &para;</a></span></dt>
+<dd><p>Transparency is not yet implemented for axes objects.  <code class="code">alimmode</code> is unused.
+</p>
+
+<a class="anchor" id="XREFaxesalphamap"></a></dd>
+<dt><a id="index-axes-alphamap"></a><span><code class="code">alphamap</code>: def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-axes-alphamap"> &para;</a></span></dt>
+<dd><p>Transparency is not yet implemented for axes objects.  <code class="code">alphamap</code> is unused.
+</p>
+
+<a class="anchor" id="XREFaxesalphascale"></a></dd>
+<dt><a id="index-axes-alphascale"></a><span><code class="code">alphascale</code>: {<code class="code">&quot;linear&quot;</code>} | <code class="code">&quot;log&quot;</code><a class="copiable-link" href="#index-axes-alphascale"> &para;</a></span></dt>
+<dd><p>Transparency is not yet implemented for axes objects.  <code class="code">alphascale</code> is unused.
+</p>
+
+<a class="anchor" id="XREFaxesambientlightcolor"></a></dd>
+<dt><a id="index-axes-ambientlightcolor"></a><span><code class="code">ambientlightcolor</code>: def. <code class="code">[1   1   1]</code><a class="copiable-link" href="#index-axes-ambientlightcolor"> &para;</a></span></dt>
+<dd><p>Uniform background axes lighting is not yet implemented for axes objects.  <code class="code">ambientlightcolor</code> is unused.
+</p>
+
+<a class="anchor" id="XREFaxesclim"></a></dd>
+<dt><a id="index-axes-clim"></a><span><code class="code">clim</code>: two-element vector, def. <code class="code">[0   1]</code><a class="copiable-link" href="#index-axes-clim"> &para;</a></span></dt>
+<dd><p>Define limits for the color axis of axes children that have the <code class="code">cdata</code> property.  Setting <code class="code">clim</code> also forces the <code class="code">climmode</code> property to be set to <code class="code">&quot;manual&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFaxesclimmode"></a></dd>
+<dt><a id="index-axes-climmode"></a><span><code class="code">climmode</code>: {<code class="code">&quot;auto&quot;</code>} | <code class="code">&quot;manual&quot;</code><a class="copiable-link" href="#index-axes-climmode"> &para;</a></span></dt>
+<dd><p>Current state of the color limit mode, either manually set by the <a class="ref" href="#XREFaxesclim"><code class="code">&quot;clim&quot;</code>&nbsp;property<!-- /@w --></a> or automatically set by Octave to the minimum and maximum <code class="code">cdata</code> values of axes&rsquo;s children.
+</p>
+
+<a class="anchor" id="XREFaxescolormap"></a></dd>
+<dt><a id="index-axes-colormap"></a><span><code class="code">colormap</code>: N-by-3 matrix, def. 256-by-3 double<a class="copiable-link" href="#index-axes-colormap"> &para;</a></span></dt>
+<dd><p>A matrix containing the RGB colormap for this axes object.
+</p>
+
+<a class="anchor" id="XREFaxescolorscale"></a></dd>
+<dt><a id="index-axes-colorscale"></a><span><code class="code">colorscale</code>: {<code class="code">&quot;linear&quot;</code>} | <code class="code">&quot;log&quot;</code><a class="copiable-link" href="#index-axes-colorscale"> &para;</a></span></dt>
+<dd><p>Automatic linear/log color scaling is not yet implemented for axes objects.  <code class="code">colorscale</code> is unused.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFaxescategoryCreation_002fDeletion"></a><h4 class="subsubheading" id="Creation_002fDeletion-1"><span>Creation/Deletion<a class="copiable-link" href="#Creation_002fDeletion-1"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFaxesbeingdeleted"></a></dd>
+<dt><a id="index-axes-beingdeleted"></a><span><code class="code">beingdeleted</code>: {<code class="code">&quot;off&quot;</code>} | <code class="code">&quot;on&quot;</code><a class="copiable-link" href="#index-axes-beingdeleted"> &para;</a></span></dt>
+<dd><p>Property indicating that a function has initiated deletion of the object.  <code class="code">beingdeleted</code> is set to true until the object no longer exists.
+</p>
+
+<a class="anchor" id="XREFaxescreatefcn"></a></dd>
+<dt><a id="index-axes-createfcn"></a><span><code class="code">createfcn</code>: string | function handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-axes-createfcn"> &para;</a></span></dt>
+<dd><p>Callback function executed immediately after axes has been created.  Function is set by using default property on root object, e.g., <code class="code">set (groot, &quot;defaultaxescreatefcn&quot;, 'disp (&quot;axes created!&quot;)')</code>.
+</p>
+<p>For information on how to write graphics listener functions, see <a class="pxref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFaxesdeletefcn"></a></dd>
+<dt><a id="index-axes-deletefcn"></a><span><code class="code">deletefcn</code>: string | function handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-axes-deletefcn"> &para;</a></span></dt>
+<dd><p>Callback function executed immediately before axes is deleted.
+</p>
+<p>For information on how to write graphics listener functions, see <a class="pxref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFaxescategoryDisplay"></a><h4 class="subsubheading" id="Display-1"><span>Display<a class="copiable-link" href="#Display-1"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFaxesclipping"></a></dd>
+<dt><a id="index-axes-clipping"></a><span><code class="code">clipping</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-axes-clipping"> &para;</a></span></dt>
+<dd><p>Axes-children clipping control is not yet implemented for axes objects.  <code class="code">clipping</code> is unused.
+</p>
+
+<a class="anchor" id="XREFaxesclippingstyle"></a></dd>
+<dt><a id="index-axes-clippingstyle"></a><span><code class="code">clippingstyle</code>: {<code class="code">&quot;3dbox&quot;</code>} | <code class="code">&quot;rectangle&quot;</code><a class="copiable-link" href="#index-axes-clippingstyle"> &para;</a></span></dt>
+<dd><p>Axes-children clipping control is not yet implemented for axes objects.  <code class="code">clippingstyle</code> is unused.
+</p>
+
+<a class="anchor" id="XREFaxesvisible"></a></dd>
+<dt><a id="index-axes-visible"></a><span><code class="code">visible</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-axes-visible"> &para;</a></span></dt>
+<dd><p>If <code class="code">visible</code> is <code class="code">&quot;off&quot;</code>, the axes is not rendered on screen.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFaxescategoryMouseInteraction"></a><h4 class="subsubheading" id="Mouse-Interaction-2"><span>Mouse Interaction<a class="copiable-link" href="#Mouse-Interaction-2"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFaxesbuttondownfcn"></a></dd>
+<dt><a id="index-axes-buttondownfcn"></a><span><code class="code">buttondownfcn</code>: string | function handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-axes-buttondownfcn"> &para;</a></span></dt>
+<dd><p>For information on how to write graphics listener functions, see <a class="pxref" href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFaxescontextmenu"></a></dd>
+<dt><a id="index-axes-contextmenu"></a><span><code class="code">contextmenu</code>: graphics handle, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-axes-contextmenu"> &para;</a></span></dt>
+<dd><p>Graphics handle of the uicontextmenu object that is currently associated to this axes object.
+</p>
+
+<a class="anchor" id="XREFaxescurrentpoint"></a></dd>
+<dt><a id="index-axes-currentpoint"></a><span><code class="code">currentpoint</code>: 2-by-3 matrix, def. 2-by-3 double<a class="copiable-link" href="#index-axes-currentpoint"> &para;</a></span></dt>
+<dd><p>Matrix <code class="code">[xf, yf, zf; xb, yb, zb]</code> which holds the coordinates (in axes data units) of the point over which the mouse pointer was when the mouse button was pressed.  If a mouse callback function is defined, <code class="code">currentpoint</code> holds the pointer coordinates at the time the mouse button was pressed.  For 3-D plots, the first row of the returned matrix specifies the point nearest to the current camera position and the second row the furthest point.  The two points forms a line which is perpendicular to the screen.
+</p>
+
+<a class="anchor" id="XREFaxeshittest"></a></dd>
+<dt><a id="index-axes-hittest"></a><span><code class="code">hittest</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-axes-hittest"> &para;</a></span></dt>
+<dd><p>Specify whether axes processes mouse events or passes them to ancestors of the object.  When enabled, the object may respond to mouse clicks by evaluating the <code class="code">&quot;buttondownfcn&quot;</code>, showing the uicontextmenu, and eventually becoming the root <code class="code">&quot;currentobject&quot;</code>.  This property is only relevant when the object can accept mouse clicks which is determined by the <code class="code">&quot;pickableparts&quot;</code> property.  See <a class="xref" href="#XREFaxespickableparts">pickableparts&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFaxesmousewheelzoom"></a></dd>
+<dt><a id="index-axes-mousewheelzoom"></a><span><code class="code">mousewheelzoom</code>: scalar in the range (0, 1), def. <code class="code">0.5000</code><a class="copiable-link" href="#index-axes-mousewheelzoom"> &para;</a></span></dt>
+<dd><p>Fraction of axes limits to zoom for each wheel movement.
+</p>
+
+<a class="anchor" id="XREFaxespickableparts"></a></dd>
+<dt><a id="index-axes-pickableparts"></a><span><code class="code">pickableparts</code>: <code class="code">&quot;all&quot;</code> | <code class="code">&quot;none&quot;</code> | {<code class="code">&quot;visible&quot;</code>}<a class="copiable-link" href="#index-axes-pickableparts"> &para;</a></span></dt>
+<dd><p>Specify whether axes will accept mouse clicks.  By default, <code class="code">pickableparts</code> is <code class="code">&quot;visible&quot;</code> and only visible parts of the axes or its children may react to mouse clicks.  When <code class="code">pickableparts</code> is <code class="code">&quot;all&quot;</code> both visible and invisible parts (or children) may react to mouse clicks.  When <code class="code">pickableparts</code> is <code class="code">&quot;none&quot;</code> mouse clicks on the object are ignored and transmitted to any objects underneath this one.  When an object is configured to accept mouse clicks the <code class="code">&quot;hittest&quot;</code> property will determine how they are processed.  See <a class="xref" href="#XREFaxeshittest">hittest&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFaxesselected"></a></dd>
+<dt><a id="index-axes-selected"></a><span><code class="code">selected</code>: {<code class="code">&quot;off&quot;</code>} | <code class="code">&quot;on&quot;</code><a class="copiable-link" href="#index-axes-selected"> &para;</a></span></dt>
+<dd><p>Property indicates whether this axes is selected.
+</p>
+
+<a class="anchor" id="XREFaxesselectionhighlight"></a></dd>
+<dt><a id="index-axes-selectionhighlight"></a><span><code class="code">selectionhighlight</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-axes-selectionhighlight"> &para;</a></span></dt>
+<dd><p>If <code class="code">selectionhighlight</code> is <code class="code">&quot;on&quot;</code>, then the axes&rsquo;s selection state is visually highlighted.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFaxescategoryObjectIdentification"></a><h4 class="subsubheading" id="Object-Identification-2"><span>Object Identification<a class="copiable-link" href="#Object-Identification-2"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFaxesnextplot"></a></dd>
+<dt><a id="index-axes-nextplot"></a><span><code class="code">nextplot</code>: <code class="code">&quot;add&quot;</code> | {<code class="code">&quot;replace&quot;</code>} | <code class="code">&quot;replacechildren&quot;</code><a class="copiable-link" href="#index-axes-nextplot"> &para;</a></span></dt>
+<dd><p><code class="code">nextplot</code> is used by high level plotting functions to decide what to do with graphics objects already present in the axes.  See <a class="xref" href="Manipulation-of-Plot-Windows.html#XREFnewplot">newplot&nbsp;function<!-- /@w --></a>.  The state of <code class="code">nextplot</code> is typically controlled using the <code class="code">hold</code> function.  See <a class="xref" href="Manipulation-of-Plot-Windows.html#XREFhold">hold&nbsp;function<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFaxestag"></a></dd>
+<dt><a id="index-axes-tag"></a><span><code class="code">tag</code>: string, def. <code class="code">&quot;&quot;</code><a class="copiable-link" href="#index-axes-tag"> &para;</a></span></dt>
+<dd><p>A user-defined string to label the graphics object.
+</p>
+
+<a class="anchor" id="XREFaxestitle"></a></dd>
+<dt><a id="index-axes-title"></a><span><code class="code">title</code>: graphics handle<a class="copiable-link" href="#index-axes-title"> &para;</a></span></dt>
+<dd><p>Graphics handle of the title text object.
+</p>
+
+<a class="anchor" id="XREFaxestype"></a></dd>
+<dt><a id="index-axes-type"></a><span><code class="code">type</code> (read-only): string<a class="copiable-link" href="#index-axes-type"> &para;</a></span></dt>
+<dd><p>Class name of the graphics object.  <code class="code">type</code> is always <code class="code">&quot;axes&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFaxesuserdata"></a></dd>
+<dt><a id="index-axes-userdata"></a><span><code class="code">userdata</code>: Any Octave data, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-axes-userdata"> &para;</a></span></dt>
+<dd><p>User-defined data to associate with the graphics object.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFaxescategoryObjectPosition"></a><h4 class="subsubheading" id="Object-Position-1"><span>Object Position<a class="copiable-link" href="#Object-Position-1"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFaxesouterposition"></a></dd>
+<dt><a id="index-axes-outerposition"></a><span><code class="code">outerposition</code>: four-element vector, def. <code class="code">[0   0   1   1]</code><a class="copiable-link" href="#index-axes-outerposition"> &para;</a></span></dt>
+<dd><p>Specify the position of the plot including titles, axes, and legend.  The four elements of the vector are the coordinates of the lower left corner and width and height of the plot, in units normalized to the width and height of the plot window.  For example, <code class="code">[0.2, 0.3, 0.4, 0.5]</code> sets the lower left corner of the axes at <em class="math">(0.2, 0.3)</em> and the width and height to be 0.4 and 0.5 respectively.  See <a class="xref" href="#XREFaxesposition">position&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFaxesplotboxaspectratio"></a></dd>
+<dt><a id="index-axes-plotboxaspectratio"></a><span><code class="code">plotboxaspectratio</code>: def. <code class="code">[1   1   1]</code><a class="copiable-link" href="#index-axes-plotboxaspectratio"> &para;</a></span></dt>
+<dd><p>See <a class="xref" href="Aspect-Ratio.html#XREFpbaspect">pbaspect function</a>.  Setting <code class="code">plotboxaspectratio</code> also forces the <code class="code">plotboxaspectratiomode</code> property to be set to <code class="code">&quot;manual&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFaxesplotboxaspectratiomode"></a></dd>
+<dt><a id="index-axes-plotboxaspectratiomode"></a><span><code class="code">plotboxaspectratiomode</code>: {<code class="code">&quot;auto&quot;</code>} | <code class="code">&quot;manual&quot;</code><a class="copiable-link" href="#index-axes-plotboxaspectratiomode"> &para;</a></span></dt>
+<dd><p>Current state of the plot box aspect ratio mode, either manually set by the <a class="ref" href="#XREFaxesdataaspectratio"><code class="code">&quot;dataaspectratio&quot;</code>&nbsp;property<!-- /@w --></a> or automatically set by Octave in combination with other display properties to fit the data in the current view.
+</p>
+
+<a class="anchor" id="XREFaxesposition"></a></dd>
+<dt><a id="index-axes-position"></a><span><code class="code">position</code>: four-element vector, def. <code class="code">[0.1300   0.1100   0.7750   0.8150]</code><a class="copiable-link" href="#index-axes-position"> &para;</a></span></dt>
+<dd><p>Specify the position of the plot excluding titles, axes, and legend.  The four elements of the vector are the coordinates of the lower left corner and width and height of the plot, in units normalized to the width and height of the plot window.  For example, <code class="code">[0.2, 0.3, 0.4, 0.5]</code> sets the lower left corner of the axes at <em class="math">(0.2, 0.3)</em> and the width and height to be 0.4 and 0.5 respectively.  See <a class="xref" href="#XREFaxesouterposition">outerposition&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFaxespositionconstraint"></a></dd>
+<dt><a id="index-axes-positionconstraint"></a><span><code class="code">positionconstraint</code>: <code class="code">&quot;innerposition&quot;</code> | {<code class="code">&quot;outerposition&quot;</code>}<a class="copiable-link" href="#index-axes-positionconstraint"> &para;</a></span></dt>
+<dd><p>Specify which of <code class="code">&quot;innerposition&quot;</code> or <code class="code">&quot;outerposition&quot;</code> properties takes precedence when axes annotations extent changes.  See <a class="xref" href="#XREFaxesinnerposition">&quot;innerposition&quot;&nbsp;property<!-- /@w --></a>, and <a class="ref" href="#XREFaxesouterposition">&quot;outerposition&quot;&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFaxesunits"></a></dd>
+<dt><a id="index-axes-units"></a><span><code class="code">units</code>: <code class="code">&quot;centimeters&quot;</code> | <code class="code">&quot;characters&quot;</code> | <code class="code">&quot;inches&quot;</code> | {<code class="code">&quot;normalized&quot;</code>} | <code class="code">&quot;pixels&quot;</code> | <code class="code">&quot;points&quot;</code><a class="copiable-link" href="#index-axes-units"> &para;</a></span></dt>
+<dd><p>Units used to interpret the <code class="code">&quot;position&quot;</code>, <code class="code">&quot;outerposition&quot;</code>, and <code class="code">&quot;tightinset&quot;</code> properties.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFaxescategoryParent_002fChildren"></a><h4 class="subsubheading" id="Parent_002fChildren-2"><span>Parent/Children<a class="copiable-link" href="#Parent_002fChildren-2"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFaxeschildren"></a></dd>
+<dt><a id="index-axes-children"></a><span><code class="code">children</code> (read-only): vector of graphics handles, def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-axes-children"> &para;</a></span></dt>
+<dd><p>Graphics handles of the axes&rsquo;s children.
+</p>
+
+<a class="anchor" id="XREFaxeshandlevisibility"></a></dd>
+<dt><a id="index-axes-handlevisibility"></a><span><code class="code">handlevisibility</code>: <code class="code">&quot;callback&quot;</code> | <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-axes-handlevisibility"> &para;</a></span></dt>
+<dd><p>If <code class="code">handlevisibility</code> is <code class="code">&quot;off&quot;</code>, the axes&rsquo;s handle is not visible in its parent&rsquo;s <code class="code">&quot;children&quot;</code> property.
+</p>
+
+<a class="anchor" id="XREFaxesparent"></a></dd>
+<dt><a id="index-axes-parent"></a><span><code class="code">parent</code>: graphics handle<a class="copiable-link" href="#index-axes-parent"> &para;</a></span></dt>
+<dd><p>Handle of the parent graphics object.
+</p>
+
+<a class="anchor" id="XREFaxessortmethod"></a></dd>
+<dt><a id="index-axes-sortmethod"></a><span><code class="code">sortmethod</code>: <code class="code">&quot;childorder&quot;</code> | {<code class="code">&quot;depth&quot;</code>}<a class="copiable-link" href="#index-axes-sortmethod"> &para;</a></span></dt>
+<dd><p>Child display order control is not yet implemented for axes objects.  <code class="code">sortmethod</code> is unused.
+</p>
+</dd>
+</dl>
+
+<a class="anchor" id="XREFaxescategoryTextAppearance"></a><h4 class="subsubheading" id="Text-Appearance"><span>Text Appearance<a class="copiable-link" href="#Text-Appearance"> &para;</a></span></h4>
+
+<dl class="table">
+<dd>
+<a class="anchor" id="XREFaxesfontangle"></a></dd>
+<dt><a id="index-axes-fontangle"></a><span><code class="code">fontangle</code>: <code class="code">&quot;italic&quot;</code> | {<code class="code">&quot;normal&quot;</code>}<a class="copiable-link" href="#index-axes-fontangle"> &para;</a></span></dt>
+<dd><p>Control whether the font is italic or normal.
+</p>
+
+<a class="anchor" id="XREFaxesfontname"></a></dd>
+<dt><a id="index-axes-fontname"></a><span><code class="code">fontname</code>: string, def. <code class="code">&quot;*&quot;</code><a class="copiable-link" href="#index-axes-fontname"> &para;</a></span></dt>
+<dd><p>Name of font used for text rendering.  When setting this property, the text rendering engine will search for a matching font in your system.  If none is found then text is rendered using a default sans serif font (same as the default <code class="code">&quot;*&quot;</code> value).
+</p>
+<p>Programming Note: On systems that don’t use FontConfig natively (all but Linux), the font cache is built when Octave is installed.  You will need to run <code class="code">system (&quot;fc-cache -fv&quot;)</code> manually after installing new fonts.
+</p>
+
+<a class="anchor" id="XREFaxesfontsize"></a></dd>
+<dt><a id="index-axes-fontsize"></a><span><code class="code">fontsize</code>: scalar, def. <code class="code">10</code><a class="copiable-link" href="#index-axes-fontsize"> &para;</a></span></dt>
+<dd><p>Size of the font used for text rendering.  See <a class="xref" href="#XREFaxesfontunits">fontunits property</a>.  Setting <code class="code">fontsize</code> also forces the <code class="code">fontsizemode</code> property to be set to <code class="code">&quot;manual&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFaxesfontsizemode"></a></dd>
+<dt><a id="index-axes-fontsizemode"></a><span><code class="code">fontsizemode</code>: {<code class="code">&quot;auto&quot;</code>} | <code class="code">&quot;manual&quot;</code><a class="copiable-link" href="#index-axes-fontsizemode"> &para;</a></span></dt>
+<dd><p>Current state of the fontsize mode, either manually set by the <a class="ref" href="#XREFaxesfontsize"><code class="code">&quot;fontsize&quot;</code>&nbsp;property<!-- /@w --></a> or automatically set by Octave to maintain readability.
+</p>
+
+<a class="anchor" id="XREFaxesfontsmoothing"></a></dd>
+<dt><a id="index-axes-fontsmoothing"></a><span><code class="code">fontsmoothing</code>: <code class="code">&quot;off&quot;</code> | {<code class="code">&quot;on&quot;</code>}<a class="copiable-link" href="#index-axes-fontsmoothing"> &para;</a></span></dt>
+<dd><p>Control whether any text associated with axes is anti-aliased.
+</p>
+
+<a class="anchor" id="XREFaxesfontunits"></a></dd>
+<dt><a id="index-axes-fontunits"></a><span><code class="code">fontunits</code>: <code class="code">&quot;centimeters&quot;</code> | <code class="code">&quot;inches&quot;</code> | <code class="code">&quot;normalized&quot;</code> | <code class="code">&quot;pixels&quot;</code> | {<code class="code">&quot;points&quot;</code>}<a class="copiable-link" href="#index-axes-fontunits"> &para;</a></span></dt>
+<dd><p>Units used to interpret the <code class="code">&quot;fontsize&quot;</code> property.
+</p>
+
+<a class="anchor" id="XREFaxesfontweight"></a></dd>
+<dt><a id="index-axes-fontweight"></a><span><code class="code">fontweight</code>: <code class="code">&quot;bold&quot;</code> | {<code class="code">&quot;normal&quot;</code>}<a class="copiable-link" href="#index-axes-fontweight"> &para;</a></span></dt>
+<dd><p>Control the variant of the base font used for text rendering.
+</p>
+
+<a class="anchor" id="XREFaxeslabelfontsizemultiplier"></a></dd>
+<dt><a id="index-axes-labelfontsizemultiplier"></a><span><code class="code">labelfontsizemultiplier</code>: def. <code class="code">1.1000</code><a class="copiable-link" href="#index-axes-labelfontsizemultiplier"> &para;</a></span></dt>
+<dd><p>Ratio between the x/y/zlabel fontsize and the tick label fontsize.
+</p>
+
+<a class="anchor" id="XREFaxeslegend"></a></dd>
+<dt><a id="index-axes-legend"></a><span><code class="code">legend</code> (read-only): def. <code class="code">[](0x0)</code><a class="copiable-link" href="#index-axes-legend"> &para;</a></span></dt>
+<dd><p>Legend property control is not yet implemented for axes objects.  <code class="code">legend</code> is unused.  Use the <a class="ref" href="Plot-Annotations.html#XREFlegend">legend function</a> to set legend properties.
+</p>
+
+<a class="anchor" id="XREFaxesticklabelinterpreter"></a></dd>
+<dt><a id="index-axes-ticklabelinterpreter"></a><span><code class="code">ticklabelinterpreter</code>: <code class="code">&quot;latex&quot;</code> | <code class="code">&quot;none&quot;</code> | {<code class="code">&quot;tex&quot;</code>}<a class="copiable-link" href="#index-axes-ticklabelinterpreter"> &para;</a></span></dt>
+<dd><p>Control the way x/y/zticklabel properties are interpreted.
+See <a class="xref" href="Use-of-the-_0022interpreter_0022-Property.html">Use&nbsp;of&nbsp;the&nbsp;<code class="code">&quot;interpreter&quot;</code>&nbsp;Property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFaxestightinset"></a></dd>
+<dt><a id="index-axes-tightinset"></a><span><code class="code">tightinset</code> (read-only): four-element vector<a class="copiable-link" href="#index-axes-tightinset"> &para;</a></span></dt>
+<dd><p>Size of the <code class="code">[left bottom right top]</code> margins around the axes that enclose labels and title annotations.
+</p>
+
+<a class="anchor" id="XREFaxestitlefontsizemultiplier"></a></dd>
+<dt><a id="index-axes-titlefontsizemultiplier"></a><span><code class="code">titlefontsizemultiplier</code>: positive scalar, def. <code class="code">1.1000</code><a class="copiable-link" href="#index-axes-titlefontsizemultiplier"> &para;</a></span></dt>
+<dd><p>Ratio between the title fontsize and the tick label fontsize.
+</p>
+
+<a class="anchor" id="XREFaxestitlefontweight"></a></dd>
+<dt><a id="index-axes-titlefontweight"></a><span><code class="code">titlefontweight</code>: {<code class="code">&quot;bold&quot;</code>} | <code class="code">&quot;normal&quot;</code><a class="copiable-link" href="#index-axes-titlefontweight"> &para;</a></span></dt>
+<dd><p>Control variant of base font used for the axes title.
+</p>
+
+<a class="anchor" id="XREFaxesxlabel"></a></dd>
+<dt><a id="index-axes-xlabel"></a><span><code class="code">xlabel</code>: graphics handle<a class="copiable-link" href="#index-axes-xlabel"> &para;</a></span></dt>
+<dd><p>Graphics handle of the x label text object.
+</p>
+
+<a class="anchor" id="XREFaxesxticklabel"></a></dd>
+<dt><a id="index-axes-xticklabel"></a><span><code class="code">xticklabel</code>: string | cell array of strings, def. 6-by-1 cell<a class="copiable-link" href="#index-axes-xticklabel"> &para;</a></span></dt>
+<dd><p>Labels of x tick marks.  Setting <code class="code">xticklabel</code> also forces the <code class="code">xticklabelmode</code> property to be set to <code class="code">&quot;manual&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFaxesxticklabelmode"></a></dd>
+<dt><a id="index-axes-xticklabelmode"></a><span><code class="code">xticklabelmode</code>: {<code class="code">&quot;auto&quot;</code>} | <code class="code">&quot;manual&quot;</code><a class="copiable-link" href="#index-axes-xticklabelmode"> &para;</a></span></dt>
+<dd><p>Setting to determine whether the xtick labels are set automatically by Octave or manually using the <a class="ref" href="#XREFaxesxticklabel"><code class="code">&quot;xticklabel&quot;</code>&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFaxesxticklabelrotation"></a></dd>
+<dt><a id="index-axes-xticklabelrotation"></a><span><code class="code">xticklabelrotation</code>: def. <code class="code">0</code><a class="copiable-link" href="#index-axes-xticklabelrotation"> &para;</a></span></dt>
+<dd><p>Axis label rotation is not yet implemented for axes objects.  <code class="code">xticklabelrotation</code> is unused.
+</p>
+
+<a class="anchor" id="XREFaxesylabel"></a></dd>
+<dt><a id="index-axes-ylabel"></a><span><code class="code">ylabel</code>: graphics handle<a class="copiable-link" href="#index-axes-ylabel"> &para;</a></span></dt>
+<dd><p>Graphics handle of the y label text object.
+</p>
+
+<a class="anchor" id="XREFaxesyticklabel"></a></dd>
+<dt><a id="index-axes-yticklabel"></a><span><code class="code">yticklabel</code>: string | cell array of strings, def. 6-by-1 cell<a class="copiable-link" href="#index-axes-yticklabel"> &para;</a></span></dt>
+<dd><p>Labels of y tick marks.  Setting <code class="code">yticklabel</code> also forces the <code class="code">yticklabelmode</code> property to be set to <code class="code">&quot;manual&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFaxesyticklabelmode"></a></dd>
+<dt><a id="index-axes-yticklabelmode"></a><span><code class="code">yticklabelmode</code>: {<code class="code">&quot;auto&quot;</code>} | <code class="code">&quot;manual&quot;</code><a class="copiable-link" href="#index-axes-yticklabelmode"> &para;</a></span></dt>
+<dd><p>Setting to determine whether the ytick labels are set automatically by Octave or manually using the <a class="ref" href="#XREFaxesyticklabel"><code class="code">&quot;yticklabel&quot;</code>&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFaxesyticklabelrotation"></a></dd>
+<dt><a id="index-axes-yticklabelrotation"></a><span><code class="code">yticklabelrotation</code>: def. <code class="code">0</code><a class="copiable-link" href="#index-axes-yticklabelrotation"> &para;</a></span></dt>
+<dd><p>Axis label rotation is not yet implemented for axes objects.  <code class="code">yticklabelrotation</code> is unused.
+</p>
+
+<a class="anchor" id="XREFaxeszlabel"></a></dd>
+<dt><a id="index-axes-zlabel"></a><span><code class="code">zlabel</code>: graphics handle<a class="copiable-link" href="#index-axes-zlabel"> &para;</a></span></dt>
+<dd><p>Graphics handle of the z label text object.
+</p>
+
+<a class="anchor" id="XREFaxeszticklabel"></a></dd>
+<dt><a id="index-axes-zticklabel"></a><span><code class="code">zticklabel</code>: string | cell array of strings, def. 6-by-1 cell<a class="copiable-link" href="#index-axes-zticklabel"> &para;</a></span></dt>
+<dd><p>Labels of z tick marks.  Setting <code class="code">zticklabel</code> also forces the <code class="code">zticklabelmode</code> property to be set to <code class="code">&quot;manual&quot;</code>.
+</p>
+
+<a class="anchor" id="XREFaxeszticklabelmode"></a></dd>
+<dt><a id="index-axes-zticklabelmode"></a><span><code class="code">zticklabelmode</code>: {<code class="code">&quot;auto&quot;</code>} | <code class="code">&quot;manual&quot;</code><a class="copiable-link" href="#index-axes-zticklabelmode"> &para;</a></span></dt>
+<dd><p>Setting to determine whether the ztick labels are set automatically by Octave or manually using the <a class="ref" href="#XREFaxeszticklabel"><code class="code">&quot;zticklabel&quot;</code>&nbsp;property<!-- /@w --></a>.
+</p>
+
+<a class="anchor" id="XREFaxeszticklabelrotation"></a></dd>
+<dt><a id="index-axes-zticklabelrotation"></a><span><code class="code">zticklabelrotation</code>: def. <code class="code">0</code><a class="copiable-link" href="#index-axes-zticklabelrotation"> &para;</a></span></dt>
+<dd><p>Axis label rotation is not yet implemented for axes objects.  <code class="code">zticklabelrotation</code> is unused.
+</p>
+</dd>
+</dl>
+
+
+</div>
+<hr>
+<p class="nav-panel">
+<span class="nav-button"><span class="nav-label">Next: </span><span class="nav-link"><a href="Legend-Properties.html">Legend Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Previous: </span><span class="nav-link"><a href="Figure-Properties.html">Figure Properties</a></span></span>, <span class="nav-button"><span class="nav-label">Up: </span><span class="nav-link"><a href="Graphics-Object-Properties.html">Graphics Object Properties</a></span></span><span class="nav-button"> &nbsp; </span><span class="nav-button">[<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</span><span class="nav-button">[<a href="Graphics-Properties-Index.html" title="Index" rel="index">Index</a>]</span></p>
+
+
+
+</body>
+</html>
