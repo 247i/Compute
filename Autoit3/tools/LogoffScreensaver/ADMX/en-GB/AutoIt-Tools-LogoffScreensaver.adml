@@ -1,0 +1,40 @@
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>
+  </displayName>
+  <description>
+  </description>
+  <resources>
+    <stringTable>
+      <string id="AutoIt_Tools">AutoIt Tools</string>
+      <string id="LogoffScreensaver">LogoffScreensaver</string>
+      <string id="AutoIt_Tools_Help">Visit the AutoIt Tools website at http://www.autoitscript.com/site/autoit-tools/</string>
+      <string id="SUPPORTED_DOTNET2">Supported on Windows XP or later with .NET Framework v2.0.</string>
+      <string id="PassthruScreensaver_EditText">Passthru Screensaver</string>
+      <string id="PassthruScreensaver_Help">Enter the filename of a passthrough screensaver to use. The screensaver must be in the System32 directory. For example: mystify.scr</string>
+      <string id="IdleAction_DropDownList">Idle Action</string>
+      <string id="IdleAction_Help">Select the action to perform after the Idle Time has passed.</string>
+      <string id="IdleAction_DropDownList_None">None</string>
+      <string id="IdleAction_DropDownList_Logoff">Logoff</string>
+      <string id="IdleAction_DropDownList_Shutdown">Shutdown</string>
+      <string id="IdleTime_Spinner">Idle Time</string>
+      <string id="IdleTime_Spinner_Help">Select the time in seconds after the screensaver has started to wait before performing the Idle Action.</string>
+      <string id="ADMXMigrator_UnresolvedString">ADMX Migrator encountered a string that is not present in the source ADM string table.</string>
+      <string id="ADMXMigrator_NoSupportedOn">ADMX Migrator encountered a policy that does not have a supportedOn value.</string>
+    </stringTable>
+    <presentationTable>
+      <presentation id="PassthruScreensaver_EditText">
+        <textBox refId="PassthruScreensaver_EditText">
+          <label>Passthru Screensaver</label>
+          <defaultValue>
+          </defaultValue>
+        </textBox>
+      </presentation>
+      <presentation id="IdleAction_DropDownList">
+        <dropdownList refId="IdleAction_DropDownList" defaultItem="0">Idle Action</dropdownList>
+      </presentation>
+      <presentation id="IdleTime_Spinner">
+        <decimalTextBox refId="IdleTime_Spinner" defaultValue="900" spinStep="30">Idle Time</decimalTextBox>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

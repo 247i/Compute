@@ -1,0 +1,67 @@
+CLASS USER
+
+CATEGORY !!AutoIt_Tools
+CATEGORY !!LogoffScreensaver
+
+	KEYNAME "Software\Policies\AutoIt Tools\LogoffScreensaver"
+
+	POLICY !!PassthruScreensaver_EditText
+		#if version >= 4 
+			SUPPORTED !!SUPPORTED_DOTNET2 
+		#endif
+		EXPLAIN !!PassthruScreensaver_Help 
+		PART !!PassthruScreensaver_EditText EDITTEXT 
+			VALUENAME "PassthruScreensaver" 
+			DEFAULT "Mystify.scr"
+		END PART 
+	END POLICY 
+
+	POLICY !!IdleAction_DropDownList 
+		#if version >= 4 
+			SUPPORTED !!SUPPORTED_DOTNET2 
+		#endif
+		EXPLAIN !!IdleAction_Help 
+		PART !!IdleAction_DropDownList DROPDOWNLIST REQUIRED 
+			VALUENAME "IdleAction" 
+				ITEMLIST 
+				 NAME !!IdleAction_DropDownList_None		VALUE NUMERIC 0 DEFAULT 
+				 NAME !!IdleAction_DropDownList_Logoff		VALUE NUMERIC 1 
+				 NAME !!IdleAction_DropDownList_Shutdown	VALUE NUMERIC 2 
+			 END ITEMLIST 
+		END PART 
+	END POLICY 
+
+	POLICY !!IdleTime_Spinner 
+		#if version >= 4 
+			SUPPORTED !!SUPPORTED_DOTNET2 
+		#endif
+		EXPLAIN !!IdleTime_Spinner_Help 
+		PART !!IdleTime_Spinner  NUMERIC 
+			VALUENAME "IdleTime" 
+			MIN 0 MAX 2147483 DEFAULT 900 SPIN 30 
+		END PART 
+	END POLICY
+
+END CATEGORY
+END CATEGORY
+
+[Strings]
+AutoIt_Tools="AutoIt Tools"
+LogoffScreensaver="LogoffScreensaver"
+
+AutoIt_Tools_Help="Visit the AutoIt Tools website at http://www.autoitscript.com/site/autoit-tools/"
+
+SUPPORTED_DOTNET2="Supported on Windows XP or later with .NET Framework v2.0."
+
+PassthruScreensaver_EditText="Passthru Screensaver"
+PassthruScreensaver_Help="Enter the filename of a passthrough screensaver to use. The screensaver must be in the System32 directory. For example: mystify.scr"
+
+IdleAction_DropDownList="Idle Action"
+IdleAction_Help="Select the action to perform after the Idle Time has passed."
+IdleAction_DropDownList_None="None"
+IdleAction_DropDownList_Logoff="Logoff"
+IdleAction_DropDownList_Shutdown="Shutdown"
+
+IdleTime_Spinner="Idle Time"
+IdleTime_Spinner_Help="Select the time in seconds after the screensaver has started to wait before performing the Idle Action."
+

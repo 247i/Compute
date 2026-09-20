@@ -1,0 +1,59 @@
+<policyDefinitions revision="1.0" schemaVersion="1.0">
+  <policyNamespaces>
+    <target prefix="fullarmor" namespace="FullArmor.Policies.A1C8058C_1865_4910_9CDA_C889940D1A0F" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <supersededAdm fileName="D:\DATA\Documents\Customers\BAA - Airports Division\AOS New OU\ScreenSaver\AutoIt-Tools-LogoffScreensaver.adm" />
+  <resources minRequiredRevision="1.0" />
+  <supportedOn>
+    <definitions>
+      <definition name="SUPPORTED_DOTNET2" displayName="$(string.SUPPORTED_DOTNET2)" />
+      <definition name="SUPPORTED_NotSpecified" displayName="$(string.ADMXMigrator_NoSupportedOn)" />
+    </definitions>
+  </supportedOn>
+  <categories>
+    <category name="AutoIt_Tools" displayName="$(string.AutoIt_Tools)" />
+    <category name="LogoffScreensaver" displayName="$(string.LogoffScreensaver)">
+      <parentCategory ref="AutoIt_Tools" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="PassthruScreensaver_EditText" class="User" displayName="$(string.PassthruScreensaver_EditText)" explainText="$(string.PassthruScreensaver_Help)" presentation="$(presentation.PassthruScreensaver_EditText)" key="Software\Policies\AutoIt Tools\LogoffScreensaver">
+      <parentCategory ref="LogoffScreensaver" />
+      <supportedOn ref="SUPPORTED_DOTNET2" />
+      <elements>
+        <text id="PassthruScreensaver_EditText" valueName="PassthruScreensaver" />
+      </elements>
+    </policy>
+    <policy name="IdleAction_DropDownList" class="User" displayName="$(string.IdleAction_DropDownList)" explainText="$(string.IdleAction_Help)" presentation="$(presentation.IdleAction_DropDownList)" key="Software\Policies\AutoIt Tools\LogoffScreensaver">
+      <parentCategory ref="LogoffScreensaver" />
+      <supportedOn ref="SUPPORTED_DOTNET2" />
+      <elements>
+        <enum id="IdleAction_DropDownList" valueName="IdleAction" required="true">
+          <item displayName="$(string.IdleAction_DropDownList_None)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.IdleAction_DropDownList_Logoff)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.IdleAction_DropDownList_Shutdown)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="IdleTime_Spinner" class="User" displayName="$(string.IdleTime_Spinner)" explainText="$(string.IdleTime_Spinner_Help)" presentation="$(presentation.IdleTime_Spinner)" key="Software\Policies\AutoIt Tools\LogoffScreensaver">
+      <parentCategory ref="LogoffScreensaver" />
+      <supportedOn ref="SUPPORTED_DOTNET2" />
+      <elements>
+        <decimal id="IdleTime_Spinner" valueName="IdleTime" maxValue="2147483" />
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>
