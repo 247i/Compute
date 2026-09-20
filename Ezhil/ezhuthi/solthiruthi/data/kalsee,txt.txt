@@ -1,0 +1,32 @@
+# (C) 2016 Muthiah Annamalai | Compiled for Open-Tamil project
+# This data is released under public domain
+# format is self-descriptive: '#' describes comments, 
+# '>>' start of category, and end of previous category
+# words are 1-word per line, terminal or start spaces to be ignored
+>>கணிபான்
+add கூட்டு
+difference கழி  
+equal சமம்
+calculate கணக்கிடு
+divide வகுத்தல்
+multiply பெருக்கி
+product பெருக்கு
+addition கூட்டுதல் 
+subtraction கழித்தல்
+division பிரித்தல்
+power மூலம்
+factorial கூட்டு பெருக்கு
+clear நினைவகத்தில் அழி
+delete அழி
+sine சைன்
+cosine கோசைன்
+tangent வட்டத்தின் டான்
+settings அமைப்புகளை
+talkback திரும்ப பேசு
+dont talkback பேச வேண்டாம்
+answer பதில் கொடுக்க
+readaloud உரக்கப்படி
+letters-and-numbers எண்ணும் எழுத்தும்
+more கூட 
+less குறை
+ 

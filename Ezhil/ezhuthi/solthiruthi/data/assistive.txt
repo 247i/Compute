@@ -1,0 +1,64 @@
+# (C) 2016 Muthiah Annamalai | Compiled for Open-Tamil project
+# This data is released under public domain
+# format is self-descriptive: '#' describes comments, 
+# '>>' start of category, and end of previous category
+# words are 1-word per line, terminal or start spaces to be ignored
+#assistive
+>>bathroom 
+pee
+poo
+wet
+blood
+stain
+uncomfortable
+painful
+painlevel
+gas
+bloat
+>>navigationpanel
+next
+previous
+help
+emergency
+>>assistivehelp
+fallen
+hurt
+bleeding
+forgetful
+iamlost
+whereami
+callhelp
+>>wellness
+feelbetter
+feelworse
+sleepy
+not sleepy
+restless
+hungry
+angry
+tired
+lonely
+fearful
+loved
+happy
+sad
+>>contactinfo
+name
+age
+gender
+email
+address
+nextofkin_name
+nextofkin_phone
+nextofkin_address
+>>memory
+takepicture
+recallpicture
+previouspicture
+lookatme
+lookatscene
+nextpicture
+saveaudio
+playaudio
+previousaudio
+nextaudio
