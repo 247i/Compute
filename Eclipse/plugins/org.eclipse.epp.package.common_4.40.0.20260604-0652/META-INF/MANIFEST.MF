@@ -1,0 +1,48 @@
+Manifest-Version: 1.0
+Created-By: Maven Archiver 3.6.6
+Build-Jdk-Spec: 21
+Bundle-ManifestVersion: 2
+Automatic-Module-Name: org.eclipse.epp.package.common
+Bundle-Name: Common EPP Bundle
+Bundle-SymbolicName: org.eclipse.epp.package.common;singleton:=true
+Bundle-Version: 4.40.0.20260604-0652
+Bundle-Vendor: Eclipse Packaging Project
+Require-Bundle: org.eclipse.platform,org.eclipse.equinox.app,org.eclipse
+ .ui,org.eclipse.core.commands,org.eclipse.core.runtime,org.eclipse.ui.w
+ orkbench
+Bundle-Localization: plugin
+Eclipse-BundleShape: dir
+Eclipse-SourceReferences: scm:git:https://github.com/eclipse-packaging/p
+ ackages.git;path="packages/org.eclipse.epp.package.common";commitId=979
+ c72b05c22dc0703cbed7d00566f96f5fe44d4
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=21))"
+
+Name: META-INF/maven/org.eclipse.epp/org.eclipse.epp.package.common/pom.
+ xml
+SHA-256-Digest: Hk8jsXlnjRZtSNt8Lob/FmaN0splJBgTSOnjquNQV1Y=
+
+Name: about.html
+SHA-256-Digest: fOZwKO8Et7MJtFh0XZdYUTVdH79ttmK7A3UjoyBRrg4=
+
+Name: plugin.xml
+SHA-256-Digest: SlQUk2HBfqyqNpGVwXcZrSq2wVcr/VuqQlCU20HTZIw=
+
+Name: icons/star@2x.png
+SHA-256-Digest: Qj5KH+QvUrl8ftkvbuSf/fQQN4PhHV7UgtzXYQUWxpU=
+
+Name: org/eclipse/epp/common/ContributeHandler.class
+SHA-256-Digest: SQX5IAXvgdee/OTOAgvuX2WBpSljwlTYmiCe5gfSI6o=
+
+Name: icons/star.png
+SHA-256-Digest: L/aQI/krQ43pHiTmOQnYnN10otLYB4U5DeiyXZhL7nU=
+
+Name: plugin.properties
+SHA-256-Digest: HuAxAjx3/Ba4a2BDTa07FACTlZ+8rGVMKJNbNJR2t+Q=
+
+Name: splash.bmp
+SHA-256-Digest: TOdnJ7CSKIUfB4EHh9m/vdHHVkxfk101pxjsIoAn1hg=
+
+Name: META-INF/maven/org.eclipse.epp/org.eclipse.epp.package.common/pom.
+ properties
+SHA-256-Digest: jX5jMRNUFPCmHH5d2B5Hb4t4XtkF+D5NUaWL6OLTBfU=
+

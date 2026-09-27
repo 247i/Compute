@@ -1,0 +1,108 @@
+_speedthreshold 402 0 CODE
+_getmouseinfo 55E 0 CODE
+_brk E80 0 CODE
+__iob BE 1010 DATA
+_free 7E8 0 CODE
+_main 0 0
+_savestate 4A4 0 CODE
+_sbrk E85 0 CODE
+_exit C00 0 CODE
+start 0 0 CODE
+_getpressinfo 206 0 CODE
+_int86 F89 0 CODE
+__fullpath B2 1010 DATA
+__asm_event_glue 640 0 CODE
+__TICK_COUNT_ B4 1010 DATA
+_readmouse 19C 0 CODE
+___in_crithand__ C72 1010 BSS
+_savemouse 4FC 0 CODE
+_set_crithand 970 0 CODE
+_keymodbits 595 0 CODE
+_initmouse 110 0 CODE
+small_model 0 0
+_eventhandler 59F 0 CODE
+_getsensitivity 454 0 CODE
+_setsensitivity 423 0 CODE
+__H_TEXT 1010 0 CODE
+__L_TEXT 0 0 CODE
+_hidecursor 180 0 CODE
+_close DF0 0 CODE
+_write F40 0 CODE
+_sethlimits 2A0 0 CODE
+_setpixelratio 3A3 0 CODE
+__Bbss 12C0 1010 BSS
+__Hbss C74 1010 BSS
+fwait$$ 9B90 0
+__Lbss 2B0 1010 BSS
+_setvlimits 2C8 0 CODE
+_errno 2B0 1010 BSS
+_msdos 940 0 CODE
+_showcursor 164 0 CODE
+__buffree E68 0 CODE
+__tfilesptr C6A 1010 BSS
+_getstoragesize 485 0 CODE
+__atexitptr 468 1010 BSS
+__outdone C70 1010 BSS
+_readcounters 378 0 CODE
+__bufallo E40 0 CODE
+__ctype_ 1AE 1010 DATA
+_setcursor 32A 0 CODE
+__getargs A00 0 CODE
+__Bstack 1C90 1C90
+_realloc 7F8 0 CODE
+__Hstack 400 1C90
+__Lstack 0 1C90
+_shutdownmouse 15C 0 CODE
+_int86x F70 0 CODE
+__cleanup D00 0 CODE
+_restoremouse 548 0 CODE
+_setmousepos 1DE 0 CODE
+_getreleaseinfo 253 0 CODE
+__argc_ 466 1010 BSS
+_restorestate 4D0 0 CODE
+__Bdata 1010 1010 DATA
+__Hdata 2B0 1010 DATA
+__Ldata 0 1010 DATA
+_strrchr BD0 0 CODE
+_toupper CA0 0 CODE
+_malloc 690 0 CODE
+_environ 86 1010 DATA
+_getcwd 8A4 0 CODE
+__sibuf 46A 1010 BSS
+__sobuf 86A 1010 BSS
+_fclose D30 0 CODE
+endprof F60 0 CODE
+_remove E10 0 CODE
+_unlink E20 0 CODE
+_strlen CE0 0 CODE
+_fflush EE0 0 CODE
+_strcat C60 0 CODE
+_strchr CC0 0 CODE
+_setgrcursor 2F0 0 CODE
+__c_event_glue_ 5E3 0 CODE
+small_code 0 0
+_conditionalhide 3CB 0 CODE
+__Htext 1010 0 CODE
+__Ltext 1010 0 CODE
+startup 9F0 0 CODE
+_getdrv 920 0 CODE
+_memcpy C20 0 CODE
+_strcpy C80 0 CODE
+small_data 0 0
+%segments
+_TEXT 0 100F CODE
+data 0 C73 DATA
+stack 0 3FF 
+%locals
+MOUSE.OBJ
+MOUSE.OBJ
+_KBSTATUS 400017
+__m_saveptr_ 2B2 1010 BSS
+__m_savesize_ 2B4 1010 BSS
+_user_handler 2B6 1010 BSS
+F451 2B8 1010 BSS
+__old_ss 2C8 1010 BSS
+__old_sp 2CA 1010 BSS
+__old_ds 2CC 1010 BSS
+__old_es 2CE 1010 BSS
+__glue_stack 3D0 1010 BSS

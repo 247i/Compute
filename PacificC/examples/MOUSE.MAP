@@ -1,0 +1,138 @@
+Linker command line:
+
+-z -h+MOUSE.SYM -mMOUSE.MAP -lm \
+  -p_TEXT,text,CODE=0/,LDATA=0/,LBSS=0/,NVRAM=0/,data=0/,bss,stack=0/ \
+  -oC:\WINNT\TEMP\L.OBJ C:\PACIFIC\LIB\RT86--DS.OBJ MOUSE.OBJ \
+  C:\PACIFIC\LIB\86--DSC.LIB 
+
+Object code version is 3.7
+
+Machine type is 8086
+
+		Name          Link     Load   Length Selector Space Scale
+C:\PACIFIC\LIB\RT86--DS.OBJ
+		_TEXT            0        0      110       0     0
+		bss            2B0     12C0        2     101     0
+		stack            0     1C90      400     1C9     0
+		data             0     1010       B4     101     0
+MOUSE.OBJ       _TEXT          110      110      580       0     0
+		bss            2B2     12C2      11E     101     0
+		data            B4     10C4        4     101     0
+
+C:\PACIFIC\LIB\86--DSC.LIB
+malloc.obj      _TEXT          690      690      210       0     0
+		bss            3D0     13E0       10     101     0
+getcwd.obj      _TEXT          8A0      8A0       80       0     0
+		bss            3E0     13F0       44     101     0
+getdrv.obj      _TEXT          920      920       20       0     0
+		data            B8     10C8        4     101     0
+msdos-s.obj     _TEXT          940      940       30       0     0
+setcrt-s.obj    _TEXT          970      970       80       0     0
+		bss            424     1434        6     101     0
+start1-s.obj    _TEXT          9F0      9F0       10       0     0
+start2.obj      _TEXT          A00      A00      1D0       0     0
+		bss            42A     143A       3C     101     0
+		data            BC     10CC        2     101     0
+argc.obj        bss            466     1476        2     101     0
+strrchr.obj     _TEXT          BD0      BD0       30       0     0
+exit-s.obj      _TEXT          C00      C00       20       0     0
+memcpy-s.obj    _TEXT          C20      C20       40       0     0
+strcat.obj      _TEXT          C60      C60       20       0     0
+strcpy.obj      _TEXT          C80      C80       20       0     0
+toupper.obj     _TEXT          CA0      CA0       20       0     0
+strchr.obj      _TEXT          CC0      CC0       20       0     0
+strlen-s.obj    _TEXT          CE0      CE0       20       0     0
+cleanup.obj     _TEXT          D00      D00       30       0     0
+		bss            468     1478      802     101     0
+		data            BE     10CE       F0     101     0
+fclose.obj      _TEXT          D30      D30       C0       0     0
+tfiles.obj      bss            C6A     1C7A        2     101     0
+close-s.obj     _TEXT          DF0      DF0       20       0     0
+remove.obj      _TEXT          E10      E10       10       0     0
+unlink-s.obj    _TEXT          E20      E20       20       0     0
+buf.obj         _TEXT          E40      E40       40       0     0
+		bss            C6C     1C7C        2     101     0
+nearsbrk.obj    _TEXT          E80      E80       60       0     0
+		bss            C6E     1C7E        2     101     0
+fflush.obj      _TEXT          EE0      EE0       60       0     0
+		bss            C70     1C80        2     101     0
+write-s.obj     _TEXT          F40      F40       20       0     0
+ctype_.obj      data           1AE     11BE      102     101     0
+endprof.obj     _TEXT          F60      F60       10       0     0
+int86-s.obj     _TEXT          F70      F70       A0       0     0
+critflag.obj    bss            C72     1C82        2     101     0
+
+TOTAL		Name          Link     Load   Length
+	CLASS	CODE     
+		_TEXT            0        0     1010
+
+	CLASS	BSS      
+		bss            2B0     12C0      9C4
+
+	CLASS	LDATA    
+
+		stack            0     1C90      400
+	CLASS	NVRAM    
+
+	CLASS	DATA     
+		data             0     1010      2B0
+
+	CLASS	LBSS     
+
+
+
+SEGMENTS	Name		Load	Length	 Top	Selector    Space Class
+
+		_TEXT           000000	001010	001010	       0       0  CODE  
+		data            001010	000C74	001C84	     101       0  DATA  
+		stack           001C90	000400	002090	     1C9       0        
+
+
+                                  Symbol Table
+
+__Bbss           bss   12C0  __Bdata          data  1010
+__Bstack         stack 1C90  __H_TEXT         _TEXT 1010
+__Hbss           bss   0C74  __Hdata          data  02B0
+__Hstack         stack 0400  __Htext          text  1010
+__L_TEXT         _TEXT 0000  __Lbss           bss   02B0
+__Ldata          data  0000  __Lstack         stack 0000
+__Ltext          text  1010  __TICK_COUNT_    data  00B4
+___in_crithand__ bss   0C72  __argc_          bss   0466
+__asm_event_glue _TEXT 0640  __atexitptr      bss   0468
+__bufallo        _TEXT 0E40  __buffree        _TEXT 0E68
+__c_event_glue_  _TEXT 05E3  __cleanup        _TEXT 0D00
+__ctype_         data  01AE  __fullpath       data  00B2
+__getargs        _TEXT 0A00  __iob            data  00BE
+__outdone        bss   0C70  __sibuf          bss   046A
+__sobuf          bss   086A  __tfilesptr      bss   0C6A
+_brk             _TEXT 0E80  _close           _TEXT 0DF0
+_conditionalhide _TEXT 03CB  _environ         data  0086
+_errno           bss   02B0  _eventhandler    _TEXT 059F
+_exit            _TEXT 0C00  _fclose          _TEXT 0D30
+_fflush          _TEXT 0EE0  _free            _TEXT 07E8
+_getcwd          _TEXT 08A4  _getdrv          _TEXT 0920
+_getmouseinfo    _TEXT 055E  _getpressinfo    _TEXT 0206
+_getreleaseinfo  _TEXT 0253  _getsensitivity  _TEXT 0454
+_getstoragesize  _TEXT 0485  _hidecursor      _TEXT 0180
+_initmouse       _TEXT 0110  _int86           _TEXT 0F89
+_int86x          _TEXT 0F70  _keymodbits      _TEXT 0595
+_main                        _malloc          _TEXT 0690
+_memcpy          _TEXT 0C20  _msdos           _TEXT 0940
+_readcounters    _TEXT 0378  _readmouse       _TEXT 019C
+_realloc         _TEXT 07F8  _remove          _TEXT 0E10
+_restoremouse    _TEXT 0548  _restorestate    _TEXT 04D0
+_savemouse       _TEXT 04FC  _savestate       _TEXT 04A4
+_sbrk            _TEXT 0E85  _set_crithand    _TEXT 0970
+_setcursor       _TEXT 032A  _setgrcursor     _TEXT 02F0
+_sethlimits      _TEXT 02A0  _setmousepos     _TEXT 01DE
+_setpixelratio   _TEXT 03A3  _setsensitivity  _TEXT 0423
+_setvlimits      _TEXT 02C8  _showcursor      _TEXT 0164
+_shutdownmouse   _TEXT 015C  _speedthreshold  _TEXT 0402
+_strcat          _TEXT 0C60  _strchr          _TEXT 0CC0
+_strcpy          _TEXT 0C80  _strlen          _TEXT 0CE0
+_strrchr         _TEXT 0BD0  _toupper         _TEXT 0CA0
+_unlink          _TEXT 0E20  _write           _TEXT 0F40
+endprof          _TEXT 0F60  fwait$$          (abs) 9B90
+small_code       (abs) 0000  small_data       (abs) 0000
+small_model      (abs) 0000  start            _TEXT 0000
+startup          _TEXT 09F0  
